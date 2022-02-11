@@ -254,18 +254,18 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                MassFluxUnit.GramPerHourPerSquareCentimeter => _value/3.6e2,
-                MassFluxUnit.GramPerHourPerSquareMeter => _value/3.6e6,
-                MassFluxUnit.GramPerHourPerSquareMillimeter => _value/3.6e0,
-                MassFluxUnit.GramPerSecondPerSquareCentimeter => _value/1e-1,
-                MassFluxUnit.GramPerSecondPerSquareMeter => _value/1e3,
-                MassFluxUnit.GramPerSecondPerSquareMillimeter => _value/1e-3,
-                MassFluxUnit.KilogramPerHourPerSquareCentimeter => (_value/3.6e2) * 1e3d,
-                MassFluxUnit.KilogramPerHourPerSquareMeter => (_value/3.6e6) * 1e3d,
-                MassFluxUnit.KilogramPerHourPerSquareMillimeter => (_value/3.6e0) * 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (_value/1e-1) * 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareMeter => (_value/1e3) * 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (_value/1e-3) * 1e3d,
+                MassFluxUnit.GramPerHourPerSquareCentimeter => _value / 3.6e2,
+                MassFluxUnit.GramPerHourPerSquareMeter => _value / 3.6e6,
+                MassFluxUnit.GramPerHourPerSquareMillimeter => _value / 3.6e0,
+                MassFluxUnit.GramPerSecondPerSquareCentimeter => _value / 1e-1,
+                MassFluxUnit.GramPerSecondPerSquareMeter => _value / 1e3,
+                MassFluxUnit.GramPerSecondPerSquareMillimeter => _value / 1e-3,
+                MassFluxUnit.KilogramPerHourPerSquareCentimeter => (_value / 3.6e2) * 1e3d,
+                MassFluxUnit.KilogramPerHourPerSquareMeter => (_value / 3.6e6) * 1e3d,
+                MassFluxUnit.KilogramPerHourPerSquareMillimeter => (_value / 3.6e0) * 1e3d,
+                MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (_value / 1e-1) * 1e3d,
+                MassFluxUnit.KilogramPerSecondPerSquareMeter => (_value / 1e3) * 1e3d,
+                MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (_value / 1e-3) * 1e3d,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -279,18 +279,18 @@ namespace UnitsNet
 
             return unit switch
             {
-                MassFluxUnit.GramPerHourPerSquareCentimeter => baseUnitValue*3.6e2,
-                MassFluxUnit.GramPerHourPerSquareMeter => baseUnitValue*3.6e6,
-                MassFluxUnit.GramPerHourPerSquareMillimeter => baseUnitValue*3.6e0,
-                MassFluxUnit.GramPerSecondPerSquareCentimeter => baseUnitValue*1e-1,
-                MassFluxUnit.GramPerSecondPerSquareMeter => baseUnitValue*1e3,
-                MassFluxUnit.GramPerSecondPerSquareMillimeter => baseUnitValue*1e-3,
-                MassFluxUnit.KilogramPerHourPerSquareCentimeter => (baseUnitValue*3.6e2) / 1e3d,
-                MassFluxUnit.KilogramPerHourPerSquareMeter => (baseUnitValue*3.6e6) / 1e3d,
-                MassFluxUnit.KilogramPerHourPerSquareMillimeter => (baseUnitValue*3.6e0) / 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (baseUnitValue*1e-1) / 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareMeter => (baseUnitValue*1e3) / 1e3d,
-                MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (baseUnitValue*1e-3) / 1e3d,
+                MassFluxUnit.GramPerHourPerSquareCentimeter => baseUnitValue * 3.6e2,
+                MassFluxUnit.GramPerHourPerSquareMeter => baseUnitValue * 3.6e6,
+                MassFluxUnit.GramPerHourPerSquareMillimeter => baseUnitValue * 3.6e0,
+                MassFluxUnit.GramPerSecondPerSquareCentimeter => baseUnitValue * 1e-1,
+                MassFluxUnit.GramPerSecondPerSquareMeter => baseUnitValue * 1e3,
+                MassFluxUnit.GramPerSecondPerSquareMillimeter => baseUnitValue * 1e-3,
+                MassFluxUnit.KilogramPerHourPerSquareCentimeter => (baseUnitValue * 3.6e2) / 1e3d,
+                MassFluxUnit.KilogramPerHourPerSquareMeter => (baseUnitValue * 3.6e6) / 1e3d,
+                MassFluxUnit.KilogramPerHourPerSquareMillimeter => (baseUnitValue * 3.6e0) / 1e3d,
+                MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (baseUnitValue * 1e-1) / 1e3d,
+                MassFluxUnit.KilogramPerSecondPerSquareMeter => (baseUnitValue * 1e3) / 1e3d,
+                MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (baseUnitValue * 1e-3) / 1e3d,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

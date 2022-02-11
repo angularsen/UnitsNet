@@ -200,12 +200,12 @@ namespace UnitsNet
             return Unit switch
             {
                 VolumePerLengthUnit.CubicMeterPerMeter => _value,
-                VolumePerLengthUnit.CubicYardPerFoot => _value*2.50838208,
-                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => _value*2.50837706323584,
-                VolumePerLengthUnit.LiterPerKilometer => _value/1e6,
-                VolumePerLengthUnit.LiterPerMeter => _value/1000,
+                VolumePerLengthUnit.CubicYardPerFoot => _value * 2.50838208,
+                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => _value * 2.50837706323584,
+                VolumePerLengthUnit.LiterPerKilometer => _value / 1e6,
+                VolumePerLengthUnit.LiterPerMeter => _value / 1000,
                 VolumePerLengthUnit.LiterPerMillimeter => _value,
-                VolumePerLengthUnit.OilBarrelPerFoot => _value/1.91713408,
+                VolumePerLengthUnit.OilBarrelPerFoot => _value / 1.91713408,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -220,12 +220,12 @@ namespace UnitsNet
             return unit switch
             {
                 VolumePerLengthUnit.CubicMeterPerMeter => baseUnitValue,
-                VolumePerLengthUnit.CubicYardPerFoot => baseUnitValue/2.50838208,
-                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => baseUnitValue/2.50837706323584,
-                VolumePerLengthUnit.LiterPerKilometer => baseUnitValue*1e6,
-                VolumePerLengthUnit.LiterPerMeter => baseUnitValue*1000,
+                VolumePerLengthUnit.CubicYardPerFoot => baseUnitValue / 2.50838208,
+                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => baseUnitValue / 2.50837706323584,
+                VolumePerLengthUnit.LiterPerKilometer => baseUnitValue * 1e6,
+                VolumePerLengthUnit.LiterPerMeter => baseUnitValue * 1000,
                 VolumePerLengthUnit.LiterPerMillimeter => baseUnitValue,
-                VolumePerLengthUnit.OilBarrelPerFoot => baseUnitValue*1.91713408,
+                VolumePerLengthUnit.OilBarrelPerFoot => baseUnitValue * 1.91713408,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

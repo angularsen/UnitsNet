@@ -473,16 +473,16 @@ namespace UnitsNet
         public static AmplitudeRatio operator +(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic addition
-            // Formula: 20*log10(10^(x/20) + 10^(y/20))
-            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.GetValueAs(left.Unit)/20)), left.Unit);
+            // Formula: 20 * log10(10^(x/20) + 10^(y/20))
+            return new AmplitudeRatio(20 * Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.GetValueAs(left.Unit)/20)), left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic subtraction of two <see cref="AmplitudeRatio"/>.</summary>
         public static AmplitudeRatio operator -(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic subtraction
-            // Formula: 20*log10(10^(x/20) - 10^(y/20))
-            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.GetValueAs(left.Unit)/20)), left.Unit);
+            // Formula: 20 * log10(10^(x/20) - 10^(y/20))
+            return new AmplitudeRatio(20 * Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.GetValueAs(left.Unit)/20)), left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>

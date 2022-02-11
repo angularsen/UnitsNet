@@ -243,16 +243,16 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                FrequencyUnit.BeatPerMinute => _value/60,
+                FrequencyUnit.BeatPerMinute => _value / 60,
                 FrequencyUnit.BUnit => Math.Sqrt(_value * 1e3),
-                FrequencyUnit.CyclePerHour => _value/3600,
-                FrequencyUnit.CyclePerMinute => _value/60,
+                FrequencyUnit.CyclePerHour => _value / 3600,
+                FrequencyUnit.CyclePerMinute => _value / 60,
                 FrequencyUnit.Gigahertz => (_value) * 1e9d,
                 FrequencyUnit.Hertz => _value,
                 FrequencyUnit.Kilohertz => (_value) * 1e3d,
                 FrequencyUnit.Megahertz => (_value) * 1e6d,
                 FrequencyUnit.PerSecond => _value,
-                FrequencyUnit.RadianPerSecond => _value/6.2831853072,
+                FrequencyUnit.RadianPerSecond => _value / 6.2831853072,
                 FrequencyUnit.Terahertz => (_value) * 1e12d,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
@@ -267,16 +267,16 @@ namespace UnitsNet
 
             return unit switch
             {
-                FrequencyUnit.BeatPerMinute => baseUnitValue*60,
+                FrequencyUnit.BeatPerMinute => baseUnitValue * 60,
                 FrequencyUnit.BUnit => baseUnitValue * baseUnitValue * 1e-3,
-                FrequencyUnit.CyclePerHour => baseUnitValue*3600,
-                FrequencyUnit.CyclePerMinute => baseUnitValue*60,
+                FrequencyUnit.CyclePerHour => baseUnitValue * 3600,
+                FrequencyUnit.CyclePerMinute => baseUnitValue * 60,
                 FrequencyUnit.Gigahertz => (baseUnitValue) / 1e9d,
                 FrequencyUnit.Hertz => baseUnitValue,
                 FrequencyUnit.Kilohertz => (baseUnitValue) / 1e3d,
                 FrequencyUnit.Megahertz => (baseUnitValue) / 1e6d,
                 FrequencyUnit.PerSecond => baseUnitValue,
-                FrequencyUnit.RadianPerSecond => baseUnitValue*6.2831853072,
+                FrequencyUnit.RadianPerSecond => baseUnitValue * 6.2831853072,
                 FrequencyUnit.Terahertz => (baseUnitValue) / 1e12d,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };

@@ -224,15 +224,15 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                KinematicViscosityUnit.Centistokes => (_value/1e4) * 1e-2d,
-                KinematicViscosityUnit.Decistokes => (_value/1e4) * 1e-1d,
-                KinematicViscosityUnit.Kilostokes => (_value/1e4) * 1e3d,
-                KinematicViscosityUnit.Microstokes => (_value/1e4) * 1e-6d,
-                KinematicViscosityUnit.Millistokes => (_value/1e4) * 1e-3d,
-                KinematicViscosityUnit.Nanostokes => (_value/1e4) * 1e-9d,
-                KinematicViscosityUnit.SquareFootPerSecond => _value/10.7639,
+                KinematicViscosityUnit.Centistokes => (_value / 1e4) * 1e-2d,
+                KinematicViscosityUnit.Decistokes => (_value / 1e4) * 1e-1d,
+                KinematicViscosityUnit.Kilostokes => (_value / 1e4) * 1e3d,
+                KinematicViscosityUnit.Microstokes => (_value / 1e4) * 1e-6d,
+                KinematicViscosityUnit.Millistokes => (_value / 1e4) * 1e-3d,
+                KinematicViscosityUnit.Nanostokes => (_value / 1e4) * 1e-9d,
+                KinematicViscosityUnit.SquareFootPerSecond => _value / 10.7639,
                 KinematicViscosityUnit.SquareMeterPerSecond => _value,
-                KinematicViscosityUnit.Stokes => _value/1e4,
+                KinematicViscosityUnit.Stokes => _value / 1e4,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -246,15 +246,15 @@ namespace UnitsNet
 
             return unit switch
             {
-                KinematicViscosityUnit.Centistokes => (baseUnitValue*1e4) / 1e-2d,
-                KinematicViscosityUnit.Decistokes => (baseUnitValue*1e4) / 1e-1d,
-                KinematicViscosityUnit.Kilostokes => (baseUnitValue*1e4) / 1e3d,
-                KinematicViscosityUnit.Microstokes => (baseUnitValue*1e4) / 1e-6d,
-                KinematicViscosityUnit.Millistokes => (baseUnitValue*1e4) / 1e-3d,
-                KinematicViscosityUnit.Nanostokes => (baseUnitValue*1e4) / 1e-9d,
-                KinematicViscosityUnit.SquareFootPerSecond => baseUnitValue*10.7639,
+                KinematicViscosityUnit.Centistokes => (baseUnitValue * 1e4) / 1e-2d,
+                KinematicViscosityUnit.Decistokes => (baseUnitValue * 1e4) / 1e-1d,
+                KinematicViscosityUnit.Kilostokes => (baseUnitValue * 1e4) / 1e3d,
+                KinematicViscosityUnit.Microstokes => (baseUnitValue * 1e4) / 1e-6d,
+                KinematicViscosityUnit.Millistokes => (baseUnitValue * 1e4) / 1e-3d,
+                KinematicViscosityUnit.Nanostokes => (baseUnitValue * 1e4) / 1e-9d,
+                KinematicViscosityUnit.SquareFootPerSecond => baseUnitValue * 10.7639,
                 KinematicViscosityUnit.SquareMeterPerSecond => baseUnitValue,
-                KinematicViscosityUnit.Stokes => baseUnitValue*1e4,
+                KinematicViscosityUnit.Stokes => baseUnitValue * 1e4,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

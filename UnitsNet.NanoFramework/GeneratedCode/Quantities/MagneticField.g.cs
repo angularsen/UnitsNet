@@ -191,9 +191,9 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                MagneticFieldUnit.Gauss => _value/1e4,
+                MagneticFieldUnit.Gauss => _value / 1e4,
                 MagneticFieldUnit.Microtesla => (_value) * 1e-6d,
-                MagneticFieldUnit.Milligauss => (_value/1e4) * 1e-3d,
+                MagneticFieldUnit.Milligauss => (_value / 1e4) * 1e-3d,
                 MagneticFieldUnit.Millitesla => (_value) * 1e-3d,
                 MagneticFieldUnit.Nanotesla => (_value) * 1e-9d,
                 MagneticFieldUnit.Tesla => _value,
@@ -210,9 +210,9 @@ namespace UnitsNet
 
             return unit switch
             {
-                MagneticFieldUnit.Gauss => baseUnitValue*1e4,
+                MagneticFieldUnit.Gauss => baseUnitValue * 1e4,
                 MagneticFieldUnit.Microtesla => (baseUnitValue) / 1e-6d,
-                MagneticFieldUnit.Milligauss => (baseUnitValue*1e4) / 1e-3d,
+                MagneticFieldUnit.Milligauss => (baseUnitValue * 1e4) / 1e-3d,
                 MagneticFieldUnit.Millitesla => (baseUnitValue) / 1e-3d,
                 MagneticFieldUnit.Nanotesla => (baseUnitValue) / 1e-9d,
                 MagneticFieldUnit.Tesla => baseUnitValue,

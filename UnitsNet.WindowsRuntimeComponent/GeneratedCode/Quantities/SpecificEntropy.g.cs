@@ -633,10 +633,10 @@ namespace UnitsNet
             switch(Unit)
             {
                 case SpecificEntropyUnit.BtuPerPoundFahrenheit: return _value * 4.1868e3;
-                case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
+                case SpecificEntropyUnit.CaloriePerGramKelvin: return _value * 4.184e3;
                 case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
                 case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (_value*4.184e3) * 1e3d;
+                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (_value * 4.184e3) * 1e3d;
                 case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (_value) * 1e3d;
                 case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (_value) * 1e3d;
                 case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (_value) * 1e6d;
@@ -656,10 +656,10 @@ namespace UnitsNet
             switch(unit)
             {
                 case SpecificEntropyUnit.BtuPerPoundFahrenheit: return baseUnitValue / 4.1868e3;
-                case SpecificEntropyUnit.CaloriePerGramKelvin: return baseUnitValue/4.184e3;
+                case SpecificEntropyUnit.CaloriePerGramKelvin: return baseUnitValue / 4.184e3;
                 case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return baseUnitValue;
                 case SpecificEntropyUnit.JoulePerKilogramKelvin: return baseUnitValue;
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (baseUnitValue/4.184e3) / 1e3d;
+                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (baseUnitValue / 4.184e3) / 1e3d;
                 case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (baseUnitValue) / 1e3d;
                 case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (baseUnitValue) / 1e3d;
                 case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (baseUnitValue) / 1e6d;

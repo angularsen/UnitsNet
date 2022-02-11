@@ -739,20 +739,20 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case AreaUnit.Acre: return _value*4046.85642;
-                case AreaUnit.Hectare: return _value*1e4;
-                case AreaUnit.SquareCentimeter: return _value*1e-4;
-                case AreaUnit.SquareDecimeter: return _value*1e-2;
+                case AreaUnit.Acre: return _value * 4046.85642;
+                case AreaUnit.Hectare: return _value * 1e4;
+                case AreaUnit.SquareCentimeter: return _value * 1e-4;
+                case AreaUnit.SquareDecimeter: return _value * 1e-2;
                 case AreaUnit.SquareFoot: return _value * 9.290304e-2;
-                case AreaUnit.SquareInch: return _value*0.00064516;
-                case AreaUnit.SquareKilometer: return _value*1e6;
+                case AreaUnit.SquareInch: return _value * 0.00064516;
+                case AreaUnit.SquareKilometer: return _value * 1e6;
                 case AreaUnit.SquareMeter: return _value;
-                case AreaUnit.SquareMicrometer: return _value*1e-12;
-                case AreaUnit.SquareMile: return _value*2.59e6;
-                case AreaUnit.SquareMillimeter: return _value*1e-6;
-                case AreaUnit.SquareNauticalMile: return _value*3429904;
-                case AreaUnit.SquareYard: return _value*0.836127;
-                case AreaUnit.UsSurveySquareFoot: return _value*0.09290341161;
+                case AreaUnit.SquareMicrometer: return _value * 1e-12;
+                case AreaUnit.SquareMile: return _value * 2.59e6;
+                case AreaUnit.SquareMillimeter: return _value * 1e-6;
+                case AreaUnit.SquareNauticalMile: return _value * 3429904;
+                case AreaUnit.SquareYard: return _value * 0.836127;
+                case AreaUnit.UsSurveySquareFoot: return _value * 0.09290341161;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -767,20 +767,20 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case AreaUnit.Acre: return baseUnitValue/4046.85642;
-                case AreaUnit.Hectare: return baseUnitValue/1e4;
-                case AreaUnit.SquareCentimeter: return baseUnitValue/1e-4;
-                case AreaUnit.SquareDecimeter: return baseUnitValue/1e-2;
+                case AreaUnit.Acre: return baseUnitValue / 4046.85642;
+                case AreaUnit.Hectare: return baseUnitValue / 1e4;
+                case AreaUnit.SquareCentimeter: return baseUnitValue / 1e-4;
+                case AreaUnit.SquareDecimeter: return baseUnitValue / 1e-2;
                 case AreaUnit.SquareFoot: return baseUnitValue / 9.290304e-2;
-                case AreaUnit.SquareInch: return baseUnitValue/0.00064516;
-                case AreaUnit.SquareKilometer: return baseUnitValue/1e6;
+                case AreaUnit.SquareInch: return baseUnitValue / 0.00064516;
+                case AreaUnit.SquareKilometer: return baseUnitValue / 1e6;
                 case AreaUnit.SquareMeter: return baseUnitValue;
-                case AreaUnit.SquareMicrometer: return baseUnitValue/1e-12;
-                case AreaUnit.SquareMile: return baseUnitValue/2.59e6;
-                case AreaUnit.SquareMillimeter: return baseUnitValue/1e-6;
-                case AreaUnit.SquareNauticalMile: return baseUnitValue/3429904;
-                case AreaUnit.SquareYard: return baseUnitValue/0.836127;
-                case AreaUnit.UsSurveySquareFoot: return baseUnitValue/0.09290341161;
+                case AreaUnit.SquareMicrometer: return baseUnitValue / 1e-12;
+                case AreaUnit.SquareMile: return baseUnitValue / 2.59e6;
+                case AreaUnit.SquareMillimeter: return baseUnitValue / 1e-6;
+                case AreaUnit.SquareNauticalMile: return baseUnitValue / 3429904;
+                case AreaUnit.SquareYard: return baseUnitValue / 0.836127;
+                case AreaUnit.UsSurveySquareFoot: return baseUnitValue / 0.09290341161;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -235,12 +235,12 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                DynamicViscosityUnit.Centipoise => (_value/10) * 1e-2d,
+                DynamicViscosityUnit.Centipoise => (_value / 10) * 1e-2d,
                 DynamicViscosityUnit.MicropascalSecond => (_value) * 1e-6d,
                 DynamicViscosityUnit.MillipascalSecond => (_value) * 1e-3d,
                 DynamicViscosityUnit.NewtonSecondPerMeterSquared => _value,
                 DynamicViscosityUnit.PascalSecond => _value,
-                DynamicViscosityUnit.Poise => _value/10,
+                DynamicViscosityUnit.Poise => _value / 10,
                 DynamicViscosityUnit.PoundForceSecondPerSquareFoot => _value * 4.7880258980335843e1,
                 DynamicViscosityUnit.PoundForceSecondPerSquareInch => _value * 6.8947572931683613e3,
                 DynamicViscosityUnit.PoundPerFootSecond => _value * 1.4881639,
@@ -258,12 +258,12 @@ namespace UnitsNet
 
             return unit switch
             {
-                DynamicViscosityUnit.Centipoise => (baseUnitValue*10) / 1e-2d,
+                DynamicViscosityUnit.Centipoise => (baseUnitValue * 10) / 1e-2d,
                 DynamicViscosityUnit.MicropascalSecond => (baseUnitValue) / 1e-6d,
                 DynamicViscosityUnit.MillipascalSecond => (baseUnitValue) / 1e-3d,
                 DynamicViscosityUnit.NewtonSecondPerMeterSquared => baseUnitValue,
                 DynamicViscosityUnit.PascalSecond => baseUnitValue,
-                DynamicViscosityUnit.Poise => baseUnitValue*10,
+                DynamicViscosityUnit.Poise => baseUnitValue * 10,
                 DynamicViscosityUnit.PoundForceSecondPerSquareFoot => baseUnitValue / 4.7880258980335843e1,
                 DynamicViscosityUnit.PoundForceSecondPerSquareInch => baseUnitValue / 6.8947572931683613e3,
                 DynamicViscosityUnit.PoundPerFootSecond => baseUnitValue / 1.4881639,

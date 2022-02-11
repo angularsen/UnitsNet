@@ -243,17 +243,17 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                DurationUnit.Day => _value*24*3600,
-                DurationUnit.Hour => _value*3600,
-                DurationUnit.JulianYear => _value*365.25*24*3600,
+                DurationUnit.Day => _value * 24*3600,
+                DurationUnit.Hour => _value * 3600,
+                DurationUnit.JulianYear => _value * 365.25*24*3600,
                 DurationUnit.Microsecond => (_value) * 1e-6d,
                 DurationUnit.Millisecond => (_value) * 1e-3d,
-                DurationUnit.Minute => _value*60,
-                DurationUnit.Month30 => _value*30*24*3600,
+                DurationUnit.Minute => _value * 60,
+                DurationUnit.Month30 => _value * 30*24*3600,
                 DurationUnit.Nanosecond => (_value) * 1e-9d,
                 DurationUnit.Second => _value,
-                DurationUnit.Week => _value*7*24*3600,
-                DurationUnit.Year365 => _value*365*24*3600,
+                DurationUnit.Week => _value * 7*24*3600,
+                DurationUnit.Year365 => _value * 365*24*3600,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -267,17 +267,17 @@ namespace UnitsNet
 
             return unit switch
             {
-                DurationUnit.Day => baseUnitValue/(24*3600),
-                DurationUnit.Hour => baseUnitValue/3600,
-                DurationUnit.JulianYear => baseUnitValue/(365.25*24*3600),
+                DurationUnit.Day => baseUnitValue / (24*3600),
+                DurationUnit.Hour => baseUnitValue / 3600,
+                DurationUnit.JulianYear => baseUnitValue / (365.25*24*3600),
                 DurationUnit.Microsecond => (baseUnitValue) / 1e-6d,
                 DurationUnit.Millisecond => (baseUnitValue) / 1e-3d,
-                DurationUnit.Minute => baseUnitValue/60,
-                DurationUnit.Month30 => baseUnitValue/(30*24*3600),
+                DurationUnit.Minute => baseUnitValue / 60,
+                DurationUnit.Month30 => baseUnitValue / (30*24*3600),
                 DurationUnit.Nanosecond => (baseUnitValue) / 1e-9d,
                 DurationUnit.Second => baseUnitValue,
-                DurationUnit.Week => baseUnitValue/(7*24*3600),
-                DurationUnit.Year365 => baseUnitValue/(365*24*3600),
+                DurationUnit.Week => baseUnitValue / (7*24*3600),
+                DurationUnit.Year365 => baseUnitValue / (365*24*3600),
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

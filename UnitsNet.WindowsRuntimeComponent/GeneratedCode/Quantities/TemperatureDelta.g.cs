@@ -633,12 +633,12 @@ namespace UnitsNet
             switch(Unit)
             {
                 case TemperatureDeltaUnit.DegreeCelsius: return _value;
-                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
-                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
-                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
+                case TemperatureDeltaUnit.DegreeDelisle: return _value * -2/3;
+                case TemperatureDeltaUnit.DegreeFahrenheit: return _value * 5/9;
+                case TemperatureDeltaUnit.DegreeNewton: return _value * 100/33;
+                case TemperatureDeltaUnit.DegreeRankine: return _value * 5/9;
+                case TemperatureDeltaUnit.DegreeReaumur: return _value * 5/4;
+                case TemperatureDeltaUnit.DegreeRoemer: return _value * 40/21;
                 case TemperatureDeltaUnit.Kelvin: return _value;
                 case TemperatureDeltaUnit.MillidegreeCelsius: return (_value) * 1e-3d;
                 default:
@@ -656,12 +656,12 @@ namespace UnitsNet
             switch(unit)
             {
                 case TemperatureDeltaUnit.DegreeCelsius: return baseUnitValue;
-                case TemperatureDeltaUnit.DegreeDelisle: return baseUnitValue*-3/2;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeNewton: return baseUnitValue*33/100;
-                case TemperatureDeltaUnit.DegreeRankine: return baseUnitValue*9/5;
-                case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue*4/5;
-                case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue*21/40;
+                case TemperatureDeltaUnit.DegreeDelisle: return baseUnitValue * -3/2;
+                case TemperatureDeltaUnit.DegreeFahrenheit: return baseUnitValue * 9/5;
+                case TemperatureDeltaUnit.DegreeNewton: return baseUnitValue * 33/100;
+                case TemperatureDeltaUnit.DegreeRankine: return baseUnitValue * 9/5;
+                case TemperatureDeltaUnit.DegreeReaumur: return baseUnitValue * 4/5;
+                case TemperatureDeltaUnit.DegreeRoemer: return baseUnitValue * 21/40;
                 case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
                 case TemperatureDeltaUnit.MillidegreeCelsius: return (baseUnitValue) / 1e-3d;
                 default:

@@ -289,37 +289,37 @@ namespace UnitsNet
         {
             // Register in unit converter: BaseUnit -> AmountOfSubstanceUnit
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Centimole, quantity => new AmountOfSubstance((quantity.Value) / 1e-2d, AmountOfSubstanceUnit.Centimole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.CentipoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-2d, AmountOfSubstanceUnit.CentipoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.CentipoundMole, quantity => new AmountOfSubstance((quantity.Value / 453.59237) / 1e-2d, AmountOfSubstanceUnit.CentipoundMole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Decimole, quantity => new AmountOfSubstance((quantity.Value) / 1e-1d, AmountOfSubstanceUnit.Decimole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.DecipoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-1d, AmountOfSubstanceUnit.DecipoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.DecipoundMole, quantity => new AmountOfSubstance((quantity.Value / 453.59237) / 1e-1d, AmountOfSubstanceUnit.DecipoundMole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Kilomole, quantity => new AmountOfSubstance((quantity.Value) / 1e3d, AmountOfSubstanceUnit.Kilomole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.KilopoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e3d, AmountOfSubstanceUnit.KilopoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.KilopoundMole, quantity => new AmountOfSubstance((quantity.Value / 453.59237) / 1e3d, AmountOfSubstanceUnit.KilopoundMole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Megamole, quantity => new AmountOfSubstance((quantity.Value) / 1e6d, AmountOfSubstanceUnit.Megamole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Micromole, quantity => new AmountOfSubstance((quantity.Value) / 1e-6d, AmountOfSubstanceUnit.Micromole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MicropoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-6d, AmountOfSubstanceUnit.MicropoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MicropoundMole, quantity => new AmountOfSubstance((quantity.Value / 453.59237) / 1e-6d, AmountOfSubstanceUnit.MicropoundMole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Millimole, quantity => new AmountOfSubstance((quantity.Value) / 1e-3d, AmountOfSubstanceUnit.Millimole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MillipoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-3d, AmountOfSubstanceUnit.MillipoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MillipoundMole, quantity => new AmountOfSubstance((quantity.Value / 453.59237) / 1e-3d, AmountOfSubstanceUnit.MillipoundMole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Nanomole, quantity => new AmountOfSubstance((quantity.Value) / 1e-9d, AmountOfSubstanceUnit.Nanomole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole, quantity => new AmountOfSubstance((quantity.Value/453.59237) / 1e-9d, AmountOfSubstanceUnit.NanopoundMole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole, quantity => new AmountOfSubstance(quantity.Value/453.59237, AmountOfSubstanceUnit.PoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole, quantity => new AmountOfSubstance((quantity.Value / 453.59237) / 1e-9d, AmountOfSubstanceUnit.NanopoundMole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole, quantity => new AmountOfSubstance(quantity.Value / 453.59237, AmountOfSubstanceUnit.PoundMole));
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Mole, quantity => quantity);
 
             // Register in unit converter: AmountOfSubstanceUnit -> BaseUnit
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Centimole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-2d, AmountOfSubstanceUnit.Mole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-2d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value * 453.59237) * 1e-2d, AmountOfSubstanceUnit.Mole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Decimole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-1d, AmountOfSubstanceUnit.Mole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-1d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value * 453.59237) * 1e-1d, AmountOfSubstanceUnit.Mole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Kilomole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e3d, AmountOfSubstanceUnit.Mole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e3d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value * 453.59237) * 1e3d, AmountOfSubstanceUnit.Mole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Megamole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e6d, AmountOfSubstanceUnit.Mole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Micromole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-6d, AmountOfSubstanceUnit.Mole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-6d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value * 453.59237) * 1e-6d, AmountOfSubstanceUnit.Mole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Millimole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-3d, AmountOfSubstanceUnit.Mole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-3d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value * 453.59237) * 1e-3d, AmountOfSubstanceUnit.Mole));
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Nanomole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value) * 1e-9d, AmountOfSubstanceUnit.Mole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value*453.59237) * 1e-9d, AmountOfSubstanceUnit.Mole));
-            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance(quantity.Value*453.59237, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance((quantity.Value * 453.59237) * 1e-9d, AmountOfSubstanceUnit.Mole));
+            unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance(quantity.Value * 453.59237, AmountOfSubstanceUnit.Mole));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

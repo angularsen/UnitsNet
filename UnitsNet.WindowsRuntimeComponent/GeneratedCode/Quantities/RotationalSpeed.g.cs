@@ -719,8 +719,8 @@ namespace UnitsNet
                 case RotationalSpeedUnit.NanodegreePerSecond: return ((Math.PI/180)*_value) * 1e-9d;
                 case RotationalSpeedUnit.NanoradianPerSecond: return (_value) * 1e-9d;
                 case RotationalSpeedUnit.RadianPerSecond: return _value;
-                case RotationalSpeedUnit.RevolutionPerMinute: return (_value*6.2831853072)/60;
-                case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
+                case RotationalSpeedUnit.RevolutionPerMinute: return (_value * 6.2831853072)/60;
+                case RotationalSpeedUnit.RevolutionPerSecond: return _value * 6.2831853072;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -746,8 +746,8 @@ namespace UnitsNet
                 case RotationalSpeedUnit.NanodegreePerSecond: return ((180/Math.PI)*baseUnitValue) / 1e-9d;
                 case RotationalSpeedUnit.NanoradianPerSecond: return (baseUnitValue) / 1e-9d;
                 case RotationalSpeedUnit.RadianPerSecond: return baseUnitValue;
-                case RotationalSpeedUnit.RevolutionPerMinute: return (baseUnitValue/6.2831853072)*60;
-                case RotationalSpeedUnit.RevolutionPerSecond: return baseUnitValue/6.2831853072;
+                case RotationalSpeedUnit.RevolutionPerMinute: return (baseUnitValue / 6.2831853072)*60;
+                case RotationalSpeedUnit.RevolutionPerSecond: return baseUnitValue / 6.2831853072;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

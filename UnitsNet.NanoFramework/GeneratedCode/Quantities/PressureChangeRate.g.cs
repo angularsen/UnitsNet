@@ -277,19 +277,19 @@ namespace UnitsNet
             return Unit switch
             {
                 PressureChangeRateUnit.AtmospherePerSecond => _value * 1.01325*1e5,
-                PressureChangeRateUnit.KilopascalPerMinute => (_value/60) * 1e3d,
+                PressureChangeRateUnit.KilopascalPerMinute => (_value / 60) * 1e3d,
                 PressureChangeRateUnit.KilopascalPerSecond => (_value) * 1e3d,
-                PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute => (_value*6.894757293168361e3/60) * 1e3d,
-                PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond => (_value*6.894757293168361e3) * 1e3d,
-                PressureChangeRateUnit.MegapascalPerMinute => (_value/60) * 1e6d,
+                PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute => (_value * 6.894757293168361e3/60) * 1e3d,
+                PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond => (_value * 6.894757293168361e3) * 1e3d,
+                PressureChangeRateUnit.MegapascalPerMinute => (_value / 60) * 1e6d,
                 PressureChangeRateUnit.MegapascalPerSecond => (_value) * 1e6d,
-                PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute => (_value*6.894757293168361e3/60) * 1e6d,
-                PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond => (_value*6.894757293168361e3) * 1e6d,
-                PressureChangeRateUnit.MillimeterOfMercuryPerSecond => _value*133.322,
-                PressureChangeRateUnit.PascalPerMinute => _value/60,
+                PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute => (_value * 6.894757293168361e3/60) * 1e6d,
+                PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond => (_value * 6.894757293168361e3) * 1e6d,
+                PressureChangeRateUnit.MillimeterOfMercuryPerSecond => _value * 133.322,
+                PressureChangeRateUnit.PascalPerMinute => _value / 60,
                 PressureChangeRateUnit.PascalPerSecond => _value,
-                PressureChangeRateUnit.PoundForcePerSquareInchPerMinute => _value*6.894757293168361e3/60,
-                PressureChangeRateUnit.PoundForcePerSquareInchPerSecond => _value*6.894757293168361e3,
+                PressureChangeRateUnit.PoundForcePerSquareInchPerMinute => _value * 6.894757293168361e3/60,
+                PressureChangeRateUnit.PoundForcePerSquareInchPerSecond => _value * 6.894757293168361e3,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -304,19 +304,19 @@ namespace UnitsNet
             return unit switch
             {
                 PressureChangeRateUnit.AtmospherePerSecond => baseUnitValue / (1.01325*1e5),
-                PressureChangeRateUnit.KilopascalPerMinute => (baseUnitValue*60) / 1e3d,
+                PressureChangeRateUnit.KilopascalPerMinute => (baseUnitValue * 60) / 1e3d,
                 PressureChangeRateUnit.KilopascalPerSecond => (baseUnitValue) / 1e3d,
-                PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute => (baseUnitValue/6.894757293168361e3*60) / 1e3d,
-                PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond => (baseUnitValue/6.894757293168361e3) / 1e3d,
-                PressureChangeRateUnit.MegapascalPerMinute => (baseUnitValue*60) / 1e6d,
+                PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute => (baseUnitValue / 6.894757293168361e3*60) / 1e3d,
+                PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond => (baseUnitValue / 6.894757293168361e3) / 1e3d,
+                PressureChangeRateUnit.MegapascalPerMinute => (baseUnitValue * 60) / 1e6d,
                 PressureChangeRateUnit.MegapascalPerSecond => (baseUnitValue) / 1e6d,
-                PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute => (baseUnitValue/6.894757293168361e3*60) / 1e6d,
-                PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond => (baseUnitValue/6.894757293168361e3) / 1e6d,
-                PressureChangeRateUnit.MillimeterOfMercuryPerSecond => baseUnitValue/133.322,
-                PressureChangeRateUnit.PascalPerMinute => baseUnitValue*60,
+                PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute => (baseUnitValue / 6.894757293168361e3*60) / 1e6d,
+                PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond => (baseUnitValue / 6.894757293168361e3) / 1e6d,
+                PressureChangeRateUnit.MillimeterOfMercuryPerSecond => baseUnitValue / 133.322,
+                PressureChangeRateUnit.PascalPerMinute => baseUnitValue * 60,
                 PressureChangeRateUnit.PascalPerSecond => baseUnitValue,
-                PressureChangeRateUnit.PoundForcePerSquareInchPerMinute => baseUnitValue/6.894757293168361e3*60,
-                PressureChangeRateUnit.PoundForcePerSquareInchPerSecond => baseUnitValue/6.894757293168361e3,
+                PressureChangeRateUnit.PoundForcePerSquareInchPerMinute => baseUnitValue / 6.894757293168361e3*60,
+                PressureChangeRateUnit.PoundForcePerSquareInchPerSecond => baseUnitValue / 6.894757293168361e3,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

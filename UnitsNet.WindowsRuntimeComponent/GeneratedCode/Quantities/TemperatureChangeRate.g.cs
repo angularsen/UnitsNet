@@ -651,7 +651,7 @@ namespace UnitsNet
                 case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (_value) * 1e-2d;
                 case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (_value) * 1e1d;
                 case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (_value) * 1e-1d;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return _value/60;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return _value / 60;
                 case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return _value;
                 case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (_value) * 1e2d;
                 case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (_value) * 1e3d;
@@ -675,7 +675,7 @@ namespace UnitsNet
                 case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (baseUnitValue) / 1e-2d;
                 case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (baseUnitValue) / 1e1d;
                 case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (baseUnitValue) / 1e-1d;
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return baseUnitValue*60;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return baseUnitValue * 60;
                 case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return baseUnitValue;
                 case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (baseUnitValue) / 1e2d;
                 case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (baseUnitValue) / 1e3d;

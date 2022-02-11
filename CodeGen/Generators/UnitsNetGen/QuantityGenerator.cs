@@ -711,16 +711,16 @@ namespace UnitsNet
         public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
         {{
             // Logarithmic addition
-            // Formula: {x}*log10(10^(x/{x}) + 10^(y/{x}))
-            return new {_quantity.Name}({x}*Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
+            // Formula: {x} * log10(10^(x/{x}) + 10^(y/{x}))
+            return new {_quantity.Name}({x} * Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic subtraction of two <see cref=""{_quantity.Name}""/>.</summary>
         public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
         {{
             // Logarithmic subtraction
-            // Formula: {x}*log10(10^(x/{x}) - 10^(y/{x}))
-            return new {_quantity.Name}({x}*Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
+            // Formula: {x} * log10(10^(x/{x}) - 10^(y/{x}))
+            return new {_quantity.Name}({x} * Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>

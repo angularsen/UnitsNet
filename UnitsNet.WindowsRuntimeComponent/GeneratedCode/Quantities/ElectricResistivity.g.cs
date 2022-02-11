@@ -715,19 +715,19 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricResistivityUnit.KiloohmCentimeter: return (_value/100) * 1e3d;
+                case ElectricResistivityUnit.KiloohmCentimeter: return (_value / 100) * 1e3d;
                 case ElectricResistivityUnit.KiloohmMeter: return (_value) * 1e3d;
-                case ElectricResistivityUnit.MegaohmCentimeter: return (_value/100) * 1e6d;
+                case ElectricResistivityUnit.MegaohmCentimeter: return (_value / 100) * 1e6d;
                 case ElectricResistivityUnit.MegaohmMeter: return (_value) * 1e6d;
-                case ElectricResistivityUnit.MicroohmCentimeter: return (_value/100) * 1e-6d;
+                case ElectricResistivityUnit.MicroohmCentimeter: return (_value / 100) * 1e-6d;
                 case ElectricResistivityUnit.MicroohmMeter: return (_value) * 1e-6d;
-                case ElectricResistivityUnit.MilliohmCentimeter: return (_value/100) * 1e-3d;
+                case ElectricResistivityUnit.MilliohmCentimeter: return (_value / 100) * 1e-3d;
                 case ElectricResistivityUnit.MilliohmMeter: return (_value) * 1e-3d;
-                case ElectricResistivityUnit.NanoohmCentimeter: return (_value/100) * 1e-9d;
+                case ElectricResistivityUnit.NanoohmCentimeter: return (_value / 100) * 1e-9d;
                 case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
-                case ElectricResistivityUnit.OhmCentimeter: return _value/100;
+                case ElectricResistivityUnit.OhmCentimeter: return _value / 100;
                 case ElectricResistivityUnit.OhmMeter: return _value;
-                case ElectricResistivityUnit.PicoohmCentimeter: return (_value/100) * 1e-12d;
+                case ElectricResistivityUnit.PicoohmCentimeter: return (_value / 100) * 1e-12d;
                 case ElectricResistivityUnit.PicoohmMeter: return (_value) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -743,19 +743,19 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricResistivityUnit.KiloohmCentimeter: return (baseUnitValue*100) / 1e3d;
+                case ElectricResistivityUnit.KiloohmCentimeter: return (baseUnitValue * 100) / 1e3d;
                 case ElectricResistivityUnit.KiloohmMeter: return (baseUnitValue) / 1e3d;
-                case ElectricResistivityUnit.MegaohmCentimeter: return (baseUnitValue*100) / 1e6d;
+                case ElectricResistivityUnit.MegaohmCentimeter: return (baseUnitValue * 100) / 1e6d;
                 case ElectricResistivityUnit.MegaohmMeter: return (baseUnitValue) / 1e6d;
-                case ElectricResistivityUnit.MicroohmCentimeter: return (baseUnitValue*100) / 1e-6d;
+                case ElectricResistivityUnit.MicroohmCentimeter: return (baseUnitValue * 100) / 1e-6d;
                 case ElectricResistivityUnit.MicroohmMeter: return (baseUnitValue) / 1e-6d;
-                case ElectricResistivityUnit.MilliohmCentimeter: return (baseUnitValue*100) / 1e-3d;
+                case ElectricResistivityUnit.MilliohmCentimeter: return (baseUnitValue * 100) / 1e-3d;
                 case ElectricResistivityUnit.MilliohmMeter: return (baseUnitValue) / 1e-3d;
-                case ElectricResistivityUnit.NanoohmCentimeter: return (baseUnitValue*100) / 1e-9d;
+                case ElectricResistivityUnit.NanoohmCentimeter: return (baseUnitValue * 100) / 1e-9d;
                 case ElectricResistivityUnit.NanoohmMeter: return (baseUnitValue) / 1e-9d;
-                case ElectricResistivityUnit.OhmCentimeter: return baseUnitValue*100;
+                case ElectricResistivityUnit.OhmCentimeter: return baseUnitValue * 100;
                 case ElectricResistivityUnit.OhmMeter: return baseUnitValue;
-                case ElectricResistivityUnit.PicoohmCentimeter: return (baseUnitValue*100) / 1e-12d;
+                case ElectricResistivityUnit.PicoohmCentimeter: return (baseUnitValue * 100) / 1e-12d;
                 case ElectricResistivityUnit.PicoohmMeter: return (baseUnitValue) / 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

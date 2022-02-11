@@ -188,12 +188,12 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                AreaMomentOfInertiaUnit.CentimeterToTheFourth => _value/1e8,
-                AreaMomentOfInertiaUnit.DecimeterToTheFourth => _value/1e4,
-                AreaMomentOfInertiaUnit.FootToTheFourth => _value*0.0086309748412416,
-                AreaMomentOfInertiaUnit.InchToTheFourth => _value*0.0000004162314256,
+                AreaMomentOfInertiaUnit.CentimeterToTheFourth => _value / 1e8,
+                AreaMomentOfInertiaUnit.DecimeterToTheFourth => _value / 1e4,
+                AreaMomentOfInertiaUnit.FootToTheFourth => _value * 0.0086309748412416,
+                AreaMomentOfInertiaUnit.InchToTheFourth => _value * 0.0000004162314256,
                 AreaMomentOfInertiaUnit.MeterToTheFourth => _value,
-                AreaMomentOfInertiaUnit.MillimeterToTheFourth => _value/1e12,
+                AreaMomentOfInertiaUnit.MillimeterToTheFourth => _value / 1e12,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -207,12 +207,12 @@ namespace UnitsNet
 
             return unit switch
             {
-                AreaMomentOfInertiaUnit.CentimeterToTheFourth => baseUnitValue*1e8,
-                AreaMomentOfInertiaUnit.DecimeterToTheFourth => baseUnitValue*1e4,
-                AreaMomentOfInertiaUnit.FootToTheFourth => baseUnitValue/0.0086309748412416,
-                AreaMomentOfInertiaUnit.InchToTheFourth => baseUnitValue/0.0000004162314256,
+                AreaMomentOfInertiaUnit.CentimeterToTheFourth => baseUnitValue * 1e8,
+                AreaMomentOfInertiaUnit.DecimeterToTheFourth => baseUnitValue * 1e4,
+                AreaMomentOfInertiaUnit.FootToTheFourth => baseUnitValue / 0.0086309748412416,
+                AreaMomentOfInertiaUnit.InchToTheFourth => baseUnitValue / 0.0000004162314256,
                 AreaMomentOfInertiaUnit.MeterToTheFourth => baseUnitValue,
-                AreaMomentOfInertiaUnit.MillimeterToTheFourth => baseUnitValue*1e12,
+                AreaMomentOfInertiaUnit.MillimeterToTheFourth => baseUnitValue * 1e12,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

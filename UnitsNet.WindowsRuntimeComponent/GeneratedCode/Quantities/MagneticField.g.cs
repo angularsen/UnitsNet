@@ -587,9 +587,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MagneticFieldUnit.Gauss: return _value/1e4;
+                case MagneticFieldUnit.Gauss: return _value / 1e4;
                 case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (_value/1e4) * 1e-3d;
+                case MagneticFieldUnit.Milligauss: return (_value / 1e4) * 1e-3d;
                 case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
                 case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
                 case MagneticFieldUnit.Tesla: return _value;
@@ -607,9 +607,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MagneticFieldUnit.Gauss: return baseUnitValue*1e4;
+                case MagneticFieldUnit.Gauss: return baseUnitValue * 1e4;
                 case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
-                case MagneticFieldUnit.Milligauss: return (baseUnitValue*1e4) / 1e-3d;
+                case MagneticFieldUnit.Milligauss: return (baseUnitValue * 1e4) / 1e-3d;
                 case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
                 case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;
                 case MagneticFieldUnit.Tesla: return baseUnitValue;

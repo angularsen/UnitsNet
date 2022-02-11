@@ -234,20 +234,20 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> RatioUnit
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerBillion, quantity => new Ratio(quantity.Value*1e9, RatioUnit.PartPerBillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerMillion, quantity => new Ratio(quantity.Value*1e6, RatioUnit.PartPerMillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, quantity => new Ratio(quantity.Value*1e3, RatioUnit.PartPerThousand));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, quantity => new Ratio(quantity.Value*1e12, RatioUnit.PartPerTrillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, quantity => new Ratio(quantity.Value*1e2, RatioUnit.Percent));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerBillion, quantity => new Ratio(quantity.Value * 1e9, RatioUnit.PartPerBillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerMillion, quantity => new Ratio(quantity.Value * 1e6, RatioUnit.PartPerMillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, quantity => new Ratio(quantity.Value * 1e3, RatioUnit.PartPerThousand));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, quantity => new Ratio(quantity.Value * 1e12, RatioUnit.PartPerTrillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, quantity => new Ratio(quantity.Value * 1e2, RatioUnit.Percent));
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.DecimalFraction, quantity => quantity);
 
             // Register in unit converter: RatioUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e9, RatioUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e6, RatioUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e3, RatioUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e12, RatioUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e2, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e9, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e6, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e3, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e12, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e2, RatioUnit.DecimalFraction));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

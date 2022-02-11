@@ -7,24 +7,24 @@
     {
       "SingularName": "PoundMassPerPoundForceHour",
       "PluralName": "PoundsMassPerPoundForceHour",
-      "FromUnitToBaseFunc": "{x}*28.33",
-      "FromBaseToUnitFunc": "{x}/28.33",
+      "FromUnitToBaseFunc": "{x} * 28.33",
+      "FromBaseToUnitFunc": "{x} / 28.33",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/(lbf·h)" ]
+          "Abbreviations": [ "lb/(lbfï¿½h)" ]
         }
       ]
     },
     {
       "SingularName": "KilogramPerKilogramForceHour",
       "PluralName": "KilogramsPerKilogramForceHour",
-      "FromUnitToBaseFunc": "{x}*28.33",
-      "FromBaseToUnitFunc": "{x}/28.33",
+      "FromUnitToBaseFunc": "{x} * 28.33",
+      "FromBaseToUnitFunc": "{x} / 28.33",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/(kgf·h)" ]
+          "Abbreviations": [ "kg/(kgfï¿½h)" ]
         }
       ]
     },
@@ -37,8 +37,8 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/(kN·s)" ],
-          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kN·s)" ] }
+          "Abbreviations": [ "g/(kNï¿½s)" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kNï¿½s)" ] }
         }
       ]
     }

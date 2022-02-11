@@ -288,20 +288,20 @@ namespace UnitsNet
             return Unit switch
             {
                 AmountOfSubstanceUnit.Centimole => (_value) * 1e-2d,
-                AmountOfSubstanceUnit.CentipoundMole => (_value*453.59237) * 1e-2d,
+                AmountOfSubstanceUnit.CentipoundMole => (_value * 453.59237) * 1e-2d,
                 AmountOfSubstanceUnit.Decimole => (_value) * 1e-1d,
-                AmountOfSubstanceUnit.DecipoundMole => (_value*453.59237) * 1e-1d,
+                AmountOfSubstanceUnit.DecipoundMole => (_value * 453.59237) * 1e-1d,
                 AmountOfSubstanceUnit.Kilomole => (_value) * 1e3d,
-                AmountOfSubstanceUnit.KilopoundMole => (_value*453.59237) * 1e3d,
+                AmountOfSubstanceUnit.KilopoundMole => (_value * 453.59237) * 1e3d,
                 AmountOfSubstanceUnit.Megamole => (_value) * 1e6d,
                 AmountOfSubstanceUnit.Micromole => (_value) * 1e-6d,
-                AmountOfSubstanceUnit.MicropoundMole => (_value*453.59237) * 1e-6d,
+                AmountOfSubstanceUnit.MicropoundMole => (_value * 453.59237) * 1e-6d,
                 AmountOfSubstanceUnit.Millimole => (_value) * 1e-3d,
-                AmountOfSubstanceUnit.MillipoundMole => (_value*453.59237) * 1e-3d,
+                AmountOfSubstanceUnit.MillipoundMole => (_value * 453.59237) * 1e-3d,
                 AmountOfSubstanceUnit.Mole => _value,
                 AmountOfSubstanceUnit.Nanomole => (_value) * 1e-9d,
-                AmountOfSubstanceUnit.NanopoundMole => (_value*453.59237) * 1e-9d,
-                AmountOfSubstanceUnit.PoundMole => _value*453.59237,
+                AmountOfSubstanceUnit.NanopoundMole => (_value * 453.59237) * 1e-9d,
+                AmountOfSubstanceUnit.PoundMole => _value * 453.59237,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -316,20 +316,20 @@ namespace UnitsNet
             return unit switch
             {
                 AmountOfSubstanceUnit.Centimole => (baseUnitValue) / 1e-2d,
-                AmountOfSubstanceUnit.CentipoundMole => (baseUnitValue/453.59237) / 1e-2d,
+                AmountOfSubstanceUnit.CentipoundMole => (baseUnitValue / 453.59237) / 1e-2d,
                 AmountOfSubstanceUnit.Decimole => (baseUnitValue) / 1e-1d,
-                AmountOfSubstanceUnit.DecipoundMole => (baseUnitValue/453.59237) / 1e-1d,
+                AmountOfSubstanceUnit.DecipoundMole => (baseUnitValue / 453.59237) / 1e-1d,
                 AmountOfSubstanceUnit.Kilomole => (baseUnitValue) / 1e3d,
-                AmountOfSubstanceUnit.KilopoundMole => (baseUnitValue/453.59237) / 1e3d,
+                AmountOfSubstanceUnit.KilopoundMole => (baseUnitValue / 453.59237) / 1e3d,
                 AmountOfSubstanceUnit.Megamole => (baseUnitValue) / 1e6d,
                 AmountOfSubstanceUnit.Micromole => (baseUnitValue) / 1e-6d,
-                AmountOfSubstanceUnit.MicropoundMole => (baseUnitValue/453.59237) / 1e-6d,
+                AmountOfSubstanceUnit.MicropoundMole => (baseUnitValue / 453.59237) / 1e-6d,
                 AmountOfSubstanceUnit.Millimole => (baseUnitValue) / 1e-3d,
-                AmountOfSubstanceUnit.MillipoundMole => (baseUnitValue/453.59237) / 1e-3d,
+                AmountOfSubstanceUnit.MillipoundMole => (baseUnitValue / 453.59237) / 1e-3d,
                 AmountOfSubstanceUnit.Mole => baseUnitValue,
                 AmountOfSubstanceUnit.Nanomole => (baseUnitValue) / 1e-9d,
-                AmountOfSubstanceUnit.NanopoundMole => (baseUnitValue/453.59237) / 1e-9d,
-                AmountOfSubstanceUnit.PoundMole => baseUnitValue/453.59237,
+                AmountOfSubstanceUnit.NanopoundMole => (baseUnitValue / 453.59237) / 1e-9d,
+                AmountOfSubstanceUnit.PoundMole => baseUnitValue / 453.59237,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

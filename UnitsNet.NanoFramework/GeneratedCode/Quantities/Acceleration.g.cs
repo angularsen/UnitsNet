@@ -278,18 +278,18 @@ namespace UnitsNet
             {
                 AccelerationUnit.CentimeterPerSecondSquared => (_value) * 1e-2d,
                 AccelerationUnit.DecimeterPerSecondSquared => (_value) * 1e-1d,
-                AccelerationUnit.FootPerSecondSquared => _value*0.304800,
-                AccelerationUnit.InchPerSecondSquared => _value*0.0254,
+                AccelerationUnit.FootPerSecondSquared => _value * 0.304800,
+                AccelerationUnit.InchPerSecondSquared => _value * 0.0254,
                 AccelerationUnit.KilometerPerSecondSquared => (_value) * 1e3d,
-                AccelerationUnit.KnotPerHour => _value*0.5144444444444/3600,
-                AccelerationUnit.KnotPerMinute => _value*0.5144444444444/60,
-                AccelerationUnit.KnotPerSecond => _value*0.5144444444444,
+                AccelerationUnit.KnotPerHour => _value * 0.5144444444444/3600,
+                AccelerationUnit.KnotPerMinute => _value * 0.5144444444444/60,
+                AccelerationUnit.KnotPerSecond => _value * 0.5144444444444,
                 AccelerationUnit.MeterPerSecondSquared => _value,
                 AccelerationUnit.MicrometerPerSecondSquared => (_value) * 1e-6d,
                 AccelerationUnit.MillimeterPerSecondSquared => (_value) * 1e-3d,
-                AccelerationUnit.MillistandardGravity => (_value*9.80665) * 1e-3d,
+                AccelerationUnit.MillistandardGravity => (_value * 9.80665) * 1e-3d,
                 AccelerationUnit.NanometerPerSecondSquared => (_value) * 1e-9d,
-                AccelerationUnit.StandardGravity => _value*9.80665,
+                AccelerationUnit.StandardGravity => _value * 9.80665,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -305,18 +305,18 @@ namespace UnitsNet
             {
                 AccelerationUnit.CentimeterPerSecondSquared => (baseUnitValue) / 1e-2d,
                 AccelerationUnit.DecimeterPerSecondSquared => (baseUnitValue) / 1e-1d,
-                AccelerationUnit.FootPerSecondSquared => baseUnitValue/0.304800,
-                AccelerationUnit.InchPerSecondSquared => baseUnitValue/0.0254,
+                AccelerationUnit.FootPerSecondSquared => baseUnitValue / 0.304800,
+                AccelerationUnit.InchPerSecondSquared => baseUnitValue / 0.0254,
                 AccelerationUnit.KilometerPerSecondSquared => (baseUnitValue) / 1e3d,
-                AccelerationUnit.KnotPerHour => baseUnitValue/0.5144444444444*3600,
-                AccelerationUnit.KnotPerMinute => baseUnitValue/0.5144444444444*60,
-                AccelerationUnit.KnotPerSecond => baseUnitValue/0.5144444444444,
+                AccelerationUnit.KnotPerHour => baseUnitValue / 0.5144444444444*3600,
+                AccelerationUnit.KnotPerMinute => baseUnitValue / 0.5144444444444*60,
+                AccelerationUnit.KnotPerSecond => baseUnitValue / 0.5144444444444,
                 AccelerationUnit.MeterPerSecondSquared => baseUnitValue,
                 AccelerationUnit.MicrometerPerSecondSquared => (baseUnitValue) / 1e-6d,
                 AccelerationUnit.MillimeterPerSecondSquared => (baseUnitValue) / 1e-3d,
-                AccelerationUnit.MillistandardGravity => (baseUnitValue/9.80665) / 1e-3d,
+                AccelerationUnit.MillistandardGravity => (baseUnitValue / 9.80665) / 1e-3d,
                 AccelerationUnit.NanometerPerSecondSquared => (baseUnitValue) / 1e-9d,
-                AccelerationUnit.StandardGravity => baseUnitValue/9.80665,
+                AccelerationUnit.StandardGravity => baseUnitValue / 9.80665,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

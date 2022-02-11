@@ -24,8 +24,8 @@
     {
       "SingularName": "CaloriePerGram",
       "PluralName": "CaloriesPerGram",
-      "FromUnitToBaseFunc": "{x}*4.184e3",
-      "FromBaseToUnitFunc": "{x}/4.184e3",
+      "FromUnitToBaseFunc": "{x} * 4.184e3",
+      "FromBaseToUnitFunc": "{x} / 4.184e3",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -37,8 +37,8 @@
     {
       "SingularName": "WattHourPerKilogram",
       "PluralName": "WattHoursPerKilogram",
-      "FromUnitToBaseFunc": "{x}*3.6e3",
-      "FromBaseToUnitFunc": "{x}/3.6e3",
+      "FromUnitToBaseFunc": "{x} * 3.6e3",
+      "FromBaseToUnitFunc": "{x} / 3.6e3",
       "Prefixes": [ "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
@@ -50,8 +50,8 @@
     {
       "SingularName": "WattDayPerKilogram",
       "PluralName": "WattDaysPerKilogram",
-      "FromUnitToBaseFunc": "{x}*(24*3.6e3)",
-      "FromBaseToUnitFunc": "{x}/(24*3.6e3)",
+      "FromUnitToBaseFunc": "{x} * (24*3.6e3)",
+      "FromBaseToUnitFunc": "{x} / (24*3.6e3)",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
@@ -63,8 +63,8 @@
     {
       "SingularName": "WattDayPerTonne",
       "PluralName": "WattDaysPerTonne",
-      "FromUnitToBaseFunc": "{x}*((24*3.6e3)/1e3)",
-      "FromBaseToUnitFunc": "{x}/((24*3.6e3)/1e3)",
+      "FromUnitToBaseFunc": "{x} * ((24*3.6e3)/1e3)",
+      "FromBaseToUnitFunc": "{x} / ((24*3.6e3)/1e3)",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
@@ -76,8 +76,8 @@
     {
       "SingularName": "WattDayPerShortTon",
       "PluralName": "WattDaysPerShortTon",
-      "FromUnitToBaseFunc": "{x}*((24*3.6e3)/9.0718474e2)",
-      "FromBaseToUnitFunc": "{x}/((24*3.6e3)/9.0718474e2)",
+      "FromUnitToBaseFunc": "{x} * ((24*3.6e3)/9.0718474e2)",
+      "FromBaseToUnitFunc": "{x} / ((24*3.6e3)/9.0718474e2)",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
@@ -89,8 +89,8 @@
     {
       "SingularName": "BtuPerPound",
       "PluralName": "BtuPerPound",
-      "FromUnitToBaseFunc": "{x}*2326.000075362",
-      "FromBaseToUnitFunc": "{x}/2326.000075362",
+      "FromUnitToBaseFunc": "{x} * 2326.000075362",
+      "FromBaseToUnitFunc": "{x} / 2326.000075362",
       "Localization": [
         {
           "Culture": "en-US",

@@ -180,11 +180,11 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                ElectricChargeUnit.AmpereHour => _value/2.77777777777e-4,
+                ElectricChargeUnit.AmpereHour => _value / 2.77777777777e-4,
                 ElectricChargeUnit.Coulomb => _value,
-                ElectricChargeUnit.KiloampereHour => (_value/2.77777777777e-4) * 1e3d,
-                ElectricChargeUnit.MegaampereHour => (_value/2.77777777777e-4) * 1e6d,
-                ElectricChargeUnit.MilliampereHour => (_value/2.77777777777e-4) * 1e-3d,
+                ElectricChargeUnit.KiloampereHour => (_value / 2.77777777777e-4) * 1e3d,
+                ElectricChargeUnit.MegaampereHour => (_value / 2.77777777777e-4) * 1e6d,
+                ElectricChargeUnit.MilliampereHour => (_value / 2.77777777777e-4) * 1e-3d,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -198,11 +198,11 @@ namespace UnitsNet
 
             return unit switch
             {
-                ElectricChargeUnit.AmpereHour => baseUnitValue*2.77777777777e-4,
+                ElectricChargeUnit.AmpereHour => baseUnitValue * 2.77777777777e-4,
                 ElectricChargeUnit.Coulomb => baseUnitValue,
-                ElectricChargeUnit.KiloampereHour => (baseUnitValue*2.77777777777e-4) / 1e3d,
-                ElectricChargeUnit.MegaampereHour => (baseUnitValue*2.77777777777e-4) / 1e6d,
-                ElectricChargeUnit.MilliampereHour => (baseUnitValue*2.77777777777e-4) / 1e-3d,
+                ElectricChargeUnit.KiloampereHour => (baseUnitValue * 2.77777777777e-4) / 1e3d,
+                ElectricChargeUnit.MegaampereHour => (baseUnitValue * 2.77777777777e-4) / 1e6d,
+                ElectricChargeUnit.MilliampereHour => (baseUnitValue * 2.77777777777e-4) / 1e-3d,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }
