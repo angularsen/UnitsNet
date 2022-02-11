@@ -254,18 +254,18 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                MolarMassUnit.CentigramPerMole => (_value/1e3) * 1e-2d,
-                MolarMassUnit.DecagramPerMole => (_value/1e3) * 1e1d,
-                MolarMassUnit.DecigramPerMole => (_value/1e3) * 1e-1d,
-                MolarMassUnit.GramPerMole => _value/1e3,
-                MolarMassUnit.HectogramPerMole => (_value/1e3) * 1e2d,
-                MolarMassUnit.KilogramPerMole => (_value/1e3) * 1e3d,
-                MolarMassUnit.KilopoundPerMole => (_value*0.45359237) * 1e3d,
-                MolarMassUnit.MegapoundPerMole => (_value*0.45359237) * 1e6d,
-                MolarMassUnit.MicrogramPerMole => (_value/1e3) * 1e-6d,
-                MolarMassUnit.MilligramPerMole => (_value/1e3) * 1e-3d,
-                MolarMassUnit.NanogramPerMole => (_value/1e3) * 1e-9d,
-                MolarMassUnit.PoundPerMole => _value*0.45359237,
+                MolarMassUnit.CentigramPerMole => (_value / 1e3) * 1e-2d,
+                MolarMassUnit.DecagramPerMole => (_value / 1e3) * 1e1d,
+                MolarMassUnit.DecigramPerMole => (_value / 1e3) * 1e-1d,
+                MolarMassUnit.GramPerMole => _value / 1e3,
+                MolarMassUnit.HectogramPerMole => (_value / 1e3) * 1e2d,
+                MolarMassUnit.KilogramPerMole => (_value / 1e3) * 1e3d,
+                MolarMassUnit.KilopoundPerMole => (_value * 0.45359237) * 1e3d,
+                MolarMassUnit.MegapoundPerMole => (_value * 0.45359237) * 1e6d,
+                MolarMassUnit.MicrogramPerMole => (_value / 1e3) * 1e-6d,
+                MolarMassUnit.MilligramPerMole => (_value / 1e3) * 1e-3d,
+                MolarMassUnit.NanogramPerMole => (_value / 1e3) * 1e-9d,
+                MolarMassUnit.PoundPerMole => _value * 0.45359237,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -279,18 +279,18 @@ namespace UnitsNet
 
             return unit switch
             {
-                MolarMassUnit.CentigramPerMole => (baseUnitValue*1e3) / 1e-2d,
-                MolarMassUnit.DecagramPerMole => (baseUnitValue*1e3) / 1e1d,
-                MolarMassUnit.DecigramPerMole => (baseUnitValue*1e3) / 1e-1d,
-                MolarMassUnit.GramPerMole => baseUnitValue*1e3,
-                MolarMassUnit.HectogramPerMole => (baseUnitValue*1e3) / 1e2d,
-                MolarMassUnit.KilogramPerMole => (baseUnitValue*1e3) / 1e3d,
-                MolarMassUnit.KilopoundPerMole => (baseUnitValue/0.45359237) / 1e3d,
-                MolarMassUnit.MegapoundPerMole => (baseUnitValue/0.45359237) / 1e6d,
-                MolarMassUnit.MicrogramPerMole => (baseUnitValue*1e3) / 1e-6d,
-                MolarMassUnit.MilligramPerMole => (baseUnitValue*1e3) / 1e-3d,
-                MolarMassUnit.NanogramPerMole => (baseUnitValue*1e3) / 1e-9d,
-                MolarMassUnit.PoundPerMole => baseUnitValue/0.45359237,
+                MolarMassUnit.CentigramPerMole => (baseUnitValue * 1e3) / 1e-2d,
+                MolarMassUnit.DecagramPerMole => (baseUnitValue * 1e3) / 1e1d,
+                MolarMassUnit.DecigramPerMole => (baseUnitValue * 1e3) / 1e-1d,
+                MolarMassUnit.GramPerMole => baseUnitValue * 1e3,
+                MolarMassUnit.HectogramPerMole => (baseUnitValue * 1e3) / 1e2d,
+                MolarMassUnit.KilogramPerMole => (baseUnitValue * 1e3) / 1e3d,
+                MolarMassUnit.KilopoundPerMole => (baseUnitValue / 0.45359237) / 1e3d,
+                MolarMassUnit.MegapoundPerMole => (baseUnitValue / 0.45359237) / 1e6d,
+                MolarMassUnit.MicrogramPerMole => (baseUnitValue * 1e3) / 1e-6d,
+                MolarMassUnit.MilligramPerMole => (baseUnitValue * 1e3) / 1e-3d,
+                MolarMassUnit.NanogramPerMole => (baseUnitValue * 1e3) / 1e-9d,
+                MolarMassUnit.PoundPerMole => baseUnitValue / 0.45359237,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

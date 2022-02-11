@@ -584,12 +584,12 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value/1e8;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value/1e4;
-                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value*Math.Pow(0.3048, 4);
-                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value*Math.Pow(2.54e-2, 4);
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value / 1e8;
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value / 1e4;
+                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value * Math.Pow(0.3048, 4);
+                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value * Math.Pow(2.54e-2, 4);
                 case AreaMomentOfInertiaUnit.MeterToTheFourth: return _value;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value / 1e12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -604,12 +604,12 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return baseUnitValue*1e8;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return baseUnitValue*1e4;
-                case AreaMomentOfInertiaUnit.FootToTheFourth: return baseUnitValue/Math.Pow(0.3048, 4);
-                case AreaMomentOfInertiaUnit.InchToTheFourth: return baseUnitValue/Math.Pow(2.54e-2, 4);
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return baseUnitValue * 1e8;
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return baseUnitValue * 1e4;
+                case AreaMomentOfInertiaUnit.FootToTheFourth: return baseUnitValue / Math.Pow(0.3048, 4);
+                case AreaMomentOfInertiaUnit.InchToTheFourth: return baseUnitValue / Math.Pow(2.54e-2, 4);
                 case AreaMomentOfInertiaUnit.MeterToTheFourth: return baseUnitValue;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return baseUnitValue*1e12;
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return baseUnitValue * 1e12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -729,20 +729,20 @@ namespace UnitsNet
             switch(Unit)
             {
                 case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (_value * 453.59237) * 1e-2d;
                 case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (_value * 453.59237) * 1e-1d;
                 case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (_value * 453.59237) * 1e3d;
                 case AmountOfSubstanceUnit.Megamole: return (_value) * 1e6d;
                 case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (_value * 453.59237) * 1e-6d;
                 case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (_value * 453.59237) * 1e-3d;
                 case AmountOfSubstanceUnit.Mole: return _value;
                 case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
-                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
+                case AmountOfSubstanceUnit.NanopoundMole: return (_value * 453.59237) * 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return _value * 453.59237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -758,20 +758,20 @@ namespace UnitsNet
             switch(unit)
             {
                 case AmountOfSubstanceUnit.Centimole: return (baseUnitValue) / 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue/453.59237) / 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue / 453.59237) / 1e-2d;
                 case AmountOfSubstanceUnit.Decimole: return (baseUnitValue) / 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue/453.59237) / 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue / 453.59237) / 1e-1d;
                 case AmountOfSubstanceUnit.Kilomole: return (baseUnitValue) / 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue/453.59237) / 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue / 453.59237) / 1e3d;
                 case AmountOfSubstanceUnit.Megamole: return (baseUnitValue) / 1e6d;
                 case AmountOfSubstanceUnit.Micromole: return (baseUnitValue) / 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue/453.59237) / 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue / 453.59237) / 1e-6d;
                 case AmountOfSubstanceUnit.Millimole: return (baseUnitValue) / 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (baseUnitValue/453.59237) / 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (baseUnitValue / 453.59237) / 1e-3d;
                 case AmountOfSubstanceUnit.Mole: return baseUnitValue;
                 case AmountOfSubstanceUnit.Nanomole: return (baseUnitValue) / 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue/453.59237) / 1e-9d;
-                case AmountOfSubstanceUnit.PoundMole: return baseUnitValue/453.59237;
+                case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue / 453.59237) / 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return baseUnitValue / 453.59237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -600,10 +600,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case EntropyUnit.CaloriePerKelvin: return _value*4.184;
+                case EntropyUnit.CaloriePerKelvin: return _value * 4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return _value;
                 case EntropyUnit.JoulePerKelvin: return _value;
-                case EntropyUnit.KilocaloriePerKelvin: return (_value*4.184) * 1e3d;
+                case EntropyUnit.KilocaloriePerKelvin: return (_value * 4.184) * 1e3d;
                 case EntropyUnit.KilojoulePerDegreeCelsius: return (_value) * 1e3d;
                 case EntropyUnit.KilojoulePerKelvin: return (_value) * 1e3d;
                 case EntropyUnit.MegajoulePerKelvin: return (_value) * 1e6d;
@@ -621,10 +621,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case EntropyUnit.CaloriePerKelvin: return baseUnitValue/4.184;
+                case EntropyUnit.CaloriePerKelvin: return baseUnitValue / 4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return baseUnitValue;
                 case EntropyUnit.JoulePerKelvin: return baseUnitValue;
-                case EntropyUnit.KilocaloriePerKelvin: return (baseUnitValue/4.184) / 1e3d;
+                case EntropyUnit.KilocaloriePerKelvin: return (baseUnitValue / 4.184) / 1e3d;
                 case EntropyUnit.KilojoulePerDegreeCelsius: return (baseUnitValue) / 1e3d;
                 case EntropyUnit.KilojoulePerKelvin: return (baseUnitValue) / 1e3d;
                 case EntropyUnit.MegajoulePerKelvin: return (baseUnitValue) / 1e6d;

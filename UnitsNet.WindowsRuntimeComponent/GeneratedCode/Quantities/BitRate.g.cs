@@ -908,31 +908,31 @@ namespace UnitsNet
             switch(Unit)
             {
                 case BitRateUnit.BitPerSecond: return _value;
-                case BitRateUnit.BytePerSecond: return _value*8m;
+                case BitRateUnit.BytePerSecond: return _value * 8m;
                 case BitRateUnit.ExabitPerSecond: return (_value) * 1e18m;
-                case BitRateUnit.ExabytePerSecond: return (_value*8m) * 1e18m;
+                case BitRateUnit.ExabytePerSecond: return (_value * 8m) * 1e18m;
                 case BitRateUnit.ExbibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.ExbibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.ExbibytePerSecond: return (_value * 8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
                 case BitRateUnit.GibibitPerSecond: return (_value) * (1024m * 1024 * 1024);
-                case BitRateUnit.GibibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024);
+                case BitRateUnit.GibibytePerSecond: return (_value * 8m) * (1024m * 1024 * 1024);
                 case BitRateUnit.GigabitPerSecond: return (_value) * 1e9m;
-                case BitRateUnit.GigabytePerSecond: return (_value*8m) * 1e9m;
+                case BitRateUnit.GigabytePerSecond: return (_value * 8m) * 1e9m;
                 case BitRateUnit.KibibitPerSecond: return (_value) * 1024m;
-                case BitRateUnit.KibibytePerSecond: return (_value*8m) * 1024m;
+                case BitRateUnit.KibibytePerSecond: return (_value * 8m) * 1024m;
                 case BitRateUnit.KilobitPerSecond: return (_value) * 1e3m;
-                case BitRateUnit.KilobytePerSecond: return (_value*8m) * 1e3m;
+                case BitRateUnit.KilobytePerSecond: return (_value * 8m) * 1e3m;
                 case BitRateUnit.MebibitPerSecond: return (_value) * (1024m * 1024);
-                case BitRateUnit.MebibytePerSecond: return (_value*8m) * (1024m * 1024);
+                case BitRateUnit.MebibytePerSecond: return (_value * 8m) * (1024m * 1024);
                 case BitRateUnit.MegabitPerSecond: return (_value) * 1e6m;
-                case BitRateUnit.MegabytePerSecond: return (_value*8m) * 1e6m;
+                case BitRateUnit.MegabytePerSecond: return (_value * 8m) * 1e6m;
                 case BitRateUnit.PebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.PebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PebibytePerSecond: return (_value * 8m) * (1024m * 1024 * 1024 * 1024 * 1024);
                 case BitRateUnit.PetabitPerSecond: return (_value) * 1e15m;
-                case BitRateUnit.PetabytePerSecond: return (_value*8m) * 1e15m;
+                case BitRateUnit.PetabytePerSecond: return (_value * 8m) * 1e15m;
                 case BitRateUnit.TebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024);
-                case BitRateUnit.TebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TebibytePerSecond: return (_value * 8m) * (1024m * 1024 * 1024 * 1024);
                 case BitRateUnit.TerabitPerSecond: return (_value) * 1e12m;
-                case BitRateUnit.TerabytePerSecond: return (_value*8m) * 1e12m;
+                case BitRateUnit.TerabytePerSecond: return (_value * 8m) * 1e12m;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -948,31 +948,31 @@ namespace UnitsNet
             switch(unit)
             {
                 case BitRateUnit.BitPerSecond: return baseUnitValue;
-                case BitRateUnit.BytePerSecond: return baseUnitValue/8m;
+                case BitRateUnit.BytePerSecond: return baseUnitValue / 8m;
                 case BitRateUnit.ExabitPerSecond: return (baseUnitValue) / 1e18m;
-                case BitRateUnit.ExabytePerSecond: return (baseUnitValue/8m) / 1e18m;
+                case BitRateUnit.ExabytePerSecond: return (baseUnitValue / 8m) / 1e18m;
                 case BitRateUnit.ExbibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.ExbibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.ExbibytePerSecond: return (baseUnitValue / 8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
                 case BitRateUnit.GibibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024);
-                case BitRateUnit.GibibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024);
+                case BitRateUnit.GibibytePerSecond: return (baseUnitValue / 8m) / (1024m * 1024 * 1024);
                 case BitRateUnit.GigabitPerSecond: return (baseUnitValue) / 1e9m;
-                case BitRateUnit.GigabytePerSecond: return (baseUnitValue/8m) / 1e9m;
+                case BitRateUnit.GigabytePerSecond: return (baseUnitValue / 8m) / 1e9m;
                 case BitRateUnit.KibibitPerSecond: return (baseUnitValue) / 1024m;
-                case BitRateUnit.KibibytePerSecond: return (baseUnitValue/8m) / 1024m;
+                case BitRateUnit.KibibytePerSecond: return (baseUnitValue / 8m) / 1024m;
                 case BitRateUnit.KilobitPerSecond: return (baseUnitValue) / 1e3m;
-                case BitRateUnit.KilobytePerSecond: return (baseUnitValue/8m) / 1e3m;
+                case BitRateUnit.KilobytePerSecond: return (baseUnitValue / 8m) / 1e3m;
                 case BitRateUnit.MebibitPerSecond: return (baseUnitValue) / (1024m * 1024);
-                case BitRateUnit.MebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024);
+                case BitRateUnit.MebibytePerSecond: return (baseUnitValue / 8m) / (1024m * 1024);
                 case BitRateUnit.MegabitPerSecond: return (baseUnitValue) / 1e6m;
-                case BitRateUnit.MegabytePerSecond: return (baseUnitValue/8m) / 1e6m;
+                case BitRateUnit.MegabytePerSecond: return (baseUnitValue / 8m) / 1e6m;
                 case BitRateUnit.PebibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.PebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PebibytePerSecond: return (baseUnitValue / 8m) / (1024m * 1024 * 1024 * 1024 * 1024);
                 case BitRateUnit.PetabitPerSecond: return (baseUnitValue) / 1e15m;
-                case BitRateUnit.PetabytePerSecond: return (baseUnitValue/8m) / 1e15m;
+                case BitRateUnit.PetabytePerSecond: return (baseUnitValue / 8m) / 1e15m;
                 case BitRateUnit.TebibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024);
-                case BitRateUnit.TebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TebibytePerSecond: return (baseUnitValue / 8m) / (1024m * 1024 * 1024 * 1024);
                 case BitRateUnit.TerabitPerSecond: return (baseUnitValue) / 1e12m;
-                case BitRateUnit.TerabytePerSecond: return (baseUnitValue/8m) / 1e12m;
+                case BitRateUnit.TerabytePerSecond: return (baseUnitValue / 8m) / 1e12m;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

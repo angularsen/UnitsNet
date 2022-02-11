@@ -523,7 +523,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return _value*1.73073467;
+                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return _value * 1.73073467;
                 case ThermalConductivityUnit.WattPerMeterKelvin: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -539,7 +539,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return baseUnitValue/1.73073467;
+                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return baseUnitValue / 1.73073467;
                 case ThermalConductivityUnit.WattPerMeterKelvin: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

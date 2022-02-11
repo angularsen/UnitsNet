@@ -651,12 +651,12 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case DynamicViscosityUnit.Centipoise: return (_value/10) * 1e-2d;
+                case DynamicViscosityUnit.Centipoise: return (_value / 10) * 1e-2d;
                 case DynamicViscosityUnit.MicropascalSecond: return (_value) * 1e-6d;
                 case DynamicViscosityUnit.MillipascalSecond: return (_value) * 1e-3d;
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return _value;
                 case DynamicViscosityUnit.PascalSecond: return _value;
-                case DynamicViscosityUnit.Poise: return _value/10;
+                case DynamicViscosityUnit.Poise: return _value / 10;
                 case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return _value * 4.7880258980335843e1;
                 case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return _value * 6.8947572931683613e3;
                 case DynamicViscosityUnit.PoundPerFootSecond: return _value * 1.4881639;
@@ -675,12 +675,12 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case DynamicViscosityUnit.Centipoise: return (baseUnitValue*10) / 1e-2d;
+                case DynamicViscosityUnit.Centipoise: return (baseUnitValue * 10) / 1e-2d;
                 case DynamicViscosityUnit.MicropascalSecond: return (baseUnitValue) / 1e-6d;
                 case DynamicViscosityUnit.MillipascalSecond: return (baseUnitValue) / 1e-3d;
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return baseUnitValue;
                 case DynamicViscosityUnit.PascalSecond: return baseUnitValue;
-                case DynamicViscosityUnit.Poise: return baseUnitValue*10;
+                case DynamicViscosityUnit.Poise: return baseUnitValue * 10;
                 case DynamicViscosityUnit.PoundForceSecondPerSquareFoot: return baseUnitValue / 4.7880258980335843e1;
                 case DynamicViscosityUnit.PoundForceSecondPerSquareInch: return baseUnitValue / 6.8947572931683613e3;
                 case DynamicViscosityUnit.PoundPerFootSecond: return baseUnitValue / 1.4881639;

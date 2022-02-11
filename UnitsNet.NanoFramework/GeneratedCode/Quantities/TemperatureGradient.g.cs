@@ -168,7 +168,7 @@ namespace UnitsNet
             {
                 TemperatureGradientUnit.DegreeCelsiusPerKilometer => _value / 1e3,
                 TemperatureGradientUnit.DegreeCelsiusPerMeter => _value,
-                TemperatureGradientUnit.DegreeFahrenheitPerFoot => (_value / 0.3048) * 5/9,
+                TemperatureGradientUnit.DegreeFahrenheitPerFoot => (_value / 0.3048) * 5 / 9,
                 TemperatureGradientUnit.KelvinPerMeter => _value,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
@@ -185,7 +185,7 @@ namespace UnitsNet
             {
                 TemperatureGradientUnit.DegreeCelsiusPerKilometer => baseUnitValue * 1e3,
                 TemperatureGradientUnit.DegreeCelsiusPerMeter => baseUnitValue,
-                TemperatureGradientUnit.DegreeFahrenheitPerFoot => (baseUnitValue * 0.3048) * 9/5,
+                TemperatureGradientUnit.DegreeFahrenheitPerFoot => (baseUnitValue * 0.3048) * 9 / 5,
                 TemperatureGradientUnit.KelvinPerMeter => baseUnitValue,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };

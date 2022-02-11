@@ -235,16 +235,16 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                ReciprocalLengthUnit.InverseCentimeter => _value*1e2,
-                ReciprocalLengthUnit.InverseFoot => _value/0.3048,
-                ReciprocalLengthUnit.InverseInch => _value/2.54e-2,
+                ReciprocalLengthUnit.InverseCentimeter => _value * 1e2,
+                ReciprocalLengthUnit.InverseFoot => _value / 0.3048,
+                ReciprocalLengthUnit.InverseInch => _value / 2.54e-2,
                 ReciprocalLengthUnit.InverseMeter => _value,
-                ReciprocalLengthUnit.InverseMicroinch => _value/2.54e-8,
-                ReciprocalLengthUnit.InverseMil => _value/2.54e-5,
-                ReciprocalLengthUnit.InverseMile => _value/1609.34,
-                ReciprocalLengthUnit.InverseMillimeter => _value*1e3,
-                ReciprocalLengthUnit.InverseUsSurveyFoot => _value*3937/1200,
-                ReciprocalLengthUnit.InverseYard => _value/0.9144,
+                ReciprocalLengthUnit.InverseMicroinch => _value / 2.54e-8,
+                ReciprocalLengthUnit.InverseMil => _value / 2.54e-5,
+                ReciprocalLengthUnit.InverseMile => _value / 1609.34,
+                ReciprocalLengthUnit.InverseMillimeter => _value * 1e3,
+                ReciprocalLengthUnit.InverseUsSurveyFoot => _value * 3937 / 1200,
+                ReciprocalLengthUnit.InverseYard => _value / 0.9144,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -258,16 +258,16 @@ namespace UnitsNet
 
             return unit switch
             {
-                ReciprocalLengthUnit.InverseCentimeter => baseUnitValue/1e2,
-                ReciprocalLengthUnit.InverseFoot => baseUnitValue*0.3048,
-                ReciprocalLengthUnit.InverseInch => baseUnitValue*2.54e-2,
+                ReciprocalLengthUnit.InverseCentimeter => baseUnitValue / 1e2,
+                ReciprocalLengthUnit.InverseFoot => baseUnitValue * 0.3048,
+                ReciprocalLengthUnit.InverseInch => baseUnitValue * 2.54e-2,
                 ReciprocalLengthUnit.InverseMeter => baseUnitValue,
-                ReciprocalLengthUnit.InverseMicroinch => baseUnitValue*2.54e-8,
-                ReciprocalLengthUnit.InverseMil => baseUnitValue*2.54e-5,
-                ReciprocalLengthUnit.InverseMile => baseUnitValue*1609.34,
-                ReciprocalLengthUnit.InverseMillimeter => baseUnitValue/1e3,
-                ReciprocalLengthUnit.InverseUsSurveyFoot => baseUnitValue*1200/3937,
-                ReciprocalLengthUnit.InverseYard => baseUnitValue*0.9144,
+                ReciprocalLengthUnit.InverseMicroinch => baseUnitValue * 2.54e-8,
+                ReciprocalLengthUnit.InverseMil => baseUnitValue * 2.54e-5,
+                ReciprocalLengthUnit.InverseMile => baseUnitValue * 1609.34,
+                ReciprocalLengthUnit.InverseMillimeter => baseUnitValue / 1e3,
+                ReciprocalLengthUnit.InverseUsSurveyFoot => baseUnitValue * 1200 / 3937,
+                ReciprocalLengthUnit.InverseYard => baseUnitValue * 0.9144,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

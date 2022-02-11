@@ -188,12 +188,12 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value*176.1121482159839,
-                ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value*0.0859779507590433,
-                ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => _value*0.0999964777570357,
-                ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => _value*1000.088056074108,
+                ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value * 176.1121482159839,
+                ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value * 0.0859779507590433,
+                ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => _value * 0.0999964777570357,
+                ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => _value * 1000.088056074108,
                 ThermalResistanceUnit.SquareMeterKelvinPerKilowatt => _value,
-                ThermalResistanceUnit.SquareMeterKelvinPerWatt => _value*1000,
+                ThermalResistanceUnit.SquareMeterKelvinPerWatt => _value * 1000,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -207,12 +207,12 @@ namespace UnitsNet
 
             return unit switch
             {
-                ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue/176.1121482159839,
-                ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue/0.0859779507590433,
-                ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => baseUnitValue/0.0999964777570357,
-                ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => baseUnitValue/1000.088056074108,
+                ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue / 176.1121482159839,
+                ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue / 0.0859779507590433,
+                ThermalResistanceUnit.SquareCentimeterKelvinPerWatt => baseUnitValue / 0.0999964777570357,
+                ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt => baseUnitValue / 1000.088056074108,
                 ThermalResistanceUnit.SquareMeterKelvinPerKilowatt => baseUnitValue,
-                ThermalResistanceUnit.SquareMeterKelvinPerWatt => baseUnitValue/1000,
+                ThermalResistanceUnit.SquareMeterKelvinPerWatt => baseUnitValue / 1000,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

@@ -189,11 +189,11 @@ namespace UnitsNet
             return Unit switch
             {
                 RatioUnit.DecimalFraction => _value,
-                RatioUnit.PartPerBillion => _value/1e9,
-                RatioUnit.PartPerMillion => _value/1e6,
-                RatioUnit.PartPerThousand => _value/1e3,
-                RatioUnit.PartPerTrillion => _value/1e12,
-                RatioUnit.Percent => _value/1e2,
+                RatioUnit.PartPerBillion => _value / 1e9,
+                RatioUnit.PartPerMillion => _value / 1e6,
+                RatioUnit.PartPerThousand => _value / 1e3,
+                RatioUnit.PartPerTrillion => _value / 1e12,
+                RatioUnit.Percent => _value / 1e2,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -208,11 +208,11 @@ namespace UnitsNet
             return unit switch
             {
                 RatioUnit.DecimalFraction => baseUnitValue,
-                RatioUnit.PartPerBillion => baseUnitValue*1e9,
-                RatioUnit.PartPerMillion => baseUnitValue*1e6,
-                RatioUnit.PartPerThousand => baseUnitValue*1e3,
-                RatioUnit.PartPerTrillion => baseUnitValue*1e12,
-                RatioUnit.Percent => baseUnitValue*1e2,
+                RatioUnit.PartPerBillion => baseUnitValue * 1e9,
+                RatioUnit.PartPerMillion => baseUnitValue * 1e6,
+                RatioUnit.PartPerThousand => baseUnitValue * 1e3,
+                RatioUnit.PartPerTrillion => baseUnitValue * 1e12,
+                RatioUnit.Percent => baseUnitValue * 1e2,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

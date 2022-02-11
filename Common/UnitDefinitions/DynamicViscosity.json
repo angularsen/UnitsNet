@@ -37,8 +37,8 @@
     {
       "SingularName": "Poise",
       "PluralName": "Poise",
-      "FromUnitToBaseFunc": "{x}/10",
-      "FromBaseToUnitFunc": "{x}*10",
+      "FromUnitToBaseFunc": "{x} / 10",
+      "FromBaseToUnitFunc": "{x} * 10",
       "Prefixes": [ "Centi" ],
       "Localization": [
         {

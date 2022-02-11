@@ -199,10 +199,10 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                EntropyUnit.CaloriePerKelvin => _value*4.184,
+                EntropyUnit.CaloriePerKelvin => _value * 4.184,
                 EntropyUnit.JoulePerDegreeCelsius => _value,
                 EntropyUnit.JoulePerKelvin => _value,
-                EntropyUnit.KilocaloriePerKelvin => (_value*4.184) * 1e3d,
+                EntropyUnit.KilocaloriePerKelvin => (_value * 4.184) * 1e3d,
                 EntropyUnit.KilojoulePerDegreeCelsius => (_value) * 1e3d,
                 EntropyUnit.KilojoulePerKelvin => (_value) * 1e3d,
                 EntropyUnit.MegajoulePerKelvin => (_value) * 1e6d,
@@ -219,10 +219,10 @@ namespace UnitsNet
 
             return unit switch
             {
-                EntropyUnit.CaloriePerKelvin => baseUnitValue/4.184,
+                EntropyUnit.CaloriePerKelvin => baseUnitValue / 4.184,
                 EntropyUnit.JoulePerDegreeCelsius => baseUnitValue,
                 EntropyUnit.JoulePerKelvin => baseUnitValue,
-                EntropyUnit.KilocaloriePerKelvin => (baseUnitValue/4.184) / 1e3d,
+                EntropyUnit.KilocaloriePerKelvin => (baseUnitValue / 4.184) / 1e3d,
                 EntropyUnit.KilojoulePerDegreeCelsius => (baseUnitValue) / 1e3d,
                 EntropyUnit.KilojoulePerKelvin => (baseUnitValue) / 1e3d,
                 EntropyUnit.MegajoulePerKelvin => (baseUnitValue) / 1e6d,

@@ -46,8 +46,8 @@
     {
       "SingularName": "CubicKilometer",
       "PluralName": "CubicKilometers",
-      "FromUnitToBaseFunc": "{x}*1e9",
-      "FromBaseToUnitFunc": "{x}/1e9",
+      "FromUnitToBaseFunc": "{x} * 1e9",
+      "FromBaseToUnitFunc": "{x} / 1e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -65,8 +65,8 @@
       "BaseUnits": {
         "L": "Hectometer"
       },
-      "FromUnitToBaseFunc": "{x}*1e6",
-      "FromBaseToUnitFunc": "{x}/1e6",
+      "FromUnitToBaseFunc": "{x} * 1e6",
+      "FromBaseToUnitFunc": "{x} / 1e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -81,8 +81,8 @@
 	  {
       "SingularName": "CubicDecimeter",
       "PluralName": "CubicDecimeters",
-      "FromUnitToBaseFunc": "{x}/1e3",
-      "FromBaseToUnitFunc": "{x}*1e3",
+      "FromUnitToBaseFunc": "{x} / 1e3",
+      "FromBaseToUnitFunc": "{x} * 1e3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -97,8 +97,8 @@
     {
       "SingularName": "CubicCentimeter",
       "PluralName": "CubicCentimeters",
-      "FromUnitToBaseFunc": "{x}/1e6",
-      "FromBaseToUnitFunc": "{x}*1e6",
+      "FromUnitToBaseFunc": "{x} / 1e6",
+      "FromBaseToUnitFunc": "{x} * 1e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -113,8 +113,8 @@
     {
       "SingularName": "CubicMillimeter",
       "PluralName": "CubicMillimeters",
-      "FromUnitToBaseFunc": "{x}/1e9",
-      "FromBaseToUnitFunc": "{x}*1e9",
+      "FromUnitToBaseFunc": "{x} / 1e9",
+      "FromBaseToUnitFunc": "{x} * 1e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -129,8 +129,8 @@
     {
       "SingularName": "CubicMicrometer",
       "PluralName": "CubicMicrometers",
-      "FromUnitToBaseFunc": "{x}/1e18",
-      "FromBaseToUnitFunc": "{x}*1e18",
+      "FromUnitToBaseFunc": "{x} / 1e18",
+      "FromBaseToUnitFunc": "{x} * 1e18",
       "Localization": [
         {
           "Culture": "en-US",
@@ -145,8 +145,8 @@
     {
       "SingularName": "CubicMile",
       "PluralName": "CubicMiles",
-      "FromUnitToBaseFunc": "{x}*4.16818182544058e9",
-      "FromBaseToUnitFunc": "{x}/4.16818182544058e9",
+      "FromUnitToBaseFunc": "{x} * 4.16818182544058e9",
+      "FromBaseToUnitFunc": "{x} / 4.16818182544058e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -161,8 +161,8 @@
     {
       "SingularName": "CubicYard",
       "PluralName": "CubicYards",
-      "FromUnitToBaseFunc": "{x}*0.764554858",
-      "FromBaseToUnitFunc": "{x}/0.764554858",
+      "FromUnitToBaseFunc": "{x} * 0.764554858",
+      "FromBaseToUnitFunc": "{x} / 0.764554858",
       "Localization": [
         {
           "Culture": "en-US",
@@ -194,8 +194,8 @@
     {
       "SingularName": "CubicInch",
       "PluralName": "CubicInches",
-      "FromUnitToBaseFunc": "{x}*1.6387*1e-5",
-      "FromBaseToUnitFunc": "{x}/(1.6387*1e-5)",
+      "FromUnitToBaseFunc": "{x} * 1.6387 * 1e-5",
+      "FromBaseToUnitFunc": "{x} / (1.6387 * 1e-5)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -210,8 +210,8 @@
     {
       "SingularName": "ImperialGallon",
       "PluralName": "ImperialGallons",
-      "FromUnitToBaseFunc": "{x}*0.00454609000000181429905810072407",
-      "FromBaseToUnitFunc": "{x}/0.00454609000000181429905810072407",
+      "FromUnitToBaseFunc": "{x} * 0.00454609000000181429905810072407",
+      "FromBaseToUnitFunc": "{x} / 0.00454609000000181429905810072407",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -227,8 +227,8 @@
     {
       "SingularName": "ImperialOunce",
       "PluralName": "ImperialOunces",
-      "FromUnitToBaseFunc": "{x}*2.8413062499962901241875439064617e-5",
-      "FromBaseToUnitFunc": "{x}/2.8413062499962901241875439064617e-5",
+      "FromUnitToBaseFunc": "{x} * 2.8413062499962901241875439064617e-5",
+      "FromBaseToUnitFunc": "{x} / 2.8413062499962901241875439064617e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -243,8 +243,8 @@
     {
       "SingularName": "UsGallon",
       "PluralName": "UsGallons",
-      "FromUnitToBaseFunc": "{x}*0.00378541",
-      "FromBaseToUnitFunc": "{x}/0.00378541",
+      "FromUnitToBaseFunc": "{x} * 0.00378541",
+      "FromBaseToUnitFunc": "{x} / 0.00378541",
       "Prefixes": [ "Deca", "Deci", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -260,8 +260,8 @@
     {
       "SingularName": "UsOunce",
       "PluralName": "UsOunces",
-      "FromUnitToBaseFunc": "{x}*2.957352956253760505068307980135e-5",
-      "FromBaseToUnitFunc": "{x}/2.957352956253760505068307980135e-5",
+      "FromUnitToBaseFunc": "{x} * 2.957352956253760505068307980135e-5",
+      "FromBaseToUnitFunc": "{x} / 2.957352956253760505068307980135e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -276,8 +276,8 @@
     {
       "SingularName": "UsTablespoon",
       "PluralName": "UsTablespoons",
-      "FromUnitToBaseFunc": "{x}*1.478676478125e-5",
-      "FromBaseToUnitFunc": "{x}/1.478676478125e-5",
+      "FromUnitToBaseFunc": "{x} * 1.478676478125e-5",
+      "FromBaseToUnitFunc": "{x} / 1.478676478125e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -296,8 +296,8 @@
     {
       "SingularName": "AuTablespoon",
       "PluralName": "AuTablespoons",
-      "FromUnitToBaseFunc": "{x}*2e-5",
-      "FromBaseToUnitFunc": "{x}/2e-5",
+      "FromUnitToBaseFunc": "{x} * 2e-5",
+      "FromBaseToUnitFunc": "{x} / 2e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -316,8 +316,8 @@
     {
       "SingularName": "UkTablespoon",
       "PluralName": "UkTablespoons",
-      "FromUnitToBaseFunc": "{x}*1.5e-5",
-      "FromBaseToUnitFunc": "{x}/1.5e-5",
+      "FromUnitToBaseFunc": "{x} * 1.5e-5",
+      "FromBaseToUnitFunc": "{x} / 1.5e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -336,8 +336,8 @@
     {
       "SingularName": "MetricTeaspoon",
       "PluralName": "MetricTeaspoons",
-      "FromUnitToBaseFunc": "{x}*0.5e-5",
-      "FromBaseToUnitFunc": "{x}/0.5e-5",
+      "FromUnitToBaseFunc": "{x} * 0.5e-5",
+      "FromBaseToUnitFunc": "{x} / 0.5e-5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -356,8 +356,8 @@
     {
       "SingularName": "UsTeaspoon",
       "PluralName": "UsTeaspoons",
-      "FromUnitToBaseFunc": "{x}*4.92892159375e-6",
-      "FromBaseToUnitFunc": "{x}/4.92892159375e-6",
+      "FromUnitToBaseFunc": "{x} * 4.92892159375e-6",
+      "FromBaseToUnitFunc": "{x} / 4.92892159375e-6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -376,8 +376,8 @@
     {
       "SingularName": "MetricCup",
       "PluralName": "MetricCups",
-      "FromUnitToBaseFunc": "{x}*0.00025",
-      "FromBaseToUnitFunc": "{x}/0.00025",
+      "FromUnitToBaseFunc": "{x} * 0.00025",
+      "FromBaseToUnitFunc": "{x} / 0.00025",
       "Localization": [
         {
           "Culture": "en-US",
@@ -388,8 +388,8 @@
     {
       "SingularName": "UsCustomaryCup",
       "PluralName": "UsCustomaryCups",
-      "FromUnitToBaseFunc": "{x}*0.0002365882365",
-      "FromBaseToUnitFunc": "{x}/0.0002365882365",
+      "FromUnitToBaseFunc": "{x} * 0.0002365882365",
+      "FromBaseToUnitFunc": "{x} / 0.0002365882365",
       "Localization": [
         {
           "Culture": "en-US",
@@ -400,8 +400,8 @@
     {
       "SingularName": "UsLegalCup",
       "PluralName": "UsLegalCups",
-      "FromUnitToBaseFunc": "{x}*0.00024",
-      "FromBaseToUnitFunc": "{x}/0.00024",
+      "FromUnitToBaseFunc": "{x} * 0.00024",
+      "FromBaseToUnitFunc": "{x} / 0.00024",
       "Localization": [
         {
           "Culture": "en-US",
@@ -412,8 +412,8 @@
     {
       "SingularName": "OilBarrel",
       "PluralName": "OilBarrels",
-      "FromUnitToBaseFunc": "{x}*0.158987294928",
-      "FromBaseToUnitFunc": "{x}/0.158987294928",
+      "FromUnitToBaseFunc": "{x} * 0.158987294928",
+      "FromBaseToUnitFunc": "{x} / 0.158987294928",
       "Localization": [
         {
           "Culture": "en-US",
@@ -424,8 +424,8 @@
     {
       "SingularName": "UsBeerBarrel",
       "PluralName": "UsBeerBarrels",
-      "FromUnitToBaseFunc": "{x}*0.1173477658",
-      "FromBaseToUnitFunc": "{x}/0.1173477658",
+      "FromUnitToBaseFunc": "{x} * 0.1173477658",
+      "FromBaseToUnitFunc": "{x} / 0.1173477658",
       "Localization": [
         {
           "Culture": "en-US",
@@ -436,8 +436,8 @@
     {
       "SingularName": "ImperialBeerBarrel",
       "PluralName": "ImperialBeerBarrels",
-      "FromUnitToBaseFunc": "{x}*0.16365924",
-      "FromBaseToUnitFunc": "{x}/0.16365924",
+      "FromUnitToBaseFunc": "{x} * 0.16365924",
+      "FromBaseToUnitFunc": "{x} / 0.16365924",
       "Localization": [
         {
           "Culture": "en-US",
@@ -448,8 +448,8 @@
     {
       "SingularName": "UsQuart",
       "PluralName": "UsQuarts",
-      "FromUnitToBaseFunc": "{x}*9.46352946e-4",
-      "FromBaseToUnitFunc": "{x}/9.46352946e-4",
+      "FromUnitToBaseFunc": "{x} * 9.46352946e-4",
+      "FromBaseToUnitFunc": "{x} / 9.46352946e-4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -460,8 +460,8 @@
     {
       "SingularName": "UsPint",
       "PluralName": "UsPints",
-      "FromUnitToBaseFunc": "{x}*4.73176473e-4",
-      "FromBaseToUnitFunc": "{x}/4.73176473e-4",
+      "FromUnitToBaseFunc": "{x} * 4.73176473e-4",
+      "FromBaseToUnitFunc": "{x} / 4.73176473e-4",
       "Localization": [
         {
           "Culture": "en-US",
@@ -472,8 +472,8 @@
     {
       "SingularName": "AcreFoot",
       "PluralName": "AcreFeet",
-      "FromUnitToBaseFunc": "{x}/0.000810714",
-      "FromBaseToUnitFunc": "{x}*0.000810714",
+      "FromUnitToBaseFunc": "{x} / 0.000810714",
+      "FromBaseToUnitFunc": "{x} * 0.000810714",
       "Localization": [
         {
           "Culture": "en-US",
@@ -499,8 +499,8 @@
     {
       "SingularName": "BoardFoot",
       "PluralName": "BoardFeet",
-      "FromUnitToBaseFunc": "{x}*2.3597372158e-3",
-      "FromBaseToUnitFunc": "{x}/2.3597372158e-3",
+      "FromUnitToBaseFunc": "{x} * 2.3597372158e-3",
+      "FromBaseToUnitFunc": "{x} / 2.3597372158e-3",
       "Localization": [
         {
           "Culture": "en-US",

@@ -222,10 +222,10 @@ namespace UnitsNet
             return Unit switch
             {
                 SpecificEntropyUnit.BtuPerPoundFahrenheit => _value * 4.1868e3,
-                SpecificEntropyUnit.CaloriePerGramKelvin => _value*4.184e3,
+                SpecificEntropyUnit.CaloriePerGramKelvin => _value * 4.184e3,
                 SpecificEntropyUnit.JoulePerKilogramDegreeCelsius => _value,
                 SpecificEntropyUnit.JoulePerKilogramKelvin => _value,
-                SpecificEntropyUnit.KilocaloriePerGramKelvin => (_value*4.184e3) * 1e3d,
+                SpecificEntropyUnit.KilocaloriePerGramKelvin => (_value * 4.184e3) * 1e3d,
                 SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius => (_value) * 1e3d,
                 SpecificEntropyUnit.KilojoulePerKilogramKelvin => (_value) * 1e3d,
                 SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius => (_value) * 1e6d,
@@ -244,10 +244,10 @@ namespace UnitsNet
             return unit switch
             {
                 SpecificEntropyUnit.BtuPerPoundFahrenheit => baseUnitValue / 4.1868e3,
-                SpecificEntropyUnit.CaloriePerGramKelvin => baseUnitValue/4.184e3,
+                SpecificEntropyUnit.CaloriePerGramKelvin => baseUnitValue / 4.184e3,
                 SpecificEntropyUnit.JoulePerKilogramDegreeCelsius => baseUnitValue,
                 SpecificEntropyUnit.JoulePerKilogramKelvin => baseUnitValue,
-                SpecificEntropyUnit.KilocaloriePerGramKelvin => (baseUnitValue/4.184e3) / 1e3d,
+                SpecificEntropyUnit.KilocaloriePerGramKelvin => (baseUnitValue / 4.184e3) / 1e3d,
                 SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius => (baseUnitValue) / 1e3d,
                 SpecificEntropyUnit.KilojoulePerKilogramKelvin => (baseUnitValue) / 1e3d,
                 SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius => (baseUnitValue) / 1e6d,

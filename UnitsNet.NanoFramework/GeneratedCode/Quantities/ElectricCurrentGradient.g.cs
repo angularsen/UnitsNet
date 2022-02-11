@@ -166,9 +166,9 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                ElectricCurrentGradientUnit.AmperePerMicrosecond => _value*1E6,
-                ElectricCurrentGradientUnit.AmperePerMillisecond => _value*1E3,
-                ElectricCurrentGradientUnit.AmperePerNanosecond => _value*1E9,
+                ElectricCurrentGradientUnit.AmperePerMicrosecond => _value * 1E6,
+                ElectricCurrentGradientUnit.AmperePerMillisecond => _value * 1E3,
+                ElectricCurrentGradientUnit.AmperePerNanosecond => _value * 1E9,
                 ElectricCurrentGradientUnit.AmperePerSecond => _value,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
@@ -183,9 +183,9 @@ namespace UnitsNet
 
             return unit switch
             {
-                ElectricCurrentGradientUnit.AmperePerMicrosecond => baseUnitValue/1E6,
-                ElectricCurrentGradientUnit.AmperePerMillisecond => baseUnitValue/1E3,
-                ElectricCurrentGradientUnit.AmperePerNanosecond => baseUnitValue/1E9,
+                ElectricCurrentGradientUnit.AmperePerMicrosecond => baseUnitValue / 1E6,
+                ElectricCurrentGradientUnit.AmperePerMillisecond => baseUnitValue / 1E3,
+                ElectricCurrentGradientUnit.AmperePerNanosecond => baseUnitValue / 1E9,
                 ElectricCurrentGradientUnit.AmperePerSecond => baseUnitValue,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };

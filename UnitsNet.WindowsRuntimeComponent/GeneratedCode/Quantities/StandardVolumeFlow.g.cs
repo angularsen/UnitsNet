@@ -632,15 +632,15 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute: return _value/6e7;
-                case StandardVolumeFlowUnit.StandardCubicFootPerHour: return _value*7.8657907199999087346816086183876e-6;
-                case StandardVolumeFlowUnit.StandardCubicFootPerMinute: return _value/2118.88000326;
-                case StandardVolumeFlowUnit.StandardCubicFootPerSecond: return _value/35.314666721;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerDay: return _value/86400;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerHour: return _value/3600;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerMinute: return _value/60;
+                case StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute: return _value / 6e7;
+                case StandardVolumeFlowUnit.StandardCubicFootPerHour: return _value * 7.8657907199999087346816086183876e-6;
+                case StandardVolumeFlowUnit.StandardCubicFootPerMinute: return _value / 2118.88000326;
+                case StandardVolumeFlowUnit.StandardCubicFootPerSecond: return _value / 35.314666721;
+                case StandardVolumeFlowUnit.StandardCubicMeterPerDay: return _value / 86400;
+                case StandardVolumeFlowUnit.StandardCubicMeterPerHour: return _value / 3600;
+                case StandardVolumeFlowUnit.StandardCubicMeterPerMinute: return _value / 60;
                 case StandardVolumeFlowUnit.StandardCubicMeterPerSecond: return _value;
-                case StandardVolumeFlowUnit.StandardLiterPerMinute: return _value/60000;
+                case StandardVolumeFlowUnit.StandardLiterPerMinute: return _value / 60000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -655,15 +655,15 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute: return baseUnitValue*6e7;
-                case StandardVolumeFlowUnit.StandardCubicFootPerHour: return baseUnitValue/7.8657907199999087346816086183876e-6;
-                case StandardVolumeFlowUnit.StandardCubicFootPerMinute: return baseUnitValue*2118.88000326;
-                case StandardVolumeFlowUnit.StandardCubicFootPerSecond: return baseUnitValue*35.314666721;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerDay: return baseUnitValue*86400;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerHour: return baseUnitValue*3600;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerMinute: return baseUnitValue*60;
+                case StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute: return baseUnitValue * 6e7;
+                case StandardVolumeFlowUnit.StandardCubicFootPerHour: return baseUnitValue / 7.8657907199999087346816086183876e-6;
+                case StandardVolumeFlowUnit.StandardCubicFootPerMinute: return baseUnitValue * 2118.88000326;
+                case StandardVolumeFlowUnit.StandardCubicFootPerSecond: return baseUnitValue * 35.314666721;
+                case StandardVolumeFlowUnit.StandardCubicMeterPerDay: return baseUnitValue * 86400;
+                case StandardVolumeFlowUnit.StandardCubicMeterPerHour: return baseUnitValue * 3600;
+                case StandardVolumeFlowUnit.StandardCubicMeterPerMinute: return baseUnitValue * 60;
                 case StandardVolumeFlowUnit.StandardCubicMeterPerSecond: return baseUnitValue;
-                case StandardVolumeFlowUnit.StandardLiterPerMinute: return baseUnitValue*60000;
+                case StandardVolumeFlowUnit.StandardLiterPerMinute: return baseUnitValue * 60000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

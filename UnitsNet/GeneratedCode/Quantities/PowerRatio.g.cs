@@ -437,16 +437,16 @@ namespace UnitsNet
         public static PowerRatio operator +(PowerRatio left, PowerRatio right)
         {
             // Logarithmic addition
-            // Formula: 10*log10(10^(x/10) + 10^(y/10))
-            return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
+            // Formula: 10 * log10(10^(x/10) + 10^(y/10))
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic subtraction of two <see cref="PowerRatio"/>.</summary>
         public static PowerRatio operator -(PowerRatio left, PowerRatio right)
         {
             // Logarithmic subtraction
-            // Formula: 10*log10(10^(x/10) - 10^(y/10))
-            return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
+            // Formula: 10 * log10(10^(x/10) - 10^(y/10))
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>

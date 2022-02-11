@@ -279,20 +279,20 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                LinearDensityUnit.GramPerCentimeter => _value*1e-1,
-                LinearDensityUnit.GramPerMeter => _value*1e-3,
+                LinearDensityUnit.GramPerCentimeter => _value * 1e-1,
+                LinearDensityUnit.GramPerMeter => _value * 1e-3,
                 LinearDensityUnit.GramPerMillimeter => _value,
-                LinearDensityUnit.KilogramPerCentimeter => (_value*1e-1) * 1e3d,
-                LinearDensityUnit.KilogramPerMeter => (_value*1e-3) * 1e3d,
+                LinearDensityUnit.KilogramPerCentimeter => (_value * 1e-1) * 1e3d,
+                LinearDensityUnit.KilogramPerMeter => (_value * 1e-3) * 1e3d,
                 LinearDensityUnit.KilogramPerMillimeter => (_value) * 1e3d,
-                LinearDensityUnit.MicrogramPerCentimeter => (_value*1e-1) * 1e-6d,
-                LinearDensityUnit.MicrogramPerMeter => (_value*1e-3) * 1e-6d,
+                LinearDensityUnit.MicrogramPerCentimeter => (_value * 1e-1) * 1e-6d,
+                LinearDensityUnit.MicrogramPerMeter => (_value * 1e-3) * 1e-6d,
                 LinearDensityUnit.MicrogramPerMillimeter => (_value) * 1e-6d,
-                LinearDensityUnit.MilligramPerCentimeter => (_value*1e-1) * 1e-3d,
-                LinearDensityUnit.MilligramPerMeter => (_value*1e-3) * 1e-3d,
+                LinearDensityUnit.MilligramPerCentimeter => (_value * 1e-1) * 1e-3d,
+                LinearDensityUnit.MilligramPerMeter => (_value * 1e-3) * 1e-3d,
                 LinearDensityUnit.MilligramPerMillimeter => (_value) * 1e-3d,
-                LinearDensityUnit.PoundPerFoot => _value*1.48816394,
-                LinearDensityUnit.PoundPerInch => _value/5.5997415e-2,
+                LinearDensityUnit.PoundPerFoot => _value * 1.48816394,
+                LinearDensityUnit.PoundPerInch => _value / 5.5997415e-2,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -306,20 +306,20 @@ namespace UnitsNet
 
             return unit switch
             {
-                LinearDensityUnit.GramPerCentimeter => baseUnitValue/1e-1,
-                LinearDensityUnit.GramPerMeter => baseUnitValue/1e-3,
+                LinearDensityUnit.GramPerCentimeter => baseUnitValue / 1e-1,
+                LinearDensityUnit.GramPerMeter => baseUnitValue / 1e-3,
                 LinearDensityUnit.GramPerMillimeter => baseUnitValue,
-                LinearDensityUnit.KilogramPerCentimeter => (baseUnitValue/1e-1) / 1e3d,
-                LinearDensityUnit.KilogramPerMeter => (baseUnitValue/1e-3) / 1e3d,
+                LinearDensityUnit.KilogramPerCentimeter => (baseUnitValue / 1e-1) / 1e3d,
+                LinearDensityUnit.KilogramPerMeter => (baseUnitValue / 1e-3) / 1e3d,
                 LinearDensityUnit.KilogramPerMillimeter => (baseUnitValue) / 1e3d,
-                LinearDensityUnit.MicrogramPerCentimeter => (baseUnitValue/1e-1) / 1e-6d,
-                LinearDensityUnit.MicrogramPerMeter => (baseUnitValue/1e-3) / 1e-6d,
+                LinearDensityUnit.MicrogramPerCentimeter => (baseUnitValue / 1e-1) / 1e-6d,
+                LinearDensityUnit.MicrogramPerMeter => (baseUnitValue / 1e-3) / 1e-6d,
                 LinearDensityUnit.MicrogramPerMillimeter => (baseUnitValue) / 1e-6d,
-                LinearDensityUnit.MilligramPerCentimeter => (baseUnitValue/1e-1) / 1e-3d,
-                LinearDensityUnit.MilligramPerMeter => (baseUnitValue/1e-3) / 1e-3d,
+                LinearDensityUnit.MilligramPerCentimeter => (baseUnitValue / 1e-1) / 1e-3d,
+                LinearDensityUnit.MilligramPerMeter => (baseUnitValue / 1e-3) / 1e-3d,
                 LinearDensityUnit.MilligramPerMillimeter => (baseUnitValue) / 1e-3d,
-                LinearDensityUnit.PoundPerFoot => baseUnitValue/1.48816394,
-                LinearDensityUnit.PoundPerInch => baseUnitValue*5.5997415e-2,
+                LinearDensityUnit.PoundPerFoot => baseUnitValue / 1.48816394,
+                LinearDensityUnit.PoundPerInch => baseUnitValue * 5.5997415e-2,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

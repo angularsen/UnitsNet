@@ -188,12 +188,12 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                WarpingMomentOfInertiaUnit.CentimeterToTheSixth => _value/1e12,
-                WarpingMomentOfInertiaUnit.DecimeterToTheSixth => _value/1e6,
-                WarpingMomentOfInertiaUnit.FootToTheSixth => _value*Math.Pow(0.3048, 6),
-                WarpingMomentOfInertiaUnit.InchToTheSixth => _value*Math.Pow(2.54e-2, 6),
+                WarpingMomentOfInertiaUnit.CentimeterToTheSixth => _value / 1e12,
+                WarpingMomentOfInertiaUnit.DecimeterToTheSixth => _value / 1e6,
+                WarpingMomentOfInertiaUnit.FootToTheSixth => _value * Math.Pow(0.3048, 6),
+                WarpingMomentOfInertiaUnit.InchToTheSixth => _value * Math.Pow(2.54e-2, 6),
                 WarpingMomentOfInertiaUnit.MeterToTheSixth => _value,
-                WarpingMomentOfInertiaUnit.MillimeterToTheSixth => _value/1e18,
+                WarpingMomentOfInertiaUnit.MillimeterToTheSixth => _value / 1e18,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -207,12 +207,12 @@ namespace UnitsNet
 
             return unit switch
             {
-                WarpingMomentOfInertiaUnit.CentimeterToTheSixth => baseUnitValue*1e12,
-                WarpingMomentOfInertiaUnit.DecimeterToTheSixth => baseUnitValue*1e6,
-                WarpingMomentOfInertiaUnit.FootToTheSixth => baseUnitValue/Math.Pow(0.3048, 6),
-                WarpingMomentOfInertiaUnit.InchToTheSixth => baseUnitValue/Math.Pow(2.54e-2, 6),
+                WarpingMomentOfInertiaUnit.CentimeterToTheSixth => baseUnitValue * 1e12,
+                WarpingMomentOfInertiaUnit.DecimeterToTheSixth => baseUnitValue * 1e6,
+                WarpingMomentOfInertiaUnit.FootToTheSixth => baseUnitValue / Math.Pow(0.3048, 6),
+                WarpingMomentOfInertiaUnit.InchToTheSixth => baseUnitValue / Math.Pow(2.54e-2, 6),
                 WarpingMomentOfInertiaUnit.MeterToTheSixth => baseUnitValue,
-                WarpingMomentOfInertiaUnit.MillimeterToTheSixth => baseUnitValue*1e18,
+                WarpingMomentOfInertiaUnit.MillimeterToTheSixth => baseUnitValue * 1e18,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

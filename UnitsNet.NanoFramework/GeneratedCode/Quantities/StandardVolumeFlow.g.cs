@@ -221,15 +221,15 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => _value/6e7,
-                StandardVolumeFlowUnit.StandardCubicFootPerHour => _value*7.8657907199999087346816086183876e-6,
-                StandardVolumeFlowUnit.StandardCubicFootPerMinute => _value/2118.88000326,
-                StandardVolumeFlowUnit.StandardCubicFootPerSecond => _value/35.314666721,
-                StandardVolumeFlowUnit.StandardCubicMeterPerDay => _value/86400,
-                StandardVolumeFlowUnit.StandardCubicMeterPerHour => _value/3600,
-                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => _value/60,
+                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => _value / 6e7,
+                StandardVolumeFlowUnit.StandardCubicFootPerHour => _value * 7.8657907199999087346816086183876e-6,
+                StandardVolumeFlowUnit.StandardCubicFootPerMinute => _value / 2118.88000326,
+                StandardVolumeFlowUnit.StandardCubicFootPerSecond => _value / 35.314666721,
+                StandardVolumeFlowUnit.StandardCubicMeterPerDay => _value / 86400,
+                StandardVolumeFlowUnit.StandardCubicMeterPerHour => _value / 3600,
+                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => _value / 60,
                 StandardVolumeFlowUnit.StandardCubicMeterPerSecond => _value,
-                StandardVolumeFlowUnit.StandardLiterPerMinute => _value/60000,
+                StandardVolumeFlowUnit.StandardLiterPerMinute => _value / 60000,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -243,15 +243,15 @@ namespace UnitsNet
 
             return unit switch
             {
-                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => baseUnitValue*6e7,
-                StandardVolumeFlowUnit.StandardCubicFootPerHour => baseUnitValue/7.8657907199999087346816086183876e-6,
-                StandardVolumeFlowUnit.StandardCubicFootPerMinute => baseUnitValue*2118.88000326,
-                StandardVolumeFlowUnit.StandardCubicFootPerSecond => baseUnitValue*35.314666721,
-                StandardVolumeFlowUnit.StandardCubicMeterPerDay => baseUnitValue*86400,
-                StandardVolumeFlowUnit.StandardCubicMeterPerHour => baseUnitValue*3600,
-                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => baseUnitValue*60,
+                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => baseUnitValue * 6e7,
+                StandardVolumeFlowUnit.StandardCubicFootPerHour => baseUnitValue / 7.8657907199999087346816086183876e-6,
+                StandardVolumeFlowUnit.StandardCubicFootPerMinute => baseUnitValue * 2118.88000326,
+                StandardVolumeFlowUnit.StandardCubicFootPerSecond => baseUnitValue * 35.314666721,
+                StandardVolumeFlowUnit.StandardCubicMeterPerDay => baseUnitValue * 86400,
+                StandardVolumeFlowUnit.StandardCubicMeterPerHour => baseUnitValue * 3600,
+                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => baseUnitValue * 60,
                 StandardVolumeFlowUnit.StandardCubicMeterPerSecond => baseUnitValue,
-                StandardVolumeFlowUnit.StandardLiterPerMinute => baseUnitValue*60000,
+                StandardVolumeFlowUnit.StandardLiterPerMinute => baseUnitValue * 60000,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

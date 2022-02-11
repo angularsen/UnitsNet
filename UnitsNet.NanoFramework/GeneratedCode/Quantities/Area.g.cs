@@ -276,20 +276,20 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                AreaUnit.Acre => _value*4046.85642,
-                AreaUnit.Hectare => _value*1e4,
-                AreaUnit.SquareCentimeter => _value*1e-4,
-                AreaUnit.SquareDecimeter => _value*1e-2,
+                AreaUnit.Acre => _value * 4046.85642,
+                AreaUnit.Hectare => _value * 1e4,
+                AreaUnit.SquareCentimeter => _value * 1e-4,
+                AreaUnit.SquareDecimeter => _value * 1e-2,
                 AreaUnit.SquareFoot => _value * 9.290304e-2,
-                AreaUnit.SquareInch => _value*0.00064516,
-                AreaUnit.SquareKilometer => _value*1e6,
+                AreaUnit.SquareInch => _value * 0.00064516,
+                AreaUnit.SquareKilometer => _value * 1e6,
                 AreaUnit.SquareMeter => _value,
-                AreaUnit.SquareMicrometer => _value*1e-12,
-                AreaUnit.SquareMile => _value*2.59e6,
-                AreaUnit.SquareMillimeter => _value*1e-6,
-                AreaUnit.SquareNauticalMile => _value*3429904,
-                AreaUnit.SquareYard => _value*0.836127,
-                AreaUnit.UsSurveySquareFoot => _value*0.09290341161,
+                AreaUnit.SquareMicrometer => _value * 1e-12,
+                AreaUnit.SquareMile => _value * 2.59e6,
+                AreaUnit.SquareMillimeter => _value * 1e-6,
+                AreaUnit.SquareNauticalMile => _value * 3429904,
+                AreaUnit.SquareYard => _value * 0.836127,
+                AreaUnit.UsSurveySquareFoot => _value * 0.09290341161,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -303,20 +303,20 @@ namespace UnitsNet
 
             return unit switch
             {
-                AreaUnit.Acre => baseUnitValue/4046.85642,
-                AreaUnit.Hectare => baseUnitValue/1e4,
-                AreaUnit.SquareCentimeter => baseUnitValue/1e-4,
-                AreaUnit.SquareDecimeter => baseUnitValue/1e-2,
+                AreaUnit.Acre => baseUnitValue / 4046.85642,
+                AreaUnit.Hectare => baseUnitValue / 1e4,
+                AreaUnit.SquareCentimeter => baseUnitValue / 1e-4,
+                AreaUnit.SquareDecimeter => baseUnitValue / 1e-2,
                 AreaUnit.SquareFoot => baseUnitValue / 9.290304e-2,
-                AreaUnit.SquareInch => baseUnitValue/0.00064516,
-                AreaUnit.SquareKilometer => baseUnitValue/1e6,
+                AreaUnit.SquareInch => baseUnitValue / 0.00064516,
+                AreaUnit.SquareKilometer => baseUnitValue / 1e6,
                 AreaUnit.SquareMeter => baseUnitValue,
-                AreaUnit.SquareMicrometer => baseUnitValue/1e-12,
-                AreaUnit.SquareMile => baseUnitValue/2.59e6,
-                AreaUnit.SquareMillimeter => baseUnitValue/1e-6,
-                AreaUnit.SquareNauticalMile => baseUnitValue/3429904,
-                AreaUnit.SquareYard => baseUnitValue/0.836127,
-                AreaUnit.UsSurveySquareFoot => baseUnitValue/0.09290341161,
+                AreaUnit.SquareMicrometer => baseUnitValue / 1e-12,
+                AreaUnit.SquareMile => baseUnitValue / 2.59e6,
+                AreaUnit.SquareMillimeter => baseUnitValue / 1e-6,
+                AreaUnit.SquareNauticalMile => baseUnitValue / 3429904,
+                AreaUnit.SquareYard => baseUnitValue / 0.836127,
+                AreaUnit.UsSurveySquareFoot => baseUnitValue / 0.09290341161,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

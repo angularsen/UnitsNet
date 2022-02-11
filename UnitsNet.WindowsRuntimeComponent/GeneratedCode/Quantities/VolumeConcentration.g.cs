@@ -812,25 +812,25 @@ namespace UnitsNet
             switch(Unit)
             {
                 case VolumeConcentrationUnit.CentilitersPerLiter: return (_value) * 1e-2d;
-                case VolumeConcentrationUnit.CentilitersPerMililiter: return (_value/1e-3) * 1e-2d;
+                case VolumeConcentrationUnit.CentilitersPerMililiter: return (_value / 1e-3) * 1e-2d;
                 case VolumeConcentrationUnit.DecilitersPerLiter: return (_value) * 1e-1d;
-                case VolumeConcentrationUnit.DecilitersPerMililiter: return (_value/1e-3) * 1e-1d;
+                case VolumeConcentrationUnit.DecilitersPerMililiter: return (_value / 1e-3) * 1e-1d;
                 case VolumeConcentrationUnit.DecimalFraction: return _value;
                 case VolumeConcentrationUnit.LitersPerLiter: return _value;
-                case VolumeConcentrationUnit.LitersPerMililiter: return _value/1e-3;
+                case VolumeConcentrationUnit.LitersPerMililiter: return _value / 1e-3;
                 case VolumeConcentrationUnit.MicrolitersPerLiter: return (_value) * 1e-6d;
-                case VolumeConcentrationUnit.MicrolitersPerMililiter: return (_value/1e-3) * 1e-6d;
+                case VolumeConcentrationUnit.MicrolitersPerMililiter: return (_value / 1e-3) * 1e-6d;
                 case VolumeConcentrationUnit.MillilitersPerLiter: return (_value) * 1e-3d;
-                case VolumeConcentrationUnit.MillilitersPerMililiter: return (_value/1e-3) * 1e-3d;
+                case VolumeConcentrationUnit.MillilitersPerMililiter: return (_value / 1e-3) * 1e-3d;
                 case VolumeConcentrationUnit.NanolitersPerLiter: return (_value) * 1e-9d;
-                case VolumeConcentrationUnit.NanolitersPerMililiter: return (_value/1e-3) * 1e-9d;
-                case VolumeConcentrationUnit.PartPerBillion: return _value/1e9;
-                case VolumeConcentrationUnit.PartPerMillion: return _value/1e6;
-                case VolumeConcentrationUnit.PartPerThousand: return _value/1e3;
-                case VolumeConcentrationUnit.PartPerTrillion: return _value/1e12;
-                case VolumeConcentrationUnit.Percent: return _value/1e2;
+                case VolumeConcentrationUnit.NanolitersPerMililiter: return (_value / 1e-3) * 1e-9d;
+                case VolumeConcentrationUnit.PartPerBillion: return _value / 1e9;
+                case VolumeConcentrationUnit.PartPerMillion: return _value / 1e6;
+                case VolumeConcentrationUnit.PartPerThousand: return _value / 1e3;
+                case VolumeConcentrationUnit.PartPerTrillion: return _value / 1e12;
+                case VolumeConcentrationUnit.Percent: return _value / 1e2;
                 case VolumeConcentrationUnit.PicolitersPerLiter: return (_value) * 1e-12d;
-                case VolumeConcentrationUnit.PicolitersPerMililiter: return (_value/1e-3) * 1e-12d;
+                case VolumeConcentrationUnit.PicolitersPerMililiter: return (_value / 1e-3) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -846,25 +846,25 @@ namespace UnitsNet
             switch(unit)
             {
                 case VolumeConcentrationUnit.CentilitersPerLiter: return (baseUnitValue) / 1e-2d;
-                case VolumeConcentrationUnit.CentilitersPerMililiter: return (baseUnitValue*1e-3) / 1e-2d;
+                case VolumeConcentrationUnit.CentilitersPerMililiter: return (baseUnitValue * 1e-3) / 1e-2d;
                 case VolumeConcentrationUnit.DecilitersPerLiter: return (baseUnitValue) / 1e-1d;
-                case VolumeConcentrationUnit.DecilitersPerMililiter: return (baseUnitValue*1e-3) / 1e-1d;
+                case VolumeConcentrationUnit.DecilitersPerMililiter: return (baseUnitValue * 1e-3) / 1e-1d;
                 case VolumeConcentrationUnit.DecimalFraction: return baseUnitValue;
                 case VolumeConcentrationUnit.LitersPerLiter: return baseUnitValue;
-                case VolumeConcentrationUnit.LitersPerMililiter: return baseUnitValue*1e-3;
+                case VolumeConcentrationUnit.LitersPerMililiter: return baseUnitValue * 1e-3;
                 case VolumeConcentrationUnit.MicrolitersPerLiter: return (baseUnitValue) / 1e-6d;
-                case VolumeConcentrationUnit.MicrolitersPerMililiter: return (baseUnitValue*1e-3) / 1e-6d;
+                case VolumeConcentrationUnit.MicrolitersPerMililiter: return (baseUnitValue * 1e-3) / 1e-6d;
                 case VolumeConcentrationUnit.MillilitersPerLiter: return (baseUnitValue) / 1e-3d;
-                case VolumeConcentrationUnit.MillilitersPerMililiter: return (baseUnitValue*1e-3) / 1e-3d;
+                case VolumeConcentrationUnit.MillilitersPerMililiter: return (baseUnitValue * 1e-3) / 1e-3d;
                 case VolumeConcentrationUnit.NanolitersPerLiter: return (baseUnitValue) / 1e-9d;
-                case VolumeConcentrationUnit.NanolitersPerMililiter: return (baseUnitValue*1e-3) / 1e-9d;
-                case VolumeConcentrationUnit.PartPerBillion: return baseUnitValue*1e9;
-                case VolumeConcentrationUnit.PartPerMillion: return baseUnitValue*1e6;
-                case VolumeConcentrationUnit.PartPerThousand: return baseUnitValue*1e3;
-                case VolumeConcentrationUnit.PartPerTrillion: return baseUnitValue*1e12;
-                case VolumeConcentrationUnit.Percent: return baseUnitValue*1e2;
+                case VolumeConcentrationUnit.NanolitersPerMililiter: return (baseUnitValue * 1e-3) / 1e-9d;
+                case VolumeConcentrationUnit.PartPerBillion: return baseUnitValue * 1e9;
+                case VolumeConcentrationUnit.PartPerMillion: return baseUnitValue * 1e6;
+                case VolumeConcentrationUnit.PartPerThousand: return baseUnitValue * 1e3;
+                case VolumeConcentrationUnit.PartPerTrillion: return baseUnitValue * 1e12;
+                case VolumeConcentrationUnit.Percent: return baseUnitValue * 1e2;
                 case VolumeConcentrationUnit.PicolitersPerLiter: return (baseUnitValue) / 1e-12d;
-                case VolumeConcentrationUnit.PicolitersPerMililiter: return (baseUnitValue*1e-3) / 1e-12d;
+                case VolumeConcentrationUnit.PicolitersPerMililiter: return (baseUnitValue * 1e-3) / 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

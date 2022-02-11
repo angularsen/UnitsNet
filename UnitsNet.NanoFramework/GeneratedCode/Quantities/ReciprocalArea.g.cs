@@ -246,17 +246,17 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                ReciprocalAreaUnit.InverseSquareCentimeter => _value/1e-4,
-                ReciprocalAreaUnit.InverseSquareDecimeter => _value/1e-2,
-                ReciprocalAreaUnit.InverseSquareFoot => _value/0.092903,
-                ReciprocalAreaUnit.InverseSquareInch => _value/0.00064516,
-                ReciprocalAreaUnit.InverseSquareKilometer => _value/1e6,
+                ReciprocalAreaUnit.InverseSquareCentimeter => _value / 1e-4,
+                ReciprocalAreaUnit.InverseSquareDecimeter => _value / 1e-2,
+                ReciprocalAreaUnit.InverseSquareFoot => _value / 0.092903,
+                ReciprocalAreaUnit.InverseSquareInch => _value / 0.00064516,
+                ReciprocalAreaUnit.InverseSquareKilometer => _value / 1e6,
                 ReciprocalAreaUnit.InverseSquareMeter => _value,
-                ReciprocalAreaUnit.InverseSquareMicrometer => _value/1e-12,
-                ReciprocalAreaUnit.InverseSquareMile => _value/2.59e6,
-                ReciprocalAreaUnit.InverseSquareMillimeter => _value/1e-6,
-                ReciprocalAreaUnit.InverseSquareYard => _value/0.836127,
-                ReciprocalAreaUnit.InverseUsSurveySquareFoot => _value/0.09290341161,
+                ReciprocalAreaUnit.InverseSquareMicrometer => _value / 1e-12,
+                ReciprocalAreaUnit.InverseSquareMile => _value / 2.59e6,
+                ReciprocalAreaUnit.InverseSquareMillimeter => _value / 1e-6,
+                ReciprocalAreaUnit.InverseSquareYard => _value / 0.836127,
+                ReciprocalAreaUnit.InverseUsSurveySquareFoot => _value / 0.09290341161,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -270,17 +270,17 @@ namespace UnitsNet
 
             return unit switch
             {
-                ReciprocalAreaUnit.InverseSquareCentimeter => baseUnitValue*1e-4,
-                ReciprocalAreaUnit.InverseSquareDecimeter => baseUnitValue*1e-2,
-                ReciprocalAreaUnit.InverseSquareFoot => baseUnitValue*0.092903,
-                ReciprocalAreaUnit.InverseSquareInch => baseUnitValue*0.00064516,
-                ReciprocalAreaUnit.InverseSquareKilometer => baseUnitValue*1e6,
+                ReciprocalAreaUnit.InverseSquareCentimeter => baseUnitValue * 1e-4,
+                ReciprocalAreaUnit.InverseSquareDecimeter => baseUnitValue * 1e-2,
+                ReciprocalAreaUnit.InverseSquareFoot => baseUnitValue * 0.092903,
+                ReciprocalAreaUnit.InverseSquareInch => baseUnitValue * 0.00064516,
+                ReciprocalAreaUnit.InverseSquareKilometer => baseUnitValue * 1e6,
                 ReciprocalAreaUnit.InverseSquareMeter => baseUnitValue,
-                ReciprocalAreaUnit.InverseSquareMicrometer => baseUnitValue*1e-12,
-                ReciprocalAreaUnit.InverseSquareMile => baseUnitValue*2.59e6,
-                ReciprocalAreaUnit.InverseSquareMillimeter => baseUnitValue*1e-6,
-                ReciprocalAreaUnit.InverseSquareYard => baseUnitValue*0.836127,
-                ReciprocalAreaUnit.InverseUsSurveySquareFoot => baseUnitValue*0.09290341161,
+                ReciprocalAreaUnit.InverseSquareMicrometer => baseUnitValue * 1e-12,
+                ReciprocalAreaUnit.InverseSquareMile => baseUnitValue * 2.59e6,
+                ReciprocalAreaUnit.InverseSquareMillimeter => baseUnitValue * 1e-6,
+                ReciprocalAreaUnit.InverseSquareYard => baseUnitValue * 0.836127,
+                ReciprocalAreaUnit.InverseUsSurveySquareFoot => baseUnitValue * 0.09290341161,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

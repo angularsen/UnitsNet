@@ -46,8 +46,8 @@
         "L": "Foot",
         "Θ": "DegreeFahrenheit"
       },
-      "FromUnitToBaseFunc": "({x} / 0.3048) * 5/9",
-      "FromBaseToUnitFunc": "({x} * 0.3048) * 9/5",
+      "FromUnitToBaseFunc": "({x} / 0.3048) * 5 / 9",
+      "FromBaseToUnitFunc": "({x} * 0.3048) * 9 / 5",
       "Localization": [
         {
           "Culture": "en-US",

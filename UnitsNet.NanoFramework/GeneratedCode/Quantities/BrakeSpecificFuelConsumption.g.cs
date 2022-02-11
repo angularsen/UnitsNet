@@ -155,9 +155,9 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour => _value/3.6e9,
+                BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour => _value / 3.6e9,
                 BrakeSpecificFuelConsumptionUnit.KilogramPerJoule => _value,
-                BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour => _value*1.689659410672e-7,
+                BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour => _value * 1.689659410672e-7,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -171,9 +171,9 @@ namespace UnitsNet
 
             return unit switch
             {
-                BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour => baseUnitValue*3.6e9,
+                BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour => baseUnitValue * 3.6e9,
                 BrakeSpecificFuelConsumptionUnit.KilogramPerJoule => baseUnitValue,
-                BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour => baseUnitValue/1.689659410672e-7,
+                BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour => baseUnitValue / 1.689659410672e-7,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

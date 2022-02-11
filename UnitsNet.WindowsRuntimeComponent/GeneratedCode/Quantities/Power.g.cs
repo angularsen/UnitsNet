@@ -888,25 +888,25 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case PowerUnit.BoilerHorsepower: return _value*9812.5m;
-                case PowerUnit.BritishThermalUnitPerHour: return _value*0.293071m;
+                case PowerUnit.BoilerHorsepower: return _value * 9812.5m;
+                case PowerUnit.BritishThermalUnitPerHour: return _value * 0.293071m;
                 case PowerUnit.Decawatt: return (_value) * 1e1m;
                 case PowerUnit.Deciwatt: return (_value) * 1e-1m;
-                case PowerUnit.ElectricalHorsepower: return _value*746m;
+                case PowerUnit.ElectricalHorsepower: return _value * 746m;
                 case PowerUnit.Femtowatt: return (_value) * 1e-15m;
-                case PowerUnit.GigajoulePerHour: return (_value/3600m) * 1e9m;
+                case PowerUnit.GigajoulePerHour: return (_value / 3600m) * 1e9m;
                 case PowerUnit.Gigawatt: return (_value) * 1e9m;
-                case PowerUnit.HydraulicHorsepower: return _value*745.69988145m;
-                case PowerUnit.JoulePerHour: return _value/3600m;
-                case PowerUnit.KilobritishThermalUnitPerHour: return (_value*0.293071m) * 1e3m;
-                case PowerUnit.KilojoulePerHour: return (_value/3600m) * 1e3m;
+                case PowerUnit.HydraulicHorsepower: return _value * 745.69988145m;
+                case PowerUnit.JoulePerHour: return _value / 3600m;
+                case PowerUnit.KilobritishThermalUnitPerHour: return (_value * 0.293071m) * 1e3m;
+                case PowerUnit.KilojoulePerHour: return (_value / 3600m) * 1e3m;
                 case PowerUnit.Kilowatt: return (_value) * 1e3m;
-                case PowerUnit.MechanicalHorsepower: return _value*745.69m;
-                case PowerUnit.MegajoulePerHour: return (_value/3600m) * 1e6m;
+                case PowerUnit.MechanicalHorsepower: return _value * 745.69m;
+                case PowerUnit.MegajoulePerHour: return (_value / 3600m) * 1e6m;
                 case PowerUnit.Megawatt: return (_value) * 1e6m;
-                case PowerUnit.MetricHorsepower: return _value*735.49875m;
+                case PowerUnit.MetricHorsepower: return _value * 735.49875m;
                 case PowerUnit.Microwatt: return (_value) * 1e-6m;
-                case PowerUnit.MillijoulePerHour: return (_value/3600m) * 1e-3m;
+                case PowerUnit.MillijoulePerHour: return (_value / 3600m) * 1e-3m;
                 case PowerUnit.Milliwatt: return (_value) * 1e-3m;
                 case PowerUnit.Nanowatt: return (_value) * 1e-9m;
                 case PowerUnit.Petawatt: return (_value) * 1e15m;
@@ -927,25 +927,25 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case PowerUnit.BoilerHorsepower: return baseUnitValue/9812.5m;
-                case PowerUnit.BritishThermalUnitPerHour: return baseUnitValue/0.293071m;
+                case PowerUnit.BoilerHorsepower: return baseUnitValue / 9812.5m;
+                case PowerUnit.BritishThermalUnitPerHour: return baseUnitValue / 0.293071m;
                 case PowerUnit.Decawatt: return (baseUnitValue) / 1e1m;
                 case PowerUnit.Deciwatt: return (baseUnitValue) / 1e-1m;
-                case PowerUnit.ElectricalHorsepower: return baseUnitValue/746m;
+                case PowerUnit.ElectricalHorsepower: return baseUnitValue / 746m;
                 case PowerUnit.Femtowatt: return (baseUnitValue) / 1e-15m;
-                case PowerUnit.GigajoulePerHour: return (baseUnitValue*3600m) / 1e9m;
+                case PowerUnit.GigajoulePerHour: return (baseUnitValue * 3600m) / 1e9m;
                 case PowerUnit.Gigawatt: return (baseUnitValue) / 1e9m;
-                case PowerUnit.HydraulicHorsepower: return baseUnitValue/745.69988145m;
-                case PowerUnit.JoulePerHour: return baseUnitValue*3600m;
-                case PowerUnit.KilobritishThermalUnitPerHour: return (baseUnitValue/0.293071m) / 1e3m;
-                case PowerUnit.KilojoulePerHour: return (baseUnitValue*3600m) / 1e3m;
+                case PowerUnit.HydraulicHorsepower: return baseUnitValue / 745.69988145m;
+                case PowerUnit.JoulePerHour: return baseUnitValue * 3600m;
+                case PowerUnit.KilobritishThermalUnitPerHour: return (baseUnitValue / 0.293071m) / 1e3m;
+                case PowerUnit.KilojoulePerHour: return (baseUnitValue * 3600m) / 1e3m;
                 case PowerUnit.Kilowatt: return (baseUnitValue) / 1e3m;
-                case PowerUnit.MechanicalHorsepower: return baseUnitValue/745.69m;
-                case PowerUnit.MegajoulePerHour: return (baseUnitValue*3600m) / 1e6m;
+                case PowerUnit.MechanicalHorsepower: return baseUnitValue / 745.69m;
+                case PowerUnit.MegajoulePerHour: return (baseUnitValue * 3600m) / 1e6m;
                 case PowerUnit.Megawatt: return (baseUnitValue) / 1e6m;
-                case PowerUnit.MetricHorsepower: return baseUnitValue/735.49875m;
+                case PowerUnit.MetricHorsepower: return baseUnitValue / 735.49875m;
                 case PowerUnit.Microwatt: return (baseUnitValue) / 1e-6m;
-                case PowerUnit.MillijoulePerHour: return (baseUnitValue*3600m) / 1e-3m;
+                case PowerUnit.MillijoulePerHour: return (baseUnitValue * 3600m) / 1e-3m;
                 case PowerUnit.Milliwatt: return (baseUnitValue) / 1e-3m;
                 case PowerUnit.Nanowatt: return (baseUnitValue) / 1e-9m;
                 case PowerUnit.Petawatt: return (baseUnitValue) / 1e15m;

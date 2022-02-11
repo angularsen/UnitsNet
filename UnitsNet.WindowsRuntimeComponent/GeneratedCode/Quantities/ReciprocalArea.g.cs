@@ -667,17 +667,17 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ReciprocalAreaUnit.InverseSquareCentimeter: return _value/1e-4;
-                case ReciprocalAreaUnit.InverseSquareDecimeter: return _value/1e-2;
-                case ReciprocalAreaUnit.InverseSquareFoot: return _value/0.092903;
-                case ReciprocalAreaUnit.InverseSquareInch: return _value/0.00064516;
-                case ReciprocalAreaUnit.InverseSquareKilometer: return _value/1e6;
+                case ReciprocalAreaUnit.InverseSquareCentimeter: return _value / 1e-4;
+                case ReciprocalAreaUnit.InverseSquareDecimeter: return _value / 1e-2;
+                case ReciprocalAreaUnit.InverseSquareFoot: return _value / 0.092903;
+                case ReciprocalAreaUnit.InverseSquareInch: return _value / 0.00064516;
+                case ReciprocalAreaUnit.InverseSquareKilometer: return _value / 1e6;
                 case ReciprocalAreaUnit.InverseSquareMeter: return _value;
-                case ReciprocalAreaUnit.InverseSquareMicrometer: return _value/1e-12;
-                case ReciprocalAreaUnit.InverseSquareMile: return _value/2.59e6;
-                case ReciprocalAreaUnit.InverseSquareMillimeter: return _value/1e-6;
-                case ReciprocalAreaUnit.InverseSquareYard: return _value/0.836127;
-                case ReciprocalAreaUnit.InverseUsSurveySquareFoot: return _value/0.09290341161;
+                case ReciprocalAreaUnit.InverseSquareMicrometer: return _value / 1e-12;
+                case ReciprocalAreaUnit.InverseSquareMile: return _value / 2.59e6;
+                case ReciprocalAreaUnit.InverseSquareMillimeter: return _value / 1e-6;
+                case ReciprocalAreaUnit.InverseSquareYard: return _value / 0.836127;
+                case ReciprocalAreaUnit.InverseUsSurveySquareFoot: return _value / 0.09290341161;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -692,17 +692,17 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ReciprocalAreaUnit.InverseSquareCentimeter: return baseUnitValue*1e-4;
-                case ReciprocalAreaUnit.InverseSquareDecimeter: return baseUnitValue*1e-2;
-                case ReciprocalAreaUnit.InverseSquareFoot: return baseUnitValue*0.092903;
-                case ReciprocalAreaUnit.InverseSquareInch: return baseUnitValue*0.00064516;
-                case ReciprocalAreaUnit.InverseSquareKilometer: return baseUnitValue*1e6;
+                case ReciprocalAreaUnit.InverseSquareCentimeter: return baseUnitValue * 1e-4;
+                case ReciprocalAreaUnit.InverseSquareDecimeter: return baseUnitValue * 1e-2;
+                case ReciprocalAreaUnit.InverseSquareFoot: return baseUnitValue * 0.092903;
+                case ReciprocalAreaUnit.InverseSquareInch: return baseUnitValue * 0.00064516;
+                case ReciprocalAreaUnit.InverseSquareKilometer: return baseUnitValue * 1e6;
                 case ReciprocalAreaUnit.InverseSquareMeter: return baseUnitValue;
-                case ReciprocalAreaUnit.InverseSquareMicrometer: return baseUnitValue*1e-12;
-                case ReciprocalAreaUnit.InverseSquareMile: return baseUnitValue*2.59e6;
-                case ReciprocalAreaUnit.InverseSquareMillimeter: return baseUnitValue*1e-6;
-                case ReciprocalAreaUnit.InverseSquareYard: return baseUnitValue*0.836127;
-                case ReciprocalAreaUnit.InverseUsSurveySquareFoot: return baseUnitValue*0.09290341161;
+                case ReciprocalAreaUnit.InverseSquareMicrometer: return baseUnitValue * 1e-12;
+                case ReciprocalAreaUnit.InverseSquareMile: return baseUnitValue * 2.59e6;
+                case ReciprocalAreaUnit.InverseSquareMillimeter: return baseUnitValue * 1e-6;
+                case ReciprocalAreaUnit.InverseSquareYard: return baseUnitValue * 0.836127;
+                case ReciprocalAreaUnit.InverseUsSurveySquareFoot: return baseUnitValue * 0.09290341161;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

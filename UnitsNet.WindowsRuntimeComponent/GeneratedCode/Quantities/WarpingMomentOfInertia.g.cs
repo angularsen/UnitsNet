@@ -584,12 +584,12 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case WarpingMomentOfInertiaUnit.CentimeterToTheSixth: return _value/1e12;
-                case WarpingMomentOfInertiaUnit.DecimeterToTheSixth: return _value/1e6;
-                case WarpingMomentOfInertiaUnit.FootToTheSixth: return _value*Math.Pow(0.3048, 6);
-                case WarpingMomentOfInertiaUnit.InchToTheSixth: return _value*Math.Pow(2.54e-2, 6);
+                case WarpingMomentOfInertiaUnit.CentimeterToTheSixth: return _value / 1e12;
+                case WarpingMomentOfInertiaUnit.DecimeterToTheSixth: return _value / 1e6;
+                case WarpingMomentOfInertiaUnit.FootToTheSixth: return _value * Math.Pow(0.3048, 6);
+                case WarpingMomentOfInertiaUnit.InchToTheSixth: return _value * Math.Pow(2.54e-2, 6);
                 case WarpingMomentOfInertiaUnit.MeterToTheSixth: return _value;
-                case WarpingMomentOfInertiaUnit.MillimeterToTheSixth: return _value/1e18;
+                case WarpingMomentOfInertiaUnit.MillimeterToTheSixth: return _value / 1e18;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -604,12 +604,12 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case WarpingMomentOfInertiaUnit.CentimeterToTheSixth: return baseUnitValue*1e12;
-                case WarpingMomentOfInertiaUnit.DecimeterToTheSixth: return baseUnitValue*1e6;
-                case WarpingMomentOfInertiaUnit.FootToTheSixth: return baseUnitValue/Math.Pow(0.3048, 6);
-                case WarpingMomentOfInertiaUnit.InchToTheSixth: return baseUnitValue/Math.Pow(2.54e-2, 6);
+                case WarpingMomentOfInertiaUnit.CentimeterToTheSixth: return baseUnitValue * 1e12;
+                case WarpingMomentOfInertiaUnit.DecimeterToTheSixth: return baseUnitValue * 1e6;
+                case WarpingMomentOfInertiaUnit.FootToTheSixth: return baseUnitValue / Math.Pow(0.3048, 6);
+                case WarpingMomentOfInertiaUnit.InchToTheSixth: return baseUnitValue / Math.Pow(2.54e-2, 6);
                 case WarpingMomentOfInertiaUnit.MeterToTheSixth: return baseUnitValue;
-                case WarpingMomentOfInertiaUnit.MillimeterToTheSixth: return baseUnitValue*1e18;
+                case WarpingMomentOfInertiaUnit.MillimeterToTheSixth: return baseUnitValue * 1e18;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

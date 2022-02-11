@@ -520,7 +520,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return _value/196.850394;
+                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return _value / 196.850394;
                 case VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -536,7 +536,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return baseUnitValue*196.850394;
+                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return baseUnitValue * 196.850394;
                 case VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

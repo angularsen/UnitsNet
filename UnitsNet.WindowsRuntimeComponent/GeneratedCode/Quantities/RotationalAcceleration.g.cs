@@ -552,10 +552,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared: return (Math.PI/180)*_value;
+                case RotationalAccelerationUnit.DegreePerSecondSquared: return (Math.PI / 180) * _value;
                 case RotationalAccelerationUnit.RadianPerSecondSquared: return _value;
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2*Math.PI)/60)*_value;
-                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (2*Math.PI)*_value;
+                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2 * Math.PI) / 60) * _value;
+                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (2 * Math.PI) * _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -570,10 +570,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared: return (180/Math.PI)*baseUnitValue;
+                case RotationalAccelerationUnit.DegreePerSecondSquared: return (180 / Math.PI) * baseUnitValue;
                 case RotationalAccelerationUnit.RadianPerSecondSquared: return baseUnitValue;
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return (60/(2*Math.PI))*baseUnitValue;
-                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (1/(2*Math.PI))*baseUnitValue;
+                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return (60 / (2 * Math.PI)) * baseUnitValue;
+                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (1 / (2 * Math.PI)) * baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

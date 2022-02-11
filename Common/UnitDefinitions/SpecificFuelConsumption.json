@@ -7,24 +7,24 @@
     {
       "SingularName": "PoundMassPerPoundForceHour",
       "PluralName": "PoundsMassPerPoundForceHour",
-      "FromUnitToBaseFunc": "{x}*28.33",
-      "FromBaseToUnitFunc": "{x}/28.33",
+      "FromUnitToBaseFunc": "{x} * 28.33",
+      "FromBaseToUnitFunc": "{x} / 28.33",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/(lbf穐)" ]
+          "Abbreviations": [ "lb/(lbf路h)" ]
         }
       ]
     },
     {
       "SingularName": "KilogramPerKilogramForceHour",
       "PluralName": "KilogramsPerKilogramForceHour",
-      "FromUnitToBaseFunc": "{x}*28.33",
-      "FromBaseToUnitFunc": "{x}/28.33",
+      "FromUnitToBaseFunc": "{x} * 28.33",
+      "FromBaseToUnitFunc": "{x} / 28.33",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kg/(kgf穐)" ]
+          "Abbreviations": [ "kg/(kgf路h)" ]
         }
       ]
     },
@@ -37,8 +37,8 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "g/(kN穝)" ],
-          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kN穝)" ] }
+          "Abbreviations": [ "g/(kN路s)" ],
+          "AbbreviationsForPrefixes": { "Kilo": [ "kg/(kN路s)" ] }
         }
       ]
     }
