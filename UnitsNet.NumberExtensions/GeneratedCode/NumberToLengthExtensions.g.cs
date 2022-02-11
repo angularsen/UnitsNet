@@ -28,6 +28,10 @@ namespace UnitsNet.NumberExtensions.NumberToLength
     /// </summary>
     public static class NumberToLengthExtensions
     {
+        /// <inheritdoc cref="Length.FromAngstroms(UnitsNet.QuantityValue)" />
+        public static Length Angstroms<T>(this T value) =>
+            Length.FromAngstroms(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromAstronomicalUnits(UnitsNet.QuantityValue)" />
         public static Length AstronomicalUnits<T>(this T value) =>
             Length.FromAstronomicalUnits(Convert.ToDouble(value));

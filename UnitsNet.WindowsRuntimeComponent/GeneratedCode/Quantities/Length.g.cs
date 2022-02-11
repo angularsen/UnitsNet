@@ -164,6 +164,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Angstrom"/>
+        /// </summary>
+        public double Angstroms => As(LengthUnit.Angstrom);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
         /// </summary>
         public double AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
@@ -339,6 +344,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"Å", "A"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.AstronomicalUnit, new CultureInfo("en-US"), false, true, new string[]{"au", "ua"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("en-US"), false, true, new string[]{"cm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см"});
@@ -433,6 +439,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Angstrom"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Length FromAngstroms(double angstroms)
+        {
+            double value = (double) angstroms;
+            return new Length(value, LengthUnit.Angstrom);
+        }
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.AstronomicalUnit"/>.
         /// </summary>
@@ -1064,6 +1080,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case LengthUnit.Angstrom: return _value * 1e-10;
                 case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
                 case LengthUnit.Centimeter: return (_value) * 1e-2d;
                 case LengthUnit.Chain: return _value*20.1168;
@@ -1112,6 +1129,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case LengthUnit.Angstrom: return baseUnitValue / 1e-10;
                 case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
                 case LengthUnit.Chain: return baseUnitValue/20.1168;

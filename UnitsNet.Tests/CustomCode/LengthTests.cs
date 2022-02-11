@@ -78,6 +78,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecametersInOneMeter => 1e-1;
 
+        protected override double AngstromsInOneMeter => 1e10;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {

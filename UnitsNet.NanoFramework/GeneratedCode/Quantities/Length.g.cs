@@ -78,6 +78,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Angstrom"/>
+        /// </summary>
+        public double Angstroms => As(LengthUnit.Angstrom);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
         /// </summary>
         public double AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
@@ -250,6 +255,12 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Angstrom"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromAngstroms(double angstroms) => new Length(angstroms, LengthUnit.Angstrom);
 
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.AstronomicalUnit"/>.
@@ -496,6 +507,7 @@ namespace UnitsNet
         {
             return Unit switch
             {
+                LengthUnit.Angstrom => _value * 1e-10,
                 LengthUnit.AstronomicalUnit => _value * 1.4959787070e11,
                 LengthUnit.Centimeter => (_value) * 1e-2d,
                 LengthUnit.Chain => _value*20.1168,
@@ -543,6 +555,7 @@ namespace UnitsNet
 
             return unit switch
             {
+                LengthUnit.Angstrom => baseUnitValue / 1e-10,
                 LengthUnit.AstronomicalUnit => baseUnitValue / 1.4959787070e11,
                 LengthUnit.Centimeter => (baseUnitValue) / 1e-2d,
                 LengthUnit.Chain => baseUnitValue/20.1168,

@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToLengthExtensionsTests
     {
         [Fact]
+        public void NumberToAngstromsTest() =>
+            Assert.Equal(Length.FromAngstroms(2), 2.Angstroms());
+
+        [Fact]
         public void NumberToAstronomicalUnitsTest() =>
             Assert.Equal(Length.FromAstronomicalUnits(2), 2.AstronomicalUnits());
 
