@@ -753,7 +753,7 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
-                Assert.Equal("1 A", new Length(1, LengthUnit.Angstrom).ToString());
+                Assert.Equal("1 Å", new Length(1, LengthUnit.Angstrom).ToString());
                 Assert.Equal("1 au", new Length(1, LengthUnit.AstronomicalUnit).ToString());
                 Assert.Equal("1 cm", new Length(1, LengthUnit.Centimeter).ToString());
                 Assert.Equal("1 ch", new Length(1, LengthUnit.Chain).ToString());
@@ -801,7 +801,7 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 A", new Length(1, LengthUnit.Angstrom).ToString(swedishCulture));
+            Assert.Equal("1 Å", new Length(1, LengthUnit.Angstrom).ToString(swedishCulture));
             Assert.Equal("1 au", new Length(1, LengthUnit.AstronomicalUnit).ToString(swedishCulture));
             Assert.Equal("1 cm", new Length(1, LengthUnit.Centimeter).ToString(swedishCulture));
             Assert.Equal("1 ch", new Length(1, LengthUnit.Chain).ToString(swedishCulture));

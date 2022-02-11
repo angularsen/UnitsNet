@@ -408,7 +408,7 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> LengthUnit
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Angstrom, quantity => new Length(quantity.Value*1e-10, LengthUnit.Angstrom));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Angstrom, quantity => new Length(quantity.Value / 1e-10, LengthUnit.Angstrom));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.AstronomicalUnit, quantity => new Length(quantity.Value / 1.4959787070e11, LengthUnit.AstronomicalUnit));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Centimeter, quantity => new Length((quantity.Value) / 1e-2d, LengthUnit.Centimeter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Chain, quantity => new Length(quantity.Value/20.1168, LengthUnit.Chain));
@@ -446,7 +446,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Meter, quantity => quantity);
 
             // Register in unit converter: LengthUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Angstrom, LengthUnit.Meter, quantity => new Length(quantity.Value/1e-10, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Angstrom, LengthUnit.Meter, quantity => new Length(quantity.Value * 1e-10, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.AstronomicalUnit, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.4959787070e11, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Centimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-2d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, LengthUnit.Meter, quantity => new Length(quantity.Value*20.1168, LengthUnit.Meter));
@@ -484,7 +484,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"A", "Å"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"Å", "A"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.AstronomicalUnit, new CultureInfo("en-US"), false, true, new string[]{"au", "ua"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("en-US"), false, true, new string[]{"cm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см"});

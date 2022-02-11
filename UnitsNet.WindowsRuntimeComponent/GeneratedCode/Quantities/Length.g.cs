@@ -344,7 +344,7 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"A", "Å"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"Å", "A"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.AstronomicalUnit, new CultureInfo("en-US"), false, true, new string[]{"au", "ua"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("en-US"), false, true, new string[]{"cm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см"});
@@ -1080,7 +1080,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case LengthUnit.Angstrom: return _value/1e-10;
+                case LengthUnit.Angstrom: return _value * 1e-10;
                 case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
                 case LengthUnit.Centimeter: return (_value) * 1e-2d;
                 case LengthUnit.Chain: return _value*20.1168;
@@ -1129,7 +1129,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case LengthUnit.Angstrom: return baseUnitValue*1e-10;
+                case LengthUnit.Angstrom: return baseUnitValue / 1e-10;
                 case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
                 case LengthUnit.Chain: return baseUnitValue/20.1168;

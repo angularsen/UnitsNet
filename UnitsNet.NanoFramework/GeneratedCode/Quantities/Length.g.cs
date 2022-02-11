@@ -507,7 +507,7 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                LengthUnit.Angstrom => _value/1e-10,
+                LengthUnit.Angstrom => _value * 1e-10,
                 LengthUnit.AstronomicalUnit => _value * 1.4959787070e11,
                 LengthUnit.Centimeter => (_value) * 1e-2d,
                 LengthUnit.Chain => _value*20.1168,
@@ -555,7 +555,7 @@ namespace UnitsNet
 
             return unit switch
             {
-                LengthUnit.Angstrom => baseUnitValue*1e-10,
+                LengthUnit.Angstrom => baseUnitValue / 1e-10,
                 LengthUnit.AstronomicalUnit => baseUnitValue / 1.4959787070e11,
                 LengthUnit.Centimeter => (baseUnitValue) / 1e-2d,
                 LengthUnit.Chain => baseUnitValue/20.1168,
