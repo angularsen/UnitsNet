@@ -517,7 +517,7 @@ namespace UnitsNet
                 MassFlowUnit.PoundPerSecond => _value * 453.59237,
                 MassFlowUnit.ShortTonPerHour => _value * 251.9957611,
                 MassFlowUnit.TonnePerDay => _value / 0.0864000,
-                MassFlowUnit.TonnePerHour => 1000*_value / 3.6,
+                MassFlowUnit.TonnePerHour => 1000 * _value / 3.6,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }

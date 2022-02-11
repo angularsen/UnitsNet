@@ -463,7 +463,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerSecond, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value * 453.59237, MassFlowUnit.GramPerSecond));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.ShortTonPerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value * 251.9957611, MassFlowUnit.GramPerSecond));
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerDay, MassFlowUnit.GramPerSecond, quantity => new MassFlow(quantity.Value / 0.0864000, MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(1000*quantity.Value / 3.6, MassFlowUnit.GramPerSecond));
+            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(1000 * quantity.Value / 3.6, MassFlowUnit.GramPerSecond));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

@@ -555,10 +555,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case FuelEfficiencyUnit.KilometerPerLiter: return 100/_value;
+                case FuelEfficiencyUnit.KilometerPerLiter: return 100 / _value;
                 case FuelEfficiencyUnit.LiterPer100Kilometers: return _value;
-                case FuelEfficiencyUnit.MilePerUkGallon: return (100*4.54609188)/(1.609344*_value);
-                case FuelEfficiencyUnit.MilePerUsGallon: return (100*3.785411784)/(1.609344*_value);
+                case FuelEfficiencyUnit.MilePerUkGallon: return (100*4.54609188)/(1.609344 * _value);
+                case FuelEfficiencyUnit.MilePerUsGallon: return (100*3.785411784)/(1.609344 * _value);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -573,10 +573,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case FuelEfficiencyUnit.KilometerPerLiter: return 100/baseUnitValue;
+                case FuelEfficiencyUnit.KilometerPerLiter: return 100 / baseUnitValue;
                 case FuelEfficiencyUnit.LiterPer100Kilometers: return baseUnitValue;
-                case FuelEfficiencyUnit.MilePerUkGallon: return (100*4.54609188)/(1.609344*baseUnitValue);
-                case FuelEfficiencyUnit.MilePerUsGallon: return (100*3.785411784)/(1.609344*baseUnitValue);
+                case FuelEfficiencyUnit.MilePerUkGallon: return (100*4.54609188)/(1.609344 * baseUnitValue);
+                case FuelEfficiencyUnit.MilePerUsGallon: return (100*3.785411784)/(1.609344 * baseUnitValue);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

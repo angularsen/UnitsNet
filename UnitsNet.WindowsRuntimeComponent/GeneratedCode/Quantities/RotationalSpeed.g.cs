@@ -710,13 +710,13 @@ namespace UnitsNet
             {
                 case RotationalSpeedUnit.CentiradianPerSecond: return (_value) * 1e-2d;
                 case RotationalSpeedUnit.DeciradianPerSecond: return (_value) * 1e-1d;
-                case RotationalSpeedUnit.DegreePerMinute: return (Math.PI/(180*60))*_value;
-                case RotationalSpeedUnit.DegreePerSecond: return (Math.PI/180)*_value;
-                case RotationalSpeedUnit.MicrodegreePerSecond: return ((Math.PI/180)*_value) * 1e-6d;
+                case RotationalSpeedUnit.DegreePerMinute: return (Math.PI/(180*60)) * _value;
+                case RotationalSpeedUnit.DegreePerSecond: return (Math.PI/180) * _value;
+                case RotationalSpeedUnit.MicrodegreePerSecond: return ((Math.PI/180) * _value) * 1e-6d;
                 case RotationalSpeedUnit.MicroradianPerSecond: return (_value) * 1e-6d;
-                case RotationalSpeedUnit.MillidegreePerSecond: return ((Math.PI/180)*_value) * 1e-3d;
+                case RotationalSpeedUnit.MillidegreePerSecond: return ((Math.PI/180) * _value) * 1e-3d;
                 case RotationalSpeedUnit.MilliradianPerSecond: return (_value) * 1e-3d;
-                case RotationalSpeedUnit.NanodegreePerSecond: return ((Math.PI/180)*_value) * 1e-9d;
+                case RotationalSpeedUnit.NanodegreePerSecond: return ((Math.PI/180) * _value) * 1e-9d;
                 case RotationalSpeedUnit.NanoradianPerSecond: return (_value) * 1e-9d;
                 case RotationalSpeedUnit.RadianPerSecond: return _value;
                 case RotationalSpeedUnit.RevolutionPerMinute: return (_value * 6.2831853072)/60;
@@ -737,13 +737,13 @@ namespace UnitsNet
             {
                 case RotationalSpeedUnit.CentiradianPerSecond: return (baseUnitValue) / 1e-2d;
                 case RotationalSpeedUnit.DeciradianPerSecond: return (baseUnitValue) / 1e-1d;
-                case RotationalSpeedUnit.DegreePerMinute: return (180*60/Math.PI)*baseUnitValue;
-                case RotationalSpeedUnit.DegreePerSecond: return (180/Math.PI)*baseUnitValue;
-                case RotationalSpeedUnit.MicrodegreePerSecond: return ((180/Math.PI)*baseUnitValue) / 1e-6d;
+                case RotationalSpeedUnit.DegreePerMinute: return (180*60/Math.PI) * baseUnitValue;
+                case RotationalSpeedUnit.DegreePerSecond: return (180/Math.PI) * baseUnitValue;
+                case RotationalSpeedUnit.MicrodegreePerSecond: return ((180/Math.PI) * baseUnitValue) / 1e-6d;
                 case RotationalSpeedUnit.MicroradianPerSecond: return (baseUnitValue) / 1e-6d;
-                case RotationalSpeedUnit.MillidegreePerSecond: return ((180/Math.PI)*baseUnitValue) / 1e-3d;
+                case RotationalSpeedUnit.MillidegreePerSecond: return ((180/Math.PI) * baseUnitValue) / 1e-3d;
                 case RotationalSpeedUnit.MilliradianPerSecond: return (baseUnitValue) / 1e-3d;
-                case RotationalSpeedUnit.NanodegreePerSecond: return ((180/Math.PI)*baseUnitValue) / 1e-9d;
+                case RotationalSpeedUnit.NanodegreePerSecond: return ((180/Math.PI) * baseUnitValue) / 1e-9d;
                 case RotationalSpeedUnit.NanoradianPerSecond: return (baseUnitValue) / 1e-9d;
                 case RotationalSpeedUnit.RadianPerSecond: return baseUnitValue;
                 case RotationalSpeedUnit.RevolutionPerMinute: return (baseUnitValue / 6.2831853072)*60;

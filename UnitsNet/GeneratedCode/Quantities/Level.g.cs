@@ -210,12 +210,12 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> LevelUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => new Level(0.115129254*quantity.Value, LevelUnit.Neper));
+            unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => new Level(0.115129254 * quantity.Value, LevelUnit.Neper));
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Decibel, quantity => quantity);
 
             // Register in unit converter: LevelUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => new Level((1/0.115129254)*quantity.Value, LevelUnit.Decibel));
+            unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => new Level((1/0.115129254) * quantity.Value, LevelUnit.Decibel));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
