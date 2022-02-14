@@ -217,7 +217,6 @@ namespace UnitsNet
             return new MagneticFlux(value, MagneticFluxUnit.Weber);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MagneticFluxUnit" /> to <see cref="MagneticFlux" />.
         /// </summary>

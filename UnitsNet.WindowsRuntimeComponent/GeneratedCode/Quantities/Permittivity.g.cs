@@ -217,7 +217,6 @@ namespace UnitsNet
             return new Permittivity(value, PermittivityUnit.FaradPerMeter);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PermittivityUnit" /> to <see cref="Permittivity" />.
         /// </summary>

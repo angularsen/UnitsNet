@@ -253,7 +253,6 @@ namespace UnitsNet
             return new ElectricChargeDensity(value, ElectricChargeDensityUnit.CoulombPerCubicMeter);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricChargeDensityUnit" /> to <see cref="ElectricChargeDensity" />.
         /// </summary>

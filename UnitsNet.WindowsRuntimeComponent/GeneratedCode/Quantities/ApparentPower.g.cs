@@ -231,7 +231,6 @@ namespace UnitsNet
             double value = (double) gigavoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Gigavoltampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Kilovoltampere"/>.
         /// </summary>
@@ -242,7 +241,6 @@ namespace UnitsNet
             double value = (double) kilovoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Kilovoltampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Megavoltampere"/>.
         /// </summary>
@@ -253,7 +251,6 @@ namespace UnitsNet
             double value = (double) megavoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Megavoltampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
         /// </summary>
@@ -264,7 +261,6 @@ namespace UnitsNet
             double value = (double) voltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Voltampere);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.

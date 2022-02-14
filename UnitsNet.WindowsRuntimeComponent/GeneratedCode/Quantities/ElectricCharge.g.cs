@@ -240,7 +240,6 @@ namespace UnitsNet
             double value = (double) amperehours;
             return new ElectricCharge(value, ElectricChargeUnit.AmpereHour);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Coulomb"/>.
         /// </summary>
@@ -251,7 +250,6 @@ namespace UnitsNet
             double value = (double) coulombs;
             return new ElectricCharge(value, ElectricChargeUnit.Coulomb);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.KiloampereHour"/>.
         /// </summary>
@@ -262,7 +260,6 @@ namespace UnitsNet
             double value = (double) kiloamperehours;
             return new ElectricCharge(value, ElectricChargeUnit.KiloampereHour);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MegaampereHour"/>.
         /// </summary>
@@ -273,7 +270,6 @@ namespace UnitsNet
             double value = (double) megaamperehours;
             return new ElectricCharge(value, ElectricChargeUnit.MegaampereHour);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MilliampereHour"/>.
         /// </summary>
@@ -284,7 +280,6 @@ namespace UnitsNet
             double value = (double) milliamperehours;
             return new ElectricCharge(value, ElectricChargeUnit.MilliampereHour);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricChargeUnit" /> to <see cref="ElectricCharge" />.

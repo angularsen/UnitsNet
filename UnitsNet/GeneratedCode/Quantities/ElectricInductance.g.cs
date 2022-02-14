@@ -279,7 +279,6 @@ namespace UnitsNet
             double value = (double) henries;
             return new ElectricInductance(value, ElectricInductanceUnit.Henry);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
@@ -289,7 +288,6 @@ namespace UnitsNet
             double value = (double) microhenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Microhenry);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
@@ -299,7 +297,6 @@ namespace UnitsNet
             double value = (double) millihenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Millihenry);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
@@ -309,7 +306,6 @@ namespace UnitsNet
             double value = (double) nanohenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Nanohenry);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricInductanceUnit" /> to <see cref="ElectricInductance" />.

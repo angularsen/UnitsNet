@@ -249,7 +249,6 @@ namespace UnitsNet
             double value = (double) inverseatmospheres;
             return new Compressibility(value, CompressibilityUnit.InverseAtmosphere);
         }
-
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseBar"/>.
         /// </summary>
@@ -260,7 +259,6 @@ namespace UnitsNet
             double value = (double) inversebars;
             return new Compressibility(value, CompressibilityUnit.InverseBar);
         }
-
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseKilopascal"/>.
         /// </summary>
@@ -271,7 +269,6 @@ namespace UnitsNet
             double value = (double) inversekilopascals;
             return new Compressibility(value, CompressibilityUnit.InverseKilopascal);
         }
-
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMegapascal"/>.
         /// </summary>
@@ -282,7 +279,6 @@ namespace UnitsNet
             double value = (double) inversemegapascals;
             return new Compressibility(value, CompressibilityUnit.InverseMegapascal);
         }
-
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMillibar"/>.
         /// </summary>
@@ -293,7 +289,6 @@ namespace UnitsNet
             double value = (double) inversemillibars;
             return new Compressibility(value, CompressibilityUnit.InverseMillibar);
         }
-
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePascal"/>.
         /// </summary>
@@ -304,7 +299,6 @@ namespace UnitsNet
             double value = (double) inversepascals;
             return new Compressibility(value, CompressibilityUnit.InversePascal);
         }
-
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
         /// </summary>
@@ -315,7 +309,6 @@ namespace UnitsNet
             double value = (double) inversepoundforcepersquareinchs;
             return new Compressibility(value, CompressibilityUnit.InversePoundForcePerSquareInch);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="CompressibilityUnit" /> to <see cref="Compressibility" />.

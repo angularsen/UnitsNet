@@ -217,7 +217,6 @@ namespace UnitsNet
             return new LuminousIntensity(value, LuminousIntensityUnit.Candela);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminousIntensityUnit" /> to <see cref="LuminousIntensity" />.
         /// </summary>

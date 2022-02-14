@@ -500,7 +500,6 @@ namespace UnitsNet
             double value = (double) centigrams;
             return new Mass(value, MassUnit.Centigram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
         /// </summary>
@@ -510,7 +509,6 @@ namespace UnitsNet
             double value = (double) decagrams;
             return new Mass(value, MassUnit.Decagram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decigram"/>.
         /// </summary>
@@ -520,7 +518,6 @@ namespace UnitsNet
             double value = (double) decigrams;
             return new Mass(value, MassUnit.Decigram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.EarthMass"/>.
         /// </summary>
@@ -530,7 +527,6 @@ namespace UnitsNet
             double value = (double) earthmasses;
             return new Mass(value, MassUnit.EarthMass);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Grain"/>.
         /// </summary>
@@ -540,7 +536,6 @@ namespace UnitsNet
             double value = (double) grains;
             return new Mass(value, MassUnit.Grain);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Gram"/>.
         /// </summary>
@@ -550,7 +545,6 @@ namespace UnitsNet
             double value = (double) grams;
             return new Mass(value, MassUnit.Gram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Hectogram"/>.
         /// </summary>
@@ -560,7 +554,6 @@ namespace UnitsNet
             double value = (double) hectograms;
             return new Mass(value, MassUnit.Hectogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilogram"/>.
         /// </summary>
@@ -570,7 +563,6 @@ namespace UnitsNet
             double value = (double) kilograms;
             return new Mass(value, MassUnit.Kilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilopound"/>.
         /// </summary>
@@ -580,7 +572,6 @@ namespace UnitsNet
             double value = (double) kilopounds;
             return new Mass(value, MassUnit.Kilopound);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilotonne"/>.
         /// </summary>
@@ -590,7 +581,6 @@ namespace UnitsNet
             double value = (double) kilotonnes;
             return new Mass(value, MassUnit.Kilotonne);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongHundredweight"/>.
         /// </summary>
@@ -600,7 +590,6 @@ namespace UnitsNet
             double value = (double) longhundredweight;
             return new Mass(value, MassUnit.LongHundredweight);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongTon"/>.
         /// </summary>
@@ -610,7 +599,6 @@ namespace UnitsNet
             double value = (double) longtons;
             return new Mass(value, MassUnit.LongTon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megapound"/>.
         /// </summary>
@@ -620,7 +608,6 @@ namespace UnitsNet
             double value = (double) megapounds;
             return new Mass(value, MassUnit.Megapound);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megatonne"/>.
         /// </summary>
@@ -630,7 +617,6 @@ namespace UnitsNet
             double value = (double) megatonnes;
             return new Mass(value, MassUnit.Megatonne);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Microgram"/>.
         /// </summary>
@@ -640,7 +626,6 @@ namespace UnitsNet
             double value = (double) micrograms;
             return new Mass(value, MassUnit.Microgram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Milligram"/>.
         /// </summary>
@@ -650,7 +635,6 @@ namespace UnitsNet
             double value = (double) milligrams;
             return new Mass(value, MassUnit.Milligram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Nanogram"/>.
         /// </summary>
@@ -660,7 +644,6 @@ namespace UnitsNet
             double value = (double) nanograms;
             return new Mass(value, MassUnit.Nanogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Ounce"/>.
         /// </summary>
@@ -670,7 +653,6 @@ namespace UnitsNet
             double value = (double) ounces;
             return new Mass(value, MassUnit.Ounce);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Pound"/>.
         /// </summary>
@@ -680,7 +662,6 @@ namespace UnitsNet
             double value = (double) pounds;
             return new Mass(value, MassUnit.Pound);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortHundredweight"/>.
         /// </summary>
@@ -690,7 +671,6 @@ namespace UnitsNet
             double value = (double) shorthundredweight;
             return new Mass(value, MassUnit.ShortHundredweight);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortTon"/>.
         /// </summary>
@@ -700,7 +680,6 @@ namespace UnitsNet
             double value = (double) shorttons;
             return new Mass(value, MassUnit.ShortTon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Slug"/>.
         /// </summary>
@@ -710,7 +689,6 @@ namespace UnitsNet
             double value = (double) slugs;
             return new Mass(value, MassUnit.Slug);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.SolarMass"/>.
         /// </summary>
@@ -720,7 +698,6 @@ namespace UnitsNet
             double value = (double) solarmasses;
             return new Mass(value, MassUnit.SolarMass);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Stone"/>.
         /// </summary>
@@ -730,7 +707,6 @@ namespace UnitsNet
             double value = (double) stone;
             return new Mass(value, MassUnit.Stone);
         }
-
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Tonne"/>.
         /// </summary>
@@ -740,7 +716,6 @@ namespace UnitsNet
             double value = (double) tonnes;
             return new Mass(value, MassUnit.Tonne);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassUnit" /> to <see cref="Mass" />.

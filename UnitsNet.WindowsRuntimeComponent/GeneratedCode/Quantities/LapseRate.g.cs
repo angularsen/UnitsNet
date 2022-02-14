@@ -215,7 +215,6 @@ namespace UnitsNet
             return new LapseRate(value, LapseRateUnit.DegreeCelsiusPerKilometer);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LapseRateUnit" /> to <see cref="LapseRate" />.
         /// </summary>

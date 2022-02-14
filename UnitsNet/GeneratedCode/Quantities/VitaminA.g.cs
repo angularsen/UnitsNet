@@ -250,7 +250,6 @@ namespace UnitsNet
             return new VitaminA(value, VitaminAUnit.InternationalUnit);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VitaminAUnit" /> to <see cref="VitaminA" />.
         /// </summary>

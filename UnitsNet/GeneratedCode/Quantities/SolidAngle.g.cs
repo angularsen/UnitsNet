@@ -253,7 +253,6 @@ namespace UnitsNet
             return new SolidAngle(value, SolidAngleUnit.Steradian);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SolidAngleUnit" /> to <see cref="SolidAngle" />.
         /// </summary>

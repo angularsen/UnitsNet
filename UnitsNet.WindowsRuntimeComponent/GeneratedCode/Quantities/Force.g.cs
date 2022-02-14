@@ -310,7 +310,6 @@ namespace UnitsNet
             double value = (double) decanewtons;
             return new Force(value, ForceUnit.Decanewton);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
@@ -321,7 +320,6 @@ namespace UnitsNet
             double value = (double) dyne;
             return new Force(value, ForceUnit.Dyn);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
         /// </summary>
@@ -332,7 +330,6 @@ namespace UnitsNet
             double value = (double) kilogramsforce;
             return new Force(value, ForceUnit.KilogramForce);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilonewton"/>.
         /// </summary>
@@ -343,7 +340,6 @@ namespace UnitsNet
             double value = (double) kilonewtons;
             return new Force(value, ForceUnit.Kilonewton);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
         /// </summary>
@@ -354,7 +350,6 @@ namespace UnitsNet
             double value = (double) kiloponds;
             return new Force(value, ForceUnit.KiloPond);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
         /// </summary>
@@ -365,7 +360,6 @@ namespace UnitsNet
             double value = (double) kilopoundsforce;
             return new Force(value, ForceUnit.KilopoundForce);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Meganewton"/>.
         /// </summary>
@@ -376,7 +370,6 @@ namespace UnitsNet
             double value = (double) meganewtons;
             return new Force(value, ForceUnit.Meganewton);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Micronewton"/>.
         /// </summary>
@@ -387,7 +380,6 @@ namespace UnitsNet
             double value = (double) micronewtons;
             return new Force(value, ForceUnit.Micronewton);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Millinewton"/>.
         /// </summary>
@@ -398,7 +390,6 @@ namespace UnitsNet
             double value = (double) millinewtons;
             return new Force(value, ForceUnit.Millinewton);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Newton"/>.
         /// </summary>
@@ -409,7 +400,6 @@ namespace UnitsNet
             double value = (double) newtons;
             return new Force(value, ForceUnit.Newton);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.OunceForce"/>.
         /// </summary>
@@ -420,7 +410,6 @@ namespace UnitsNet
             double value = (double) ounceforce;
             return new Force(value, ForceUnit.OunceForce);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Poundal"/>.
         /// </summary>
@@ -431,7 +420,6 @@ namespace UnitsNet
             double value = (double) poundals;
             return new Force(value, ForceUnit.Poundal);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.PoundForce"/>.
         /// </summary>
@@ -442,7 +430,6 @@ namespace UnitsNet
             double value = (double) poundsforce;
             return new Force(value, ForceUnit.PoundForce);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.ShortTonForce"/>.
         /// </summary>
@@ -453,7 +440,6 @@ namespace UnitsNet
             double value = (double) shorttonsforce;
             return new Force(value, ForceUnit.ShortTonForce);
         }
-
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.TonneForce"/>.
         /// </summary>
@@ -464,7 +450,6 @@ namespace UnitsNet
             double value = (double) tonnesforce;
             return new Force(value, ForceUnit.TonneForce);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForceUnit" /> to <see cref="Force" />.

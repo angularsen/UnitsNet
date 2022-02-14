@@ -272,7 +272,6 @@ namespace UnitsNet
             double value = (double) centistokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Centistokes);
         }
-
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Decistokes"/>.
         /// </summary>
@@ -283,7 +282,6 @@ namespace UnitsNet
             double value = (double) decistokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Decistokes);
         }
-
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Kilostokes"/>.
         /// </summary>
@@ -294,7 +292,6 @@ namespace UnitsNet
             double value = (double) kilostokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Kilostokes);
         }
-
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Microstokes"/>.
         /// </summary>
@@ -305,7 +302,6 @@ namespace UnitsNet
             double value = (double) microstokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Microstokes);
         }
-
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Millistokes"/>.
         /// </summary>
@@ -316,7 +312,6 @@ namespace UnitsNet
             double value = (double) millistokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Millistokes);
         }
-
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Nanostokes"/>.
         /// </summary>
@@ -327,7 +322,6 @@ namespace UnitsNet
             double value = (double) nanostokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Nanostokes);
         }
-
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.SquareFootPerSecond"/>.
         /// </summary>
@@ -338,7 +332,6 @@ namespace UnitsNet
             double value = (double) squarefeetpersecond;
             return new KinematicViscosity(value, KinematicViscosityUnit.SquareFootPerSecond);
         }
-
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.SquareMeterPerSecond"/>.
         /// </summary>
@@ -349,7 +342,6 @@ namespace UnitsNet
             double value = (double) squaremeterspersecond;
             return new KinematicViscosity(value, KinematicViscosityUnit.SquareMeterPerSecond);
         }
-
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Stokes"/>.
         /// </summary>
@@ -360,7 +352,6 @@ namespace UnitsNet
             double value = (double) stokes;
             return new KinematicViscosity(value, KinematicViscosityUnit.Stokes);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.

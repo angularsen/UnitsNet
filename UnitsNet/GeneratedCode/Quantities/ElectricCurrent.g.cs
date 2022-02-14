@@ -312,7 +312,6 @@ namespace UnitsNet
             double value = (double) amperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Ampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Centiampere"/>.
         /// </summary>
@@ -322,7 +321,6 @@ namespace UnitsNet
             double value = (double) centiamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Kiloampere"/>.
         /// </summary>
@@ -332,7 +330,6 @@ namespace UnitsNet
             double value = (double) kiloamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Kiloampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Megaampere"/>.
         /// </summary>
@@ -342,7 +339,6 @@ namespace UnitsNet
             double value = (double) megaamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Megaampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Microampere"/>.
         /// </summary>
@@ -352,7 +348,6 @@ namespace UnitsNet
             double value = (double) microamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Microampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Milliampere"/>.
         /// </summary>
@@ -362,7 +357,6 @@ namespace UnitsNet
             double value = (double) milliamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Milliampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Nanoampere"/>.
         /// </summary>
@@ -372,7 +366,6 @@ namespace UnitsNet
             double value = (double) nanoamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Nanoampere);
         }
-
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Picoampere"/>.
         /// </summary>
@@ -382,7 +375,6 @@ namespace UnitsNet
             double value = (double) picoamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Picoampere);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.

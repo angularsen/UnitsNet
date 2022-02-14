@@ -755,7 +755,6 @@ namespace UnitsNet
             double value = (double) acrefeet;
             return new Volume(value, VolumeUnit.AcreFoot);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AuTablespoon"/>.
         /// </summary>
@@ -765,7 +764,6 @@ namespace UnitsNet
             double value = (double) autablespoons;
             return new Volume(value, VolumeUnit.AuTablespoon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.BoardFoot"/>.
         /// </summary>
@@ -775,7 +773,6 @@ namespace UnitsNet
             double value = (double) boardfeet;
             return new Volume(value, VolumeUnit.BoardFoot);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Centiliter"/>.
         /// </summary>
@@ -785,7 +782,6 @@ namespace UnitsNet
             double value = (double) centiliters;
             return new Volume(value, VolumeUnit.Centiliter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicCentimeter"/>.
         /// </summary>
@@ -795,7 +791,6 @@ namespace UnitsNet
             double value = (double) cubiccentimeters;
             return new Volume(value, VolumeUnit.CubicCentimeter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicDecimeter"/>.
         /// </summary>
@@ -805,7 +800,6 @@ namespace UnitsNet
             double value = (double) cubicdecimeters;
             return new Volume(value, VolumeUnit.CubicDecimeter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicFoot"/>.
         /// </summary>
@@ -815,7 +809,6 @@ namespace UnitsNet
             double value = (double) cubicfeet;
             return new Volume(value, VolumeUnit.CubicFoot);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicHectometer"/>.
         /// </summary>
@@ -825,7 +818,6 @@ namespace UnitsNet
             double value = (double) cubichectometers;
             return new Volume(value, VolumeUnit.CubicHectometer);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicInch"/>.
         /// </summary>
@@ -835,7 +827,6 @@ namespace UnitsNet
             double value = (double) cubicinches;
             return new Volume(value, VolumeUnit.CubicInch);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicKilometer"/>.
         /// </summary>
@@ -845,7 +836,6 @@ namespace UnitsNet
             double value = (double) cubickilometers;
             return new Volume(value, VolumeUnit.CubicKilometer);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMeter"/>.
         /// </summary>
@@ -855,7 +845,6 @@ namespace UnitsNet
             double value = (double) cubicmeters;
             return new Volume(value, VolumeUnit.CubicMeter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMicrometer"/>.
         /// </summary>
@@ -865,7 +854,6 @@ namespace UnitsNet
             double value = (double) cubicmicrometers;
             return new Volume(value, VolumeUnit.CubicMicrometer);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMile"/>.
         /// </summary>
@@ -875,7 +863,6 @@ namespace UnitsNet
             double value = (double) cubicmiles;
             return new Volume(value, VolumeUnit.CubicMile);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMillimeter"/>.
         /// </summary>
@@ -885,7 +872,6 @@ namespace UnitsNet
             double value = (double) cubicmillimeters;
             return new Volume(value, VolumeUnit.CubicMillimeter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicYard"/>.
         /// </summary>
@@ -895,7 +881,6 @@ namespace UnitsNet
             double value = (double) cubicyards;
             return new Volume(value, VolumeUnit.CubicYard);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Decaliter"/>.
         /// </summary>
@@ -905,7 +890,6 @@ namespace UnitsNet
             double value = (double) decaliters;
             return new Volume(value, VolumeUnit.Decaliter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DecausGallon"/>.
         /// </summary>
@@ -915,7 +899,6 @@ namespace UnitsNet
             double value = (double) decausgallons;
             return new Volume(value, VolumeUnit.DecausGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Deciliter"/>.
         /// </summary>
@@ -925,7 +908,6 @@ namespace UnitsNet
             double value = (double) deciliters;
             return new Volume(value, VolumeUnit.Deciliter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DeciusGallon"/>.
         /// </summary>
@@ -935,7 +917,6 @@ namespace UnitsNet
             double value = (double) deciusgallons;
             return new Volume(value, VolumeUnit.DeciusGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicFoot"/>.
         /// </summary>
@@ -945,7 +926,6 @@ namespace UnitsNet
             double value = (double) hectocubicfeet;
             return new Volume(value, VolumeUnit.HectocubicFoot);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicMeter"/>.
         /// </summary>
@@ -955,7 +935,6 @@ namespace UnitsNet
             double value = (double) hectocubicmeters;
             return new Volume(value, VolumeUnit.HectocubicMeter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Hectoliter"/>.
         /// </summary>
@@ -965,7 +944,6 @@ namespace UnitsNet
             double value = (double) hectoliters;
             return new Volume(value, VolumeUnit.Hectoliter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectousGallon"/>.
         /// </summary>
@@ -975,7 +953,6 @@ namespace UnitsNet
             double value = (double) hectousgallons;
             return new Volume(value, VolumeUnit.HectousGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialBeerBarrel"/>.
         /// </summary>
@@ -985,7 +962,6 @@ namespace UnitsNet
             double value = (double) imperialbeerbarrels;
             return new Volume(value, VolumeUnit.ImperialBeerBarrel);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialGallon"/>.
         /// </summary>
@@ -995,7 +971,6 @@ namespace UnitsNet
             double value = (double) imperialgallons;
             return new Volume(value, VolumeUnit.ImperialGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialOunce"/>.
         /// </summary>
@@ -1005,7 +980,6 @@ namespace UnitsNet
             double value = (double) imperialounces;
             return new Volume(value, VolumeUnit.ImperialOunce);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialPint"/>.
         /// </summary>
@@ -1015,7 +989,6 @@ namespace UnitsNet
             double value = (double) imperialpints;
             return new Volume(value, VolumeUnit.ImperialPint);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicFoot"/>.
         /// </summary>
@@ -1025,7 +998,6 @@ namespace UnitsNet
             double value = (double) kilocubicfeet;
             return new Volume(value, VolumeUnit.KilocubicFoot);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicMeter"/>.
         /// </summary>
@@ -1035,7 +1007,6 @@ namespace UnitsNet
             double value = (double) kilocubicmeters;
             return new Volume(value, VolumeUnit.KilocubicMeter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KiloimperialGallon"/>.
         /// </summary>
@@ -1045,7 +1016,6 @@ namespace UnitsNet
             double value = (double) kiloimperialgallons;
             return new Volume(value, VolumeUnit.KiloimperialGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Kiloliter"/>.
         /// </summary>
@@ -1055,7 +1025,6 @@ namespace UnitsNet
             double value = (double) kiloliters;
             return new Volume(value, VolumeUnit.Kiloliter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilousGallon"/>.
         /// </summary>
@@ -1065,7 +1034,6 @@ namespace UnitsNet
             double value = (double) kilousgallons;
             return new Volume(value, VolumeUnit.KilousGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Liter"/>.
         /// </summary>
@@ -1075,7 +1043,6 @@ namespace UnitsNet
             double value = (double) liters;
             return new Volume(value, VolumeUnit.Liter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegacubicFoot"/>.
         /// </summary>
@@ -1085,7 +1052,6 @@ namespace UnitsNet
             double value = (double) megacubicfeet;
             return new Volume(value, VolumeUnit.MegacubicFoot);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegaimperialGallon"/>.
         /// </summary>
@@ -1095,7 +1061,6 @@ namespace UnitsNet
             double value = (double) megaimperialgallons;
             return new Volume(value, VolumeUnit.MegaimperialGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Megaliter"/>.
         /// </summary>
@@ -1105,7 +1070,6 @@ namespace UnitsNet
             double value = (double) megaliters;
             return new Volume(value, VolumeUnit.Megaliter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegausGallon"/>.
         /// </summary>
@@ -1115,7 +1079,6 @@ namespace UnitsNet
             double value = (double) megausgallons;
             return new Volume(value, VolumeUnit.MegausGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricCup"/>.
         /// </summary>
@@ -1125,7 +1088,6 @@ namespace UnitsNet
             double value = (double) metriccups;
             return new Volume(value, VolumeUnit.MetricCup);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTeaspoon"/>.
         /// </summary>
@@ -1135,7 +1097,6 @@ namespace UnitsNet
             double value = (double) metricteaspoons;
             return new Volume(value, VolumeUnit.MetricTeaspoon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Microliter"/>.
         /// </summary>
@@ -1145,7 +1106,6 @@ namespace UnitsNet
             double value = (double) microliters;
             return new Volume(value, VolumeUnit.Microliter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Milliliter"/>.
         /// </summary>
@@ -1155,7 +1115,6 @@ namespace UnitsNet
             double value = (double) milliliters;
             return new Volume(value, VolumeUnit.Milliliter);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.OilBarrel"/>.
         /// </summary>
@@ -1165,7 +1124,6 @@ namespace UnitsNet
             double value = (double) oilbarrels;
             return new Volume(value, VolumeUnit.OilBarrel);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UkTablespoon"/>.
         /// </summary>
@@ -1175,7 +1133,6 @@ namespace UnitsNet
             double value = (double) uktablespoons;
             return new Volume(value, VolumeUnit.UkTablespoon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsBeerBarrel"/>.
         /// </summary>
@@ -1185,7 +1142,6 @@ namespace UnitsNet
             double value = (double) usbeerbarrels;
             return new Volume(value, VolumeUnit.UsBeerBarrel);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsCustomaryCup"/>.
         /// </summary>
@@ -1195,7 +1151,6 @@ namespace UnitsNet
             double value = (double) uscustomarycups;
             return new Volume(value, VolumeUnit.UsCustomaryCup);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsGallon"/>.
         /// </summary>
@@ -1205,7 +1160,6 @@ namespace UnitsNet
             double value = (double) usgallons;
             return new Volume(value, VolumeUnit.UsGallon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsLegalCup"/>.
         /// </summary>
@@ -1215,7 +1169,6 @@ namespace UnitsNet
             double value = (double) uslegalcups;
             return new Volume(value, VolumeUnit.UsLegalCup);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsOunce"/>.
         /// </summary>
@@ -1225,7 +1178,6 @@ namespace UnitsNet
             double value = (double) usounces;
             return new Volume(value, VolumeUnit.UsOunce);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsPint"/>.
         /// </summary>
@@ -1235,7 +1187,6 @@ namespace UnitsNet
             double value = (double) uspints;
             return new Volume(value, VolumeUnit.UsPint);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsQuart"/>.
         /// </summary>
@@ -1245,7 +1196,6 @@ namespace UnitsNet
             double value = (double) usquarts;
             return new Volume(value, VolumeUnit.UsQuart);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTablespoon"/>.
         /// </summary>
@@ -1255,7 +1205,6 @@ namespace UnitsNet
             double value = (double) ustablespoons;
             return new Volume(value, VolumeUnit.UsTablespoon);
         }
-
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTeaspoon"/>.
         /// </summary>
@@ -1265,7 +1214,6 @@ namespace UnitsNet
             double value = (double) usteaspoons;
             return new Volume(value, VolumeUnit.UsTeaspoon);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeUnit" /> to <see cref="Volume" />.

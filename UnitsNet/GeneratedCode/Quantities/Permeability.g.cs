@@ -253,7 +253,6 @@ namespace UnitsNet
             return new Permeability(value, PermeabilityUnit.HenryPerMeter);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PermeabilityUnit" /> to <see cref="Permeability" />.
         /// </summary>

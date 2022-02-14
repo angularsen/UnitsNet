@@ -219,7 +219,6 @@ namespace UnitsNet
             double value = (double) decimalfractionspersecond;
             return new RatioChangeRate(value, RatioChangeRateUnit.DecimalFractionPerSecond);
         }
-
         /// <summary>
         ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.PercentPerSecond"/>.
         /// </summary>
@@ -230,7 +229,6 @@ namespace UnitsNet
             double value = (double) percentspersecond;
             return new RatioChangeRate(value, RatioChangeRateUnit.PercentPerSecond);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RatioChangeRateUnit" /> to <see cref="RatioChangeRate" />.

@@ -217,7 +217,6 @@ namespace UnitsNet
             return new ElectricField(value, ElectricFieldUnit.VoltPerMeter);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricFieldUnit" /> to <see cref="ElectricField" />.
         /// </summary>

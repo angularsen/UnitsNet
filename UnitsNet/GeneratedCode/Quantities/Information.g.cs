@@ -479,7 +479,6 @@ namespace UnitsNet
             decimal value = (decimal) bits;
             return new Information(value, InformationUnit.Bit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Byte"/>.
         /// </summary>
@@ -489,7 +488,6 @@ namespace UnitsNet
             decimal value = (decimal) bytes;
             return new Information(value, InformationUnit.Byte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabit"/>.
         /// </summary>
@@ -499,7 +497,6 @@ namespace UnitsNet
             decimal value = (decimal) exabits;
             return new Information(value, InformationUnit.Exabit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabyte"/>.
         /// </summary>
@@ -509,7 +506,6 @@ namespace UnitsNet
             decimal value = (decimal) exabytes;
             return new Information(value, InformationUnit.Exabyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibit"/>.
         /// </summary>
@@ -519,7 +515,6 @@ namespace UnitsNet
             decimal value = (decimal) exbibits;
             return new Information(value, InformationUnit.Exbibit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibyte"/>.
         /// </summary>
@@ -529,7 +524,6 @@ namespace UnitsNet
             decimal value = (decimal) exbibytes;
             return new Information(value, InformationUnit.Exbibyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibit"/>.
         /// </summary>
@@ -539,7 +533,6 @@ namespace UnitsNet
             decimal value = (decimal) gibibits;
             return new Information(value, InformationUnit.Gibibit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibyte"/>.
         /// </summary>
@@ -549,7 +542,6 @@ namespace UnitsNet
             decimal value = (decimal) gibibytes;
             return new Information(value, InformationUnit.Gibibyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabit"/>.
         /// </summary>
@@ -559,7 +551,6 @@ namespace UnitsNet
             decimal value = (decimal) gigabits;
             return new Information(value, InformationUnit.Gigabit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabyte"/>.
         /// </summary>
@@ -569,7 +560,6 @@ namespace UnitsNet
             decimal value = (decimal) gigabytes;
             return new Information(value, InformationUnit.Gigabyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibit"/>.
         /// </summary>
@@ -579,7 +569,6 @@ namespace UnitsNet
             decimal value = (decimal) kibibits;
             return new Information(value, InformationUnit.Kibibit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibyte"/>.
         /// </summary>
@@ -589,7 +578,6 @@ namespace UnitsNet
             decimal value = (decimal) kibibytes;
             return new Information(value, InformationUnit.Kibibyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobit"/>.
         /// </summary>
@@ -599,7 +587,6 @@ namespace UnitsNet
             decimal value = (decimal) kilobits;
             return new Information(value, InformationUnit.Kilobit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobyte"/>.
         /// </summary>
@@ -609,7 +596,6 @@ namespace UnitsNet
             decimal value = (decimal) kilobytes;
             return new Information(value, InformationUnit.Kilobyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibit"/>.
         /// </summary>
@@ -619,7 +605,6 @@ namespace UnitsNet
             decimal value = (decimal) mebibits;
             return new Information(value, InformationUnit.Mebibit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibyte"/>.
         /// </summary>
@@ -629,7 +614,6 @@ namespace UnitsNet
             decimal value = (decimal) mebibytes;
             return new Information(value, InformationUnit.Mebibyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabit"/>.
         /// </summary>
@@ -639,7 +623,6 @@ namespace UnitsNet
             decimal value = (decimal) megabits;
             return new Information(value, InformationUnit.Megabit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabyte"/>.
         /// </summary>
@@ -649,7 +632,6 @@ namespace UnitsNet
             decimal value = (decimal) megabytes;
             return new Information(value, InformationUnit.Megabyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibit"/>.
         /// </summary>
@@ -659,7 +641,6 @@ namespace UnitsNet
             decimal value = (decimal) pebibits;
             return new Information(value, InformationUnit.Pebibit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibyte"/>.
         /// </summary>
@@ -669,7 +650,6 @@ namespace UnitsNet
             decimal value = (decimal) pebibytes;
             return new Information(value, InformationUnit.Pebibyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabit"/>.
         /// </summary>
@@ -679,7 +659,6 @@ namespace UnitsNet
             decimal value = (decimal) petabits;
             return new Information(value, InformationUnit.Petabit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabyte"/>.
         /// </summary>
@@ -689,7 +668,6 @@ namespace UnitsNet
             decimal value = (decimal) petabytes;
             return new Information(value, InformationUnit.Petabyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibit"/>.
         /// </summary>
@@ -699,7 +677,6 @@ namespace UnitsNet
             decimal value = (decimal) tebibits;
             return new Information(value, InformationUnit.Tebibit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibyte"/>.
         /// </summary>
@@ -709,7 +686,6 @@ namespace UnitsNet
             decimal value = (decimal) tebibytes;
             return new Information(value, InformationUnit.Tebibyte);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabit"/>.
         /// </summary>
@@ -719,7 +695,6 @@ namespace UnitsNet
             decimal value = (decimal) terabits;
             return new Information(value, InformationUnit.Terabit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabyte"/>.
         /// </summary>
@@ -729,7 +704,6 @@ namespace UnitsNet
             decimal value = (decimal) terabytes;
             return new Information(value, InformationUnit.Terabyte);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="InformationUnit" /> to <see cref="Information" />.

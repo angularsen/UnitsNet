@@ -225,7 +225,6 @@ namespace UnitsNet
             double value = (double) kilovoltamperereactivehours;
             return new ReactiveEnergy(value, ReactiveEnergyUnit.KilovoltampereReactiveHour);
         }
-
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>.
         /// </summary>
@@ -236,7 +235,6 @@ namespace UnitsNet
             double value = (double) megavoltamperereactivehours;
             return new ReactiveEnergy(value, ReactiveEnergyUnit.MegavoltampereReactiveHour);
         }
-
         /// <summary>
         ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>.
         /// </summary>
@@ -247,7 +245,6 @@ namespace UnitsNet
             double value = (double) voltamperereactivehours;
             return new ReactiveEnergy(value, ReactiveEnergyUnit.VoltampereReactiveHour);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.

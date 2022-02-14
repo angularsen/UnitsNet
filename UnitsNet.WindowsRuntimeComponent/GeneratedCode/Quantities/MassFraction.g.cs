@@ -354,7 +354,6 @@ namespace UnitsNet
             double value = (double) centigramspergram;
             return new MassFraction(value, MassFractionUnit.CentigramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.CentigramPerKilogram"/>.
         /// </summary>
@@ -365,7 +364,6 @@ namespace UnitsNet
             double value = (double) centigramsperkilogram;
             return new MassFraction(value, MassFractionUnit.CentigramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecagramPerGram"/>.
         /// </summary>
@@ -376,7 +374,6 @@ namespace UnitsNet
             double value = (double) decagramspergram;
             return new MassFraction(value, MassFractionUnit.DecagramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecagramPerKilogram"/>.
         /// </summary>
@@ -387,7 +384,6 @@ namespace UnitsNet
             double value = (double) decagramsperkilogram;
             return new MassFraction(value, MassFractionUnit.DecagramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecigramPerGram"/>.
         /// </summary>
@@ -398,7 +394,6 @@ namespace UnitsNet
             double value = (double) decigramspergram;
             return new MassFraction(value, MassFractionUnit.DecigramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecigramPerKilogram"/>.
         /// </summary>
@@ -409,7 +404,6 @@ namespace UnitsNet
             double value = (double) decigramsperkilogram;
             return new MassFraction(value, MassFractionUnit.DecigramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.DecimalFraction"/>.
         /// </summary>
@@ -420,7 +414,6 @@ namespace UnitsNet
             double value = (double) decimalfractions;
             return new MassFraction(value, MassFractionUnit.DecimalFraction);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.GramPerGram"/>.
         /// </summary>
@@ -431,7 +424,6 @@ namespace UnitsNet
             double value = (double) gramspergram;
             return new MassFraction(value, MassFractionUnit.GramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.GramPerKilogram"/>.
         /// </summary>
@@ -442,7 +434,6 @@ namespace UnitsNet
             double value = (double) gramsperkilogram;
             return new MassFraction(value, MassFractionUnit.GramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.HectogramPerGram"/>.
         /// </summary>
@@ -453,7 +444,6 @@ namespace UnitsNet
             double value = (double) hectogramspergram;
             return new MassFraction(value, MassFractionUnit.HectogramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.HectogramPerKilogram"/>.
         /// </summary>
@@ -464,7 +454,6 @@ namespace UnitsNet
             double value = (double) hectogramsperkilogram;
             return new MassFraction(value, MassFractionUnit.HectogramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.KilogramPerGram"/>.
         /// </summary>
@@ -475,7 +464,6 @@ namespace UnitsNet
             double value = (double) kilogramspergram;
             return new MassFraction(value, MassFractionUnit.KilogramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.KilogramPerKilogram"/>.
         /// </summary>
@@ -486,7 +474,6 @@ namespace UnitsNet
             double value = (double) kilogramsperkilogram;
             return new MassFraction(value, MassFractionUnit.KilogramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MicrogramPerGram"/>.
         /// </summary>
@@ -497,7 +484,6 @@ namespace UnitsNet
             double value = (double) microgramspergram;
             return new MassFraction(value, MassFractionUnit.MicrogramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MicrogramPerKilogram"/>.
         /// </summary>
@@ -508,7 +494,6 @@ namespace UnitsNet
             double value = (double) microgramsperkilogram;
             return new MassFraction(value, MassFractionUnit.MicrogramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MilligramPerGram"/>.
         /// </summary>
@@ -519,7 +504,6 @@ namespace UnitsNet
             double value = (double) milligramspergram;
             return new MassFraction(value, MassFractionUnit.MilligramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.MilligramPerKilogram"/>.
         /// </summary>
@@ -530,7 +514,6 @@ namespace UnitsNet
             double value = (double) milligramsperkilogram;
             return new MassFraction(value, MassFractionUnit.MilligramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.NanogramPerGram"/>.
         /// </summary>
@@ -541,7 +524,6 @@ namespace UnitsNet
             double value = (double) nanogramspergram;
             return new MassFraction(value, MassFractionUnit.NanogramPerGram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.NanogramPerKilogram"/>.
         /// </summary>
@@ -552,7 +534,6 @@ namespace UnitsNet
             double value = (double) nanogramsperkilogram;
             return new MassFraction(value, MassFractionUnit.NanogramPerKilogram);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerBillion"/>.
         /// </summary>
@@ -563,7 +544,6 @@ namespace UnitsNet
             double value = (double) partsperbillion;
             return new MassFraction(value, MassFractionUnit.PartPerBillion);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerMillion"/>.
         /// </summary>
@@ -574,7 +554,6 @@ namespace UnitsNet
             double value = (double) partspermillion;
             return new MassFraction(value, MassFractionUnit.PartPerMillion);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerThousand"/>.
         /// </summary>
@@ -585,7 +564,6 @@ namespace UnitsNet
             double value = (double) partsperthousand;
             return new MassFraction(value, MassFractionUnit.PartPerThousand);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.PartPerTrillion"/>.
         /// </summary>
@@ -596,7 +574,6 @@ namespace UnitsNet
             double value = (double) partspertrillion;
             return new MassFraction(value, MassFractionUnit.PartPerTrillion);
         }
-
         /// <summary>
         ///     Creates a <see cref="MassFraction"/> from <see cref="MassFractionUnit.Percent"/>.
         /// </summary>
@@ -607,7 +584,6 @@ namespace UnitsNet
             double value = (double) percent;
             return new MassFraction(value, MassFractionUnit.Percent);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFractionUnit" /> to <see cref="MassFraction" />.

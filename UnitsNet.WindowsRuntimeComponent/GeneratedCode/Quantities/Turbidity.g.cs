@@ -217,7 +217,6 @@ namespace UnitsNet
             return new Turbidity(value, TurbidityUnit.NTU);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TurbidityUnit" /> to <see cref="Turbidity" />.
         /// </summary>

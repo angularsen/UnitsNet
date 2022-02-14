@@ -217,7 +217,6 @@ namespace UnitsNet
             return new LuminousFlux(value, LuminousFluxUnit.Lumen);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminousFluxUnit" /> to <see cref="LuminousFlux" />.
         /// </summary>

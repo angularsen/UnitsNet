@@ -231,7 +231,6 @@ namespace UnitsNet
             double value = (double) degreescelciusperkilometer;
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
         }
-
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>.
         /// </summary>
@@ -242,7 +241,6 @@ namespace UnitsNet
             double value = (double) degreescelciuspermeter;
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerMeter);
         }
-
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>.
         /// </summary>
@@ -253,7 +251,6 @@ namespace UnitsNet
             double value = (double) degreesfahrenheitperfoot;
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
         }
-
         /// <summary>
         ///     Creates a <see cref="TemperatureGradient"/> from <see cref="TemperatureGradientUnit.KelvinPerMeter"/>.
         /// </summary>
@@ -264,7 +261,6 @@ namespace UnitsNet
             double value = (double) kelvinspermeter;
             return new TemperatureGradient(value, TemperatureGradientUnit.KelvinPerMeter);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureGradientUnit" /> to <see cref="TemperatureGradient" />.

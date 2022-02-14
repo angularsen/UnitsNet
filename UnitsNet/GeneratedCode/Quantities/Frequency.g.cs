@@ -346,7 +346,6 @@ namespace UnitsNet
             double value = (double) beatsperminute;
             return new Frequency(value, FrequencyUnit.BeatPerMinute);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.BUnit"/>.
         /// </summary>
@@ -356,7 +355,6 @@ namespace UnitsNet
             double value = (double) bunits;
             return new Frequency(value, FrequencyUnit.BUnit);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerHour"/>.
         /// </summary>
@@ -366,7 +364,6 @@ namespace UnitsNet
             double value = (double) cyclesperhour;
             return new Frequency(value, FrequencyUnit.CyclePerHour);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.CyclePerMinute"/>.
         /// </summary>
@@ -376,7 +373,6 @@ namespace UnitsNet
             double value = (double) cyclesperminute;
             return new Frequency(value, FrequencyUnit.CyclePerMinute);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Gigahertz"/>.
         /// </summary>
@@ -386,7 +382,6 @@ namespace UnitsNet
             double value = (double) gigahertz;
             return new Frequency(value, FrequencyUnit.Gigahertz);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Hertz"/>.
         /// </summary>
@@ -396,7 +391,6 @@ namespace UnitsNet
             double value = (double) hertz;
             return new Frequency(value, FrequencyUnit.Hertz);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Kilohertz"/>.
         /// </summary>
@@ -406,7 +400,6 @@ namespace UnitsNet
             double value = (double) kilohertz;
             return new Frequency(value, FrequencyUnit.Kilohertz);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Megahertz"/>.
         /// </summary>
@@ -416,7 +409,6 @@ namespace UnitsNet
             double value = (double) megahertz;
             return new Frequency(value, FrequencyUnit.Megahertz);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.PerSecond"/>.
         /// </summary>
@@ -426,7 +418,6 @@ namespace UnitsNet
             double value = (double) persecond;
             return new Frequency(value, FrequencyUnit.PerSecond);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.RadianPerSecond"/>.
         /// </summary>
@@ -436,7 +427,6 @@ namespace UnitsNet
             double value = (double) radianspersecond;
             return new Frequency(value, FrequencyUnit.RadianPerSecond);
         }
-
         /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Terahertz"/>.
         /// </summary>
@@ -446,7 +436,6 @@ namespace UnitsNet
             double value = (double) terahertz;
             return new Frequency(value, FrequencyUnit.Terahertz);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="FrequencyUnit" /> to <see cref="Frequency" />.

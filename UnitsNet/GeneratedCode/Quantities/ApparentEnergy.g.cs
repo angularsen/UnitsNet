@@ -267,7 +267,6 @@ namespace UnitsNet
             double value = (double) kilovoltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.KilovoltampereHour);
         }
-
         /// <summary>
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.MegavoltampereHour"/>.
         /// </summary>
@@ -277,7 +276,6 @@ namespace UnitsNet
             double value = (double) megavoltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.MegavoltampereHour);
         }
-
         /// <summary>
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.VoltampereHour"/>.
         /// </summary>
@@ -287,7 +285,6 @@ namespace UnitsNet
             double value = (double) voltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.VoltampereHour);
         }
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ApparentEnergyUnit" /> to <see cref="ApparentEnergy" />.
