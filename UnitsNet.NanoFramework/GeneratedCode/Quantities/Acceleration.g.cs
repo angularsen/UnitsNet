@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public AccelerationUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -235,7 +237,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Acceleration FromStandardGravity(double standardgravity) => new Acceleration(standardgravity, AccelerationUnit.StandardGravity);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
         /// </summary>
@@ -322,7 +323,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

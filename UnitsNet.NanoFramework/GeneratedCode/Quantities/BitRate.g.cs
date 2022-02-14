@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public BitRateUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static BitRate MinValue { get; } = new BitRate(-79228162514264337593543950335d, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -370,7 +372,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BitRate FromTerabytesPerSecond(double terabytespersecond) => new BitRate(terabytespersecond, BitRateUnit.TerabytePerSecond);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="BitRateUnit" /> to <see cref="BitRate" />.
         /// </summary>
@@ -481,7 +482,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

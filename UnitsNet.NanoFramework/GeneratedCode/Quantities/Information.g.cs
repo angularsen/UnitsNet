@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public InformationUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Information MinValue { get; } = new Information(-79228162514264337593543950335d, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -367,7 +369,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Information FromTerabytes(double terabytes) => new Information(terabytes, InformationUnit.Terabyte);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="InformationUnit" /> to <see cref="Information" />.
         /// </summary>
@@ -478,7 +479,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public VolumeFlowUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static VolumeFlow MinValue { get; } = new VolumeFlow(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -763,7 +765,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeFlow FromUsGallonsPerSecond(double usgallonspersecond) => new VolumeFlow(usgallonspersecond, VolumeFlowUnit.UsGallonPerSecond);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeFlowUnit" /> to <see cref="VolumeFlow" />.
         /// </summary>
@@ -946,7 +947,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

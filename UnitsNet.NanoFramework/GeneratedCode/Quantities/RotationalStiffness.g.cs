@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public RotationalStiffnessUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -444,7 +446,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffness FromPoundForceFeetPerDegrees(double poundforcefeetperdegrees) => new RotationalStiffness(poundforcefeetperdegrees, RotationalStiffnessUnit.PoundForceFootPerDegrees);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalStiffnessUnit" /> to <see cref="RotationalStiffness" />.
         /// </summary>
@@ -569,7 +570,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

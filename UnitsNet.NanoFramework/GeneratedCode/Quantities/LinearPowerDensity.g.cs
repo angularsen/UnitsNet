@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public LinearPowerDensityUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static LinearPowerDensity MinValue { get; } = new LinearPowerDensity(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -359,7 +361,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromWattsPerMillimeter(double wattspermillimeter) => new LinearPowerDensity(wattspermillimeter, LinearPowerDensityUnit.WattPerMillimeter);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LinearPowerDensityUnit" /> to <see cref="LinearPowerDensity" />.
         /// </summary>
@@ -468,7 +469,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

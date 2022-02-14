@@ -352,10 +352,10 @@ namespace UnitsNet
         {{
             {_valueType} value = ({_valueType}) {valueParamName};
             return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
-        }}");
+        }}
+");
             }
 
-            Writer.WL();
             Writer.WL($@"
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref=""{_unitEnumName}"" /> to <see cref=""{_quantity.Name}"" />.

@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ForcePerLengthUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -499,7 +501,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForcePerLength FromTonnesForcePerMillimeter(double tonnesforcepermillimeter) => new ForcePerLength(tonnesforcepermillimeter, ForcePerLengthUnit.TonneForcePerMillimeter);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForcePerLengthUnit" /> to <see cref="ForcePerLength" />.
         /// </summary>
@@ -634,7 +635,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

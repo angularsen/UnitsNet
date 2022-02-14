@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public MassFlowUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -444,7 +446,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlow FromTonnesPerHour(double tonnesperhour) => new MassFlow(tonnesperhour, MassFlowUnit.TonnePerHour);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
         /// </summary>
@@ -569,7 +570,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

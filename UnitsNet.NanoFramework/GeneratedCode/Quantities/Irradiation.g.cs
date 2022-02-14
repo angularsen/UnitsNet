@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public IrradiationUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Irradiation MinValue { get; } = new Irradiation(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -161,7 +163,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Irradiation FromWattHoursPerSquareMeter(double watthourspersquaremeter) => new Irradiation(watthourspersquaremeter, IrradiationUnit.WattHourPerSquareMeter);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="IrradiationUnit" /> to <see cref="Irradiation" />.
         /// </summary>
@@ -234,7 +235,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

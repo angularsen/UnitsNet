@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public EntropyUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -158,7 +160,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Entropy FromMegajoulesPerKelvin(double megajoulesperkelvin) => new Entropy(megajoulesperkelvin, EntropyUnit.MegajoulePerKelvin);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EntropyUnit" /> to <see cref="Entropy" />.
         /// </summary>
@@ -231,7 +232,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public RotationalSpeedUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static RotationalSpeed MinValue { get; } = new RotationalSpeed(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -224,7 +226,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond) => new RotationalSpeed(revolutionspersecond, RotationalSpeedUnit.RevolutionPerSecond);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed" />.
         /// </summary>
@@ -309,7 +310,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

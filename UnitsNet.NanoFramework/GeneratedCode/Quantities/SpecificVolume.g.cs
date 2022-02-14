@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public SpecificVolumeUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static SpecificVolume MinValue { get; } = new SpecificVolume(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -113,7 +115,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromMillicubicMetersPerKilogram(double millicubicmetersperkilogram) => new SpecificVolume(millicubicmetersperkilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificVolumeUnit" /> to <see cref="SpecificVolume" />.
@@ -179,7 +180,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

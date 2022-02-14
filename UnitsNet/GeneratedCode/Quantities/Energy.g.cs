@@ -102,7 +102,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Energy);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -449,6 +448,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermUs, quantity => new Energy(quantity.Value / 1.054804e8, EnergyUnit.ThermUs));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.WattDay, quantity => new Energy(quantity.Value / (24 * 3600d), EnergyUnit.WattDay));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.WattHour, quantity => new Energy(quantity.Value / 3600d, EnergyUnit.WattHour));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Joule, quantity => quantity);
 
@@ -585,6 +585,7 @@ namespace UnitsNet
             double value = (double) britishthermalunits;
             return new Energy(value, EnergyUnit.BritishThermalUnit);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Calorie"/>.
         /// </summary>
@@ -594,6 +595,7 @@ namespace UnitsNet
             double value = (double) calories;
             return new Energy(value, EnergyUnit.Calorie);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermEc"/>.
         /// </summary>
@@ -603,6 +605,7 @@ namespace UnitsNet
             double value = (double) decathermsec;
             return new Energy(value, EnergyUnit.DecathermEc);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermImperial"/>.
         /// </summary>
@@ -612,6 +615,7 @@ namespace UnitsNet
             double value = (double) decathermsimperial;
             return new Energy(value, EnergyUnit.DecathermImperial);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermUs"/>.
         /// </summary>
@@ -621,6 +625,7 @@ namespace UnitsNet
             double value = (double) decathermsus;
             return new Energy(value, EnergyUnit.DecathermUs);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ElectronVolt"/>.
         /// </summary>
@@ -630,6 +635,7 @@ namespace UnitsNet
             double value = (double) electronvolts;
             return new Energy(value, EnergyUnit.ElectronVolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Erg"/>.
         /// </summary>
@@ -639,6 +645,7 @@ namespace UnitsNet
             double value = (double) ergs;
             return new Energy(value, EnergyUnit.Erg);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.FootPound"/>.
         /// </summary>
@@ -648,6 +655,7 @@ namespace UnitsNet
             double value = (double) footpounds;
             return new Energy(value, EnergyUnit.FootPound);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigabritishThermalUnit"/>.
         /// </summary>
@@ -657,6 +665,7 @@ namespace UnitsNet
             double value = (double) gigabritishthermalunits;
             return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigaelectronVolt"/>.
         /// </summary>
@@ -666,6 +675,7 @@ namespace UnitsNet
             double value = (double) gigaelectronvolts;
             return new Energy(value, EnergyUnit.GigaelectronVolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Gigajoule"/>.
         /// </summary>
@@ -675,6 +685,7 @@ namespace UnitsNet
             double value = (double) gigajoules;
             return new Energy(value, EnergyUnit.Gigajoule);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattDay"/>.
         /// </summary>
@@ -684,6 +695,7 @@ namespace UnitsNet
             double value = (double) gigawattdays;
             return new Energy(value, EnergyUnit.GigawattDay);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattHour"/>.
         /// </summary>
@@ -693,6 +705,7 @@ namespace UnitsNet
             double value = (double) gigawatthours;
             return new Energy(value, EnergyUnit.GigawattHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.HorsepowerHour"/>.
         /// </summary>
@@ -702,6 +715,7 @@ namespace UnitsNet
             double value = (double) horsepowerhours;
             return new Energy(value, EnergyUnit.HorsepowerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Joule"/>.
         /// </summary>
@@ -711,6 +725,7 @@ namespace UnitsNet
             double value = (double) joules;
             return new Energy(value, EnergyUnit.Joule);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilobritishThermalUnit"/>.
         /// </summary>
@@ -720,6 +735,7 @@ namespace UnitsNet
             double value = (double) kilobritishthermalunits;
             return new Energy(value, EnergyUnit.KilobritishThermalUnit);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilocalorie"/>.
         /// </summary>
@@ -729,6 +745,7 @@ namespace UnitsNet
             double value = (double) kilocalories;
             return new Energy(value, EnergyUnit.Kilocalorie);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KiloelectronVolt"/>.
         /// </summary>
@@ -738,6 +755,7 @@ namespace UnitsNet
             double value = (double) kiloelectronvolts;
             return new Energy(value, EnergyUnit.KiloelectronVolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilojoule"/>.
         /// </summary>
@@ -747,6 +765,7 @@ namespace UnitsNet
             double value = (double) kilojoules;
             return new Energy(value, EnergyUnit.Kilojoule);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattDay"/>.
         /// </summary>
@@ -756,6 +775,7 @@ namespace UnitsNet
             double value = (double) kilowattdays;
             return new Energy(value, EnergyUnit.KilowattDay);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattHour"/>.
         /// </summary>
@@ -765,6 +785,7 @@ namespace UnitsNet
             double value = (double) kilowatthours;
             return new Energy(value, EnergyUnit.KilowattHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegabritishThermalUnit"/>.
         /// </summary>
@@ -774,6 +795,7 @@ namespace UnitsNet
             double value = (double) megabritishthermalunits;
             return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megacalorie"/>.
         /// </summary>
@@ -783,6 +805,7 @@ namespace UnitsNet
             double value = (double) megacalories;
             return new Energy(value, EnergyUnit.Megacalorie);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegaelectronVolt"/>.
         /// </summary>
@@ -792,6 +815,7 @@ namespace UnitsNet
             double value = (double) megaelectronvolts;
             return new Energy(value, EnergyUnit.MegaelectronVolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megajoule"/>.
         /// </summary>
@@ -801,6 +825,7 @@ namespace UnitsNet
             double value = (double) megajoules;
             return new Energy(value, EnergyUnit.Megajoule);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattDay"/>.
         /// </summary>
@@ -810,6 +835,7 @@ namespace UnitsNet
             double value = (double) megawattdays;
             return new Energy(value, EnergyUnit.MegawattDay);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattHour"/>.
         /// </summary>
@@ -819,6 +845,7 @@ namespace UnitsNet
             double value = (double) megawatthours;
             return new Energy(value, EnergyUnit.MegawattHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Millijoule"/>.
         /// </summary>
@@ -828,6 +855,7 @@ namespace UnitsNet
             double value = (double) millijoules;
             return new Energy(value, EnergyUnit.Millijoule);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TeraelectronVolt"/>.
         /// </summary>
@@ -837,6 +865,7 @@ namespace UnitsNet
             double value = (double) teraelectronvolts;
             return new Energy(value, EnergyUnit.TeraelectronVolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattDay"/>.
         /// </summary>
@@ -846,6 +875,7 @@ namespace UnitsNet
             double value = (double) terawattdays;
             return new Energy(value, EnergyUnit.TerawattDay);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattHour"/>.
         /// </summary>
@@ -855,6 +885,7 @@ namespace UnitsNet
             double value = (double) terawatthours;
             return new Energy(value, EnergyUnit.TerawattHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermEc"/>.
         /// </summary>
@@ -864,6 +895,7 @@ namespace UnitsNet
             double value = (double) thermsec;
             return new Energy(value, EnergyUnit.ThermEc);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermImperial"/>.
         /// </summary>
@@ -873,6 +905,7 @@ namespace UnitsNet
             double value = (double) thermsimperial;
             return new Energy(value, EnergyUnit.ThermImperial);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermUs"/>.
         /// </summary>
@@ -882,6 +915,7 @@ namespace UnitsNet
             double value = (double) thermsus;
             return new Energy(value, EnergyUnit.ThermUs);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattDay"/>.
         /// </summary>
@@ -891,6 +925,7 @@ namespace UnitsNet
             double value = (double) wattdays;
             return new Energy(value, EnergyUnit.WattDay);
         }
+
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattHour"/>.
         /// </summary>

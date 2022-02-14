@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public LengthUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -466,7 +468,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromYards(double yards) => new Length(yards, LengthUnit.Yard);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LengthUnit" /> to <see cref="Length" />.
         /// </summary>
@@ -595,7 +596,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 
