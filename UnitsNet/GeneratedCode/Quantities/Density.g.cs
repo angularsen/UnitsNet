@@ -242,257 +242,257 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Density in CentigramsPerDeciLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerDeciliter"/>
         /// </summary>
         public double CentigramsPerDeciLiter => As(DensityUnit.CentigramPerDeciliter);
 
         /// <summary>
-        ///     Get Density in CentigramsPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerLiter"/>
         /// </summary>
         public double CentigramsPerLiter => As(DensityUnit.CentigramPerLiter);
 
         /// <summary>
-        ///     Get Density in CentigramsPerMilliliter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerMilliliter"/>
         /// </summary>
         public double CentigramsPerMilliliter => As(DensityUnit.CentigramPerMilliliter);
 
         /// <summary>
-        ///     Get Density in DecigramsPerDeciLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerDeciliter"/>
         /// </summary>
         public double DecigramsPerDeciLiter => As(DensityUnit.DecigramPerDeciliter);
 
         /// <summary>
-        ///     Get Density in DecigramsPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerLiter"/>
         /// </summary>
         public double DecigramsPerLiter => As(DensityUnit.DecigramPerLiter);
 
         /// <summary>
-        ///     Get Density in DecigramsPerMilliliter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerMilliliter"/>
         /// </summary>
         public double DecigramsPerMilliliter => As(DensityUnit.DecigramPerMilliliter);
 
         /// <summary>
-        ///     Get Density in GramsPerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicCentimeter"/>
         /// </summary>
         public double GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
 
         /// <summary>
-        ///     Get Density in GramsPerCubicFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicFoot"/>
         /// </summary>
         public double GramsPerCubicFoot => As(DensityUnit.GramPerCubicFoot);
 
         /// <summary>
-        ///     Get Density in GramsPerCubicInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicInch"/>
         /// </summary>
         public double GramsPerCubicInch => As(DensityUnit.GramPerCubicInch);
 
         /// <summary>
-        ///     Get Density in GramsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicMeter"/>
         /// </summary>
         public double GramsPerCubicMeter => As(DensityUnit.GramPerCubicMeter);
 
         /// <summary>
-        ///     Get Density in GramsPerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicMillimeter"/>
         /// </summary>
         public double GramsPerCubicMillimeter => As(DensityUnit.GramPerCubicMillimeter);
 
         /// <summary>
-        ///     Get Density in GramsPerDeciLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerDeciliter"/>
         /// </summary>
         public double GramsPerDeciLiter => As(DensityUnit.GramPerDeciliter);
 
         /// <summary>
-        ///     Get Density in GramsPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerLiter"/>
         /// </summary>
         public double GramsPerLiter => As(DensityUnit.GramPerLiter);
 
         /// <summary>
-        ///     Get Density in GramsPerMilliliter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerMilliliter"/>
         /// </summary>
         public double GramsPerMilliliter => As(DensityUnit.GramPerMilliliter);
 
         /// <summary>
-        ///     Get Density in KilogramsPerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicCentimeter"/>
         /// </summary>
         public double KilogramsPerCubicCentimeter => As(DensityUnit.KilogramPerCubicCentimeter);
 
         /// <summary>
-        ///     Get Density in KilogramsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicMeter"/>
         /// </summary>
         public double KilogramsPerCubicMeter => As(DensityUnit.KilogramPerCubicMeter);
 
         /// <summary>
-        ///     Get Density in KilogramsPerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicMillimeter"/>
         /// </summary>
         public double KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
 
         /// <summary>
-        ///     Get Density in KilogramsPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerLiter"/>
         /// </summary>
         public double KilogramsPerLiter => As(DensityUnit.KilogramPerLiter);
 
         /// <summary>
-        ///     Get Density in KilopoundsPerCubicFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicFoot"/>
         /// </summary>
         public double KilopoundsPerCubicFoot => As(DensityUnit.KilopoundPerCubicFoot);
 
         /// <summary>
-        ///     Get Density in KilopoundsPerCubicInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicInch"/>
         /// </summary>
         public double KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
 
         /// <summary>
-        ///     Get Density in MicrogramsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerCubicMeter"/>
         /// </summary>
         public double MicrogramsPerCubicMeter => As(DensityUnit.MicrogramPerCubicMeter);
 
         /// <summary>
-        ///     Get Density in MicrogramsPerDeciLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerDeciliter"/>
         /// </summary>
         public double MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
 
         /// <summary>
-        ///     Get Density in MicrogramsPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerLiter"/>
         /// </summary>
         public double MicrogramsPerLiter => As(DensityUnit.MicrogramPerLiter);
 
         /// <summary>
-        ///     Get Density in MicrogramsPerMilliliter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerMilliliter"/>
         /// </summary>
         public double MicrogramsPerMilliliter => As(DensityUnit.MicrogramPerMilliliter);
 
         /// <summary>
-        ///     Get Density in MilligramsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerCubicMeter"/>
         /// </summary>
         public double MilligramsPerCubicMeter => As(DensityUnit.MilligramPerCubicMeter);
 
         /// <summary>
-        ///     Get Density in MilligramsPerDeciLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerDeciliter"/>
         /// </summary>
         public double MilligramsPerDeciLiter => As(DensityUnit.MilligramPerDeciliter);
 
         /// <summary>
-        ///     Get Density in MilligramsPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerLiter"/>
         /// </summary>
         public double MilligramsPerLiter => As(DensityUnit.MilligramPerLiter);
 
         /// <summary>
-        ///     Get Density in MilligramsPerMilliliter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerMilliliter"/>
         /// </summary>
         public double MilligramsPerMilliliter => As(DensityUnit.MilligramPerMilliliter);
 
         /// <summary>
-        ///     Get Density in NanogramsPerDeciLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerDeciliter"/>
         /// </summary>
         public double NanogramsPerDeciLiter => As(DensityUnit.NanogramPerDeciliter);
 
         /// <summary>
-        ///     Get Density in NanogramsPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerLiter"/>
         /// </summary>
         public double NanogramsPerLiter => As(DensityUnit.NanogramPerLiter);
 
         /// <summary>
-        ///     Get Density in NanogramsPerMilliliter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerMilliliter"/>
         /// </summary>
         public double NanogramsPerMilliliter => As(DensityUnit.NanogramPerMilliliter);
 
         /// <summary>
-        ///     Get Density in PicogramsPerDeciLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerDeciliter"/>
         /// </summary>
         public double PicogramsPerDeciLiter => As(DensityUnit.PicogramPerDeciliter);
 
         /// <summary>
-        ///     Get Density in PicogramsPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerLiter"/>
         /// </summary>
         public double PicogramsPerLiter => As(DensityUnit.PicogramPerLiter);
 
         /// <summary>
-        ///     Get Density in PicogramsPerMilliliter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerMilliliter"/>
         /// </summary>
         public double PicogramsPerMilliliter => As(DensityUnit.PicogramPerMilliliter);
 
         /// <summary>
-        ///     Get Density in PoundsPerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicCentimeter"/>
         /// </summary>
         public double PoundsPerCubicCentimeter => As(DensityUnit.PoundPerCubicCentimeter);
 
         /// <summary>
-        ///     Get Density in PoundsPerCubicFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicFoot"/>
         /// </summary>
         public double PoundsPerCubicFoot => As(DensityUnit.PoundPerCubicFoot);
 
         /// <summary>
-        ///     Get Density in PoundsPerCubicInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicInch"/>
         /// </summary>
         public double PoundsPerCubicInch => As(DensityUnit.PoundPerCubicInch);
 
         /// <summary>
-        ///     Get Density in PoundsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMeter"/>
         /// </summary>
         public double PoundsPerCubicMeter => As(DensityUnit.PoundPerCubicMeter);
 
         /// <summary>
-        ///     Get Density in PoundsPerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMillimeter"/>
         /// </summary>
         public double PoundsPerCubicMillimeter => As(DensityUnit.PoundPerCubicMillimeter);
 
         /// <summary>
-        ///     Get Density in PoundsPerImperialGallon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerImperialGallon"/>
         /// </summary>
         public double PoundsPerImperialGallon => As(DensityUnit.PoundPerImperialGallon);
 
         /// <summary>
-        ///     Get Density in PoundsPerUSGallon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerUSGallon"/>
         /// </summary>
         public double PoundsPerUSGallon => As(DensityUnit.PoundPerUSGallon);
 
         /// <summary>
-        ///     Get Density in SlugsPerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicCentimeter"/>
         /// </summary>
         public double SlugsPerCubicCentimeter => As(DensityUnit.SlugPerCubicCentimeter);
 
         /// <summary>
-        ///     Get Density in SlugsPerCubicFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicFoot"/>
         /// </summary>
         public double SlugsPerCubicFoot => As(DensityUnit.SlugPerCubicFoot);
 
         /// <summary>
-        ///     Get Density in SlugsPerCubicInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicInch"/>
         /// </summary>
         public double SlugsPerCubicInch => As(DensityUnit.SlugPerCubicInch);
 
         /// <summary>
-        ///     Get Density in SlugsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicMeter"/>
         /// </summary>
         public double SlugsPerCubicMeter => As(DensityUnit.SlugPerCubicMeter);
 
         /// <summary>
-        ///     Get Density in SlugsPerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicMillimeter"/>
         /// </summary>
         public double SlugsPerCubicMillimeter => As(DensityUnit.SlugPerCubicMillimeter);
 
         /// <summary>
-        ///     Get Density in TonnesPerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicCentimeter"/>
         /// </summary>
         public double TonnesPerCubicCentimeter => As(DensityUnit.TonnePerCubicCentimeter);
 
         /// <summary>
-        ///     Get Density in TonnesPerCubicFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicFoot"/>
         /// </summary>
         public double TonnesPerCubicFoot => As(DensityUnit.TonnePerCubicFoot);
 
         /// <summary>
-        ///     Get Density in TonnesPerCubicInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicInch"/>
         /// </summary>
         public double TonnesPerCubicInch => As(DensityUnit.TonnePerCubicInch);
 
         /// <summary>
-        ///     Get Density in TonnesPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicMeter"/>
         /// </summary>
         public double TonnesPerCubicMeter => As(DensityUnit.TonnePerCubicMeter);
 
         /// <summary>
-        ///     Get Density in TonnesPerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicMillimeter"/>
         /// </summary>
         public double TonnesPerCubicMillimeter => As(DensityUnit.TonnePerCubicMillimeter);
 
@@ -507,110 +507,110 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> DensityUnit
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-2d, DensityUnit.CentigramPerDeciliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerLiter, quantity => new Density((quantity.Value*1) / 1e-2d, DensityUnit.CentigramPerLiter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-2d, DensityUnit.CentigramPerMilliliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-1d, DensityUnit.DecigramPerDeciliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerLiter, quantity => new Density((quantity.Value*1) / 1e-1d, DensityUnit.DecigramPerLiter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-1d, DensityUnit.DecigramPerMilliliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicCentimeter, quantity => new Density(quantity.Value*1e-3, DensityUnit.GramPerCubicCentimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicFoot, quantity => new Density(quantity.Value/0.0353146667214886, DensityUnit.GramPerCubicFoot));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicInch, quantity => new Density(quantity.Value/61.0237440947323, DensityUnit.GramPerCubicInch));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicMeter, quantity => new Density(quantity.Value*1e3, DensityUnit.GramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicMillimeter, quantity => new Density(quantity.Value*1e-6, DensityUnit.GramPerCubicMillimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerDeciliter, quantity => new Density(quantity.Value*1e-1, DensityUnit.GramPerDeciliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerLiter, quantity => new Density(quantity.Value*1, DensityUnit.GramPerLiter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerMilliliter, quantity => new Density(quantity.Value*1e-3, DensityUnit.GramPerMilliliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicCentimeter, quantity => new Density((quantity.Value*1e-3) / 1e3d, DensityUnit.KilogramPerCubicCentimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicMillimeter, quantity => new Density((quantity.Value*1e-6) / 1e3d, DensityUnit.KilogramPerCubicMillimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerLiter, quantity => new Density(quantity.Value/1e3, DensityUnit.KilogramPerLiter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilopoundPerCubicFoot, quantity => new Density((quantity.Value*0.062427961) / 1e3d, DensityUnit.KilopoundPerCubicFoot));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilopoundPerCubicInch, quantity => new Density((quantity.Value*3.6127298147753e-5) / 1e3d, DensityUnit.KilopoundPerCubicInch));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerCubicMeter, quantity => new Density((quantity.Value*1e3) / 1e-6d, DensityUnit.MicrogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-6d, DensityUnit.MicrogramPerDeciliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerLiter, quantity => new Density((quantity.Value*1) / 1e-6d, DensityUnit.MicrogramPerLiter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-6d, DensityUnit.MicrogramPerMilliliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerCubicMeter, quantity => new Density((quantity.Value*1e3) / 1e-3d, DensityUnit.MilligramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-3d, DensityUnit.MilligramPerDeciliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerLiter, quantity => new Density((quantity.Value*1) / 1e-3d, DensityUnit.MilligramPerLiter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-3d, DensityUnit.MilligramPerMilliliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-9d, DensityUnit.NanogramPerDeciliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerLiter, quantity => new Density((quantity.Value*1) / 1e-9d, DensityUnit.NanogramPerLiter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-9d, DensityUnit.NanogramPerMilliliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerDeciliter, quantity => new Density((quantity.Value*1e-1) / 1e-12d, DensityUnit.PicogramPerDeciliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerLiter, quantity => new Density((quantity.Value*1) / 1e-12d, DensityUnit.PicogramPerLiter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerMilliliter, quantity => new Density((quantity.Value*1e-3) / 1e-12d, DensityUnit.PicogramPerMilliliter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicCentimeter, quantity => new Density(quantity.Value*2.204622621848775e-6, DensityUnit.PoundPerCubicCentimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicFoot, quantity => new Density(quantity.Value*0.062427961, DensityUnit.PoundPerCubicFoot));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicInch, quantity => new Density(quantity.Value*3.6127298147753e-5, DensityUnit.PoundPerCubicInch));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicMeter, quantity => new Density(quantity.Value*2.204622621848775, DensityUnit.PoundPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicMillimeter, quantity => new Density(quantity.Value*2.204622621848775e-9, DensityUnit.PoundPerCubicMillimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerImperialGallon, quantity => new Density(quantity.Value/9.9776398e1, DensityUnit.PoundPerImperialGallon));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerUSGallon, quantity => new Density(quantity.Value/1.19826427e2, DensityUnit.PoundPerUSGallon));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicCentimeter, quantity => new Density(quantity.Value/14593903, DensityUnit.SlugPerCubicCentimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicFoot, quantity => new Density(quantity.Value*0.00194032033, DensityUnit.SlugPerCubicFoot));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicInch, quantity => new Density(quantity.Value/890574.60201535, DensityUnit.SlugPerCubicInch));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicMeter, quantity => new Density(quantity.Value/14.5939, DensityUnit.SlugPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicMillimeter, quantity => new Density(quantity.Value/14593903000, DensityUnit.SlugPerCubicMillimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicCentimeter, quantity => new Density(quantity.Value*1e-9, DensityUnit.TonnePerCubicCentimeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicFoot, quantity => new Density(quantity.Value/3.53146667214886e4, DensityUnit.TonnePerCubicFoot));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicInch, quantity => new Density(quantity.Value/6.10237440947323e7, DensityUnit.TonnePerCubicInch));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMeter, quantity => new Density(quantity.Value*0.001, DensityUnit.TonnePerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMillimeter, quantity => new Density(quantity.Value*1e-12, DensityUnit.TonnePerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerDeciliter, quantity => new Density((quantity.Value * 1e-1) / 1e-2d, DensityUnit.CentigramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerLiter, quantity => new Density((quantity.Value * 1) / 1e-2d, DensityUnit.CentigramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerMilliliter, quantity => new Density((quantity.Value * 1e-3) / 1e-2d, DensityUnit.CentigramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerDeciliter, quantity => new Density((quantity.Value * 1e-1) / 1e-1d, DensityUnit.DecigramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerLiter, quantity => new Density((quantity.Value * 1) / 1e-1d, DensityUnit.DecigramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.DecigramPerMilliliter, quantity => new Density((quantity.Value * 1e-3) / 1e-1d, DensityUnit.DecigramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicCentimeter, quantity => new Density(quantity.Value * 1e-3, DensityUnit.GramPerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicFoot, quantity => new Density(quantity.Value / 0.0353146667214886, DensityUnit.GramPerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicInch, quantity => new Density(quantity.Value / 61.0237440947323, DensityUnit.GramPerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicMeter, quantity => new Density(quantity.Value * 1e3, DensityUnit.GramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerCubicMillimeter, quantity => new Density(quantity.Value * 1e-6, DensityUnit.GramPerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerDeciliter, quantity => new Density(quantity.Value * 1e-1, DensityUnit.GramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerLiter, quantity => new Density(quantity.Value * 1, DensityUnit.GramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerMilliliter, quantity => new Density(quantity.Value * 1e-3, DensityUnit.GramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicCentimeter, quantity => new Density((quantity.Value * 1e-3) / 1e3d, DensityUnit.KilogramPerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicMillimeter, quantity => new Density((quantity.Value * 1e-6) / 1e3d, DensityUnit.KilogramPerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerLiter, quantity => new Density(quantity.Value / 1e3, DensityUnit.KilogramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilopoundPerCubicFoot, quantity => new Density((quantity.Value * 0.062427961) / 1e3d, DensityUnit.KilopoundPerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilopoundPerCubicInch, quantity => new Density((quantity.Value * 3.6127298147753e-5) / 1e3d, DensityUnit.KilopoundPerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerCubicMeter, quantity => new Density((quantity.Value * 1e3) / 1e-6d, DensityUnit.MicrogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerDeciliter, quantity => new Density((quantity.Value * 1e-1) / 1e-6d, DensityUnit.MicrogramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerLiter, quantity => new Density((quantity.Value * 1) / 1e-6d, DensityUnit.MicrogramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MicrogramPerMilliliter, quantity => new Density((quantity.Value * 1e-3) / 1e-6d, DensityUnit.MicrogramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerCubicMeter, quantity => new Density((quantity.Value * 1e3) / 1e-3d, DensityUnit.MilligramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerDeciliter, quantity => new Density((quantity.Value * 1e-1) / 1e-3d, DensityUnit.MilligramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerLiter, quantity => new Density((quantity.Value * 1) / 1e-3d, DensityUnit.MilligramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerMilliliter, quantity => new Density((quantity.Value * 1e-3) / 1e-3d, DensityUnit.MilligramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerDeciliter, quantity => new Density((quantity.Value * 1e-1) / 1e-9d, DensityUnit.NanogramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerLiter, quantity => new Density((quantity.Value * 1) / 1e-9d, DensityUnit.NanogramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.NanogramPerMilliliter, quantity => new Density((quantity.Value * 1e-3) / 1e-9d, DensityUnit.NanogramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerDeciliter, quantity => new Density((quantity.Value * 1e-1) / 1e-12d, DensityUnit.PicogramPerDeciliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerLiter, quantity => new Density((quantity.Value * 1) / 1e-12d, DensityUnit.PicogramPerLiter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PicogramPerMilliliter, quantity => new Density((quantity.Value * 1e-3) / 1e-12d, DensityUnit.PicogramPerMilliliter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicCentimeter, quantity => new Density(quantity.Value * 2.204622621848775e-6, DensityUnit.PoundPerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicFoot, quantity => new Density(quantity.Value * 0.062427961, DensityUnit.PoundPerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicInch, quantity => new Density(quantity.Value * 3.6127298147753e-5, DensityUnit.PoundPerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicMeter, quantity => new Density(quantity.Value * 2.204622621848775, DensityUnit.PoundPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicMillimeter, quantity => new Density(quantity.Value * 2.204622621848775e-9, DensityUnit.PoundPerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerImperialGallon, quantity => new Density(quantity.Value / 9.9776398e1, DensityUnit.PoundPerImperialGallon));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerUSGallon, quantity => new Density(quantity.Value / 1.19826427e2, DensityUnit.PoundPerUSGallon));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicCentimeter, quantity => new Density(quantity.Value / 14593903, DensityUnit.SlugPerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicFoot, quantity => new Density(quantity.Value * 0.00194032033, DensityUnit.SlugPerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicInch, quantity => new Density(quantity.Value / 890574.60201535, DensityUnit.SlugPerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicMeter, quantity => new Density(quantity.Value / 14.5939, DensityUnit.SlugPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.SlugPerCubicMillimeter, quantity => new Density(quantity.Value / 14593903000, DensityUnit.SlugPerCubicMillimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicCentimeter, quantity => new Density(quantity.Value * 1e-9, DensityUnit.TonnePerCubicCentimeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicFoot, quantity => new Density(quantity.Value / 3.53146667214886e4, DensityUnit.TonnePerCubicFoot));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicInch, quantity => new Density(quantity.Value / 6.10237440947323e7, DensityUnit.TonnePerCubicInch));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMeter, quantity => new Density(quantity.Value * 0.001, DensityUnit.TonnePerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMillimeter, quantity => new Density(quantity.Value * 1e-12, DensityUnit.TonnePerCubicMillimeter));
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => quantity);
 
             // Register in unit converter: DensityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-3, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*0.0353146667214886, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*61.0237440947323, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e3, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-6, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-1, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-3, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e3d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-6) * 1e3d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*1e3, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilopoundPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/0.062427961) * 1e3d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.KilopoundPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/3.6127298147753e-5) * 1e3d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e3) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e3) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-1) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value/1e-3) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/2.204622621848775e-6, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/0.062427961, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/3.6127298147753e-5, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/2.204622621848775, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/2.204622621848775e-9, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerImperialGallon, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*9.9776398e1, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerUSGallon, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*1.19826427e2, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*14593903, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*515.378818, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*890574.60201535, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*14.5939, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*14593903000, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-9, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*3.53146667214886e4, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value*6.10237440947323e7, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/0.001, DensityUnit.KilogramPerCubicMeter));
-            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value/1e-12, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-1) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.CentigramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-3) * 1e-2d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-1) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.DecigramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-3) * 1e-1d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 1e-3, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 0.0353146667214886, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 61.0237440947323, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 1e3, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 1e-6, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 1e-1, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 1, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.GramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 1e-3, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-3) * 1e3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-6) * 1e3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 1e3, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilopoundPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 0.062427961) * 1e3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.KilopoundPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 3.6127298147753e-5) * 1e3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e3) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-1) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MicrogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-3) * 1e-6d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e3) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-1) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.MilligramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-3) * 1e-3d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-1) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.NanogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-3) * 1e-9d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerDeciliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-1) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerLiter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PicogramPerMilliliter, DensityUnit.KilogramPerCubicMeter, quantity => new Density((quantity.Value / 1e-3) * 1e-12d, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 2.204622621848775e-6, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 0.062427961, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 3.6127298147753e-5, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 2.204622621848775, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 2.204622621848775e-9, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerImperialGallon, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 9.9776398e1, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.PoundPerUSGallon, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 1.19826427e2, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 14593903, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 515.378818, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 890574.60201535, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 14.5939, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.SlugPerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 14593903000, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicCentimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 1e-9, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicFoot, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 3.53146667214886e4, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicInch, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value * 6.10237440947323e7, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicMeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 0.001, DensityUnit.KilogramPerCubicMeter));
+            unitConverter.SetConversionFunction<Density>(DensityUnit.TonnePerCubicMillimeter, DensityUnit.KilogramPerCubicMeter, quantity => new Density(quantity.Value / 1e-12, DensityUnit.KilogramPerCubicMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -698,7 +698,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Density from CentigramsPerDeciLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerDeciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromCentigramsPerDeciLiter(QuantityValue centigramsperdeciliter)
@@ -707,7 +707,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.CentigramPerDeciliter);
         }
         /// <summary>
-        ///     Get Density from CentigramsPerLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromCentigramsPerLiter(QuantityValue centigramsperliter)
@@ -716,7 +716,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.CentigramPerLiter);
         }
         /// <summary>
-        ///     Get Density from CentigramsPerMilliliter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerMilliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromCentigramsPerMilliliter(QuantityValue centigramspermilliliter)
@@ -725,7 +725,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.CentigramPerMilliliter);
         }
         /// <summary>
-        ///     Get Density from DecigramsPerDeciLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerDeciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerDeciLiter(QuantityValue decigramsperdeciliter)
@@ -734,7 +734,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.DecigramPerDeciliter);
         }
         /// <summary>
-        ///     Get Density from DecigramsPerLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerLiter(QuantityValue decigramsperliter)
@@ -743,7 +743,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.DecigramPerLiter);
         }
         /// <summary>
-        ///     Get Density from DecigramsPerMilliliter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerMilliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerMilliliter(QuantityValue decigramspermilliliter)
@@ -752,7 +752,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.DecigramPerMilliliter);
         }
         /// <summary>
-        ///     Get Density from GramsPerCubicCentimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicCentimeter(QuantityValue gramspercubiccentimeter)
@@ -761,7 +761,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.GramPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get Density from GramsPerCubicFoot.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicFoot(QuantityValue gramspercubicfoot)
@@ -770,7 +770,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.GramPerCubicFoot);
         }
         /// <summary>
-        ///     Get Density from GramsPerCubicInch.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicInch(QuantityValue gramspercubicinch)
@@ -779,7 +779,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.GramPerCubicInch);
         }
         /// <summary>
-        ///     Get Density from GramsPerCubicMeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicMeter(QuantityValue gramspercubicmeter)
@@ -788,7 +788,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.GramPerCubicMeter);
         }
         /// <summary>
-        ///     Get Density from GramsPerCubicMillimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicMillimeter(QuantityValue gramspercubicmillimeter)
@@ -797,7 +797,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.GramPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get Density from GramsPerDeciLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerDeciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerDeciLiter(QuantityValue gramsperdeciliter)
@@ -806,7 +806,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.GramPerDeciliter);
         }
         /// <summary>
-        ///     Get Density from GramsPerLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerLiter(QuantityValue gramsperliter)
@@ -815,7 +815,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.GramPerLiter);
         }
         /// <summary>
-        ///     Get Density from GramsPerMilliliter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerMilliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerMilliliter(QuantityValue gramspermilliliter)
@@ -824,7 +824,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.GramPerMilliliter);
         }
         /// <summary>
-        ///     Get Density from KilogramsPerCubicCentimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicCentimeter(QuantityValue kilogramspercubiccentimeter)
@@ -833,7 +833,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.KilogramPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get Density from KilogramsPerCubicMeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicMeter(QuantityValue kilogramspercubicmeter)
@@ -842,7 +842,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.KilogramPerCubicMeter);
         }
         /// <summary>
-        ///     Get Density from KilogramsPerCubicMillimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicMillimeter(QuantityValue kilogramspercubicmillimeter)
@@ -851,7 +851,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.KilogramPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get Density from KilogramsPerLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerLiter(QuantityValue kilogramsperliter)
@@ -860,7 +860,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.KilogramPerLiter);
         }
         /// <summary>
-        ///     Get Density from KilopoundsPerCubicFoot.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilopoundsPerCubicFoot(QuantityValue kilopoundspercubicfoot)
@@ -869,7 +869,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.KilopoundPerCubicFoot);
         }
         /// <summary>
-        ///     Get Density from KilopoundsPerCubicInch.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilopoundsPerCubicInch(QuantityValue kilopoundspercubicinch)
@@ -878,7 +878,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.KilopoundPerCubicInch);
         }
         /// <summary>
-        ///     Get Density from MicrogramsPerCubicMeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerCubicMeter(QuantityValue microgramspercubicmeter)
@@ -887,7 +887,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.MicrogramPerCubicMeter);
         }
         /// <summary>
-        ///     Get Density from MicrogramsPerDeciLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerDeciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerDeciLiter(QuantityValue microgramsperdeciliter)
@@ -896,7 +896,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.MicrogramPerDeciliter);
         }
         /// <summary>
-        ///     Get Density from MicrogramsPerLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerLiter(QuantityValue microgramsperliter)
@@ -905,7 +905,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.MicrogramPerLiter);
         }
         /// <summary>
-        ///     Get Density from MicrogramsPerMilliliter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerMilliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerMilliliter(QuantityValue microgramspermilliliter)
@@ -914,7 +914,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.MicrogramPerMilliliter);
         }
         /// <summary>
-        ///     Get Density from MilligramsPerCubicMeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerCubicMeter(QuantityValue milligramspercubicmeter)
@@ -923,7 +923,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.MilligramPerCubicMeter);
         }
         /// <summary>
-        ///     Get Density from MilligramsPerDeciLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerDeciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerDeciLiter(QuantityValue milligramsperdeciliter)
@@ -932,7 +932,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.MilligramPerDeciliter);
         }
         /// <summary>
-        ///     Get Density from MilligramsPerLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerLiter(QuantityValue milligramsperliter)
@@ -941,7 +941,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.MilligramPerLiter);
         }
         /// <summary>
-        ///     Get Density from MilligramsPerMilliliter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerMilliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerMilliliter(QuantityValue milligramspermilliliter)
@@ -950,7 +950,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.MilligramPerMilliliter);
         }
         /// <summary>
-        ///     Get Density from NanogramsPerDeciLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerDeciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromNanogramsPerDeciLiter(QuantityValue nanogramsperdeciliter)
@@ -959,7 +959,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.NanogramPerDeciliter);
         }
         /// <summary>
-        ///     Get Density from NanogramsPerLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromNanogramsPerLiter(QuantityValue nanogramsperliter)
@@ -968,7 +968,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.NanogramPerLiter);
         }
         /// <summary>
-        ///     Get Density from NanogramsPerMilliliter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerMilliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromNanogramsPerMilliliter(QuantityValue nanogramspermilliliter)
@@ -977,7 +977,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.NanogramPerMilliliter);
         }
         /// <summary>
-        ///     Get Density from PicogramsPerDeciLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerDeciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPicogramsPerDeciLiter(QuantityValue picogramsperdeciliter)
@@ -986,7 +986,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PicogramPerDeciliter);
         }
         /// <summary>
-        ///     Get Density from PicogramsPerLiter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPicogramsPerLiter(QuantityValue picogramsperliter)
@@ -995,7 +995,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PicogramPerLiter);
         }
         /// <summary>
-        ///     Get Density from PicogramsPerMilliliter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerMilliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPicogramsPerMilliliter(QuantityValue picogramspermilliliter)
@@ -1004,7 +1004,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PicogramPerMilliliter);
         }
         /// <summary>
-        ///     Get Density from PoundsPerCubicCentimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicCentimeter(QuantityValue poundspercubiccentimeter)
@@ -1013,7 +1013,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PoundPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get Density from PoundsPerCubicFoot.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicFoot(QuantityValue poundspercubicfoot)
@@ -1022,7 +1022,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PoundPerCubicFoot);
         }
         /// <summary>
-        ///     Get Density from PoundsPerCubicInch.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicInch(QuantityValue poundspercubicinch)
@@ -1031,7 +1031,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PoundPerCubicInch);
         }
         /// <summary>
-        ///     Get Density from PoundsPerCubicMeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicMeter(QuantityValue poundspercubicmeter)
@@ -1040,7 +1040,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PoundPerCubicMeter);
         }
         /// <summary>
-        ///     Get Density from PoundsPerCubicMillimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicMillimeter(QuantityValue poundspercubicmillimeter)
@@ -1049,7 +1049,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PoundPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get Density from PoundsPerImperialGallon.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerImperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerImperialGallon(QuantityValue poundsperimperialgallon)
@@ -1058,7 +1058,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PoundPerImperialGallon);
         }
         /// <summary>
-        ///     Get Density from PoundsPerUSGallon.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerUSGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerUSGallon(QuantityValue poundsperusgallon)
@@ -1067,7 +1067,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.PoundPerUSGallon);
         }
         /// <summary>
-        ///     Get Density from SlugsPerCubicCentimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicCentimeter(QuantityValue slugspercubiccentimeter)
@@ -1076,7 +1076,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.SlugPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get Density from SlugsPerCubicFoot.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicFoot(QuantityValue slugspercubicfoot)
@@ -1085,7 +1085,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.SlugPerCubicFoot);
         }
         /// <summary>
-        ///     Get Density from SlugsPerCubicInch.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicInch(QuantityValue slugspercubicinch)
@@ -1094,7 +1094,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.SlugPerCubicInch);
         }
         /// <summary>
-        ///     Get Density from SlugsPerCubicMeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicMeter(QuantityValue slugspercubicmeter)
@@ -1103,7 +1103,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.SlugPerCubicMeter);
         }
         /// <summary>
-        ///     Get Density from SlugsPerCubicMillimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicMillimeter(QuantityValue slugspercubicmillimeter)
@@ -1112,7 +1112,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.SlugPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get Density from TonnesPerCubicCentimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicCentimeter(QuantityValue tonnespercubiccentimeter)
@@ -1121,7 +1121,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.TonnePerCubicCentimeter);
         }
         /// <summary>
-        ///     Get Density from TonnesPerCubicFoot.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicFoot(QuantityValue tonnespercubicfoot)
@@ -1130,7 +1130,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.TonnePerCubicFoot);
         }
         /// <summary>
-        ///     Get Density from TonnesPerCubicInch.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicInch(QuantityValue tonnespercubicinch)
@@ -1139,7 +1139,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.TonnePerCubicInch);
         }
         /// <summary>
-        ///     Get Density from TonnesPerCubicMeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicMeter(QuantityValue tonnespercubicmeter)
@@ -1148,7 +1148,7 @@ namespace UnitsNet
             return new Density(value, DensityUnit.TonnePerCubicMeter);
         }
         /// <summary>
-        ///     Get Density from TonnesPerCubicMillimeter.
+        ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicMillimeter(QuantityValue tonnespercubicmillimeter)

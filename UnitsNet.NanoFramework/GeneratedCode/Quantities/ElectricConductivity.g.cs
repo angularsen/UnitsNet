@@ -81,17 +81,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/>
         /// </summary>
         public double SiemensPerFoot => As(ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerInch"/>
         /// </summary>
         public double SiemensPerInch => As(ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerMeter"/>
         /// </summary>
         public double SiemensPerMeter => As(ElectricConductivityUnit.SiemensPerMeter);
 
@@ -100,19 +100,19 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerFoot.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerFoot(double siemensperfoot) => new ElectricConductivity(siemensperfoot, ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerInch.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerInch(double siemensperinch) => new ElectricConductivity(siemensperinch, ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerMeter.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerMeter(double siemenspermeter) => new ElectricConductivity(siemenspermeter, ElectricConductivityUnit.SiemensPerMeter);
@@ -156,14 +156,13 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricConductivityUnit.SiemensPerFoot: return _value * 3.2808398950131234;
-                case ElectricConductivityUnit.SiemensPerInch: return _value * 3.937007874015748e1;
-                case ElectricConductivityUnit.SiemensPerMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricConductivityUnit.SiemensPerFoot => _value * 3.2808398950131234,
+                ElectricConductivityUnit.SiemensPerInch => _value * 3.937007874015748e1,
+                ElectricConductivityUnit.SiemensPerMeter => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricConductivityUnit unit)
@@ -173,14 +172,13 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricConductivityUnit.SiemensPerFoot: return baseUnitValue / 3.2808398950131234;
-                case ElectricConductivityUnit.SiemensPerInch: return baseUnitValue / 3.937007874015748e1;
-                case ElectricConductivityUnit.SiemensPerMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricConductivityUnit.SiemensPerFoot => baseUnitValue / 3.2808398950131234,
+                ElectricConductivityUnit.SiemensPerInch => baseUnitValue / 3.937007874015748e1,
+                ElectricConductivityUnit.SiemensPerMeter => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

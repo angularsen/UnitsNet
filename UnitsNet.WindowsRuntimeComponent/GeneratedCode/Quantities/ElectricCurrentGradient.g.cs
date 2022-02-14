@@ -164,22 +164,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCurrentGradient in AmperesPerMicrosecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>
         /// </summary>
         public double AmperesPerMicrosecond => As(ElectricCurrentGradientUnit.AmperePerMicrosecond);
 
         /// <summary>
-        ///     Get ElectricCurrentGradient in AmperesPerMillisecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>
         /// </summary>
         public double AmperesPerMillisecond => As(ElectricCurrentGradientUnit.AmperePerMillisecond);
 
         /// <summary>
-        ///     Get ElectricCurrentGradient in AmperesPerNanosecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>
         /// </summary>
         public double AmperesPerNanosecond => As(ElectricCurrentGradientUnit.AmperePerNanosecond);
 
         /// <summary>
-        ///     Get ElectricCurrentGradient in AmperesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>
         /// </summary>
         public double AmperesPerSecond => As(ElectricCurrentGradientUnit.AmperePerSecond);
 
@@ -222,7 +222,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCurrentGradient from AmperesPerMicrosecond.
+        ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -232,7 +232,7 @@ namespace UnitsNet
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMicrosecond);
         }
         /// <summary>
-        ///     Get ElectricCurrentGradient from AmperesPerMillisecond.
+        ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -242,7 +242,7 @@ namespace UnitsNet
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMillisecond);
         }
         /// <summary>
-        ///     Get ElectricCurrentGradient from AmperesPerNanosecond.
+        ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -252,7 +252,7 @@ namespace UnitsNet
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerNanosecond);
         }
         /// <summary>
-        ///     Get ElectricCurrentGradient from AmperesPerSecond.
+        ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -552,9 +552,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return _value*1E6;
-                case ElectricCurrentGradientUnit.AmperePerMillisecond: return _value*1E3;
-                case ElectricCurrentGradientUnit.AmperePerNanosecond: return _value*1E9;
+                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return _value * 1E6;
+                case ElectricCurrentGradientUnit.AmperePerMillisecond: return _value * 1E3;
+                case ElectricCurrentGradientUnit.AmperePerNanosecond: return _value * 1E9;
                 case ElectricCurrentGradientUnit.AmperePerSecond: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -570,9 +570,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return baseUnitValue/1E6;
-                case ElectricCurrentGradientUnit.AmperePerMillisecond: return baseUnitValue/1E3;
-                case ElectricCurrentGradientUnit.AmperePerNanosecond: return baseUnitValue/1E9;
+                case ElectricCurrentGradientUnit.AmperePerMicrosecond: return baseUnitValue / 1E6;
+                case ElectricCurrentGradientUnit.AmperePerMillisecond: return baseUnitValue / 1E3;
+                case ElectricCurrentGradientUnit.AmperePerNanosecond: return baseUnitValue / 1E9;
                 case ElectricCurrentGradientUnit.AmperePerSecond: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

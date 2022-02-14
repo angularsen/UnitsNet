@@ -81,7 +81,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MagneticFlux in Webers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFluxUnit.Weber"/>
         /// </summary>
         public double Webers => As(MagneticFluxUnit.Weber);
 
@@ -90,7 +90,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MagneticFlux from Webers.
+        ///     Creates a <see cref="MagneticFlux"/> from <see cref="MagneticFluxUnit.Weber"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MagneticFlux FromWebers(double webers) => new MagneticFlux(webers, MagneticFluxUnit.Weber);
@@ -134,12 +134,11 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case MagneticFluxUnit.Weber: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                MagneticFluxUnit.Weber => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(MagneticFluxUnit unit)
@@ -149,12 +148,11 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case MagneticFluxUnit.Weber: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                MagneticFluxUnit.Weber => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

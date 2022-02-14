@@ -28,12 +28,19 @@ namespace UnitsNet.Units
         Undefined = 0,
 
         /// <summary>
+        ///     Angstrom is a metric unit of length equal to 1e-10 meter
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Angstrom</remarks>
+        Angstrom,
+
+        /// <summary>
         ///     One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Astronomical_unit</remarks>
         AstronomicalUnit,
         Centimeter,
         Chain,
+        Decameter,
         Decimeter,
         DtpPica,
         DtpPoint,

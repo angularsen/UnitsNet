@@ -164,17 +164,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in GramsPerKiloWattHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>
         /// </summary>
         public double GramsPerKiloWattHour => As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in KilogramsPerJoule.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>
         /// </summary>
         public double KilogramsPerJoule => As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in PoundsPerMechanicalHorsepowerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>
         /// </summary>
         public double PoundsPerMechanicalHorsepowerHour => As(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
 
@@ -216,7 +216,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -226,7 +226,7 @@ namespace UnitsNet
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
         }
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from KilogramsPerJoule.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -236,7 +236,7 @@ namespace UnitsNet
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
         }
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -536,9 +536,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return _value/3.6e9;
+                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return _value / 3.6e9;
                 case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return _value;
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value * 1.689659410672e-7;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -553,9 +553,9 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return baseUnitValue*3.6e9;
+                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return baseUnitValue * 3.6e9;
                 case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return baseUnitValue;
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return baseUnitValue/1.689659410672e-7;
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return baseUnitValue / 1.689659410672e-7;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

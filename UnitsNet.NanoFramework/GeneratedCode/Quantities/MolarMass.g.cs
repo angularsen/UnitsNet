@@ -78,62 +78,62 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MolarMass in CentigramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.CentigramPerMole"/>
         /// </summary>
         public double CentigramsPerMole => As(MolarMassUnit.CentigramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in DecagramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.DecagramPerMole"/>
         /// </summary>
         public double DecagramsPerMole => As(MolarMassUnit.DecagramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in DecigramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.DecigramPerMole"/>
         /// </summary>
         public double DecigramsPerMole => As(MolarMassUnit.DecigramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in GramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.GramPerMole"/>
         /// </summary>
         public double GramsPerMole => As(MolarMassUnit.GramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in HectogramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.HectogramPerMole"/>
         /// </summary>
         public double HectogramsPerMole => As(MolarMassUnit.HectogramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in KilogramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.KilogramPerMole"/>
         /// </summary>
         public double KilogramsPerMole => As(MolarMassUnit.KilogramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in KilopoundsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.KilopoundPerMole"/>
         /// </summary>
         public double KilopoundsPerMole => As(MolarMassUnit.KilopoundPerMole);
 
         /// <summary>
-        ///     Get MolarMass in MegapoundsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MegapoundPerMole"/>
         /// </summary>
         public double MegapoundsPerMole => As(MolarMassUnit.MegapoundPerMole);
 
         /// <summary>
-        ///     Get MolarMass in MicrogramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MicrogramPerMole"/>
         /// </summary>
         public double MicrogramsPerMole => As(MolarMassUnit.MicrogramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in MilligramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MilligramPerMole"/>
         /// </summary>
         public double MilligramsPerMole => As(MolarMassUnit.MilligramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in NanogramsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.NanogramPerMole"/>
         /// </summary>
         public double NanogramsPerMole => As(MolarMassUnit.NanogramPerMole);
 
         /// <summary>
-        ///     Get MolarMass in PoundsPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.PoundPerMole"/>
         /// </summary>
         public double PoundsPerMole => As(MolarMassUnit.PoundPerMole);
 
@@ -142,73 +142,73 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MolarMass from CentigramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.CentigramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromCentigramsPerMole(double centigramspermole) => new MolarMass(centigramspermole, MolarMassUnit.CentigramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from DecagramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecagramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromDecagramsPerMole(double decagramspermole) => new MolarMass(decagramspermole, MolarMassUnit.DecagramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from DecigramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecigramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromDecigramsPerMole(double decigramspermole) => new MolarMass(decigramspermole, MolarMassUnit.DecigramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from GramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.GramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromGramsPerMole(double gramspermole) => new MolarMass(gramspermole, MolarMassUnit.GramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from HectogramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.HectogramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromHectogramsPerMole(double hectogramspermole) => new MolarMass(hectogramspermole, MolarMassUnit.HectogramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from KilogramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromKilogramsPerMole(double kilogramspermole) => new MolarMass(kilogramspermole, MolarMassUnit.KilogramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from KilopoundsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilopoundPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromKilopoundsPerMole(double kilopoundspermole) => new MolarMass(kilopoundspermole, MolarMassUnit.KilopoundPerMole);
 
         /// <summary>
-        ///     Get MolarMass from MegapoundsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MegapoundPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromMegapoundsPerMole(double megapoundspermole) => new MolarMass(megapoundspermole, MolarMassUnit.MegapoundPerMole);
 
         /// <summary>
-        ///     Get MolarMass from MicrogramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MicrogramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromMicrogramsPerMole(double microgramspermole) => new MolarMass(microgramspermole, MolarMassUnit.MicrogramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from MilligramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MilligramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromMilligramsPerMole(double milligramspermole) => new MolarMass(milligramspermole, MolarMassUnit.MilligramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from NanogramsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.NanogramPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromNanogramsPerMole(double nanogramspermole) => new MolarMass(nanogramspermole, MolarMassUnit.NanogramPerMole);
 
         /// <summary>
-        ///     Get MolarMass from PoundsPerMole.
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.PoundPerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromPoundsPerMole(double poundspermole) => new MolarMass(poundspermole, MolarMassUnit.PoundPerMole);
@@ -252,23 +252,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case MolarMassUnit.CentigramPerMole: return (_value/1e3) * 1e-2d;
-                case MolarMassUnit.DecagramPerMole: return (_value/1e3) * 1e1d;
-                case MolarMassUnit.DecigramPerMole: return (_value/1e3) * 1e-1d;
-                case MolarMassUnit.GramPerMole: return _value/1e3;
-                case MolarMassUnit.HectogramPerMole: return (_value/1e3) * 1e2d;
-                case MolarMassUnit.KilogramPerMole: return (_value/1e3) * 1e3d;
-                case MolarMassUnit.KilopoundPerMole: return (_value*0.45359237) * 1e3d;
-                case MolarMassUnit.MegapoundPerMole: return (_value*0.45359237) * 1e6d;
-                case MolarMassUnit.MicrogramPerMole: return (_value/1e3) * 1e-6d;
-                case MolarMassUnit.MilligramPerMole: return (_value/1e3) * 1e-3d;
-                case MolarMassUnit.NanogramPerMole: return (_value/1e3) * 1e-9d;
-                case MolarMassUnit.PoundPerMole: return _value*0.45359237;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                MolarMassUnit.CentigramPerMole => (_value / 1e3) * 1e-2d,
+                MolarMassUnit.DecagramPerMole => (_value / 1e3) * 1e1d,
+                MolarMassUnit.DecigramPerMole => (_value / 1e3) * 1e-1d,
+                MolarMassUnit.GramPerMole => _value / 1e3,
+                MolarMassUnit.HectogramPerMole => (_value / 1e3) * 1e2d,
+                MolarMassUnit.KilogramPerMole => (_value / 1e3) * 1e3d,
+                MolarMassUnit.KilopoundPerMole => (_value * 0.45359237) * 1e3d,
+                MolarMassUnit.MegapoundPerMole => (_value * 0.45359237) * 1e6d,
+                MolarMassUnit.MicrogramPerMole => (_value / 1e3) * 1e-6d,
+                MolarMassUnit.MilligramPerMole => (_value / 1e3) * 1e-3d,
+                MolarMassUnit.NanogramPerMole => (_value / 1e3) * 1e-9d,
+                MolarMassUnit.PoundPerMole => _value * 0.45359237,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(MolarMassUnit unit)
@@ -278,23 +277,22 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case MolarMassUnit.CentigramPerMole: return (baseUnitValue*1e3) / 1e-2d;
-                case MolarMassUnit.DecagramPerMole: return (baseUnitValue*1e3) / 1e1d;
-                case MolarMassUnit.DecigramPerMole: return (baseUnitValue*1e3) / 1e-1d;
-                case MolarMassUnit.GramPerMole: return baseUnitValue*1e3;
-                case MolarMassUnit.HectogramPerMole: return (baseUnitValue*1e3) / 1e2d;
-                case MolarMassUnit.KilogramPerMole: return (baseUnitValue*1e3) / 1e3d;
-                case MolarMassUnit.KilopoundPerMole: return (baseUnitValue/0.45359237) / 1e3d;
-                case MolarMassUnit.MegapoundPerMole: return (baseUnitValue/0.45359237) / 1e6d;
-                case MolarMassUnit.MicrogramPerMole: return (baseUnitValue*1e3) / 1e-6d;
-                case MolarMassUnit.MilligramPerMole: return (baseUnitValue*1e3) / 1e-3d;
-                case MolarMassUnit.NanogramPerMole: return (baseUnitValue*1e3) / 1e-9d;
-                case MolarMassUnit.PoundPerMole: return baseUnitValue/0.45359237;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                MolarMassUnit.CentigramPerMole => (baseUnitValue * 1e3) / 1e-2d,
+                MolarMassUnit.DecagramPerMole => (baseUnitValue * 1e3) / 1e1d,
+                MolarMassUnit.DecigramPerMole => (baseUnitValue * 1e3) / 1e-1d,
+                MolarMassUnit.GramPerMole => baseUnitValue * 1e3,
+                MolarMassUnit.HectogramPerMole => (baseUnitValue * 1e3) / 1e2d,
+                MolarMassUnit.KilogramPerMole => (baseUnitValue * 1e3) / 1e3d,
+                MolarMassUnit.KilopoundPerMole => (baseUnitValue / 0.45359237) / 1e3d,
+                MolarMassUnit.MegapoundPerMole => (baseUnitValue / 0.45359237) / 1e6d,
+                MolarMassUnit.MicrogramPerMole => (baseUnitValue * 1e3) / 1e-6d,
+                MolarMassUnit.MilligramPerMole => (baseUnitValue * 1e3) / 1e-3d,
+                MolarMassUnit.NanogramPerMole => (baseUnitValue * 1e3) / 1e-9d,
+                MolarMassUnit.PoundPerMole => baseUnitValue / 0.45359237,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

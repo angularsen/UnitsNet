@@ -164,12 +164,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get VolumeFlowPerArea in CubicFeetPerMinutePerSquareFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>
         /// </summary>
         public double CubicFeetPerMinutePerSquareFoot => As(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
 
         /// <summary>
-        ///     Get VolumeFlowPerArea in CubicMetersPerSecondPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>
         /// </summary>
         public double CubicMetersPerSecondPerSquareMeter => As(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
 
@@ -210,7 +210,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get VolumeFlowPerArea from CubicFeetPerMinutePerSquareFoot.
+        ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -220,7 +220,7 @@ namespace UnitsNet
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
         }
         /// <summary>
-        ///     Get VolumeFlowPerArea from CubicMetersPerSecondPerSquareMeter.
+        ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -520,7 +520,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return _value/196.850394;
+                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return _value / 196.850394;
                 case VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -536,7 +536,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return baseUnitValue*196.850394;
+                case VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot: return baseUnitValue * 196.850394;
                 case VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

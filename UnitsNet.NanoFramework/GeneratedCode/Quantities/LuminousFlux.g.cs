@@ -81,7 +81,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get LuminousFlux in Lumens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousFluxUnit.Lumen"/>
         /// </summary>
         public double Lumens => As(LuminousFluxUnit.Lumen);
 
@@ -90,7 +90,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get LuminousFlux from Lumens.
+        ///     Creates a <see cref="LuminousFlux"/> from <see cref="LuminousFluxUnit.Lumen"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LuminousFlux FromLumens(double lumens) => new LuminousFlux(lumens, LuminousFluxUnit.Lumen);
@@ -134,12 +134,11 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case LuminousFluxUnit.Lumen: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                LuminousFluxUnit.Lumen => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(LuminousFluxUnit unit)
@@ -149,12 +148,11 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case LuminousFluxUnit.Lumen: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                LuminousFluxUnit.Lumen => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

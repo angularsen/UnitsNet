@@ -167,52 +167,52 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseCentimeter"/>
         /// </summary>
         public double InverseCentimeters => As(ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseFoot"/>
         /// </summary>
         public double InverseFeet => As(ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseInch"/>
         /// </summary>
         public double InverseInches => As(ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMeter"/>
         /// </summary>
         public double InverseMeters => As(ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMicroinches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMicroinch"/>
         /// </summary>
         public double InverseMicroinches => As(ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMils.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMil"/>
         /// </summary>
         public double InverseMils => As(ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMile"/>
         /// </summary>
         public double InverseMiles => As(ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMillimeter"/>
         /// </summary>
         public double InverseMillimeters => As(ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseUsSurveyFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>
         /// </summary>
         public double InverseUsSurveyFeet => As(ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseYards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseYard"/>
         /// </summary>
         public double InverseYards => As(ReciprocalLengthUnit.InverseYard);
 
@@ -261,7 +261,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseCentimeters.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -271,7 +271,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseCentimeter);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseFeet.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -281,7 +281,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseFoot);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseInches.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -291,7 +291,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseInch);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseMeters.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -301,7 +301,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseMicroinches.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMicroinch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -311,7 +311,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMicroinch);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseMils.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -321,7 +321,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMil);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseMiles.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -331,7 +331,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMile);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseMillimeters.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -341,7 +341,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMillimeter);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseUsSurveyFeet.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -351,7 +351,7 @@ namespace UnitsNet
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseUsSurveyFoot);
         }
         /// <summary>
-        ///     Get ReciprocalLength from InverseYards.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -651,16 +651,16 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case ReciprocalLengthUnit.InverseCentimeter: return _value*1e2;
-                case ReciprocalLengthUnit.InverseFoot: return _value/0.3048;
-                case ReciprocalLengthUnit.InverseInch: return _value/2.54e-2;
+                case ReciprocalLengthUnit.InverseCentimeter: return _value * 1e2;
+                case ReciprocalLengthUnit.InverseFoot: return _value / 0.3048;
+                case ReciprocalLengthUnit.InverseInch: return _value / 2.54e-2;
                 case ReciprocalLengthUnit.InverseMeter: return _value;
-                case ReciprocalLengthUnit.InverseMicroinch: return _value/2.54e-8;
-                case ReciprocalLengthUnit.InverseMil: return _value/2.54e-5;
-                case ReciprocalLengthUnit.InverseMile: return _value/1609.34;
-                case ReciprocalLengthUnit.InverseMillimeter: return _value*1e3;
-                case ReciprocalLengthUnit.InverseUsSurveyFoot: return _value*3937/1200;
-                case ReciprocalLengthUnit.InverseYard: return _value/0.9144;
+                case ReciprocalLengthUnit.InverseMicroinch: return _value / 2.54e-8;
+                case ReciprocalLengthUnit.InverseMil: return _value / 2.54e-5;
+                case ReciprocalLengthUnit.InverseMile: return _value / 1609.34;
+                case ReciprocalLengthUnit.InverseMillimeter: return _value * 1e3;
+                case ReciprocalLengthUnit.InverseUsSurveyFoot: return _value * 3937 / 1200;
+                case ReciprocalLengthUnit.InverseYard: return _value / 0.9144;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -675,16 +675,16 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case ReciprocalLengthUnit.InverseCentimeter: return baseUnitValue/1e2;
-                case ReciprocalLengthUnit.InverseFoot: return baseUnitValue*0.3048;
-                case ReciprocalLengthUnit.InverseInch: return baseUnitValue*2.54e-2;
+                case ReciprocalLengthUnit.InverseCentimeter: return baseUnitValue / 1e2;
+                case ReciprocalLengthUnit.InverseFoot: return baseUnitValue * 0.3048;
+                case ReciprocalLengthUnit.InverseInch: return baseUnitValue * 2.54e-2;
                 case ReciprocalLengthUnit.InverseMeter: return baseUnitValue;
-                case ReciprocalLengthUnit.InverseMicroinch: return baseUnitValue*2.54e-8;
-                case ReciprocalLengthUnit.InverseMil: return baseUnitValue*2.54e-5;
-                case ReciprocalLengthUnit.InverseMile: return baseUnitValue*1609.34;
-                case ReciprocalLengthUnit.InverseMillimeter: return baseUnitValue/1e3;
-                case ReciprocalLengthUnit.InverseUsSurveyFoot: return baseUnitValue*1200/3937;
-                case ReciprocalLengthUnit.InverseYard: return baseUnitValue*0.9144;
+                case ReciprocalLengthUnit.InverseMicroinch: return baseUnitValue * 2.54e-8;
+                case ReciprocalLengthUnit.InverseMil: return baseUnitValue * 2.54e-5;
+                case ReciprocalLengthUnit.InverseMile: return baseUnitValue * 1609.34;
+                case ReciprocalLengthUnit.InverseMillimeter: return baseUnitValue / 1e3;
+                case ReciprocalLengthUnit.InverseUsSurveyFoot: return baseUnitValue * 1200 / 3937;
+                case ReciprocalLengthUnit.InverseYard: return baseUnitValue * 0.9144;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

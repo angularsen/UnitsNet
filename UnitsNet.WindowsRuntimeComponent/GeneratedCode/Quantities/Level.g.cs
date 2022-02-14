@@ -164,12 +164,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Level in Decibels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
         /// </summary>
         public double Decibels => As(LevelUnit.Decibel);
 
         /// <summary>
-        ///     Get Level in Nepers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
         /// </summary>
         public double Nepers => As(LevelUnit.Neper);
 
@@ -210,7 +210,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Level from Decibels.
+        ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -220,7 +220,7 @@ namespace UnitsNet
             return new Level(value, LevelUnit.Decibel);
         }
         /// <summary>
-        ///     Get Level from Nepers.
+        ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -521,7 +521,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case LevelUnit.Decibel: return _value;
-                case LevelUnit.Neper: return (1/0.115129254)*_value;
+                case LevelUnit.Neper: return (1 / 0.115129254) * _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -537,7 +537,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case LevelUnit.Decibel: return baseUnitValue;
-                case LevelUnit.Neper: return 0.115129254*baseUnitValue;
+                case LevelUnit.Neper: return 0.115129254 * baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

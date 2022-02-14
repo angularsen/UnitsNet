@@ -78,42 +78,42 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCurrent in Amperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Ampere"/>
         /// </summary>
         public double Amperes => As(ElectricCurrentUnit.Ampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Centiamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Centiampere"/>
         /// </summary>
         public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Kiloamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Kiloampere"/>
         /// </summary>
         public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Megaamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Megaampere"/>
         /// </summary>
         public double Megaamperes => As(ElectricCurrentUnit.Megaampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Microamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Microampere"/>
         /// </summary>
         public double Microamperes => As(ElectricCurrentUnit.Microampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Milliamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Milliampere"/>
         /// </summary>
         public double Milliamperes => As(ElectricCurrentUnit.Milliampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Nanoamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Nanoampere"/>
         /// </summary>
         public double Nanoamperes => As(ElectricCurrentUnit.Nanoampere);
 
         /// <summary>
-        ///     Get ElectricCurrent in Picoamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Picoampere"/>
         /// </summary>
         public double Picoamperes => As(ElectricCurrentUnit.Picoampere);
 
@@ -122,49 +122,49 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCurrent from Amperes.
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Ampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromAmperes(double amperes) => new ElectricCurrent(amperes, ElectricCurrentUnit.Ampere);
 
         /// <summary>
-        ///     Get ElectricCurrent from Centiamperes.
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Centiampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromCentiamperes(double centiamperes) => new ElectricCurrent(centiamperes, ElectricCurrentUnit.Centiampere);
 
         /// <summary>
-        ///     Get ElectricCurrent from Kiloamperes.
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Kiloampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromKiloamperes(double kiloamperes) => new ElectricCurrent(kiloamperes, ElectricCurrentUnit.Kiloampere);
 
         /// <summary>
-        ///     Get ElectricCurrent from Megaamperes.
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Megaampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMegaamperes(double megaamperes) => new ElectricCurrent(megaamperes, ElectricCurrentUnit.Megaampere);
 
         /// <summary>
-        ///     Get ElectricCurrent from Microamperes.
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Microampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMicroamperes(double microamperes) => new ElectricCurrent(microamperes, ElectricCurrentUnit.Microampere);
 
         /// <summary>
-        ///     Get ElectricCurrent from Milliamperes.
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Milliampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMilliamperes(double milliamperes) => new ElectricCurrent(milliamperes, ElectricCurrentUnit.Milliampere);
 
         /// <summary>
-        ///     Get ElectricCurrent from Nanoamperes.
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Nanoampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromNanoamperes(double nanoamperes) => new ElectricCurrent(nanoamperes, ElectricCurrentUnit.Nanoampere);
 
         /// <summary>
-        ///     Get ElectricCurrent from Picoamperes.
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Picoampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromPicoamperes(double picoamperes) => new ElectricCurrent(picoamperes, ElectricCurrentUnit.Picoampere);
@@ -208,19 +208,18 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricCurrentUnit.Ampere: return _value;
-                case ElectricCurrentUnit.Centiampere: return (_value) * 1e-2d;
-                case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
-                case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricCurrentUnit.Ampere => _value,
+                ElectricCurrentUnit.Centiampere => (_value) * 1e-2d,
+                ElectricCurrentUnit.Kiloampere => (_value) * 1e3d,
+                ElectricCurrentUnit.Megaampere => (_value) * 1e6d,
+                ElectricCurrentUnit.Microampere => (_value) * 1e-6d,
+                ElectricCurrentUnit.Milliampere => (_value) * 1e-3d,
+                ElectricCurrentUnit.Nanoampere => (_value) * 1e-9d,
+                ElectricCurrentUnit.Picoampere => (_value) * 1e-12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricCurrentUnit unit)
@@ -230,19 +229,18 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricCurrentUnit.Ampere: return baseUnitValue;
-                case ElectricCurrentUnit.Centiampere: return (baseUnitValue) / 1e-2d;
-                case ElectricCurrentUnit.Kiloampere: return (baseUnitValue) / 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (baseUnitValue) / 1e6d;
-                case ElectricCurrentUnit.Microampere: return (baseUnitValue) / 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (baseUnitValue) / 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (baseUnitValue) / 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (baseUnitValue) / 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricCurrentUnit.Ampere => baseUnitValue,
+                ElectricCurrentUnit.Centiampere => (baseUnitValue) / 1e-2d,
+                ElectricCurrentUnit.Kiloampere => (baseUnitValue) / 1e3d,
+                ElectricCurrentUnit.Megaampere => (baseUnitValue) / 1e6d,
+                ElectricCurrentUnit.Microampere => (baseUnitValue) / 1e-6d,
+                ElectricCurrentUnit.Milliampere => (baseUnitValue) / 1e-3d,
+                ElectricCurrentUnit.Nanoampere => (baseUnitValue) / 1e-9d,
+                ElectricCurrentUnit.Picoampere => (baseUnitValue) / 1e-12d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

@@ -78,12 +78,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get PowerRatio in DecibelMilliwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>
         /// </summary>
         public double DecibelMilliwatts => As(PowerRatioUnit.DecibelMilliwatt);
 
         /// <summary>
-        ///     Get PowerRatio in DecibelWatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelWatt"/>
         /// </summary>
         public double DecibelWatts => As(PowerRatioUnit.DecibelWatt);
 
@@ -92,13 +92,13 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get PowerRatio from DecibelMilliwatts.
+        ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelMilliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelMilliwatts(double decibelmilliwatts) => new PowerRatio(decibelmilliwatts, PowerRatioUnit.DecibelMilliwatt);
 
         /// <summary>
-        ///     Get PowerRatio from DecibelWatts.
+        ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelWatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelWatts(double decibelwatts) => new PowerRatio(decibelwatts, PowerRatioUnit.DecibelWatt);
@@ -142,13 +142,12 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case PowerRatioUnit.DecibelMilliwatt: return _value - 30;
-                case PowerRatioUnit.DecibelWatt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                PowerRatioUnit.DecibelMilliwatt => _value - 30,
+                PowerRatioUnit.DecibelWatt => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(PowerRatioUnit unit)
@@ -158,13 +157,12 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case PowerRatioUnit.DecibelMilliwatt: return baseUnitValue + 30;
-                case PowerRatioUnit.DecibelWatt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                PowerRatioUnit.DecibelMilliwatt => baseUnitValue + 30,
+                PowerRatioUnit.DecibelWatt => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

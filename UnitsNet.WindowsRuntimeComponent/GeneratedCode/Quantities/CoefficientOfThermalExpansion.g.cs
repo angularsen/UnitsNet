@@ -164,17 +164,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion in InverseDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>
         /// </summary>
         public double InverseDegreeCelsius => As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion in InverseDegreeFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>
         /// </summary>
         public double InverseDegreeFahrenheit => As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion in InverseKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>
         /// </summary>
         public double InverseKelvin => As(CoefficientOfThermalExpansionUnit.InverseKelvin);
 
@@ -216,7 +216,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion from InverseDegreeCelsius.
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -226,7 +226,7 @@ namespace UnitsNet
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
         }
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion from InverseDegreeFahrenheit.
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -236,7 +236,7 @@ namespace UnitsNet
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
         }
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion from InverseKelvin.
+        ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -537,7 +537,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return _value;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value*9/5;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value * 9 / 5;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -554,7 +554,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return baseUnitValue;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue*5/9;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue * 5 / 9;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

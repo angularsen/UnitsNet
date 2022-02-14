@@ -164,12 +164,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get PowerRatio in DecibelMilliwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>
         /// </summary>
         public double DecibelMilliwatts => As(PowerRatioUnit.DecibelMilliwatt);
 
         /// <summary>
-        ///     Get PowerRatio in DecibelWatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelWatt"/>
         /// </summary>
         public double DecibelWatts => As(PowerRatioUnit.DecibelWatt);
 
@@ -210,7 +210,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get PowerRatio from DecibelMilliwatts.
+        ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelMilliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -220,7 +220,7 @@ namespace UnitsNet
             return new PowerRatio(value, PowerRatioUnit.DecibelMilliwatt);
         }
         /// <summary>
-        ///     Get PowerRatio from DecibelWatts.
+        ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelWatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

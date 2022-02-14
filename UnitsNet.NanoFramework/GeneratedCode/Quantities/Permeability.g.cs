@@ -81,7 +81,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Permeability in HenriesPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PermeabilityUnit.HenryPerMeter"/>
         /// </summary>
         public double HenriesPerMeter => As(PermeabilityUnit.HenryPerMeter);
 
@@ -90,7 +90,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Permeability from HenriesPerMeter.
+        ///     Creates a <see cref="Permeability"/> from <see cref="PermeabilityUnit.HenryPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Permeability FromHenriesPerMeter(double henriespermeter) => new Permeability(henriespermeter, PermeabilityUnit.HenryPerMeter);
@@ -134,12 +134,11 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case PermeabilityUnit.HenryPerMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                PermeabilityUnit.HenryPerMeter => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(PermeabilityUnit unit)
@@ -149,12 +148,11 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case PermeabilityUnit.HenryPerMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                PermeabilityUnit.HenryPerMeter => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

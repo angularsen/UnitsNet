@@ -164,92 +164,92 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get HeatFlux in BtusPerHourSquareFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>
         /// </summary>
         public double BtusPerHourSquareFoot => As(HeatFluxUnit.BtuPerHourSquareFoot);
 
         /// <summary>
-        ///     Get HeatFlux in BtusPerMinuteSquareFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>
         /// </summary>
         public double BtusPerMinuteSquareFoot => As(HeatFluxUnit.BtuPerMinuteSquareFoot);
 
         /// <summary>
-        ///     Get HeatFlux in BtusPerSecondSquareFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>
         /// </summary>
         public double BtusPerSecondSquareFoot => As(HeatFluxUnit.BtuPerSecondSquareFoot);
 
         /// <summary>
-        ///     Get HeatFlux in BtusPerSecondSquareInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>
         /// </summary>
         public double BtusPerSecondSquareInch => As(HeatFluxUnit.BtuPerSecondSquareInch);
 
         /// <summary>
-        ///     Get HeatFlux in CaloriesPerSecondSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>
         /// </summary>
         public double CaloriesPerSecondSquareCentimeter => As(HeatFluxUnit.CaloriePerSecondSquareCentimeter);
 
         /// <summary>
-        ///     Get HeatFlux in CentiwattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>
         /// </summary>
         public double CentiwattsPerSquareMeter => As(HeatFluxUnit.CentiwattPerSquareMeter);
 
         /// <summary>
-        ///     Get HeatFlux in DeciwattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>
         /// </summary>
         public double DeciwattsPerSquareMeter => As(HeatFluxUnit.DeciwattPerSquareMeter);
 
         /// <summary>
-        ///     Get HeatFlux in KilocaloriesPerHourSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>
         /// </summary>
         public double KilocaloriesPerHourSquareMeter => As(HeatFluxUnit.KilocaloriePerHourSquareMeter);
 
         /// <summary>
-        ///     Get HeatFlux in KilocaloriesPerSecondSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>
         /// </summary>
         public double KilocaloriesPerSecondSquareCentimeter => As(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
 
         /// <summary>
-        ///     Get HeatFlux in KilowattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>
         /// </summary>
         public double KilowattsPerSquareMeter => As(HeatFluxUnit.KilowattPerSquareMeter);
 
         /// <summary>
-        ///     Get HeatFlux in MicrowattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>
         /// </summary>
         public double MicrowattsPerSquareMeter => As(HeatFluxUnit.MicrowattPerSquareMeter);
 
         /// <summary>
-        ///     Get HeatFlux in MilliwattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>
         /// </summary>
         public double MilliwattsPerSquareMeter => As(HeatFluxUnit.MilliwattPerSquareMeter);
 
         /// <summary>
-        ///     Get HeatFlux in NanowattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>
         /// </summary>
         public double NanowattsPerSquareMeter => As(HeatFluxUnit.NanowattPerSquareMeter);
 
         /// <summary>
-        ///     Get HeatFlux in PoundsForcePerFootSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>
         /// </summary>
         public double PoundsForcePerFootSecond => As(HeatFluxUnit.PoundForcePerFootSecond);
 
         /// <summary>
-        ///     Get HeatFlux in PoundsPerSecondCubed.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.PoundPerSecondCubed"/>
         /// </summary>
         public double PoundsPerSecondCubed => As(HeatFluxUnit.PoundPerSecondCubed);
 
         /// <summary>
-        ///     Get HeatFlux in WattsPerSquareFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareFoot"/>
         /// </summary>
         public double WattsPerSquareFoot => As(HeatFluxUnit.WattPerSquareFoot);
 
         /// <summary>
-        ///     Get HeatFlux in WattsPerSquareInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareInch"/>
         /// </summary>
         public double WattsPerSquareInch => As(HeatFluxUnit.WattPerSquareInch);
 
         /// <summary>
-        ///     Get HeatFlux in WattsPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareMeter"/>
         /// </summary>
         public double WattsPerSquareMeter => As(HeatFluxUnit.WattPerSquareMeter);
 
@@ -306,7 +306,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get HeatFlux from BtusPerHourSquareFoot.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -316,7 +316,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.BtuPerHourSquareFoot);
         }
         /// <summary>
-        ///     Get HeatFlux from BtusPerMinuteSquareFoot.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -326,7 +326,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.BtuPerMinuteSquareFoot);
         }
         /// <summary>
-        ///     Get HeatFlux from BtusPerSecondSquareFoot.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -336,7 +336,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.BtuPerSecondSquareFoot);
         }
         /// <summary>
-        ///     Get HeatFlux from BtusPerSecondSquareInch.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -346,7 +346,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.BtuPerSecondSquareInch);
         }
         /// <summary>
-        ///     Get HeatFlux from CaloriesPerSecondSquareCentimeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -356,7 +356,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.CaloriePerSecondSquareCentimeter);
         }
         /// <summary>
-        ///     Get HeatFlux from CentiwattsPerSquareMeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -366,7 +366,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.CentiwattPerSquareMeter);
         }
         /// <summary>
-        ///     Get HeatFlux from DeciwattsPerSquareMeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -376,7 +376,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.DeciwattPerSquareMeter);
         }
         /// <summary>
-        ///     Get HeatFlux from KilocaloriesPerHourSquareMeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -386,7 +386,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.KilocaloriePerHourSquareMeter);
         }
         /// <summary>
-        ///     Get HeatFlux from KilocaloriesPerSecondSquareCentimeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -396,7 +396,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
         }
         /// <summary>
-        ///     Get HeatFlux from KilowattsPerSquareMeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -406,7 +406,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.KilowattPerSquareMeter);
         }
         /// <summary>
-        ///     Get HeatFlux from MicrowattsPerSquareMeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -416,7 +416,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.MicrowattPerSquareMeter);
         }
         /// <summary>
-        ///     Get HeatFlux from MilliwattsPerSquareMeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -426,7 +426,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.MilliwattPerSquareMeter);
         }
         /// <summary>
-        ///     Get HeatFlux from NanowattsPerSquareMeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -436,7 +436,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.NanowattPerSquareMeter);
         }
         /// <summary>
-        ///     Get HeatFlux from PoundsForcePerFootSecond.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -446,7 +446,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.PoundForcePerFootSecond);
         }
         /// <summary>
-        ///     Get HeatFlux from PoundsPerSecondCubed.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.PoundPerSecondCubed"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -456,7 +456,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.PoundPerSecondCubed);
         }
         /// <summary>
-        ///     Get HeatFlux from WattsPerSquareFoot.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -466,7 +466,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareFoot);
         }
         /// <summary>
-        ///     Get HeatFlux from WattsPerSquareInch.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -476,7 +476,7 @@ namespace UnitsNet
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareInch);
         }
         /// <summary>
-        ///     Get HeatFlux from WattsPerSquareMeter.
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -776,23 +776,23 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case HeatFluxUnit.BtuPerHourSquareFoot: return _value*3.15459075;
-                case HeatFluxUnit.BtuPerMinuteSquareFoot: return _value*1.89275445e2;
-                case HeatFluxUnit.BtuPerSecondSquareFoot: return _value*1.13565267e4;
-                case HeatFluxUnit.BtuPerSecondSquareInch: return _value*1.63533984e6;
-                case HeatFluxUnit.CaloriePerSecondSquareCentimeter: return _value*4.1868e4;
+                case HeatFluxUnit.BtuPerHourSquareFoot: return _value * 3.15459075;
+                case HeatFluxUnit.BtuPerMinuteSquareFoot: return _value * 1.89275445e2;
+                case HeatFluxUnit.BtuPerSecondSquareFoot: return _value * 1.13565267e4;
+                case HeatFluxUnit.BtuPerSecondSquareInch: return _value * 1.63533984e6;
+                case HeatFluxUnit.CaloriePerSecondSquareCentimeter: return _value * 4.1868e4;
                 case HeatFluxUnit.CentiwattPerSquareMeter: return (_value) * 1e-2d;
                 case HeatFluxUnit.DeciwattPerSquareMeter: return (_value) * 1e-1d;
-                case HeatFluxUnit.KilocaloriePerHourSquareMeter: return _value*1.163;
-                case HeatFluxUnit.KilocaloriePerSecondSquareCentimeter: return (_value*4.1868e4) * 1e3d;
+                case HeatFluxUnit.KilocaloriePerHourSquareMeter: return _value * 1.163;
+                case HeatFluxUnit.KilocaloriePerSecondSquareCentimeter: return (_value * 4.1868e4) * 1e3d;
                 case HeatFluxUnit.KilowattPerSquareMeter: return (_value) * 1e3d;
                 case HeatFluxUnit.MicrowattPerSquareMeter: return (_value) * 1e-6d;
                 case HeatFluxUnit.MilliwattPerSquareMeter: return (_value) * 1e-3d;
                 case HeatFluxUnit.NanowattPerSquareMeter: return (_value) * 1e-9d;
-                case HeatFluxUnit.PoundForcePerFootSecond: return _value*1.459390293720636e1;
-                case HeatFluxUnit.PoundPerSecondCubed: return _value*4.5359237e-1;
-                case HeatFluxUnit.WattPerSquareFoot: return _value*1.07639e1;
-                case HeatFluxUnit.WattPerSquareInch: return _value*1.5500031e3;
+                case HeatFluxUnit.PoundForcePerFootSecond: return _value * 1.459390293720636e1;
+                case HeatFluxUnit.PoundPerSecondCubed: return _value * 4.5359237e-1;
+                case HeatFluxUnit.WattPerSquareFoot: return _value * 1.07639e1;
+                case HeatFluxUnit.WattPerSquareInch: return _value * 1.5500031e3;
                 case HeatFluxUnit.WattPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -808,23 +808,23 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case HeatFluxUnit.BtuPerHourSquareFoot: return baseUnitValue/3.15459075;
-                case HeatFluxUnit.BtuPerMinuteSquareFoot: return baseUnitValue/1.89275445e2;
-                case HeatFluxUnit.BtuPerSecondSquareFoot: return baseUnitValue/1.13565267e4;
-                case HeatFluxUnit.BtuPerSecondSquareInch: return baseUnitValue/1.63533984e6;
-                case HeatFluxUnit.CaloriePerSecondSquareCentimeter: return baseUnitValue/4.1868e4;
+                case HeatFluxUnit.BtuPerHourSquareFoot: return baseUnitValue / 3.15459075;
+                case HeatFluxUnit.BtuPerMinuteSquareFoot: return baseUnitValue / 1.89275445e2;
+                case HeatFluxUnit.BtuPerSecondSquareFoot: return baseUnitValue / 1.13565267e4;
+                case HeatFluxUnit.BtuPerSecondSquareInch: return baseUnitValue / 1.63533984e6;
+                case HeatFluxUnit.CaloriePerSecondSquareCentimeter: return baseUnitValue / 4.1868e4;
                 case HeatFluxUnit.CentiwattPerSquareMeter: return (baseUnitValue) / 1e-2d;
                 case HeatFluxUnit.DeciwattPerSquareMeter: return (baseUnitValue) / 1e-1d;
-                case HeatFluxUnit.KilocaloriePerHourSquareMeter: return baseUnitValue/1.163;
-                case HeatFluxUnit.KilocaloriePerSecondSquareCentimeter: return (baseUnitValue/4.1868e4) / 1e3d;
+                case HeatFluxUnit.KilocaloriePerHourSquareMeter: return baseUnitValue / 1.163;
+                case HeatFluxUnit.KilocaloriePerSecondSquareCentimeter: return (baseUnitValue / 4.1868e4) / 1e3d;
                 case HeatFluxUnit.KilowattPerSquareMeter: return (baseUnitValue) / 1e3d;
                 case HeatFluxUnit.MicrowattPerSquareMeter: return (baseUnitValue) / 1e-6d;
                 case HeatFluxUnit.MilliwattPerSquareMeter: return (baseUnitValue) / 1e-3d;
                 case HeatFluxUnit.NanowattPerSquareMeter: return (baseUnitValue) / 1e-9d;
-                case HeatFluxUnit.PoundForcePerFootSecond: return baseUnitValue/1.459390293720636e1;
-                case HeatFluxUnit.PoundPerSecondCubed: return baseUnitValue/4.5359237e-1;
-                case HeatFluxUnit.WattPerSquareFoot: return baseUnitValue/1.07639e1;
-                case HeatFluxUnit.WattPerSquareInch: return baseUnitValue/1.5500031e3;
+                case HeatFluxUnit.PoundForcePerFootSecond: return baseUnitValue / 1.459390293720636e1;
+                case HeatFluxUnit.PoundPerSecondCubed: return baseUnitValue / 4.5359237e-1;
+                case HeatFluxUnit.WattPerSquareFoot: return baseUnitValue / 1.07639e1;
+                case HeatFluxUnit.WattPerSquareInch: return baseUnitValue / 1.5500031e3;
                 case HeatFluxUnit.WattPerSquareMeter: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

@@ -164,37 +164,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Entropy in CaloriesPerKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.CaloriePerKelvin"/>
         /// </summary>
         public double CaloriesPerKelvin => As(EntropyUnit.CaloriePerKelvin);
 
         /// <summary>
-        ///     Get Entropy in JoulesPerDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.JoulePerDegreeCelsius"/>
         /// </summary>
         public double JoulesPerDegreeCelsius => As(EntropyUnit.JoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Get Entropy in JoulesPerKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.JoulePerKelvin"/>
         /// </summary>
         public double JoulesPerKelvin => As(EntropyUnit.JoulePerKelvin);
 
         /// <summary>
-        ///     Get Entropy in KilocaloriesPerKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.KilocaloriePerKelvin"/>
         /// </summary>
         public double KilocaloriesPerKelvin => As(EntropyUnit.KilocaloriePerKelvin);
 
         /// <summary>
-        ///     Get Entropy in KilojoulesPerDegreeCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>
         /// </summary>
         public double KilojoulesPerDegreeCelsius => As(EntropyUnit.KilojoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Get Entropy in KilojoulesPerKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.KilojoulePerKelvin"/>
         /// </summary>
         public double KilojoulesPerKelvin => As(EntropyUnit.KilojoulePerKelvin);
 
         /// <summary>
-        ///     Get Entropy in MegajoulesPerKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.MegajoulePerKelvin"/>
         /// </summary>
         public double MegajoulesPerKelvin => As(EntropyUnit.MegajoulePerKelvin);
 
@@ -240,7 +240,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Entropy from CaloriesPerKelvin.
+        ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.CaloriePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -250,7 +250,7 @@ namespace UnitsNet
             return new Entropy(value, EntropyUnit.CaloriePerKelvin);
         }
         /// <summary>
-        ///     Get Entropy from JoulesPerDegreeCelsius.
+        ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -260,7 +260,7 @@ namespace UnitsNet
             return new Entropy(value, EntropyUnit.JoulePerDegreeCelsius);
         }
         /// <summary>
-        ///     Get Entropy from JoulesPerKelvin.
+        ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -270,7 +270,7 @@ namespace UnitsNet
             return new Entropy(value, EntropyUnit.JoulePerKelvin);
         }
         /// <summary>
-        ///     Get Entropy from KilocaloriesPerKelvin.
+        ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilocaloriePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new Entropy(value, EntropyUnit.KilocaloriePerKelvin);
         }
         /// <summary>
-        ///     Get Entropy from KilojoulesPerDegreeCelsius.
+        ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -290,7 +290,7 @@ namespace UnitsNet
             return new Entropy(value, EntropyUnit.KilojoulePerDegreeCelsius);
         }
         /// <summary>
-        ///     Get Entropy from KilojoulesPerKelvin.
+        ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -300,7 +300,7 @@ namespace UnitsNet
             return new Entropy(value, EntropyUnit.KilojoulePerKelvin);
         }
         /// <summary>
-        ///     Get Entropy from MegajoulesPerKelvin.
+        ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.MegajoulePerKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -600,10 +600,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case EntropyUnit.CaloriePerKelvin: return _value*4.184;
+                case EntropyUnit.CaloriePerKelvin: return _value * 4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return _value;
                 case EntropyUnit.JoulePerKelvin: return _value;
-                case EntropyUnit.KilocaloriePerKelvin: return (_value*4.184) * 1e3d;
+                case EntropyUnit.KilocaloriePerKelvin: return (_value * 4.184) * 1e3d;
                 case EntropyUnit.KilojoulePerDegreeCelsius: return (_value) * 1e3d;
                 case EntropyUnit.KilojoulePerKelvin: return (_value) * 1e3d;
                 case EntropyUnit.MegajoulePerKelvin: return (_value) * 1e6d;
@@ -621,10 +621,10 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case EntropyUnit.CaloriePerKelvin: return baseUnitValue/4.184;
+                case EntropyUnit.CaloriePerKelvin: return baseUnitValue / 4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return baseUnitValue;
                 case EntropyUnit.JoulePerKelvin: return baseUnitValue;
-                case EntropyUnit.KilocaloriePerKelvin: return (baseUnitValue/4.184) / 1e3d;
+                case EntropyUnit.KilocaloriePerKelvin: return (baseUnitValue / 4.184) / 1e3d;
                 case EntropyUnit.KilojoulePerDegreeCelsius: return (baseUnitValue) / 1e3d;
                 case EntropyUnit.KilojoulePerKelvin: return (baseUnitValue) / 1e3d;
                 case EntropyUnit.MegajoulePerKelvin: return (baseUnitValue) / 1e6d;

@@ -192,22 +192,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ApparentPower in Gigavoltamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Gigavoltampere"/>
         /// </summary>
         public double Gigavoltamperes => As(ApparentPowerUnit.Gigavoltampere);
 
         /// <summary>
-        ///     Get ApparentPower in Kilovoltamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Kilovoltampere"/>
         /// </summary>
         public double Kilovoltamperes => As(ApparentPowerUnit.Kilovoltampere);
 
         /// <summary>
-        ///     Get ApparentPower in Megavoltamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Megavoltampere"/>
         /// </summary>
         public double Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
 
         /// <summary>
-        ///     Get ApparentPower in Voltamperes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Voltampere"/>
         /// </summary>
         public double Voltamperes => As(ApparentPowerUnit.Voltampere);
 
@@ -268,7 +268,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ApparentPower from Gigavoltamperes.
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Gigavoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromGigavoltamperes(QuantityValue gigavoltamperes)
@@ -277,7 +277,7 @@ namespace UnitsNet
             return new ApparentPower(value, ApparentPowerUnit.Gigavoltampere);
         }
         /// <summary>
-        ///     Get ApparentPower from Kilovoltamperes.
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Kilovoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromKilovoltamperes(QuantityValue kilovoltamperes)
@@ -286,7 +286,7 @@ namespace UnitsNet
             return new ApparentPower(value, ApparentPowerUnit.Kilovoltampere);
         }
         /// <summary>
-        ///     Get ApparentPower from Megavoltamperes.
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Megavoltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromMegavoltamperes(QuantityValue megavoltamperes)
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new ApparentPower(value, ApparentPowerUnit.Megavoltampere);
         }
         /// <summary>
-        ///     Get ApparentPower from Voltamperes.
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromVoltamperes(QuantityValue voltamperes)

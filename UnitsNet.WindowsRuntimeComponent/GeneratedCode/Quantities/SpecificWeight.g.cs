@@ -167,87 +167,87 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SpecificWeight in KilogramsForcePerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/>
         /// </summary>
         public double KilogramsForcePerCubicCentimeter => As(SpecificWeightUnit.KilogramForcePerCubicCentimeter);
 
         /// <summary>
-        ///     Get SpecificWeight in KilogramsForcePerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/>
         /// </summary>
         public double KilogramsForcePerCubicMeter => As(SpecificWeightUnit.KilogramForcePerCubicMeter);
 
         /// <summary>
-        ///     Get SpecificWeight in KilogramsForcePerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/>
         /// </summary>
         public double KilogramsForcePerCubicMillimeter => As(SpecificWeightUnit.KilogramForcePerCubicMillimeter);
 
         /// <summary>
-        ///     Get SpecificWeight in KilonewtonsPerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/>
         /// </summary>
         public double KilonewtonsPerCubicCentimeter => As(SpecificWeightUnit.KilonewtonPerCubicCentimeter);
 
         /// <summary>
-        ///     Get SpecificWeight in KilonewtonsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/>
         /// </summary>
         public double KilonewtonsPerCubicMeter => As(SpecificWeightUnit.KilonewtonPerCubicMeter);
 
         /// <summary>
-        ///     Get SpecificWeight in KilonewtonsPerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/>
         /// </summary>
         public double KilonewtonsPerCubicMillimeter => As(SpecificWeightUnit.KilonewtonPerCubicMillimeter);
 
         /// <summary>
-        ///     Get SpecificWeight in KilopoundsForcePerCubicFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/>
         /// </summary>
         public double KilopoundsForcePerCubicFoot => As(SpecificWeightUnit.KilopoundForcePerCubicFoot);
 
         /// <summary>
-        ///     Get SpecificWeight in KilopoundsForcePerCubicInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/>
         /// </summary>
         public double KilopoundsForcePerCubicInch => As(SpecificWeightUnit.KilopoundForcePerCubicInch);
 
         /// <summary>
-        ///     Get SpecificWeight in MeganewtonsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/>
         /// </summary>
         public double MeganewtonsPerCubicMeter => As(SpecificWeightUnit.MeganewtonPerCubicMeter);
 
         /// <summary>
-        ///     Get SpecificWeight in NewtonsPerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/>
         /// </summary>
         public double NewtonsPerCubicCentimeter => As(SpecificWeightUnit.NewtonPerCubicCentimeter);
 
         /// <summary>
-        ///     Get SpecificWeight in NewtonsPerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/>
         /// </summary>
         public double NewtonsPerCubicMeter => As(SpecificWeightUnit.NewtonPerCubicMeter);
 
         /// <summary>
-        ///     Get SpecificWeight in NewtonsPerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/>
         /// </summary>
         public double NewtonsPerCubicMillimeter => As(SpecificWeightUnit.NewtonPerCubicMillimeter);
 
         /// <summary>
-        ///     Get SpecificWeight in PoundsForcePerCubicFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/>
         /// </summary>
         public double PoundsForcePerCubicFoot => As(SpecificWeightUnit.PoundForcePerCubicFoot);
 
         /// <summary>
-        ///     Get SpecificWeight in PoundsForcePerCubicInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/>
         /// </summary>
         public double PoundsForcePerCubicInch => As(SpecificWeightUnit.PoundForcePerCubicInch);
 
         /// <summary>
-        ///     Get SpecificWeight in TonnesForcePerCubicCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/>
         /// </summary>
         public double TonnesForcePerCubicCentimeter => As(SpecificWeightUnit.TonneForcePerCubicCentimeter);
 
         /// <summary>
-        ///     Get SpecificWeight in TonnesForcePerCubicMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/>
         /// </summary>
         public double TonnesForcePerCubicMeter => As(SpecificWeightUnit.TonneForcePerCubicMeter);
 
         /// <summary>
-        ///     Get SpecificWeight in TonnesForcePerCubicMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/>
         /// </summary>
         public double TonnesForcePerCubicMillimeter => As(SpecificWeightUnit.TonneForcePerCubicMillimeter);
 
@@ -303,7 +303,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -313,7 +313,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicCentimeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicMeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -323,7 +323,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -333,7 +333,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMillimeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -343,7 +343,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicMeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -353,7 +353,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -363,7 +363,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from KilopoundsForcePerCubicFoot.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -373,7 +373,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicFoot);
         }
         /// <summary>
-        ///     Get SpecificWeight from KilopoundsForcePerCubicInch.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -383,7 +383,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicInch);
         }
         /// <summary>
-        ///     Get SpecificWeight from MeganewtonsPerCubicMeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -393,7 +393,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.MeganewtonPerCubicMeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicCentimeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -403,7 +403,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicCentimeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicMeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -413,7 +413,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from NewtonsPerCubicMillimeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -423,7 +423,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMillimeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from PoundsForcePerCubicFoot.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -433,7 +433,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicFoot);
         }
         /// <summary>
-        ///     Get SpecificWeight from PoundsForcePerCubicInch.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -443,7 +443,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicInch);
         }
         /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicCentimeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -453,7 +453,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicCentimeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicMeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -463,7 +463,7 @@ namespace UnitsNet
             return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMeter);
         }
         /// <summary>
-        ///     Get SpecificWeight from TonnesForcePerCubicMillimeter.
+        ///     Creates a <see cref="SpecificWeight"/> from <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -763,23 +763,23 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9.80665e6;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9.80665e9;
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value * 9.80665e6;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value * 9.80665;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value * 9.80665e9;
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value * 1000000) * 1e3d;
                 case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*1.570874638462462e2) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*2.714471375263134e5) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value * 1000000000) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value * 1.570874638462462e2) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value * 2.714471375263134e5) * 1e3d;
                 case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
-                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
+                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value * 1000000;
                 case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
-                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
-                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*1.570874638462462e2;
-                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*2.714471375263134e5;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9.80665e9;
-                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9.80665e3;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9.80665e12;
+                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value * 1000000000;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value * 1.570874638462462e2;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return _value * 2.714471375263134e5;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value * 9.80665e9;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value * 9.80665e3;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value * 9.80665e12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -794,23 +794,23 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return baseUnitValue/9.80665e6;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter: return baseUnitValue/9.80665;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return baseUnitValue/9.80665e9;
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (baseUnitValue*0.000001) / 1e3d;
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return baseUnitValue / 9.80665e6;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return baseUnitValue / 9.80665;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return baseUnitValue / 9.80665e9;
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (baseUnitValue * 0.000001) / 1e3d;
                 case SpecificWeightUnit.KilonewtonPerCubicMeter: return (baseUnitValue) / 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (baseUnitValue*0.000000001) / 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (baseUnitValue/1.570874638462462e2) / 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (baseUnitValue/2.714471375263134e5) / 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (baseUnitValue * 0.000000001) / 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (baseUnitValue / 1.570874638462462e2) / 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (baseUnitValue / 2.714471375263134e5) / 1e3d;
                 case SpecificWeightUnit.MeganewtonPerCubicMeter: return (baseUnitValue) / 1e6d;
-                case SpecificWeightUnit.NewtonPerCubicCentimeter: return baseUnitValue*0.000001;
+                case SpecificWeightUnit.NewtonPerCubicCentimeter: return baseUnitValue * 0.000001;
                 case SpecificWeightUnit.NewtonPerCubicMeter: return baseUnitValue;
-                case SpecificWeightUnit.NewtonPerCubicMillimeter: return baseUnitValue*0.000000001;
-                case SpecificWeightUnit.PoundForcePerCubicFoot: return baseUnitValue/1.570874638462462e2;
-                case SpecificWeightUnit.PoundForcePerCubicInch: return baseUnitValue/2.714471375263134e5;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return baseUnitValue/9.80665e9;
-                case SpecificWeightUnit.TonneForcePerCubicMeter: return baseUnitValue/9.80665e3;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return baseUnitValue/9.80665e12;
+                case SpecificWeightUnit.NewtonPerCubicMillimeter: return baseUnitValue * 0.000000001;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return baseUnitValue / 1.570874638462462e2;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return baseUnitValue / 2.714471375263134e5;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return baseUnitValue / 9.80665e9;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return baseUnitValue / 9.80665e3;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return baseUnitValue / 9.80665e12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

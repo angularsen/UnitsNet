@@ -78,32 +78,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricResistance in Gigaohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Gigaohm"/>
         /// </summary>
         public double Gigaohms => As(ElectricResistanceUnit.Gigaohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Kiloohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Kiloohm"/>
         /// </summary>
         public double Kiloohms => As(ElectricResistanceUnit.Kiloohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Megaohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Megaohm"/>
         /// </summary>
         public double Megaohms => As(ElectricResistanceUnit.Megaohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Microohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Microohm"/>
         /// </summary>
         public double Microohms => As(ElectricResistanceUnit.Microohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Milliohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Milliohm"/>
         /// </summary>
         public double Milliohms => As(ElectricResistanceUnit.Milliohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Ohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Ohm"/>
         /// </summary>
         public double Ohms => As(ElectricResistanceUnit.Ohm);
 
@@ -112,37 +112,37 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricResistance from Gigaohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Gigaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromGigaohms(double gigaohms) => new ElectricResistance(gigaohms, ElectricResistanceUnit.Gigaohm);
 
         /// <summary>
-        ///     Get ElectricResistance from Kiloohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Kiloohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromKiloohms(double kiloohms) => new ElectricResistance(kiloohms, ElectricResistanceUnit.Kiloohm);
 
         /// <summary>
-        ///     Get ElectricResistance from Megaohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Megaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMegaohms(double megaohms) => new ElectricResistance(megaohms, ElectricResistanceUnit.Megaohm);
 
         /// <summary>
-        ///     Get ElectricResistance from Microohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Microohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMicroohms(double microohms) => new ElectricResistance(microohms, ElectricResistanceUnit.Microohm);
 
         /// <summary>
-        ///     Get ElectricResistance from Milliohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Milliohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMilliohms(double milliohms) => new ElectricResistance(milliohms, ElectricResistanceUnit.Milliohm);
 
         /// <summary>
-        ///     Get ElectricResistance from Ohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromOhms(double ohms) => new ElectricResistance(ohms, ElectricResistanceUnit.Ohm);
@@ -186,17 +186,16 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
-                case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
-                case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
-                case ElectricResistanceUnit.Microohm: return (_value) * 1e-6d;
-                case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
-                case ElectricResistanceUnit.Ohm: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricResistanceUnit.Gigaohm => (_value) * 1e9d,
+                ElectricResistanceUnit.Kiloohm => (_value) * 1e3d,
+                ElectricResistanceUnit.Megaohm => (_value) * 1e6d,
+                ElectricResistanceUnit.Microohm => (_value) * 1e-6d,
+                ElectricResistanceUnit.Milliohm => (_value) * 1e-3d,
+                ElectricResistanceUnit.Ohm => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricResistanceUnit unit)
@@ -206,17 +205,16 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricResistanceUnit.Gigaohm: return (baseUnitValue) / 1e9d;
-                case ElectricResistanceUnit.Kiloohm: return (baseUnitValue) / 1e3d;
-                case ElectricResistanceUnit.Megaohm: return (baseUnitValue) / 1e6d;
-                case ElectricResistanceUnit.Microohm: return (baseUnitValue) / 1e-6d;
-                case ElectricResistanceUnit.Milliohm: return (baseUnitValue) / 1e-3d;
-                case ElectricResistanceUnit.Ohm: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricResistanceUnit.Gigaohm => (baseUnitValue) / 1e9d,
+                ElectricResistanceUnit.Kiloohm => (baseUnitValue) / 1e3d,
+                ElectricResistanceUnit.Megaohm => (baseUnitValue) / 1e6d,
+                ElectricResistanceUnit.Microohm => (baseUnitValue) / 1e-6d,
+                ElectricResistanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
+                ElectricResistanceUnit.Ohm => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

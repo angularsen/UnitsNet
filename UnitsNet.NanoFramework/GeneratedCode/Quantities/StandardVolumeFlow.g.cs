@@ -78,47 +78,47 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicCentimetersPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/>
         /// </summary>
         public double StandardCubicCentimetersPerMinute => As(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicFeetPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>
         /// </summary>
         public double StandardCubicFeetPerHour => As(StandardVolumeFlowUnit.StandardCubicFootPerHour);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicFeetPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>
         /// </summary>
         public double StandardCubicFeetPerMinute => As(StandardVolumeFlowUnit.StandardCubicFootPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicFeetPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>
         /// </summary>
         public double StandardCubicFeetPerSecond => As(StandardVolumeFlowUnit.StandardCubicFootPerSecond);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicMetersPerDay.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>
         /// </summary>
         public double StandardCubicMetersPerDay => As(StandardVolumeFlowUnit.StandardCubicMeterPerDay);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicMetersPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>
         /// </summary>
         public double StandardCubicMetersPerHour => As(StandardVolumeFlowUnit.StandardCubicMeterPerHour);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicMetersPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>
         /// </summary>
         public double StandardCubicMetersPerMinute => As(StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardCubicMetersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>
         /// </summary>
         public double StandardCubicMetersPerSecond => As(StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
 
         /// <summary>
-        ///     Get StandardVolumeFlow in StandardLitersPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>
         /// </summary>
         public double StandardLitersPerMinute => As(StandardVolumeFlowUnit.StandardLiterPerMinute);
 
@@ -127,55 +127,55 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicCentimetersPerMinute.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardCubicCentimetersPerMinute(double standardcubiccentimetersperminute) => new StandardVolumeFlow(standardcubiccentimetersperminute, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicFeetPerHour.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardCubicFeetPerHour(double standardcubicfeetperhour) => new StandardVolumeFlow(standardcubicfeetperhour, StandardVolumeFlowUnit.StandardCubicFootPerHour);
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicFeetPerMinute.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardCubicFeetPerMinute(double standardcubicfeetperminute) => new StandardVolumeFlow(standardcubicfeetperminute, StandardVolumeFlowUnit.StandardCubicFootPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicFeetPerSecond.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardCubicFeetPerSecond(double standardcubicfeetpersecond) => new StandardVolumeFlow(standardcubicfeetpersecond, StandardVolumeFlowUnit.StandardCubicFootPerSecond);
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicMetersPerDay.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardCubicMetersPerDay(double standardcubicmetersperday) => new StandardVolumeFlow(standardcubicmetersperday, StandardVolumeFlowUnit.StandardCubicMeterPerDay);
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicMetersPerHour.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardCubicMetersPerHour(double standardcubicmetersperhour) => new StandardVolumeFlow(standardcubicmetersperhour, StandardVolumeFlowUnit.StandardCubicMeterPerHour);
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicMetersPerMinute.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardCubicMetersPerMinute(double standardcubicmetersperminute) => new StandardVolumeFlow(standardcubicmetersperminute, StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardCubicMetersPerSecond.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardCubicMetersPerSecond(double standardcubicmeterspersecond) => new StandardVolumeFlow(standardcubicmeterspersecond, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
 
         /// <summary>
-        ///     Get StandardVolumeFlow from StandardLitersPerMinute.
+        ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardLitersPerMinute(double standardlitersperminute) => new StandardVolumeFlow(standardlitersperminute, StandardVolumeFlowUnit.StandardLiterPerMinute);
@@ -219,20 +219,19 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute: return _value/6e7;
-                case StandardVolumeFlowUnit.StandardCubicFootPerHour: return _value*7.8657907199999087346816086183876e-6;
-                case StandardVolumeFlowUnit.StandardCubicFootPerMinute: return _value/2118.88000326;
-                case StandardVolumeFlowUnit.StandardCubicFootPerSecond: return _value/35.314666721;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerDay: return _value/86400;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerHour: return _value/3600;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerMinute: return _value/60;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerSecond: return _value;
-                case StandardVolumeFlowUnit.StandardLiterPerMinute: return _value/60000;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => _value / 6e7,
+                StandardVolumeFlowUnit.StandardCubicFootPerHour => _value * 7.8657907199999087346816086183876e-6,
+                StandardVolumeFlowUnit.StandardCubicFootPerMinute => _value / 2118.88000326,
+                StandardVolumeFlowUnit.StandardCubicFootPerSecond => _value / 35.314666721,
+                StandardVolumeFlowUnit.StandardCubicMeterPerDay => _value / 86400,
+                StandardVolumeFlowUnit.StandardCubicMeterPerHour => _value / 3600,
+                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => _value / 60,
+                StandardVolumeFlowUnit.StandardCubicMeterPerSecond => _value,
+                StandardVolumeFlowUnit.StandardLiterPerMinute => _value / 60000,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(StandardVolumeFlowUnit unit)
@@ -242,20 +241,19 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute: return baseUnitValue*6e7;
-                case StandardVolumeFlowUnit.StandardCubicFootPerHour: return baseUnitValue/7.8657907199999087346816086183876e-6;
-                case StandardVolumeFlowUnit.StandardCubicFootPerMinute: return baseUnitValue*2118.88000326;
-                case StandardVolumeFlowUnit.StandardCubicFootPerSecond: return baseUnitValue*35.314666721;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerDay: return baseUnitValue*86400;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerHour: return baseUnitValue*3600;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerMinute: return baseUnitValue*60;
-                case StandardVolumeFlowUnit.StandardCubicMeterPerSecond: return baseUnitValue;
-                case StandardVolumeFlowUnit.StandardLiterPerMinute: return baseUnitValue*60000;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => baseUnitValue * 6e7,
+                StandardVolumeFlowUnit.StandardCubicFootPerHour => baseUnitValue / 7.8657907199999087346816086183876e-6,
+                StandardVolumeFlowUnit.StandardCubicFootPerMinute => baseUnitValue * 2118.88000326,
+                StandardVolumeFlowUnit.StandardCubicFootPerSecond => baseUnitValue * 35.314666721,
+                StandardVolumeFlowUnit.StandardCubicMeterPerDay => baseUnitValue * 86400,
+                StandardVolumeFlowUnit.StandardCubicMeterPerHour => baseUnitValue * 3600,
+                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => baseUnitValue * 60,
+                StandardVolumeFlowUnit.StandardCubicMeterPerSecond => baseUnitValue,
+                StandardVolumeFlowUnit.StandardLiterPerMinute => baseUnitValue * 60000,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

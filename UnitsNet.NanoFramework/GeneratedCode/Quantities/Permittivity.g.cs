@@ -81,7 +81,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Permittivity in FaradsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PermittivityUnit.FaradPerMeter"/>
         /// </summary>
         public double FaradsPerMeter => As(PermittivityUnit.FaradPerMeter);
 
@@ -90,7 +90,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Permittivity from FaradsPerMeter.
+        ///     Creates a <see cref="Permittivity"/> from <see cref="PermittivityUnit.FaradPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Permittivity FromFaradsPerMeter(double faradspermeter) => new Permittivity(faradspermeter, PermittivityUnit.FaradPerMeter);
@@ -134,12 +134,11 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case PermittivityUnit.FaradPerMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                PermittivityUnit.FaradPerMeter => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(PermittivityUnit unit)
@@ -149,12 +148,11 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case PermittivityUnit.FaradPerMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                PermittivityUnit.FaradPerMeter => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

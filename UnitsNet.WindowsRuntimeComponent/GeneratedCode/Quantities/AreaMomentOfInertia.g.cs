@@ -164,32 +164,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in CentimetersToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>
         /// </summary>
         public double CentimetersToTheFourth => As(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in DecimetersToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>
         /// </summary>
         public double DecimetersToTheFourth => As(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in FeetToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>
         /// </summary>
         public double FeetToTheFourth => As(AreaMomentOfInertiaUnit.FootToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in InchesToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>
         /// </summary>
         public double InchesToTheFourth => As(AreaMomentOfInertiaUnit.InchToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in MetersToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>
         /// </summary>
         public double MetersToTheFourth => As(AreaMomentOfInertiaUnit.MeterToTheFourth);
 
         /// <summary>
-        ///     Get AreaMomentOfInertia in MillimetersToTheFourth.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>
         /// </summary>
         public double MillimetersToTheFourth => As(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
 
@@ -234,7 +234,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -244,7 +244,7 @@ namespace UnitsNet
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from DecimetersToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -254,7 +254,7 @@ namespace UnitsNet
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from FeetToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -264,7 +264,7 @@ namespace UnitsNet
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.FootToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from InchesToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -274,7 +274,7 @@ namespace UnitsNet
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.InchToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from MetersToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -284,7 +284,7 @@ namespace UnitsNet
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MeterToTheFourth);
         }
         /// <summary>
-        ///     Get AreaMomentOfInertia from MillimetersToTheFourth.
+        ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -584,12 +584,12 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value/1e8;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value/1e4;
-                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value*Math.Pow(0.3048, 4);
-                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value*Math.Pow(2.54e-2, 4);
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value / 1e8;
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value / 1e4;
+                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value * Math.Pow(0.3048, 4);
+                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value * Math.Pow(2.54e-2, 4);
                 case AreaMomentOfInertiaUnit.MeterToTheFourth: return _value;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value / 1e12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -604,12 +604,12 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return baseUnitValue*1e8;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return baseUnitValue*1e4;
-                case AreaMomentOfInertiaUnit.FootToTheFourth: return baseUnitValue/Math.Pow(0.3048, 4);
-                case AreaMomentOfInertiaUnit.InchToTheFourth: return baseUnitValue/Math.Pow(2.54e-2, 4);
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return baseUnitValue * 1e8;
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return baseUnitValue * 1e4;
+                case AreaMomentOfInertiaUnit.FootToTheFourth: return baseUnitValue / Math.Pow(0.3048, 4);
+                case AreaMomentOfInertiaUnit.InchToTheFourth: return baseUnitValue / Math.Pow(2.54e-2, 4);
                 case AreaMomentOfInertiaUnit.MeterToTheFourth: return baseUnitValue;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return baseUnitValue*1e12;
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return baseUnitValue * 1e12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -81,52 +81,52 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseCentimeter"/>
         /// </summary>
         public double InverseCentimeters => As(ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseFoot"/>
         /// </summary>
         public double InverseFeet => As(ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseInch"/>
         /// </summary>
         public double InverseInches => As(ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMeter"/>
         /// </summary>
         public double InverseMeters => As(ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMicroinches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMicroinch"/>
         /// </summary>
         public double InverseMicroinches => As(ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMils.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMil"/>
         /// </summary>
         public double InverseMils => As(ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMile"/>
         /// </summary>
         public double InverseMiles => As(ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMillimeter"/>
         /// </summary>
         public double InverseMillimeters => As(ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseUsSurveyFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>
         /// </summary>
         public double InverseUsSurveyFeet => As(ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength in InverseYards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseYard"/>
         /// </summary>
         public double InverseYards => As(ReciprocalLengthUnit.InverseYard);
 
@@ -135,61 +135,61 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseCentimeters.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseCentimeters(double inversecentimeters) => new ReciprocalLength(inversecentimeters, ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseFeet.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseFeet(double inversefeet) => new ReciprocalLength(inversefeet, ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseInches.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseInches(double inverseinches) => new ReciprocalLength(inverseinches, ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMeters.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMeters(double inversemeters) => new ReciprocalLength(inversemeters, ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMicroinches.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMicroinch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMicroinches(double inversemicroinches) => new ReciprocalLength(inversemicroinches, ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMils.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMils(double inversemils) => new ReciprocalLength(inversemils, ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMiles.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMiles(double inversemiles) => new ReciprocalLength(inversemiles, ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseMillimeters.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMillimeters(double inversemillimeters) => new ReciprocalLength(inversemillimeters, ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseUsSurveyFeet.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseUsSurveyFeet(double inverseussurveyfeet) => new ReciprocalLength(inverseussurveyfeet, ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
-        ///     Get ReciprocalLength from InverseYards.
+        ///     Creates a <see cref="ReciprocalLength"/> from <see cref="ReciprocalLengthUnit.InverseYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseYards(double inverseyards) => new ReciprocalLength(inverseyards, ReciprocalLengthUnit.InverseYard);
@@ -233,21 +233,20 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ReciprocalLengthUnit.InverseCentimeter: return _value*1e2;
-                case ReciprocalLengthUnit.InverseFoot: return _value/0.3048;
-                case ReciprocalLengthUnit.InverseInch: return _value/2.54e-2;
-                case ReciprocalLengthUnit.InverseMeter: return _value;
-                case ReciprocalLengthUnit.InverseMicroinch: return _value/2.54e-8;
-                case ReciprocalLengthUnit.InverseMil: return _value/2.54e-5;
-                case ReciprocalLengthUnit.InverseMile: return _value/1609.34;
-                case ReciprocalLengthUnit.InverseMillimeter: return _value*1e3;
-                case ReciprocalLengthUnit.InverseUsSurveyFoot: return _value*3937/1200;
-                case ReciprocalLengthUnit.InverseYard: return _value/0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ReciprocalLengthUnit.InverseCentimeter => _value * 1e2,
+                ReciprocalLengthUnit.InverseFoot => _value / 0.3048,
+                ReciprocalLengthUnit.InverseInch => _value / 2.54e-2,
+                ReciprocalLengthUnit.InverseMeter => _value,
+                ReciprocalLengthUnit.InverseMicroinch => _value / 2.54e-8,
+                ReciprocalLengthUnit.InverseMil => _value / 2.54e-5,
+                ReciprocalLengthUnit.InverseMile => _value / 1609.34,
+                ReciprocalLengthUnit.InverseMillimeter => _value * 1e3,
+                ReciprocalLengthUnit.InverseUsSurveyFoot => _value * 3937 / 1200,
+                ReciprocalLengthUnit.InverseYard => _value / 0.9144,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ReciprocalLengthUnit unit)
@@ -257,21 +256,20 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ReciprocalLengthUnit.InverseCentimeter: return baseUnitValue/1e2;
-                case ReciprocalLengthUnit.InverseFoot: return baseUnitValue*0.3048;
-                case ReciprocalLengthUnit.InverseInch: return baseUnitValue*2.54e-2;
-                case ReciprocalLengthUnit.InverseMeter: return baseUnitValue;
-                case ReciprocalLengthUnit.InverseMicroinch: return baseUnitValue*2.54e-8;
-                case ReciprocalLengthUnit.InverseMil: return baseUnitValue*2.54e-5;
-                case ReciprocalLengthUnit.InverseMile: return baseUnitValue*1609.34;
-                case ReciprocalLengthUnit.InverseMillimeter: return baseUnitValue/1e3;
-                case ReciprocalLengthUnit.InverseUsSurveyFoot: return baseUnitValue*1200/3937;
-                case ReciprocalLengthUnit.InverseYard: return baseUnitValue*0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ReciprocalLengthUnit.InverseCentimeter => baseUnitValue / 1e2,
+                ReciprocalLengthUnit.InverseFoot => baseUnitValue * 0.3048,
+                ReciprocalLengthUnit.InverseInch => baseUnitValue * 2.54e-2,
+                ReciprocalLengthUnit.InverseMeter => baseUnitValue,
+                ReciprocalLengthUnit.InverseMicroinch => baseUnitValue * 2.54e-8,
+                ReciprocalLengthUnit.InverseMil => baseUnitValue * 2.54e-5,
+                ReciprocalLengthUnit.InverseMile => baseUnitValue * 1609.34,
+                ReciprocalLengthUnit.InverseMillimeter => baseUnitValue / 1e3,
+                ReciprocalLengthUnit.InverseUsSurveyFoot => baseUnitValue * 1200 / 3937,
+                ReciprocalLengthUnit.InverseYard => baseUnitValue * 0.9144,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

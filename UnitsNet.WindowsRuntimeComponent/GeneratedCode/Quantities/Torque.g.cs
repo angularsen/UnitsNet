@@ -164,127 +164,127 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Torque in GramForceCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.GramForceCentimeter"/>
         /// </summary>
         public double GramForceCentimeters => As(TorqueUnit.GramForceCentimeter);
 
         /// <summary>
-        ///     Get Torque in GramForceMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.GramForceMeter"/>
         /// </summary>
         public double GramForceMeters => As(TorqueUnit.GramForceMeter);
 
         /// <summary>
-        ///     Get Torque in GramForceMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.GramForceMillimeter"/>
         /// </summary>
         public double GramForceMillimeters => As(TorqueUnit.GramForceMillimeter);
 
         /// <summary>
-        ///     Get Torque in KilogramForceCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.KilogramForceCentimeter"/>
         /// </summary>
         public double KilogramForceCentimeters => As(TorqueUnit.KilogramForceCentimeter);
 
         /// <summary>
-        ///     Get Torque in KilogramForceMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.KilogramForceMeter"/>
         /// </summary>
         public double KilogramForceMeters => As(TorqueUnit.KilogramForceMeter);
 
         /// <summary>
-        ///     Get Torque in KilogramForceMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.KilogramForceMillimeter"/>
         /// </summary>
         public double KilogramForceMillimeters => As(TorqueUnit.KilogramForceMillimeter);
 
         /// <summary>
-        ///     Get Torque in KilonewtonCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.KilonewtonCentimeter"/>
         /// </summary>
         public double KilonewtonCentimeters => As(TorqueUnit.KilonewtonCentimeter);
 
         /// <summary>
-        ///     Get Torque in KilonewtonMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.KilonewtonMeter"/>
         /// </summary>
         public double KilonewtonMeters => As(TorqueUnit.KilonewtonMeter);
 
         /// <summary>
-        ///     Get Torque in KilonewtonMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.KilonewtonMillimeter"/>
         /// </summary>
         public double KilonewtonMillimeters => As(TorqueUnit.KilonewtonMillimeter);
 
         /// <summary>
-        ///     Get Torque in KilopoundForceFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.KilopoundForceFoot"/>
         /// </summary>
         public double KilopoundForceFeet => As(TorqueUnit.KilopoundForceFoot);
 
         /// <summary>
-        ///     Get Torque in KilopoundForceInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.KilopoundForceInch"/>
         /// </summary>
         public double KilopoundForceInches => As(TorqueUnit.KilopoundForceInch);
 
         /// <summary>
-        ///     Get Torque in MeganewtonCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.MeganewtonCentimeter"/>
         /// </summary>
         public double MeganewtonCentimeters => As(TorqueUnit.MeganewtonCentimeter);
 
         /// <summary>
-        ///     Get Torque in MeganewtonMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.MeganewtonMeter"/>
         /// </summary>
         public double MeganewtonMeters => As(TorqueUnit.MeganewtonMeter);
 
         /// <summary>
-        ///     Get Torque in MeganewtonMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.MeganewtonMillimeter"/>
         /// </summary>
         public double MeganewtonMillimeters => As(TorqueUnit.MeganewtonMillimeter);
 
         /// <summary>
-        ///     Get Torque in MegapoundForceFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.MegapoundForceFoot"/>
         /// </summary>
         public double MegapoundForceFeet => As(TorqueUnit.MegapoundForceFoot);
 
         /// <summary>
-        ///     Get Torque in MegapoundForceInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.MegapoundForceInch"/>
         /// </summary>
         public double MegapoundForceInches => As(TorqueUnit.MegapoundForceInch);
 
         /// <summary>
-        ///     Get Torque in NewtonCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.NewtonCentimeter"/>
         /// </summary>
         public double NewtonCentimeters => As(TorqueUnit.NewtonCentimeter);
 
         /// <summary>
-        ///     Get Torque in NewtonMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.NewtonMeter"/>
         /// </summary>
         public double NewtonMeters => As(TorqueUnit.NewtonMeter);
 
         /// <summary>
-        ///     Get Torque in NewtonMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.NewtonMillimeter"/>
         /// </summary>
         public double NewtonMillimeters => As(TorqueUnit.NewtonMillimeter);
 
         /// <summary>
-        ///     Get Torque in PoundalFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.PoundalFoot"/>
         /// </summary>
         public double PoundalFeet => As(TorqueUnit.PoundalFoot);
 
         /// <summary>
-        ///     Get Torque in PoundForceFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.PoundForceFoot"/>
         /// </summary>
         public double PoundForceFeet => As(TorqueUnit.PoundForceFoot);
 
         /// <summary>
-        ///     Get Torque in PoundForceInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.PoundForceInch"/>
         /// </summary>
         public double PoundForceInches => As(TorqueUnit.PoundForceInch);
 
         /// <summary>
-        ///     Get Torque in TonneForceCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.TonneForceCentimeter"/>
         /// </summary>
         public double TonneForceCentimeters => As(TorqueUnit.TonneForceCentimeter);
 
         /// <summary>
-        ///     Get Torque in TonneForceMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.TonneForceMeter"/>
         /// </summary>
         public double TonneForceMeters => As(TorqueUnit.TonneForceMeter);
 
         /// <summary>
-        ///     Get Torque in TonneForceMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorqueUnit.TonneForceMillimeter"/>
         /// </summary>
         public double TonneForceMillimeters => As(TorqueUnit.TonneForceMillimeter);
 
@@ -351,7 +351,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Torque from GramForceCentimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -361,7 +361,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.GramForceCentimeter);
         }
         /// <summary>
-        ///     Get Torque from GramForceMeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -371,7 +371,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.GramForceMeter);
         }
         /// <summary>
-        ///     Get Torque from GramForceMillimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.GramForceMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -381,7 +381,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.GramForceMillimeter);
         }
         /// <summary>
-        ///     Get Torque from KilogramForceCentimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -391,7 +391,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.KilogramForceCentimeter);
         }
         /// <summary>
-        ///     Get Torque from KilogramForceMeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -401,7 +401,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.KilogramForceMeter);
         }
         /// <summary>
-        ///     Get Torque from KilogramForceMillimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilogramForceMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -411,7 +411,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.KilogramForceMillimeter);
         }
         /// <summary>
-        ///     Get Torque from KilonewtonCentimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -421,7 +421,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.KilonewtonCentimeter);
         }
         /// <summary>
-        ///     Get Torque from KilonewtonMeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -431,7 +431,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.KilonewtonMeter);
         }
         /// <summary>
-        ///     Get Torque from KilonewtonMillimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilonewtonMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -441,7 +441,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.KilonewtonMillimeter);
         }
         /// <summary>
-        ///     Get Torque from KilopoundForceFeet.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilopoundForceFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -451,7 +451,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.KilopoundForceFoot);
         }
         /// <summary>
-        ///     Get Torque from KilopoundForceInches.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.KilopoundForceInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -461,7 +461,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.KilopoundForceInch);
         }
         /// <summary>
-        ///     Get Torque from MeganewtonCentimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -471,7 +471,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.MeganewtonCentimeter);
         }
         /// <summary>
-        ///     Get Torque from MeganewtonMeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -481,7 +481,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.MeganewtonMeter);
         }
         /// <summary>
-        ///     Get Torque from MeganewtonMillimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MeganewtonMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -491,7 +491,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.MeganewtonMillimeter);
         }
         /// <summary>
-        ///     Get Torque from MegapoundForceFeet.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MegapoundForceFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -501,7 +501,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.MegapoundForceFoot);
         }
         /// <summary>
-        ///     Get Torque from MegapoundForceInches.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.MegapoundForceInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -511,7 +511,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.MegapoundForceInch);
         }
         /// <summary>
-        ///     Get Torque from NewtonCentimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -521,7 +521,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.NewtonCentimeter);
         }
         /// <summary>
-        ///     Get Torque from NewtonMeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -531,7 +531,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.NewtonMeter);
         }
         /// <summary>
-        ///     Get Torque from NewtonMillimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.NewtonMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -541,7 +541,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.NewtonMillimeter);
         }
         /// <summary>
-        ///     Get Torque from PoundalFeet.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundalFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -551,7 +551,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.PoundalFoot);
         }
         /// <summary>
-        ///     Get Torque from PoundForceFeet.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundForceFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -561,7 +561,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.PoundForceFoot);
         }
         /// <summary>
-        ///     Get Torque from PoundForceInches.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.PoundForceInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -571,7 +571,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.PoundForceInch);
         }
         /// <summary>
-        ///     Get Torque from TonneForceCentimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -581,7 +581,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.TonneForceCentimeter);
         }
         /// <summary>
-        ///     Get Torque from TonneForceMeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -591,7 +591,7 @@ namespace UnitsNet
             return new Torque(value, TorqueUnit.TonneForceMeter);
         }
         /// <summary>
-        ///     Get Torque from TonneForceMillimeters.
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.TonneForceMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -891,31 +891,31 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case TorqueUnit.GramForceCentimeter: return _value*9.80665e-5;
-                case TorqueUnit.GramForceMeter: return _value*9.80665e-3;
-                case TorqueUnit.GramForceMillimeter: return _value*9.80665e-6;
-                case TorqueUnit.KilogramForceCentimeter: return _value*9.80665e-2;
-                case TorqueUnit.KilogramForceMeter: return _value*9.80665;
-                case TorqueUnit.KilogramForceMillimeter: return _value*9.80665e-3;
-                case TorqueUnit.KilonewtonCentimeter: return (_value*0.01) * 1e3d;
+                case TorqueUnit.GramForceCentimeter: return _value * 9.80665e-5;
+                case TorqueUnit.GramForceMeter: return _value * 9.80665e-3;
+                case TorqueUnit.GramForceMillimeter: return _value * 9.80665e-6;
+                case TorqueUnit.KilogramForceCentimeter: return _value * 9.80665e-2;
+                case TorqueUnit.KilogramForceMeter: return _value * 9.80665;
+                case TorqueUnit.KilogramForceMillimeter: return _value * 9.80665e-3;
+                case TorqueUnit.KilonewtonCentimeter: return (_value * 0.01) * 1e3d;
                 case TorqueUnit.KilonewtonMeter: return (_value) * 1e3d;
-                case TorqueUnit.KilonewtonMillimeter: return (_value*0.001) * 1e3d;
-                case TorqueUnit.KilopoundForceFoot: return (_value*1.3558179483314) * 1e3d;
-                case TorqueUnit.KilopoundForceInch: return (_value*1.129848290276167e-1) * 1e3d;
-                case TorqueUnit.MeganewtonCentimeter: return (_value*0.01) * 1e6d;
+                case TorqueUnit.KilonewtonMillimeter: return (_value * 0.001) * 1e3d;
+                case TorqueUnit.KilopoundForceFoot: return (_value * 1.3558179483314) * 1e3d;
+                case TorqueUnit.KilopoundForceInch: return (_value * 1.129848290276167e-1) * 1e3d;
+                case TorqueUnit.MeganewtonCentimeter: return (_value * 0.01) * 1e6d;
                 case TorqueUnit.MeganewtonMeter: return (_value) * 1e6d;
-                case TorqueUnit.MeganewtonMillimeter: return (_value*0.001) * 1e6d;
-                case TorqueUnit.MegapoundForceFoot: return (_value*1.3558179483314) * 1e6d;
-                case TorqueUnit.MegapoundForceInch: return (_value*1.129848290276167e-1) * 1e6d;
-                case TorqueUnit.NewtonCentimeter: return _value*0.01;
+                case TorqueUnit.MeganewtonMillimeter: return (_value * 0.001) * 1e6d;
+                case TorqueUnit.MegapoundForceFoot: return (_value * 1.3558179483314) * 1e6d;
+                case TorqueUnit.MegapoundForceInch: return (_value * 1.129848290276167e-1) * 1e6d;
+                case TorqueUnit.NewtonCentimeter: return _value * 0.01;
                 case TorqueUnit.NewtonMeter: return _value;
-                case TorqueUnit.NewtonMillimeter: return _value*0.001;
-                case TorqueUnit.PoundalFoot: return _value*4.21401100938048e-2;
-                case TorqueUnit.PoundForceFoot: return _value*1.3558179483314;
-                case TorqueUnit.PoundForceInch: return _value*1.129848290276167e-1;
-                case TorqueUnit.TonneForceCentimeter: return _value*9.80665e1;
-                case TorqueUnit.TonneForceMeter: return _value*9.80665e3;
-                case TorqueUnit.TonneForceMillimeter: return _value*9.80665;
+                case TorqueUnit.NewtonMillimeter: return _value * 0.001;
+                case TorqueUnit.PoundalFoot: return _value * 4.21401100938048e-2;
+                case TorqueUnit.PoundForceFoot: return _value * 1.3558179483314;
+                case TorqueUnit.PoundForceInch: return _value * 1.129848290276167e-1;
+                case TorqueUnit.TonneForceCentimeter: return _value * 9.80665e1;
+                case TorqueUnit.TonneForceMeter: return _value * 9.80665e3;
+                case TorqueUnit.TonneForceMillimeter: return _value * 9.80665;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -930,31 +930,31 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case TorqueUnit.GramForceCentimeter: return baseUnitValue/9.80665e-5;
-                case TorqueUnit.GramForceMeter: return baseUnitValue/9.80665e-3;
-                case TorqueUnit.GramForceMillimeter: return baseUnitValue/9.80665e-6;
-                case TorqueUnit.KilogramForceCentimeter: return baseUnitValue/9.80665e-2;
-                case TorqueUnit.KilogramForceMeter: return baseUnitValue/9.80665;
-                case TorqueUnit.KilogramForceMillimeter: return baseUnitValue/9.80665e-3;
-                case TorqueUnit.KilonewtonCentimeter: return (baseUnitValue*100) / 1e3d;
+                case TorqueUnit.GramForceCentimeter: return baseUnitValue / 9.80665e-5;
+                case TorqueUnit.GramForceMeter: return baseUnitValue / 9.80665e-3;
+                case TorqueUnit.GramForceMillimeter: return baseUnitValue / 9.80665e-6;
+                case TorqueUnit.KilogramForceCentimeter: return baseUnitValue / 9.80665e-2;
+                case TorqueUnit.KilogramForceMeter: return baseUnitValue / 9.80665;
+                case TorqueUnit.KilogramForceMillimeter: return baseUnitValue / 9.80665e-3;
+                case TorqueUnit.KilonewtonCentimeter: return (baseUnitValue * 100) / 1e3d;
                 case TorqueUnit.KilonewtonMeter: return (baseUnitValue) / 1e3d;
-                case TorqueUnit.KilonewtonMillimeter: return (baseUnitValue*1000) / 1e3d;
-                case TorqueUnit.KilopoundForceFoot: return (baseUnitValue/1.3558179483314) / 1e3d;
-                case TorqueUnit.KilopoundForceInch: return (baseUnitValue/1.129848290276167e-1) / 1e3d;
-                case TorqueUnit.MeganewtonCentimeter: return (baseUnitValue*100) / 1e6d;
+                case TorqueUnit.KilonewtonMillimeter: return (baseUnitValue * 1000) / 1e3d;
+                case TorqueUnit.KilopoundForceFoot: return (baseUnitValue / 1.3558179483314) / 1e3d;
+                case TorqueUnit.KilopoundForceInch: return (baseUnitValue / 1.129848290276167e-1) / 1e3d;
+                case TorqueUnit.MeganewtonCentimeter: return (baseUnitValue * 100) / 1e6d;
                 case TorqueUnit.MeganewtonMeter: return (baseUnitValue) / 1e6d;
-                case TorqueUnit.MeganewtonMillimeter: return (baseUnitValue*1000) / 1e6d;
-                case TorqueUnit.MegapoundForceFoot: return (baseUnitValue/1.3558179483314) / 1e6d;
-                case TorqueUnit.MegapoundForceInch: return (baseUnitValue/1.129848290276167e-1) / 1e6d;
-                case TorqueUnit.NewtonCentimeter: return baseUnitValue*100;
+                case TorqueUnit.MeganewtonMillimeter: return (baseUnitValue * 1000) / 1e6d;
+                case TorqueUnit.MegapoundForceFoot: return (baseUnitValue / 1.3558179483314) / 1e6d;
+                case TorqueUnit.MegapoundForceInch: return (baseUnitValue / 1.129848290276167e-1) / 1e6d;
+                case TorqueUnit.NewtonCentimeter: return baseUnitValue * 100;
                 case TorqueUnit.NewtonMeter: return baseUnitValue;
-                case TorqueUnit.NewtonMillimeter: return baseUnitValue*1000;
-                case TorqueUnit.PoundalFoot: return baseUnitValue/4.21401100938048e-2;
-                case TorqueUnit.PoundForceFoot: return baseUnitValue/1.3558179483314;
-                case TorqueUnit.PoundForceInch: return baseUnitValue/1.129848290276167e-1;
-                case TorqueUnit.TonneForceCentimeter: return baseUnitValue/9.80665e1;
-                case TorqueUnit.TonneForceMeter: return baseUnitValue/9.80665e3;
-                case TorqueUnit.TonneForceMillimeter: return baseUnitValue/9.80665;
+                case TorqueUnit.NewtonMillimeter: return baseUnitValue * 1000;
+                case TorqueUnit.PoundalFoot: return baseUnitValue / 4.21401100938048e-2;
+                case TorqueUnit.PoundForceFoot: return baseUnitValue / 1.3558179483314;
+                case TorqueUnit.PoundForceInch: return baseUnitValue / 1.129848290276167e-1;
+                case TorqueUnit.TonneForceCentimeter: return baseUnitValue / 9.80665e1;
+                case TorqueUnit.TonneForceMeter: return baseUnitValue / 9.80665e3;
+                case TorqueUnit.TonneForceMillimeter: return baseUnitValue / 9.80665;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

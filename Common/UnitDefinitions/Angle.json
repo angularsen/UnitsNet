@@ -6,8 +6,8 @@
     {
       "SingularName": "Radian",
       "PluralName": "Radians",
-      "FromUnitToBaseFunc": "{x}*180/Math.PI",
-      "FromBaseToUnitFunc": "{x}/180*Math.PI",
+      "FromUnitToBaseFunc": "{x} * 180 / Math.PI",
+      "FromBaseToUnitFunc": "{x} / 180 * Math.PI",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
@@ -40,8 +40,8 @@
     {
       "SingularName": "Arcminute",
       "PluralName": "Arcminutes",
-      "FromUnitToBaseFunc": "{x}/60",
-      "FromBaseToUnitFunc": "{x}*60",
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -52,8 +52,8 @@
     {
       "SingularName": "Arcsecond",
       "PluralName": "Arcseconds",
-      "FromUnitToBaseFunc": "{x}/3600",
-      "FromBaseToUnitFunc": "{x}*3600",
+      "FromUnitToBaseFunc": "{x} / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -64,8 +64,8 @@
     {
       "SingularName": "Gradian",
       "PluralName": "Gradians",
-      "FromUnitToBaseFunc": "{x}*0.9",
-      "FromBaseToUnitFunc": "{x}/0.9",
+      "FromUnitToBaseFunc": "{x} * 0.9",
+      "FromBaseToUnitFunc": "{x} / 0.9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -80,8 +80,8 @@
     {
       "SingularName": "NatoMil",
       "PluralName": "NatoMils",
-      "FromUnitToBaseFunc": "{x}*9/160",
-      "FromBaseToUnitFunc": "{x}*160/9",
+      "FromUnitToBaseFunc": "{x} * 9 / 160",
+      "FromBaseToUnitFunc": "{x} * 160 / 9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -92,8 +92,8 @@
     {
       "SingularName": "Revolution",
       "PluralName": "Revolutions",
-      "FromUnitToBaseFunc": "{x}*360",
-      "FromBaseToUnitFunc": "{x}/360",
+      "FromUnitToBaseFunc": "{x} * 360",
+      "FromBaseToUnitFunc": "{x} / 360",
       "Localization": [
         {
           "Culture": "en-US",
@@ -108,8 +108,8 @@
     {
       "SingularName": "Tilt",
       "PluralName": "Tilt",
-      "FromUnitToBaseFunc": "Math.Asin({x})*180/Math.PI",
-      "FromBaseToUnitFunc": "Math.Sin({x}/180*Math.PI)",
+      "FromUnitToBaseFunc": "Math.Asin({x}) * 180 / Math.PI",
+      "FromBaseToUnitFunc": "Math.Sin({x} / 180 * Math.PI)",
       "Localization": [
         {
           "Culture": "en-US",

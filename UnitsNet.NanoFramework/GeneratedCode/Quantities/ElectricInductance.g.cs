@@ -81,22 +81,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricInductance in Henries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Henry"/>
         /// </summary>
         public double Henries => As(ElectricInductanceUnit.Henry);
 
         /// <summary>
-        ///     Get ElectricInductance in Microhenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Microhenry"/>
         /// </summary>
         public double Microhenries => As(ElectricInductanceUnit.Microhenry);
 
         /// <summary>
-        ///     Get ElectricInductance in Millihenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Millihenry"/>
         /// </summary>
         public double Millihenries => As(ElectricInductanceUnit.Millihenry);
 
         /// <summary>
-        ///     Get ElectricInductance in Nanohenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Nanohenry"/>
         /// </summary>
         public double Nanohenries => As(ElectricInductanceUnit.Nanohenry);
 
@@ -105,25 +105,25 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricInductance from Henries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Henry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromHenries(double henries) => new ElectricInductance(henries, ElectricInductanceUnit.Henry);
 
         /// <summary>
-        ///     Get ElectricInductance from Microhenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMicrohenries(double microhenries) => new ElectricInductance(microhenries, ElectricInductanceUnit.Microhenry);
 
         /// <summary>
-        ///     Get ElectricInductance from Millihenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMillihenries(double millihenries) => new ElectricInductance(millihenries, ElectricInductanceUnit.Millihenry);
 
         /// <summary>
-        ///     Get ElectricInductance from Nanohenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromNanohenries(double nanohenries) => new ElectricInductance(nanohenries, ElectricInductanceUnit.Nanohenry);
@@ -167,15 +167,14 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricInductanceUnit.Henry: return _value;
-                case ElectricInductanceUnit.Microhenry: return (_value) * 1e-6d;
-                case ElectricInductanceUnit.Millihenry: return (_value) * 1e-3d;
-                case ElectricInductanceUnit.Nanohenry: return (_value) * 1e-9d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricInductanceUnit.Henry => _value,
+                ElectricInductanceUnit.Microhenry => (_value) * 1e-6d,
+                ElectricInductanceUnit.Millihenry => (_value) * 1e-3d,
+                ElectricInductanceUnit.Nanohenry => (_value) * 1e-9d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricInductanceUnit unit)
@@ -185,15 +184,14 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricInductanceUnit.Henry: return baseUnitValue;
-                case ElectricInductanceUnit.Microhenry: return (baseUnitValue) / 1e-6d;
-                case ElectricInductanceUnit.Millihenry: return (baseUnitValue) / 1e-3d;
-                case ElectricInductanceUnit.Nanohenry: return (baseUnitValue) / 1e-9d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricInductanceUnit.Henry => baseUnitValue,
+                ElectricInductanceUnit.Microhenry => (baseUnitValue) / 1e-6d,
+                ElectricInductanceUnit.Millihenry => (baseUnitValue) / 1e-3d,
+                ElectricInductanceUnit.Nanohenry => (baseUnitValue) / 1e-9d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

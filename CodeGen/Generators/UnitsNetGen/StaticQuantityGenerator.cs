@@ -52,20 +52,18 @@ namespace UnitsNet
         [Obsolete(""QuantityType will be removed. Use FromQuantityInfo(QuantityInfo, QuantityValue) instead."")]
         public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
         {
-            switch(quantityType)
+            return quantityType switch
             {");
             foreach (var quantity in _quantities)
             {
                 var quantityName = quantity.Name;
                 Writer.WL($@"
-                case QuantityType.{quantityName}:
-                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
+                QuantityType.{quantityName} => {quantityName}.From(value, {quantityName}.BaseUnit),");
             }
 
             Writer.WL(@"
-                default:
-                    throw new ArgumentException($""{quantityType} is not a supported quantity type."");
-            }
+                _ => throw new ArgumentException($""{quantityType} is not a supported quantity type."")
+            };
         }
 
         /// <summary>
@@ -76,20 +74,18 @@ namespace UnitsNet
         /// <returns>The created quantity.</returns>
         public static IQuantity FromQuantityInfo(QuantityInfo quantityInfo, QuantityValue value)
         {
-            switch(quantityInfo.Name)
+            return quantityInfo.Name switch
             {");
             foreach (var quantity in _quantities)
             {
                 var quantityName = quantity.Name;
                 Writer.WL($@"
-                case ""{quantityName}"":
-                    return {quantityName}.From(value, {quantityName}.BaseUnit);");
+                ""{quantityName}"" => {quantityName}.From(value, {quantityName}.BaseUnit),");
             }
 
             Writer.WL(@"
-                default:
-                    throw new ArgumentException($""{quantityInfo.Name} is not a supported quantity."");
-            }
+                _ => throw new ArgumentException($""{quantityInfo.Name} is not a supported quantity."")
+            };
         }
 
         /// <summary>
@@ -140,20 +136,18 @@ namespace UnitsNet
 
             var parser = QuantityParser.Default;
 
-            switch(quantityType)
+            return quantityType switch
             {");
             foreach (var quantity in _quantities)
             {
                 var quantityName = quantity.Name;
                 Writer.WL($@"
-                case Type _ when quantityType == typeof({quantityName}):
-                    return parser.TryParse<{quantityName}, {quantityName}Unit>(quantityString, formatProvider, {quantityName}.From, out quantity);");
+                Type _ when quantityType == typeof({quantityName}) => parser.TryParse<{quantityName}, {quantityName}Unit>(quantityString, formatProvider, {quantityName}.From, out quantity),");
             }
 
             Writer.WL(@"
-                default:
-                    return false;
-            }
+                _ => false
+            };
         }
 
         internal static IEnumerable<Type> GetQuantityTypes()

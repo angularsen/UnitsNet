@@ -164,62 +164,62 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MassFlux in GramsPerHourPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>
         /// </summary>
         public double GramsPerHourPerSquareCentimeter => As(MassFluxUnit.GramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerHourPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>
         /// </summary>
         public double GramsPerHourPerSquareMeter => As(MassFluxUnit.GramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerHourPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>
         /// </summary>
         public double GramsPerHourPerSquareMillimeter => As(MassFluxUnit.GramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerSecondPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>
         /// </summary>
         public double GramsPerSecondPerSquareCentimeter => As(MassFluxUnit.GramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerSecondPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>
         /// </summary>
         public double GramsPerSecondPerSquareMeter => As(MassFluxUnit.GramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerSecondPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>
         /// </summary>
         public double GramsPerSecondPerSquareMillimeter => As(MassFluxUnit.GramPerSecondPerSquareMillimeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerHourPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>
         /// </summary>
         public double KilogramsPerHourPerSquareCentimeter => As(MassFluxUnit.KilogramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerHourPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerHourPerSquareMeter => As(MassFluxUnit.KilogramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerHourPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>
         /// </summary>
         public double KilogramsPerHourPerSquareMillimeter => As(MassFluxUnit.KilogramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerSecondPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>
         /// </summary>
         public double KilogramsPerSecondPerSquareCentimeter => As(MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerSecondPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerSecondPerSquareMeter => As(MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerSecondPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>
         /// </summary>
         public double KilogramsPerSecondPerSquareMillimeter => As(MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
 
@@ -270,7 +270,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MassFlux from GramsPerHourPerSquareCentimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get MassFlux from GramsPerHourPerSquareMeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -290,7 +290,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMeter);
         }
         /// <summary>
-        ///     Get MassFlux from GramsPerHourPerSquareMillimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -300,7 +300,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMillimeter);
         }
         /// <summary>
-        ///     Get MassFlux from GramsPerSecondPerSquareCentimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -310,7 +310,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get MassFlux from GramsPerSecondPerSquareMeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -320,7 +320,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMeter);
         }
         /// <summary>
-        ///     Get MassFlux from GramsPerSecondPerSquareMillimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -330,7 +330,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMillimeter);
         }
         /// <summary>
-        ///     Get MassFlux from KilogramsPerHourPerSquareCentimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -340,7 +340,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get MassFlux from KilogramsPerHourPerSquareMeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -350,7 +350,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMeter);
         }
         /// <summary>
-        ///     Get MassFlux from KilogramsPerHourPerSquareMillimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -360,7 +360,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMillimeter);
         }
         /// <summary>
-        ///     Get MassFlux from KilogramsPerSecondPerSquareCentimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -370,7 +370,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
         }
         /// <summary>
-        ///     Get MassFlux from KilogramsPerSecondPerSquareMeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -380,7 +380,7 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMeter);
         }
         /// <summary>
-        ///     Get MassFlux from KilogramsPerSecondPerSquareMillimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -680,18 +680,18 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MassFluxUnit.GramPerHourPerSquareCentimeter: return _value/3.6e2;
-                case MassFluxUnit.GramPerHourPerSquareMeter: return _value/3.6e6;
-                case MassFluxUnit.GramPerHourPerSquareMillimeter: return _value/3.6e0;
-                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return _value/1e-1;
-                case MassFluxUnit.GramPerSecondPerSquareMeter: return _value/1e3;
-                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return _value/1e-3;
-                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return (_value/3.6e2) * 1e3d;
-                case MassFluxUnit.KilogramPerHourPerSquareMeter: return (_value/3.6e6) * 1e3d;
-                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return (_value/3.6e0) * 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return (_value/1e-1) * 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (_value/1e3) * 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return (_value/1e-3) * 1e3d;
+                case MassFluxUnit.GramPerHourPerSquareCentimeter: return _value / 3.6e2;
+                case MassFluxUnit.GramPerHourPerSquareMeter: return _value / 3.6e6;
+                case MassFluxUnit.GramPerHourPerSquareMillimeter: return _value / 3.6e0;
+                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return _value / 1e-1;
+                case MassFluxUnit.GramPerSecondPerSquareMeter: return _value / 1e3;
+                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return _value / 1e-3;
+                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return (_value / 3.6e2) * 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMeter: return (_value / 3.6e6) * 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return (_value / 3.6e0) * 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return (_value / 1e-1) * 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (_value / 1e3) * 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return (_value / 1e-3) * 1e3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -706,18 +706,18 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MassFluxUnit.GramPerHourPerSquareCentimeter: return baseUnitValue*3.6e2;
-                case MassFluxUnit.GramPerHourPerSquareMeter: return baseUnitValue*3.6e6;
-                case MassFluxUnit.GramPerHourPerSquareMillimeter: return baseUnitValue*3.6e0;
-                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return baseUnitValue*1e-1;
-                case MassFluxUnit.GramPerSecondPerSquareMeter: return baseUnitValue*1e3;
-                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return baseUnitValue*1e-3;
-                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return (baseUnitValue*3.6e2) / 1e3d;
-                case MassFluxUnit.KilogramPerHourPerSquareMeter: return (baseUnitValue*3.6e6) / 1e3d;
-                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return (baseUnitValue*3.6e0) / 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return (baseUnitValue*1e-1) / 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (baseUnitValue*1e3) / 1e3d;
-                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return (baseUnitValue*1e-3) / 1e3d;
+                case MassFluxUnit.GramPerHourPerSquareCentimeter: return baseUnitValue * 3.6e2;
+                case MassFluxUnit.GramPerHourPerSquareMeter: return baseUnitValue * 3.6e6;
+                case MassFluxUnit.GramPerHourPerSquareMillimeter: return baseUnitValue * 3.6e0;
+                case MassFluxUnit.GramPerSecondPerSquareCentimeter: return baseUnitValue * 1e-1;
+                case MassFluxUnit.GramPerSecondPerSquareMeter: return baseUnitValue * 1e3;
+                case MassFluxUnit.GramPerSecondPerSquareMillimeter: return baseUnitValue * 1e-3;
+                case MassFluxUnit.KilogramPerHourPerSquareCentimeter: return (baseUnitValue * 3.6e2) / 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMeter: return (baseUnitValue * 3.6e6) / 1e3d;
+                case MassFluxUnit.KilogramPerHourPerSquareMillimeter: return (baseUnitValue * 3.6e0) / 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareCentimeter: return (baseUnitValue * 1e-1) / 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (baseUnitValue * 1e3) / 1e3d;
+                case MassFluxUnit.KilogramPerSecondPerSquareMillimeter: return (baseUnitValue * 1e-3) / 1e3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

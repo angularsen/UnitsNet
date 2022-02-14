@@ -164,57 +164,57 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Duration in Days.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Day"/>
         /// </summary>
         public double Days => As(DurationUnit.Day);
 
         /// <summary>
-        ///     Get Duration in Hours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Hour"/>
         /// </summary>
         public double Hours => As(DurationUnit.Hour);
 
         /// <summary>
-        ///     Get Duration in JulianYears.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
         /// </summary>
         public double JulianYears => As(DurationUnit.JulianYear);
 
         /// <summary>
-        ///     Get Duration in Microseconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
         /// </summary>
         public double Microseconds => As(DurationUnit.Microsecond);
 
         /// <summary>
-        ///     Get Duration in Milliseconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
         /// </summary>
         public double Milliseconds => As(DurationUnit.Millisecond);
 
         /// <summary>
-        ///     Get Duration in Minutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Minute"/>
         /// </summary>
         public double Minutes => As(DurationUnit.Minute);
 
         /// <summary>
-        ///     Get Duration in Months30.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Month30"/>
         /// </summary>
         public double Months30 => As(DurationUnit.Month30);
 
         /// <summary>
-        ///     Get Duration in Nanoseconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
         /// </summary>
         public double Nanoseconds => As(DurationUnit.Nanosecond);
 
         /// <summary>
-        ///     Get Duration in Seconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
         public double Seconds => As(DurationUnit.Second);
 
         /// <summary>
-        ///     Get Duration in Weeks.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
         /// </summary>
         public double Weeks => As(DurationUnit.Week);
 
         /// <summary>
-        ///     Get Duration in Years365.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Year365"/>
         /// </summary>
         public double Years365 => As(DurationUnit.Year365);
 
@@ -274,7 +274,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Duration from Days.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Day"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -284,7 +284,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Day);
         }
         /// <summary>
-        ///     Get Duration from Hours.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -294,7 +294,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Hour);
         }
         /// <summary>
-        ///     Get Duration from JulianYears.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -304,7 +304,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.JulianYear);
         }
         /// <summary>
-        ///     Get Duration from Microseconds.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -314,7 +314,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Microsecond);
         }
         /// <summary>
-        ///     Get Duration from Milliseconds.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -324,7 +324,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Millisecond);
         }
         /// <summary>
-        ///     Get Duration from Minutes.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -334,7 +334,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Minute);
         }
         /// <summary>
-        ///     Get Duration from Months30.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -344,7 +344,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Month30);
         }
         /// <summary>
-        ///     Get Duration from Nanoseconds.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -354,7 +354,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Nanosecond);
         }
         /// <summary>
-        ///     Get Duration from Seconds.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -364,7 +364,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Second);
         }
         /// <summary>
-        ///     Get Duration from Weeks.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -374,7 +374,7 @@ namespace UnitsNet
             return new Duration(value, DurationUnit.Week);
         }
         /// <summary>
-        ///     Get Duration from Years365.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -674,17 +674,17 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case DurationUnit.Day: return _value*24*3600;
-                case DurationUnit.Hour: return _value*3600;
-                case DurationUnit.JulianYear: return _value*365.25*24*3600;
+                case DurationUnit.Day: return _value * 24 * 3600;
+                case DurationUnit.Hour: return _value * 3600;
+                case DurationUnit.JulianYear: return _value * 365.25 * 24 * 3600;
                 case DurationUnit.Microsecond: return (_value) * 1e-6d;
                 case DurationUnit.Millisecond: return (_value) * 1e-3d;
-                case DurationUnit.Minute: return _value*60;
-                case DurationUnit.Month30: return _value*30*24*3600;
+                case DurationUnit.Minute: return _value * 60;
+                case DurationUnit.Month30: return _value * 30 * 24 * 3600;
                 case DurationUnit.Nanosecond: return (_value) * 1e-9d;
                 case DurationUnit.Second: return _value;
-                case DurationUnit.Week: return _value*7*24*3600;
-                case DurationUnit.Year365: return _value*365*24*3600;
+                case DurationUnit.Week: return _value * 7 * 24 * 3600;
+                case DurationUnit.Year365: return _value * 365 * 24 * 3600;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -699,17 +699,17 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case DurationUnit.Day: return baseUnitValue/(24*3600);
-                case DurationUnit.Hour: return baseUnitValue/3600;
-                case DurationUnit.JulianYear: return baseUnitValue/(365.25*24*3600);
+                case DurationUnit.Day: return baseUnitValue / (24 * 3600);
+                case DurationUnit.Hour: return baseUnitValue / 3600;
+                case DurationUnit.JulianYear: return baseUnitValue / (365.25 * 24 * 3600);
                 case DurationUnit.Microsecond: return (baseUnitValue) / 1e-6d;
                 case DurationUnit.Millisecond: return (baseUnitValue) / 1e-3d;
-                case DurationUnit.Minute: return baseUnitValue/60;
-                case DurationUnit.Month30: return baseUnitValue/(30*24*3600);
+                case DurationUnit.Minute: return baseUnitValue / 60;
+                case DurationUnit.Month30: return baseUnitValue / (30 * 24 * 3600);
                 case DurationUnit.Nanosecond: return (baseUnitValue) / 1e-9d;
                 case DurationUnit.Second: return baseUnitValue;
-                case DurationUnit.Week: return baseUnitValue/(7*24*3600);
-                case DurationUnit.Year365: return baseUnitValue/(365*24*3600);
+                case DurationUnit.Week: return baseUnitValue / (7 * 24 * 3600);
+                case DurationUnit.Year365: return baseUnitValue / (365 * 24 * 3600);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

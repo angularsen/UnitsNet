@@ -26,8 +26,8 @@
     {
       "SingularName": "OhmCentimeter",
       "PluralName": "OhmsCentimeter",
-      "FromUnitToBaseFunc": "{x}/100",
-      "FromBaseToUnitFunc": "{x}*100",
+      "FromUnitToBaseFunc": "{x} / 100",
+      "FromBaseToUnitFunc": "{x} * 100",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {

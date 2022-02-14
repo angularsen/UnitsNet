@@ -339,7 +339,7 @@ namespace UnitsNet
 
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} in {unit.PluralName}.
+        ///     Gets a <see cref=""double""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
@@ -454,7 +454,7 @@ namespace UnitsNet
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} from {unit.PluralName}.
+        ///     Creates a <see cref=""{_quantity.Name}""/> from <see cref=""{_unitEnumName}.{unit.SingularName}""/>.
         /// </summary>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
@@ -711,16 +711,16 @@ namespace UnitsNet
         public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
         {{
             // Logarithmic addition
-            // Formula: {x}*log10(10^(x/{x}) + 10^(y/{x}))
-            return new {_quantity.Name}({x}*Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
+            // Formula: {x} * log10(10^(x/{x}) + 10^(y/{x}))
+            return new {_quantity.Name}({x} * Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic subtraction of two <see cref=""{_quantity.Name}""/>.</summary>
         public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
         {{
             // Logarithmic subtraction
-            // Formula: {x}*log10(10^(x/{x}) - 10^(y/{x}))
-            return new {_quantity.Name}({x}*Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
+            // Formula: {x} * log10(10^(x/{x}) - 10^(y/{x}))
+            return new {_quantity.Name}({x} * Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>

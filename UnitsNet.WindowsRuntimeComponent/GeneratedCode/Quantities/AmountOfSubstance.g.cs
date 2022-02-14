@@ -164,77 +164,77 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AmountOfSubstance in Centimoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Centimole"/>
         /// </summary>
         public double Centimoles => As(AmountOfSubstanceUnit.Centimole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in CentipoundMoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.CentipoundMole"/>
         /// </summary>
         public double CentipoundMoles => As(AmountOfSubstanceUnit.CentipoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Decimoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Decimole"/>
         /// </summary>
         public double Decimoles => As(AmountOfSubstanceUnit.Decimole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in DecipoundMoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.DecipoundMole"/>
         /// </summary>
         public double DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Kilomoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Kilomole"/>
         /// </summary>
         public double Kilomoles => As(AmountOfSubstanceUnit.Kilomole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in KilopoundMoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.KilopoundMole"/>
         /// </summary>
         public double KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Megamoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Megamole"/>
         /// </summary>
         public double Megamoles => As(AmountOfSubstanceUnit.Megamole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Micromoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Micromole"/>
         /// </summary>
         public double Micromoles => As(AmountOfSubstanceUnit.Micromole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in MicropoundMoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MicropoundMole"/>
         /// </summary>
         public double MicropoundMoles => As(AmountOfSubstanceUnit.MicropoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Millimoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Millimole"/>
         /// </summary>
         public double Millimoles => As(AmountOfSubstanceUnit.Millimole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in MillipoundMoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MillipoundMole"/>
         /// </summary>
         public double MillipoundMoles => As(AmountOfSubstanceUnit.MillipoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Moles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Mole"/>
         /// </summary>
         public double Moles => As(AmountOfSubstanceUnit.Mole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in Nanomoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Nanomole"/>
         /// </summary>
         public double Nanomoles => As(AmountOfSubstanceUnit.Nanomole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in NanopoundMoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.NanopoundMole"/>
         /// </summary>
         public double NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
 
         /// <summary>
-        ///     Get AmountOfSubstance in PoundMoles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.PoundMole"/>
         /// </summary>
         public double PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
 
@@ -288,7 +288,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AmountOfSubstance from Centimoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Centimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -298,7 +298,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from CentipoundMoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.CentipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -308,7 +308,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Decimoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Decimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -318,7 +318,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from DecipoundMoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.DecipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -328,7 +328,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Kilomoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Kilomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -338,7 +338,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from KilopoundMoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.KilopoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -348,7 +348,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Megamoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Megamole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -358,7 +358,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Micromoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Micromole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -368,7 +368,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from MicropoundMoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MicropoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -378,7 +378,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Millimoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Millimole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -388,7 +388,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from MillipoundMoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MillipoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -398,7 +398,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Moles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Mole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -408,7 +408,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from Nanomoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Nanomole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -418,7 +418,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from NanopoundMoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.NanopoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -428,7 +428,7 @@ namespace UnitsNet
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
         }
         /// <summary>
-        ///     Get AmountOfSubstance from PoundMoles.
+        ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.PoundMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -729,20 +729,20 @@ namespace UnitsNet
             switch(Unit)
             {
                 case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (_value * 453.59237) * 1e-2d;
                 case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (_value * 453.59237) * 1e-1d;
                 case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (_value * 453.59237) * 1e3d;
                 case AmountOfSubstanceUnit.Megamole: return (_value) * 1e6d;
                 case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (_value * 453.59237) * 1e-6d;
                 case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (_value * 453.59237) * 1e-3d;
                 case AmountOfSubstanceUnit.Mole: return _value;
                 case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
-                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
+                case AmountOfSubstanceUnit.NanopoundMole: return (_value * 453.59237) * 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return _value * 453.59237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -758,20 +758,20 @@ namespace UnitsNet
             switch(unit)
             {
                 case AmountOfSubstanceUnit.Centimole: return (baseUnitValue) / 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue/453.59237) / 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue / 453.59237) / 1e-2d;
                 case AmountOfSubstanceUnit.Decimole: return (baseUnitValue) / 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue/453.59237) / 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue / 453.59237) / 1e-1d;
                 case AmountOfSubstanceUnit.Kilomole: return (baseUnitValue) / 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue/453.59237) / 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue / 453.59237) / 1e3d;
                 case AmountOfSubstanceUnit.Megamole: return (baseUnitValue) / 1e6d;
                 case AmountOfSubstanceUnit.Micromole: return (baseUnitValue) / 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue/453.59237) / 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue / 453.59237) / 1e-6d;
                 case AmountOfSubstanceUnit.Millimole: return (baseUnitValue) / 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (baseUnitValue/453.59237) / 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (baseUnitValue / 453.59237) / 1e-3d;
                 case AmountOfSubstanceUnit.Mole: return baseUnitValue;
                 case AmountOfSubstanceUnit.Nanomole: return (baseUnitValue) / 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue/453.59237) / 1e-9d;
-                case AmountOfSubstanceUnit.PoundMole: return baseUnitValue/453.59237;
+                case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue / 453.59237) / 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return baseUnitValue / 453.59237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

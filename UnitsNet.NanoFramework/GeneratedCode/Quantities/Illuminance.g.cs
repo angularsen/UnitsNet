@@ -81,22 +81,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Illuminance in Kilolux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
         /// </summary>
         public double Kilolux => As(IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Get Illuminance in Lux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
         /// </summary>
         public double Lux => As(IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Get Illuminance in Megalux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
         /// </summary>
         public double Megalux => As(IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Get Illuminance in Millilux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
         /// </summary>
         public double Millilux => As(IlluminanceUnit.Millilux);
 
@@ -105,25 +105,25 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Illuminance from Kilolux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Kilolux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromKilolux(double kilolux) => new Illuminance(kilolux, IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Get Illuminance from Lux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Lux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromLux(double lux) => new Illuminance(lux, IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Get Illuminance from Megalux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Megalux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromMegalux(double megalux) => new Illuminance(megalux, IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Get Illuminance from Millilux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Millilux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromMillilux(double millilux) => new Illuminance(millilux, IlluminanceUnit.Millilux);
@@ -167,15 +167,14 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case IlluminanceUnit.Kilolux: return (_value) * 1e3d;
-                case IlluminanceUnit.Lux: return _value;
-                case IlluminanceUnit.Megalux: return (_value) * 1e6d;
-                case IlluminanceUnit.Millilux: return (_value) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                IlluminanceUnit.Kilolux => (_value) * 1e3d,
+                IlluminanceUnit.Lux => _value,
+                IlluminanceUnit.Megalux => (_value) * 1e6d,
+                IlluminanceUnit.Millilux => (_value) * 1e-3d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(IlluminanceUnit unit)
@@ -185,15 +184,14 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case IlluminanceUnit.Kilolux: return (baseUnitValue) / 1e3d;
-                case IlluminanceUnit.Lux: return baseUnitValue;
-                case IlluminanceUnit.Megalux: return (baseUnitValue) / 1e6d;
-                case IlluminanceUnit.Millilux: return (baseUnitValue) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                IlluminanceUnit.Kilolux => (baseUnitValue) / 1e3d,
+                IlluminanceUnit.Lux => baseUnitValue,
+                IlluminanceUnit.Megalux => (baseUnitValue) / 1e6d,
+                IlluminanceUnit.Millilux => (baseUnitValue) / 1e-3d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

@@ -213,127 +213,127 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Mass in Centigrams.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Centigram"/>
         /// </summary>
         public double Centigrams => As(MassUnit.Centigram);
 
         /// <summary>
-        ///     Get Mass in Decagrams.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
         /// </summary>
         public double Decagrams => As(MassUnit.Decagram);
 
         /// <summary>
-        ///     Get Mass in Decigrams.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decigram"/>
         /// </summary>
         public double Decigrams => As(MassUnit.Decigram);
 
         /// <summary>
-        ///     Get Mass in EarthMasses.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.EarthMass"/>
         /// </summary>
         public double EarthMasses => As(MassUnit.EarthMass);
 
         /// <summary>
-        ///     Get Mass in Grains.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Grain"/>
         /// </summary>
         public double Grains => As(MassUnit.Grain);
 
         /// <summary>
-        ///     Get Mass in Grams.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Gram"/>
         /// </summary>
         public double Grams => As(MassUnit.Gram);
 
         /// <summary>
-        ///     Get Mass in Hectograms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Hectogram"/>
         /// </summary>
         public double Hectograms => As(MassUnit.Hectogram);
 
         /// <summary>
-        ///     Get Mass in Kilograms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilogram"/>
         /// </summary>
         public double Kilograms => As(MassUnit.Kilogram);
 
         /// <summary>
-        ///     Get Mass in Kilopounds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilopound"/>
         /// </summary>
         public double Kilopounds => As(MassUnit.Kilopound);
 
         /// <summary>
-        ///     Get Mass in Kilotonnes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilotonne"/>
         /// </summary>
         public double Kilotonnes => As(MassUnit.Kilotonne);
 
         /// <summary>
-        ///     Get Mass in LongHundredweight.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.LongHundredweight"/>
         /// </summary>
         public double LongHundredweight => As(MassUnit.LongHundredweight);
 
         /// <summary>
-        ///     Get Mass in LongTons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.LongTon"/>
         /// </summary>
         public double LongTons => As(MassUnit.LongTon);
 
         /// <summary>
-        ///     Get Mass in Megapounds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megapound"/>
         /// </summary>
         public double Megapounds => As(MassUnit.Megapound);
 
         /// <summary>
-        ///     Get Mass in Megatonnes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megatonne"/>
         /// </summary>
         public double Megatonnes => As(MassUnit.Megatonne);
 
         /// <summary>
-        ///     Get Mass in Micrograms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Microgram"/>
         /// </summary>
         public double Micrograms => As(MassUnit.Microgram);
 
         /// <summary>
-        ///     Get Mass in Milligrams.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Milligram"/>
         /// </summary>
         public double Milligrams => As(MassUnit.Milligram);
 
         /// <summary>
-        ///     Get Mass in Nanograms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Nanogram"/>
         /// </summary>
         public double Nanograms => As(MassUnit.Nanogram);
 
         /// <summary>
-        ///     Get Mass in Ounces.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Ounce"/>
         /// </summary>
         public double Ounces => As(MassUnit.Ounce);
 
         /// <summary>
-        ///     Get Mass in Pounds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Pound"/>
         /// </summary>
         public double Pounds => As(MassUnit.Pound);
 
         /// <summary>
-        ///     Get Mass in ShortHundredweight.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.ShortHundredweight"/>
         /// </summary>
         public double ShortHundredweight => As(MassUnit.ShortHundredweight);
 
         /// <summary>
-        ///     Get Mass in ShortTons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.ShortTon"/>
         /// </summary>
         public double ShortTons => As(MassUnit.ShortTon);
 
         /// <summary>
-        ///     Get Mass in Slugs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Slug"/>
         /// </summary>
         public double Slugs => As(MassUnit.Slug);
 
         /// <summary>
-        ///     Get Mass in SolarMasses.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.SolarMass"/>
         /// </summary>
         public double SolarMasses => As(MassUnit.SolarMass);
 
         /// <summary>
-        ///     Get Mass in Stone.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Stone"/>
         /// </summary>
         public double Stone => As(MassUnit.Stone);
 
         /// <summary>
-        ///     Get Mass in Tonnes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Tonne"/>
         /// </summary>
         public double Tonnes => As(MassUnit.Tonne);
 
@@ -348,58 +348,58 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> MassUnit
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Centigram, quantity => new Mass((quantity.Value*1e3) / 1e-2d, MassUnit.Centigram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decagram, quantity => new Mass((quantity.Value*1e3) / 1e1d, MassUnit.Decagram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decigram, quantity => new Mass((quantity.Value*1e3) / 1e-1d, MassUnit.Decigram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Centigram, quantity => new Mass((quantity.Value * 1e3) / 1e-2d, MassUnit.Centigram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decagram, quantity => new Mass((quantity.Value * 1e3) / 1e1d, MassUnit.Decagram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Decigram, quantity => new Mass((quantity.Value * 1e3) / 1e-1d, MassUnit.Decigram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.EarthMass, quantity => new Mass(quantity.Value / 5.9722E+24, MassUnit.EarthMass));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Grain, quantity => new Mass(quantity.Value*15432.358352941431, MassUnit.Grain));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Gram, quantity => new Mass(quantity.Value*1e3, MassUnit.Gram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Hectogram, quantity => new Mass((quantity.Value*1e3) / 1e2d, MassUnit.Hectogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Kilopound, quantity => new Mass((quantity.Value/0.45359237) / 1e3d, MassUnit.Kilopound));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Kilotonne, quantity => new Mass((quantity.Value/1e3) / 1e3d, MassUnit.Kilotonne));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.LongHundredweight, quantity => new Mass(quantity.Value*0.01968413055222121, MassUnit.LongHundredweight));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.LongTon, quantity => new Mass(quantity.Value/1.0160469088e3, MassUnit.LongTon));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Megapound, quantity => new Mass((quantity.Value/0.45359237) / 1e6d, MassUnit.Megapound));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Megatonne, quantity => new Mass((quantity.Value/1e3) / 1e6d, MassUnit.Megatonne));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Microgram, quantity => new Mass((quantity.Value*1e3) / 1e-6d, MassUnit.Microgram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Milligram, quantity => new Mass((quantity.Value*1e3) / 1e-3d, MassUnit.Milligram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Nanogram, quantity => new Mass((quantity.Value*1e3) / 1e-9d, MassUnit.Nanogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Ounce, quantity => new Mass(quantity.Value*35.2739619, MassUnit.Ounce));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Pound, quantity => new Mass(quantity.Value/0.45359237, MassUnit.Pound));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortHundredweight, quantity => new Mass(quantity.Value*0.022046226218487758, MassUnit.ShortHundredweight));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortTon, quantity => new Mass(quantity.Value/9.0718474e2, MassUnit.ShortTon));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Slug, quantity => new Mass(quantity.Value*6.852176556196105e-2, MassUnit.Slug));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Grain, quantity => new Mass(quantity.Value * 15432.358352941431, MassUnit.Grain));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Gram, quantity => new Mass(quantity.Value * 1e3, MassUnit.Gram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Hectogram, quantity => new Mass((quantity.Value * 1e3) / 1e2d, MassUnit.Hectogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Kilopound, quantity => new Mass((quantity.Value / 0.45359237) / 1e3d, MassUnit.Kilopound));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Kilotonne, quantity => new Mass((quantity.Value / 1e3) / 1e3d, MassUnit.Kilotonne));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.LongHundredweight, quantity => new Mass(quantity.Value * 0.01968413055222121, MassUnit.LongHundredweight));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.LongTon, quantity => new Mass(quantity.Value / 1.0160469088e3, MassUnit.LongTon));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Megapound, quantity => new Mass((quantity.Value / 0.45359237) / 1e6d, MassUnit.Megapound));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Megatonne, quantity => new Mass((quantity.Value / 1e3) / 1e6d, MassUnit.Megatonne));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Microgram, quantity => new Mass((quantity.Value * 1e3) / 1e-6d, MassUnit.Microgram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Milligram, quantity => new Mass((quantity.Value * 1e3) / 1e-3d, MassUnit.Milligram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Nanogram, quantity => new Mass((quantity.Value * 1e3) / 1e-9d, MassUnit.Nanogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Ounce, quantity => new Mass(quantity.Value * 35.2739619, MassUnit.Ounce));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Pound, quantity => new Mass(quantity.Value / 0.45359237, MassUnit.Pound));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortHundredweight, quantity => new Mass(quantity.Value * 0.022046226218487758, MassUnit.ShortHundredweight));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.ShortTon, quantity => new Mass(quantity.Value / 9.0718474e2, MassUnit.ShortTon));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Slug, quantity => new Mass(quantity.Value * 6.852176556196105e-2, MassUnit.Slug));
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.SolarMass, quantity => new Mass(quantity.Value / 1.98947e30, MassUnit.SolarMass));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Stone, quantity => new Mass(quantity.Value*0.1574731728702698, MassUnit.Stone));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Tonne, quantity => new Mass(quantity.Value/1e3, MassUnit.Tonne));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Stone, quantity => new Mass(quantity.Value * 0.1574731728702698, MassUnit.Stone));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Tonne, quantity => new Mass(quantity.Value / 1e3, MassUnit.Tonne));
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Kilogram, quantity => quantity);
 
             // Register in unit converter: MassUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Centigram, MassUnit.Kilogram, quantity => new Mass((quantity.Value/1e3) * 1e-2d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Decagram, MassUnit.Kilogram, quantity => new Mass((quantity.Value/1e3) * 1e1d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Decigram, MassUnit.Kilogram, quantity => new Mass((quantity.Value/1e3) * 1e-1d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Centigram, MassUnit.Kilogram, quantity => new Mass((quantity.Value / 1e3) * 1e-2d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Decagram, MassUnit.Kilogram, quantity => new Mass((quantity.Value / 1e3) * 1e1d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Decigram, MassUnit.Kilogram, quantity => new Mass((quantity.Value / 1e3) * 1e-1d, MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.EarthMass, MassUnit.Kilogram, quantity => new Mass(quantity.Value * 5.9722E+24, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Grain, MassUnit.Kilogram, quantity => new Mass(quantity.Value/15432.358352941431, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Gram, MassUnit.Kilogram, quantity => new Mass(quantity.Value/1e3, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Hectogram, MassUnit.Kilogram, quantity => new Mass((quantity.Value/1e3) * 1e2d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilopound, MassUnit.Kilogram, quantity => new Mass((quantity.Value*0.45359237) * 1e3d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilotonne, MassUnit.Kilogram, quantity => new Mass((quantity.Value*1e3) * 1e3d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.LongHundredweight, MassUnit.Kilogram, quantity => new Mass(quantity.Value/0.01968413055222121, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.LongTon, MassUnit.Kilogram, quantity => new Mass(quantity.Value*1.0160469088e3, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Megapound, MassUnit.Kilogram, quantity => new Mass((quantity.Value*0.45359237) * 1e6d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Megatonne, MassUnit.Kilogram, quantity => new Mass((quantity.Value*1e3) * 1e6d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Microgram, MassUnit.Kilogram, quantity => new Mass((quantity.Value/1e3) * 1e-6d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Milligram, MassUnit.Kilogram, quantity => new Mass((quantity.Value/1e3) * 1e-3d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Nanogram, MassUnit.Kilogram, quantity => new Mass((quantity.Value/1e3) * 1e-9d, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Ounce, MassUnit.Kilogram, quantity => new Mass(quantity.Value/35.2739619, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Pound, MassUnit.Kilogram, quantity => new Mass(quantity.Value*0.45359237, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.ShortHundredweight, MassUnit.Kilogram, quantity => new Mass(quantity.Value/0.022046226218487758, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.ShortTon, MassUnit.Kilogram, quantity => new Mass(quantity.Value*9.0718474e2, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Slug, MassUnit.Kilogram, quantity => new Mass(quantity.Value/6.852176556196105e-2, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Grain, MassUnit.Kilogram, quantity => new Mass(quantity.Value / 15432.358352941431, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Gram, MassUnit.Kilogram, quantity => new Mass(quantity.Value / 1e3, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Hectogram, MassUnit.Kilogram, quantity => new Mass((quantity.Value / 1e3) * 1e2d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilopound, MassUnit.Kilogram, quantity => new Mass((quantity.Value * 0.45359237) * 1e3d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Kilotonne, MassUnit.Kilogram, quantity => new Mass((quantity.Value * 1e3) * 1e3d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.LongHundredweight, MassUnit.Kilogram, quantity => new Mass(quantity.Value / 0.01968413055222121, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.LongTon, MassUnit.Kilogram, quantity => new Mass(quantity.Value * 1.0160469088e3, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Megapound, MassUnit.Kilogram, quantity => new Mass((quantity.Value * 0.45359237) * 1e6d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Megatonne, MassUnit.Kilogram, quantity => new Mass((quantity.Value * 1e3) * 1e6d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Microgram, MassUnit.Kilogram, quantity => new Mass((quantity.Value / 1e3) * 1e-6d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Milligram, MassUnit.Kilogram, quantity => new Mass((quantity.Value / 1e3) * 1e-3d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Nanogram, MassUnit.Kilogram, quantity => new Mass((quantity.Value / 1e3) * 1e-9d, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Ounce, MassUnit.Kilogram, quantity => new Mass(quantity.Value / 35.2739619, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Pound, MassUnit.Kilogram, quantity => new Mass(quantity.Value * 0.45359237, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.ShortHundredweight, MassUnit.Kilogram, quantity => new Mass(quantity.Value / 0.022046226218487758, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.ShortTon, MassUnit.Kilogram, quantity => new Mass(quantity.Value * 9.0718474e2, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Slug, MassUnit.Kilogram, quantity => new Mass(quantity.Value / 6.852176556196105e-2, MassUnit.Kilogram));
             unitConverter.SetConversionFunction<Mass>(MassUnit.SolarMass, MassUnit.Kilogram, quantity => new Mass(quantity.Value * 1.98947e30, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Stone, MassUnit.Kilogram, quantity => new Mass(quantity.Value/0.1574731728702698, MassUnit.Kilogram));
-            unitConverter.SetConversionFunction<Mass>(MassUnit.Tonne, MassUnit.Kilogram, quantity => new Mass(quantity.Value*1e3, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Stone, MassUnit.Kilogram, quantity => new Mass(quantity.Value / 0.1574731728702698, MassUnit.Kilogram));
+            unitConverter.SetConversionFunction<Mass>(MassUnit.Tonne, MassUnit.Kilogram, quantity => new Mass(quantity.Value * 1e3, MassUnit.Kilogram));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -492,7 +492,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Mass from Centigrams.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Centigram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromCentigrams(QuantityValue centigrams)
@@ -501,7 +501,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Centigram);
         }
         /// <summary>
-        ///     Get Mass from Decagrams.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromDecagrams(QuantityValue decagrams)
@@ -510,7 +510,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Decagram);
         }
         /// <summary>
-        ///     Get Mass from Decigrams.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decigram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromDecigrams(QuantityValue decigrams)
@@ -519,7 +519,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Decigram);
         }
         /// <summary>
-        ///     Get Mass from EarthMasses.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.EarthMass"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromEarthMasses(QuantityValue earthmasses)
@@ -528,7 +528,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.EarthMass);
         }
         /// <summary>
-        ///     Get Mass from Grains.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Grain"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromGrains(QuantityValue grains)
@@ -537,7 +537,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Grain);
         }
         /// <summary>
-        ///     Get Mass from Grams.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Gram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromGrams(QuantityValue grams)
@@ -546,7 +546,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Gram);
         }
         /// <summary>
-        ///     Get Mass from Hectograms.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Hectogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromHectograms(QuantityValue hectograms)
@@ -555,7 +555,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Hectogram);
         }
         /// <summary>
-        ///     Get Mass from Kilograms.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromKilograms(QuantityValue kilograms)
@@ -564,7 +564,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Kilogram);
         }
         /// <summary>
-        ///     Get Mass from Kilopounds.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilopound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromKilopounds(QuantityValue kilopounds)
@@ -573,7 +573,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Kilopound);
         }
         /// <summary>
-        ///     Get Mass from Kilotonnes.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilotonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromKilotonnes(QuantityValue kilotonnes)
@@ -582,7 +582,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Kilotonne);
         }
         /// <summary>
-        ///     Get Mass from LongHundredweight.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongHundredweight"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromLongHundredweight(QuantityValue longhundredweight)
@@ -591,7 +591,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.LongHundredweight);
         }
         /// <summary>
-        ///     Get Mass from LongTons.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromLongTons(QuantityValue longtons)
@@ -600,7 +600,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.LongTon);
         }
         /// <summary>
-        ///     Get Mass from Megapounds.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megapound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromMegapounds(QuantityValue megapounds)
@@ -609,7 +609,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Megapound);
         }
         /// <summary>
-        ///     Get Mass from Megatonnes.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megatonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromMegatonnes(QuantityValue megatonnes)
@@ -618,7 +618,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Megatonne);
         }
         /// <summary>
-        ///     Get Mass from Micrograms.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Microgram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromMicrograms(QuantityValue micrograms)
@@ -627,7 +627,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Microgram);
         }
         /// <summary>
-        ///     Get Mass from Milligrams.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Milligram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromMilligrams(QuantityValue milligrams)
@@ -636,7 +636,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Milligram);
         }
         /// <summary>
-        ///     Get Mass from Nanograms.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Nanogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromNanograms(QuantityValue nanograms)
@@ -645,7 +645,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Nanogram);
         }
         /// <summary>
-        ///     Get Mass from Ounces.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Ounce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromOunces(QuantityValue ounces)
@@ -654,7 +654,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Ounce);
         }
         /// <summary>
-        ///     Get Mass from Pounds.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Pound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromPounds(QuantityValue pounds)
@@ -663,7 +663,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Pound);
         }
         /// <summary>
-        ///     Get Mass from ShortHundredweight.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortHundredweight"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromShortHundredweight(QuantityValue shorthundredweight)
@@ -672,7 +672,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.ShortHundredweight);
         }
         /// <summary>
-        ///     Get Mass from ShortTons.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromShortTons(QuantityValue shorttons)
@@ -681,7 +681,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.ShortTon);
         }
         /// <summary>
-        ///     Get Mass from Slugs.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Slug"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromSlugs(QuantityValue slugs)
@@ -690,7 +690,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Slug);
         }
         /// <summary>
-        ///     Get Mass from SolarMasses.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.SolarMass"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromSolarMasses(QuantityValue solarmasses)
@@ -699,7 +699,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.SolarMass);
         }
         /// <summary>
-        ///     Get Mass from Stone.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Stone"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromStone(QuantityValue stone)
@@ -708,7 +708,7 @@ namespace UnitsNet
             return new Mass(value, MassUnit.Stone);
         }
         /// <summary>
-        ///     Get Mass from Tonnes.
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Tonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Mass FromTonnes(QuantityValue tonnes)

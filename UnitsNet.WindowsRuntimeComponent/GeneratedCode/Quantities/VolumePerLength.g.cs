@@ -164,37 +164,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get VolumePerLength in CubicMetersPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>
         /// </summary>
         public double CubicMetersPerMeter => As(VolumePerLengthUnit.CubicMeterPerMeter);
 
         /// <summary>
-        ///     Get VolumePerLength in CubicYardsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>
         /// </summary>
         public double CubicYardsPerFoot => As(VolumePerLengthUnit.CubicYardPerFoot);
 
         /// <summary>
-        ///     Get VolumePerLength in CubicYardsPerUsSurveyFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>
         /// </summary>
         public double CubicYardsPerUsSurveyFoot => As(VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
 
         /// <summary>
-        ///     Get VolumePerLength in LitersPerKilometer.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerKilometer"/>
         /// </summary>
         public double LitersPerKilometer => As(VolumePerLengthUnit.LiterPerKilometer);
 
         /// <summary>
-        ///     Get VolumePerLength in LitersPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerMeter"/>
         /// </summary>
         public double LitersPerMeter => As(VolumePerLengthUnit.LiterPerMeter);
 
         /// <summary>
-        ///     Get VolumePerLength in LitersPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>
         /// </summary>
         public double LitersPerMillimeter => As(VolumePerLengthUnit.LiterPerMillimeter);
 
         /// <summary>
-        ///     Get VolumePerLength in OilBarrelsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>
         /// </summary>
         public double OilBarrelsPerFoot => As(VolumePerLengthUnit.OilBarrelPerFoot);
 
@@ -240,7 +240,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get VolumePerLength from CubicMetersPerMeter.
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -250,7 +250,7 @@ namespace UnitsNet
             return new VolumePerLength(value, VolumePerLengthUnit.CubicMeterPerMeter);
         }
         /// <summary>
-        ///     Get VolumePerLength from CubicYardsPerFoot.
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -260,7 +260,7 @@ namespace UnitsNet
             return new VolumePerLength(value, VolumePerLengthUnit.CubicYardPerFoot);
         }
         /// <summary>
-        ///     Get VolumePerLength from CubicYardsPerUsSurveyFoot.
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -270,7 +270,7 @@ namespace UnitsNet
             return new VolumePerLength(value, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
         }
         /// <summary>
-        ///     Get VolumePerLength from LitersPerKilometer.
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -280,7 +280,7 @@ namespace UnitsNet
             return new VolumePerLength(value, VolumePerLengthUnit.LiterPerKilometer);
         }
         /// <summary>
-        ///     Get VolumePerLength from LitersPerMeter.
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -290,7 +290,7 @@ namespace UnitsNet
             return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMeter);
         }
         /// <summary>
-        ///     Get VolumePerLength from LitersPerMillimeter.
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -300,7 +300,7 @@ namespace UnitsNet
             return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMillimeter);
         }
         /// <summary>
-        ///     Get VolumePerLength from OilBarrelsPerFoot.
+        ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -601,12 +601,12 @@ namespace UnitsNet
             switch(Unit)
             {
                 case VolumePerLengthUnit.CubicMeterPerMeter: return _value;
-                case VolumePerLengthUnit.CubicYardPerFoot: return _value*2.50838208;
-                case VolumePerLengthUnit.CubicYardPerUsSurveyFoot: return _value*2.50837706323584;
-                case VolumePerLengthUnit.LiterPerKilometer: return _value/1e6;
-                case VolumePerLengthUnit.LiterPerMeter: return _value/1000;
+                case VolumePerLengthUnit.CubicYardPerFoot: return _value * 2.50838208;
+                case VolumePerLengthUnit.CubicYardPerUsSurveyFoot: return _value * 2.50837706323584;
+                case VolumePerLengthUnit.LiterPerKilometer: return _value / 1e6;
+                case VolumePerLengthUnit.LiterPerMeter: return _value / 1000;
                 case VolumePerLengthUnit.LiterPerMillimeter: return _value;
-                case VolumePerLengthUnit.OilBarrelPerFoot: return _value/1.91713408;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return _value / 1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -622,12 +622,12 @@ namespace UnitsNet
             switch(unit)
             {
                 case VolumePerLengthUnit.CubicMeterPerMeter: return baseUnitValue;
-                case VolumePerLengthUnit.CubicYardPerFoot: return baseUnitValue/2.50838208;
-                case VolumePerLengthUnit.CubicYardPerUsSurveyFoot: return baseUnitValue/2.50837706323584;
-                case VolumePerLengthUnit.LiterPerKilometer: return baseUnitValue*1e6;
-                case VolumePerLengthUnit.LiterPerMeter: return baseUnitValue*1000;
+                case VolumePerLengthUnit.CubicYardPerFoot: return baseUnitValue / 2.50838208;
+                case VolumePerLengthUnit.CubicYardPerUsSurveyFoot: return baseUnitValue / 2.50837706323584;
+                case VolumePerLengthUnit.LiterPerKilometer: return baseUnitValue * 1e6;
+                case VolumePerLengthUnit.LiterPerMeter: return baseUnitValue * 1000;
                 case VolumePerLengthUnit.LiterPerMillimeter: return baseUnitValue;
-                case VolumePerLengthUnit.OilBarrelPerFoot: return baseUnitValue*1.91713408;
+                case VolumePerLengthUnit.OilBarrelPerFoot: return baseUnitValue * 1.91713408;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

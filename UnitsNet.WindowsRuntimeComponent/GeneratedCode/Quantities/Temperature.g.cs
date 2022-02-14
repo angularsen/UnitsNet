@@ -164,52 +164,52 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Temperature in DegreesCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeCelsius"/>
         /// </summary>
         public double DegreesCelsius => As(TemperatureUnit.DegreeCelsius);
 
         /// <summary>
-        ///     Get Temperature in DegreesDelisle.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeDelisle"/>
         /// </summary>
         public double DegreesDelisle => As(TemperatureUnit.DegreeDelisle);
 
         /// <summary>
-        ///     Get Temperature in DegreesFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeFahrenheit"/>
         /// </summary>
         public double DegreesFahrenheit => As(TemperatureUnit.DegreeFahrenheit);
 
         /// <summary>
-        ///     Get Temperature in DegreesNewton.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeNewton"/>
         /// </summary>
         public double DegreesNewton => As(TemperatureUnit.DegreeNewton);
 
         /// <summary>
-        ///     Get Temperature in DegreesRankine.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeRankine"/>
         /// </summary>
         public double DegreesRankine => As(TemperatureUnit.DegreeRankine);
 
         /// <summary>
-        ///     Get Temperature in DegreesReaumur.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeReaumur"/>
         /// </summary>
         public double DegreesReaumur => As(TemperatureUnit.DegreeReaumur);
 
         /// <summary>
-        ///     Get Temperature in DegreesRoemer.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeRoemer"/>
         /// </summary>
         public double DegreesRoemer => As(TemperatureUnit.DegreeRoemer);
 
         /// <summary>
-        ///     Get Temperature in Kelvins.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.Kelvin"/>
         /// </summary>
         public double Kelvins => As(TemperatureUnit.Kelvin);
 
         /// <summary>
-        ///     Get Temperature in MillidegreesCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.MillidegreeCelsius"/>
         /// </summary>
         public double MillidegreesCelsius => As(TemperatureUnit.MillidegreeCelsius);
 
         /// <summary>
-        ///     Get Temperature in SolarTemperatures.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.SolarTemperature"/>
         /// </summary>
         public double SolarTemperatures => As(TemperatureUnit.SolarTemperature);
 
@@ -258,7 +258,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Temperature from DegreesCelsius.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -268,7 +268,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.DegreeCelsius);
         }
         /// <summary>
-        ///     Get Temperature from DegreesDelisle.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeDelisle"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -278,7 +278,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.DegreeDelisle);
         }
         /// <summary>
-        ///     Get Temperature from DegreesFahrenheit.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -288,7 +288,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.DegreeFahrenheit);
         }
         /// <summary>
-        ///     Get Temperature from DegreesNewton.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeNewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -298,7 +298,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.DegreeNewton);
         }
         /// <summary>
-        ///     Get Temperature from DegreesRankine.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRankine"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -308,7 +308,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.DegreeRankine);
         }
         /// <summary>
-        ///     Get Temperature from DegreesReaumur.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeReaumur"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -318,7 +318,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.DegreeReaumur);
         }
         /// <summary>
-        ///     Get Temperature from DegreesRoemer.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRoemer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -328,7 +328,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.DegreeRoemer);
         }
         /// <summary>
-        ///     Get Temperature from Kelvins.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.Kelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -338,7 +338,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.Kelvin);
         }
         /// <summary>
-        ///     Get Temperature from MillidegreesCelsius.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.MillidegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -348,7 +348,7 @@ namespace UnitsNet
             return new Temperature(value, TemperatureUnit.MillidegreeCelsius);
         }
         /// <summary>
-        ///     Get Temperature from SolarTemperatures.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.SolarTemperature"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -649,12 +649,12 @@ namespace UnitsNet
             switch(Unit)
             {
                 case TemperatureUnit.DegreeCelsius: return _value + 273.15;
-                case TemperatureUnit.DegreeDelisle: return _value*-2/3 + 373.15;
-                case TemperatureUnit.DegreeFahrenheit: return _value*5/9 + 459.67*5/9;
-                case TemperatureUnit.DegreeNewton: return _value*100/33 + 273.15;
-                case TemperatureUnit.DegreeRankine: return _value*5/9;
-                case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
-                case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
+                case TemperatureUnit.DegreeDelisle: return _value * -2 / 3 + 373.15;
+                case TemperatureUnit.DegreeFahrenheit: return _value * 5 / 9 + 459.67 * 5 / 9;
+                case TemperatureUnit.DegreeNewton: return _value * 100 / 33 + 273.15;
+                case TemperatureUnit.DegreeRankine: return _value * 5 / 9;
+                case TemperatureUnit.DegreeReaumur: return _value * 5 / 4 + 273.15;
+                case TemperatureUnit.DegreeRoemer: return _value * 40 / 21 + 273.15 - 7.5 * 40d / 21;
                 case TemperatureUnit.Kelvin: return _value;
                 case TemperatureUnit.MillidegreeCelsius: return _value / 1000 + 273.15;
                 case TemperatureUnit.SolarTemperature: return _value * 5778;
@@ -673,12 +673,12 @@ namespace UnitsNet
             switch(unit)
             {
                 case TemperatureUnit.DegreeCelsius: return baseUnitValue - 273.15;
-                case TemperatureUnit.DegreeDelisle: return (baseUnitValue - 373.15)*-3/2;
-                case TemperatureUnit.DegreeFahrenheit: return (baseUnitValue - 459.67*5/9)*9/5;
-                case TemperatureUnit.DegreeNewton: return (baseUnitValue - 273.15)*33/100;
-                case TemperatureUnit.DegreeRankine: return baseUnitValue*9/5;
-                case TemperatureUnit.DegreeReaumur: return (baseUnitValue - 273.15)*4/5;
-                case TemperatureUnit.DegreeRoemer: return (baseUnitValue - (273.15 - 7.5*40d/21))*21/40;
+                case TemperatureUnit.DegreeDelisle: return (baseUnitValue - 373.15) * -3 / 2;
+                case TemperatureUnit.DegreeFahrenheit: return (baseUnitValue - 459.67 * 5 / 9) * 9 / 5;
+                case TemperatureUnit.DegreeNewton: return (baseUnitValue - 273.15) * 33 / 100;
+                case TemperatureUnit.DegreeRankine: return baseUnitValue * 9 / 5;
+                case TemperatureUnit.DegreeReaumur: return (baseUnitValue - 273.15) * 4 / 5;
+                case TemperatureUnit.DegreeRoemer: return (baseUnitValue - (273.15 - 7.5 * 40d / 21)) * 21 / 40;
                 case TemperatureUnit.Kelvin: return baseUnitValue;
                 case TemperatureUnit.MillidegreeCelsius: return (baseUnitValue - 273.15) * 1000;
                 case TemperatureUnit.SolarTemperature: return baseUnitValue / 5778;

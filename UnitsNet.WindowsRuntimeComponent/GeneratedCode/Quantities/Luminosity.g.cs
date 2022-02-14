@@ -167,72 +167,72 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Luminosity in Decawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Decawatt"/>
         /// </summary>
         public double Decawatts => As(LuminosityUnit.Decawatt);
 
         /// <summary>
-        ///     Get Luminosity in Deciwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Deciwatt"/>
         /// </summary>
         public double Deciwatts => As(LuminosityUnit.Deciwatt);
 
         /// <summary>
-        ///     Get Luminosity in Femtowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Femtowatt"/>
         /// </summary>
         public double Femtowatts => As(LuminosityUnit.Femtowatt);
 
         /// <summary>
-        ///     Get Luminosity in Gigawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Gigawatt"/>
         /// </summary>
         public double Gigawatts => As(LuminosityUnit.Gigawatt);
 
         /// <summary>
-        ///     Get Luminosity in Kilowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Kilowatt"/>
         /// </summary>
         public double Kilowatts => As(LuminosityUnit.Kilowatt);
 
         /// <summary>
-        ///     Get Luminosity in Megawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Megawatt"/>
         /// </summary>
         public double Megawatts => As(LuminosityUnit.Megawatt);
 
         /// <summary>
-        ///     Get Luminosity in Microwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Microwatt"/>
         /// </summary>
         public double Microwatts => As(LuminosityUnit.Microwatt);
 
         /// <summary>
-        ///     Get Luminosity in Milliwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Milliwatt"/>
         /// </summary>
         public double Milliwatts => As(LuminosityUnit.Milliwatt);
 
         /// <summary>
-        ///     Get Luminosity in Nanowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Nanowatt"/>
         /// </summary>
         public double Nanowatts => As(LuminosityUnit.Nanowatt);
 
         /// <summary>
-        ///     Get Luminosity in Petawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Petawatt"/>
         /// </summary>
         public double Petawatts => As(LuminosityUnit.Petawatt);
 
         /// <summary>
-        ///     Get Luminosity in Picowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Picowatt"/>
         /// </summary>
         public double Picowatts => As(LuminosityUnit.Picowatt);
 
         /// <summary>
-        ///     Get Luminosity in SolarLuminosities.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.SolarLuminosity"/>
         /// </summary>
         public double SolarLuminosities => As(LuminosityUnit.SolarLuminosity);
 
         /// <summary>
-        ///     Get Luminosity in Terawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Terawatt"/>
         /// </summary>
         public double Terawatts => As(LuminosityUnit.Terawatt);
 
         /// <summary>
-        ///     Get Luminosity in Watts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Watt"/>
         /// </summary>
         public double Watts => As(LuminosityUnit.Watt);
 
@@ -285,7 +285,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Luminosity from Decawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Decawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Decawatt);
         }
         /// <summary>
-        ///     Get Luminosity from Deciwatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Deciwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -305,7 +305,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Deciwatt);
         }
         /// <summary>
-        ///     Get Luminosity from Femtowatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Femtowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -315,7 +315,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Femtowatt);
         }
         /// <summary>
-        ///     Get Luminosity from Gigawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Gigawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -325,7 +325,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Gigawatt);
         }
         /// <summary>
-        ///     Get Luminosity from Kilowatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Kilowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -335,7 +335,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Kilowatt);
         }
         /// <summary>
-        ///     Get Luminosity from Megawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Megawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -345,7 +345,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Megawatt);
         }
         /// <summary>
-        ///     Get Luminosity from Microwatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Microwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -355,7 +355,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Microwatt);
         }
         /// <summary>
-        ///     Get Luminosity from Milliwatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Milliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -365,7 +365,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Milliwatt);
         }
         /// <summary>
-        ///     Get Luminosity from Nanowatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Nanowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -375,7 +375,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Nanowatt);
         }
         /// <summary>
-        ///     Get Luminosity from Petawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Petawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -385,7 +385,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Petawatt);
         }
         /// <summary>
-        ///     Get Luminosity from Picowatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Picowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -395,7 +395,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Picowatt);
         }
         /// <summary>
-        ///     Get Luminosity from SolarLuminosities.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.SolarLuminosity"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -405,7 +405,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.SolarLuminosity);
         }
         /// <summary>
-        ///     Get Luminosity from Terawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Terawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -415,7 +415,7 @@ namespace UnitsNet
             return new Luminosity(value, LuminosityUnit.Terawatt);
         }
         /// <summary>
-        ///     Get Luminosity from Watts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Watt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]

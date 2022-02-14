@@ -78,27 +78,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricPotentialAc in KilovoltsAc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialAcUnit.KilovoltAc"/>
         /// </summary>
         public double KilovoltsAc => As(ElectricPotentialAcUnit.KilovoltAc);
 
         /// <summary>
-        ///     Get ElectricPotentialAc in MegavoltsAc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialAcUnit.MegavoltAc"/>
         /// </summary>
         public double MegavoltsAc => As(ElectricPotentialAcUnit.MegavoltAc);
 
         /// <summary>
-        ///     Get ElectricPotentialAc in MicrovoltsAc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialAcUnit.MicrovoltAc"/>
         /// </summary>
         public double MicrovoltsAc => As(ElectricPotentialAcUnit.MicrovoltAc);
 
         /// <summary>
-        ///     Get ElectricPotentialAc in MillivoltsAc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialAcUnit.MillivoltAc"/>
         /// </summary>
         public double MillivoltsAc => As(ElectricPotentialAcUnit.MillivoltAc);
 
         /// <summary>
-        ///     Get ElectricPotentialAc in VoltsAc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialAcUnit.VoltAc"/>
         /// </summary>
         public double VoltsAc => As(ElectricPotentialAcUnit.VoltAc);
 
@@ -107,31 +107,31 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricPotentialAc from KilovoltsAc.
+        ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.KilovoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromKilovoltsAc(double kilovoltsac) => new ElectricPotentialAc(kilovoltsac, ElectricPotentialAcUnit.KilovoltAc);
 
         /// <summary>
-        ///     Get ElectricPotentialAc from MegavoltsAc.
+        ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MegavoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromMegavoltsAc(double megavoltsac) => new ElectricPotentialAc(megavoltsac, ElectricPotentialAcUnit.MegavoltAc);
 
         /// <summary>
-        ///     Get ElectricPotentialAc from MicrovoltsAc.
+        ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MicrovoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromMicrovoltsAc(double microvoltsac) => new ElectricPotentialAc(microvoltsac, ElectricPotentialAcUnit.MicrovoltAc);
 
         /// <summary>
-        ///     Get ElectricPotentialAc from MillivoltsAc.
+        ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MillivoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromMillivoltsAc(double millivoltsac) => new ElectricPotentialAc(millivoltsac, ElectricPotentialAcUnit.MillivoltAc);
 
         /// <summary>
-        ///     Get ElectricPotentialAc from VoltsAc.
+        ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.VoltAc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialAc FromVoltsAc(double voltsac) => new ElectricPotentialAc(voltsac, ElectricPotentialAcUnit.VoltAc);
@@ -175,16 +175,15 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricPotentialAcUnit.KilovoltAc: return (_value) * 1e3d;
-                case ElectricPotentialAcUnit.MegavoltAc: return (_value) * 1e6d;
-                case ElectricPotentialAcUnit.MicrovoltAc: return (_value) * 1e-6d;
-                case ElectricPotentialAcUnit.MillivoltAc: return (_value) * 1e-3d;
-                case ElectricPotentialAcUnit.VoltAc: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricPotentialAcUnit.KilovoltAc => (_value) * 1e3d,
+                ElectricPotentialAcUnit.MegavoltAc => (_value) * 1e6d,
+                ElectricPotentialAcUnit.MicrovoltAc => (_value) * 1e-6d,
+                ElectricPotentialAcUnit.MillivoltAc => (_value) * 1e-3d,
+                ElectricPotentialAcUnit.VoltAc => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricPotentialAcUnit unit)
@@ -194,16 +193,15 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricPotentialAcUnit.KilovoltAc: return (baseUnitValue) / 1e3d;
-                case ElectricPotentialAcUnit.MegavoltAc: return (baseUnitValue) / 1e6d;
-                case ElectricPotentialAcUnit.MicrovoltAc: return (baseUnitValue) / 1e-6d;
-                case ElectricPotentialAcUnit.MillivoltAc: return (baseUnitValue) / 1e-3d;
-                case ElectricPotentialAcUnit.VoltAc: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricPotentialAcUnit.KilovoltAc => (baseUnitValue) / 1e3d,
+                ElectricPotentialAcUnit.MegavoltAc => (baseUnitValue) / 1e6d,
+                ElectricPotentialAcUnit.MicrovoltAc => (baseUnitValue) / 1e-6d,
+                ElectricPotentialAcUnit.MillivoltAc => (baseUnitValue) / 1e-3d,
+                ElectricPotentialAcUnit.VoltAc => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

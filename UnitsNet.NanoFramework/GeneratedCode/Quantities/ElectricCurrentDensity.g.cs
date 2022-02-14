@@ -81,17 +81,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>
         /// </summary>
         public double AmperesPerSquareFoot => As(ElectricCurrentDensityUnit.AmperePerSquareFoot);
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>
         /// </summary>
         public double AmperesPerSquareInch => As(ElectricCurrentDensityUnit.AmperePerSquareInch);
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>
         /// </summary>
         public double AmperesPerSquareMeter => As(ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
@@ -100,19 +100,19 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareFoot.
+        ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareFoot(double amperespersquarefoot) => new ElectricCurrentDensity(amperespersquarefoot, ElectricCurrentDensityUnit.AmperePerSquareFoot);
 
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareInch.
+        ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareInch(double amperespersquareinch) => new ElectricCurrentDensity(amperespersquareinch, ElectricCurrentDensityUnit.AmperePerSquareInch);
 
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareMeter.
+        ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareMeter(double amperespersquaremeter) => new ElectricCurrentDensity(amperespersquaremeter, ElectricCurrentDensityUnit.AmperePerSquareMeter);
@@ -156,14 +156,13 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ElectricCurrentDensityUnit.AmperePerSquareFoot: return _value * 1.0763910416709722e1;
-                case ElectricCurrentDensityUnit.AmperePerSquareInch: return _value * 1.5500031000062000e3;
-                case ElectricCurrentDensityUnit.AmperePerSquareMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ElectricCurrentDensityUnit.AmperePerSquareFoot => _value * 1.0763910416709722e1,
+                ElectricCurrentDensityUnit.AmperePerSquareInch => _value * 1.5500031000062000e3,
+                ElectricCurrentDensityUnit.AmperePerSquareMeter => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ElectricCurrentDensityUnit unit)
@@ -173,14 +172,13 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ElectricCurrentDensityUnit.AmperePerSquareFoot: return baseUnitValue / 1.0763910416709722e1;
-                case ElectricCurrentDensityUnit.AmperePerSquareInch: return baseUnitValue / 1.5500031000062000e3;
-                case ElectricCurrentDensityUnit.AmperePerSquareMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ElectricCurrentDensityUnit.AmperePerSquareFoot => baseUnitValue / 1.0763910416709722e1,
+                ElectricCurrentDensityUnit.AmperePerSquareInch => baseUnitValue / 1.5500031000062000e3,
+                ElectricCurrentDensityUnit.AmperePerSquareMeter => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

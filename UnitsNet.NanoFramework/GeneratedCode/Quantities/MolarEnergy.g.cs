@@ -78,17 +78,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MolarEnergy in JoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.JoulePerMole"/>
         /// </summary>
         public double JoulesPerMole => As(MolarEnergyUnit.JoulePerMole);
 
         /// <summary>
-        ///     Get MolarEnergy in KilojoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.KilojoulePerMole"/>
         /// </summary>
         public double KilojoulesPerMole => As(MolarEnergyUnit.KilojoulePerMole);
 
         /// <summary>
-        ///     Get MolarEnergy in MegajoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.MegajoulePerMole"/>
         /// </summary>
         public double MegajoulesPerMole => As(MolarEnergyUnit.MegajoulePerMole);
 
@@ -97,19 +97,19 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MolarEnergy from JoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.JoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarEnergy FromJoulesPerMole(double joulespermole) => new MolarEnergy(joulespermole, MolarEnergyUnit.JoulePerMole);
 
         /// <summary>
-        ///     Get MolarEnergy from KilojoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.KilojoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarEnergy FromKilojoulesPerMole(double kilojoulespermole) => new MolarEnergy(kilojoulespermole, MolarEnergyUnit.KilojoulePerMole);
 
         /// <summary>
-        ///     Get MolarEnergy from MegajoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.MegajoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarEnergy FromMegajoulesPerMole(double megajoulespermole) => new MolarEnergy(megajoulespermole, MolarEnergyUnit.MegajoulePerMole);
@@ -153,14 +153,13 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case MolarEnergyUnit.JoulePerMole: return _value;
-                case MolarEnergyUnit.KilojoulePerMole: return (_value) * 1e3d;
-                case MolarEnergyUnit.MegajoulePerMole: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                MolarEnergyUnit.JoulePerMole => _value,
+                MolarEnergyUnit.KilojoulePerMole => (_value) * 1e3d,
+                MolarEnergyUnit.MegajoulePerMole => (_value) * 1e6d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(MolarEnergyUnit unit)
@@ -170,14 +169,13 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case MolarEnergyUnit.JoulePerMole: return baseUnitValue;
-                case MolarEnergyUnit.KilojoulePerMole: return (baseUnitValue) / 1e3d;
-                case MolarEnergyUnit.MegajoulePerMole: return (baseUnitValue) / 1e6d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                MolarEnergyUnit.JoulePerMole => baseUnitValue,
+                MolarEnergyUnit.KilojoulePerMole => (baseUnitValue) / 1e3d,
+                MolarEnergyUnit.MegajoulePerMole => (baseUnitValue) / 1e6d,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

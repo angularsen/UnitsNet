@@ -78,7 +78,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RelativeHumidity in Percent.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RelativeHumidityUnit.Percent"/>
         /// </summary>
         public double Percent => As(RelativeHumidityUnit.Percent);
 
@@ -87,7 +87,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RelativeHumidity from Percent.
+        ///     Creates a <see cref="RelativeHumidity"/> from <see cref="RelativeHumidityUnit.Percent"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RelativeHumidity FromPercent(double percent) => new RelativeHumidity(percent, RelativeHumidityUnit.Percent);
@@ -131,12 +131,11 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case RelativeHumidityUnit.Percent: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                RelativeHumidityUnit.Percent => _value,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(RelativeHumidityUnit unit)
@@ -146,12 +145,11 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case RelativeHumidityUnit.Percent: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                RelativeHumidityUnit.Percent => baseUnitValue,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion

@@ -129,8 +129,9 @@ namespace UnitsNet
 
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} in {unit.PluralName}.
+        ///     Gets a <see cref=""double""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
         /// </summary>");
+                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
         public {_quantity.BaseType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
@@ -155,9 +156,10 @@ namespace UnitsNet
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} from {unit.PluralName}.
+        ///     Creates a <see cref=""{_quantity.Name}""/> from <see cref=""{_unitEnumName}.{unit.SingularName}""/>.
         /// </summary>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
+                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
         public static {_quantity.Name} From{unit.PluralName}({_quantity.BaseType} {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
 ");
@@ -208,19 +210,18 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private {_quantity.BaseType} GetValueInBaseUnit()
         {{
-            switch(Unit)
+            return Unit switch
             {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
-                case {_unitEnumName}.{unit.SingularName}: return {func};");
+                {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL($@"
-                default:
-                    throw new NotImplementedException($""Can not convert {{Unit}} to base units."");
-            }}
+                _ => throw new NotImplementedException($""Can not convert {{Unit}} to base units."")
+            }};
         }}
 
         private {_quantity.BaseType} GetValueAs({_unitEnumName} unit)
@@ -230,24 +231,36 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "baseUnitValue");
                 Writer.WL($@"
-                case {_unitEnumName}.{unit.SingularName}: return {func};");
+                {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL(@"
-                default:
-                    throw new NotImplementedException($""Can not convert {Unit} to {unit}."");
-            }
+                _ => throw new NotImplementedException($""Can not convert {Unit} to {unit}."")
+            };
         }
 
         #endregion
 ");
         }
 
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        internal static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
+
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        internal static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
+
+        /// <summary>
+        /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
+        /// It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
+        /// </summary>
+        private static string? GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
+            ? null
+            : $"[Obsolete(\"{obsoleteText}\")]";
     }
 }

@@ -194,32 +194,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Ratio in DecimalFractions.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.DecimalFraction"/>
         /// </summary>
         public double DecimalFractions => As(RatioUnit.DecimalFraction);
 
         /// <summary>
-        ///     Get Ratio in PartsPerBillion.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerBillion"/>
         /// </summary>
         public double PartsPerBillion => As(RatioUnit.PartPerBillion);
 
         /// <summary>
-        ///     Get Ratio in PartsPerMillion.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerMillion"/>
         /// </summary>
         public double PartsPerMillion => As(RatioUnit.PartPerMillion);
 
         /// <summary>
-        ///     Get Ratio in PartsPerThousand.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerThousand"/>
         /// </summary>
         public double PartsPerThousand => As(RatioUnit.PartPerThousand);
 
         /// <summary>
-        ///     Get Ratio in PartsPerTrillion.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerTrillion"/>
         /// </summary>
         public double PartsPerTrillion => As(RatioUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Get Ratio in Percent.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.Percent"/>
         /// </summary>
         public double Percent => As(RatioUnit.Percent);
 
@@ -234,20 +234,20 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> RatioUnit
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerBillion, quantity => new Ratio(quantity.Value*1e9, RatioUnit.PartPerBillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerMillion, quantity => new Ratio(quantity.Value*1e6, RatioUnit.PartPerMillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, quantity => new Ratio(quantity.Value*1e3, RatioUnit.PartPerThousand));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, quantity => new Ratio(quantity.Value*1e12, RatioUnit.PartPerTrillion));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, quantity => new Ratio(quantity.Value*1e2, RatioUnit.Percent));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerBillion, quantity => new Ratio(quantity.Value * 1e9, RatioUnit.PartPerBillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerMillion, quantity => new Ratio(quantity.Value * 1e6, RatioUnit.PartPerMillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerThousand, quantity => new Ratio(quantity.Value * 1e3, RatioUnit.PartPerThousand));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion, quantity => new Ratio(quantity.Value * 1e12, RatioUnit.PartPerTrillion));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.Percent, quantity => new Ratio(quantity.Value * 1e2, RatioUnit.Percent));
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.DecimalFraction, RatioUnit.DecimalFraction, quantity => quantity);
 
             // Register in unit converter: RatioUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e9, RatioUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e6, RatioUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e3, RatioUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e12, RatioUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value/1e2, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerBillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e9, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerMillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e6, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerThousand, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e3, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e12, RatioUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e2, RatioUnit.DecimalFraction));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -286,7 +286,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Ratio from DecimalFractions.
+        ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.DecimalFraction"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromDecimalFractions(QuantityValue decimalfractions)
@@ -295,7 +295,7 @@ namespace UnitsNet
             return new Ratio(value, RatioUnit.DecimalFraction);
         }
         /// <summary>
-        ///     Get Ratio from PartsPerBillion.
+        ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerBillion"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPartsPerBillion(QuantityValue partsperbillion)
@@ -304,7 +304,7 @@ namespace UnitsNet
             return new Ratio(value, RatioUnit.PartPerBillion);
         }
         /// <summary>
-        ///     Get Ratio from PartsPerMillion.
+        ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerMillion"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPartsPerMillion(QuantityValue partspermillion)
@@ -313,7 +313,7 @@ namespace UnitsNet
             return new Ratio(value, RatioUnit.PartPerMillion);
         }
         /// <summary>
-        ///     Get Ratio from PartsPerThousand.
+        ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerThousand"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPartsPerThousand(QuantityValue partsperthousand)
@@ -322,7 +322,7 @@ namespace UnitsNet
             return new Ratio(value, RatioUnit.PartPerThousand);
         }
         /// <summary>
-        ///     Get Ratio from PartsPerTrillion.
+        ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerTrillion"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPartsPerTrillion(QuantityValue partspertrillion)
@@ -331,7 +331,7 @@ namespace UnitsNet
             return new Ratio(value, RatioUnit.PartPerTrillion);
         }
         /// <summary>
-        ///     Get Ratio from Percent.
+        ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.Percent"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Ratio FromPercent(QuantityValue percent)

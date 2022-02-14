@@ -78,77 +78,77 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Force in Decanewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Decanewton"/>
         /// </summary>
         public double Decanewtons => As(ForceUnit.Decanewton);
 
         /// <summary>
-        ///     Get Force in Dyne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Dyn"/>
         /// </summary>
         public double Dyne => As(ForceUnit.Dyn);
 
         /// <summary>
-        ///     Get Force in KilogramsForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilogramForce"/>
         /// </summary>
         public double KilogramsForce => As(ForceUnit.KilogramForce);
 
         /// <summary>
-        ///     Get Force in Kilonewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Kilonewton"/>
         /// </summary>
         public double Kilonewtons => As(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Get Force in KiloPonds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KiloPond"/>
         /// </summary>
         public double KiloPonds => As(ForceUnit.KiloPond);
 
         /// <summary>
-        ///     Get Force in KilopoundsForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
         /// </summary>
         public double KilopoundsForce => As(ForceUnit.KilopoundForce);
 
         /// <summary>
-        ///     Get Force in Meganewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Meganewton"/>
         /// </summary>
         public double Meganewtons => As(ForceUnit.Meganewton);
 
         /// <summary>
-        ///     Get Force in Micronewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Micronewton"/>
         /// </summary>
         public double Micronewtons => As(ForceUnit.Micronewton);
 
         /// <summary>
-        ///     Get Force in Millinewtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Millinewton"/>
         /// </summary>
         public double Millinewtons => As(ForceUnit.Millinewton);
 
         /// <summary>
-        ///     Get Force in Newtons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Newton"/>
         /// </summary>
         public double Newtons => As(ForceUnit.Newton);
 
         /// <summary>
-        ///     Get Force in OunceForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.OunceForce"/>
         /// </summary>
         public double OunceForce => As(ForceUnit.OunceForce);
 
         /// <summary>
-        ///     Get Force in Poundals.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Poundal"/>
         /// </summary>
         public double Poundals => As(ForceUnit.Poundal);
 
         /// <summary>
-        ///     Get Force in PoundsForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.PoundForce"/>
         /// </summary>
         public double PoundsForce => As(ForceUnit.PoundForce);
 
         /// <summary>
-        ///     Get Force in ShortTonsForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.ShortTonForce"/>
         /// </summary>
         public double ShortTonsForce => As(ForceUnit.ShortTonForce);
 
         /// <summary>
-        ///     Get Force in TonnesForce.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.TonneForce"/>
         /// </summary>
         public double TonnesForce => As(ForceUnit.TonneForce);
 
@@ -157,91 +157,91 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Force from Decanewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Decanewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromDecanewtons(double decanewtons) => new Force(decanewtons, ForceUnit.Decanewton);
 
         /// <summary>
-        ///     Get Force from Dyne.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromDyne(double dyne) => new Force(dyne, ForceUnit.Dyn);
 
         /// <summary>
-        ///     Get Force from KilogramsForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromKilogramsForce(double kilogramsforce) => new Force(kilogramsforce, ForceUnit.KilogramForce);
 
         /// <summary>
-        ///     Get Force from Kilonewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilonewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromKilonewtons(double kilonewtons) => new Force(kilonewtons, ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Get Force from KiloPonds.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromKiloPonds(double kiloponds) => new Force(kiloponds, ForceUnit.KiloPond);
 
         /// <summary>
-        ///     Get Force from KilopoundsForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromKilopoundsForce(double kilopoundsforce) => new Force(kilopoundsforce, ForceUnit.KilopoundForce);
 
         /// <summary>
-        ///     Get Force from Meganewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Meganewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromMeganewtons(double meganewtons) => new Force(meganewtons, ForceUnit.Meganewton);
 
         /// <summary>
-        ///     Get Force from Micronewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Micronewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromMicronewtons(double micronewtons) => new Force(micronewtons, ForceUnit.Micronewton);
 
         /// <summary>
-        ///     Get Force from Millinewtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Millinewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromMillinewtons(double millinewtons) => new Force(millinewtons, ForceUnit.Millinewton);
 
         /// <summary>
-        ///     Get Force from Newtons.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Newton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromNewtons(double newtons) => new Force(newtons, ForceUnit.Newton);
 
         /// <summary>
-        ///     Get Force from OunceForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.OunceForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromOunceForce(double ounceforce) => new Force(ounceforce, ForceUnit.OunceForce);
 
         /// <summary>
-        ///     Get Force from Poundals.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Poundal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromPoundals(double poundals) => new Force(poundals, ForceUnit.Poundal);
 
         /// <summary>
-        ///     Get Force from PoundsForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.PoundForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromPoundsForce(double poundsforce) => new Force(poundsforce, ForceUnit.PoundForce);
 
         /// <summary>
-        ///     Get Force from ShortTonsForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.ShortTonForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromShortTonsForce(double shorttonsforce) => new Force(shorttonsforce, ForceUnit.ShortTonForce);
 
         /// <summary>
-        ///     Get Force from TonnesForce.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.TonneForce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromTonnesForce(double tonnesforce) => new Force(tonnesforce, ForceUnit.TonneForce);
@@ -285,26 +285,25 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double GetValueInBaseUnit()
         {
-            switch(Unit)
+            return Unit switch
             {
-                case ForceUnit.Decanewton: return (_value) * 1e1d;
-                case ForceUnit.Dyn: return _value/1e5;
-                case ForceUnit.KilogramForce: return _value*9.80665002864;
-                case ForceUnit.Kilonewton: return (_value) * 1e3d;
-                case ForceUnit.KiloPond: return _value*9.80665002864;
-                case ForceUnit.KilopoundForce: return (_value*4.4482216152605095551842641431421) * 1e3d;
-                case ForceUnit.Meganewton: return (_value) * 1e6d;
-                case ForceUnit.Micronewton: return (_value) * 1e-6d;
-                case ForceUnit.Millinewton: return (_value) * 1e-3d;
-                case ForceUnit.Newton: return _value;
-                case ForceUnit.OunceForce: return _value*2.780138509537812e-1;
-                case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
-                case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
-                case ForceUnit.ShortTonForce: return _value*8.896443230521e3;
-                case ForceUnit.TonneForce: return _value*9.80665002864e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
+                ForceUnit.Decanewton => (_value) * 1e1d,
+                ForceUnit.Dyn => _value / 1e5,
+                ForceUnit.KilogramForce => _value * 9.80665002864,
+                ForceUnit.Kilonewton => (_value) * 1e3d,
+                ForceUnit.KiloPond => _value * 9.80665002864,
+                ForceUnit.KilopoundForce => (_value * 4.4482216152605095551842641431421) * 1e3d,
+                ForceUnit.Meganewton => (_value) * 1e6d,
+                ForceUnit.Micronewton => (_value) * 1e-6d,
+                ForceUnit.Millinewton => (_value) * 1e-3d,
+                ForceUnit.Newton => _value,
+                ForceUnit.OunceForce => _value * 2.780138509537812e-1,
+                ForceUnit.Poundal => _value * 0.13825502798973041652092282466083,
+                ForceUnit.PoundForce => _value * 4.4482216152605095551842641431421,
+                ForceUnit.ShortTonForce => _value * 8.896443230521e3,
+                ForceUnit.TonneForce => _value * 9.80665002864e3,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+            };
         }
 
         private double GetValueAs(ForceUnit unit)
@@ -314,26 +313,25 @@ namespace UnitsNet
 
             var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
+            return unit switch
             {
-                case ForceUnit.Decanewton: return (baseUnitValue) / 1e1d;
-                case ForceUnit.Dyn: return baseUnitValue*1e5;
-                case ForceUnit.KilogramForce: return baseUnitValue/9.80665002864;
-                case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
-                case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;
-                case ForceUnit.KilopoundForce: return (baseUnitValue/4.4482216152605095551842641431421) / 1e3d;
-                case ForceUnit.Meganewton: return (baseUnitValue) / 1e6d;
-                case ForceUnit.Micronewton: return (baseUnitValue) / 1e-6d;
-                case ForceUnit.Millinewton: return (baseUnitValue) / 1e-3d;
-                case ForceUnit.Newton: return baseUnitValue;
-                case ForceUnit.OunceForce: return baseUnitValue/2.780138509537812e-1;
-                case ForceUnit.Poundal: return baseUnitValue/0.13825502798973041652092282466083;
-                case ForceUnit.PoundForce: return baseUnitValue/4.4482216152605095551842641431421;
-                case ForceUnit.ShortTonForce: return baseUnitValue/8.896443230521e3;
-                case ForceUnit.TonneForce: return baseUnitValue/9.80665002864e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
+                ForceUnit.Decanewton => (baseUnitValue) / 1e1d,
+                ForceUnit.Dyn => baseUnitValue * 1e5,
+                ForceUnit.KilogramForce => baseUnitValue / 9.80665002864,
+                ForceUnit.Kilonewton => (baseUnitValue) / 1e3d,
+                ForceUnit.KiloPond => baseUnitValue / 9.80665002864,
+                ForceUnit.KilopoundForce => (baseUnitValue / 4.4482216152605095551842641431421) / 1e3d,
+                ForceUnit.Meganewton => (baseUnitValue) / 1e6d,
+                ForceUnit.Micronewton => (baseUnitValue) / 1e-6d,
+                ForceUnit.Millinewton => (baseUnitValue) / 1e-3d,
+                ForceUnit.Newton => baseUnitValue,
+                ForceUnit.OunceForce => baseUnitValue / 2.780138509537812e-1,
+                ForceUnit.Poundal => baseUnitValue / 0.13825502798973041652092282466083,
+                ForceUnit.PoundForce => baseUnitValue / 4.4482216152605095551842641431421,
+                ForceUnit.ShortTonForce => baseUnitValue / 8.896443230521e3,
+                ForceUnit.TonneForce => baseUnitValue / 9.80665002864e3,
+                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+            };
         }
 
         #endregion
