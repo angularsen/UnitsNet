@@ -219,6 +219,7 @@ namespace UnitsNet
             double value = (double) decibels;
             return new Level(value, LevelUnit.Decibel);
         }
+
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>

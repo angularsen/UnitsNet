@@ -508,6 +508,7 @@ namespace UnitsNet
             double value = (double) atmospheres;
             return new Pressure(value, PressureUnit.Atmosphere);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Bar"/>.
         /// </summary>
@@ -518,6 +519,7 @@ namespace UnitsNet
             double value = (double) bars;
             return new Pressure(value, PressureUnit.Bar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Centibar"/>.
         /// </summary>
@@ -528,6 +530,7 @@ namespace UnitsNet
             double value = (double) centibars;
             return new Pressure(value, PressureUnit.Centibar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decapascal"/>.
         /// </summary>
@@ -538,6 +541,7 @@ namespace UnitsNet
             double value = (double) decapascals;
             return new Pressure(value, PressureUnit.Decapascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decibar"/>.
         /// </summary>
@@ -548,6 +552,7 @@ namespace UnitsNet
             double value = (double) decibars;
             return new Pressure(value, PressureUnit.Decibar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.DynePerSquareCentimeter"/>.
         /// </summary>
@@ -558,6 +563,7 @@ namespace UnitsNet
             double value = (double) dynespersquarecentimeter;
             return new Pressure(value, PressureUnit.DynePerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfElevation"/>.
         /// </summary>
@@ -568,6 +574,7 @@ namespace UnitsNet
             double value = (double) feetofelevation;
             return new Pressure(value, PressureUnit.FootOfElevation);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfHead"/>.
         /// </summary>
@@ -578,6 +585,7 @@ namespace UnitsNet
             double value = (double) feetofhead;
             return new Pressure(value, PressureUnit.FootOfHead);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Gigapascal"/>.
         /// </summary>
@@ -588,6 +596,7 @@ namespace UnitsNet
             double value = (double) gigapascals;
             return new Pressure(value, PressureUnit.Gigapascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Hectopascal"/>.
         /// </summary>
@@ -598,6 +607,7 @@ namespace UnitsNet
             double value = (double) hectopascals;
             return new Pressure(value, PressureUnit.Hectopascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.InchOfMercury"/>.
         /// </summary>
@@ -608,6 +618,7 @@ namespace UnitsNet
             double value = (double) inchesofmercury;
             return new Pressure(value, PressureUnit.InchOfMercury);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.InchOfWaterColumn"/>.
         /// </summary>
@@ -618,6 +629,7 @@ namespace UnitsNet
             double value = (double) inchesofwatercolumn;
             return new Pressure(value, PressureUnit.InchOfWaterColumn);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Kilobar"/>.
         /// </summary>
@@ -628,6 +640,7 @@ namespace UnitsNet
             double value = (double) kilobars;
             return new Pressure(value, PressureUnit.Kilobar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>.
         /// </summary>
@@ -638,6 +651,7 @@ namespace UnitsNet
             double value = (double) kilogramsforcepersquarecentimeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareMeter"/>.
         /// </summary>
@@ -648,6 +662,7 @@ namespace UnitsNet
             double value = (double) kilogramsforcepersquaremeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>.
         /// </summary>
@@ -658,6 +673,7 @@ namespace UnitsNet
             double value = (double) kilogramsforcepersquaremillimeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>.
         /// </summary>
@@ -668,6 +684,7 @@ namespace UnitsNet
             double value = (double) kilonewtonspersquarecentimeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareMeter"/>.
         /// </summary>
@@ -678,6 +695,7 @@ namespace UnitsNet
             double value = (double) kilonewtonspersquaremeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>.
         /// </summary>
@@ -688,6 +706,7 @@ namespace UnitsNet
             double value = (double) kilonewtonspersquaremillimeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Kilopascal"/>.
         /// </summary>
@@ -698,6 +717,7 @@ namespace UnitsNet
             double value = (double) kilopascals;
             return new Pressure(value, PressureUnit.Kilopascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>.
         /// </summary>
@@ -708,6 +728,7 @@ namespace UnitsNet
             double value = (double) kilopoundsforcepersquarefoot;
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareInch"/>.
         /// </summary>
@@ -718,6 +739,7 @@ namespace UnitsNet
             double value = (double) kilopoundsforcepersquareinch;
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megabar"/>.
         /// </summary>
@@ -728,6 +750,7 @@ namespace UnitsNet
             double value = (double) megabars;
             return new Pressure(value, PressureUnit.Megabar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeganewtonPerSquareMeter"/>.
         /// </summary>
@@ -738,6 +761,7 @@ namespace UnitsNet
             double value = (double) meganewtonspersquaremeter;
             return new Pressure(value, PressureUnit.MeganewtonPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megapascal"/>.
         /// </summary>
@@ -748,6 +772,7 @@ namespace UnitsNet
             double value = (double) megapascals;
             return new Pressure(value, PressureUnit.Megapascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfElevation"/>.
         /// </summary>
@@ -758,6 +783,7 @@ namespace UnitsNet
             double value = (double) metersofelevation;
             return new Pressure(value, PressureUnit.MeterOfElevation);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfHead"/>.
         /// </summary>
@@ -768,6 +794,7 @@ namespace UnitsNet
             double value = (double) metersofhead;
             return new Pressure(value, PressureUnit.MeterOfHead);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Microbar"/>.
         /// </summary>
@@ -778,6 +805,7 @@ namespace UnitsNet
             double value = (double) microbars;
             return new Pressure(value, PressureUnit.Microbar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Micropascal"/>.
         /// </summary>
@@ -788,6 +816,7 @@ namespace UnitsNet
             double value = (double) micropascals;
             return new Pressure(value, PressureUnit.Micropascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millibar"/>.
         /// </summary>
@@ -798,6 +827,7 @@ namespace UnitsNet
             double value = (double) millibars;
             return new Pressure(value, PressureUnit.Millibar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfMercury"/>.
         /// </summary>
@@ -808,6 +838,7 @@ namespace UnitsNet
             double value = (double) millimetersofmercury;
             return new Pressure(value, PressureUnit.MillimeterOfMercury);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfWaterColumn"/>.
         /// </summary>
@@ -818,6 +849,7 @@ namespace UnitsNet
             double value = (double) millimeterofwatercolumn;
             return new Pressure(value, PressureUnit.MillimeterOfWaterColumn);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millipascal"/>.
         /// </summary>
@@ -828,6 +860,7 @@ namespace UnitsNet
             double value = (double) millipascals;
             return new Pressure(value, PressureUnit.Millipascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareCentimeter"/>.
         /// </summary>
@@ -838,6 +871,7 @@ namespace UnitsNet
             double value = (double) newtonspersquarecentimeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareMeter"/>.
         /// </summary>
@@ -848,6 +882,7 @@ namespace UnitsNet
             double value = (double) newtonspersquaremeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareMillimeter"/>.
         /// </summary>
@@ -858,6 +893,7 @@ namespace UnitsNet
             double value = (double) newtonspersquaremillimeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Pascal"/>.
         /// </summary>
@@ -868,6 +904,7 @@ namespace UnitsNet
             double value = (double) pascals;
             return new Pressure(value, PressureUnit.Pascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareFoot"/>.
         /// </summary>
@@ -878,6 +915,7 @@ namespace UnitsNet
             double value = (double) poundsforcepersquarefoot;
             return new Pressure(value, PressureUnit.PoundForcePerSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareInch"/>.
         /// </summary>
@@ -888,6 +926,7 @@ namespace UnitsNet
             double value = (double) poundsforcepersquareinch;
             return new Pressure(value, PressureUnit.PoundForcePerSquareInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundPerInchSecondSquared"/>.
         /// </summary>
@@ -898,6 +937,7 @@ namespace UnitsNet
             double value = (double) poundsperinchsecondsquared;
             return new Pressure(value, PressureUnit.PoundPerInchSecondSquared);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TechnicalAtmosphere"/>.
         /// </summary>
@@ -908,6 +948,7 @@ namespace UnitsNet
             double value = (double) technicalatmospheres;
             return new Pressure(value, PressureUnit.TechnicalAtmosphere);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>.
         /// </summary>
@@ -918,6 +959,7 @@ namespace UnitsNet
             double value = (double) tonnesforcepersquarecentimeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareMeter"/>.
         /// </summary>
@@ -928,6 +970,7 @@ namespace UnitsNet
             double value = (double) tonnesforcepersquaremeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>.
         /// </summary>
@@ -938,6 +981,7 @@ namespace UnitsNet
             double value = (double) tonnesforcepersquaremillimeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Torr"/>.
         /// </summary>

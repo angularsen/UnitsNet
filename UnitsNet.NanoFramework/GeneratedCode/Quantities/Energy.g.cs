@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public EnergyUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Energy MinValue { get; } = new Energy(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -477,7 +479,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Energy FromWattHours(double watthours) => new Energy(watthours, EnergyUnit.WattHour);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EnergyUnit" /> to <see cref="Energy" />.
         /// </summary>
@@ -608,7 +609,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

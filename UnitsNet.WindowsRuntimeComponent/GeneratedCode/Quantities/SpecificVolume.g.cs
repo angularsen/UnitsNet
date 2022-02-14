@@ -225,6 +225,7 @@ namespace UnitsNet
             double value = (double) cubicfeetperpound;
             return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
+
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
         /// </summary>
@@ -235,6 +236,7 @@ namespace UnitsNet
             double value = (double) cubicmetersperkilogram;
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
+
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
         /// </summary>

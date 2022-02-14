@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public AngleUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -257,7 +259,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromTilt(double tilt) => new Angle(tilt, AngleUnit.Tilt);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.
         /// </summary>
@@ -348,7 +349,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

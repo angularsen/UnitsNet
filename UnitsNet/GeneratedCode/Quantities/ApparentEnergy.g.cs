@@ -69,7 +69,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ApparentEnergy);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -218,6 +217,7 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ApparentEnergyUnit
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour, quantity => new ApparentEnergy((quantity.Value) / 1e3d, ApparentEnergyUnit.KilovoltampereHour));
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour, quantity => new ApparentEnergy((quantity.Value) / 1e6d, ApparentEnergyUnit.MegavoltampereHour));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity);
 
@@ -267,6 +267,7 @@ namespace UnitsNet
             double value = (double) kilovoltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.KilovoltampereHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.MegavoltampereHour"/>.
         /// </summary>
@@ -276,6 +277,7 @@ namespace UnitsNet
             double value = (double) megavoltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.MegavoltampereHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.VoltampereHour"/>.
         /// </summary>

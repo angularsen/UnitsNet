@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public PressureChangeRateUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static PressureChangeRate MinValue { get; } = new PressureChangeRate(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -235,7 +237,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PressureChangeRate FromPoundsForcePerSquareInchPerSecond(double poundsforcepersquareinchpersecond) => new PressureChangeRate(poundsforcepersquareinchpersecond, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
         /// </summary>
@@ -322,7 +323,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

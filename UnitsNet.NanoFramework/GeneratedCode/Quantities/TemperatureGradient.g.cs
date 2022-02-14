@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public TemperatureGradientUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static TemperatureGradient MinValue { get; } = new TemperatureGradient(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -124,7 +126,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromKelvinsPerMeter(double kelvinspermeter) => new TemperatureGradient(kelvinspermeter, TemperatureGradientUnit.KelvinPerMeter);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureGradientUnit" /> to <see cref="TemperatureGradient" />.
@@ -192,7 +193,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

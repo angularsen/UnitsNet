@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public KinematicViscosityUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static KinematicViscosity MinValue { get; } = new KinematicViscosity(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -183,7 +185,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static KinematicViscosity FromStokes(double stokes) => new KinematicViscosity(stokes, KinematicViscosityUnit.Stokes);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
         /// </summary>
@@ -260,7 +261,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

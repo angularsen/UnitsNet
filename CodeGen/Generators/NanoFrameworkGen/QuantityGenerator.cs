@@ -57,7 +57,8 @@ namespace UnitsNet
         public {_quantity.BaseType} Value => _value;
 
         /// <inheritdoc />
-        public {_unitEnumName} Unit => _unit;");
+        public {_unitEnumName} Unit => _unit;
+");
 
             // Constructor and static properties
             Writer.WL($@"        /// <summary>
@@ -88,7 +89,8 @@ namespace UnitsNet
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.BaseType}.MinValue, BaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.BaseType}.MinValue, BaseUnit);
+");
 
             // Decimal MaxValue = 79228162514264337593543950335M
             Writer.WLCondition(_quantity.BaseType == "decimal", $@"
@@ -97,7 +99,8 @@ namespace UnitsNet
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, BaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, BaseUnit);
+");
 
             Writer.WL($@"
         /// <summary>
@@ -165,7 +168,6 @@ namespace UnitsNet
 ");
             }
 
-            Writer.WL();
             Writer.WL($@"
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref=""{_unitEnumName}"" /> to <see cref=""{_quantity.Name}"" />.
@@ -245,8 +247,7 @@ namespace UnitsNet
             };
         }
 
-        #endregion
-");
+        #endregion");
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>

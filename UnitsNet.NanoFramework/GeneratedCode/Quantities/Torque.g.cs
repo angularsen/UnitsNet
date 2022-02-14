@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public TorqueUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Torque MinValue { get; } = new Torque(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -356,7 +358,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Torque FromTonneForceMillimeters(double tonneforcemillimeters) => new Torque(tonneforcemillimeters, TorqueUnit.TonneForceMillimeter);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TorqueUnit" /> to <see cref="Torque" />.
         /// </summary>
@@ -465,7 +466,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

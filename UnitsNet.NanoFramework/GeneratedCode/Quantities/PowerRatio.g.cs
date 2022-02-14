@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public PowerRatioUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -102,7 +104,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelWatts(double decibelwatts) => new PowerRatio(decibelwatts, PowerRatioUnit.DecibelWatt);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.
@@ -166,7 +167,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

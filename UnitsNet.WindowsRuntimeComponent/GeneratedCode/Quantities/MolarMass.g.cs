@@ -291,6 +291,7 @@ namespace UnitsNet
             double value = (double) centigramspermole;
             return new MolarMass(value, MolarMassUnit.CentigramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecagramPerMole"/>.
         /// </summary>
@@ -301,6 +302,7 @@ namespace UnitsNet
             double value = (double) decagramspermole;
             return new MolarMass(value, MolarMassUnit.DecagramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.DecigramPerMole"/>.
         /// </summary>
@@ -311,6 +313,7 @@ namespace UnitsNet
             double value = (double) decigramspermole;
             return new MolarMass(value, MolarMassUnit.DecigramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.GramPerMole"/>.
         /// </summary>
@@ -321,6 +324,7 @@ namespace UnitsNet
             double value = (double) gramspermole;
             return new MolarMass(value, MolarMassUnit.GramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.HectogramPerMole"/>.
         /// </summary>
@@ -331,6 +335,7 @@ namespace UnitsNet
             double value = (double) hectogramspermole;
             return new MolarMass(value, MolarMassUnit.HectogramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilogramPerMole"/>.
         /// </summary>
@@ -341,6 +346,7 @@ namespace UnitsNet
             double value = (double) kilogramspermole;
             return new MolarMass(value, MolarMassUnit.KilogramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.KilopoundPerMole"/>.
         /// </summary>
@@ -351,6 +357,7 @@ namespace UnitsNet
             double value = (double) kilopoundspermole;
             return new MolarMass(value, MolarMassUnit.KilopoundPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MegapoundPerMole"/>.
         /// </summary>
@@ -361,6 +368,7 @@ namespace UnitsNet
             double value = (double) megapoundspermole;
             return new MolarMass(value, MolarMassUnit.MegapoundPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MicrogramPerMole"/>.
         /// </summary>
@@ -371,6 +379,7 @@ namespace UnitsNet
             double value = (double) microgramspermole;
             return new MolarMass(value, MolarMassUnit.MicrogramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.MilligramPerMole"/>.
         /// </summary>
@@ -381,6 +390,7 @@ namespace UnitsNet
             double value = (double) milligramspermole;
             return new MolarMass(value, MolarMassUnit.MilligramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.NanogramPerMole"/>.
         /// </summary>
@@ -391,6 +401,7 @@ namespace UnitsNet
             double value = (double) nanogramspermole;
             return new MolarMass(value, MolarMassUnit.NanogramPerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.PoundPerMole"/>.
         /// </summary>

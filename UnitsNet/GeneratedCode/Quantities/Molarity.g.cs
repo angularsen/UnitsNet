@@ -85,7 +85,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Molarity);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -272,6 +271,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-9d, MolarityUnit.NanomolesPerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-12d, MolarityUnit.PicomolePerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-12d, MolarityUnit.PicomolesPerLiter));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerCubicMeter, quantity => quantity);
 
@@ -347,6 +347,7 @@ namespace UnitsNet
             double value = (double) centimolesperliter;
             return new Molarity(value, MolarityUnit.CentimolePerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.DecimolePerLiter"/>.
         /// </summary>
@@ -356,6 +357,7 @@ namespace UnitsNet
             double value = (double) decimolesperliter;
             return new Molarity(value, MolarityUnit.DecimolePerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MicromolePerLiter"/>.
         /// </summary>
@@ -365,6 +367,7 @@ namespace UnitsNet
             double value = (double) micromolesperliter;
             return new Molarity(value, MolarityUnit.MicromolePerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MillimolePerLiter"/>.
         /// </summary>
@@ -374,6 +377,7 @@ namespace UnitsNet
             double value = (double) millimolesperliter;
             return new Molarity(value, MolarityUnit.MillimolePerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerCubicMeter"/>.
         /// </summary>
@@ -383,6 +387,7 @@ namespace UnitsNet
             double value = (double) molespercubicmeter;
             return new Molarity(value, MolarityUnit.MolePerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MolePerLiter"/>.
         /// </summary>
@@ -392,6 +397,7 @@ namespace UnitsNet
             double value = (double) molesperliter;
             return new Molarity(value, MolarityUnit.MolePerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.NanomolePerLiter"/>.
         /// </summary>
@@ -401,6 +407,7 @@ namespace UnitsNet
             double value = (double) nanomolesperliter;
             return new Molarity(value, MolarityUnit.NanomolePerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PicomolePerLiter"/>.
         /// </summary>

@@ -76,7 +76,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Temperature);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -267,6 +266,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.Kelvin, TemperatureUnit.DegreeRoemer, quantity => new Temperature((quantity.Value - (273.15 - 7.5 * 40d / 21)) * 21 / 40, TemperatureUnit.DegreeRoemer));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.Kelvin, TemperatureUnit.MillidegreeCelsius, quantity => new Temperature((quantity.Value - 273.15) * 1000, TemperatureUnit.MillidegreeCelsius));
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.Kelvin, TemperatureUnit.SolarTemperature, quantity => new Temperature(quantity.Value / 5778, TemperatureUnit.SolarTemperature));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.Kelvin, TemperatureUnit.Kelvin, quantity => quantity);
 
@@ -330,6 +330,7 @@ namespace UnitsNet
             double value = (double) degreescelsius;
             return new Temperature(value, TemperatureUnit.DegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeDelisle"/>.
         /// </summary>
@@ -339,6 +340,7 @@ namespace UnitsNet
             double value = (double) degreesdelisle;
             return new Temperature(value, TemperatureUnit.DegreeDelisle);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeFahrenheit"/>.
         /// </summary>
@@ -348,6 +350,7 @@ namespace UnitsNet
             double value = (double) degreesfahrenheit;
             return new Temperature(value, TemperatureUnit.DegreeFahrenheit);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeNewton"/>.
         /// </summary>
@@ -357,6 +360,7 @@ namespace UnitsNet
             double value = (double) degreesnewton;
             return new Temperature(value, TemperatureUnit.DegreeNewton);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRankine"/>.
         /// </summary>
@@ -366,6 +370,7 @@ namespace UnitsNet
             double value = (double) degreesrankine;
             return new Temperature(value, TemperatureUnit.DegreeRankine);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeReaumur"/>.
         /// </summary>
@@ -375,6 +380,7 @@ namespace UnitsNet
             double value = (double) degreesreaumur;
             return new Temperature(value, TemperatureUnit.DegreeReaumur);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRoemer"/>.
         /// </summary>
@@ -384,6 +390,7 @@ namespace UnitsNet
             double value = (double) degreesroemer;
             return new Temperature(value, TemperatureUnit.DegreeRoemer);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.Kelvin"/>.
         /// </summary>
@@ -393,6 +400,7 @@ namespace UnitsNet
             double value = (double) kelvins;
             return new Temperature(value, TemperatureUnit.Kelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.MillidegreeCelsius"/>.
         /// </summary>
@@ -402,6 +410,7 @@ namespace UnitsNet
             double value = (double) millidegreescelsius;
             return new Temperature(value, TemperatureUnit.MillidegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.SolarTemperature"/>.
         /// </summary>

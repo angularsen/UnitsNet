@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public LuminousIntensityUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -94,7 +96,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LuminousIntensity FromCandela(double candela) => new LuminousIntensity(candela, LuminousIntensityUnit.Candela);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminousIntensityUnit" /> to <see cref="LuminousIntensity" />.
@@ -156,7 +157,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

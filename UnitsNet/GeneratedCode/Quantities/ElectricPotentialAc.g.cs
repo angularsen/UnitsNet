@@ -71,7 +71,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialAc);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -232,6 +231,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MegavoltAc, quantity => new ElectricPotentialAc((quantity.Value) / 1e6d, ElectricPotentialAcUnit.MegavoltAc));
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MicrovoltAc, quantity => new ElectricPotentialAc((quantity.Value) / 1e-6d, ElectricPotentialAcUnit.MicrovoltAc));
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MillivoltAc, quantity => new ElectricPotentialAc((quantity.Value) / 1e-3d, ElectricPotentialAcUnit.MillivoltAc));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.VoltAc, quantity => quantity);
 
@@ -285,6 +285,7 @@ namespace UnitsNet
             double value = (double) kilovoltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.KilovoltAc);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MegavoltAc"/>.
         /// </summary>
@@ -294,6 +295,7 @@ namespace UnitsNet
             double value = (double) megavoltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MegavoltAc);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MicrovoltAc"/>.
         /// </summary>
@@ -303,6 +305,7 @@ namespace UnitsNet
             double value = (double) microvoltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MicrovoltAc);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MillivoltAc"/>.
         /// </summary>
@@ -312,6 +315,7 @@ namespace UnitsNet
             double value = (double) millivoltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MillivoltAc);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.VoltAc"/>.
         /// </summary>

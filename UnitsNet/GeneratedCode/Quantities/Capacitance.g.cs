@@ -76,7 +76,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Capacitance);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -249,6 +248,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Millifarad, quantity => new Capacitance((quantity.Value) / 1e-3d, CapacitanceUnit.Millifarad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Nanofarad, quantity => new Capacitance((quantity.Value) / 1e-9d, CapacitanceUnit.Nanofarad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Picofarad, quantity => new Capacitance((quantity.Value) / 1e-12d, CapacitanceUnit.Picofarad));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Farad, quantity => quantity);
 
@@ -306,6 +306,7 @@ namespace UnitsNet
             double value = (double) farads;
             return new Capacitance(value, CapacitanceUnit.Farad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Kilofarad"/>.
         /// </summary>
@@ -315,6 +316,7 @@ namespace UnitsNet
             double value = (double) kilofarads;
             return new Capacitance(value, CapacitanceUnit.Kilofarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Megafarad"/>.
         /// </summary>
@@ -324,6 +326,7 @@ namespace UnitsNet
             double value = (double) megafarads;
             return new Capacitance(value, CapacitanceUnit.Megafarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Microfarad"/>.
         /// </summary>
@@ -333,6 +336,7 @@ namespace UnitsNet
             double value = (double) microfarads;
             return new Capacitance(value, CapacitanceUnit.Microfarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Millifarad"/>.
         /// </summary>
@@ -342,6 +346,7 @@ namespace UnitsNet
             double value = (double) millifarads;
             return new Capacitance(value, CapacitanceUnit.Millifarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Nanofarad"/>.
         /// </summary>
@@ -351,6 +356,7 @@ namespace UnitsNet
             double value = (double) nanofarads;
             return new Capacitance(value, CapacitanceUnit.Nanofarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Picofarad"/>.
         /// </summary>

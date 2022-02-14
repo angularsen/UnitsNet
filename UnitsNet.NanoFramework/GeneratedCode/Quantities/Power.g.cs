@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public PowerUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Power MinValue { get; } = new Power(-79228162514264337593543950335d, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -356,7 +358,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Power FromWatts(double watts) => new Power(watts, PowerUnit.Watt);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.
         /// </summary>
@@ -465,7 +466,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

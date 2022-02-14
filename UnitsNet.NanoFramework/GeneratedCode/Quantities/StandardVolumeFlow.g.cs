@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public StandardVolumeFlowUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static StandardVolumeFlow MinValue { get; } = new StandardVolumeFlow(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -180,7 +182,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static StandardVolumeFlow FromStandardLitersPerMinute(double standardlitersperminute) => new StandardVolumeFlow(standardlitersperminute, StandardVolumeFlowUnit.StandardLiterPerMinute);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="StandardVolumeFlowUnit" /> to <see cref="StandardVolumeFlow" />.
         /// </summary>
@@ -257,7 +258,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

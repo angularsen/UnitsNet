@@ -73,7 +73,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Entropy);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -246,6 +245,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerDegreeCelsius, quantity => new Entropy((quantity.Value) / 1e3d, EntropyUnit.KilojoulePerDegreeCelsius));
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerKelvin, quantity => new Entropy((quantity.Value) / 1e3d, EntropyUnit.KilojoulePerKelvin));
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.MegajoulePerKelvin, quantity => new Entropy((quantity.Value) / 1e6d, EntropyUnit.MegajoulePerKelvin));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerKelvin, quantity => quantity);
 
@@ -303,6 +303,7 @@ namespace UnitsNet
             double value = (double) caloriesperkelvin;
             return new Entropy(value, EntropyUnit.CaloriePerKelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerDegreeCelsius"/>.
         /// </summary>
@@ -312,6 +313,7 @@ namespace UnitsNet
             double value = (double) joulesperdegreecelsius;
             return new Entropy(value, EntropyUnit.JoulePerDegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerKelvin"/>.
         /// </summary>
@@ -321,6 +323,7 @@ namespace UnitsNet
             double value = (double) joulesperkelvin;
             return new Entropy(value, EntropyUnit.JoulePerKelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilocaloriePerKelvin"/>.
         /// </summary>
@@ -330,6 +333,7 @@ namespace UnitsNet
             double value = (double) kilocaloriesperkelvin;
             return new Entropy(value, EntropyUnit.KilocaloriePerKelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>.
         /// </summary>
@@ -339,6 +343,7 @@ namespace UnitsNet
             double value = (double) kilojoulesperdegreecelsius;
             return new Entropy(value, EntropyUnit.KilojoulePerDegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerKelvin"/>.
         /// </summary>
@@ -348,6 +353,7 @@ namespace UnitsNet
             double value = (double) kilojoulesperkelvin;
             return new Entropy(value, EntropyUnit.KilojoulePerKelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.MegajoulePerKelvin"/>.
         /// </summary>
