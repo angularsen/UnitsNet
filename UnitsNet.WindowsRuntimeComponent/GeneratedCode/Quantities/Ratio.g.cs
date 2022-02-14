@@ -243,6 +243,7 @@ namespace UnitsNet
             double value = (double) decimalfractions;
             return new Ratio(value, RatioUnit.DecimalFraction);
         }
+
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerBillion"/>.
         /// </summary>
@@ -253,6 +254,7 @@ namespace UnitsNet
             double value = (double) partsperbillion;
             return new Ratio(value, RatioUnit.PartPerBillion);
         }
+
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerMillion"/>.
         /// </summary>
@@ -263,6 +265,7 @@ namespace UnitsNet
             double value = (double) partspermillion;
             return new Ratio(value, RatioUnit.PartPerMillion);
         }
+
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerThousand"/>.
         /// </summary>
@@ -273,6 +276,7 @@ namespace UnitsNet
             double value = (double) partsperthousand;
             return new Ratio(value, RatioUnit.PartPerThousand);
         }
+
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerTrillion"/>.
         /// </summary>
@@ -283,6 +287,7 @@ namespace UnitsNet
             double value = (double) partspertrillion;
             return new Ratio(value, RatioUnit.PartPerTrillion);
         }
+
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.Percent"/>.
         /// </summary>
@@ -293,6 +298,7 @@ namespace UnitsNet
             double value = (double) percent;
             return new Ratio(value, RatioUnit.Percent);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.

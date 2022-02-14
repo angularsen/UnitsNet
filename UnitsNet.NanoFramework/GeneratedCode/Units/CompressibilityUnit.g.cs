@@ -26,7 +26,13 @@ namespace UnitsNet.Units
     public enum CompressibilityUnit
     {
         Undefined = 0,
+        InverseAtmosphere,
+        InverseBar,
+        InverseKilopascal,
+        InverseMegapascal,
+        InverseMillibar,
         InversePascal,
+        InversePoundForcePerSquareInch,
     }
 
     #pragma warning restore 1591

@@ -306,6 +306,7 @@ namespace UnitsNet
             double value = (double) farads;
             return new Capacitance(value, CapacitanceUnit.Farad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Kilofarad"/>.
         /// </summary>
@@ -315,6 +316,7 @@ namespace UnitsNet
             double value = (double) kilofarads;
             return new Capacitance(value, CapacitanceUnit.Kilofarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Megafarad"/>.
         /// </summary>
@@ -324,6 +326,7 @@ namespace UnitsNet
             double value = (double) megafarads;
             return new Capacitance(value, CapacitanceUnit.Megafarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Microfarad"/>.
         /// </summary>
@@ -333,6 +336,7 @@ namespace UnitsNet
             double value = (double) microfarads;
             return new Capacitance(value, CapacitanceUnit.Microfarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Millifarad"/>.
         /// </summary>
@@ -342,6 +346,7 @@ namespace UnitsNet
             double value = (double) millifarads;
             return new Capacitance(value, CapacitanceUnit.Millifarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Nanofarad"/>.
         /// </summary>
@@ -351,6 +356,7 @@ namespace UnitsNet
             double value = (double) nanofarads;
             return new Capacitance(value, CapacitanceUnit.Nanofarad);
         }
+
         /// <summary>
         ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Picofarad"/>.
         /// </summary>
@@ -360,6 +366,7 @@ namespace UnitsNet
             double value = (double) picofarads;
             return new Capacitance(value, CapacitanceUnit.Picofarad);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="CapacitanceUnit" /> to <see cref="Capacitance" />.

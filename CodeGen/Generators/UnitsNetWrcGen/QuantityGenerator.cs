@@ -352,7 +352,8 @@ namespace UnitsNet
         {{
             {_valueType} value = ({_valueType}) {valueParamName};
             return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
-        }}");
+        }}
+");
             }
 
             Writer.WL();

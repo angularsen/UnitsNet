@@ -297,6 +297,7 @@ namespace UnitsNet
             double value = (double) centimoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.CentipoundMole"/>.
         /// </summary>
@@ -307,6 +308,7 @@ namespace UnitsNet
             double value = (double) centipoundmoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Decimole"/>.
         /// </summary>
@@ -317,6 +319,7 @@ namespace UnitsNet
             double value = (double) decimoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.DecipoundMole"/>.
         /// </summary>
@@ -327,6 +330,7 @@ namespace UnitsNet
             double value = (double) decipoundmoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Kilomole"/>.
         /// </summary>
@@ -337,6 +341,7 @@ namespace UnitsNet
             double value = (double) kilomoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.KilopoundMole"/>.
         /// </summary>
@@ -347,6 +352,7 @@ namespace UnitsNet
             double value = (double) kilopoundmoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Megamole"/>.
         /// </summary>
@@ -357,6 +363,7 @@ namespace UnitsNet
             double value = (double) megamoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Micromole"/>.
         /// </summary>
@@ -367,6 +374,7 @@ namespace UnitsNet
             double value = (double) micromoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MicropoundMole"/>.
         /// </summary>
@@ -377,6 +385,7 @@ namespace UnitsNet
             double value = (double) micropoundmoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Millimole"/>.
         /// </summary>
@@ -387,6 +396,7 @@ namespace UnitsNet
             double value = (double) millimoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MillipoundMole"/>.
         /// </summary>
@@ -397,6 +407,7 @@ namespace UnitsNet
             double value = (double) millipoundmoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Mole"/>.
         /// </summary>
@@ -407,6 +418,7 @@ namespace UnitsNet
             double value = (double) moles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Nanomole"/>.
         /// </summary>
@@ -417,6 +429,7 @@ namespace UnitsNet
             double value = (double) nanomoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.NanopoundMole"/>.
         /// </summary>
@@ -427,6 +440,7 @@ namespace UnitsNet
             double value = (double) nanopoundmoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.PoundMole"/>.
         /// </summary>
@@ -437,6 +451,7 @@ namespace UnitsNet
             double value = (double) poundmoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmountOfSubstanceUnit" /> to <see cref="AmountOfSubstance" />.

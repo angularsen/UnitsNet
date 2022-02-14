@@ -290,6 +290,7 @@ namespace UnitsNet
             double value = (double) kilovolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Kilovolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Megavolt"/>.
         /// </summary>
@@ -299,6 +300,7 @@ namespace UnitsNet
             double value = (double) megavolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Megavolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Microvolt"/>.
         /// </summary>
@@ -308,6 +310,7 @@ namespace UnitsNet
             double value = (double) microvolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Microvolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Millivolt"/>.
         /// </summary>
@@ -317,6 +320,7 @@ namespace UnitsNet
             double value = (double) millivolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Millivolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Volt"/>.
         /// </summary>
@@ -326,6 +330,7 @@ namespace UnitsNet
             double value = (double) volts;
             return new ElectricPotential(value, ElectricPotentialUnit.Volt);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialUnit" /> to <see cref="ElectricPotential" />.

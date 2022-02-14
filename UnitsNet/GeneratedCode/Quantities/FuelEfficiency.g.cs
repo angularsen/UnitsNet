@@ -279,6 +279,7 @@ namespace UnitsNet
             double value = (double) kilometersperliters;
             return new FuelEfficiency(value, FuelEfficiencyUnit.KilometerPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
         /// </summary>
@@ -288,6 +289,7 @@ namespace UnitsNet
             double value = (double) litersper100kilometers;
             return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
         }
+
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
         /// </summary>
@@ -297,6 +299,7 @@ namespace UnitsNet
             double value = (double) milesperukgallon;
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUkGallon);
         }
+
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>.
         /// </summary>
@@ -306,6 +309,7 @@ namespace UnitsNet
             double value = (double) milesperusgallon;
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUsGallon);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="FuelEfficiencyUnit" /> to <see cref="FuelEfficiency" />.

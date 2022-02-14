@@ -234,6 +234,7 @@ namespace UnitsNet
             double value = (double) kilolux;
             return new Illuminance(value, IlluminanceUnit.Kilolux);
         }
+
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Lux"/>.
         /// </summary>
@@ -244,6 +245,7 @@ namespace UnitsNet
             double value = (double) lux;
             return new Illuminance(value, IlluminanceUnit.Lux);
         }
+
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Megalux"/>.
         /// </summary>
@@ -254,6 +256,7 @@ namespace UnitsNet
             double value = (double) megalux;
             return new Illuminance(value, IlluminanceUnit.Megalux);
         }
+
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Millilux"/>.
         /// </summary>
@@ -264,6 +267,7 @@ namespace UnitsNet
             double value = (double) millilux;
             return new Illuminance(value, IlluminanceUnit.Millilux);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="IlluminanceUnit" /> to <see cref="Illuminance" />.

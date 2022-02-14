@@ -396,6 +396,7 @@ namespace UnitsNet
             double value = (double) arcminutes;
             return new Angle(value, AngleUnit.Arcminute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcsecond"/>.
         /// </summary>
@@ -405,6 +406,7 @@ namespace UnitsNet
             double value = (double) arcseconds;
             return new Angle(value, AngleUnit.Arcsecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Centiradian"/>.
         /// </summary>
@@ -414,6 +416,7 @@ namespace UnitsNet
             double value = (double) centiradians;
             return new Angle(value, AngleUnit.Centiradian);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Deciradian"/>.
         /// </summary>
@@ -423,6 +426,7 @@ namespace UnitsNet
             double value = (double) deciradians;
             return new Angle(value, AngleUnit.Deciradian);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Degree"/>.
         /// </summary>
@@ -432,6 +436,7 @@ namespace UnitsNet
             double value = (double) degrees;
             return new Angle(value, AngleUnit.Degree);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Gradian"/>.
         /// </summary>
@@ -441,6 +446,7 @@ namespace UnitsNet
             double value = (double) gradians;
             return new Angle(value, AngleUnit.Gradian);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microdegree"/>.
         /// </summary>
@@ -450,6 +456,7 @@ namespace UnitsNet
             double value = (double) microdegrees;
             return new Angle(value, AngleUnit.Microdegree);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microradian"/>.
         /// </summary>
@@ -459,6 +466,7 @@ namespace UnitsNet
             double value = (double) microradians;
             return new Angle(value, AngleUnit.Microradian);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Millidegree"/>.
         /// </summary>
@@ -468,6 +476,7 @@ namespace UnitsNet
             double value = (double) millidegrees;
             return new Angle(value, AngleUnit.Millidegree);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Milliradian"/>.
         /// </summary>
@@ -477,6 +486,7 @@ namespace UnitsNet
             double value = (double) milliradians;
             return new Angle(value, AngleUnit.Milliradian);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanodegree"/>.
         /// </summary>
@@ -486,6 +496,7 @@ namespace UnitsNet
             double value = (double) nanodegrees;
             return new Angle(value, AngleUnit.Nanodegree);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanoradian"/>.
         /// </summary>
@@ -495,6 +506,7 @@ namespace UnitsNet
             double value = (double) nanoradians;
             return new Angle(value, AngleUnit.Nanoradian);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.NatoMil"/>.
         /// </summary>
@@ -504,6 +516,7 @@ namespace UnitsNet
             double value = (double) natomils;
             return new Angle(value, AngleUnit.NatoMil);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Radian"/>.
         /// </summary>
@@ -513,6 +526,7 @@ namespace UnitsNet
             double value = (double) radians;
             return new Angle(value, AngleUnit.Radian);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Revolution"/>.
         /// </summary>
@@ -522,6 +536,7 @@ namespace UnitsNet
             double value = (double) revolutions;
             return new Angle(value, AngleUnit.Revolution);
         }
+
         /// <summary>
         ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Tilt"/>.
         /// </summary>
@@ -531,6 +546,7 @@ namespace UnitsNet
             double value = (double) tilt;
             return new Angle(value, AngleUnit.Tilt);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.

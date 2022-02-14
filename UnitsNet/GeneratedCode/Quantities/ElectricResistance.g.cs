@@ -294,6 +294,7 @@ namespace UnitsNet
             double value = (double) gigaohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Kiloohm"/>.
         /// </summary>
@@ -303,6 +304,7 @@ namespace UnitsNet
             double value = (double) kiloohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Kiloohm);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Megaohm"/>.
         /// </summary>
@@ -312,6 +314,7 @@ namespace UnitsNet
             double value = (double) megaohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Microohm"/>.
         /// </summary>
@@ -321,6 +324,7 @@ namespace UnitsNet
             double value = (double) microohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Milliohm"/>.
         /// </summary>
@@ -330,6 +334,7 @@ namespace UnitsNet
             double value = (double) milliohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
         /// </summary>
@@ -339,6 +344,7 @@ namespace UnitsNet
             double value = (double) ohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Ohm);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.

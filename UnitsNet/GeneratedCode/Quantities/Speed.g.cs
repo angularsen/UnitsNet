@@ -551,6 +551,7 @@ namespace UnitsNet
             double value = (double) centimetersperhour;
             return new Speed(value, SpeedUnit.CentimeterPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerMinute"/>.
         /// </summary>
@@ -560,6 +561,7 @@ namespace UnitsNet
             double value = (double) centimetersperminutes;
             return new Speed(value, SpeedUnit.CentimeterPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerSecond"/>.
         /// </summary>
@@ -569,6 +571,7 @@ namespace UnitsNet
             double value = (double) centimeterspersecond;
             return new Speed(value, SpeedUnit.CentimeterPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerMinute"/>.
         /// </summary>
@@ -578,6 +581,7 @@ namespace UnitsNet
             double value = (double) decimetersperminutes;
             return new Speed(value, SpeedUnit.DecimeterPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerSecond"/>.
         /// </summary>
@@ -587,6 +591,7 @@ namespace UnitsNet
             double value = (double) decimeterspersecond;
             return new Speed(value, SpeedUnit.DecimeterPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerHour"/>.
         /// </summary>
@@ -596,6 +601,7 @@ namespace UnitsNet
             double value = (double) feetperhour;
             return new Speed(value, SpeedUnit.FootPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerMinute"/>.
         /// </summary>
@@ -605,6 +611,7 @@ namespace UnitsNet
             double value = (double) feetperminute;
             return new Speed(value, SpeedUnit.FootPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerSecond"/>.
         /// </summary>
@@ -614,6 +621,7 @@ namespace UnitsNet
             double value = (double) feetpersecond;
             return new Speed(value, SpeedUnit.FootPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerHour"/>.
         /// </summary>
@@ -623,6 +631,7 @@ namespace UnitsNet
             double value = (double) inchesperhour;
             return new Speed(value, SpeedUnit.InchPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerMinute"/>.
         /// </summary>
@@ -632,6 +641,7 @@ namespace UnitsNet
             double value = (double) inchesperminute;
             return new Speed(value, SpeedUnit.InchPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerSecond"/>.
         /// </summary>
@@ -641,6 +651,7 @@ namespace UnitsNet
             double value = (double) inchespersecond;
             return new Speed(value, SpeedUnit.InchPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerHour"/>.
         /// </summary>
@@ -650,6 +661,7 @@ namespace UnitsNet
             double value = (double) kilometersperhour;
             return new Speed(value, SpeedUnit.KilometerPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerMinute"/>.
         /// </summary>
@@ -659,6 +671,7 @@ namespace UnitsNet
             double value = (double) kilometersperminutes;
             return new Speed(value, SpeedUnit.KilometerPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerSecond"/>.
         /// </summary>
@@ -668,6 +681,7 @@ namespace UnitsNet
             double value = (double) kilometerspersecond;
             return new Speed(value, SpeedUnit.KilometerPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Knot"/>.
         /// </summary>
@@ -677,6 +691,7 @@ namespace UnitsNet
             double value = (double) knots;
             return new Speed(value, SpeedUnit.Knot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerHour"/>.
         /// </summary>
@@ -686,6 +701,7 @@ namespace UnitsNet
             double value = (double) metersperhour;
             return new Speed(value, SpeedUnit.MeterPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerMinute"/>.
         /// </summary>
@@ -695,6 +711,7 @@ namespace UnitsNet
             double value = (double) metersperminutes;
             return new Speed(value, SpeedUnit.MeterPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerSecond"/>.
         /// </summary>
@@ -704,6 +721,7 @@ namespace UnitsNet
             double value = (double) meterspersecond;
             return new Speed(value, SpeedUnit.MeterPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerMinute"/>.
         /// </summary>
@@ -713,6 +731,7 @@ namespace UnitsNet
             double value = (double) micrometersperminutes;
             return new Speed(value, SpeedUnit.MicrometerPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerSecond"/>.
         /// </summary>
@@ -722,6 +741,7 @@ namespace UnitsNet
             double value = (double) micrometerspersecond;
             return new Speed(value, SpeedUnit.MicrometerPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MilePerHour"/>.
         /// </summary>
@@ -731,6 +751,7 @@ namespace UnitsNet
             double value = (double) milesperhour;
             return new Speed(value, SpeedUnit.MilePerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerHour"/>.
         /// </summary>
@@ -740,6 +761,7 @@ namespace UnitsNet
             double value = (double) millimetersperhour;
             return new Speed(value, SpeedUnit.MillimeterPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerMinute"/>.
         /// </summary>
@@ -749,6 +771,7 @@ namespace UnitsNet
             double value = (double) millimetersperminutes;
             return new Speed(value, SpeedUnit.MillimeterPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerSecond"/>.
         /// </summary>
@@ -758,6 +781,7 @@ namespace UnitsNet
             double value = (double) millimeterspersecond;
             return new Speed(value, SpeedUnit.MillimeterPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerMinute"/>.
         /// </summary>
@@ -767,6 +791,7 @@ namespace UnitsNet
             double value = (double) nanometersperminutes;
             return new Speed(value, SpeedUnit.NanometerPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerSecond"/>.
         /// </summary>
@@ -776,6 +801,7 @@ namespace UnitsNet
             double value = (double) nanometerspersecond;
             return new Speed(value, SpeedUnit.NanometerPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerHour"/>.
         /// </summary>
@@ -785,6 +811,7 @@ namespace UnitsNet
             double value = (double) ussurveyfeetperhour;
             return new Speed(value, SpeedUnit.UsSurveyFootPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerMinute"/>.
         /// </summary>
@@ -794,6 +821,7 @@ namespace UnitsNet
             double value = (double) ussurveyfeetperminute;
             return new Speed(value, SpeedUnit.UsSurveyFootPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerSecond"/>.
         /// </summary>
@@ -803,6 +831,7 @@ namespace UnitsNet
             double value = (double) ussurveyfeetpersecond;
             return new Speed(value, SpeedUnit.UsSurveyFootPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerHour"/>.
         /// </summary>
@@ -812,6 +841,7 @@ namespace UnitsNet
             double value = (double) yardsperhour;
             return new Speed(value, SpeedUnit.YardPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerMinute"/>.
         /// </summary>
@@ -821,6 +851,7 @@ namespace UnitsNet
             double value = (double) yardsperminute;
             return new Speed(value, SpeedUnit.YardPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerSecond"/>.
         /// </summary>
@@ -830,6 +861,7 @@ namespace UnitsNet
             double value = (double) yardspersecond;
             return new Speed(value, SpeedUnit.YardPerSecond);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.

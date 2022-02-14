@@ -253,6 +253,7 @@ namespace UnitsNet
             return new Magnetization(value, MagnetizationUnit.AmperePerMeter);
         }
 
+
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MagnetizationUnit" /> to <see cref="Magnetization" />.
         /// </summary>

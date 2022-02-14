@@ -482,6 +482,7 @@ namespace UnitsNet
             decimal value = (decimal) bitspersecond;
             return new BitRate(value, BitRateUnit.BitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.BytePerSecond"/>.
         /// </summary>
@@ -491,6 +492,7 @@ namespace UnitsNet
             decimal value = (decimal) bytespersecond;
             return new BitRate(value, BitRateUnit.BytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExabitPerSecond"/>.
         /// </summary>
@@ -500,6 +502,7 @@ namespace UnitsNet
             decimal value = (decimal) exabitspersecond;
             return new BitRate(value, BitRateUnit.ExabitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExabytePerSecond"/>.
         /// </summary>
@@ -509,6 +512,7 @@ namespace UnitsNet
             decimal value = (decimal) exabytespersecond;
             return new BitRate(value, BitRateUnit.ExabytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbibitPerSecond"/>.
         /// </summary>
@@ -518,6 +522,7 @@ namespace UnitsNet
             decimal value = (decimal) exbibitspersecond;
             return new BitRate(value, BitRateUnit.ExbibitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbibytePerSecond"/>.
         /// </summary>
@@ -527,6 +532,7 @@ namespace UnitsNet
             decimal value = (decimal) exbibytespersecond;
             return new BitRate(value, BitRateUnit.ExbibytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibibitPerSecond"/>.
         /// </summary>
@@ -536,6 +542,7 @@ namespace UnitsNet
             decimal value = (decimal) gibibitspersecond;
             return new BitRate(value, BitRateUnit.GibibitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibibytePerSecond"/>.
         /// </summary>
@@ -545,6 +552,7 @@ namespace UnitsNet
             decimal value = (decimal) gibibytespersecond;
             return new BitRate(value, BitRateUnit.GibibytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigabitPerSecond"/>.
         /// </summary>
@@ -554,6 +562,7 @@ namespace UnitsNet
             decimal value = (decimal) gigabitspersecond;
             return new BitRate(value, BitRateUnit.GigabitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigabytePerSecond"/>.
         /// </summary>
@@ -563,6 +572,7 @@ namespace UnitsNet
             decimal value = (decimal) gigabytespersecond;
             return new BitRate(value, BitRateUnit.GigabytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibibitPerSecond"/>.
         /// </summary>
@@ -572,6 +582,7 @@ namespace UnitsNet
             decimal value = (decimal) kibibitspersecond;
             return new BitRate(value, BitRateUnit.KibibitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibibytePerSecond"/>.
         /// </summary>
@@ -581,6 +592,7 @@ namespace UnitsNet
             decimal value = (decimal) kibibytespersecond;
             return new BitRate(value, BitRateUnit.KibibytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilobitPerSecond"/>.
         /// </summary>
@@ -590,6 +602,7 @@ namespace UnitsNet
             decimal value = (decimal) kilobitspersecond;
             return new BitRate(value, BitRateUnit.KilobitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilobytePerSecond"/>.
         /// </summary>
@@ -599,6 +612,7 @@ namespace UnitsNet
             decimal value = (decimal) kilobytespersecond;
             return new BitRate(value, BitRateUnit.KilobytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebibitPerSecond"/>.
         /// </summary>
@@ -608,6 +622,7 @@ namespace UnitsNet
             decimal value = (decimal) mebibitspersecond;
             return new BitRate(value, BitRateUnit.MebibitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebibytePerSecond"/>.
         /// </summary>
@@ -617,6 +632,7 @@ namespace UnitsNet
             decimal value = (decimal) mebibytespersecond;
             return new BitRate(value, BitRateUnit.MebibytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegabitPerSecond"/>.
         /// </summary>
@@ -626,6 +642,7 @@ namespace UnitsNet
             decimal value = (decimal) megabitspersecond;
             return new BitRate(value, BitRateUnit.MegabitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegabytePerSecond"/>.
         /// </summary>
@@ -635,6 +652,7 @@ namespace UnitsNet
             decimal value = (decimal) megabytespersecond;
             return new BitRate(value, BitRateUnit.MegabytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebibitPerSecond"/>.
         /// </summary>
@@ -644,6 +662,7 @@ namespace UnitsNet
             decimal value = (decimal) pebibitspersecond;
             return new BitRate(value, BitRateUnit.PebibitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebibytePerSecond"/>.
         /// </summary>
@@ -653,6 +672,7 @@ namespace UnitsNet
             decimal value = (decimal) pebibytespersecond;
             return new BitRate(value, BitRateUnit.PebibytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetabitPerSecond"/>.
         /// </summary>
@@ -662,6 +682,7 @@ namespace UnitsNet
             decimal value = (decimal) petabitspersecond;
             return new BitRate(value, BitRateUnit.PetabitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetabytePerSecond"/>.
         /// </summary>
@@ -671,6 +692,7 @@ namespace UnitsNet
             decimal value = (decimal) petabytespersecond;
             return new BitRate(value, BitRateUnit.PetabytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebibitPerSecond"/>.
         /// </summary>
@@ -680,6 +702,7 @@ namespace UnitsNet
             decimal value = (decimal) tebibitspersecond;
             return new BitRate(value, BitRateUnit.TebibitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebibytePerSecond"/>.
         /// </summary>
@@ -689,6 +712,7 @@ namespace UnitsNet
             decimal value = (decimal) tebibytespersecond;
             return new BitRate(value, BitRateUnit.TebibytePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TerabitPerSecond"/>.
         /// </summary>
@@ -698,6 +722,7 @@ namespace UnitsNet
             decimal value = (decimal) terabitspersecond;
             return new BitRate(value, BitRateUnit.TerabitPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TerabytePerSecond"/>.
         /// </summary>
@@ -707,6 +732,7 @@ namespace UnitsNet
             decimal value = (decimal) terabytespersecond;
             return new BitRate(value, BitRateUnit.TerabytePerSecond);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="BitRateUnit" /> to <see cref="BitRate" />.

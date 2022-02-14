@@ -348,6 +348,7 @@ namespace UnitsNet
             double value = (double) gramsperhourpersquarecentimeter;
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>.
         /// </summary>
@@ -357,6 +358,7 @@ namespace UnitsNet
             double value = (double) gramsperhourpersquaremeter;
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>.
         /// </summary>
@@ -366,6 +368,7 @@ namespace UnitsNet
             double value = (double) gramsperhourpersquaremillimeter;
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>.
         /// </summary>
@@ -375,6 +378,7 @@ namespace UnitsNet
             double value = (double) gramspersecondpersquarecentimeter;
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>.
         /// </summary>
@@ -384,6 +388,7 @@ namespace UnitsNet
             double value = (double) gramspersecondpersquaremeter;
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>.
         /// </summary>
@@ -393,6 +398,7 @@ namespace UnitsNet
             double value = (double) gramspersecondpersquaremillimeter;
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>.
         /// </summary>
@@ -402,6 +408,7 @@ namespace UnitsNet
             double value = (double) kilogramsperhourpersquarecentimeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>.
         /// </summary>
@@ -411,6 +418,7 @@ namespace UnitsNet
             double value = (double) kilogramsperhourpersquaremeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>.
         /// </summary>
@@ -420,6 +428,7 @@ namespace UnitsNet
             double value = (double) kilogramsperhourpersquaremillimeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>.
         /// </summary>
@@ -429,6 +438,7 @@ namespace UnitsNet
             double value = (double) kilogramspersecondpersquarecentimeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>.
         /// </summary>
@@ -438,6 +448,7 @@ namespace UnitsNet
             double value = (double) kilogramspersecondpersquaremeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>.
         /// </summary>
@@ -447,6 +458,7 @@ namespace UnitsNet
             double value = (double) kilogramspersecondpersquaremillimeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFluxUnit" /> to <see cref="MassFlux" />.

@@ -250,6 +250,7 @@ namespace UnitsNet
             return new Scalar(value, ScalarUnit.Amount);
         }
 
+
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ScalarUnit" /> to <see cref="Scalar" />.
         /// </summary>

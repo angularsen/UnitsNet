@@ -237,6 +237,7 @@ namespace UnitsNet
             double value = (double) kilovoltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.KilovoltAc);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MegavoltAc"/>.
         /// </summary>
@@ -247,6 +248,7 @@ namespace UnitsNet
             double value = (double) megavoltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MegavoltAc);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MicrovoltAc"/>.
         /// </summary>
@@ -257,6 +259,7 @@ namespace UnitsNet
             double value = (double) microvoltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MicrovoltAc);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.MillivoltAc"/>.
         /// </summary>
@@ -267,6 +270,7 @@ namespace UnitsNet
             double value = (double) millivoltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.MillivoltAc);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialAc"/> from <see cref="ElectricPotentialAcUnit.VoltAc"/>.
         /// </summary>
@@ -277,6 +281,7 @@ namespace UnitsNet
             double value = (double) voltsac;
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.VoltAc);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialAcUnit" /> to <see cref="ElectricPotentialAc" />.

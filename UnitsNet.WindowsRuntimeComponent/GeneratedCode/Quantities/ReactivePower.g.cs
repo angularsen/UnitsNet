@@ -231,6 +231,7 @@ namespace UnitsNet
             double value = (double) gigavoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.GigavoltampereReactive);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
@@ -241,6 +242,7 @@ namespace UnitsNet
             double value = (double) kilovoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.KilovoltampereReactive);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
@@ -251,6 +253,7 @@ namespace UnitsNet
             double value = (double) megavoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.MegavoltampereReactive);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
@@ -261,6 +264,7 @@ namespace UnitsNet
             double value = (double) voltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.VoltampereReactive);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ReactivePowerUnit" /> to <see cref="ReactivePower" />.

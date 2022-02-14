@@ -291,6 +291,7 @@ namespace UnitsNet
             double value = (double) kilowattspersquarecentimeter;
             return new Irradiance(value, IrradianceUnit.KilowattPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.KilowattPerSquareMeter"/>.
         /// </summary>
@@ -301,6 +302,7 @@ namespace UnitsNet
             double value = (double) kilowattspersquaremeter;
             return new Irradiance(value, IrradianceUnit.KilowattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>.
         /// </summary>
@@ -311,6 +313,7 @@ namespace UnitsNet
             double value = (double) megawattspersquarecentimeter;
             return new Irradiance(value, IrradianceUnit.MegawattPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MegawattPerSquareMeter"/>.
         /// </summary>
@@ -321,6 +324,7 @@ namespace UnitsNet
             double value = (double) megawattspersquaremeter;
             return new Irradiance(value, IrradianceUnit.MegawattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>.
         /// </summary>
@@ -331,6 +335,7 @@ namespace UnitsNet
             double value = (double) microwattspersquarecentimeter;
             return new Irradiance(value, IrradianceUnit.MicrowattPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
@@ -341,6 +346,7 @@ namespace UnitsNet
             double value = (double) microwattspersquaremeter;
             return new Irradiance(value, IrradianceUnit.MicrowattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>.
         /// </summary>
@@ -351,6 +357,7 @@ namespace UnitsNet
             double value = (double) milliwattspersquarecentimeter;
             return new Irradiance(value, IrradianceUnit.MilliwattPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>.
         /// </summary>
@@ -361,6 +368,7 @@ namespace UnitsNet
             double value = (double) milliwattspersquaremeter;
             return new Irradiance(value, IrradianceUnit.MilliwattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>.
         /// </summary>
@@ -371,6 +379,7 @@ namespace UnitsNet
             double value = (double) nanowattspersquarecentimeter;
             return new Irradiance(value, IrradianceUnit.NanowattPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.NanowattPerSquareMeter"/>.
         /// </summary>
@@ -381,6 +390,7 @@ namespace UnitsNet
             double value = (double) nanowattspersquaremeter;
             return new Irradiance(value, IrradianceUnit.NanowattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>.
         /// </summary>
@@ -391,6 +401,7 @@ namespace UnitsNet
             double value = (double) picowattspersquarecentimeter;
             return new Irradiance(value, IrradianceUnit.PicowattPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.PicowattPerSquareMeter"/>.
         /// </summary>
@@ -401,6 +412,7 @@ namespace UnitsNet
             double value = (double) picowattspersquaremeter;
             return new Irradiance(value, IrradianceUnit.PicowattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.WattPerSquareCentimeter"/>.
         /// </summary>
@@ -411,6 +423,7 @@ namespace UnitsNet
             double value = (double) wattspersquarecentimeter;
             return new Irradiance(value, IrradianceUnit.WattPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.WattPerSquareMeter"/>.
         /// </summary>
@@ -421,6 +434,7 @@ namespace UnitsNet
             double value = (double) wattspersquaremeter;
             return new Irradiance(value, IrradianceUnit.WattPerSquareMeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="IrradianceUnit" /> to <see cref="Irradiance" />.

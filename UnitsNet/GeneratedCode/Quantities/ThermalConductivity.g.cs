@@ -261,6 +261,7 @@ namespace UnitsNet
             double value = (double) btusperhourfootfahrenheit;
             return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
         }
+
         /// <summary>
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
         /// </summary>
@@ -270,6 +271,7 @@ namespace UnitsNet
             double value = (double) wattspermeterkelvin;
             return new ThermalConductivity(value, ThermalConductivityUnit.WattPerMeterKelvin);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ThermalConductivityUnit" /> to <see cref="ThermalConductivity" />.

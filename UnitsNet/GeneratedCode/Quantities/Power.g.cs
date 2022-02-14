@@ -470,6 +470,7 @@ namespace UnitsNet
             decimal value = (decimal) boilerhorsepower;
             return new Power(value, PowerUnit.BoilerHorsepower);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.BritishThermalUnitPerHour"/>.
         /// </summary>
@@ -479,6 +480,7 @@ namespace UnitsNet
             decimal value = (decimal) britishthermalunitsperhour;
             return new Power(value, PowerUnit.BritishThermalUnitPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Decawatt"/>.
         /// </summary>
@@ -488,6 +490,7 @@ namespace UnitsNet
             decimal value = (decimal) decawatts;
             return new Power(value, PowerUnit.Decawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Deciwatt"/>.
         /// </summary>
@@ -497,6 +500,7 @@ namespace UnitsNet
             decimal value = (decimal) deciwatts;
             return new Power(value, PowerUnit.Deciwatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.ElectricalHorsepower"/>.
         /// </summary>
@@ -506,6 +510,7 @@ namespace UnitsNet
             decimal value = (decimal) electricalhorsepower;
             return new Power(value, PowerUnit.ElectricalHorsepower);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Femtowatt"/>.
         /// </summary>
@@ -515,6 +520,7 @@ namespace UnitsNet
             decimal value = (decimal) femtowatts;
             return new Power(value, PowerUnit.Femtowatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.GigajoulePerHour"/>.
         /// </summary>
@@ -524,6 +530,7 @@ namespace UnitsNet
             decimal value = (decimal) gigajoulesperhour;
             return new Power(value, PowerUnit.GigajoulePerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Gigawatt"/>.
         /// </summary>
@@ -533,6 +540,7 @@ namespace UnitsNet
             decimal value = (decimal) gigawatts;
             return new Power(value, PowerUnit.Gigawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.HydraulicHorsepower"/>.
         /// </summary>
@@ -542,6 +550,7 @@ namespace UnitsNet
             decimal value = (decimal) hydraulichorsepower;
             return new Power(value, PowerUnit.HydraulicHorsepower);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.JoulePerHour"/>.
         /// </summary>
@@ -551,6 +560,7 @@ namespace UnitsNet
             decimal value = (decimal) joulesperhour;
             return new Power(value, PowerUnit.JoulePerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilobritishThermalUnitPerHour"/>.
         /// </summary>
@@ -560,6 +570,7 @@ namespace UnitsNet
             decimal value = (decimal) kilobritishthermalunitsperhour;
             return new Power(value, PowerUnit.KilobritishThermalUnitPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilojoulePerHour"/>.
         /// </summary>
@@ -569,6 +580,7 @@ namespace UnitsNet
             decimal value = (decimal) kilojoulesperhour;
             return new Power(value, PowerUnit.KilojoulePerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Kilowatt"/>.
         /// </summary>
@@ -578,6 +590,7 @@ namespace UnitsNet
             decimal value = (decimal) kilowatts;
             return new Power(value, PowerUnit.Kilowatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MechanicalHorsepower"/>.
         /// </summary>
@@ -587,6 +600,7 @@ namespace UnitsNet
             decimal value = (decimal) mechanicalhorsepower;
             return new Power(value, PowerUnit.MechanicalHorsepower);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegajoulePerHour"/>.
         /// </summary>
@@ -596,6 +610,7 @@ namespace UnitsNet
             decimal value = (decimal) megajoulesperhour;
             return new Power(value, PowerUnit.MegajoulePerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Megawatt"/>.
         /// </summary>
@@ -605,6 +620,7 @@ namespace UnitsNet
             decimal value = (decimal) megawatts;
             return new Power(value, PowerUnit.Megawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MetricHorsepower"/>.
         /// </summary>
@@ -614,6 +630,7 @@ namespace UnitsNet
             decimal value = (decimal) metrichorsepower;
             return new Power(value, PowerUnit.MetricHorsepower);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Microwatt"/>.
         /// </summary>
@@ -623,6 +640,7 @@ namespace UnitsNet
             decimal value = (decimal) microwatts;
             return new Power(value, PowerUnit.Microwatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MillijoulePerHour"/>.
         /// </summary>
@@ -632,6 +650,7 @@ namespace UnitsNet
             decimal value = (decimal) millijoulesperhour;
             return new Power(value, PowerUnit.MillijoulePerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Milliwatt"/>.
         /// </summary>
@@ -641,6 +660,7 @@ namespace UnitsNet
             decimal value = (decimal) milliwatts;
             return new Power(value, PowerUnit.Milliwatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Nanowatt"/>.
         /// </summary>
@@ -650,6 +670,7 @@ namespace UnitsNet
             decimal value = (decimal) nanowatts;
             return new Power(value, PowerUnit.Nanowatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Petawatt"/>.
         /// </summary>
@@ -659,6 +680,7 @@ namespace UnitsNet
             decimal value = (decimal) petawatts;
             return new Power(value, PowerUnit.Petawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Picowatt"/>.
         /// </summary>
@@ -668,6 +690,7 @@ namespace UnitsNet
             decimal value = (decimal) picowatts;
             return new Power(value, PowerUnit.Picowatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Terawatt"/>.
         /// </summary>
@@ -677,6 +700,7 @@ namespace UnitsNet
             decimal value = (decimal) terawatts;
             return new Power(value, PowerUnit.Terawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Watt"/>.
         /// </summary>
@@ -686,6 +710,7 @@ namespace UnitsNet
             decimal value = (decimal) watts;
             return new Power(value, PowerUnit.Watt);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.

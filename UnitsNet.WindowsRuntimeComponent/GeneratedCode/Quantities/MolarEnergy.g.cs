@@ -225,6 +225,7 @@ namespace UnitsNet
             double value = (double) joulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.JoulePerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.KilojoulePerMole"/>.
         /// </summary>
@@ -235,6 +236,7 @@ namespace UnitsNet
             double value = (double) kilojoulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.KilojoulePerMole);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.MegajoulePerMole"/>.
         /// </summary>
@@ -245,6 +247,7 @@ namespace UnitsNet
             double value = (double) megajoulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.MegajoulePerMole);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarEnergyUnit" /> to <see cref="MolarEnergy" />.

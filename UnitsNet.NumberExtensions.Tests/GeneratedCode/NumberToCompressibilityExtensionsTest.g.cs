@@ -25,8 +25,32 @@ namespace UnitsNet.Tests
     public class NumberToCompressibilityExtensionsTests
     {
         [Fact]
+        public void NumberToInverseAtmospheresTest() =>
+            Assert.Equal(Compressibility.FromInverseAtmospheres(2), 2.InverseAtmospheres());
+
+        [Fact]
+        public void NumberToInverseBarsTest() =>
+            Assert.Equal(Compressibility.FromInverseBars(2), 2.InverseBars());
+
+        [Fact]
+        public void NumberToInverseKilopascalsTest() =>
+            Assert.Equal(Compressibility.FromInverseKilopascals(2), 2.InverseKilopascals());
+
+        [Fact]
+        public void NumberToInverseMegapascalsTest() =>
+            Assert.Equal(Compressibility.FromInverseMegapascals(2), 2.InverseMegapascals());
+
+        [Fact]
+        public void NumberToInverseMillibarsTest() =>
+            Assert.Equal(Compressibility.FromInverseMillibars(2), 2.InverseMillibars());
+
+        [Fact]
         public void NumberToInversePascalsTest() =>
             Assert.Equal(Compressibility.FromInversePascals(2), 2.InversePascals());
+
+        [Fact]
+        public void NumberToInversePoundForcePerSquareInchsTest() =>
+            Assert.Equal(Compressibility.FromInversePoundForcePerSquareInchs(2), 2.InversePoundForcePerSquareInchs());
 
     }
 }

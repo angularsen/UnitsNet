@@ -28,9 +28,33 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
     /// </summary>
     public static class NumberToCompressibilityExtensions
     {
+        /// <inheritdoc cref="Compressibility.FromInverseAtmospheres(UnitsNet.QuantityValue)" />
+        public static Compressibility InverseAtmospheres<T>(this T value) =>
+            Compressibility.FromInverseAtmospheres(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Compressibility.FromInverseBars(UnitsNet.QuantityValue)" />
+        public static Compressibility InverseBars<T>(this T value) =>
+            Compressibility.FromInverseBars(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Compressibility.FromInverseKilopascals(UnitsNet.QuantityValue)" />
+        public static Compressibility InverseKilopascals<T>(this T value) =>
+            Compressibility.FromInverseKilopascals(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Compressibility.FromInverseMegapascals(UnitsNet.QuantityValue)" />
+        public static Compressibility InverseMegapascals<T>(this T value) =>
+            Compressibility.FromInverseMegapascals(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Compressibility.FromInverseMillibars(UnitsNet.QuantityValue)" />
+        public static Compressibility InverseMillibars<T>(this T value) =>
+            Compressibility.FromInverseMillibars(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Compressibility.FromInversePascals(UnitsNet.QuantityValue)" />
         public static Compressibility InversePascals<T>(this T value) =>
             Compressibility.FromInversePascals(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Compressibility.FromInversePoundForcePerSquareInchs(UnitsNet.QuantityValue)" />
+        public static Compressibility InversePoundForcePerSquareInchs<T>(this T value) =>
+            Compressibility.FromInversePoundForcePerSquareInchs(Convert.ToDouble(value));
 
     }
 }

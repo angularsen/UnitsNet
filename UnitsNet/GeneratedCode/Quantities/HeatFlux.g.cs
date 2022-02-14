@@ -402,6 +402,7 @@ namespace UnitsNet
             double value = (double) btusperhoursquarefoot;
             return new HeatFlux(value, HeatFluxUnit.BtuPerHourSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>.
         /// </summary>
@@ -411,6 +412,7 @@ namespace UnitsNet
             double value = (double) btusperminutesquarefoot;
             return new HeatFlux(value, HeatFluxUnit.BtuPerMinuteSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>.
         /// </summary>
@@ -420,6 +422,7 @@ namespace UnitsNet
             double value = (double) btuspersecondsquarefoot;
             return new HeatFlux(value, HeatFluxUnit.BtuPerSecondSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>.
         /// </summary>
@@ -429,6 +432,7 @@ namespace UnitsNet
             double value = (double) btuspersecondsquareinch;
             return new HeatFlux(value, HeatFluxUnit.BtuPerSecondSquareInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>.
         /// </summary>
@@ -438,6 +442,7 @@ namespace UnitsNet
             double value = (double) caloriespersecondsquarecentimeter;
             return new HeatFlux(value, HeatFluxUnit.CaloriePerSecondSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>.
         /// </summary>
@@ -447,6 +452,7 @@ namespace UnitsNet
             double value = (double) centiwattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.CentiwattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>.
         /// </summary>
@@ -456,6 +462,7 @@ namespace UnitsNet
             double value = (double) deciwattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.DeciwattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>.
         /// </summary>
@@ -465,6 +472,7 @@ namespace UnitsNet
             double value = (double) kilocaloriesperhoursquaremeter;
             return new HeatFlux(value, HeatFluxUnit.KilocaloriePerHourSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>.
         /// </summary>
@@ -474,6 +482,7 @@ namespace UnitsNet
             double value = (double) kilocaloriespersecondsquarecentimeter;
             return new HeatFlux(value, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>.
         /// </summary>
@@ -483,6 +492,7 @@ namespace UnitsNet
             double value = (double) kilowattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.KilowattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
@@ -492,6 +502,7 @@ namespace UnitsNet
             double value = (double) microwattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.MicrowattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>.
         /// </summary>
@@ -501,6 +512,7 @@ namespace UnitsNet
             double value = (double) milliwattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.MilliwattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>.
         /// </summary>
@@ -510,6 +522,7 @@ namespace UnitsNet
             double value = (double) nanowattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.NanowattPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>.
         /// </summary>
@@ -519,6 +532,7 @@ namespace UnitsNet
             double value = (double) poundsforceperfootsecond;
             return new HeatFlux(value, HeatFluxUnit.PoundForcePerFootSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.PoundPerSecondCubed"/>.
         /// </summary>
@@ -528,6 +542,7 @@ namespace UnitsNet
             double value = (double) poundspersecondcubed;
             return new HeatFlux(value, HeatFluxUnit.PoundPerSecondCubed);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareFoot"/>.
         /// </summary>
@@ -537,6 +552,7 @@ namespace UnitsNet
             double value = (double) wattspersquarefoot;
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareInch"/>.
         /// </summary>
@@ -546,6 +562,7 @@ namespace UnitsNet
             double value = (double) wattspersquareinch;
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareMeter"/>.
         /// </summary>
@@ -555,6 +572,7 @@ namespace UnitsNet
             double value = (double) wattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareMeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="HeatFluxUnit" /> to <see cref="HeatFlux" />.

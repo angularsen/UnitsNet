@@ -297,6 +297,7 @@ namespace UnitsNet
             double value = (double) gausses;
             return new MagneticField(value, MagneticFieldUnit.Gauss);
         }
+
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Microtesla"/>.
         /// </summary>
@@ -306,6 +307,7 @@ namespace UnitsNet
             double value = (double) microteslas;
             return new MagneticField(value, MagneticFieldUnit.Microtesla);
         }
+
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Milligauss"/>.
         /// </summary>
@@ -315,6 +317,7 @@ namespace UnitsNet
             double value = (double) milligausses;
             return new MagneticField(value, MagneticFieldUnit.Milligauss);
         }
+
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Millitesla"/>.
         /// </summary>
@@ -324,6 +327,7 @@ namespace UnitsNet
             double value = (double) milliteslas;
             return new MagneticField(value, MagneticFieldUnit.Millitesla);
         }
+
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Nanotesla"/>.
         /// </summary>
@@ -333,6 +337,7 @@ namespace UnitsNet
             double value = (double) nanoteslas;
             return new MagneticField(value, MagneticFieldUnit.Nanotesla);
         }
+
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Tesla"/>.
         /// </summary>
@@ -342,6 +347,7 @@ namespace UnitsNet
             double value = (double) teslas;
             return new MagneticField(value, MagneticFieldUnit.Tesla);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MagneticFieldUnit" /> to <see cref="MagneticField" />.

@@ -228,6 +228,7 @@ namespace UnitsNet
             double value = (double) siemensperfoot;
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
@@ -238,6 +239,7 @@ namespace UnitsNet
             double value = (double) siemensperinch;
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
@@ -248,6 +250,7 @@ namespace UnitsNet
             double value = (double) siemenspermeter;
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerMeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricConductivityUnit" /> to <see cref="ElectricConductivity" />.

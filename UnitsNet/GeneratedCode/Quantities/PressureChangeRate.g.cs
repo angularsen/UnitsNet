@@ -380,6 +380,7 @@ namespace UnitsNet
             double value = (double) atmospherespersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.AtmospherePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopascalPerMinute"/>.
         /// </summary>
@@ -389,6 +390,7 @@ namespace UnitsNet
             double value = (double) kilopascalsperminute;
             return new PressureChangeRate(value, PressureChangeRateUnit.KilopascalPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopascalPerSecond"/>.
         /// </summary>
@@ -398,6 +400,7 @@ namespace UnitsNet
             double value = (double) kilopascalspersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.KilopascalPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute"/>.
         /// </summary>
@@ -407,6 +410,7 @@ namespace UnitsNet
             double value = (double) kilopoundsforcepersquareinchperminute;
             return new PressureChangeRate(value, PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond"/>.
         /// </summary>
@@ -416,6 +420,7 @@ namespace UnitsNet
             double value = (double) kilopoundsforcepersquareinchpersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapascalPerMinute"/>.
         /// </summary>
@@ -425,6 +430,7 @@ namespace UnitsNet
             double value = (double) megapascalsperminute;
             return new PressureChangeRate(value, PressureChangeRateUnit.MegapascalPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapascalPerSecond"/>.
         /// </summary>
@@ -434,6 +440,7 @@ namespace UnitsNet
             double value = (double) megapascalspersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.MegapascalPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute"/>.
         /// </summary>
@@ -443,6 +450,7 @@ namespace UnitsNet
             double value = (double) megapoundsforcepersquareinchperminute;
             return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond"/>.
         /// </summary>
@@ -452,6 +460,7 @@ namespace UnitsNet
             double value = (double) megapoundsforcepersquareinchpersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond"/>.
         /// </summary>
@@ -461,6 +470,7 @@ namespace UnitsNet
             double value = (double) millimetersofmercurypersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PascalPerMinute"/>.
         /// </summary>
@@ -470,6 +480,7 @@ namespace UnitsNet
             double value = (double) pascalsperminute;
             return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PascalPerSecond"/>.
         /// </summary>
@@ -479,6 +490,7 @@ namespace UnitsNet
             double value = (double) pascalspersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerMinute"/>.
         /// </summary>
@@ -488,6 +500,7 @@ namespace UnitsNet
             double value = (double) poundsforcepersquareinchperminute;
             return new PressureChangeRate(value, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="PressureChangeRate"/> from <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerSecond"/>.
         /// </summary>
@@ -497,6 +510,7 @@ namespace UnitsNet
             double value = (double) poundsforcepersquareinchpersecond;
             return new PressureChangeRate(value, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.

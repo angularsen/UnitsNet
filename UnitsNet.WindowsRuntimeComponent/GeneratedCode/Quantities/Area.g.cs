@@ -318,6 +318,7 @@ namespace UnitsNet
             double value = (double) acres;
             return new Area(value, AreaUnit.Acre);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Hectare"/>.
         /// </summary>
@@ -328,6 +329,7 @@ namespace UnitsNet
             double value = (double) hectares;
             return new Area(value, AreaUnit.Hectare);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareCentimeter"/>.
         /// </summary>
@@ -338,6 +340,7 @@ namespace UnitsNet
             double value = (double) squarecentimeters;
             return new Area(value, AreaUnit.SquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareDecimeter"/>.
         /// </summary>
@@ -348,6 +351,7 @@ namespace UnitsNet
             double value = (double) squaredecimeters;
             return new Area(value, AreaUnit.SquareDecimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareFoot"/>.
         /// </summary>
@@ -358,6 +362,7 @@ namespace UnitsNet
             double value = (double) squarefeet;
             return new Area(value, AreaUnit.SquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareInch"/>.
         /// </summary>
@@ -368,6 +373,7 @@ namespace UnitsNet
             double value = (double) squareinches;
             return new Area(value, AreaUnit.SquareInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareKilometer"/>.
         /// </summary>
@@ -378,6 +384,7 @@ namespace UnitsNet
             double value = (double) squarekilometers;
             return new Area(value, AreaUnit.SquareKilometer);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMeter"/>.
         /// </summary>
@@ -388,6 +395,7 @@ namespace UnitsNet
             double value = (double) squaremeters;
             return new Area(value, AreaUnit.SquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMicrometer"/>.
         /// </summary>
@@ -398,6 +406,7 @@ namespace UnitsNet
             double value = (double) squaremicrometers;
             return new Area(value, AreaUnit.SquareMicrometer);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMile"/>.
         /// </summary>
@@ -408,6 +417,7 @@ namespace UnitsNet
             double value = (double) squaremiles;
             return new Area(value, AreaUnit.SquareMile);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMillimeter"/>.
         /// </summary>
@@ -418,6 +428,7 @@ namespace UnitsNet
             double value = (double) squaremillimeters;
             return new Area(value, AreaUnit.SquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareNauticalMile"/>.
         /// </summary>
@@ -428,6 +439,7 @@ namespace UnitsNet
             double value = (double) squarenauticalmiles;
             return new Area(value, AreaUnit.SquareNauticalMile);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareYard"/>.
         /// </summary>
@@ -438,6 +450,7 @@ namespace UnitsNet
             double value = (double) squareyards;
             return new Area(value, AreaUnit.SquareYard);
         }
+
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.UsSurveySquareFoot"/>.
         /// </summary>
@@ -448,6 +461,7 @@ namespace UnitsNet
             double value = (double) ussurveysquarefeet;
             return new Area(value, AreaUnit.UsSurveySquareFoot);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaUnit" /> to <see cref="Area" />.

@@ -258,6 +258,7 @@ namespace UnitsNet
             double value = (double) decibelmilliwatts;
             return new PowerRatio(value, PowerRatioUnit.DecibelMilliwatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelWatt"/>.
         /// </summary>
@@ -267,6 +268,7 @@ namespace UnitsNet
             double value = (double) decibelwatts;
             return new PowerRatio(value, PowerRatioUnit.DecibelWatt);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.

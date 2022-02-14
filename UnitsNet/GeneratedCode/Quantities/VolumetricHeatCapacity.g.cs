@@ -324,6 +324,7 @@ namespace UnitsNet
             double value = (double) btuspercubicfootdegreefahrenheit;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/>.
         /// </summary>
@@ -333,6 +334,7 @@ namespace UnitsNet
             double value = (double) caloriespercubiccentimeterdegreecelsius;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
@@ -342,6 +344,7 @@ namespace UnitsNet
             double value = (double) joulespercubicmeterdegreecelsius;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/>.
         /// </summary>
@@ -351,6 +354,7 @@ namespace UnitsNet
             double value = (double) joulespercubicmeterkelvin;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/>.
         /// </summary>
@@ -360,6 +364,7 @@ namespace UnitsNet
             double value = (double) kilocaloriespercubiccentimeterdegreecelsius;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
@@ -369,6 +374,7 @@ namespace UnitsNet
             double value = (double) kilojoulespercubicmeterdegreecelsius;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/>.
         /// </summary>
@@ -378,6 +384,7 @@ namespace UnitsNet
             double value = (double) kilojoulespercubicmeterkelvin;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
@@ -387,6 +394,7 @@ namespace UnitsNet
             double value = (double) megajoulespercubicmeterdegreecelsius;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/>.
         /// </summary>
@@ -396,6 +404,7 @@ namespace UnitsNet
             double value = (double) megajoulespercubicmeterkelvin;
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumetricHeatCapacityUnit" /> to <see cref="VolumetricHeatCapacity" />.

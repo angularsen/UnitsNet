@@ -423,6 +423,7 @@ namespace UnitsNet
             double value = (double) centilitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.CentilitersPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.CentilitersPerMililiter"/>.
         /// </summary>
@@ -432,6 +433,7 @@ namespace UnitsNet
             double value = (double) centiliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.CentilitersPerMililiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecilitersPerLiter"/>.
         /// </summary>
@@ -441,6 +443,7 @@ namespace UnitsNet
             double value = (double) decilitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecilitersPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecilitersPerMililiter"/>.
         /// </summary>
@@ -450,6 +453,7 @@ namespace UnitsNet
             double value = (double) deciliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecilitersPerMililiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecimalFraction"/>.
         /// </summary>
@@ -459,6 +463,7 @@ namespace UnitsNet
             double value = (double) decimalfractions;
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecimalFraction);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.LitersPerLiter"/>.
         /// </summary>
@@ -468,6 +473,7 @@ namespace UnitsNet
             double value = (double) litersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.LitersPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.LitersPerMililiter"/>.
         /// </summary>
@@ -477,6 +483,7 @@ namespace UnitsNet
             double value = (double) literspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.LitersPerMililiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MicrolitersPerLiter"/>.
         /// </summary>
@@ -486,6 +493,7 @@ namespace UnitsNet
             double value = (double) microlitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.MicrolitersPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter"/>.
         /// </summary>
@@ -495,6 +503,7 @@ namespace UnitsNet
             double value = (double) microliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.MicrolitersPerMililiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MillilitersPerLiter"/>.
         /// </summary>
@@ -504,6 +513,7 @@ namespace UnitsNet
             double value = (double) millilitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.MillilitersPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MillilitersPerMililiter"/>.
         /// </summary>
@@ -513,6 +523,7 @@ namespace UnitsNet
             double value = (double) milliliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.MillilitersPerMililiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.NanolitersPerLiter"/>.
         /// </summary>
@@ -522,6 +533,7 @@ namespace UnitsNet
             double value = (double) nanolitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.NanolitersPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.NanolitersPerMililiter"/>.
         /// </summary>
@@ -531,6 +543,7 @@ namespace UnitsNet
             double value = (double) nanoliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.NanolitersPerMililiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerBillion"/>.
         /// </summary>
@@ -540,6 +553,7 @@ namespace UnitsNet
             double value = (double) partsperbillion;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerBillion);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerMillion"/>.
         /// </summary>
@@ -549,6 +563,7 @@ namespace UnitsNet
             double value = (double) partspermillion;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerMillion);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerThousand"/>.
         /// </summary>
@@ -558,6 +573,7 @@ namespace UnitsNet
             double value = (double) partsperthousand;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerThousand);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerTrillion"/>.
         /// </summary>
@@ -567,6 +583,7 @@ namespace UnitsNet
             double value = (double) partspertrillion;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerTrillion);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.Percent"/>.
         /// </summary>
@@ -576,6 +593,7 @@ namespace UnitsNet
             double value = (double) percent;
             return new VolumeConcentration(value, VolumeConcentrationUnit.Percent);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PicolitersPerLiter"/>.
         /// </summary>
@@ -585,6 +603,7 @@ namespace UnitsNet
             double value = (double) picolitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PicolitersPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PicolitersPerMililiter"/>.
         /// </summary>
@@ -594,6 +613,7 @@ namespace UnitsNet
             double value = (double) picoliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PicolitersPerMililiter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeConcentrationUnit" /> to <see cref="VolumeConcentration" />.

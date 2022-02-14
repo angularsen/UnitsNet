@@ -164,9 +164,39 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseAtmosphere"/>
+        /// </summary>
+        public double InverseAtmospheres => As(CompressibilityUnit.InverseAtmosphere);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseBar"/>
+        /// </summary>
+        public double InverseBars => As(CompressibilityUnit.InverseBar);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseKilopascal"/>
+        /// </summary>
+        public double InverseKilopascals => As(CompressibilityUnit.InverseKilopascal);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseMegapascal"/>
+        /// </summary>
+        public double InverseMegapascals => As(CompressibilityUnit.InverseMegapascal);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InverseMillibar"/>
+        /// </summary>
+        public double InverseMillibars => As(CompressibilityUnit.InverseMillibar);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InversePascal"/>
         /// </summary>
         public double InversePascals => As(CompressibilityUnit.InversePascal);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>
+        /// </summary>
+        public double InversePoundForcePerSquareInchs => As(CompressibilityUnit.InversePoundForcePerSquareInch);
 
         #endregion
 
@@ -174,7 +204,13 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
+            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseAtmosphere, new CultureInfo("en-US"), false, true, new string[]{"atm⁻¹", "1/atm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseBar, new CultureInfo("en-US"), false, true, new string[]{"bar⁻¹", "1/bar"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseKilopascal, new CultureInfo("en-US"), false, true, new string[]{"kPa⁻¹", "1/kPa"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseMegapascal, new CultureInfo("en-US"), false, true, new string[]{"kPa⁻¹", "1/kPa"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseMillibar, new CultureInfo("en-US"), false, true, new string[]{"mbar⁻¹", "1/mbar"});
             unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InversePascal, new CultureInfo("en-US"), false, true, new string[]{"Pa⁻¹", "1/Pa"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InversePoundForcePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"psi⁻¹", "1/psi"});
         }
 
         /// <summary>
@@ -204,6 +240,61 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseAtmosphere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Compressibility FromInverseAtmospheres(double inverseatmospheres)
+        {
+            double value = (double) inverseatmospheres;
+            return new Compressibility(value, CompressibilityUnit.InverseAtmosphere);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseBar"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Compressibility FromInverseBars(double inversebars)
+        {
+            double value = (double) inversebars;
+            return new Compressibility(value, CompressibilityUnit.InverseBar);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseKilopascal"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Compressibility FromInverseKilopascals(double inversekilopascals)
+        {
+            double value = (double) inversekilopascals;
+            return new Compressibility(value, CompressibilityUnit.InverseKilopascal);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMegapascal"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Compressibility FromInverseMegapascals(double inversemegapascals)
+        {
+            double value = (double) inversemegapascals;
+            return new Compressibility(value, CompressibilityUnit.InverseMegapascal);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMillibar"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Compressibility FromInverseMillibars(double inversemillibars)
+        {
+            double value = (double) inversemillibars;
+            return new Compressibility(value, CompressibilityUnit.InverseMillibar);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePascal"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -213,6 +304,18 @@ namespace UnitsNet
             double value = (double) inversepascals;
             return new Compressibility(value, CompressibilityUnit.InversePascal);
         }
+
+        /// <summary>
+        ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Compressibility FromInversePoundForcePerSquareInchs(double inversepoundforcepersquareinchs)
+        {
+            double value = (double) inversepoundforcepersquareinchs;
+            return new Compressibility(value, CompressibilityUnit.InversePoundForcePerSquareInch);
+        }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="CompressibilityUnit" /> to <see cref="Compressibility" />.
@@ -504,7 +607,13 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case CompressibilityUnit.InverseAtmosphere: return _value * 101325;
+                case CompressibilityUnit.InverseBar: return _value * 1e5;
+                case CompressibilityUnit.InverseKilopascal: return _value * 1e3;
+                case CompressibilityUnit.InverseMegapascal: return _value * 1e6;
+                case CompressibilityUnit.InverseMillibar: return _value * 100;
                 case CompressibilityUnit.InversePascal: return _value;
+                case CompressibilityUnit.InversePoundForcePerSquareInch: return _value * 6.894757293168361e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -519,7 +628,13 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case CompressibilityUnit.InverseAtmosphere: return baseUnitValue / 101325;
+                case CompressibilityUnit.InverseBar: return baseUnitValue / 1e5;
+                case CompressibilityUnit.InverseKilopascal: return baseUnitValue / 1e3;
+                case CompressibilityUnit.InverseMegapascal: return baseUnitValue / 1e6;
+                case CompressibilityUnit.InverseMillibar: return baseUnitValue / 100;
                 case CompressibilityUnit.InversePascal: return baseUnitValue;
+                case CompressibilityUnit.InversePoundForcePerSquareInch: return baseUnitValue / 6.894757293168361e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

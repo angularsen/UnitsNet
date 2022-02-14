@@ -231,6 +231,7 @@ namespace UnitsNet
             double value = (double) amperespermicrosecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMicrosecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>.
         /// </summary>
@@ -241,6 +242,7 @@ namespace UnitsNet
             double value = (double) amperespermillisecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerMillisecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>.
         /// </summary>
@@ -251,6 +253,7 @@ namespace UnitsNet
             double value = (double) amperespernanosecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerNanosecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>.
         /// </summary>
@@ -261,6 +264,7 @@ namespace UnitsNet
             double value = (double) amperespersecond;
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerSecond);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentGradientUnit" /> to <see cref="ElectricCurrentGradient" />.

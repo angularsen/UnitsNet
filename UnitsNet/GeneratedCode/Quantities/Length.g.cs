@@ -587,6 +587,7 @@ namespace UnitsNet
             double value = (double) angstroms;
             return new Length(value, LengthUnit.Angstrom);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.AstronomicalUnit"/>.
         /// </summary>
@@ -596,6 +597,7 @@ namespace UnitsNet
             double value = (double) astronomicalunits;
             return new Length(value, LengthUnit.AstronomicalUnit);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Centimeter"/>.
         /// </summary>
@@ -605,6 +607,7 @@ namespace UnitsNet
             double value = (double) centimeters;
             return new Length(value, LengthUnit.Centimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Chain"/>.
         /// </summary>
@@ -614,6 +617,7 @@ namespace UnitsNet
             double value = (double) chains;
             return new Length(value, LengthUnit.Chain);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decameter"/>.
         /// </summary>
@@ -623,6 +627,7 @@ namespace UnitsNet
             double value = (double) decameters;
             return new Length(value, LengthUnit.Decameter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decimeter"/>.
         /// </summary>
@@ -632,6 +637,7 @@ namespace UnitsNet
             double value = (double) decimeters;
             return new Length(value, LengthUnit.Decimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPica"/>.
         /// </summary>
@@ -641,6 +647,7 @@ namespace UnitsNet
             double value = (double) dtppicas;
             return new Length(value, LengthUnit.DtpPica);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPoint"/>.
         /// </summary>
@@ -650,6 +657,7 @@ namespace UnitsNet
             double value = (double) dtppoints;
             return new Length(value, LengthUnit.DtpPoint);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Fathom"/>.
         /// </summary>
@@ -659,6 +667,7 @@ namespace UnitsNet
             double value = (double) fathoms;
             return new Length(value, LengthUnit.Fathom);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Foot"/>.
         /// </summary>
@@ -668,6 +677,7 @@ namespace UnitsNet
             double value = (double) feet;
             return new Length(value, LengthUnit.Foot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hand"/>.
         /// </summary>
@@ -677,6 +687,7 @@ namespace UnitsNet
             double value = (double) hands;
             return new Length(value, LengthUnit.Hand);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hectometer"/>.
         /// </summary>
@@ -686,6 +697,7 @@ namespace UnitsNet
             double value = (double) hectometers;
             return new Length(value, LengthUnit.Hectometer);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Inch"/>.
         /// </summary>
@@ -695,6 +707,7 @@ namespace UnitsNet
             double value = (double) inches;
             return new Length(value, LengthUnit.Inch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.KilolightYear"/>.
         /// </summary>
@@ -704,6 +717,7 @@ namespace UnitsNet
             double value = (double) kilolightyears;
             return new Length(value, LengthUnit.KilolightYear);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilometer"/>.
         /// </summary>
@@ -713,6 +727,7 @@ namespace UnitsNet
             double value = (double) kilometers;
             return new Length(value, LengthUnit.Kilometer);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloparsec"/>.
         /// </summary>
@@ -722,6 +737,7 @@ namespace UnitsNet
             double value = (double) kiloparsecs;
             return new Length(value, LengthUnit.Kiloparsec);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.LightYear"/>.
         /// </summary>
@@ -731,6 +747,7 @@ namespace UnitsNet
             double value = (double) lightyears;
             return new Length(value, LengthUnit.LightYear);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.MegalightYear"/>.
         /// </summary>
@@ -740,6 +757,7 @@ namespace UnitsNet
             double value = (double) megalightyears;
             return new Length(value, LengthUnit.MegalightYear);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megaparsec"/>.
         /// </summary>
@@ -749,6 +767,7 @@ namespace UnitsNet
             double value = (double) megaparsecs;
             return new Length(value, LengthUnit.Megaparsec);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Meter"/>.
         /// </summary>
@@ -758,6 +777,7 @@ namespace UnitsNet
             double value = (double) meters;
             return new Length(value, LengthUnit.Meter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Microinch"/>.
         /// </summary>
@@ -767,6 +787,7 @@ namespace UnitsNet
             double value = (double) microinches;
             return new Length(value, LengthUnit.Microinch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Micrometer"/>.
         /// </summary>
@@ -776,6 +797,7 @@ namespace UnitsNet
             double value = (double) micrometers;
             return new Length(value, LengthUnit.Micrometer);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mil"/>.
         /// </summary>
@@ -785,6 +807,7 @@ namespace UnitsNet
             double value = (double) mils;
             return new Length(value, LengthUnit.Mil);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mile"/>.
         /// </summary>
@@ -794,6 +817,7 @@ namespace UnitsNet
             double value = (double) miles;
             return new Length(value, LengthUnit.Mile);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Millimeter"/>.
         /// </summary>
@@ -803,6 +827,7 @@ namespace UnitsNet
             double value = (double) millimeters;
             return new Length(value, LengthUnit.Millimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Nanometer"/>.
         /// </summary>
@@ -812,6 +837,7 @@ namespace UnitsNet
             double value = (double) nanometers;
             return new Length(value, LengthUnit.Nanometer);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.NauticalMile"/>.
         /// </summary>
@@ -821,6 +847,7 @@ namespace UnitsNet
             double value = (double) nauticalmiles;
             return new Length(value, LengthUnit.NauticalMile);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Parsec"/>.
         /// </summary>
@@ -830,6 +857,7 @@ namespace UnitsNet
             double value = (double) parsecs;
             return new Length(value, LengthUnit.Parsec);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPica"/>.
         /// </summary>
@@ -839,6 +867,7 @@ namespace UnitsNet
             double value = (double) printerpicas;
             return new Length(value, LengthUnit.PrinterPica);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPoint"/>.
         /// </summary>
@@ -848,6 +877,7 @@ namespace UnitsNet
             double value = (double) printerpoints;
             return new Length(value, LengthUnit.PrinterPoint);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Shackle"/>.
         /// </summary>
@@ -857,6 +887,7 @@ namespace UnitsNet
             double value = (double) shackles;
             return new Length(value, LengthUnit.Shackle);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.SolarRadius"/>.
         /// </summary>
@@ -866,6 +897,7 @@ namespace UnitsNet
             double value = (double) solarradiuses;
             return new Length(value, LengthUnit.SolarRadius);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Twip"/>.
         /// </summary>
@@ -875,6 +907,7 @@ namespace UnitsNet
             double value = (double) twips;
             return new Length(value, LengthUnit.Twip);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.UsSurveyFoot"/>.
         /// </summary>
@@ -884,6 +917,7 @@ namespace UnitsNet
             double value = (double) ussurveyfeet;
             return new Length(value, LengthUnit.UsSurveyFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Yard"/>.
         /// </summary>
@@ -893,6 +927,7 @@ namespace UnitsNet
             double value = (double) yards;
             return new Length(value, LengthUnit.Yard);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LengthUnit" /> to <see cref="Length" />.

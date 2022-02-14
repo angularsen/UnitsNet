@@ -270,6 +270,7 @@ namespace UnitsNet
             double value = (double) microsiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
@@ -279,6 +280,7 @@ namespace UnitsNet
             double value = (double) millisiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Siemens"/>.
         /// </summary>
@@ -288,6 +290,7 @@ namespace UnitsNet
             double value = (double) siemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Siemens);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricConductanceUnit" /> to <see cref="ElectricConductance" />.

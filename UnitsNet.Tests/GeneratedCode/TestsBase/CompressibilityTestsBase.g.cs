@@ -38,24 +38,48 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class CompressibilityTestsBase : QuantityTestsBase
     {
+        protected abstract double InverseAtmospheresInOneInversePascal { get; }
+        protected abstract double InverseBarsInOneInversePascal { get; }
+        protected abstract double InverseKilopascalsInOneInversePascal { get; }
+        protected abstract double InverseMegapascalsInOneInversePascal { get; }
+        protected abstract double InverseMillibarsInOneInversePascal { get; }
         protected abstract double InversePascalsInOneInversePascal { get; }
+        protected abstract double InversePoundForcePerSquareInchsInOneInversePascal { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double InverseAtmospheresTolerance { get { return 1e-5; } }
+        protected virtual double InverseBarsTolerance { get { return 1e-5; } }
+        protected virtual double InverseKilopascalsTolerance { get { return 1e-5; } }
+        protected virtual double InverseMegapascalsTolerance { get { return 1e-5; } }
+        protected virtual double InverseMillibarsTolerance { get { return 1e-5; } }
         protected virtual double InversePascalsTolerance { get { return 1e-5; } }
+        protected virtual double InversePoundForcePerSquareInchsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(CompressibilityUnit unit)
         {
             return unit switch
             {
+                CompressibilityUnit.InverseAtmosphere => (InverseAtmospheresInOneInversePascal, InverseAtmospheresTolerance),
+                CompressibilityUnit.InverseBar => (InverseBarsInOneInversePascal, InverseBarsTolerance),
+                CompressibilityUnit.InverseKilopascal => (InverseKilopascalsInOneInversePascal, InverseKilopascalsTolerance),
+                CompressibilityUnit.InverseMegapascal => (InverseMegapascalsInOneInversePascal, InverseMegapascalsTolerance),
+                CompressibilityUnit.InverseMillibar => (InverseMillibarsInOneInversePascal, InverseMillibarsTolerance),
                 CompressibilityUnit.InversePascal => (InversePascalsInOneInversePascal, InversePascalsTolerance),
+                CompressibilityUnit.InversePoundForcePerSquareInch => (InversePoundForcePerSquareInchsInOneInversePascal, InversePoundForcePerSquareInchsTolerance),
                 _ => throw new NotSupportedException()
             };
         }
 
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
+            new object[] { CompressibilityUnit.InverseAtmosphere },
+            new object[] { CompressibilityUnit.InverseBar },
+            new object[] { CompressibilityUnit.InverseKilopascal },
+            new object[] { CompressibilityUnit.InverseMegapascal },
+            new object[] { CompressibilityUnit.InverseMillibar },
             new object[] { CompressibilityUnit.InversePascal },
+            new object[] { CompressibilityUnit.InversePoundForcePerSquareInch },
         };
 
         [Fact]
@@ -130,15 +154,45 @@ namespace UnitsNet.Tests
         public void InversePascalToCompressibilityUnits()
         {
             Compressibility inversepascal = Compressibility.FromInversePascals(1);
+            AssertEx.EqualTolerance(InverseAtmospheresInOneInversePascal, inversepascal.InverseAtmospheres, InverseAtmospheresTolerance);
+            AssertEx.EqualTolerance(InverseBarsInOneInversePascal, inversepascal.InverseBars, InverseBarsTolerance);
+            AssertEx.EqualTolerance(InverseKilopascalsInOneInversePascal, inversepascal.InverseKilopascals, InverseKilopascalsTolerance);
+            AssertEx.EqualTolerance(InverseMegapascalsInOneInversePascal, inversepascal.InverseMegapascals, InverseMegapascalsTolerance);
+            AssertEx.EqualTolerance(InverseMillibarsInOneInversePascal, inversepascal.InverseMillibars, InverseMillibarsTolerance);
             AssertEx.EqualTolerance(InversePascalsInOneInversePascal, inversepascal.InversePascals, InversePascalsTolerance);
+            AssertEx.EqualTolerance(InversePoundForcePerSquareInchsInOneInversePascal, inversepascal.InversePoundForcePerSquareInchs, InversePoundForcePerSquareInchsTolerance);
         }
 
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Compressibility.From(1, CompressibilityUnit.InversePascal);
-            AssertEx.EqualTolerance(1, quantity00.InversePascals, InversePascalsTolerance);
-            Assert.Equal(CompressibilityUnit.InversePascal, quantity00.Unit);
+            var quantity00 = Compressibility.From(1, CompressibilityUnit.InverseAtmosphere);
+            AssertEx.EqualTolerance(1, quantity00.InverseAtmospheres, InverseAtmospheresTolerance);
+            Assert.Equal(CompressibilityUnit.InverseAtmosphere, quantity00.Unit);
+
+            var quantity01 = Compressibility.From(1, CompressibilityUnit.InverseBar);
+            AssertEx.EqualTolerance(1, quantity01.InverseBars, InverseBarsTolerance);
+            Assert.Equal(CompressibilityUnit.InverseBar, quantity01.Unit);
+
+            var quantity02 = Compressibility.From(1, CompressibilityUnit.InverseKilopascal);
+            AssertEx.EqualTolerance(1, quantity02.InverseKilopascals, InverseKilopascalsTolerance);
+            Assert.Equal(CompressibilityUnit.InverseKilopascal, quantity02.Unit);
+
+            var quantity03 = Compressibility.From(1, CompressibilityUnit.InverseMegapascal);
+            AssertEx.EqualTolerance(1, quantity03.InverseMegapascals, InverseMegapascalsTolerance);
+            Assert.Equal(CompressibilityUnit.InverseMegapascal, quantity03.Unit);
+
+            var quantity04 = Compressibility.From(1, CompressibilityUnit.InverseMillibar);
+            AssertEx.EqualTolerance(1, quantity04.InverseMillibars, InverseMillibarsTolerance);
+            Assert.Equal(CompressibilityUnit.InverseMillibar, quantity04.Unit);
+
+            var quantity05 = Compressibility.From(1, CompressibilityUnit.InversePascal);
+            AssertEx.EqualTolerance(1, quantity05.InversePascals, InversePascalsTolerance);
+            Assert.Equal(CompressibilityUnit.InversePascal, quantity05.Unit);
+
+            var quantity06 = Compressibility.From(1, CompressibilityUnit.InversePoundForcePerSquareInch);
+            AssertEx.EqualTolerance(1, quantity06.InversePoundForcePerSquareInchs, InversePoundForcePerSquareInchsTolerance);
+            Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, quantity06.Unit);
 
         }
 
@@ -159,7 +213,13 @@ namespace UnitsNet.Tests
         public void As()
         {
             var inversepascal = Compressibility.FromInversePascals(1);
+            AssertEx.EqualTolerance(InverseAtmospheresInOneInversePascal, inversepascal.As(CompressibilityUnit.InverseAtmosphere), InverseAtmospheresTolerance);
+            AssertEx.EqualTolerance(InverseBarsInOneInversePascal, inversepascal.As(CompressibilityUnit.InverseBar), InverseBarsTolerance);
+            AssertEx.EqualTolerance(InverseKilopascalsInOneInversePascal, inversepascal.As(CompressibilityUnit.InverseKilopascal), InverseKilopascalsTolerance);
+            AssertEx.EqualTolerance(InverseMegapascalsInOneInversePascal, inversepascal.As(CompressibilityUnit.InverseMegapascal), InverseMegapascalsTolerance);
+            AssertEx.EqualTolerance(InverseMillibarsInOneInversePascal, inversepascal.As(CompressibilityUnit.InverseMillibar), InverseMillibarsTolerance);
             AssertEx.EqualTolerance(InversePascalsInOneInversePascal, inversepascal.As(CompressibilityUnit.InversePascal), InversePascalsTolerance);
+            AssertEx.EqualTolerance(InversePoundForcePerSquareInchsInOneInversePascal, inversepascal.As(CompressibilityUnit.InversePoundForcePerSquareInch), InversePoundForcePerSquareInchsTolerance);
         }
 
         [Fact]
@@ -220,7 +280,13 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             Compressibility inversepascal = Compressibility.FromInversePascals(1);
+            AssertEx.EqualTolerance(1, Compressibility.FromInverseAtmospheres(inversepascal.InverseAtmospheres).InversePascals, InverseAtmospheresTolerance);
+            AssertEx.EqualTolerance(1, Compressibility.FromInverseBars(inversepascal.InverseBars).InversePascals, InverseBarsTolerance);
+            AssertEx.EqualTolerance(1, Compressibility.FromInverseKilopascals(inversepascal.InverseKilopascals).InversePascals, InverseKilopascalsTolerance);
+            AssertEx.EqualTolerance(1, Compressibility.FromInverseMegapascals(inversepascal.InverseMegapascals).InversePascals, InverseMegapascalsTolerance);
+            AssertEx.EqualTolerance(1, Compressibility.FromInverseMillibars(inversepascal.InverseMillibars).InversePascals, InverseMillibarsTolerance);
             AssertEx.EqualTolerance(1, Compressibility.FromInversePascals(inversepascal.InversePascals).InversePascals, InversePascalsTolerance);
+            AssertEx.EqualTolerance(1, Compressibility.FromInversePoundForcePerSquareInchs(inversepascal.InversePoundForcePerSquareInchs).InversePascals, InversePoundForcePerSquareInchsTolerance);
         }
 
         [Fact]
@@ -379,7 +445,13 @@ namespace UnitsNet.Tests
             var prevCulture = Thread.CurrentThread.CurrentUICulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
+                Assert.Equal("1 atm⁻¹", new Compressibility(1, CompressibilityUnit.InverseAtmosphere).ToString());
+                Assert.Equal("1 bar⁻¹", new Compressibility(1, CompressibilityUnit.InverseBar).ToString());
+                Assert.Equal("1 kPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseKilopascal).ToString());
+                Assert.Equal("1 kPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseMegapascal).ToString());
+                Assert.Equal("1 mbar⁻¹", new Compressibility(1, CompressibilityUnit.InverseMillibar).ToString());
                 Assert.Equal("1 Pa⁻¹", new Compressibility(1, CompressibilityUnit.InversePascal).ToString());
+                Assert.Equal("1 psi⁻¹", new Compressibility(1, CompressibilityUnit.InversePoundForcePerSquareInch).ToString());
             }
             finally
             {
@@ -393,7 +465,13 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 atm⁻¹", new Compressibility(1, CompressibilityUnit.InverseAtmosphere).ToString(swedishCulture));
+            Assert.Equal("1 bar⁻¹", new Compressibility(1, CompressibilityUnit.InverseBar).ToString(swedishCulture));
+            Assert.Equal("1 kPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseKilopascal).ToString(swedishCulture));
+            Assert.Equal("1 kPa⁻¹", new Compressibility(1, CompressibilityUnit.InverseMegapascal).ToString(swedishCulture));
+            Assert.Equal("1 mbar⁻¹", new Compressibility(1, CompressibilityUnit.InverseMillibar).ToString(swedishCulture));
             Assert.Equal("1 Pa⁻¹", new Compressibility(1, CompressibilityUnit.InversePascal).ToString(swedishCulture));
+            Assert.Equal("1 psi⁻¹", new Compressibility(1, CompressibilityUnit.InversePoundForcePerSquareInch).ToString(swedishCulture));
         }
 
         [Fact]

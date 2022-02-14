@@ -706,6 +706,7 @@ namespace UnitsNet
             double value = (double) centigramsperdeciliter;
             return new Density(value, DensityUnit.CentigramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerLiter"/>.
         /// </summary>
@@ -715,6 +716,7 @@ namespace UnitsNet
             double value = (double) centigramsperliter;
             return new Density(value, DensityUnit.CentigramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.CentigramPerMilliliter"/>.
         /// </summary>
@@ -724,6 +726,7 @@ namespace UnitsNet
             double value = (double) centigramspermilliliter;
             return new Density(value, DensityUnit.CentigramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerDeciliter"/>.
         /// </summary>
@@ -733,6 +736,7 @@ namespace UnitsNet
             double value = (double) decigramsperdeciliter;
             return new Density(value, DensityUnit.DecigramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerLiter"/>.
         /// </summary>
@@ -742,6 +746,7 @@ namespace UnitsNet
             double value = (double) decigramsperliter;
             return new Density(value, DensityUnit.DecigramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.DecigramPerMilliliter"/>.
         /// </summary>
@@ -751,6 +756,7 @@ namespace UnitsNet
             double value = (double) decigramspermilliliter;
             return new Density(value, DensityUnit.DecigramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicCentimeter"/>.
         /// </summary>
@@ -760,6 +766,7 @@ namespace UnitsNet
             double value = (double) gramspercubiccentimeter;
             return new Density(value, DensityUnit.GramPerCubicCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicFoot"/>.
         /// </summary>
@@ -769,6 +776,7 @@ namespace UnitsNet
             double value = (double) gramspercubicfoot;
             return new Density(value, DensityUnit.GramPerCubicFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicInch"/>.
         /// </summary>
@@ -778,6 +786,7 @@ namespace UnitsNet
             double value = (double) gramspercubicinch;
             return new Density(value, DensityUnit.GramPerCubicInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicMeter"/>.
         /// </summary>
@@ -787,6 +796,7 @@ namespace UnitsNet
             double value = (double) gramspercubicmeter;
             return new Density(value, DensityUnit.GramPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerCubicMillimeter"/>.
         /// </summary>
@@ -796,6 +806,7 @@ namespace UnitsNet
             double value = (double) gramspercubicmillimeter;
             return new Density(value, DensityUnit.GramPerCubicMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerDeciliter"/>.
         /// </summary>
@@ -805,6 +816,7 @@ namespace UnitsNet
             double value = (double) gramsperdeciliter;
             return new Density(value, DensityUnit.GramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerLiter"/>.
         /// </summary>
@@ -814,6 +826,7 @@ namespace UnitsNet
             double value = (double) gramsperliter;
             return new Density(value, DensityUnit.GramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.GramPerMilliliter"/>.
         /// </summary>
@@ -823,6 +836,7 @@ namespace UnitsNet
             double value = (double) gramspermilliliter;
             return new Density(value, DensityUnit.GramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicCentimeter"/>.
         /// </summary>
@@ -832,6 +846,7 @@ namespace UnitsNet
             double value = (double) kilogramspercubiccentimeter;
             return new Density(value, DensityUnit.KilogramPerCubicCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicMeter"/>.
         /// </summary>
@@ -841,6 +856,7 @@ namespace UnitsNet
             double value = (double) kilogramspercubicmeter;
             return new Density(value, DensityUnit.KilogramPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerCubicMillimeter"/>.
         /// </summary>
@@ -850,6 +866,7 @@ namespace UnitsNet
             double value = (double) kilogramspercubicmillimeter;
             return new Density(value, DensityUnit.KilogramPerCubicMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilogramPerLiter"/>.
         /// </summary>
@@ -859,6 +876,7 @@ namespace UnitsNet
             double value = (double) kilogramsperliter;
             return new Density(value, DensityUnit.KilogramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicFoot"/>.
         /// </summary>
@@ -868,6 +886,7 @@ namespace UnitsNet
             double value = (double) kilopoundspercubicfoot;
             return new Density(value, DensityUnit.KilopoundPerCubicFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.KilopoundPerCubicInch"/>.
         /// </summary>
@@ -877,6 +896,7 @@ namespace UnitsNet
             double value = (double) kilopoundspercubicinch;
             return new Density(value, DensityUnit.KilopoundPerCubicInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerCubicMeter"/>.
         /// </summary>
@@ -886,6 +906,7 @@ namespace UnitsNet
             double value = (double) microgramspercubicmeter;
             return new Density(value, DensityUnit.MicrogramPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerDeciliter"/>.
         /// </summary>
@@ -895,6 +916,7 @@ namespace UnitsNet
             double value = (double) microgramsperdeciliter;
             return new Density(value, DensityUnit.MicrogramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerLiter"/>.
         /// </summary>
@@ -904,6 +926,7 @@ namespace UnitsNet
             double value = (double) microgramsperliter;
             return new Density(value, DensityUnit.MicrogramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MicrogramPerMilliliter"/>.
         /// </summary>
@@ -913,6 +936,7 @@ namespace UnitsNet
             double value = (double) microgramspermilliliter;
             return new Density(value, DensityUnit.MicrogramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerCubicMeter"/>.
         /// </summary>
@@ -922,6 +946,7 @@ namespace UnitsNet
             double value = (double) milligramspercubicmeter;
             return new Density(value, DensityUnit.MilligramPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerDeciliter"/>.
         /// </summary>
@@ -931,6 +956,7 @@ namespace UnitsNet
             double value = (double) milligramsperdeciliter;
             return new Density(value, DensityUnit.MilligramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerLiter"/>.
         /// </summary>
@@ -940,6 +966,7 @@ namespace UnitsNet
             double value = (double) milligramsperliter;
             return new Density(value, DensityUnit.MilligramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.MilligramPerMilliliter"/>.
         /// </summary>
@@ -949,6 +976,7 @@ namespace UnitsNet
             double value = (double) milligramspermilliliter;
             return new Density(value, DensityUnit.MilligramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerDeciliter"/>.
         /// </summary>
@@ -958,6 +986,7 @@ namespace UnitsNet
             double value = (double) nanogramsperdeciliter;
             return new Density(value, DensityUnit.NanogramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerLiter"/>.
         /// </summary>
@@ -967,6 +996,7 @@ namespace UnitsNet
             double value = (double) nanogramsperliter;
             return new Density(value, DensityUnit.NanogramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.NanogramPerMilliliter"/>.
         /// </summary>
@@ -976,6 +1006,7 @@ namespace UnitsNet
             double value = (double) nanogramspermilliliter;
             return new Density(value, DensityUnit.NanogramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerDeciliter"/>.
         /// </summary>
@@ -985,6 +1016,7 @@ namespace UnitsNet
             double value = (double) picogramsperdeciliter;
             return new Density(value, DensityUnit.PicogramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerLiter"/>.
         /// </summary>
@@ -994,6 +1026,7 @@ namespace UnitsNet
             double value = (double) picogramsperliter;
             return new Density(value, DensityUnit.PicogramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PicogramPerMilliliter"/>.
         /// </summary>
@@ -1003,6 +1036,7 @@ namespace UnitsNet
             double value = (double) picogramspermilliliter;
             return new Density(value, DensityUnit.PicogramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicCentimeter"/>.
         /// </summary>
@@ -1012,6 +1046,7 @@ namespace UnitsNet
             double value = (double) poundspercubiccentimeter;
             return new Density(value, DensityUnit.PoundPerCubicCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicFoot"/>.
         /// </summary>
@@ -1021,6 +1056,7 @@ namespace UnitsNet
             double value = (double) poundspercubicfoot;
             return new Density(value, DensityUnit.PoundPerCubicFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicInch"/>.
         /// </summary>
@@ -1030,6 +1066,7 @@ namespace UnitsNet
             double value = (double) poundspercubicinch;
             return new Density(value, DensityUnit.PoundPerCubicInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicMeter"/>.
         /// </summary>
@@ -1039,6 +1076,7 @@ namespace UnitsNet
             double value = (double) poundspercubicmeter;
             return new Density(value, DensityUnit.PoundPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerCubicMillimeter"/>.
         /// </summary>
@@ -1048,6 +1086,7 @@ namespace UnitsNet
             double value = (double) poundspercubicmillimeter;
             return new Density(value, DensityUnit.PoundPerCubicMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerImperialGallon"/>.
         /// </summary>
@@ -1057,6 +1096,7 @@ namespace UnitsNet
             double value = (double) poundsperimperialgallon;
             return new Density(value, DensityUnit.PoundPerImperialGallon);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.PoundPerUSGallon"/>.
         /// </summary>
@@ -1066,6 +1106,7 @@ namespace UnitsNet
             double value = (double) poundsperusgallon;
             return new Density(value, DensityUnit.PoundPerUSGallon);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicCentimeter"/>.
         /// </summary>
@@ -1075,6 +1116,7 @@ namespace UnitsNet
             double value = (double) slugspercubiccentimeter;
             return new Density(value, DensityUnit.SlugPerCubicCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicFoot"/>.
         /// </summary>
@@ -1084,6 +1126,7 @@ namespace UnitsNet
             double value = (double) slugspercubicfoot;
             return new Density(value, DensityUnit.SlugPerCubicFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicInch"/>.
         /// </summary>
@@ -1093,6 +1136,7 @@ namespace UnitsNet
             double value = (double) slugspercubicinch;
             return new Density(value, DensityUnit.SlugPerCubicInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicMeter"/>.
         /// </summary>
@@ -1102,6 +1146,7 @@ namespace UnitsNet
             double value = (double) slugspercubicmeter;
             return new Density(value, DensityUnit.SlugPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.SlugPerCubicMillimeter"/>.
         /// </summary>
@@ -1111,6 +1156,7 @@ namespace UnitsNet
             double value = (double) slugspercubicmillimeter;
             return new Density(value, DensityUnit.SlugPerCubicMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicCentimeter"/>.
         /// </summary>
@@ -1120,6 +1166,7 @@ namespace UnitsNet
             double value = (double) tonnespercubiccentimeter;
             return new Density(value, DensityUnit.TonnePerCubicCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicFoot"/>.
         /// </summary>
@@ -1129,6 +1176,7 @@ namespace UnitsNet
             double value = (double) tonnespercubicfoot;
             return new Density(value, DensityUnit.TonnePerCubicFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicInch"/>.
         /// </summary>
@@ -1138,6 +1186,7 @@ namespace UnitsNet
             double value = (double) tonnespercubicinch;
             return new Density(value, DensityUnit.TonnePerCubicInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicMeter"/>.
         /// </summary>
@@ -1147,6 +1196,7 @@ namespace UnitsNet
             double value = (double) tonnespercubicmeter;
             return new Density(value, DensityUnit.TonnePerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Density"/> from <see cref="DensityUnit.TonnePerCubicMillimeter"/>.
         /// </summary>
@@ -1156,6 +1206,7 @@ namespace UnitsNet
             double value = (double) tonnespercubicmillimeter;
             return new Density(value, DensityUnit.TonnePerCubicMillimeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DensityUnit" /> to <see cref="Density" />.

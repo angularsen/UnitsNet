@@ -228,6 +228,7 @@ namespace UnitsNet
             double value = (double) coulombspersquarecentimeter;
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>.
         /// </summary>
@@ -238,6 +239,7 @@ namespace UnitsNet
             double value = (double) coulombspersquareinch;
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>.
         /// </summary>
@@ -248,6 +250,7 @@ namespace UnitsNet
             double value = (double) coulombspersquaremeter;
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricSurfaceChargeDensityUnit" /> to <see cref="ElectricSurfaceChargeDensity" />.

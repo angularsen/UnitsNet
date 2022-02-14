@@ -276,6 +276,7 @@ namespace UnitsNet
             double value = (double) decibelmicrovolts;
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMicrovolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
         /// </summary>
@@ -285,6 +286,7 @@ namespace UnitsNet
             double value = (double) decibelmillivolts;
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMillivolt);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
         /// </summary>
@@ -294,6 +296,7 @@ namespace UnitsNet
             double value = (double) decibelsunloaded;
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelUnloaded);
         }
+
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
         /// </summary>
@@ -303,6 +306,7 @@ namespace UnitsNet
             double value = (double) decibelvolts;
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelVolt);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.

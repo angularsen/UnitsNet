@@ -258,6 +258,7 @@ namespace UnitsNet
             double value = (double) cubicfeetperminutepersquarefoot;
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>
@@ -267,6 +268,7 @@ namespace UnitsNet
             double value = (double) cubicmeterspersecondpersquaremeter;
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeFlowPerAreaUnit" /> to <see cref="VolumeFlowPerArea" />.

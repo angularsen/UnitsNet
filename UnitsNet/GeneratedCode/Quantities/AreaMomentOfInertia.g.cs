@@ -294,6 +294,7 @@ namespace UnitsNet
             double value = (double) centimeterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>.
         /// </summary>
@@ -303,6 +304,7 @@ namespace UnitsNet
             double value = (double) decimeterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>.
         /// </summary>
@@ -312,6 +314,7 @@ namespace UnitsNet
             double value = (double) feettothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.FootToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>.
         /// </summary>
@@ -321,6 +324,7 @@ namespace UnitsNet
             double value = (double) inchestothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.InchToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>.
         /// </summary>
@@ -330,6 +334,7 @@ namespace UnitsNet
             double value = (double) meterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MeterToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>.
         /// </summary>
@@ -339,6 +344,7 @@ namespace UnitsNet
             double value = (double) millimeterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaMomentOfInertiaUnit" /> to <see cref="AreaMomentOfInertia" />.

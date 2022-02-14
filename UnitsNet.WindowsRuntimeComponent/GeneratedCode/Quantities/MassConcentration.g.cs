@@ -508,6 +508,7 @@ namespace UnitsNet
             double value = (double) centigramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.CentigramPerLiter"/>.
         /// </summary>
@@ -518,6 +519,7 @@ namespace UnitsNet
             double value = (double) centigramsperliter;
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.CentigramPerMicroliter"/>.
         /// </summary>
@@ -528,6 +530,7 @@ namespace UnitsNet
             double value = (double) centigramspermicroliter;
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerMicroliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.CentigramPerMilliliter"/>.
         /// </summary>
@@ -538,6 +541,7 @@ namespace UnitsNet
             double value = (double) centigramspermilliliter;
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.DecigramPerDeciliter"/>.
         /// </summary>
@@ -548,6 +552,7 @@ namespace UnitsNet
             double value = (double) decigramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.DecigramPerLiter"/>.
         /// </summary>
@@ -558,6 +563,7 @@ namespace UnitsNet
             double value = (double) decigramsperliter;
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.DecigramPerMicroliter"/>.
         /// </summary>
@@ -568,6 +574,7 @@ namespace UnitsNet
             double value = (double) decigramspermicroliter;
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerMicroliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.DecigramPerMilliliter"/>.
         /// </summary>
@@ -578,6 +585,7 @@ namespace UnitsNet
             double value = (double) decigramspermilliliter;
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerCubicCentimeter"/>.
         /// </summary>
@@ -588,6 +596,7 @@ namespace UnitsNet
             double value = (double) gramspercubiccentimeter;
             return new MassConcentration(value, MassConcentrationUnit.GramPerCubicCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerCubicMeter"/>.
         /// </summary>
@@ -598,6 +607,7 @@ namespace UnitsNet
             double value = (double) gramspercubicmeter;
             return new MassConcentration(value, MassConcentrationUnit.GramPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerCubicMillimeter"/>.
         /// </summary>
@@ -608,6 +618,7 @@ namespace UnitsNet
             double value = (double) gramspercubicmillimeter;
             return new MassConcentration(value, MassConcentrationUnit.GramPerCubicMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerDeciliter"/>.
         /// </summary>
@@ -618,6 +629,7 @@ namespace UnitsNet
             double value = (double) gramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.GramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerLiter"/>.
         /// </summary>
@@ -628,6 +640,7 @@ namespace UnitsNet
             double value = (double) gramsperliter;
             return new MassConcentration(value, MassConcentrationUnit.GramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerMicroliter"/>.
         /// </summary>
@@ -638,6 +651,7 @@ namespace UnitsNet
             double value = (double) gramspermicroliter;
             return new MassConcentration(value, MassConcentrationUnit.GramPerMicroliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerMilliliter"/>.
         /// </summary>
@@ -648,6 +662,7 @@ namespace UnitsNet
             double value = (double) gramspermilliliter;
             return new MassConcentration(value, MassConcentrationUnit.GramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilogramPerCubicCentimeter"/>.
         /// </summary>
@@ -658,6 +673,7 @@ namespace UnitsNet
             double value = (double) kilogramspercubiccentimeter;
             return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilogramPerCubicMeter"/>.
         /// </summary>
@@ -668,6 +684,7 @@ namespace UnitsNet
             double value = (double) kilogramspercubicmeter;
             return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilogramPerCubicMillimeter"/>.
         /// </summary>
@@ -678,6 +695,7 @@ namespace UnitsNet
             double value = (double) kilogramspercubicmillimeter;
             return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilogramPerLiter"/>.
         /// </summary>
@@ -688,6 +706,7 @@ namespace UnitsNet
             double value = (double) kilogramsperliter;
             return new MassConcentration(value, MassConcentrationUnit.KilogramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilopoundPerCubicFoot"/>.
         /// </summary>
@@ -698,6 +717,7 @@ namespace UnitsNet
             double value = (double) kilopoundspercubicfoot;
             return new MassConcentration(value, MassConcentrationUnit.KilopoundPerCubicFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilopoundPerCubicInch"/>.
         /// </summary>
@@ -708,6 +728,7 @@ namespace UnitsNet
             double value = (double) kilopoundspercubicinch;
             return new MassConcentration(value, MassConcentrationUnit.KilopoundPerCubicInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerCubicMeter"/>.
         /// </summary>
@@ -718,6 +739,7 @@ namespace UnitsNet
             double value = (double) microgramspercubicmeter;
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerDeciliter"/>.
         /// </summary>
@@ -728,6 +750,7 @@ namespace UnitsNet
             double value = (double) microgramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerLiter"/>.
         /// </summary>
@@ -738,6 +761,7 @@ namespace UnitsNet
             double value = (double) microgramsperliter;
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerMicroliter"/>.
         /// </summary>
@@ -748,6 +772,7 @@ namespace UnitsNet
             double value = (double) microgramspermicroliter;
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerMicroliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerMilliliter"/>.
         /// </summary>
@@ -758,6 +783,7 @@ namespace UnitsNet
             double value = (double) microgramspermilliliter;
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerCubicMeter"/>.
         /// </summary>
@@ -768,6 +794,7 @@ namespace UnitsNet
             double value = (double) milligramspercubicmeter;
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerDeciliter"/>.
         /// </summary>
@@ -778,6 +805,7 @@ namespace UnitsNet
             double value = (double) milligramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerLiter"/>.
         /// </summary>
@@ -788,6 +816,7 @@ namespace UnitsNet
             double value = (double) milligramsperliter;
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerMicroliter"/>.
         /// </summary>
@@ -798,6 +827,7 @@ namespace UnitsNet
             double value = (double) milligramspermicroliter;
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerMicroliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerMilliliter"/>.
         /// </summary>
@@ -808,6 +838,7 @@ namespace UnitsNet
             double value = (double) milligramspermilliliter;
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.NanogramPerDeciliter"/>.
         /// </summary>
@@ -818,6 +849,7 @@ namespace UnitsNet
             double value = (double) nanogramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.NanogramPerLiter"/>.
         /// </summary>
@@ -828,6 +860,7 @@ namespace UnitsNet
             double value = (double) nanogramsperliter;
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.NanogramPerMicroliter"/>.
         /// </summary>
@@ -838,6 +871,7 @@ namespace UnitsNet
             double value = (double) nanogramspermicroliter;
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerMicroliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.NanogramPerMilliliter"/>.
         /// </summary>
@@ -848,6 +882,7 @@ namespace UnitsNet
             double value = (double) nanogramspermilliliter;
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.OuncePerImperialGallon"/>.
         /// </summary>
@@ -858,6 +893,7 @@ namespace UnitsNet
             double value = (double) ouncesperimperialgallon;
             return new MassConcentration(value, MassConcentrationUnit.OuncePerImperialGallon);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.OuncePerUSGallon"/>.
         /// </summary>
@@ -868,6 +904,7 @@ namespace UnitsNet
             double value = (double) ouncesperusgallon;
             return new MassConcentration(value, MassConcentrationUnit.OuncePerUSGallon);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PicogramPerDeciliter"/>.
         /// </summary>
@@ -878,6 +915,7 @@ namespace UnitsNet
             double value = (double) picogramsperdeciliter;
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerDeciliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PicogramPerLiter"/>.
         /// </summary>
@@ -888,6 +926,7 @@ namespace UnitsNet
             double value = (double) picogramsperliter;
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerLiter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PicogramPerMicroliter"/>.
         /// </summary>
@@ -898,6 +937,7 @@ namespace UnitsNet
             double value = (double) picogramspermicroliter;
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerMicroliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PicogramPerMilliliter"/>.
         /// </summary>
@@ -908,6 +948,7 @@ namespace UnitsNet
             double value = (double) picogramspermilliliter;
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerMilliliter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PoundPerCubicFoot"/>.
         /// </summary>
@@ -918,6 +959,7 @@ namespace UnitsNet
             double value = (double) poundspercubicfoot;
             return new MassConcentration(value, MassConcentrationUnit.PoundPerCubicFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PoundPerCubicInch"/>.
         /// </summary>
@@ -928,6 +970,7 @@ namespace UnitsNet
             double value = (double) poundspercubicinch;
             return new MassConcentration(value, MassConcentrationUnit.PoundPerCubicInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PoundPerImperialGallon"/>.
         /// </summary>
@@ -938,6 +981,7 @@ namespace UnitsNet
             double value = (double) poundsperimperialgallon;
             return new MassConcentration(value, MassConcentrationUnit.PoundPerImperialGallon);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PoundPerUSGallon"/>.
         /// </summary>
@@ -948,6 +992,7 @@ namespace UnitsNet
             double value = (double) poundsperusgallon;
             return new MassConcentration(value, MassConcentrationUnit.PoundPerUSGallon);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.SlugPerCubicFoot"/>.
         /// </summary>
@@ -958,6 +1003,7 @@ namespace UnitsNet
             double value = (double) slugspercubicfoot;
             return new MassConcentration(value, MassConcentrationUnit.SlugPerCubicFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.TonnePerCubicCentimeter"/>.
         /// </summary>
@@ -968,6 +1014,7 @@ namespace UnitsNet
             double value = (double) tonnespercubiccentimeter;
             return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.TonnePerCubicMeter"/>.
         /// </summary>
@@ -978,6 +1025,7 @@ namespace UnitsNet
             double value = (double) tonnespercubicmeter;
             return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.TonnePerCubicMillimeter"/>.
         /// </summary>
@@ -988,6 +1036,7 @@ namespace UnitsNet
             double value = (double) tonnespercubicmillimeter;
             return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicMillimeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassConcentrationUnit" /> to <see cref="MassConcentration" />.

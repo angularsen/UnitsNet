@@ -306,6 +306,7 @@ namespace UnitsNet
             double value = (double) joulespersquarecentimeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMeter"/>.
         /// </summary>
@@ -315,6 +316,7 @@ namespace UnitsNet
             double value = (double) joulespersquaremeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>.
         /// </summary>
@@ -324,6 +326,7 @@ namespace UnitsNet
             double value = (double) joulespersquaremillimeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
         /// </summary>
@@ -333,6 +336,7 @@ namespace UnitsNet
             double value = (double) kilojoulespersquaremeter;
             return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>.
         /// </summary>
@@ -342,6 +346,7 @@ namespace UnitsNet
             double value = (double) kilowatthourspersquaremeter;
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>.
         /// </summary>
@@ -351,6 +356,7 @@ namespace UnitsNet
             double value = (double) millijoulespersquarecentimeter;
             return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.WattHourPerSquareMeter"/>.
         /// </summary>
@@ -360,6 +366,7 @@ namespace UnitsNet
             double value = (double) watthourspersquaremeter;
             return new Irradiation(value, IrradiationUnit.WattHourPerSquareMeter);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="IrradiationUnit" /> to <see cref="Irradiation" />.
