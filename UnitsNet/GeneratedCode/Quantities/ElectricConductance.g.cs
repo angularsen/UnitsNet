@@ -72,7 +72,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricConductance);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -221,6 +220,7 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ElectricConductanceUnit
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens, quantity => new ElectricConductance((quantity.Value) / 1e-6d, ElectricConductanceUnit.Microsiemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens, quantity => new ElectricConductance((quantity.Value) / 1e-3d, ElectricConductanceUnit.Millisiemens));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens, quantity => quantity);
 
@@ -270,6 +270,7 @@ namespace UnitsNet
             double value = (double) microsiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
@@ -279,6 +280,7 @@ namespace UnitsNet
             double value = (double) millisiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Siemens"/>.
         /// </summary>

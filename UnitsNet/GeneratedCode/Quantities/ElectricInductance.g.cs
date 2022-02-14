@@ -73,7 +73,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricInductance);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -228,6 +227,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry, quantity => new ElectricInductance((quantity.Value) / 1e-6d, ElectricInductanceUnit.Microhenry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry, quantity => new ElectricInductance((quantity.Value) / 1e-3d, ElectricInductanceUnit.Millihenry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry, quantity => new ElectricInductance((quantity.Value) / 1e-9d, ElectricInductanceUnit.Nanohenry));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry, quantity => quantity);
 
@@ -279,6 +279,7 @@ namespace UnitsNet
             double value = (double) henries;
             return new ElectricInductance(value, ElectricInductanceUnit.Henry);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
@@ -288,6 +289,7 @@ namespace UnitsNet
             double value = (double) microhenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Microhenry);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
@@ -297,6 +299,7 @@ namespace UnitsNet
             double value = (double) millihenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Millihenry);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>

@@ -70,7 +70,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.SolidAngle);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -207,6 +206,7 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> SolidAngleUnit
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SolidAngle>(SolidAngleUnit.Steradian, SolidAngleUnit.Steradian, quantity => quantity);
 

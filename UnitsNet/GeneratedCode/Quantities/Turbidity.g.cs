@@ -70,7 +70,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Turbidity);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -207,6 +206,7 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> TurbidityUnit
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Turbidity>(TurbidityUnit.NTU, TurbidityUnit.NTU, quantity => quantity);
 

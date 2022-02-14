@@ -79,7 +79,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.RotationalSpeed);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -288,6 +287,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanoradianPerSecond, quantity => new RotationalSpeed((quantity.Value) / 1e-9d, RotationalSpeedUnit.NanoradianPerSecond));
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerMinute, quantity => new RotationalSpeed((quantity.Value / 6.2831853072) * 60, RotationalSpeedUnit.RevolutionPerMinute));
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerSecond, quantity => new RotationalSpeed(quantity.Value / 6.2831853072, RotationalSpeedUnit.RevolutionPerSecond));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity);
 
@@ -369,6 +369,7 @@ namespace UnitsNet
             double value = (double) centiradianspersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.CentiradianPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.DeciradianPerSecond"/>.
         /// </summary>
@@ -378,6 +379,7 @@ namespace UnitsNet
             double value = (double) deciradianspersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.DeciradianPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.DegreePerMinute"/>.
         /// </summary>
@@ -387,6 +389,7 @@ namespace UnitsNet
             double value = (double) degreesperminute;
             return new RotationalSpeed(value, RotationalSpeedUnit.DegreePerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.DegreePerSecond"/>.
         /// </summary>
@@ -396,6 +399,7 @@ namespace UnitsNet
             double value = (double) degreespersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.DegreePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MicrodegreePerSecond"/>.
         /// </summary>
@@ -405,6 +409,7 @@ namespace UnitsNet
             double value = (double) microdegreespersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.MicrodegreePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MicroradianPerSecond"/>.
         /// </summary>
@@ -414,6 +419,7 @@ namespace UnitsNet
             double value = (double) microradianspersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.MicroradianPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MillidegreePerSecond"/>.
         /// </summary>
@@ -423,6 +429,7 @@ namespace UnitsNet
             double value = (double) millidegreespersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.MillidegreePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MilliradianPerSecond"/>.
         /// </summary>
@@ -432,6 +439,7 @@ namespace UnitsNet
             double value = (double) milliradianspersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.MilliradianPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.NanodegreePerSecond"/>.
         /// </summary>
@@ -441,6 +449,7 @@ namespace UnitsNet
             double value = (double) nanodegreespersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.NanodegreePerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.NanoradianPerSecond"/>.
         /// </summary>
@@ -450,6 +459,7 @@ namespace UnitsNet
             double value = (double) nanoradianspersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.NanoradianPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.RadianPerSecond"/>.
         /// </summary>
@@ -459,6 +469,7 @@ namespace UnitsNet
             double value = (double) radianspersecond;
             return new RotationalSpeed(value, RotationalSpeedUnit.RadianPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.RevolutionPerMinute"/>.
         /// </summary>
@@ -468,6 +479,7 @@ namespace UnitsNet
             double value = (double) revolutionsperminute;
             return new RotationalSpeed(value, RotationalSpeedUnit.RevolutionPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.RevolutionPerSecond"/>.
         /// </summary>

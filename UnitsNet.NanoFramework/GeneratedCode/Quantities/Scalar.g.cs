@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ScalarUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -91,7 +93,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Scalar FromAmount(double amount) => new Scalar(amount, ScalarUnit.Amount);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ScalarUnit" /> to <see cref="Scalar" />.
@@ -153,7 +154,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

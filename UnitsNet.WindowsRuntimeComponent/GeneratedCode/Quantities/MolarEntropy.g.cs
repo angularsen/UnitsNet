@@ -225,6 +225,7 @@ namespace UnitsNet
             double value = (double) joulespermolekelvin;
             return new MolarEntropy(value, MolarEntropyUnit.JoulePerMoleKelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>.
         /// </summary>
@@ -235,6 +236,7 @@ namespace UnitsNet
             double value = (double) kilojoulespermolekelvin;
             return new MolarEntropy(value, MolarEntropyUnit.KilojoulePerMoleKelvin);
         }
+
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>.
         /// </summary>

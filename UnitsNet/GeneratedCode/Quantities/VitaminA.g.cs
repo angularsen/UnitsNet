@@ -67,7 +67,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.VitaminA);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -204,6 +203,7 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> VitaminAUnit
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VitaminA>(VitaminAUnit.InternationalUnit, VitaminAUnit.InternationalUnit, quantity => quantity);
 

@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public FuelEfficiencyUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static FuelEfficiency MinValue { get; } = new FuelEfficiency(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -127,7 +129,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromMilesPerUsGallon(double milesperusgallon) => new FuelEfficiency(milesperusgallon, FuelEfficiencyUnit.MilePerUsGallon);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="FuelEfficiencyUnit" /> to <see cref="FuelEfficiency" />.
@@ -195,7 +196,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

@@ -80,7 +80,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ReciprocalArea);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -277,6 +276,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMillimeter, quantity => new ReciprocalArea(quantity.Value * 1e-6, ReciprocalAreaUnit.InverseSquareMillimeter));
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareYard, quantity => new ReciprocalArea(quantity.Value * 0.836127, ReciprocalAreaUnit.InverseSquareYard));
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseUsSurveySquareFoot, quantity => new ReciprocalArea(quantity.Value * 0.09290341161, ReciprocalAreaUnit.InverseUsSurveySquareFoot));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => quantity);
 
@@ -342,6 +342,7 @@ namespace UnitsNet
             double value = (double) inversesquarecentimeters;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>.
         /// </summary>
@@ -351,6 +352,7 @@ namespace UnitsNet
             double value = (double) inversesquaredecimeters;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareDecimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>.
         /// </summary>
@@ -360,6 +362,7 @@ namespace UnitsNet
             double value = (double) inversesquarefeet;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareInch"/>.
         /// </summary>
@@ -369,6 +372,7 @@ namespace UnitsNet
             double value = (double) inversesquareinches;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>.
         /// </summary>
@@ -378,6 +382,7 @@ namespace UnitsNet
             double value = (double) inversesquarekilometers;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareKilometer);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>.
         /// </summary>
@@ -387,6 +392,7 @@ namespace UnitsNet
             double value = (double) inversesquaremeters;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>.
         /// </summary>
@@ -396,6 +402,7 @@ namespace UnitsNet
             double value = (double) inversesquaremicrometers;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMicrometer);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMile"/>.
         /// </summary>
@@ -405,6 +412,7 @@ namespace UnitsNet
             double value = (double) inversesquaremiles;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMile);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>.
         /// </summary>
@@ -414,6 +422,7 @@ namespace UnitsNet
             double value = (double) inversesquaremillimeters;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMillimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareYard"/>.
         /// </summary>
@@ -423,6 +432,7 @@ namespace UnitsNet
             double value = (double) inversesquareyards;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareYard);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>.
         /// </summary>

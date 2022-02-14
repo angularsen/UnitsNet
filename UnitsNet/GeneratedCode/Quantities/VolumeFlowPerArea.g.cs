@@ -68,7 +68,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.VolumeFlowPerArea);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -211,6 +210,7 @@ namespace UnitsNet
         {
             // Register in unit converter: BaseUnit -> VolumeFlowPerAreaUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => new VolumeFlowPerArea(quantity.Value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity);
 
@@ -258,6 +258,7 @@ namespace UnitsNet
             double value = (double) cubicfeetperminutepersquarefoot;
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>

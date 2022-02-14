@@ -72,7 +72,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.AreaMomentOfInertia);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -239,6 +238,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value / Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.FootToTheFourth));
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value / Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.InchToTheFourth));
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value * 1e12, AreaMomentOfInertiaUnit.MillimeterToTheFourth));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => quantity);
 
@@ -294,6 +294,7 @@ namespace UnitsNet
             double value = (double) centimeterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>.
         /// </summary>
@@ -303,6 +304,7 @@ namespace UnitsNet
             double value = (double) decimeterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>.
         /// </summary>
@@ -312,6 +314,7 @@ namespace UnitsNet
             double value = (double) feettothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.FootToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>.
         /// </summary>
@@ -321,6 +324,7 @@ namespace UnitsNet
             double value = (double) inchestothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.InchToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>.
         /// </summary>
@@ -330,6 +334,7 @@ namespace UnitsNet
             double value = (double) meterstothefourth;
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MeterToTheFourth);
         }
+
         /// <summary>
         ///     Creates a <see cref="AreaMomentOfInertia"/> from <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>.
         /// </summary>

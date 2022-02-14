@@ -75,7 +75,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.StandardVolumeFlow);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -260,6 +259,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerHour, quantity => new StandardVolumeFlow(quantity.Value * 3600, StandardVolumeFlowUnit.StandardCubicMeterPerHour));
             unitConverter.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerMinute, quantity => new StandardVolumeFlow(quantity.Value * 60, StandardVolumeFlowUnit.StandardCubicMeterPerMinute));
             unitConverter.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardLiterPerMinute, quantity => new StandardVolumeFlow(quantity.Value * 60000, StandardVolumeFlowUnit.StandardLiterPerMinute));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerSecond, quantity => quantity);
 
@@ -321,6 +321,7 @@ namespace UnitsNet
             double value = (double) standardcubiccentimetersperminute;
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>.
         /// </summary>
@@ -330,6 +331,7 @@ namespace UnitsNet
             double value = (double) standardcubicfeetperhour;
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>.
         /// </summary>
@@ -339,6 +341,7 @@ namespace UnitsNet
             double value = (double) standardcubicfeetperminute;
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>.
         /// </summary>
@@ -348,6 +351,7 @@ namespace UnitsNet
             double value = (double) standardcubicfeetpersecond;
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicFootPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>.
         /// </summary>
@@ -357,6 +361,7 @@ namespace UnitsNet
             double value = (double) standardcubicmetersperday;
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerDay);
         }
+
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>.
         /// </summary>
@@ -366,6 +371,7 @@ namespace UnitsNet
             double value = (double) standardcubicmetersperhour;
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>.
         /// </summary>
@@ -375,6 +381,7 @@ namespace UnitsNet
             double value = (double) standardcubicmetersperminute;
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>.
         /// </summary>
@@ -384,6 +391,7 @@ namespace UnitsNet
             double value = (double) standardcubicmeterspersecond;
             return new StandardVolumeFlow(value, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="StandardVolumeFlow"/> from <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>.
         /// </summary>

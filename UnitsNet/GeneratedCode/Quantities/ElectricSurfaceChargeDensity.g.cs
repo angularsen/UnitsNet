@@ -72,7 +72,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricSurfaceChargeDensity);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -221,6 +220,7 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ElectricSurfaceChargeDensityUnit
             unitConverter.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, quantity => new ElectricSurfaceChargeDensity(quantity.Value / 1.0e4, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter));
             unitConverter.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, quantity => new ElectricSurfaceChargeDensity(quantity.Value / 1.5500031000062000e3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, quantity => quantity);
 
@@ -270,6 +270,7 @@ namespace UnitsNet
             double value = (double) coulombspersquarecentimeter;
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>.
         /// </summary>
@@ -279,6 +280,7 @@ namespace UnitsNet
             double value = (double) coulombspersquareinch;
             return new ElectricSurfaceChargeDensity(value, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>.
         /// </summary>

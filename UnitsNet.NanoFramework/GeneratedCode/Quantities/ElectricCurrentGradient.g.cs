@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricCurrentGradientUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -124,7 +126,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentGradient FromAmperesPerSecond(double amperespersecond) => new ElectricCurrentGradient(amperespersecond, ElectricCurrentGradientUnit.AmperePerSecond);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentGradientUnit" /> to <see cref="ElectricCurrentGradient" />.
@@ -192,7 +193,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

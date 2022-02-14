@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public DurationUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Duration MinValue { get; } = new Duration(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -202,7 +204,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromYears365(double years365) => new Duration(years365, DurationUnit.Year365);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DurationUnit" /> to <see cref="Duration" />.
         /// </summary>
@@ -283,7 +284,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

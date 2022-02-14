@@ -83,7 +83,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Luminosity);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -298,6 +297,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Picowatt, quantity => new Luminosity((quantity.Value) / 1e-12d, LuminosityUnit.Picowatt));
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.SolarLuminosity, quantity => new Luminosity(quantity.Value / 3.846e26, LuminosityUnit.SolarLuminosity));
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Terawatt, quantity => new Luminosity((quantity.Value) / 1e12d, LuminosityUnit.Terawatt));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Watt, quantity => quantity);
 
@@ -369,6 +369,7 @@ namespace UnitsNet
             double value = (double) decawatts;
             return new Luminosity(value, LuminosityUnit.Decawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Deciwatt"/>.
         /// </summary>
@@ -378,6 +379,7 @@ namespace UnitsNet
             double value = (double) deciwatts;
             return new Luminosity(value, LuminosityUnit.Deciwatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Femtowatt"/>.
         /// </summary>
@@ -387,6 +389,7 @@ namespace UnitsNet
             double value = (double) femtowatts;
             return new Luminosity(value, LuminosityUnit.Femtowatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Gigawatt"/>.
         /// </summary>
@@ -396,6 +399,7 @@ namespace UnitsNet
             double value = (double) gigawatts;
             return new Luminosity(value, LuminosityUnit.Gigawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Kilowatt"/>.
         /// </summary>
@@ -405,6 +409,7 @@ namespace UnitsNet
             double value = (double) kilowatts;
             return new Luminosity(value, LuminosityUnit.Kilowatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Megawatt"/>.
         /// </summary>
@@ -414,6 +419,7 @@ namespace UnitsNet
             double value = (double) megawatts;
             return new Luminosity(value, LuminosityUnit.Megawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Microwatt"/>.
         /// </summary>
@@ -423,6 +429,7 @@ namespace UnitsNet
             double value = (double) microwatts;
             return new Luminosity(value, LuminosityUnit.Microwatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Milliwatt"/>.
         /// </summary>
@@ -432,6 +439,7 @@ namespace UnitsNet
             double value = (double) milliwatts;
             return new Luminosity(value, LuminosityUnit.Milliwatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Nanowatt"/>.
         /// </summary>
@@ -441,6 +449,7 @@ namespace UnitsNet
             double value = (double) nanowatts;
             return new Luminosity(value, LuminosityUnit.Nanowatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Petawatt"/>.
         /// </summary>
@@ -450,6 +459,7 @@ namespace UnitsNet
             double value = (double) petawatts;
             return new Luminosity(value, LuminosityUnit.Petawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Picowatt"/>.
         /// </summary>
@@ -459,6 +469,7 @@ namespace UnitsNet
             double value = (double) picowatts;
             return new Luminosity(value, LuminosityUnit.Picowatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.SolarLuminosity"/>.
         /// </summary>
@@ -468,6 +479,7 @@ namespace UnitsNet
             double value = (double) solarluminosities;
             return new Luminosity(value, LuminosityUnit.SolarLuminosity);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Terawatt"/>.
         /// </summary>
@@ -477,6 +489,7 @@ namespace UnitsNet
             double value = (double) terawatts;
             return new Luminosity(value, LuminosityUnit.Terawatt);
         }
+
         /// <summary>
         ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Watt"/>.
         /// </summary>

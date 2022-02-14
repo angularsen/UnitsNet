@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public LapseRateUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -91,7 +93,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LapseRate FromDegreesCelciusPerKilometer(double degreescelciusperkilometer) => new LapseRate(degreescelciusperkilometer, LapseRateUnit.DegreeCelsiusPerKilometer);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LapseRateUnit" /> to <see cref="LapseRate" />.
@@ -153,7 +154,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

@@ -69,7 +69,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.HeatTransferCoefficient);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -218,6 +217,7 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> HeatTransferCoefficientUnit
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, quantity => new HeatTransferCoefficient(quantity.Value / 5.6782633411134878, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit));
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, quantity => new HeatTransferCoefficient(quantity.Value, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<HeatTransferCoefficient>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, quantity => quantity);
 
@@ -267,6 +267,7 @@ namespace UnitsNet
             double value = (double) btuspersquarefootdegreefahrenheit;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/>.
         /// </summary>
@@ -276,6 +277,7 @@ namespace UnitsNet
             double value = (double) wattspersquaremetercelsius;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/>.
         /// </summary>

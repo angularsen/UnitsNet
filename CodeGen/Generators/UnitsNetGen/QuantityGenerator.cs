@@ -166,7 +166,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.{_quantity.Name});
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }}
 ");
@@ -376,7 +375,7 @@ namespace UnitsNet
         Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => new {_quantity.Name}({func}, {_quantity.Name}Unit.{unit.SingularName}));");
         }
-
+        Writer.WL();
         Writer.WL($@"
 
             // Register in unit converter: BaseUnit <-> BaseUnit
@@ -463,10 +462,10 @@ namespace UnitsNet
         {{
             {_valueType} value = ({_valueType}) {valueParamName};
             return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
-        }}");
+        }}
+");
             }
 
-            Writer.WL();
             Writer.WL($@"
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref=""{_unitEnumName}"" /> to <see cref=""{_quantity.Name}"" />.

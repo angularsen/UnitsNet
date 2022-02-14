@@ -225,6 +225,7 @@ namespace UnitsNet
             double value = (double) btuspersquarefootdegreefahrenheit;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/>.
         /// </summary>
@@ -235,6 +236,7 @@ namespace UnitsNet
             double value = (double) wattspersquaremetercelsius;
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
         }
+
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/>.
         /// </summary>

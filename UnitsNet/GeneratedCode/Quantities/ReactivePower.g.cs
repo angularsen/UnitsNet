@@ -70,7 +70,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ReactivePower);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -225,6 +224,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.GigavoltampereReactive, quantity => new ReactivePower((quantity.Value) / 1e9d, ReactivePowerUnit.GigavoltampereReactive));
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.KilovoltampereReactive, quantity => new ReactivePower((quantity.Value) / 1e3d, ReactivePowerUnit.KilovoltampereReactive));
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.MegavoltampereReactive, quantity => new ReactivePower((quantity.Value) / 1e6d, ReactivePowerUnit.MegavoltampereReactive));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => quantity);
 
@@ -276,6 +276,7 @@ namespace UnitsNet
             double value = (double) gigavoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.GigavoltampereReactive);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
@@ -285,6 +286,7 @@ namespace UnitsNet
             double value = (double) kilovoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.KilovoltampereReactive);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
@@ -294,6 +296,7 @@ namespace UnitsNet
             double value = (double) megavoltamperesreactive;
             return new ReactivePower(value, ReactivePowerUnit.MegavoltampereReactive);
         }
+
         /// <summary>
         ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>

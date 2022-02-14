@@ -70,7 +70,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.LuminousIntensity);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -207,6 +206,7 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> LuminousIntensityUnit
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<LuminousIntensity>(LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela, quantity => quantity);
 

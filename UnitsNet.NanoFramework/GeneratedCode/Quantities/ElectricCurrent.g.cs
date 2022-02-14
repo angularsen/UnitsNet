@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricCurrentUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -169,7 +171,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromPicoamperes(double picoamperes) => new ElectricCurrent(picoamperes, ElectricCurrentUnit.Picoampere);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
         /// </summary>
@@ -244,7 +245,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

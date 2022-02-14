@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public PressureUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -576,7 +578,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromTorrs(double torrs) => new Pressure(torrs, PressureUnit.Torr);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureUnit" /> to <see cref="Pressure" />.
         /// </summary>
@@ -725,7 +726,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

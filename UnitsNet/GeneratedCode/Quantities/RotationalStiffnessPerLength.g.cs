@@ -71,7 +71,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.RotationalStiffnessPerLength);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -232,6 +231,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, quantity => new RotationalStiffnessPerLength(quantity.Value / 254864.324570, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot));
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength((quantity.Value) / 1e6d, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter));
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, quantity => new RotationalStiffnessPerLength(quantity.Value / 254.864324570, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity => quantity);
 
@@ -285,6 +285,7 @@ namespace UnitsNet
             double value = (double) kilonewtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/>.
         /// </summary>
@@ -294,6 +295,7 @@ namespace UnitsNet
             double value = (double) kilopoundforcefeetperdegreesperfeet;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/>.
         /// </summary>
@@ -303,6 +305,7 @@ namespace UnitsNet
             double value = (double) meganewtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/>.
         /// </summary>
@@ -312,6 +315,7 @@ namespace UnitsNet
             double value = (double) newtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
         }
+
         /// <summary>
         ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/>.
         /// </summary>

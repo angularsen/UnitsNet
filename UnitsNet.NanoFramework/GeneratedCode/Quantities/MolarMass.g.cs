@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public MolarMassUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static MolarMass MinValue { get; } = new MolarMass(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -213,7 +215,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarMass FromPoundsPerMole(double poundspermole) => new MolarMass(poundspermole, MolarMassUnit.PoundPerMole);
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarMassUnit" /> to <see cref="MolarMass" />.
         /// </summary>
@@ -296,7 +297,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

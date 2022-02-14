@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public MolarEnergyUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -113,7 +115,6 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarEnergy FromMegajoulesPerMole(double megajoulespermole) => new MolarEnergy(megajoulespermole, MolarEnergyUnit.MegajoulePerMole);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarEnergyUnit" /> to <see cref="MolarEnergy" />.
@@ -179,7 +180,6 @@ namespace UnitsNet
         }
 
         #endregion
-
     }
 }
 

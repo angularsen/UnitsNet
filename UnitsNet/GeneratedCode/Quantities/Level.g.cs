@@ -68,7 +68,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Level);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -211,6 +210,7 @@ namespace UnitsNet
         {
             // Register in unit converter: BaseUnit -> LevelUnit
             unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => new Level(0.115129254 * quantity.Value, LevelUnit.Neper));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Decibel, quantity => quantity);
 
@@ -258,6 +258,7 @@ namespace UnitsNet
             double value = (double) decibels;
             return new Level(value, LevelUnit.Decibel);
         }
+
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>

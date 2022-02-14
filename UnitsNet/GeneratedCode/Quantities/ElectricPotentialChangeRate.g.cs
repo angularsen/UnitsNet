@@ -86,7 +86,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.ElectricPotentialChangeRate);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -337,6 +336,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerHour, quantity => new ElectricPotentialChangeRate(quantity.Value * 3600, ElectricPotentialChangeRateUnit.VoltPerHour));
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMicrosecond, quantity => new ElectricPotentialChangeRate(quantity.Value / 1E6, ElectricPotentialChangeRateUnit.VoltPerMicrosecond));
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMinute, quantity => new ElectricPotentialChangeRate(quantity.Value * 60, ElectricPotentialChangeRateUnit.VoltPerMinute));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond, quantity => quantity);
 
@@ -420,6 +420,7 @@ namespace UnitsNet
             double value = (double) kilovoltsperhours;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.KilovoltPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond"/>.
         /// </summary>
@@ -429,6 +430,7 @@ namespace UnitsNet
             double value = (double) kilovoltspermicroseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMinute"/>.
         /// </summary>
@@ -438,6 +440,7 @@ namespace UnitsNet
             double value = (double) kilovoltsperminutes;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.KilovoltPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.KilovoltPerSecond"/>.
         /// </summary>
@@ -447,6 +450,7 @@ namespace UnitsNet
             double value = (double) kilovoltsperseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.KilovoltPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MegavoltPerHour"/>.
         /// </summary>
@@ -456,6 +460,7 @@ namespace UnitsNet
             double value = (double) megavoltsperhours;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MegavoltPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond"/>.
         /// </summary>
@@ -465,6 +470,7 @@ namespace UnitsNet
             double value = (double) megavoltspermicroseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMinute"/>.
         /// </summary>
@@ -474,6 +480,7 @@ namespace UnitsNet
             double value = (double) megavoltsperminutes;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MegavoltPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MegavoltPerSecond"/>.
         /// </summary>
@@ -483,6 +490,7 @@ namespace UnitsNet
             double value = (double) megavoltsperseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MegavoltPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerHour"/>.
         /// </summary>
@@ -492,6 +500,7 @@ namespace UnitsNet
             double value = (double) microvoltsperhours;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MicrovoltPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond"/>.
         /// </summary>
@@ -501,6 +510,7 @@ namespace UnitsNet
             double value = (double) microvoltspermicroseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMinute"/>.
         /// </summary>
@@ -510,6 +520,7 @@ namespace UnitsNet
             double value = (double) microvoltsperminutes;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MicrovoltPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerSecond"/>.
         /// </summary>
@@ -519,6 +530,7 @@ namespace UnitsNet
             double value = (double) microvoltsperseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MicrovoltPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MillivoltPerHour"/>.
         /// </summary>
@@ -528,6 +540,7 @@ namespace UnitsNet
             double value = (double) millivoltsperhours;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MillivoltPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond"/>.
         /// </summary>
@@ -537,6 +550,7 @@ namespace UnitsNet
             double value = (double) millivoltspermicroseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMinute"/>.
         /// </summary>
@@ -546,6 +560,7 @@ namespace UnitsNet
             double value = (double) millivoltsperminutes;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MillivoltPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.MillivoltPerSecond"/>.
         /// </summary>
@@ -555,6 +570,7 @@ namespace UnitsNet
             double value = (double) millivoltsperseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.MillivoltPerSecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.VoltPerHour"/>.
         /// </summary>
@@ -564,6 +580,7 @@ namespace UnitsNet
             double value = (double) voltsperhours;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.VoltPerHour);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.VoltPerMicrosecond"/>.
         /// </summary>
@@ -573,6 +590,7 @@ namespace UnitsNet
             double value = (double) voltspermicroseconds;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.VoltPerMicrosecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.VoltPerMinute"/>.
         /// </summary>
@@ -582,6 +600,7 @@ namespace UnitsNet
             double value = (double) voltsperminutes;
             return new ElectricPotentialChangeRate(value, ElectricPotentialChangeRateUnit.VoltPerMinute);
         }
+
         /// <summary>
         ///     Creates a <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotentialChangeRateUnit.VoltPerSecond"/>.
         /// </summary>

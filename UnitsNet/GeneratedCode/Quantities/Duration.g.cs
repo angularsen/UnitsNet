@@ -77,7 +77,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Duration);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -274,6 +273,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Nanosecond, quantity => new Duration((quantity.Value) / 1e-9d, DurationUnit.Nanosecond));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => new Duration(quantity.Value / (7 * 24 * 3600), DurationUnit.Week));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => new Duration(quantity.Value / (365 * 24 * 3600), DurationUnit.Year365));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Second, quantity => quantity);
 
@@ -349,6 +349,7 @@ namespace UnitsNet
             double value = (double) days;
             return new Duration(value, DurationUnit.Day);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
@@ -358,6 +359,7 @@ namespace UnitsNet
             double value = (double) hours;
             return new Duration(value, DurationUnit.Hour);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
@@ -367,6 +369,7 @@ namespace UnitsNet
             double value = (double) julianyears;
             return new Duration(value, DurationUnit.JulianYear);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
@@ -376,6 +379,7 @@ namespace UnitsNet
             double value = (double) microseconds;
             return new Duration(value, DurationUnit.Microsecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
@@ -385,6 +389,7 @@ namespace UnitsNet
             double value = (double) milliseconds;
             return new Duration(value, DurationUnit.Millisecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
@@ -394,6 +399,7 @@ namespace UnitsNet
             double value = (double) minutes;
             return new Duration(value, DurationUnit.Minute);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
@@ -403,6 +409,7 @@ namespace UnitsNet
             double value = (double) months30;
             return new Duration(value, DurationUnit.Month30);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
@@ -412,6 +419,7 @@ namespace UnitsNet
             double value = (double) nanoseconds;
             return new Duration(value, DurationUnit.Nanosecond);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
@@ -421,6 +429,7 @@ namespace UnitsNet
             double value = (double) seconds;
             return new Duration(value, DurationUnit.Second);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
@@ -430,6 +439,7 @@ namespace UnitsNet
             double value = (double) weeks;
             return new Duration(value, DurationUnit.Week);
         }
+
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>

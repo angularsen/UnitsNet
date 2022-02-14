@@ -73,7 +73,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.Compressibility);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -246,6 +245,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Compressibility>(CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMegapascal, quantity => new Compressibility(quantity.Value / 1e6, CompressibilityUnit.InverseMegapascal));
             unitConverter.SetConversionFunction<Compressibility>(CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMillibar, quantity => new Compressibility(quantity.Value / 100, CompressibilityUnit.InverseMillibar));
             unitConverter.SetConversionFunction<Compressibility>(CompressibilityUnit.InversePascal, CompressibilityUnit.InversePoundForcePerSquareInch, quantity => new Compressibility(quantity.Value / 6.894757293168361e3, CompressibilityUnit.InversePoundForcePerSquareInch));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Compressibility>(CompressibilityUnit.InversePascal, CompressibilityUnit.InversePascal, quantity => quantity);
 
@@ -303,6 +303,7 @@ namespace UnitsNet
             double value = (double) inverseatmospheres;
             return new Compressibility(value, CompressibilityUnit.InverseAtmosphere);
         }
+
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseBar"/>.
         /// </summary>
@@ -312,6 +313,7 @@ namespace UnitsNet
             double value = (double) inversebars;
             return new Compressibility(value, CompressibilityUnit.InverseBar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseKilopascal"/>.
         /// </summary>
@@ -321,6 +323,7 @@ namespace UnitsNet
             double value = (double) inversekilopascals;
             return new Compressibility(value, CompressibilityUnit.InverseKilopascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMegapascal"/>.
         /// </summary>
@@ -330,6 +333,7 @@ namespace UnitsNet
             double value = (double) inversemegapascals;
             return new Compressibility(value, CompressibilityUnit.InverseMegapascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InverseMillibar"/>.
         /// </summary>
@@ -339,6 +343,7 @@ namespace UnitsNet
             double value = (double) inversemillibars;
             return new Compressibility(value, CompressibilityUnit.InverseMillibar);
         }
+
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePascal"/>.
         /// </summary>
@@ -348,6 +353,7 @@ namespace UnitsNet
             double value = (double) inversepascals;
             return new Compressibility(value, CompressibilityUnit.InversePascal);
         }
+
         /// <summary>
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
         /// </summary>

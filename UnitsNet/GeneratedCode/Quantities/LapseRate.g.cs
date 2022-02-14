@@ -68,7 +68,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions, QuantityType.LapseRate);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -205,6 +204,7 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> LapseRateUnit
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<LapseRate>(LapseRateUnit.DegreeCelsiusPerKilometer, LapseRateUnit.DegreeCelsiusPerKilometer, quantity => quantity);
 
