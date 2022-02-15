@@ -828,15 +828,6 @@ namespace UnitsNet
             return ToUnit(unitAsStandardVolumeFlowUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is StandardVolumeFlowUnit unitAsStandardVolumeFlowUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(StandardVolumeFlowUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsStandardVolumeFlowUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public StandardVolumeFlow ToUnit(UnitSystem unitSystem)
         {
@@ -857,9 +848,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<StandardVolumeFlowUnit> IQuantity<StandardVolumeFlowUnit>.ToUnit(StandardVolumeFlowUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<StandardVolumeFlowUnit> IQuantity<StandardVolumeFlowUnit>.ToUnit(StandardVolumeFlowUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<StandardVolumeFlowUnit> IQuantity<StandardVolumeFlowUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

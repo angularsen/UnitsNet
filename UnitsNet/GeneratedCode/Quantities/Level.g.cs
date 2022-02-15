@@ -703,15 +703,6 @@ namespace UnitsNet
             return ToUnit(unitAsLevelUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is LevelUnit unitAsLevelUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsLevelUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Level ToUnit(UnitSystem unitSystem)
         {
@@ -732,9 +723,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

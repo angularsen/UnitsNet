@@ -873,15 +873,6 @@ namespace UnitsNet
             return ToUnit(unitAsFrequencyUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is FrequencyUnit unitAsFrequencyUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FrequencyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsFrequencyUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Frequency ToUnit(UnitSystem unitSystem)
         {
@@ -902,9 +893,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

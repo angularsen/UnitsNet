@@ -679,15 +679,6 @@ namespace UnitsNet
             return ToUnit(unitAsLuminousFluxUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is LuminousFluxUnit unitAsLuminousFluxUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsLuminousFluxUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public LuminousFlux ToUnit(UnitSystem unitSystem)
         {
@@ -708,9 +699,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

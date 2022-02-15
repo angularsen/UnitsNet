@@ -714,15 +714,6 @@ namespace UnitsNet
             return ToUnit(unitAsCoefficientOfThermalExpansionUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is CoefficientOfThermalExpansionUnit unitAsCoefficientOfThermalExpansionUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CoefficientOfThermalExpansionUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsCoefficientOfThermalExpansionUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public CoefficientOfThermalExpansion ToUnit(UnitSystem unitSystem)
         {
@@ -743,9 +734,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

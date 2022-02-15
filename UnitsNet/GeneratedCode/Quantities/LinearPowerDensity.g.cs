@@ -1135,15 +1135,6 @@ namespace UnitsNet
             return ToUnit(unitAsLinearPowerDensityUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is LinearPowerDensityUnit unitAsLinearPowerDensityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearPowerDensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsLinearPowerDensityUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public LinearPowerDensity ToUnit(UnitSystem unitSystem)
         {
@@ -1164,9 +1155,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.ToUnit(LinearPowerDensityUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.ToUnit(LinearPowerDensityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

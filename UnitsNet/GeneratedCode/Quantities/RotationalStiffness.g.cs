@@ -1284,15 +1284,6 @@ namespace UnitsNet
             return ToUnit(unitAsRotationalStiffnessUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is RotationalStiffnessUnit unitAsRotationalStiffnessUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsRotationalStiffnessUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public RotationalStiffness ToUnit(UnitSystem unitSystem)
         {
@@ -1313,9 +1304,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

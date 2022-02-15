@@ -1633,15 +1633,6 @@ namespace UnitsNet
             return ToUnit(unitAsDensityUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is DensityUnit unitAsDensityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsDensityUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Density ToUnit(UnitSystem unitSystem)
         {
@@ -1662,9 +1653,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

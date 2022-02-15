@@ -876,15 +876,6 @@ namespace UnitsNet
             return ToUnit(unitAsDurationUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is DurationUnit unitAsDurationUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsDurationUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Duration ToUnit(UnitSystem unitSystem)
         {
@@ -905,9 +896,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

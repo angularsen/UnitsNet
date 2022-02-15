@@ -676,15 +676,6 @@ namespace UnitsNet
             return ToUnit(unitAsScalarUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is ScalarUnit unitAsScalarUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsScalarUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Scalar ToUnit(UnitSystem unitSystem)
         {
@@ -705,9 +696,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ScalarUnit> IQuantity<ScalarUnit>.ToUnit(ScalarUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<ScalarUnit> IQuantity<ScalarUnit>.ToUnit(ScalarUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ScalarUnit> IQuantity<ScalarUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

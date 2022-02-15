@@ -850,15 +850,6 @@ namespace UnitsNet
             return ToUnit(unitAsReciprocalLengthUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is ReciprocalLengthUnit unitAsReciprocalLengthUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalLengthUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsReciprocalLengthUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ReciprocalLength ToUnit(UnitSystem unitSystem)
         {
@@ -879,9 +870,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ReciprocalLengthUnit> IQuantity<ReciprocalLengthUnit>.ToUnit(ReciprocalLengthUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<ReciprocalLengthUnit> IQuantity<ReciprocalLengthUnit>.ToUnit(ReciprocalLengthUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ReciprocalLengthUnit> IQuantity<ReciprocalLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

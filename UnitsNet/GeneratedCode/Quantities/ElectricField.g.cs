@@ -679,15 +679,6 @@ namespace UnitsNet
             return ToUnit(unitAsElectricFieldUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is ElectricFieldUnit unitAsElectricFieldUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsElectricFieldUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricField ToUnit(UnitSystem unitSystem)
         {
@@ -708,9 +699,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(ElectricFieldUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(ElectricFieldUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

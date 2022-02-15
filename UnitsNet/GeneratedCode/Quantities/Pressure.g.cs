@@ -1543,15 +1543,6 @@ namespace UnitsNet
             return ToUnit(unitAsPressureUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is PressureUnit unitAsPressureUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsPressureUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Pressure ToUnit(UnitSystem unitSystem)
         {
@@ -1572,9 +1563,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

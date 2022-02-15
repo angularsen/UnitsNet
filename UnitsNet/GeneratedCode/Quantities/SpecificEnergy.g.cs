@@ -1135,15 +1135,6 @@ namespace UnitsNet
             return ToUnit(unitAsSpecificEnergyUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is SpecificEnergyUnit unitAsSpecificEnergyUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEnergyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsSpecificEnergyUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public SpecificEnergy ToUnit(UnitSystem unitSystem)
         {
@@ -1164,9 +1155,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

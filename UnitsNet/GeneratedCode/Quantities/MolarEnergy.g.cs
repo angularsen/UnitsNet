@@ -714,15 +714,6 @@ namespace UnitsNet
             return ToUnit(unitAsMolarEnergyUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is MolarEnergyUnit unitAsMolarEnergyUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsMolarEnergyUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public MolarEnergy ToUnit(UnitSystem unitSystem)
         {
@@ -743,9 +734,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

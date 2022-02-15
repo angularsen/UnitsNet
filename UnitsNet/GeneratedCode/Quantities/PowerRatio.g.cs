@@ -703,15 +703,6 @@ namespace UnitsNet
             return ToUnit(unitAsPowerRatioUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is PowerRatioUnit unitAsPowerRatioUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsPowerRatioUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public PowerRatio ToUnit(UnitSystem unitSystem)
         {
@@ -732,9 +723,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

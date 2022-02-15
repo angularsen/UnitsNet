@@ -771,15 +771,6 @@ namespace UnitsNet
             return ToUnit(unitAsWarpingMomentOfInertiaUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is WarpingMomentOfInertiaUnit unitAsWarpingMomentOfInertiaUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(WarpingMomentOfInertiaUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsWarpingMomentOfInertiaUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public WarpingMomentOfInertia ToUnit(UnitSystem unitSystem)
         {
@@ -800,9 +791,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<WarpingMomentOfInertiaUnit> IQuantity<WarpingMomentOfInertiaUnit>.ToUnit(WarpingMomentOfInertiaUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<WarpingMomentOfInertiaUnit> IQuantity<WarpingMomentOfInertiaUnit>.ToUnit(WarpingMomentOfInertiaUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<WarpingMomentOfInertiaUnit> IQuantity<WarpingMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

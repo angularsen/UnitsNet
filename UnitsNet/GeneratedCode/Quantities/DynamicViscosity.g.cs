@@ -850,15 +850,6 @@ namespace UnitsNet
             return ToUnit(unitAsDynamicViscosityUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is DynamicViscosityUnit unitAsDynamicViscosityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsDynamicViscosityUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public DynamicViscosity ToUnit(UnitSystem unitSystem)
         {
@@ -879,9 +870,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(DynamicViscosityUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(DynamicViscosityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
