@@ -679,15 +679,6 @@ namespace UnitsNet
             return ToUnit(unitAsSolidAngleUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is SolidAngleUnit unitAsSolidAngleUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsSolidAngleUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public SolidAngle ToUnit(UnitSystem unitSystem)
         {
@@ -708,9 +699,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

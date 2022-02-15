@@ -774,15 +774,6 @@ namespace UnitsNet
             return ToUnit(unitAsMagneticFieldUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is MagneticFieldUnit unitAsMagneticFieldUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsMagneticFieldUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public MagneticField ToUnit(UnitSystem unitSystem)
         {
@@ -803,9 +794,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(MagneticFieldUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(MagneticFieldUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

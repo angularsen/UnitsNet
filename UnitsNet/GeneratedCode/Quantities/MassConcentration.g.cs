@@ -1595,15 +1595,6 @@ namespace UnitsNet
             return ToUnit(unitAsMassConcentrationUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is MassConcentrationUnit unitAsMassConcentrationUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassConcentrationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsMassConcentrationUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public MassConcentration ToUnit(UnitSystem unitSystem)
         {
@@ -1624,9 +1615,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MassConcentrationUnit> IQuantity<MassConcentrationUnit>.ToUnit(MassConcentrationUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<MassConcentrationUnit> IQuantity<MassConcentrationUnit>.ToUnit(MassConcentrationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<MassConcentrationUnit> IQuantity<MassConcentrationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

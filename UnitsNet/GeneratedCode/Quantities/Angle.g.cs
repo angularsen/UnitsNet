@@ -973,15 +973,6 @@ namespace UnitsNet
             return ToUnit(unitAsAngleUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is AngleUnit unitAsAngleUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsAngleUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Angle ToUnit(UnitSystem unitSystem)
         {
@@ -1002,9 +993,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(AngleUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(AngleUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

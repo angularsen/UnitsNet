@@ -733,15 +733,6 @@ namespace UnitsNet
             return ToUnit(unitAsTemperatureGradientUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is TemperatureGradientUnit unitAsTemperatureGradientUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureGradientUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsTemperatureGradientUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public TemperatureGradient ToUnit(UnitSystem unitSystem)
         {
@@ -762,9 +753,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(TemperatureGradientUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(TemperatureGradientUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

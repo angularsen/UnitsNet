@@ -714,15 +714,6 @@ namespace UnitsNet
             return ToUnit(unitAsBrakeSpecificFuelConsumptionUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is BrakeSpecificFuelConsumptionUnit unitAsBrakeSpecificFuelConsumptionUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BrakeSpecificFuelConsumptionUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsBrakeSpecificFuelConsumptionUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public BrakeSpecificFuelConsumption ToUnit(UnitSystem unitSystem)
         {
@@ -743,9 +734,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(BrakeSpecificFuelConsumptionUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(BrakeSpecificFuelConsumptionUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
