@@ -112,7 +112,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>
         /// </summary>
-        public double InversePoundForcePerSquareInchs => As(CompressibilityUnit.InversePoundForcePerSquareInch);
+        public double InversePoundsForcePerSquareInch => As(CompressibilityUnit.InversePoundForcePerSquareInch);
 
         #endregion
 
@@ -158,7 +158,7 @@ namespace UnitsNet
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInversePoundForcePerSquareInchs(double inversepoundforcepersquareinchs) => new Compressibility(inversepoundforcepersquareinchs, CompressibilityUnit.InversePoundForcePerSquareInch);
+        public static Compressibility FromInversePoundsForcePerSquareInch(double inversepoundsforcepersquareinch) => new Compressibility(inversepoundsforcepersquareinch, CompressibilityUnit.InversePoundForcePerSquareInch);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="CompressibilityUnit" /> to <see cref="Compressibility" />.

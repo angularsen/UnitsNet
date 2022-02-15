@@ -49,8 +49,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Compressibility.FromInversePascals(2), 2.InversePascals());
 
         [Fact]
-        public void NumberToInversePoundForcePerSquareInchsTest() =>
-            Assert.Equal(Compressibility.FromInversePoundForcePerSquareInchs(2), 2.InversePoundForcePerSquareInchs());
+        public void NumberToInversePoundsForcePerSquareInchTest() =>
+            Assert.Equal(Compressibility.FromInversePoundsForcePerSquareInch(2), 2.InversePoundsForcePerSquareInch());
 
     }
 }

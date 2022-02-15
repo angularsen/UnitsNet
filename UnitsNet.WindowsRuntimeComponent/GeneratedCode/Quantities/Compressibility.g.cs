@@ -196,7 +196,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>
         /// </summary>
-        public double InversePoundForcePerSquareInchs => As(CompressibilityUnit.InversePoundForcePerSquareInch);
+        public double InversePoundsForcePerSquareInch => As(CompressibilityUnit.InversePoundForcePerSquareInch);
 
         #endregion
 
@@ -310,9 +310,9 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Compressibility FromInversePoundForcePerSquareInchs(double inversepoundforcepersquareinchs)
+        public static Compressibility FromInversePoundsForcePerSquareInch(double inversepoundsforcepersquareinch)
         {
-            double value = (double) inversepoundforcepersquareinchs;
+            double value = (double) inversepoundsforcepersquareinch;
             return new Compressibility(value, CompressibilityUnit.InversePoundForcePerSquareInch);
         }
 

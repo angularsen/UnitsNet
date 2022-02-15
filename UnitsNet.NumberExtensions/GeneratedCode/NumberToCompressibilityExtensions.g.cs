@@ -52,9 +52,9 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
         public static Compressibility InversePascals<T>(this T value) =>
             Compressibility.FromInversePascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Compressibility.FromInversePoundForcePerSquareInchs(UnitsNet.QuantityValue)" />
-        public static Compressibility InversePoundForcePerSquareInchs<T>(this T value) =>
-            Compressibility.FromInversePoundForcePerSquareInchs(Convert.ToDouble(value));
+        /// <inheritdoc cref="Compressibility.FromInversePoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
+        public static Compressibility InversePoundsForcePerSquareInch<T>(this T value) =>
+            Compressibility.FromInversePoundsForcePerSquareInch(Convert.ToDouble(value));
 
     }
 }

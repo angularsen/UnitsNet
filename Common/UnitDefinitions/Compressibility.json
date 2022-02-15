@@ -87,7 +87,7 @@
     },
     {
       "SingularName": "InversePoundForcePerSquareInch",
-      "PluralName": "InversePoundForcePerSquareInchs",
+      "PluralName": "InversePoundsForcePerSquareInch",
       "FromUnitToBaseFunc": "{x} * 6.894757293168361e3",
       "FromBaseToUnitFunc": "{x} / 6.894757293168361e3",
       "Localization": [

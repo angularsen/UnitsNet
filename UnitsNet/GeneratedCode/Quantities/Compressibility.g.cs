@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseMegapascal, "InverseMegapascals", BaseUnits.Undefined),
                     new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InverseMillibar, "InverseMillibars", BaseUnits.Undefined),
                     new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InversePascal, "InversePascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
-                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InversePoundForcePerSquareInch, "InversePoundForcePerSquareInchs", BaseUnits.Undefined),
+                    new UnitInfo<CompressibilityUnit>(CompressibilityUnit.InversePoundForcePerSquareInch, "InversePoundsForcePerSquareInch", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Compressibility);
 
@@ -226,7 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>
         /// </summary>
-        public double InversePoundForcePerSquareInchs => As(CompressibilityUnit.InversePoundForcePerSquareInch);
+        public double InversePoundsForcePerSquareInch => As(CompressibilityUnit.InversePoundForcePerSquareInch);
 
         #endregion
 
@@ -358,9 +358,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Compressibility"/> from <see cref="CompressibilityUnit.InversePoundForcePerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Compressibility FromInversePoundForcePerSquareInchs(QuantityValue inversepoundforcepersquareinchs)
+        public static Compressibility FromInversePoundsForcePerSquareInch(QuantityValue inversepoundsforcepersquareinch)
         {
-            double value = (double) inversepoundforcepersquareinchs;
+            double value = (double) inversepoundsforcepersquareinch;
             return new Compressibility(value, CompressibilityUnit.InversePoundForcePerSquareInch);
         }
 

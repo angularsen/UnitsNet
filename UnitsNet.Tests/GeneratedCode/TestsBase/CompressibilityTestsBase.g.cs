@@ -44,7 +44,7 @@ namespace UnitsNet.Tests
         protected abstract double InverseMegapascalsInOneInversePascal { get; }
         protected abstract double InverseMillibarsInOneInversePascal { get; }
         protected abstract double InversePascalsInOneInversePascal { get; }
-        protected abstract double InversePoundForcePerSquareInchsInOneInversePascal { get; }
+        protected abstract double InversePoundsForcePerSquareInchInOneInversePascal { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double InverseAtmospheresTolerance { get { return 1e-5; } }
@@ -53,7 +53,7 @@ namespace UnitsNet.Tests
         protected virtual double InverseMegapascalsTolerance { get { return 1e-5; } }
         protected virtual double InverseMillibarsTolerance { get { return 1e-5; } }
         protected virtual double InversePascalsTolerance { get { return 1e-5; } }
-        protected virtual double InversePoundForcePerSquareInchsTolerance { get { return 1e-5; } }
+        protected virtual double InversePoundsForcePerSquareInchTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(CompressibilityUnit unit)
@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
                 CompressibilityUnit.InverseMegapascal => (InverseMegapascalsInOneInversePascal, InverseMegapascalsTolerance),
                 CompressibilityUnit.InverseMillibar => (InverseMillibarsInOneInversePascal, InverseMillibarsTolerance),
                 CompressibilityUnit.InversePascal => (InversePascalsInOneInversePascal, InversePascalsTolerance),
-                CompressibilityUnit.InversePoundForcePerSquareInch => (InversePoundForcePerSquareInchsInOneInversePascal, InversePoundForcePerSquareInchsTolerance),
+                CompressibilityUnit.InversePoundForcePerSquareInch => (InversePoundsForcePerSquareInchInOneInversePascal, InversePoundsForcePerSquareInchTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -160,7 +160,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(InverseMegapascalsInOneInversePascal, inversepascal.InverseMegapascals, InverseMegapascalsTolerance);
             AssertEx.EqualTolerance(InverseMillibarsInOneInversePascal, inversepascal.InverseMillibars, InverseMillibarsTolerance);
             AssertEx.EqualTolerance(InversePascalsInOneInversePascal, inversepascal.InversePascals, InversePascalsTolerance);
-            AssertEx.EqualTolerance(InversePoundForcePerSquareInchsInOneInversePascal, inversepascal.InversePoundForcePerSquareInchs, InversePoundForcePerSquareInchsTolerance);
+            AssertEx.EqualTolerance(InversePoundsForcePerSquareInchInOneInversePascal, inversepascal.InversePoundsForcePerSquareInch, InversePoundsForcePerSquareInchTolerance);
         }
 
         [Fact]
@@ -191,7 +191,7 @@ namespace UnitsNet.Tests
             Assert.Equal(CompressibilityUnit.InversePascal, quantity05.Unit);
 
             var quantity06 = Compressibility.From(1, CompressibilityUnit.InversePoundForcePerSquareInch);
-            AssertEx.EqualTolerance(1, quantity06.InversePoundForcePerSquareInchs, InversePoundForcePerSquareInchsTolerance);
+            AssertEx.EqualTolerance(1, quantity06.InversePoundsForcePerSquareInch, InversePoundsForcePerSquareInchTolerance);
             Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, quantity06.Unit);
 
         }
@@ -219,7 +219,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(InverseMegapascalsInOneInversePascal, inversepascal.As(CompressibilityUnit.InverseMegapascal), InverseMegapascalsTolerance);
             AssertEx.EqualTolerance(InverseMillibarsInOneInversePascal, inversepascal.As(CompressibilityUnit.InverseMillibar), InverseMillibarsTolerance);
             AssertEx.EqualTolerance(InversePascalsInOneInversePascal, inversepascal.As(CompressibilityUnit.InversePascal), InversePascalsTolerance);
-            AssertEx.EqualTolerance(InversePoundForcePerSquareInchsInOneInversePascal, inversepascal.As(CompressibilityUnit.InversePoundForcePerSquareInch), InversePoundForcePerSquareInchsTolerance);
+            AssertEx.EqualTolerance(InversePoundsForcePerSquareInchInOneInversePascal, inversepascal.As(CompressibilityUnit.InversePoundForcePerSquareInch), InversePoundsForcePerSquareInchTolerance);
         }
 
         [Fact]
@@ -286,7 +286,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Compressibility.FromInverseMegapascals(inversepascal.InverseMegapascals).InversePascals, InverseMegapascalsTolerance);
             AssertEx.EqualTolerance(1, Compressibility.FromInverseMillibars(inversepascal.InverseMillibars).InversePascals, InverseMillibarsTolerance);
             AssertEx.EqualTolerance(1, Compressibility.FromInversePascals(inversepascal.InversePascals).InversePascals, InversePascalsTolerance);
-            AssertEx.EqualTolerance(1, Compressibility.FromInversePoundForcePerSquareInchs(inversepascal.InversePoundForcePerSquareInchs).InversePascals, InversePoundForcePerSquareInchsTolerance);
+            AssertEx.EqualTolerance(1, Compressibility.FromInversePoundsForcePerSquareInch(inversepascal.InversePoundsForcePerSquareInch).InversePascals, InversePoundsForcePerSquareInchTolerance);
         }
 
         [Fact]
