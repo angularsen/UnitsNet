@@ -1,4 +1,165 @@
-	C:\Users\runneradmin\AppData\Local\Temp\RtmpuaAnpR\downloaded_packages
+    styles                                  html  
+    style                                   html  
+    strip_style                             html  
+    start.crayon                            html  
+    show_ansi_colors                        html  
+    num_colors                              html  
+    num_ansi_colors                         html  
+    make_style                              html  
+    hyperlink                               html  
+    has_style                               html  
+    has_color                               html  
+    drop_style                              html  
+    crayon                                  html  
+    concat                                  html  
+    combine_styles                          html  
+    col_substring                           html  
+    col_substr                              html  
+    col_strsplit                            html  
+    col_nchar                               html  
+    col_align                               html  
+    chr                                     html  
+  converting help for package 'crayon'
+    utf8_substr                             html  
+    utf8_nchar                              html  
+    utf8_graphemes                          html  
+    unicode-width-workaround                html  
+    tree                                    html  
+    themes                                  html  
+    test_that_cli                           html  
+    symbol                                  html  
+    style_hyperlink                         html  
+    start_app                               html  
+    spark_line                              html  
+    spark_bar                               html  
+    simple_theme                            html  
+    ruler                                   html  
+    rule                                    html  
+    progress-variables                      html  
+    progress-utils                          html  
+    progress-c                              html  
+    pluralize                               html  
+    pluralization                           html  
+    pluralization-helpers                   html  
+    parse_selector                          html  
+    num_ansi_colors                         html  
+    match_selector_node                     html  
+    match_selector                          html  
+    make_spinner                            html  
+    make_ansi_style                         html  
+    list_spinners                           html  
+    is_utf8_output                          html  
+    is_dynamic_tty                          html  
+    is_ansi_tty                             html  
+    inline-markup                           html  
+    hash_sha256                             html  
+    hash_md5                                html  
+    hash_emoji                              html  
+    hash_animal                             html  
+    get_spinner                             html  
+    format_inline                           html  
+    format_error                            html  
+    faq                                     html  
+    diff_str                                html  
+    diff_chr                                html  
+    demo_spinners                           html  
+    containers                              html  
+    console_width                           html  
+    combine_ansi_styles                     html  
+    code_theme_list                         html  
+    code_highlight                          html  
+    cli_verbatim                            html  
+    cli_vec                                 html  
+    cli_ul                                  html  
+    cli_text                                html  
+    cli_status_update                       html  
+    cli_status_clear                        html  
+    cli_status                              html  
+    cli_sitrep                              html  
+    cli_rule                                html  
+    cli_progress_styles                     html  
+    cli_progress_step                       html  
+    cli_progress_output                     html  
+    cli_progress_message                    html  
+    cli_progress_demo                       html  
+    cli_progress_builtin_handlers           html  
+    cli_progress_bar                        html  
+    cli_progress_along                      html  
+    cli_process_start                       html  
+    cli_par                                 html  
+    cli_output_connection                   html  
+    cli_ol                                  html  
+    cli_list_themes                         html  
+    cli_li                                  html  
+    cli_h1                                  html  
+    cli_format_method                       html  
+    cli_format                              html  
+    cli_end                                 html  
+    cli_dl                                  html  
+    cli_div                                 html  
+    cli_debug_doc                           html  
+    cli_code                                html  
+    cli_bullets_raw                         html  
+    cli_bullets                             html  
+    cli_blockquote                          html  
+    cli_alert                               html  
+    cli_abort                               html  
+    cli                                     html  
+    cli-config                              html  
+    cat_line                                html  
+    builtin_theme                           html  
+    boxx                                    html  
+    ansi_trimws                             html  
+    ansi_toupper                            html  
+    ansi_substring                          html  
+    ansi_substr                             html  
+    ansi_strwrap                            html  
+    ansi_strtrim                            html  
+    ansi_strsplit                           html  
+    ansi_strip                              html  
+    ansi_simplify                           html  
+    ansi_regex                              html  
+    ansi_palettes                           html  
+    ansi_nchar                              html  
+    ansi_html_style                         html  
+    ansi_html                               html  
+    ansi_hide_cursor                        html  
+    ansi_has_any                            html  
+    ansi_columns                            html  
+    ansi_align                              html  
+    ansi-styles                             html  
+  converting help for package 'cli'
+C:/rtools40/mingw64/bin/gcc -shared -s -static-libgcc -o cli.dll tmp.def ansi.o cleancall.o diff.o errors.o init.o md5.o progress-altrep.o progress.o sha256.o thread.o tty.o utf8.o win-utf8.o winfiles.o -LC:/PROGRA~1/R/R-41~1.2/bin/x64 -lR
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c winfiles.c -o winfiles.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c win-utf8.c -o win-utf8.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c utf8.c -o utf8.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c tty.c -o tty.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c thread.c -o thread.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c sha256.c -o sha256.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c progress.c -o progress.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c progress-altrep.c -o progress-altrep.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c md5.c -o md5.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c init.c -o init.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c errors.c -o errors.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c diff.c -o diff.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c cleancall.c -o cleancall.o
+"C:/rtools40/mingw64/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c ansi.c -o ansi.o
+C:/rtools40/mingw32/bin/gcc -shared -s -static-libgcc -o cli.dll tmp.def ansi.o cleancall.o diff.o errors.o init.o md5.o progress-altrep.o progress.o sha256.o thread.o tty.o utf8.o win-utf8.o winfiles.o -LC:/PROGRA~1/R/R-41~1.2/bin/i386 -lR
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c winfiles.c -o winfiles.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c win-utf8.c -o win-utf8.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c utf8.c -o utf8.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c tty.c -o tty.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c thread.c -o thread.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c sha256.c -o sha256.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c progress.c -o progress.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c progress-altrep.c -o progress-altrep.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c md5.c -o md5.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c init.c -o init.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c errors.c -o errors.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c diff.c -o diff.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c cleancall.c -o cleancall.o
+"C:/rtools40/mingw32/bin/"gcc  -I"C:/PROGRA~1/R/R-41~1.2/include" -DNDEBUG          -O2 -Wall  -std=gnu99 -mfpmath=sse -msse2 -mstackrealign  -c ansi.c -o ansi.o
+	C:\Users\runneradmin\AppData\Local\Temp\RtmpaUWyrk\downloaded_packages
 The downloaded binary packages are in
 package 'R.devices' successfully unpacked and MD5 sums checked
 package 'Rcpp' successfully unpacked and MD5 sums checked
@@ -31,8 +192,6 @@ package 'gtable' successfully unpacked and MD5 sums checked
 package 'glue' successfully unpacked and MD5 sums checked
 package 'digest' successfully unpacked and MD5 sums checked
 package 'utf8' successfully unpacked and MD5 sums checked
-package 'crayon' successfully unpacked and MD5 sums checked
-package 'cli' successfully unpacked and MD5 sums checked
 package 'pkgconfig' successfully unpacked and MD5 sums checked
 package 'fansi' successfully unpacked and MD5 sums checked
 package 'viridisLite' successfully unpacked and MD5 sums checked
@@ -41,11 +200,81 @@ package 'munsell' successfully unpacked and MD5 sums checked
 package 'labeling' successfully unpacked and MD5 sums checked
 package 'farver' successfully unpacked and MD5 sums checked
 package 'colorspace' successfully unpacked and MD5 sums checked
+crayon  1.4.2  1.5.0             FALSE
+cli     3.1.1  3.2.0              TRUE
+       binary source needs_compilation
+  There are binary versions available but the source versions are later:
 Execution halted
 Error in library(ggplot2) : there is no package called 'ggplot2'
-downloaded 370 KB
+	'C:\Users\runneradmin\AppData\Local\Temp\RtmpaUWyrk\downloaded_packages'
+The downloaded source packages are in
+* DONE (crayon)
+** testing if installed package keeps a record of temporary installation path
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from final location
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from temporary location
+** building package indices
+    finding HTML links ... done
+*** installing help indices
+** help
+** byte-compile and prepare package for lazy loading
+** R
+** using staged installation
+** package 'crayon' successfully unpacked and MD5 sums checked
+* installing *source* package 'crayon' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
+* DONE (cli)
+** testing if installed package keeps a record of temporary installation path
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from final location
+*** arch - x64
+*** arch - i386
+** testing if installed package can be loaded from temporary location
+** building package indices
+*** copying figures
+    finding HTML links ... done
+*** installing help indices
+** help
+** byte-compile and prepare package for lazy loading
+** inst
+** R
+installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-cli/00new/cli/libs/x64
+       ^~
+   int sn;
+diff.c:85:7: warning: 'sn' may be used uninitialized in this function [-Wmaybe-uninitialized]
+diff.c: In function 'clic_diff_chr':
+*** arch - x64
+installing to C:/Users/runneradmin/R/win-library/4.1/00LOCK-cli/00new/cli/libs/i386
+   ^~~
+   for (i = 0; i < sn; i++, op_ptr++, off_ptr++, len_ptr++) {
+diff.c:114:3: warning: 'sn' may be used uninitialized in this function [-Wmaybe-uninitialized]
+diff.c: In function 'clic_diff_chr':
+*** arch - i386
+** libs
+** using staged installation
+** package 'cli' successfully unpacked and MD5 sums checked
+* installing *source* package 'cli' ...
+please set environment variable 'TZ'
+  unable to identify current timezone 'C':
+Warning in strptime(xx, f, tz = tz) :
+downloaded 39 KB
 ==================================================
-Content type 'application/zip' length 379778 bytes (370 KB)
+Content type 'application/x-gzip' length 40099 bytes (39 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/crayon_1.5.0.tar.gz'
+downloaded 481 KB
+==================================================
+Content type 'application/x-gzip' length 493192 bytes (481 KB)
+trying URL 'https://cran.rstudio.com/src/contrib/cli_3.2.0.tar.gz'
+installing the source packages 'cli', 'crayon'
+downloaded 371 KB
+==================================================
+Content type 'application/zip' length 379929 bytes (371 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.devices_2.17.0.zip'
 downloaded 3.2 MB
 ==================================================
@@ -53,15 +282,15 @@ Content type 'application/zip' length 3317916 bytes (3.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/Rcpp_1.0.8.zip'
 downloaded 1.1 MB
 ==================================================
-Content type 'application/zip' length 1109364 bytes (1.1 MB)
+Content type 'application/zip' length 1109482 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gridExtra_2.3.zip'
 downloaded 1.1 MB
 ==================================================
-Content type 'application/zip' length 1115434 bytes (1.1 MB)
+Content type 'application/zip' length 1115083 bytes (1.1 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tidyr_1.2.0.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1264735 bytes (1.2 MB)
+Content type 'application/zip' length 1264483 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gdata_2.18.0.zip'
 downloaded 1.3 MB
 ==================================================
@@ -69,7 +298,7 @@ Content type 'application/zip' length 1380128 bytes (1.3 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/dplyr_1.0.8.zip'
 downloaded 3.9 MB
 ==================================================
-Content type 'application/zip' length 4130158 bytes (3.9 MB)
+Content type 'application/zip' length 4130862 bytes (3.9 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/ggplot2_3.3.5.zip'
 downloaded 42 KB
 ==================================================
@@ -77,7 +306,7 @@ Content type 'application/zip' length 43156 bytes (42 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/base64enc_0.1-3.zip'
 downloaded 1.3 MB
 ==================================================
-Content type 'application/zip' length 1410972 bytes (1.3 MB)
+Content type 'application/zip' length 1413601 bytes (1.3 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.utils_2.11.0.zip'
 downloaded 944 KB
 ==================================================
@@ -89,27 +318,27 @@ Content type 'application/zip' length 81982 bytes (80 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R.methodsS3_1.8.1.zip'
 downloaded 319 KB
 ==================================================
-Content type 'application/zip' length 327424 bytes (319 KB)
+Content type 'application/zip' length 327430 bytes (319 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cpp11_0.4.2.zip'
 downloaded 419 KB
 ==================================================
-Content type 'application/zip' length 429772 bytes (419 KB)
+Content type 'application/zip' length 429560 bytes (419 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/purrr_0.3.4.zip'
 downloaded 47 KB
 ==================================================
-Content type 'application/zip' length 48995 bytes (47 KB)
+Content type 'application/zip' length 49062 bytes (47 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/ellipsis_0.3.2.zip'
 downloaded 358 KB
 ==================================================
-Content type 'application/zip' length 367152 bytes (358 KB)
+Content type 'application/zip' length 367078 bytes (358 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gtools_3.9.2.zip'
 downloaded 738 KB
 ==================================================
-Content type 'application/zip' length 756682 bytes (738 KB)
+Content type 'application/zip' length 756458 bytes (738 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/pillar_1.7.0.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1254254 bytes (1.2 MB)
+Content type 'application/zip' length 1253808 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/vctrs_0.3.8.zip'
 downloaded 199 KB
 ==================================================
@@ -117,75 +346,67 @@ Content type 'application/zip' length 204408 bytes (199 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tidyselect_1.1.1.zip'
 downloaded 82 KB
 ==================================================
-Content type 'application/zip' length 84161 bytes (82 KB)
+Content type 'application/zip' length 84255 bytes (82 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/R6_2.5.1.zip'
 downloaded 232 KB
 ==================================================
-Content type 'application/zip' length 238429 bytes (232 KB)
+Content type 'application/zip' length 238403 bytes (232 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/magrittr_2.0.2.zip'
 downloaded 119 KB
 ==================================================
-Content type 'application/zip' length 122859 bytes (119 KB)
+Content type 'application/zip' length 122819 bytes (119 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/lifecycle_1.0.1.zip'
-downloaded 76 KB
+downloaded 77 KB
 ==================================================
-Content type 'application/zip' length 78800 bytes (76 KB)
+Content type 'application/zip' length 79213 bytes (77 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/generics_0.1.2.zip'
-downloaded 211 KB
+downloaded 212 KB
 ==================================================
-Content type 'application/zip' length 216956 bytes (211 KB)
+Content type 'application/zip' length 217197 bytes (212 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/withr_2.4.3.zip'
 downloaded 851 KB
 ==================================================
-Content type 'application/zip' length 872017 bytes (851 KB)
+Content type 'application/zip' length 872052 bytes (851 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/tibble_3.1.6.zip'
-downloaded 544 KB
+downloaded 545 KB
 ==================================================
-Content type 'application/zip' length 557976 bytes (544 KB)
+Content type 'application/zip' length 559050 bytes (545 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/scales_1.1.1.zip'
 downloaded 1.5 MB
 ==================================================
-Content type 'application/zip' length 1611012 bytes (1.5 MB)
+Content type 'application/zip' length 1610900 bytes (1.5 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/rlang_1.0.1.zip'
 downloaded 2.6 MB
 ==================================================
-Content type 'application/zip' length 2726836 bytes (2.6 MB)
+Content type 'application/zip' length 2726835 bytes (2.6 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/isoband_0.2.5.zip'
 downloaded 424 KB
 ==================================================
-Content type 'application/zip' length 434416 bytes (424 KB)
+Content type 'application/zip' length 434339 bytes (424 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/gtable_0.3.0.zip'
 downloaded 169 KB
 ==================================================
-Content type 'application/zip' length 173830 bytes (169 KB)
+Content type 'application/zip' length 173950 bytes (169 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/glue_1.6.1.zip'
 downloaded 260 KB
 ==================================================
-Content type 'application/zip' length 266532 bytes (260 KB)
+Content type 'application/zip' length 266579 bytes (260 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/digest_0.6.29.zip'
-downloaded 205 KB
+downloaded 204 KB
 ==================================================
-Content type 'application/zip' length 209968 bytes (205 KB)
+Content type 'application/zip' length 209812 bytes (204 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/utf8_1.2.2.zip'
-downloaded 154 KB
-==================================================
-Content type 'application/zip' length 157712 bytes (154 KB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/crayon_1.4.2.zip'
-downloaded 1.2 MB
-==================================================
-Content type 'application/zip' length 1237290 bytes (1.2 MB)
-trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/cli_3.1.1.zip'
 downloaded 21 KB
 ==================================================
-Content type 'application/zip' length 22213 bytes (21 KB)
+Content type 'application/zip' length 22474 bytes (21 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/pkgconfig_2.0.3.zip'
-downloaded 357 KB
+downloaded 356 KB
 ==================================================
-Content type 'application/zip' length 365592 bytes (357 KB)
+Content type 'application/zip' length 364943 bytes (356 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/fansi_1.0.2.zip'
 downloaded 1.2 MB
 ==================================================
-Content type 'application/zip' length 1299511 bytes (1.2 MB)
+Content type 'application/zip' length 1299510 bytes (1.2 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/viridisLite_0.4.0.zip'
 downloaded 54 KB
 ==================================================
@@ -193,7 +414,7 @@ Content type 'application/zip' length 55707 bytes (54 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/RColorBrewer_1.1-2.zip'
 downloaded 239 KB
 ==================================================
-Content type 'application/zip' length 245358 bytes (239 KB)
+Content type 'application/zip' length 245370 bytes (239 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/munsell_0.5.0.zip'
 downloaded 61 KB
 ==================================================
@@ -201,10 +422,10 @@ Content type 'application/zip' length 62679 bytes (61 KB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/labeling_0.4.2.zip'
 downloaded 1.7 MB
 ==================================================
-Content type 'application/zip' length 1752642 bytes (1.7 MB)
+Content type 'application/zip' length 1752637 bytes (1.7 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/farver_2.1.0.zip'
 downloaded 2.5 MB
 ==================================================
-Content type 'application/zip' length 2645248 bytes (2.5 MB)
+Content type 'application/zip' length 2645396 bytes (2.5 MB)
 trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/colorspace_2.0-2.zip'
 also installing the dependencies 'colorspace', 'farver', 'labeling', 'munsell', 'RColorBrewer', 'viridisLite', 'fansi', 'pkgconfig', 'cli', 'crayon', 'utf8', 'digest', 'glue', 'gtable', 'isoband', 'rlang', 'scales', 'tibble', 'withr', 'generics', 'lifecycle', 'magrittr', 'R6', 'tidyselect', 'vctrs', 'pillar', 'gtools', 'ellipsis', 'purrr', 'cpp11', 'R.methodsS3', 'R.oo', 'R.utils', 'base64enc'
