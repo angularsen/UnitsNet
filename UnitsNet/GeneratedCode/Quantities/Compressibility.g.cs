@@ -790,15 +790,6 @@ namespace UnitsNet
             return ToUnit(unitAsCompressibilityUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if (!(unit is CompressibilityUnit unitAsCompressibilityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsCompressibilityUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Compressibility ToUnit(UnitSystem unitSystem)
         {
@@ -819,9 +810,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<CompressibilityUnit> IQuantity<CompressibilityUnit>.ToUnit(CompressibilityUnit unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<CompressibilityUnit> IQuantity<CompressibilityUnit>.ToUnit(CompressibilityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<CompressibilityUnit> IQuantity<CompressibilityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);

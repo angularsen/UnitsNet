@@ -985,15 +985,6 @@ namespace UnitsNet
             return ToUnit(unitAs{_unitEnumName}, DefaultConversionFunctions);
         }}
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {{
-            if (!(unit is {_unitEnumName} unitAs{_unitEnumName}))
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return ToUnit(unitAs{_unitEnumName}, unitConverter);
-        }}
-
         /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
         public {_quantity.Name} ToUnit(UnitSystem unitSystem)
         {{
@@ -1014,9 +1005,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit({_unitEnumName} unit) => ToUnit(unit);
-
-        /// <inheritdoc />
-        IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit({_unitEnumName} unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
 
         /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
