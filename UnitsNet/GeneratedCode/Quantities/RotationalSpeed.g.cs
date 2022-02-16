@@ -274,77 +274,36 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> RotationalSpeedUnit
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.CentiradianPerSecond, quantity => new RotationalSpeed((quantity.Value) / 1e-2d, RotationalSpeedUnit.CentiradianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DeciradianPerSecond, quantity => new RotationalSpeed((quantity.Value) / 1e-1d, RotationalSpeedUnit.DeciradianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DegreePerMinute, quantity => new RotationalSpeed((180 * 60 / Math.PI) * quantity.Value, RotationalSpeedUnit.DegreePerMinute));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DegreePerSecond, quantity => new RotationalSpeed((180 / Math.PI) * quantity.Value, RotationalSpeedUnit.DegreePerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MicrodegreePerSecond, quantity => new RotationalSpeed(((180 / Math.PI) * quantity.Value) / 1e-6d, RotationalSpeedUnit.MicrodegreePerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MicroradianPerSecond, quantity => new RotationalSpeed((quantity.Value) / 1e-6d, RotationalSpeedUnit.MicroradianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MillidegreePerSecond, quantity => new RotationalSpeed(((180 / Math.PI) * quantity.Value) / 1e-3d, RotationalSpeedUnit.MillidegreePerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MilliradianPerSecond, quantity => new RotationalSpeed((quantity.Value) / 1e-3d, RotationalSpeedUnit.MilliradianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanodegreePerSecond, quantity => new RotationalSpeed(((180 / Math.PI) * quantity.Value) / 1e-9d, RotationalSpeedUnit.NanodegreePerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanoradianPerSecond, quantity => new RotationalSpeed((quantity.Value) / 1e-9d, RotationalSpeedUnit.NanoradianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerMinute, quantity => new RotationalSpeed((quantity.Value / 6.2831853072) * 60, RotationalSpeedUnit.RevolutionPerMinute));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerSecond, quantity => new RotationalSpeed(quantity.Value / 6.2831853072, RotationalSpeedUnit.RevolutionPerSecond));
+            // Register in unit converter: RotationalSpeedUnit -> BaseUnit
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.CentiradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DeciradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DegreePerMinute, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DegreePerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MicrodegreePerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MicroradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MillidegreePerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MilliradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.NanodegreePerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.NanoradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RevolutionPerMinute, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RadianPerSecond));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => quantity);
 
-            // Register in unit converter: RotationalSpeedUnit -> BaseUnit
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.CentiradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed((quantity.Value) * 1e-2d, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DeciradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed((quantity.Value) * 1e-1d, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DegreePerMinute, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed((Math.PI / (180 * 60)) * quantity.Value, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.DegreePerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed((Math.PI / 180) * quantity.Value, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MicrodegreePerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed(((Math.PI / 180) * quantity.Value) * 1e-6d, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MicroradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed((quantity.Value) * 1e-6d, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MillidegreePerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed(((Math.PI / 180) * quantity.Value) * 1e-3d, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.MilliradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed((quantity.Value) * 1e-3d, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.NanodegreePerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed(((Math.PI / 180) * quantity.Value) * 1e-9d, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.NanoradianPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed((quantity.Value) * 1e-9d, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RevolutionPerMinute, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed((quantity.Value * 6.2831853072) / 60, RotationalSpeedUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeedUnit.RadianPerSecond, quantity => new RotationalSpeed(quantity.Value * 6.2831853072, RotationalSpeedUnit.RadianPerSecond));
-        }
-
-        private static bool TryConvert(RotationalSpeed value, RotationalSpeedUnit targetUnit, out RotationalSpeed? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // RotationalSpeedUnit -> BaseUnit
-                (RotationalSpeedUnit.CentiradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((value.Value) * 1e-2d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.DeciradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((value.Value) * 1e-1d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.DegreePerMinute, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((Math.PI / (180 * 60)) * value.Value, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.DegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((Math.PI / 180) * value.Value, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.MicrodegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(((Math.PI / 180) * value.Value) * 1e-6d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.MicroradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((value.Value) * 1e-6d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.MillidegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(((Math.PI / 180) * value.Value) * 1e-3d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.MilliradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((value.Value) * 1e-3d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.NanodegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(((Math.PI / 180) * value.Value) * 1e-9d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.NanoradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((value.Value) * 1e-9d, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.RevolutionPerMinute, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((value.Value * 6.2831853072) / 60, RotationalSpeedUnit.RadianPerSecond),
-                (RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(value.Value * 6.2831853072, RotationalSpeedUnit.RadianPerSecond),
-
-                // BaseUnit <-> BaseUnit
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RadianPerSecond) => value,
-
-                // BaseUnit -> RotationalSpeedUnit
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.CentiradianPerSecond) => new RotationalSpeed((value.Value) / 1e-2d, RotationalSpeedUnit.CentiradianPerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DeciradianPerSecond) => new RotationalSpeed((value.Value) / 1e-1d, RotationalSpeedUnit.DeciradianPerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DegreePerMinute) => new RotationalSpeed((180 * 60 / Math.PI) * value.Value, RotationalSpeedUnit.DegreePerMinute),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DegreePerSecond) => new RotationalSpeed((180 / Math.PI) * value.Value, RotationalSpeedUnit.DegreePerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MicrodegreePerSecond) => new RotationalSpeed(((180 / Math.PI) * value.Value) / 1e-6d, RotationalSpeedUnit.MicrodegreePerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MicroradianPerSecond) => new RotationalSpeed((value.Value) / 1e-6d, RotationalSpeedUnit.MicroradianPerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MillidegreePerSecond) => new RotationalSpeed(((180 / Math.PI) * value.Value) / 1e-3d, RotationalSpeedUnit.MillidegreePerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MilliradianPerSecond) => new RotationalSpeed((value.Value) / 1e-3d, RotationalSpeedUnit.MilliradianPerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanodegreePerSecond) => new RotationalSpeed(((180 / Math.PI) * value.Value) / 1e-9d, RotationalSpeedUnit.NanodegreePerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanoradianPerSecond) => new RotationalSpeed((value.Value) / 1e-9d, RotationalSpeedUnit.NanoradianPerSecond),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerMinute) => new RotationalSpeed((value.Value / 6.2831853072) * 60, RotationalSpeedUnit.RevolutionPerMinute),
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerSecond) => new RotationalSpeed(value.Value / 6.2831853072, RotationalSpeedUnit.RevolutionPerSecond),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> RotationalSpeedUnit
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.CentiradianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.CentiradianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DeciradianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.DeciradianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DegreePerMinute, quantity => quantity.ToUnit(RotationalSpeedUnit.DegreePerMinute));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DegreePerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.DegreePerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MicrodegreePerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.MicrodegreePerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MicroradianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.MicroradianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MillidegreePerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.MillidegreePerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MilliradianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.MilliradianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanodegreePerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.NanodegreePerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanoradianPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.NanoradianPerSecond));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerMinute, quantity => quantity.ToUnit(RotationalSpeedUnit.RevolutionPerMinute));
+            unitConverter.SetConversionFunction<RotationalSpeed>(RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerSecond, quantity => quantity.ToUnit(RotationalSpeedUnit.RevolutionPerSecond));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -930,11 +889,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(RotationalSpeed), Unit, typeof(RotationalSpeed), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (RotationalSpeed)converted;
+                return (RotationalSpeed)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -946,6 +908,47 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(RotationalSpeedUnit unit, out RotationalSpeed? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // RotationalSpeedUnit -> BaseUnit
+                (RotationalSpeedUnit.CentiradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value) * 1e-2d, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.DeciradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value) * 1e-1d, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.DegreePerMinute, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((Math.PI / (180 * 60)) * _value, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.DegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((Math.PI / 180) * _value, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.MicrodegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(((Math.PI / 180) * _value) * 1e-6d, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.MicroradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value) * 1e-6d, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.MillidegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(((Math.PI / 180) * _value) * 1e-3d, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.MilliradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value) * 1e-3d, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.NanodegreePerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(((Math.PI / 180) * _value) * 1e-9d, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.NanoradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value) * 1e-9d, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.RevolutionPerMinute, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value * 6.2831853072) / 60, RotationalSpeedUnit.RadianPerSecond),
+                (RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(_value * 6.2831853072, RotationalSpeedUnit.RadianPerSecond),
+
+                // BaseUnit <-> BaseUnit
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RadianPerSecond) => value,
+
+                // BaseUnit -> RotationalSpeedUnit
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.CentiradianPerSecond) => new RotationalSpeed((_value) / 1e-2d, RotationalSpeedUnit.CentiradianPerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DeciradianPerSecond) => new RotationalSpeed((_value) / 1e-1d, RotationalSpeedUnit.DeciradianPerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DegreePerMinute) => new RotationalSpeed((180 * 60 / Math.PI) * _value, RotationalSpeedUnit.DegreePerMinute),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.DegreePerSecond) => new RotationalSpeed((180 / Math.PI) * _value, RotationalSpeedUnit.DegreePerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MicrodegreePerSecond) => new RotationalSpeed(((180 / Math.PI) * _value) / 1e-6d, RotationalSpeedUnit.MicrodegreePerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MicroradianPerSecond) => new RotationalSpeed((_value) / 1e-6d, RotationalSpeedUnit.MicroradianPerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MillidegreePerSecond) => new RotationalSpeed(((180 / Math.PI) * _value) / 1e-3d, RotationalSpeedUnit.MillidegreePerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.MilliradianPerSecond) => new RotationalSpeed((_value) / 1e-3d, RotationalSpeedUnit.MilliradianPerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanodegreePerSecond) => new RotationalSpeed(((180 / Math.PI) * _value) / 1e-9d, RotationalSpeedUnit.NanodegreePerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.NanoradianPerSecond) => new RotationalSpeed((_value) / 1e-9d, RotationalSpeedUnit.NanoradianPerSecond),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerMinute) => new RotationalSpeed((_value / 6.2831853072) * 60, RotationalSpeedUnit.RevolutionPerMinute),
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RevolutionPerSecond) => new RotationalSpeed(_value / 6.2831853072, RotationalSpeedUnit.RevolutionPerSecond),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

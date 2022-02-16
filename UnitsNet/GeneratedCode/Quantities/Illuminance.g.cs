@@ -223,41 +223,18 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> IlluminanceUnit
-            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Kilolux, quantity => new Illuminance((quantity.Value) / 1e3d, IlluminanceUnit.Kilolux));
-            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Megalux, quantity => new Illuminance((quantity.Value) / 1e6d, IlluminanceUnit.Megalux));
-            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Millilux, quantity => new Illuminance((quantity.Value) / 1e-3d, IlluminanceUnit.Millilux));
+            // Register in unit converter: IlluminanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, IlluminanceUnit.Lux, quantity => quantity.ToUnit(IlluminanceUnit.Lux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Megalux, IlluminanceUnit.Lux, quantity => quantity.ToUnit(IlluminanceUnit.Lux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, IlluminanceUnit.Lux, quantity => quantity.ToUnit(IlluminanceUnit.Lux));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Lux, quantity => quantity);
 
-            // Register in unit converter: IlluminanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Kilolux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e3d, IlluminanceUnit.Lux));
-            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Megalux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e6d, IlluminanceUnit.Lux));
-            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e-3d, IlluminanceUnit.Lux));
-        }
-
-        private static bool TryConvert(Illuminance value, IlluminanceUnit targetUnit, out Illuminance? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // IlluminanceUnit -> BaseUnit
-                (IlluminanceUnit.Kilolux, IlluminanceUnit.Lux) => new Illuminance((value.Value) * 1e3d, IlluminanceUnit.Lux),
-                (IlluminanceUnit.Megalux, IlluminanceUnit.Lux) => new Illuminance((value.Value) * 1e6d, IlluminanceUnit.Lux),
-                (IlluminanceUnit.Millilux, IlluminanceUnit.Lux) => new Illuminance((value.Value) * 1e-3d, IlluminanceUnit.Lux),
-
-                // BaseUnit <-> BaseUnit
-                (IlluminanceUnit.Lux, IlluminanceUnit.Lux) => value,
-
-                // BaseUnit -> IlluminanceUnit
-                (IlluminanceUnit.Lux, IlluminanceUnit.Kilolux) => new Illuminance((value.Value) / 1e3d, IlluminanceUnit.Kilolux),
-                (IlluminanceUnit.Lux, IlluminanceUnit.Megalux) => new Illuminance((value.Value) / 1e6d, IlluminanceUnit.Megalux),
-                (IlluminanceUnit.Lux, IlluminanceUnit.Millilux) => new Illuminance((value.Value) / 1e-3d, IlluminanceUnit.Millilux),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> IlluminanceUnit
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Kilolux, quantity => quantity.ToUnit(IlluminanceUnit.Kilolux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Megalux, quantity => quantity.ToUnit(IlluminanceUnit.Megalux));
+            unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Lux, IlluminanceUnit.Millilux, quantity => quantity.ToUnit(IlluminanceUnit.Millilux));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -732,11 +709,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(Illuminance), Unit, typeof(Illuminance), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Illuminance)converted;
+                return (Illuminance)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -748,6 +728,29 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(IlluminanceUnit unit, out Illuminance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // IlluminanceUnit -> BaseUnit
+                (IlluminanceUnit.Kilolux, IlluminanceUnit.Lux) => new Illuminance((_value) * 1e3d, IlluminanceUnit.Lux),
+                (IlluminanceUnit.Megalux, IlluminanceUnit.Lux) => new Illuminance((_value) * 1e6d, IlluminanceUnit.Lux),
+                (IlluminanceUnit.Millilux, IlluminanceUnit.Lux) => new Illuminance((_value) * 1e-3d, IlluminanceUnit.Lux),
+
+                // BaseUnit <-> BaseUnit
+                (IlluminanceUnit.Lux, IlluminanceUnit.Lux) => value,
+
+                // BaseUnit -> IlluminanceUnit
+                (IlluminanceUnit.Lux, IlluminanceUnit.Kilolux) => new Illuminance((_value) / 1e3d, IlluminanceUnit.Kilolux),
+                (IlluminanceUnit.Lux, IlluminanceUnit.Megalux) => new Illuminance((_value) / 1e6d, IlluminanceUnit.Megalux),
+                (IlluminanceUnit.Lux, IlluminanceUnit.Millilux) => new Illuminance((_value) / 1e-3d, IlluminanceUnit.Millilux),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

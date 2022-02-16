@@ -232,49 +232,22 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> AreaMomentOfInertiaUnit
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value * 1e8, AreaMomentOfInertiaUnit.CentimeterToTheFourth));
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.DecimeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value * 1e4, AreaMomentOfInertiaUnit.DecimeterToTheFourth));
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value / Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.FootToTheFourth));
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value / Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.InchToTheFourth));
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value * 1e12, AreaMomentOfInertiaUnit.MillimeterToTheFourth));
+            // Register in unit converter: AreaMomentOfInertiaUnit -> BaseUnit
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.MeterToTheFourth));
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.MeterToTheFourth));
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.MeterToTheFourth));
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.MeterToTheFourth));
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.MeterToTheFourth));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => quantity);
 
-            // Register in unit converter: AreaMomentOfInertiaUnit -> BaseUnit
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value / 1e8, AreaMomentOfInertiaUnit.MeterToTheFourth));
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.DecimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value / 1e4, AreaMomentOfInertiaUnit.MeterToTheFourth));
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value * Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.MeterToTheFourth));
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value * Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.MeterToTheFourth));
-            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth, quantity => new AreaMomentOfInertia(quantity.Value / 1e12, AreaMomentOfInertiaUnit.MeterToTheFourth));
-        }
-
-        private static bool TryConvert(AreaMomentOfInertia value, AreaMomentOfInertiaUnit targetUnit, out AreaMomentOfInertia? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // AreaMomentOfInertiaUnit -> BaseUnit
-                (AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(value.Value / 1e8, AreaMomentOfInertiaUnit.MeterToTheFourth),
-                (AreaMomentOfInertiaUnit.DecimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(value.Value / 1e4, AreaMomentOfInertiaUnit.MeterToTheFourth),
-                (AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(value.Value * Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.MeterToTheFourth),
-                (AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(value.Value * Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.MeterToTheFourth),
-                (AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(value.Value / 1e12, AreaMomentOfInertiaUnit.MeterToTheFourth),
-
-                // BaseUnit <-> BaseUnit
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => value,
-
-                // BaseUnit -> AreaMomentOfInertiaUnit
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth) => new AreaMomentOfInertia(value.Value * 1e8, AreaMomentOfInertiaUnit.CentimeterToTheFourth),
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.DecimeterToTheFourth) => new AreaMomentOfInertia(value.Value * 1e4, AreaMomentOfInertiaUnit.DecimeterToTheFourth),
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth) => new AreaMomentOfInertia(value.Value / Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.FootToTheFourth),
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth) => new AreaMomentOfInertia(value.Value / Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.InchToTheFourth),
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth) => new AreaMomentOfInertia(value.Value * 1e12, AreaMomentOfInertiaUnit.MillimeterToTheFourth),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> AreaMomentOfInertiaUnit
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.CentimeterToTheFourth));
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.DecimeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.DecimeterToTheFourth));
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.FootToTheFourth));
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.InchToTheFourth));
+            unitConverter.SetConversionFunction<AreaMomentOfInertia>(AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth, quantity => quantity.ToUnit(AreaMomentOfInertiaUnit.MillimeterToTheFourth));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -771,11 +744,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(AreaMomentOfInertia), Unit, typeof(AreaMomentOfInertia), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (AreaMomentOfInertia)converted;
+                return (AreaMomentOfInertia)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -787,6 +763,33 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(AreaMomentOfInertiaUnit unit, out AreaMomentOfInertia? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // AreaMomentOfInertiaUnit -> BaseUnit
+                (AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1e8, AreaMomentOfInertiaUnit.MeterToTheFourth),
+                (AreaMomentOfInertiaUnit.DecimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1e4, AreaMomentOfInertiaUnit.MeterToTheFourth),
+                (AreaMomentOfInertiaUnit.FootToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.MeterToTheFourth),
+                (AreaMomentOfInertiaUnit.InchToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value * Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.MeterToTheFourth),
+                (AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1e12, AreaMomentOfInertiaUnit.MeterToTheFourth),
+
+                // BaseUnit <-> BaseUnit
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => value,
+
+                // BaseUnit -> AreaMomentOfInertiaUnit
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth) => new AreaMomentOfInertia(_value * 1e8, AreaMomentOfInertiaUnit.CentimeterToTheFourth),
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.DecimeterToTheFourth) => new AreaMomentOfInertia(_value * 1e4, AreaMomentOfInertiaUnit.DecimeterToTheFourth),
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.FootToTheFourth) => new AreaMomentOfInertia(_value / Math.Pow(0.3048, 4), AreaMomentOfInertiaUnit.FootToTheFourth),
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.InchToTheFourth) => new AreaMomentOfInertia(_value / Math.Pow(2.54e-2, 4), AreaMomentOfInertiaUnit.InchToTheFourth),
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth) => new AreaMomentOfInertia(_value * 1e12, AreaMomentOfInertiaUnit.MillimeterToTheFourth),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

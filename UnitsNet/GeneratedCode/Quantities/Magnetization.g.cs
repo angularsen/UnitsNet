@@ -205,29 +205,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> MagnetizationUnit
+            // Register in unit converter: MagnetizationUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Magnetization>(MagnetizationUnit.AmperePerMeter, MagnetizationUnit.AmperePerMeter, quantity => quantity);
 
-            // Register in unit converter: MagnetizationUnit -> BaseUnit
-        }
-
-        private static bool TryConvert(Magnetization value, MagnetizationUnit targetUnit, out Magnetization? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // MagnetizationUnit -> BaseUnit
-
-                // BaseUnit <-> BaseUnit
-                (MagnetizationUnit.AmperePerMeter, MagnetizationUnit.AmperePerMeter) => value,
-
-                // BaseUnit -> MagnetizationUnit
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> MagnetizationUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -669,11 +652,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(Magnetization), Unit, typeof(Magnetization), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Magnetization)converted;
+                return (Magnetization)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -685,6 +671,23 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(MagnetizationUnit unit, out Magnetization? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MagnetizationUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (MagnetizationUnit.AmperePerMeter, MagnetizationUnit.AmperePerMeter) => value,
+
+                // BaseUnit -> MagnetizationUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

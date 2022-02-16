@@ -214,37 +214,16 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> MolarEntropyUnit
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin, quantity => new MolarEntropy((quantity.Value) / 1e3d, MolarEntropyUnit.KilojoulePerMoleKelvin));
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.MegajoulePerMoleKelvin, quantity => new MolarEntropy((quantity.Value) / 1e6d, MolarEntropyUnit.MegajoulePerMoleKelvin));
+            // Register in unit converter: MolarEntropyUnit -> BaseUnit
+            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.JoulePerMoleKelvin));
+            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.JoulePerMoleKelvin));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => quantity);
 
-            // Register in unit converter: MolarEntropyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => new MolarEntropy((quantity.Value) * 1e3d, MolarEntropyUnit.JoulePerMoleKelvin));
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => new MolarEntropy((quantity.Value) * 1e6d, MolarEntropyUnit.JoulePerMoleKelvin));
-        }
-
-        private static bool TryConvert(MolarEntropy value, MolarEntropyUnit targetUnit, out MolarEntropy? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // MolarEntropyUnit -> BaseUnit
-                (MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((value.Value) * 1e3d, MolarEntropyUnit.JoulePerMoleKelvin),
-                (MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((value.Value) * 1e6d, MolarEntropyUnit.JoulePerMoleKelvin),
-
-                // BaseUnit <-> BaseUnit
-                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => value,
-
-                // BaseUnit -> MolarEntropyUnit
-                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin) => new MolarEntropy((value.Value) / 1e3d, MolarEntropyUnit.KilojoulePerMoleKelvin),
-                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.MegajoulePerMoleKelvin) => new MolarEntropy((value.Value) / 1e6d, MolarEntropyUnit.MegajoulePerMoleKelvin),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> MolarEntropyUnit
+            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.KilojoulePerMoleKelvin));
+            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.MegajoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -708,11 +687,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(MolarEntropy), Unit, typeof(MolarEntropy), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (MolarEntropy)converted;
+                return (MolarEntropy)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -724,6 +706,27 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(MolarEntropyUnit unit, out MolarEntropy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MolarEntropyUnit -> BaseUnit
+                (MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((_value) * 1e3d, MolarEntropyUnit.JoulePerMoleKelvin),
+                (MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((_value) * 1e6d, MolarEntropyUnit.JoulePerMoleKelvin),
+
+                // BaseUnit <-> BaseUnit
+                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => value,
+
+                // BaseUnit -> MolarEntropyUnit
+                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin) => new MolarEntropy((_value) / 1e3d, MolarEntropyUnit.KilojoulePerMoleKelvin),
+                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.MegajoulePerMoleKelvin) => new MolarEntropy((_value) / 1e6d, MolarEntropyUnit.MegajoulePerMoleKelvin),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

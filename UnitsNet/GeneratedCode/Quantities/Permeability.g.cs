@@ -205,29 +205,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> PermeabilityUnit
+            // Register in unit converter: PermeabilityUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Permeability>(PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter, quantity => quantity);
 
-            // Register in unit converter: PermeabilityUnit -> BaseUnit
-        }
-
-        private static bool TryConvert(Permeability value, PermeabilityUnit targetUnit, out Permeability? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // PermeabilityUnit -> BaseUnit
-
-                // BaseUnit <-> BaseUnit
-                (PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter) => value,
-
-                // BaseUnit -> PermeabilityUnit
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> PermeabilityUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -669,11 +652,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(Permeability), Unit, typeof(Permeability), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Permeability)converted;
+                return (Permeability)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -685,6 +671,23 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(PermeabilityUnit unit, out Permeability? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // PermeabilityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter) => value,
+
+                // BaseUnit -> PermeabilityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

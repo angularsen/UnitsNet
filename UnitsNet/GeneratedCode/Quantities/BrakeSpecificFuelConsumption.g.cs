@@ -214,37 +214,16 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> BrakeSpecificFuelConsumptionUnit
-            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, quantity => new BrakeSpecificFuelConsumption(quantity.Value * 3.6e9, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour));
-            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, quantity => new BrakeSpecificFuelConsumption(quantity.Value / 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
+            // Register in unit converter: BrakeSpecificFuelConsumptionUnit -> BaseUnit
+            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => quantity.ToUnit(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
+            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => quantity.ToUnit(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => quantity);
 
-            // Register in unit converter: BrakeSpecificFuelConsumptionUnit -> BaseUnit
-            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => new BrakeSpecificFuelConsumption(quantity.Value / 3.6e9, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
-            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => new BrakeSpecificFuelConsumption(quantity.Value * 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
-        }
-
-        private static bool TryConvert(BrakeSpecificFuelConsumption value, BrakeSpecificFuelConsumptionUnit targetUnit, out BrakeSpecificFuelConsumption? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // BrakeSpecificFuelConsumptionUnit -> BaseUnit
-                (BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => new BrakeSpecificFuelConsumption(value.Value / 3.6e9, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule),
-                (BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => new BrakeSpecificFuelConsumption(value.Value * 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule),
-
-                // BaseUnit <-> BaseUnit
-                (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => value,
-
-                // BaseUnit -> BrakeSpecificFuelConsumptionUnit
-                (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour) => new BrakeSpecificFuelConsumption(value.Value * 3.6e9, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour),
-                (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour) => new BrakeSpecificFuelConsumption(value.Value / 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> BrakeSpecificFuelConsumptionUnit
+            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, quantity => quantity.ToUnit(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour));
+            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, quantity => quantity.ToUnit(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -708,11 +687,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(BrakeSpecificFuelConsumption), Unit, typeof(BrakeSpecificFuelConsumption), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (BrakeSpecificFuelConsumption)converted;
+                return (BrakeSpecificFuelConsumption)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -724,6 +706,27 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(BrakeSpecificFuelConsumptionUnit unit, out BrakeSpecificFuelConsumption? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // BrakeSpecificFuelConsumptionUnit -> BaseUnit
+                (BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => new BrakeSpecificFuelConsumption(_value / 3.6e9, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule),
+                (BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => new BrakeSpecificFuelConsumption(_value * 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule),
+
+                // BaseUnit <-> BaseUnit
+                (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) => value,
+
+                // BaseUnit -> BrakeSpecificFuelConsumptionUnit
+                (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour) => new BrakeSpecificFuelConsumption(_value * 3.6e9, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour),
+                (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour) => new BrakeSpecificFuelConsumption(_value / 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

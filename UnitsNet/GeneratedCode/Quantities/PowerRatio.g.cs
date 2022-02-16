@@ -208,33 +208,14 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> PowerRatioUnit
-            unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt, quantity => new PowerRatio(quantity.Value + 30, PowerRatioUnit.DecibelMilliwatt));
+            // Register in unit converter: PowerRatioUnit -> BaseUnit
+            unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt, quantity => quantity.ToUnit(PowerRatioUnit.DecibelWatt));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt, quantity => quantity);
 
-            // Register in unit converter: PowerRatioUnit -> BaseUnit
-            unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt, quantity => new PowerRatio(quantity.Value - 30, PowerRatioUnit.DecibelWatt));
-        }
-
-        private static bool TryConvert(PowerRatio value, PowerRatioUnit targetUnit, out PowerRatio? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // PowerRatioUnit -> BaseUnit
-                (PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt) => new PowerRatio(value.Value - 30, PowerRatioUnit.DecibelWatt),
-
-                // BaseUnit <-> BaseUnit
-                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt) => value,
-
-                // BaseUnit -> PowerRatioUnit
-                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt) => new PowerRatio(value.Value + 30, PowerRatioUnit.DecibelMilliwatt),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> PowerRatioUnit
+            unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt, quantity => quantity.ToUnit(PowerRatioUnit.DecibelMilliwatt));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -695,11 +676,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(PowerRatio), Unit, typeof(PowerRatio), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (PowerRatio)converted;
+                return (PowerRatio)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -711,6 +695,25 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(PowerRatioUnit unit, out PowerRatio? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // PowerRatioUnit -> BaseUnit
+                (PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt) => new PowerRatio(_value - 30, PowerRatioUnit.DecibelWatt),
+
+                // BaseUnit <-> BaseUnit
+                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt) => value,
+
+                // BaseUnit -> PowerRatioUnit
+                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt) => new PowerRatio(_value + 30, PowerRatioUnit.DecibelMilliwatt),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

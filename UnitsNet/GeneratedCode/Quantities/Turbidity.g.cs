@@ -205,29 +205,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> TurbidityUnit
+            // Register in unit converter: TurbidityUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Turbidity>(TurbidityUnit.NTU, TurbidityUnit.NTU, quantity => quantity);
 
-            // Register in unit converter: TurbidityUnit -> BaseUnit
-        }
-
-        private static bool TryConvert(Turbidity value, TurbidityUnit targetUnit, out Turbidity? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // TurbidityUnit -> BaseUnit
-
-                // BaseUnit <-> BaseUnit
-                (TurbidityUnit.NTU, TurbidityUnit.NTU) => value,
-
-                // BaseUnit -> TurbidityUnit
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> TurbidityUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -669,11 +652,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(Turbidity), Unit, typeof(Turbidity), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Turbidity)converted;
+                return (Turbidity)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -685,6 +671,23 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(TurbidityUnit unit, out Turbidity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // TurbidityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (TurbidityUnit.NTU, TurbidityUnit.NTU) => value,
+
+                // BaseUnit -> TurbidityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

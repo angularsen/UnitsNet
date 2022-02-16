@@ -223,41 +223,18 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> SpecificFuelConsumptionUnit
-            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, quantity => new SpecificFuelConsumption(quantity.Value / 28.33, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour));
-            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, quantity => new SpecificFuelConsumption((quantity.Value) / 1e3d, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond));
-            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity => new SpecificFuelConsumption(quantity.Value / 28.33, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
+            // Register in unit converter: SpecificFuelConsumptionUnit -> BaseUnit
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => quantity.ToUnit(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => quantity.ToUnit(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => quantity.ToUnit(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => quantity);
 
-            // Register in unit converter: SpecificFuelConsumptionUnit -> BaseUnit
-            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => new SpecificFuelConsumption(quantity.Value * 28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
-            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => new SpecificFuelConsumption((quantity.Value) * 1e3d, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
-            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, quantity => new SpecificFuelConsumption(quantity.Value * 28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond));
-        }
-
-        private static bool TryConvert(SpecificFuelConsumption value, SpecificFuelConsumptionUnit targetUnit, out SpecificFuelConsumption? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // SpecificFuelConsumptionUnit -> BaseUnit
-                (SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(value.Value * 28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
-                (SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption((value.Value) * 1e3d, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
-                (SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(value.Value * 28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
-
-                // BaseUnit <-> BaseUnit
-                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => value,
-
-                // BaseUnit -> SpecificFuelConsumptionUnit
-                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour) => new SpecificFuelConsumption(value.Value / 28.33, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour),
-                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond) => new SpecificFuelConsumption((value.Value) / 1e3d, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond),
-                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour) => new SpecificFuelConsumption(value.Value / 28.33, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> SpecificFuelConsumptionUnit
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, quantity => quantity.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour));
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, quantity => quantity.ToUnit(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond));
+            unitConverter.SetConversionFunction<SpecificFuelConsumption>(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity => quantity.ToUnit(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -732,11 +709,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(SpecificFuelConsumption), Unit, typeof(SpecificFuelConsumption), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (SpecificFuelConsumption)converted;
+                return (SpecificFuelConsumption)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -748,6 +728,29 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(SpecificFuelConsumptionUnit unit, out SpecificFuelConsumption? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // SpecificFuelConsumptionUnit -> BaseUnit
+                (SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * 28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
+                (SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption((_value) * 1e3d, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
+                (SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => new SpecificFuelConsumption(_value * 28.33, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond),
+
+                // BaseUnit <-> BaseUnit
+                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond) => value,
+
+                // BaseUnit -> SpecificFuelConsumptionUnit
+                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour) => new SpecificFuelConsumption(_value / 28.33, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour),
+                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond) => new SpecificFuelConsumption((_value) / 1e3d, SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond),
+                (SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour) => new SpecificFuelConsumption(_value / 28.33, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

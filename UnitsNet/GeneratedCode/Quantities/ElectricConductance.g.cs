@@ -217,37 +217,16 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ElectricConductanceUnit
-            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens, quantity => new ElectricConductance((quantity.Value) / 1e-6d, ElectricConductanceUnit.Microsiemens));
-            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens, quantity => new ElectricConductance((quantity.Value) / 1e-3d, ElectricConductanceUnit.Millisiemens));
+            // Register in unit converter: ElectricConductanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Siemens));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens, quantity => quantity);
 
-            // Register in unit converter: ElectricConductanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens, quantity => new ElectricConductance((quantity.Value) * 1e-6d, ElectricConductanceUnit.Siemens));
-            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens, quantity => new ElectricConductance((quantity.Value) * 1e-3d, ElectricConductanceUnit.Siemens));
-        }
-
-        private static bool TryConvert(ElectricConductance value, ElectricConductanceUnit targetUnit, out ElectricConductance? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // ElectricConductanceUnit -> BaseUnit
-                (ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((value.Value) * 1e-6d, ElectricConductanceUnit.Siemens),
-                (ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((value.Value) * 1e-3d, ElectricConductanceUnit.Siemens),
-
-                // BaseUnit <-> BaseUnit
-                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens) => value,
-
-                // BaseUnit -> ElectricConductanceUnit
-                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens) => new ElectricConductance((value.Value) / 1e-6d, ElectricConductanceUnit.Microsiemens),
-                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens) => new ElectricConductance((value.Value) / 1e-3d, ElectricConductanceUnit.Millisiemens),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> ElectricConductanceUnit
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Microsiemens));
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Millisiemens));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -711,11 +690,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(ElectricConductance), Unit, typeof(ElectricConductance), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ElectricConductance)converted;
+                return (ElectricConductance)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -727,6 +709,27 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(ElectricConductanceUnit unit, out ElectricConductance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricConductanceUnit -> BaseUnit
+                (ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((_value) * 1e-6d, ElectricConductanceUnit.Siemens),
+                (ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((_value) * 1e-3d, ElectricConductanceUnit.Siemens),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens) => value,
+
+                // BaseUnit -> ElectricConductanceUnit
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens) => new ElectricConductance((_value) / 1e-6d, ElectricConductanceUnit.Microsiemens),
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens) => new ElectricConductance((_value) / 1e-3d, ElectricConductanceUnit.Millisiemens),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

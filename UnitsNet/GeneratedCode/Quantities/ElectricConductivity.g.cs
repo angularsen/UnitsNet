@@ -217,37 +217,16 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ElectricConductivityUnit
-            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot, quantity => new ElectricConductivity(quantity.Value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot));
-            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch, quantity => new ElectricConductivity(quantity.Value / 3.937007874015748e1, ElectricConductivityUnit.SiemensPerInch));
+            // Register in unit converter: ElectricConductivityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerMeter));
+            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter, quantity => quantity);
 
-            // Register in unit converter: ElectricConductivityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter, quantity => new ElectricConductivity(quantity.Value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter));
-            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter, quantity => new ElectricConductivity(quantity.Value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter));
-        }
-
-        private static bool TryConvert(ElectricConductivity value, ElectricConductivityUnit targetUnit, out ElectricConductivity? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // ElectricConductivityUnit -> BaseUnit
-                (ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(value.Value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter),
-                (ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(value.Value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter),
-
-                // BaseUnit <-> BaseUnit
-                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter) => value,
-
-                // BaseUnit -> ElectricConductivityUnit
-                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot) => new ElectricConductivity(value.Value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot),
-                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch) => new ElectricConductivity(value.Value / 3.937007874015748e1, ElectricConductivityUnit.SiemensPerInch),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> ElectricConductivityUnit
+            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerFoot));
+            unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch, quantity => quantity.ToUnit(ElectricConductivityUnit.SiemensPerInch));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -711,11 +690,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(ElectricConductivity), Unit, typeof(ElectricConductivity), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ElectricConductivity)converted;
+                return (ElectricConductivity)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -727,6 +709,27 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(ElectricConductivityUnit unit, out ElectricConductivity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricConductivityUnit -> BaseUnit
+                (ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter),
+                (ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter) => value,
+
+                // BaseUnit -> ElectricConductivityUnit
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot) => new ElectricConductivity(_value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot),
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch) => new ElectricConductivity(_value / 3.937007874015748e1, ElectricConductivityUnit.SiemensPerInch),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

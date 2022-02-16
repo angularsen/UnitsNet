@@ -262,69 +262,32 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> DurationUnit
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Day, quantity => new Duration(quantity.Value / (24 * 3600), DurationUnit.Day));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Hour, quantity => new Duration(quantity.Value / 3600, DurationUnit.Hour));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.JulianYear, quantity => new Duration(quantity.Value / (365.25 * 24 * 3600), DurationUnit.JulianYear));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Microsecond, quantity => new Duration((quantity.Value) / 1e-6d, DurationUnit.Microsecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Millisecond, quantity => new Duration((quantity.Value) / 1e-3d, DurationUnit.Millisecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Minute, quantity => new Duration(quantity.Value / 60, DurationUnit.Minute));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Month30, quantity => new Duration(quantity.Value / (30 * 24 * 3600), DurationUnit.Month30));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Nanosecond, quantity => new Duration((quantity.Value) / 1e-9d, DurationUnit.Nanosecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => new Duration(quantity.Value / (7 * 24 * 3600), DurationUnit.Week));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => new Duration(quantity.Value / (365 * 24 * 3600), DurationUnit.Year365));
+            // Register in unit converter: DurationUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Day, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Hour, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.JulianYear, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Microsecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Millisecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Minute, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Month30, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Nanosecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Week, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Year365, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Second, quantity => quantity);
 
-            // Register in unit converter: DurationUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Day, DurationUnit.Second, quantity => new Duration(quantity.Value * 24 * 3600, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Hour, DurationUnit.Second, quantity => new Duration(quantity.Value * 3600, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.JulianYear, DurationUnit.Second, quantity => new Duration(quantity.Value * 365.25 * 24 * 3600, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Microsecond, DurationUnit.Second, quantity => new Duration((quantity.Value) * 1e-6d, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Millisecond, DurationUnit.Second, quantity => new Duration((quantity.Value) * 1e-3d, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Minute, DurationUnit.Second, quantity => new Duration(quantity.Value * 60, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Month30, DurationUnit.Second, quantity => new Duration(quantity.Value * 30 * 24 * 3600, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Nanosecond, DurationUnit.Second, quantity => new Duration((quantity.Value) * 1e-9d, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Week, DurationUnit.Second, quantity => new Duration(quantity.Value * 7 * 24 * 3600, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Year365, DurationUnit.Second, quantity => new Duration(quantity.Value * 365 * 24 * 3600, DurationUnit.Second));
-        }
-
-        private static bool TryConvert(Duration value, DurationUnit targetUnit, out Duration? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // DurationUnit -> BaseUnit
-                (DurationUnit.Day, DurationUnit.Second) => new Duration(value.Value * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Hour, DurationUnit.Second) => new Duration(value.Value * 3600, DurationUnit.Second),
-                (DurationUnit.JulianYear, DurationUnit.Second) => new Duration(value.Value * 365.25 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Microsecond, DurationUnit.Second) => new Duration((value.Value) * 1e-6d, DurationUnit.Second),
-                (DurationUnit.Millisecond, DurationUnit.Second) => new Duration((value.Value) * 1e-3d, DurationUnit.Second),
-                (DurationUnit.Minute, DurationUnit.Second) => new Duration(value.Value * 60, DurationUnit.Second),
-                (DurationUnit.Month30, DurationUnit.Second) => new Duration(value.Value * 30 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Nanosecond, DurationUnit.Second) => new Duration((value.Value) * 1e-9d, DurationUnit.Second),
-                (DurationUnit.Week, DurationUnit.Second) => new Duration(value.Value * 7 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Year365, DurationUnit.Second) => new Duration(value.Value * 365 * 24 * 3600, DurationUnit.Second),
-
-                // BaseUnit <-> BaseUnit
-                (DurationUnit.Second, DurationUnit.Second) => value,
-
-                // BaseUnit -> DurationUnit
-                (DurationUnit.Second, DurationUnit.Day) => new Duration(value.Value / (24 * 3600), DurationUnit.Day),
-                (DurationUnit.Second, DurationUnit.Hour) => new Duration(value.Value / 3600, DurationUnit.Hour),
-                (DurationUnit.Second, DurationUnit.JulianYear) => new Duration(value.Value / (365.25 * 24 * 3600), DurationUnit.JulianYear),
-                (DurationUnit.Second, DurationUnit.Microsecond) => new Duration((value.Value) / 1e-6d, DurationUnit.Microsecond),
-                (DurationUnit.Second, DurationUnit.Millisecond) => new Duration((value.Value) / 1e-3d, DurationUnit.Millisecond),
-                (DurationUnit.Second, DurationUnit.Minute) => new Duration(value.Value / 60, DurationUnit.Minute),
-                (DurationUnit.Second, DurationUnit.Month30) => new Duration(value.Value / (30 * 24 * 3600), DurationUnit.Month30),
-                (DurationUnit.Second, DurationUnit.Nanosecond) => new Duration((value.Value) / 1e-9d, DurationUnit.Nanosecond),
-                (DurationUnit.Second, DurationUnit.Week) => new Duration(value.Value / (7 * 24 * 3600), DurationUnit.Week),
-                (DurationUnit.Second, DurationUnit.Year365) => new Duration(value.Value / (365 * 24 * 3600), DurationUnit.Year365),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> DurationUnit
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Day, quantity => quantity.ToUnit(DurationUnit.Day));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Hour, quantity => quantity.ToUnit(DurationUnit.Hour));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.JulianYear, quantity => quantity.ToUnit(DurationUnit.JulianYear));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Microsecond, quantity => quantity.ToUnit(DurationUnit.Microsecond));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Millisecond, quantity => quantity.ToUnit(DurationUnit.Millisecond));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Minute, quantity => quantity.ToUnit(DurationUnit.Minute));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Month30, quantity => quantity.ToUnit(DurationUnit.Month30));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Nanosecond, quantity => quantity.ToUnit(DurationUnit.Nanosecond));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => quantity.ToUnit(DurationUnit.Week));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => quantity.ToUnit(DurationUnit.Year365));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -886,11 +849,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(Duration), Unit, typeof(Duration), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Duration)converted;
+                return (Duration)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -902,6 +868,43 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(DurationUnit unit, out Duration? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // DurationUnit -> BaseUnit
+                (DurationUnit.Day, DurationUnit.Second) => new Duration(_value * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Hour, DurationUnit.Second) => new Duration(_value * 3600, DurationUnit.Second),
+                (DurationUnit.JulianYear, DurationUnit.Second) => new Duration(_value * 365.25 * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Microsecond, DurationUnit.Second) => new Duration((_value) * 1e-6d, DurationUnit.Second),
+                (DurationUnit.Millisecond, DurationUnit.Second) => new Duration((_value) * 1e-3d, DurationUnit.Second),
+                (DurationUnit.Minute, DurationUnit.Second) => new Duration(_value * 60, DurationUnit.Second),
+                (DurationUnit.Month30, DurationUnit.Second) => new Duration(_value * 30 * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Nanosecond, DurationUnit.Second) => new Duration((_value) * 1e-9d, DurationUnit.Second),
+                (DurationUnit.Week, DurationUnit.Second) => new Duration(_value * 7 * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Year365, DurationUnit.Second) => new Duration(_value * 365 * 24 * 3600, DurationUnit.Second),
+
+                // BaseUnit <-> BaseUnit
+                (DurationUnit.Second, DurationUnit.Second) => value,
+
+                // BaseUnit -> DurationUnit
+                (DurationUnit.Second, DurationUnit.Day) => new Duration(_value / (24 * 3600), DurationUnit.Day),
+                (DurationUnit.Second, DurationUnit.Hour) => new Duration(_value / 3600, DurationUnit.Hour),
+                (DurationUnit.Second, DurationUnit.JulianYear) => new Duration(_value / (365.25 * 24 * 3600), DurationUnit.JulianYear),
+                (DurationUnit.Second, DurationUnit.Microsecond) => new Duration((_value) / 1e-6d, DurationUnit.Microsecond),
+                (DurationUnit.Second, DurationUnit.Millisecond) => new Duration((_value) / 1e-3d, DurationUnit.Millisecond),
+                (DurationUnit.Second, DurationUnit.Minute) => new Duration(_value / 60, DurationUnit.Minute),
+                (DurationUnit.Second, DurationUnit.Month30) => new Duration(_value / (30 * 24 * 3600), DurationUnit.Month30),
+                (DurationUnit.Second, DurationUnit.Nanosecond) => new Duration((_value) / 1e-9d, DurationUnit.Nanosecond),
+                (DurationUnit.Second, DurationUnit.Week) => new Duration(_value / (7 * 24 * 3600), DurationUnit.Week),
+                (DurationUnit.Second, DurationUnit.Year365) => new Duration(_value / (365 * 24 * 3600), DurationUnit.Year365),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

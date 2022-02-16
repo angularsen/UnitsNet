@@ -238,53 +238,24 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> EntropyUnit
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.CaloriePerKelvin, quantity => new Entropy(quantity.Value / 4.184, EntropyUnit.CaloriePerKelvin));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerDegreeCelsius, quantity => new Entropy(quantity.Value, EntropyUnit.JoulePerDegreeCelsius));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilocaloriePerKelvin, quantity => new Entropy((quantity.Value / 4.184) / 1e3d, EntropyUnit.KilocaloriePerKelvin));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerDegreeCelsius, quantity => new Entropy((quantity.Value) / 1e3d, EntropyUnit.KilojoulePerDegreeCelsius));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerKelvin, quantity => new Entropy((quantity.Value) / 1e3d, EntropyUnit.KilojoulePerKelvin));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.MegajoulePerKelvin, quantity => new Entropy((quantity.Value) / 1e6d, EntropyUnit.MegajoulePerKelvin));
+            // Register in unit converter: EntropyUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.CaloriePerKelvin, EntropyUnit.JoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.JoulePerKelvin));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.JoulePerKelvin));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.KilocaloriePerKelvin, EntropyUnit.JoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.JoulePerKelvin));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.KilojoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.JoulePerKelvin));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.KilojoulePerKelvin, EntropyUnit.JoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.JoulePerKelvin));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.MegajoulePerKelvin, EntropyUnit.JoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.JoulePerKelvin));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerKelvin, quantity => quantity);
 
-            // Register in unit converter: EntropyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.CaloriePerKelvin, EntropyUnit.JoulePerKelvin, quantity => new Entropy(quantity.Value * 4.184, EntropyUnit.JoulePerKelvin));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin, quantity => new Entropy(quantity.Value, EntropyUnit.JoulePerKelvin));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.KilocaloriePerKelvin, EntropyUnit.JoulePerKelvin, quantity => new Entropy((quantity.Value * 4.184) * 1e3d, EntropyUnit.JoulePerKelvin));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.KilojoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin, quantity => new Entropy((quantity.Value) * 1e3d, EntropyUnit.JoulePerKelvin));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.KilojoulePerKelvin, EntropyUnit.JoulePerKelvin, quantity => new Entropy((quantity.Value) * 1e3d, EntropyUnit.JoulePerKelvin));
-            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.MegajoulePerKelvin, EntropyUnit.JoulePerKelvin, quantity => new Entropy((quantity.Value) * 1e6d, EntropyUnit.JoulePerKelvin));
-        }
-
-        private static bool TryConvert(Entropy value, EntropyUnit targetUnit, out Entropy? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // EntropyUnit -> BaseUnit
-                (EntropyUnit.CaloriePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy(value.Value * 4.184, EntropyUnit.JoulePerKelvin),
-                (EntropyUnit.JoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin) => new Entropy(value.Value, EntropyUnit.JoulePerKelvin),
-                (EntropyUnit.KilocaloriePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((value.Value * 4.184) * 1e3d, EntropyUnit.JoulePerKelvin),
-                (EntropyUnit.KilojoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin) => new Entropy((value.Value) * 1e3d, EntropyUnit.JoulePerKelvin),
-                (EntropyUnit.KilojoulePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((value.Value) * 1e3d, EntropyUnit.JoulePerKelvin),
-                (EntropyUnit.MegajoulePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((value.Value) * 1e6d, EntropyUnit.JoulePerKelvin),
-
-                // BaseUnit <-> BaseUnit
-                (EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerKelvin) => value,
-
-                // BaseUnit -> EntropyUnit
-                (EntropyUnit.JoulePerKelvin, EntropyUnit.CaloriePerKelvin) => new Entropy(value.Value / 4.184, EntropyUnit.CaloriePerKelvin),
-                (EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerDegreeCelsius) => new Entropy(value.Value, EntropyUnit.JoulePerDegreeCelsius),
-                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilocaloriePerKelvin) => new Entropy((value.Value / 4.184) / 1e3d, EntropyUnit.KilocaloriePerKelvin),
-                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerDegreeCelsius) => new Entropy((value.Value) / 1e3d, EntropyUnit.KilojoulePerDegreeCelsius),
-                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerKelvin) => new Entropy((value.Value) / 1e3d, EntropyUnit.KilojoulePerKelvin),
-                (EntropyUnit.JoulePerKelvin, EntropyUnit.MegajoulePerKelvin) => new Entropy((value.Value) / 1e6d, EntropyUnit.MegajoulePerKelvin),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> EntropyUnit
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.CaloriePerKelvin, quantity => quantity.ToUnit(EntropyUnit.CaloriePerKelvin));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerDegreeCelsius, quantity => quantity.ToUnit(EntropyUnit.JoulePerDegreeCelsius));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilocaloriePerKelvin, quantity => quantity.ToUnit(EntropyUnit.KilocaloriePerKelvin));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerDegreeCelsius, quantity => quantity.ToUnit(EntropyUnit.KilojoulePerDegreeCelsius));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.KilojoulePerKelvin));
+            unitConverter.SetConversionFunction<Entropy>(EntropyUnit.JoulePerKelvin, EntropyUnit.MegajoulePerKelvin, quantity => quantity.ToUnit(EntropyUnit.MegajoulePerKelvin));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -792,11 +763,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(Entropy), Unit, typeof(Entropy), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Entropy)converted;
+                return (Entropy)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -808,6 +782,35 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(EntropyUnit unit, out Entropy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // EntropyUnit -> BaseUnit
+                (EntropyUnit.CaloriePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy(_value * 4.184, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.JoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin) => new Entropy(_value, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.KilocaloriePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((_value * 4.184) * 1e3d, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.KilojoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin) => new Entropy((_value) * 1e3d, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.KilojoulePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((_value) * 1e3d, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.MegajoulePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((_value) * 1e6d, EntropyUnit.JoulePerKelvin),
+
+                // BaseUnit <-> BaseUnit
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerKelvin) => value,
+
+                // BaseUnit -> EntropyUnit
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.CaloriePerKelvin) => new Entropy(_value / 4.184, EntropyUnit.CaloriePerKelvin),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerDegreeCelsius) => new Entropy(_value, EntropyUnit.JoulePerDegreeCelsius),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilocaloriePerKelvin) => new Entropy((_value / 4.184) / 1e3d, EntropyUnit.KilocaloriePerKelvin),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerDegreeCelsius) => new Entropy((_value) / 1e3d, EntropyUnit.KilojoulePerDegreeCelsius),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerKelvin) => new Entropy((_value) / 1e3d, EntropyUnit.KilojoulePerKelvin),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.MegajoulePerKelvin) => new Entropy((_value) / 1e6d, EntropyUnit.MegajoulePerKelvin),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

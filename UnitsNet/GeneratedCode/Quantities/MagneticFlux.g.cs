@@ -205,29 +205,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> MagneticFluxUnit
+            // Register in unit converter: MagneticFluxUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MagneticFlux>(MagneticFluxUnit.Weber, MagneticFluxUnit.Weber, quantity => quantity);
 
-            // Register in unit converter: MagneticFluxUnit -> BaseUnit
-        }
-
-        private static bool TryConvert(MagneticFlux value, MagneticFluxUnit targetUnit, out MagneticFlux? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // MagneticFluxUnit -> BaseUnit
-
-                // BaseUnit <-> BaseUnit
-                (MagneticFluxUnit.Weber, MagneticFluxUnit.Weber) => value,
-
-                // BaseUnit -> MagneticFluxUnit
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> MagneticFluxUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -669,11 +652,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(MagneticFlux), Unit, typeof(MagneticFlux), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (MagneticFlux)converted;
+                return (MagneticFlux)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -685,6 +671,23 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(MagneticFluxUnit unit, out MagneticFlux? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MagneticFluxUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (MagneticFluxUnit.Weber, MagneticFluxUnit.Weber) => value,
+
+                // BaseUnit -> MagneticFluxUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

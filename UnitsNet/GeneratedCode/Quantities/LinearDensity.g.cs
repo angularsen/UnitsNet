@@ -283,81 +283,38 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> LinearDensityUnit
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerCentimeter, quantity => new LinearDensity(quantity.Value / 1e-1, LinearDensityUnit.GramPerCentimeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMeter, quantity => new LinearDensity(quantity.Value / 1e-3, LinearDensityUnit.GramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMillimeter, quantity => new LinearDensity(quantity.Value, LinearDensityUnit.GramPerMillimeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerCentimeter, quantity => new LinearDensity((quantity.Value / 1e-1) / 1e3d, LinearDensityUnit.KilogramPerCentimeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMillimeter, quantity => new LinearDensity((quantity.Value) / 1e3d, LinearDensityUnit.KilogramPerMillimeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerCentimeter, quantity => new LinearDensity((quantity.Value / 1e-1) / 1e-6d, LinearDensityUnit.MicrogramPerCentimeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerMeter, quantity => new LinearDensity((quantity.Value / 1e-3) / 1e-6d, LinearDensityUnit.MicrogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerMillimeter, quantity => new LinearDensity((quantity.Value) / 1e-6d, LinearDensityUnit.MicrogramPerMillimeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerCentimeter, quantity => new LinearDensity((quantity.Value / 1e-1) / 1e-3d, LinearDensityUnit.MilligramPerCentimeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMeter, quantity => new LinearDensity((quantity.Value / 1e-3) / 1e-3d, LinearDensityUnit.MilligramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMillimeter, quantity => new LinearDensity((quantity.Value) / 1e-3d, LinearDensityUnit.MilligramPerMillimeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerFoot, quantity => new LinearDensity(quantity.Value / 1.48816394, LinearDensityUnit.PoundPerFoot));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerInch, quantity => new LinearDensity(quantity.Value * 5.5997415e-2, LinearDensityUnit.PoundPerInch));
+            // Register in unit converter: LinearDensityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerCentimeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerMeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerCentimeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerCentimeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerMeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerCentimeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerMeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerFoot, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerInch, LinearDensityUnit.KilogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMeter, quantity => quantity);
 
-            // Register in unit converter: LinearDensityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerCentimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity(quantity.Value * 1e-1, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerMeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity(quantity.Value * 1e-3, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.GramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity(quantity.Value, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerCentimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value * 1e-1) * 1e3d, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value) * 1e3d, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerCentimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value * 1e-1) * 1e-6d, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerMeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value * 1e-3) * 1e-6d, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MicrogramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value) * 1e-6d, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerCentimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value * 1e-1) * 1e-3d, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerMeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value * 1e-3) * 1e-3d, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.MilligramPerMillimeter, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity((quantity.Value) * 1e-3d, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerFoot, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity(quantity.Value * 1.48816394, LinearDensityUnit.KilogramPerMeter));
-            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.PoundPerInch, LinearDensityUnit.KilogramPerMeter, quantity => new LinearDensity(quantity.Value / 5.5997415e-2, LinearDensityUnit.KilogramPerMeter));
-        }
-
-        private static bool TryConvert(LinearDensity value, LinearDensityUnit targetUnit, out LinearDensity? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // LinearDensityUnit -> BaseUnit
-                (LinearDensityUnit.GramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(value.Value * 1e-1, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.GramPerMeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(value.Value * 1e-3, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.GramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(value.Value, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.KilogramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((value.Value * 1e-1) * 1e3d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.KilogramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((value.Value) * 1e3d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.MicrogramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((value.Value * 1e-1) * 1e-6d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.MicrogramPerMeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((value.Value * 1e-3) * 1e-6d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.MicrogramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((value.Value) * 1e-6d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.MilligramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((value.Value * 1e-1) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.MilligramPerMeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((value.Value * 1e-3) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.MilligramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((value.Value) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.PoundPerFoot, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(value.Value * 1.48816394, LinearDensityUnit.KilogramPerMeter),
-                (LinearDensityUnit.PoundPerInch, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(value.Value / 5.5997415e-2, LinearDensityUnit.KilogramPerMeter),
-
-                // BaseUnit <-> BaseUnit
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMeter) => value,
-
-                // BaseUnit -> LinearDensityUnit
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerCentimeter) => new LinearDensity(value.Value / 1e-1, LinearDensityUnit.GramPerCentimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMeter) => new LinearDensity(value.Value / 1e-3, LinearDensityUnit.GramPerMeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMillimeter) => new LinearDensity(value.Value, LinearDensityUnit.GramPerMillimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerCentimeter) => new LinearDensity((value.Value / 1e-1) / 1e3d, LinearDensityUnit.KilogramPerCentimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMillimeter) => new LinearDensity((value.Value) / 1e3d, LinearDensityUnit.KilogramPerMillimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerCentimeter) => new LinearDensity((value.Value / 1e-1) / 1e-6d, LinearDensityUnit.MicrogramPerCentimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerMeter) => new LinearDensity((value.Value / 1e-3) / 1e-6d, LinearDensityUnit.MicrogramPerMeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerMillimeter) => new LinearDensity((value.Value) / 1e-6d, LinearDensityUnit.MicrogramPerMillimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerCentimeter) => new LinearDensity((value.Value / 1e-1) / 1e-3d, LinearDensityUnit.MilligramPerCentimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMeter) => new LinearDensity((value.Value / 1e-3) / 1e-3d, LinearDensityUnit.MilligramPerMeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMillimeter) => new LinearDensity((value.Value) / 1e-3d, LinearDensityUnit.MilligramPerMillimeter),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerFoot) => new LinearDensity(value.Value / 1.48816394, LinearDensityUnit.PoundPerFoot),
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerInch) => new LinearDensity(value.Value * 5.5997415e-2, LinearDensityUnit.PoundPerInch),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> LinearDensityUnit
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerCentimeter, quantity => quantity.ToUnit(LinearDensityUnit.GramPerCentimeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.GramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMillimeter, quantity => quantity.ToUnit(LinearDensityUnit.GramPerMillimeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerCentimeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerCentimeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMillimeter, quantity => quantity.ToUnit(LinearDensityUnit.KilogramPerMillimeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerCentimeter, quantity => quantity.ToUnit(LinearDensityUnit.MicrogramPerCentimeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.MicrogramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerMillimeter, quantity => quantity.ToUnit(LinearDensityUnit.MicrogramPerMillimeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerCentimeter, quantity => quantity.ToUnit(LinearDensityUnit.MilligramPerCentimeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMeter, quantity => quantity.ToUnit(LinearDensityUnit.MilligramPerMeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMillimeter, quantity => quantity.ToUnit(LinearDensityUnit.MilligramPerMillimeter));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerFoot, quantity => quantity.ToUnit(LinearDensityUnit.PoundPerFoot));
+            unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerInch, quantity => quantity.ToUnit(LinearDensityUnit.PoundPerInch));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -942,11 +899,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(LinearDensity), Unit, typeof(LinearDensity), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (LinearDensity)converted;
+                return (LinearDensity)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -958,6 +918,49 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(LinearDensityUnit unit, out LinearDensity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LinearDensityUnit -> BaseUnit
+                (LinearDensityUnit.GramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value * 1e-1, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.GramPerMeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value * 1e-3, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.GramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.KilogramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value * 1e-1) * 1e3d, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.KilogramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value) * 1e3d, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.MicrogramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value * 1e-1) * 1e-6d, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.MicrogramPerMeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value * 1e-3) * 1e-6d, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.MicrogramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value) * 1e-6d, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.MilligramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value * 1e-1) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.MilligramPerMeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value * 1e-3) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.MilligramPerMillimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity((_value) * 1e-3d, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.PoundPerFoot, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value * 1.48816394, LinearDensityUnit.KilogramPerMeter),
+                (LinearDensityUnit.PoundPerInch, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value / 5.5997415e-2, LinearDensityUnit.KilogramPerMeter),
+
+                // BaseUnit <-> BaseUnit
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMeter) => value,
+
+                // BaseUnit -> LinearDensityUnit
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerCentimeter) => new LinearDensity(_value / 1e-1, LinearDensityUnit.GramPerCentimeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMeter) => new LinearDensity(_value / 1e-3, LinearDensityUnit.GramPerMeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerMillimeter) => new LinearDensity(_value, LinearDensityUnit.GramPerMillimeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerCentimeter) => new LinearDensity((_value / 1e-1) / 1e3d, LinearDensityUnit.KilogramPerCentimeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMillimeter) => new LinearDensity((_value) / 1e3d, LinearDensityUnit.KilogramPerMillimeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerCentimeter) => new LinearDensity((_value / 1e-1) / 1e-6d, LinearDensityUnit.MicrogramPerCentimeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerMeter) => new LinearDensity((_value / 1e-3) / 1e-6d, LinearDensityUnit.MicrogramPerMeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MicrogramPerMillimeter) => new LinearDensity((_value) / 1e-6d, LinearDensityUnit.MicrogramPerMillimeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerCentimeter) => new LinearDensity((_value / 1e-1) / 1e-3d, LinearDensityUnit.MilligramPerCentimeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMeter) => new LinearDensity((_value / 1e-3) / 1e-3d, LinearDensityUnit.MilligramPerMeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.MilligramPerMillimeter) => new LinearDensity((_value) / 1e-3d, LinearDensityUnit.MilligramPerMillimeter),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerFoot) => new LinearDensity(_value / 1.48816394, LinearDensityUnit.PoundPerFoot),
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerInch) => new LinearDensity(_value * 5.5997415e-2, LinearDensityUnit.PoundPerInch),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

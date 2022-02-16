@@ -223,41 +223,18 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ElectricInductanceUnit
-            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry, quantity => new ElectricInductance((quantity.Value) / 1e-6d, ElectricInductanceUnit.Microhenry));
-            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry, quantity => new ElectricInductance((quantity.Value) / 1e-3d, ElectricInductanceUnit.Millihenry));
-            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry, quantity => new ElectricInductance((quantity.Value) / 1e-9d, ElectricInductanceUnit.Nanohenry));
+            // Register in unit converter: ElectricInductanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry, quantity => quantity.ToUnit(ElectricInductanceUnit.Henry));
+            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry, quantity => quantity.ToUnit(ElectricInductanceUnit.Henry));
+            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry, quantity => quantity.ToUnit(ElectricInductanceUnit.Henry));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry, quantity => quantity);
 
-            // Register in unit converter: ElectricInductanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry, quantity => new ElectricInductance((quantity.Value) * 1e-6d, ElectricInductanceUnit.Henry));
-            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry, quantity => new ElectricInductance((quantity.Value) * 1e-3d, ElectricInductanceUnit.Henry));
-            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry, quantity => new ElectricInductance((quantity.Value) * 1e-9d, ElectricInductanceUnit.Henry));
-        }
-
-        private static bool TryConvert(ElectricInductance value, ElectricInductanceUnit targetUnit, out ElectricInductance? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // ElectricInductanceUnit -> BaseUnit
-                (ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry) => new ElectricInductance((value.Value) * 1e-6d, ElectricInductanceUnit.Henry),
-                (ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry) => new ElectricInductance((value.Value) * 1e-3d, ElectricInductanceUnit.Henry),
-                (ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry) => new ElectricInductance((value.Value) * 1e-9d, ElectricInductanceUnit.Henry),
-
-                // BaseUnit <-> BaseUnit
-                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry) => value,
-
-                // BaseUnit -> ElectricInductanceUnit
-                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry) => new ElectricInductance((value.Value) / 1e-6d, ElectricInductanceUnit.Microhenry),
-                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry) => new ElectricInductance((value.Value) / 1e-3d, ElectricInductanceUnit.Millihenry),
-                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry) => new ElectricInductance((value.Value) / 1e-9d, ElectricInductanceUnit.Nanohenry),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> ElectricInductanceUnit
+            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Microhenry));
+            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Millihenry));
+            unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Nanohenry));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -732,11 +709,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(ElectricInductance), Unit, typeof(ElectricInductance), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ElectricInductance)converted;
+                return (ElectricInductance)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -748,6 +728,29 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(ElectricInductanceUnit unit, out ElectricInductance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricInductanceUnit -> BaseUnit
+                (ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-6d, ElectricInductanceUnit.Henry),
+                (ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-3d, ElectricInductanceUnit.Henry),
+                (ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-9d, ElectricInductanceUnit.Henry),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry) => value,
+
+                // BaseUnit -> ElectricInductanceUnit
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry) => new ElectricInductance((_value) / 1e-6d, ElectricInductanceUnit.Microhenry),
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry) => new ElectricInductance((_value) / 1e-3d, ElectricInductanceUnit.Millihenry),
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry) => new ElectricInductance((_value) / 1e-9d, ElectricInductanceUnit.Nanohenry),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

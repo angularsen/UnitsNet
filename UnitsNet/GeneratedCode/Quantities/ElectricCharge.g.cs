@@ -229,45 +229,20 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ElectricChargeUnit
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour, quantity => new ElectricCharge(quantity.Value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour, quantity => new ElectricCharge((quantity.Value * 2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour, quantity => new ElectricCharge((quantity.Value * 2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour, quantity => new ElectricCharge((quantity.Value * 2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour));
+            // Register in unit converter: ElectricChargeUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb, quantity => quantity.ToUnit(ElectricChargeUnit.Coulomb));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb, quantity => quantity.ToUnit(ElectricChargeUnit.Coulomb));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb, quantity => quantity.ToUnit(ElectricChargeUnit.Coulomb));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb, quantity => quantity.ToUnit(ElectricChargeUnit.Coulomb));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.Coulomb, quantity => quantity);
 
-            // Register in unit converter: ElectricChargeUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge(quantity.Value / 2.77777777777e-4, ElectricChargeUnit.Coulomb));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value / 2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value / 2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb));
-        }
-
-        private static bool TryConvert(ElectricCharge value, ElectricChargeUnit targetUnit, out ElectricCharge? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // ElectricChargeUnit -> BaseUnit
-                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(value.Value / 2.77777777777e-4, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((value.Value / 2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((value.Value / 2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb),
-                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((value.Value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb),
-
-                // BaseUnit <-> BaseUnit
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Coulomb) => value,
-
-                // BaseUnit -> ElectricChargeUnit
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(value.Value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((value.Value * 2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((value.Value * 2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour),
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((value.Value * 2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> ElectricChargeUnit
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour, quantity => quantity.ToUnit(ElectricChargeUnit.AmpereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour, quantity => quantity.ToUnit(ElectricChargeUnit.KiloampereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour, quantity => quantity.ToUnit(ElectricChargeUnit.MegaampereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour, quantity => quantity.ToUnit(ElectricChargeUnit.MilliampereHour));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -753,11 +728,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(ElectricCharge), Unit, typeof(ElectricCharge), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ElectricCharge)converted;
+                return (ElectricCharge)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -769,6 +747,31 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(ElectricChargeUnit unit, out ElectricCharge? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricChargeUnit -> BaseUnit
+                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(_value / 2.77777777777e-4, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Coulomb) => value,
+
+                // BaseUnit -> ElectricChargeUnit
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(_value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((_value * 2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

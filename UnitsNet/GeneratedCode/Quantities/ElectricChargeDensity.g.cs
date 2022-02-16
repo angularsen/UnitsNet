@@ -205,29 +205,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ElectricChargeDensityUnit
+            // Register in unit converter: ElectricChargeDensityUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricChargeDensity>(ElectricChargeDensityUnit.CoulombPerCubicMeter, ElectricChargeDensityUnit.CoulombPerCubicMeter, quantity => quantity);
 
-            // Register in unit converter: ElectricChargeDensityUnit -> BaseUnit
-        }
-
-        private static bool TryConvert(ElectricChargeDensity value, ElectricChargeDensityUnit targetUnit, out ElectricChargeDensity? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // ElectricChargeDensityUnit -> BaseUnit
-
-                // BaseUnit <-> BaseUnit
-                (ElectricChargeDensityUnit.CoulombPerCubicMeter, ElectricChargeDensityUnit.CoulombPerCubicMeter) => value,
-
-                // BaseUnit -> ElectricChargeDensityUnit
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> ElectricChargeDensityUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -669,11 +652,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(ElectricChargeDensity), Unit, typeof(ElectricChargeDensity), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ElectricChargeDensity)converted;
+                return (ElectricChargeDensity)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -685,6 +671,23 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(ElectricChargeDensityUnit unit, out ElectricChargeDensity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricChargeDensityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (ElectricChargeDensityUnit.CoulombPerCubicMeter, ElectricChargeDensityUnit.CoulombPerCubicMeter) => value,
+
+                // BaseUnit -> ElectricChargeDensityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

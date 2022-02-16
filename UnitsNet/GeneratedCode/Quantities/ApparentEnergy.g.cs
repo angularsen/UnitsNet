@@ -214,37 +214,16 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ApparentEnergyUnit
-            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour, quantity => new ApparentEnergy((quantity.Value) / 1e3d, ApparentEnergyUnit.KilovoltampereHour));
-            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour, quantity => new ApparentEnergy((quantity.Value) / 1e6d, ApparentEnergyUnit.MegavoltampereHour));
+            // Register in unit converter: ApparentEnergyUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity.ToUnit(ApparentEnergyUnit.VoltampereHour));
+            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity.ToUnit(ApparentEnergyUnit.VoltampereHour));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => quantity);
 
-            // Register in unit converter: ApparentEnergyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => new ApparentEnergy((quantity.Value) * 1e3d, ApparentEnergyUnit.VoltampereHour));
-            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => new ApparentEnergy((quantity.Value) * 1e6d, ApparentEnergyUnit.VoltampereHour));
-        }
-
-        private static bool TryConvert(ApparentEnergy value, ApparentEnergyUnit targetUnit, out ApparentEnergy? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // ApparentEnergyUnit -> BaseUnit
-                (ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour) => new ApparentEnergy((value.Value) * 1e3d, ApparentEnergyUnit.VoltampereHour),
-                (ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour) => new ApparentEnergy((value.Value) * 1e6d, ApparentEnergyUnit.VoltampereHour),
-
-                // BaseUnit <-> BaseUnit
-                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour) => value,
-
-                // BaseUnit -> ApparentEnergyUnit
-                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour) => new ApparentEnergy((value.Value) / 1e3d, ApparentEnergyUnit.KilovoltampereHour),
-                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour) => new ApparentEnergy((value.Value) / 1e6d, ApparentEnergyUnit.MegavoltampereHour),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> ApparentEnergyUnit
+            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour, quantity => quantity.ToUnit(ApparentEnergyUnit.KilovoltampereHour));
+            unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour, quantity => quantity.ToUnit(ApparentEnergyUnit.MegavoltampereHour));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -708,11 +687,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(ApparentEnergy), Unit, typeof(ApparentEnergy), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ApparentEnergy)converted;
+                return (ApparentEnergy)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -724,6 +706,27 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(ApparentEnergyUnit unit, out ApparentEnergy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ApparentEnergyUnit -> BaseUnit
+                (ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour) => new ApparentEnergy((_value) * 1e3d, ApparentEnergyUnit.VoltampereHour),
+                (ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour) => new ApparentEnergy((_value) * 1e6d, ApparentEnergyUnit.VoltampereHour),
+
+                // BaseUnit <-> BaseUnit
+                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour) => value,
+
+                // BaseUnit -> ApparentEnergyUnit
+                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour) => new ApparentEnergy((_value) / 1e3d, ApparentEnergyUnit.KilovoltampereHour),
+                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour) => new ApparentEnergy((_value) / 1e6d, ApparentEnergyUnit.MegavoltampereHour),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

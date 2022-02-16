@@ -205,29 +205,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> SolidAngleUnit
+            // Register in unit converter: SolidAngleUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SolidAngle>(SolidAngleUnit.Steradian, SolidAngleUnit.Steradian, quantity => quantity);
 
-            // Register in unit converter: SolidAngleUnit -> BaseUnit
-        }
-
-        private static bool TryConvert(SolidAngle value, SolidAngleUnit targetUnit, out SolidAngle? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // SolidAngleUnit -> BaseUnit
-
-                // BaseUnit <-> BaseUnit
-                (SolidAngleUnit.Steradian, SolidAngleUnit.Steradian) => value,
-
-                // BaseUnit -> SolidAngleUnit
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> SolidAngleUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -669,11 +652,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(SolidAngle), Unit, typeof(SolidAngle), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (SolidAngle)converted;
+                return (SolidAngle)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -685,6 +671,23 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(SolidAngleUnit unit, out SolidAngle? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // SolidAngleUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (SolidAngleUnit.Steradian, SolidAngleUnit.Steradian) => value,
+
+                // BaseUnit -> SolidAngleUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

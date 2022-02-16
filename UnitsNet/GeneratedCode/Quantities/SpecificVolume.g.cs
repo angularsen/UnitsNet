@@ -214,37 +214,16 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> SpecificVolumeUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => new SpecificVolume(quantity.Value * 16.01846353, SpecificVolumeUnit.CubicFootPerPound));
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => new SpecificVolume((quantity.Value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram));
+            // Register in unit converter: SpecificVolumeUnit -> BaseUnit
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity);
 
-            // Register in unit converter: SpecificVolumeUnit -> BaseUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume(quantity.Value / 16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram));
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume((quantity.Value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram));
-        }
-
-        private static bool TryConvert(SpecificVolume value, SpecificVolumeUnit targetUnit, out SpecificVolume? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // SpecificVolumeUnit -> BaseUnit
-                (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(value.Value / 16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram),
-                (SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume((value.Value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram),
-
-                // BaseUnit <-> BaseUnit
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => value,
-
-                // BaseUnit -> SpecificVolumeUnit
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(value.Value * 16.01846353, SpecificVolumeUnit.CubicFootPerPound),
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram) => new SpecificVolume((value.Value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> SpecificVolumeUnit
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -708,11 +687,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(SpecificVolume), Unit, typeof(SpecificVolume), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (SpecificVolume)converted;
+                return (SpecificVolume)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -724,6 +706,27 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(SpecificVolumeUnit unit, out SpecificVolume? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // SpecificVolumeUnit -> BaseUnit
+                (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(_value / 16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram),
+                (SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume((_value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram),
+
+                // BaseUnit <-> BaseUnit
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => value,
+
+                // BaseUnit -> SpecificVolumeUnit
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(_value * 16.01846353, SpecificVolumeUnit.CubicFootPerPound),
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram) => new SpecificVolume((_value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

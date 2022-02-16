@@ -205,29 +205,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> LuminousFluxUnit
+            // Register in unit converter: LuminousFluxUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<LuminousFlux>(LuminousFluxUnit.Lumen, LuminousFluxUnit.Lumen, quantity => quantity);
 
-            // Register in unit converter: LuminousFluxUnit -> BaseUnit
-        }
-
-        private static bool TryConvert(LuminousFlux value, LuminousFluxUnit targetUnit, out LuminousFlux? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // LuminousFluxUnit -> BaseUnit
-
-                // BaseUnit <-> BaseUnit
-                (LuminousFluxUnit.Lumen, LuminousFluxUnit.Lumen) => value,
-
-                // BaseUnit -> LuminousFluxUnit
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> LuminousFluxUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -669,11 +652,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(LuminousFlux), Unit, typeof(LuminousFlux), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (LuminousFlux)converted;
+                return (LuminousFlux)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -685,6 +671,23 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(LuminousFluxUnit unit, out LuminousFlux? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LuminousFluxUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (LuminousFluxUnit.Lumen, LuminousFluxUnit.Lumen) => value,
+
+                // BaseUnit -> LuminousFluxUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

@@ -208,33 +208,14 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> VolumeFlowPerAreaUnit
-            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => new VolumeFlowPerArea(quantity.Value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
+            // Register in unit converter: VolumeFlowPerAreaUnit -> BaseUnit
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity.ToUnit(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity);
 
-            // Register in unit converter: VolumeFlowPerAreaUnit -> BaseUnit
-            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => new VolumeFlowPerArea(quantity.Value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
-        }
-
-        private static bool TryConvert(VolumeFlowPerArea value, VolumeFlowPerAreaUnit targetUnit, out VolumeFlowPerArea? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // VolumeFlowPerAreaUnit -> BaseUnit
-                (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(value.Value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
-
-                // BaseUnit <-> BaseUnit
-                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => value,
-
-                // BaseUnit -> VolumeFlowPerAreaUnit
-                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(value.Value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> VolumeFlowPerAreaUnit
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => quantity.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -687,11 +668,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(VolumeFlowPerArea), Unit, typeof(VolumeFlowPerArea), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (VolumeFlowPerArea)converted;
+                return (VolumeFlowPerArea)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -703,6 +687,25 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(VolumeFlowPerAreaUnit unit, out VolumeFlowPerArea? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // VolumeFlowPerAreaUnit -> BaseUnit
+                (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(_value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
+
+                // BaseUnit <-> BaseUnit
+                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => value,
+
+                // BaseUnit -> VolumeFlowPerAreaUnit
+                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(_value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />

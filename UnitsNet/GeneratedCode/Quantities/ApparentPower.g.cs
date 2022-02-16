@@ -220,41 +220,18 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ApparentPowerUnit
-            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere, quantity => new ApparentPower((quantity.Value) / 1e9d, ApparentPowerUnit.Gigavoltampere));
-            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere, quantity => new ApparentPower((quantity.Value) / 1e3d, ApparentPowerUnit.Kilovoltampere));
-            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere, quantity => new ApparentPower((quantity.Value) / 1e6d, ApparentPowerUnit.Megavoltampere));
+            // Register in unit converter: ApparentPowerUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Voltampere));
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Voltampere));
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Voltampere));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Voltampere, quantity => quantity);
 
-            // Register in unit converter: ApparentPowerUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere, quantity => new ApparentPower((quantity.Value) * 1e9d, ApparentPowerUnit.Voltampere));
-            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere, quantity => new ApparentPower((quantity.Value) * 1e3d, ApparentPowerUnit.Voltampere));
-            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere, quantity => new ApparentPower((quantity.Value) * 1e6d, ApparentPowerUnit.Voltampere));
-        }
-
-        private static bool TryConvert(ApparentPower value, ApparentPowerUnit targetUnit, out ApparentPower? converted)
-        {
-            converted = (value.Unit, targetUnit) switch
-            {
-                // ApparentPowerUnit -> BaseUnit
-                (ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((value.Value) * 1e9d, ApparentPowerUnit.Voltampere),
-                (ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((value.Value) * 1e3d, ApparentPowerUnit.Voltampere),
-                (ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((value.Value) * 1e6d, ApparentPowerUnit.Voltampere),
-
-                // BaseUnit <-> BaseUnit
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Voltampere) => value,
-
-                // BaseUnit -> ApparentPowerUnit
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere) => new ApparentPower((value.Value) / 1e9d, ApparentPowerUnit.Gigavoltampere),
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere) => new ApparentPower((value.Value) / 1e3d, ApparentPowerUnit.Kilovoltampere),
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere) => new ApparentPower((value.Value) / 1e6d, ApparentPowerUnit.Megavoltampere),
-
-                _ => null!
-            };
-
-            return converted != null;
+            // Register in unit converter: BaseUnit -> ApparentPowerUnit
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Gigavoltampere));
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Kilovoltampere));
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Megavoltampere));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -729,11 +706,14 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
+            else if (TryConvert(this, unit, out var converted))
+            {
+                return converted!.Value;
+            }
             else if (unitConverter.TryGetConversionFunction((typeof(ApparentPower), Unit, typeof(ApparentPower), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ApparentPower)converted;
+                return (ApparentPower)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
@@ -745,6 +725,29 @@ namespace UnitsNet
             {
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        private bool TryConvert(ApparentPowerUnit unit, out ApparentPower? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ApparentPowerUnit -> BaseUnit
+                (ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e9d, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e3d, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e6d, ApparentPowerUnit.Voltampere),
+
+                // BaseUnit <-> BaseUnit
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Voltampere) => value,
+
+                // BaseUnit -> ApparentPowerUnit
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere) => new ApparentPower((_value) / 1e9d, ApparentPowerUnit.Gigavoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere) => new ApparentPower((_value) / 1e3d, ApparentPowerUnit.Kilovoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere) => new ApparentPower((_value) / 1e6d, ApparentPowerUnit.Megavoltampere),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
