@@ -678,7 +678,7 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ElectricCurrentDensity to another ElectricCurrentDensity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ElectricCurrentDensity"/> to another <see cref="ElectricCurrentDensity"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
@@ -692,25 +692,33 @@ namespace UnitsNet
             }
             else if (TryToUnit(unit, out var converted))
             {
+                // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(ElectricCurrentDensity), Unit, typeof(ElectricCurrentDensity), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
+                // See if the unit converter has an extensibility conversion registered.
                 return (ElectricCurrentDensity)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
+        /// <summary>
+        ///     Attempts to convert this <see cref="ElectricCurrentDensity"/> to another <see cref="ElectricCurrentDensity"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="ElectricCurrentDensity"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricCurrentDensityUnit unit, out ElectricCurrentDensity? converted)
         {
             converted = (_unit, unit) switch
