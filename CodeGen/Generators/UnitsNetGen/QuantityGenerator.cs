@@ -391,7 +391,7 @@ namespace UnitsNet
 
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "quantity.Value");
                 Writer.WL($@"
-            unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => quantity.ToUnit({_quantity.Name}Unit.{unit.SingularName}));" );
+            unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => quantity.ToUnit({_quantity.Name}Unit.{unit.SingularName}));");
             }
 
             Writer.WL($@"
@@ -999,7 +999,7 @@ namespace UnitsNet
                 if (unit.SingularName == _quantity.BaseUnit)
                     continue;
 
-                var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value" );
+                var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
                 ({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}) => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}),");
             }
@@ -1016,7 +1016,7 @@ namespace UnitsNet
                 if (unit.SingularName == _quantity.BaseUnit)
                     continue;
 
-                var func = unit.FromBaseToUnitFunc.Replace("{x}", "_value" );
+                var func = unit.FromBaseToUnitFunc.Replace("{x}", "_value");
                 Writer.WL($@"
                 ({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}) => new {_quantity.Name}({func}, {_quantity.Name}Unit.{unit.SingularName}),");
             }
