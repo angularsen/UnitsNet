@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: SolidAngleUnit -> BaseUnit
         }
 
+        private static bool TryConvert(SolidAngle value, SolidAngleUnit targetUnit, out SolidAngle? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // SolidAngleUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (SolidAngleUnit.Steradian, SolidAngleUnit.Steradian) => value,
+
+                // BaseUnit -> SolidAngleUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(SolidAngleUnit.Steradian, new CultureInfo("en-US"), false, true, new string[]{"sr"});

@@ -234,6 +234,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt, quantity => new AmplitudeRatio(quantity.Value - 2.218487499, AmplitudeRatioUnit.DecibelVolt));
         }
 
+        private static bool TryConvert(AmplitudeRatio value, AmplitudeRatioUnit targetUnit, out AmplitudeRatio? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // AmplitudeRatioUnit -> BaseUnit
+                (AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(value.Value - 120, AmplitudeRatioUnit.DecibelVolt),
+                (AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(value.Value - 60, AmplitudeRatioUnit.DecibelVolt),
+                (AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(value.Value - 2.218487499, AmplitudeRatioUnit.DecibelVolt),
+
+                // BaseUnit <-> BaseUnit
+                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelVolt) => value,
+
+                // BaseUnit -> AmplitudeRatioUnit
+                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt) => new AmplitudeRatio(value.Value + 120, AmplitudeRatioUnit.DecibelMicrovolt),
+                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMillivolt) => new AmplitudeRatio(value.Value + 60, AmplitudeRatioUnit.DecibelMillivolt),
+                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded) => new AmplitudeRatio(value.Value + 2.218487499, AmplitudeRatioUnit.DecibelUnloaded),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(AmplitudeRatioUnit.DecibelMicrovolt, new CultureInfo("en-US"), false, true, new string[]{"dBµV"});

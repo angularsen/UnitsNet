@@ -322,6 +322,51 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole, quantity => new AmountOfSubstance(quantity.Value * 453.59237, AmountOfSubstanceUnit.Mole));
         }
 
+        private static bool TryConvert(AmountOfSubstance value, AmountOfSubstanceUnit targetUnit, out AmountOfSubstance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // AmountOfSubstanceUnit -> BaseUnit
+                (AmountOfSubstanceUnit.Centimole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value) * 1e-2d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.CentipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value * 453.59237) * 1e-2d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.Decimole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value) * 1e-1d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.DecipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value * 453.59237) * 1e-1d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.Kilomole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value) * 1e3d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.KilopoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value * 453.59237) * 1e3d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.Megamole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value) * 1e6d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.Micromole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value) * 1e-6d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.MicropoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value * 453.59237) * 1e-6d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.Millimole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value) * 1e-3d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.MillipoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value * 453.59237) * 1e-3d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.Nanomole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value) * 1e-9d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((value.Value * 453.59237) * 1e-9d, AmountOfSubstanceUnit.Mole),
+                (AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(value.Value * 453.59237, AmountOfSubstanceUnit.Mole),
+
+                // BaseUnit <-> BaseUnit
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Mole) => value,
+
+                // BaseUnit -> AmountOfSubstanceUnit
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Centimole) => new AmountOfSubstance((value.Value) / 1e-2d, AmountOfSubstanceUnit.Centimole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.CentipoundMole) => new AmountOfSubstance((value.Value / 453.59237) / 1e-2d, AmountOfSubstanceUnit.CentipoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Decimole) => new AmountOfSubstance((value.Value) / 1e-1d, AmountOfSubstanceUnit.Decimole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.DecipoundMole) => new AmountOfSubstance((value.Value / 453.59237) / 1e-1d, AmountOfSubstanceUnit.DecipoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Kilomole) => new AmountOfSubstance((value.Value) / 1e3d, AmountOfSubstanceUnit.Kilomole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.KilopoundMole) => new AmountOfSubstance((value.Value / 453.59237) / 1e3d, AmountOfSubstanceUnit.KilopoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Megamole) => new AmountOfSubstance((value.Value) / 1e6d, AmountOfSubstanceUnit.Megamole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Micromole) => new AmountOfSubstance((value.Value) / 1e-6d, AmountOfSubstanceUnit.Micromole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MicropoundMole) => new AmountOfSubstance((value.Value / 453.59237) / 1e-6d, AmountOfSubstanceUnit.MicropoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Millimole) => new AmountOfSubstance((value.Value) / 1e-3d, AmountOfSubstanceUnit.Millimole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.MillipoundMole) => new AmountOfSubstance((value.Value / 453.59237) / 1e-3d, AmountOfSubstanceUnit.MillipoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Nanomole) => new AmountOfSubstance((value.Value) / 1e-9d, AmountOfSubstanceUnit.Nanomole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.NanopoundMole) => new AmountOfSubstance((value.Value / 453.59237) / 1e-9d, AmountOfSubstanceUnit.NanopoundMole),
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole) => new AmountOfSubstance(value.Value / 453.59237, AmountOfSubstanceUnit.PoundMole),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Centimole, new CultureInfo("en-US"), false, true, new string[]{"cmol"});

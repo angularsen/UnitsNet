@@ -274,6 +274,39 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureDelta>(TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDeltaUnit.Kelvin, quantity => new TemperatureDelta((quantity.Value) * 1e-3d, TemperatureDeltaUnit.Kelvin));
         }
 
+        private static bool TryConvert(TemperatureDelta value, TemperatureDeltaUnit targetUnit, out TemperatureDelta? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // TemperatureDeltaUnit -> BaseUnit
+                (TemperatureDeltaUnit.DegreeCelsius, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(value.Value, TemperatureDeltaUnit.Kelvin),
+                (TemperatureDeltaUnit.DegreeDelisle, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(value.Value * -2 / 3, TemperatureDeltaUnit.Kelvin),
+                (TemperatureDeltaUnit.DegreeFahrenheit, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(value.Value * 5 / 9, TemperatureDeltaUnit.Kelvin),
+                (TemperatureDeltaUnit.DegreeNewton, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(value.Value * 100 / 33, TemperatureDeltaUnit.Kelvin),
+                (TemperatureDeltaUnit.DegreeRankine, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(value.Value * 5 / 9, TemperatureDeltaUnit.Kelvin),
+                (TemperatureDeltaUnit.DegreeReaumur, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(value.Value * 5 / 4, TemperatureDeltaUnit.Kelvin),
+                (TemperatureDeltaUnit.DegreeRoemer, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(value.Value * 40 / 21, TemperatureDeltaUnit.Kelvin),
+                (TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta((value.Value) * 1e-3d, TemperatureDeltaUnit.Kelvin),
+
+                // BaseUnit <-> BaseUnit
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.Kelvin) => value,
+
+                // BaseUnit -> TemperatureDeltaUnit
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeCelsius) => new TemperatureDelta(value.Value, TemperatureDeltaUnit.DegreeCelsius),
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeDelisle) => new TemperatureDelta(value.Value * -3 / 2, TemperatureDeltaUnit.DegreeDelisle),
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeFahrenheit) => new TemperatureDelta(value.Value * 9 / 5, TemperatureDeltaUnit.DegreeFahrenheit),
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeNewton) => new TemperatureDelta(value.Value * 33 / 100, TemperatureDeltaUnit.DegreeNewton),
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRankine) => new TemperatureDelta(value.Value * 9 / 5, TemperatureDeltaUnit.DegreeRankine),
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeReaumur) => new TemperatureDelta(value.Value * 4 / 5, TemperatureDeltaUnit.DegreeReaumur),
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeRoemer) => new TemperatureDelta(value.Value * 21 / 40, TemperatureDeltaUnit.DegreeRoemer),
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.MillidegreeCelsius) => new TemperatureDelta((value.Value) / 1e-3d, TemperatureDeltaUnit.MillidegreeCelsius),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureDeltaUnit.DegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"∆°C"});

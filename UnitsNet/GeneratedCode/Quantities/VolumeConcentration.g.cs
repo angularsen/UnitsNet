@@ -365,6 +365,61 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value / 1e-3) * 1e-12d, VolumeConcentrationUnit.DecimalFraction));
         }
 
+        private static bool TryConvert(VolumeConcentration value, VolumeConcentrationUnit targetUnit, out VolumeConcentration? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // VolumeConcentrationUnit -> BaseUnit
+                (VolumeConcentrationUnit.CentilitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value) * 1e-2d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.CentilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value / 1e-3) * 1e-2d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.DecilitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value) * 1e-1d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.DecilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value / 1e-3) * 1e-1d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.LitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration(value.Value, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.LitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration(value.Value / 1e-3, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.MicrolitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value) * 1e-6d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.MicrolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value / 1e-3) * 1e-6d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.MillilitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value) * 1e-3d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.MillilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value / 1e-3) * 1e-3d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.NanolitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value) * 1e-9d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.NanolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value / 1e-3) * 1e-9d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.PartPerBillion, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration(value.Value / 1e9, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.PartPerMillion, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration(value.Value / 1e6, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.PartPerThousand, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration(value.Value / 1e3, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.PartPerTrillion, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration(value.Value / 1e12, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.Percent, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration(value.Value / 1e2, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.PicolitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value) * 1e-12d, VolumeConcentrationUnit.DecimalFraction),
+                (VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((value.Value / 1e-3) * 1e-12d, VolumeConcentrationUnit.DecimalFraction),
+
+                // BaseUnit <-> BaseUnit
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecimalFraction) => value,
+
+                // BaseUnit -> VolumeConcentrationUnit
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerLiter) => new VolumeConcentration((value.Value) / 1e-2d, VolumeConcentrationUnit.CentilitersPerLiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerMililiter) => new VolumeConcentration((value.Value * 1e-3) / 1e-2d, VolumeConcentrationUnit.CentilitersPerMililiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerLiter) => new VolumeConcentration((value.Value) / 1e-1d, VolumeConcentrationUnit.DecilitersPerLiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerMililiter) => new VolumeConcentration((value.Value * 1e-3) / 1e-1d, VolumeConcentrationUnit.DecilitersPerMililiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerLiter) => new VolumeConcentration(value.Value, VolumeConcentrationUnit.LitersPerLiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerMililiter) => new VolumeConcentration(value.Value * 1e-3, VolumeConcentrationUnit.LitersPerMililiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerLiter) => new VolumeConcentration((value.Value) / 1e-6d, VolumeConcentrationUnit.MicrolitersPerLiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerMililiter) => new VolumeConcentration((value.Value * 1e-3) / 1e-6d, VolumeConcentrationUnit.MicrolitersPerMililiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerLiter) => new VolumeConcentration((value.Value) / 1e-3d, VolumeConcentrationUnit.MillilitersPerLiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerMililiter) => new VolumeConcentration((value.Value * 1e-3) / 1e-3d, VolumeConcentrationUnit.MillilitersPerMililiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerLiter) => new VolumeConcentration((value.Value) / 1e-9d, VolumeConcentrationUnit.NanolitersPerLiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerMililiter) => new VolumeConcentration((value.Value * 1e-3) / 1e-9d, VolumeConcentrationUnit.NanolitersPerMililiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerBillion) => new VolumeConcentration(value.Value * 1e9, VolumeConcentrationUnit.PartPerBillion),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerMillion) => new VolumeConcentration(value.Value * 1e6, VolumeConcentrationUnit.PartPerMillion),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerThousand) => new VolumeConcentration(value.Value * 1e3, VolumeConcentrationUnit.PartPerThousand),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerTrillion) => new VolumeConcentration(value.Value * 1e12, VolumeConcentrationUnit.PartPerTrillion),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.Percent) => new VolumeConcentration(value.Value * 1e2, VolumeConcentrationUnit.Percent),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerLiter) => new VolumeConcentration((value.Value) / 1e-12d, VolumeConcentrationUnit.PicolitersPerLiter),
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerMililiter) => new VolumeConcentration((value.Value * 1e-3) / 1e-12d, VolumeConcentrationUnit.PicolitersPerMililiter),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.CentilitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"cL/L"});

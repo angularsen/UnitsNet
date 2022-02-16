@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: ElectricChargeDensityUnit -> BaseUnit
         }
 
+        private static bool TryConvert(ElectricChargeDensity value, ElectricChargeDensityUnit targetUnit, out ElectricChargeDensity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricChargeDensityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (ElectricChargeDensityUnit.CoulombPerCubicMeter, ElectricChargeDensityUnit.CoulombPerCubicMeter) => value,
+
+                // BaseUnit -> ElectricChargeDensityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeDensityUnit.CoulombPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"C/m³"});

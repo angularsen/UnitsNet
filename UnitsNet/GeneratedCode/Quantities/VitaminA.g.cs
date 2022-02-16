@@ -210,6 +210,23 @@ namespace UnitsNet
             // Register in unit converter: VitaminAUnit -> BaseUnit
         }
 
+        private static bool TryConvert(VitaminA value, VitaminAUnit targetUnit, out VitaminA? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // VitaminAUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (VitaminAUnit.InternationalUnit, VitaminAUnit.InternationalUnit) => value,
+
+                // BaseUnit -> VitaminAUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(VitaminAUnit.InternationalUnit, new CultureInfo("en-US"), false, true, new string[]{"IU"});

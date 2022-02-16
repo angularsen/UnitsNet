@@ -210,6 +210,23 @@ namespace UnitsNet
             // Register in unit converter: AreaDensityUnit -> BaseUnit
         }
 
+        private static bool TryConvert(AreaDensity value, AreaDensityUnit targetUnit, out AreaDensity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // AreaDensityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => value,
+
+                // BaseUnit -> AreaDensityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.KilogramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m²"});

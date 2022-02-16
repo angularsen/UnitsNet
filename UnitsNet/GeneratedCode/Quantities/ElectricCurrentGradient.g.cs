@@ -234,6 +234,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond, quantity => new ElectricCurrentGradient(quantity.Value * 1E9, ElectricCurrentGradientUnit.AmperePerSecond));
         }
 
+        private static bool TryConvert(ElectricCurrentGradient value, ElectricCurrentGradientUnit targetUnit, out ElectricCurrentGradient? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricCurrentGradientUnit -> BaseUnit
+                (ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(value.Value * 1E6, ElectricCurrentGradientUnit.AmperePerSecond),
+                (ElectricCurrentGradientUnit.AmperePerMillisecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(value.Value * 1E3, ElectricCurrentGradientUnit.AmperePerSecond),
+                (ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(value.Value * 1E9, ElectricCurrentGradientUnit.AmperePerSecond),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerSecond) => value,
+
+                // BaseUnit -> ElectricCurrentGradientUnit
+                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMicrosecond) => new ElectricCurrentGradient(value.Value / 1E6, ElectricCurrentGradientUnit.AmperePerMicrosecond),
+                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMillisecond) => new ElectricCurrentGradient(value.Value / 1E3, ElectricCurrentGradientUnit.AmperePerMillisecond),
+                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerNanosecond) => new ElectricCurrentGradient(value.Value / 1E9, ElectricCurrentGradientUnit.AmperePerNanosecond),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"A/μs"});

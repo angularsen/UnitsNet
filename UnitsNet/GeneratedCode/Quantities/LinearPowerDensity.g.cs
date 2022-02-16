@@ -405,6 +405,71 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<LinearPowerDensity>(LinearPowerDensityUnit.WattPerMillimeter, LinearPowerDensityUnit.WattPerMeter, quantity => new LinearPowerDensity(quantity.Value * 1e3, LinearPowerDensityUnit.WattPerMeter));
         }
 
+        private static bool TryConvert(LinearPowerDensity value, LinearPowerDensityUnit targetUnit, out LinearPowerDensity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LinearPowerDensityUnit -> BaseUnit
+                (LinearPowerDensityUnit.GigawattPerCentimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 1e2) * 1e9d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.GigawattPerFoot, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 3.280839895) * 1e9d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.GigawattPerInch, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 39.37007874) * 1e9d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.GigawattPerMeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value) * 1e9d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.GigawattPerMillimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 1e3) * 1e9d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.KilowattPerCentimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 1e2) * 1e3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.KilowattPerFoot, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 3.280839895) * 1e3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.KilowattPerInch, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 39.37007874) * 1e3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.KilowattPerMeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value) * 1e3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.KilowattPerMillimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 1e3) * 1e3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MegawattPerCentimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 1e2) * 1e6d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MegawattPerFoot, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 3.280839895) * 1e6d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MegawattPerInch, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 39.37007874) * 1e6d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MegawattPerMeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value) * 1e6d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MegawattPerMillimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 1e3) * 1e6d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MilliwattPerCentimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 1e2) * 1e-3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MilliwattPerFoot, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 3.280839895) * 1e-3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MilliwattPerInch, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 39.37007874) * 1e-3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MilliwattPerMeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value) * 1e-3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.MilliwattPerMillimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((value.Value * 1e3) * 1e-3d, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.WattPerCentimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity(value.Value * 1e2, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.WattPerFoot, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity(value.Value * 3.280839895, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.WattPerInch, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity(value.Value * 39.37007874, LinearPowerDensityUnit.WattPerMeter),
+                (LinearPowerDensityUnit.WattPerMillimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity(value.Value * 1e3, LinearPowerDensityUnit.WattPerMeter),
+
+                // BaseUnit <-> BaseUnit
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerMeter) => value,
+
+                // BaseUnit -> LinearPowerDensityUnit
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerCentimeter) => new LinearPowerDensity((value.Value / 1e2) / 1e9d, LinearPowerDensityUnit.GigawattPerCentimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerFoot) => new LinearPowerDensity((value.Value / 3.280839895) / 1e9d, LinearPowerDensityUnit.GigawattPerFoot),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerInch) => new LinearPowerDensity((value.Value / 39.37007874) / 1e9d, LinearPowerDensityUnit.GigawattPerInch),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerMeter) => new LinearPowerDensity((value.Value) / 1e9d, LinearPowerDensityUnit.GigawattPerMeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerMillimeter) => new LinearPowerDensity((value.Value / 1e3) / 1e9d, LinearPowerDensityUnit.GigawattPerMillimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerCentimeter) => new LinearPowerDensity((value.Value / 1e2) / 1e3d, LinearPowerDensityUnit.KilowattPerCentimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerFoot) => new LinearPowerDensity((value.Value / 3.280839895) / 1e3d, LinearPowerDensityUnit.KilowattPerFoot),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerInch) => new LinearPowerDensity((value.Value / 39.37007874) / 1e3d, LinearPowerDensityUnit.KilowattPerInch),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerMeter) => new LinearPowerDensity((value.Value) / 1e3d, LinearPowerDensityUnit.KilowattPerMeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.KilowattPerMillimeter) => new LinearPowerDensity((value.Value / 1e3) / 1e3d, LinearPowerDensityUnit.KilowattPerMillimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerCentimeter) => new LinearPowerDensity((value.Value / 1e2) / 1e6d, LinearPowerDensityUnit.MegawattPerCentimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerFoot) => new LinearPowerDensity((value.Value / 3.280839895) / 1e6d, LinearPowerDensityUnit.MegawattPerFoot),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerInch) => new LinearPowerDensity((value.Value / 39.37007874) / 1e6d, LinearPowerDensityUnit.MegawattPerInch),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerMeter) => new LinearPowerDensity((value.Value) / 1e6d, LinearPowerDensityUnit.MegawattPerMeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MegawattPerMillimeter) => new LinearPowerDensity((value.Value / 1e3) / 1e6d, LinearPowerDensityUnit.MegawattPerMillimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerCentimeter) => new LinearPowerDensity((value.Value / 1e2) / 1e-3d, LinearPowerDensityUnit.MilliwattPerCentimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerFoot) => new LinearPowerDensity((value.Value / 3.280839895) / 1e-3d, LinearPowerDensityUnit.MilliwattPerFoot),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerInch) => new LinearPowerDensity((value.Value / 39.37007874) / 1e-3d, LinearPowerDensityUnit.MilliwattPerInch),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerMeter) => new LinearPowerDensity((value.Value) / 1e-3d, LinearPowerDensityUnit.MilliwattPerMeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.MilliwattPerMillimeter) => new LinearPowerDensity((value.Value / 1e3) / 1e-3d, LinearPowerDensityUnit.MilliwattPerMillimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerCentimeter) => new LinearPowerDensity(value.Value / 1e2, LinearPowerDensityUnit.WattPerCentimeter),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerFoot) => new LinearPowerDensity(value.Value / 3.280839895, LinearPowerDensityUnit.WattPerFoot),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerInch) => new LinearPowerDensity(value.Value / 39.37007874, LinearPowerDensityUnit.WattPerInch),
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerMillimeter) => new LinearPowerDensity(value.Value / 1e3, LinearPowerDensityUnit.WattPerMillimeter),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LinearPowerDensityUnit.GigawattPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"GW/cm"});

@@ -229,6 +229,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens, quantity => new ElectricConductance((quantity.Value) * 1e-3d, ElectricConductanceUnit.Siemens));
         }
 
+        private static bool TryConvert(ElectricConductance value, ElectricConductanceUnit targetUnit, out ElectricConductance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricConductanceUnit -> BaseUnit
+                (ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((value.Value) * 1e-6d, ElectricConductanceUnit.Siemens),
+                (ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((value.Value) * 1e-3d, ElectricConductanceUnit.Siemens),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens) => value,
+
+                // BaseUnit -> ElectricConductanceUnit
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens) => new ElectricConductance((value.Value) / 1e-6d, ElectricConductanceUnit.Microsiemens),
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens) => new ElectricConductance((value.Value) / 1e-3d, ElectricConductanceUnit.Millisiemens),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Microsiemens, new CultureInfo("en-US"), false, true, new string[]{"µS"});

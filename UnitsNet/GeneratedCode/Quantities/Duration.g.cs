@@ -290,6 +290,43 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Year365, DurationUnit.Second, quantity => new Duration(quantity.Value * 365 * 24 * 3600, DurationUnit.Second));
         }
 
+        private static bool TryConvert(Duration value, DurationUnit targetUnit, out Duration? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // DurationUnit -> BaseUnit
+                (DurationUnit.Day, DurationUnit.Second) => new Duration(value.Value * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Hour, DurationUnit.Second) => new Duration(value.Value * 3600, DurationUnit.Second),
+                (DurationUnit.JulianYear, DurationUnit.Second) => new Duration(value.Value * 365.25 * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Microsecond, DurationUnit.Second) => new Duration((value.Value) * 1e-6d, DurationUnit.Second),
+                (DurationUnit.Millisecond, DurationUnit.Second) => new Duration((value.Value) * 1e-3d, DurationUnit.Second),
+                (DurationUnit.Minute, DurationUnit.Second) => new Duration(value.Value * 60, DurationUnit.Second),
+                (DurationUnit.Month30, DurationUnit.Second) => new Duration(value.Value * 30 * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Nanosecond, DurationUnit.Second) => new Duration((value.Value) * 1e-9d, DurationUnit.Second),
+                (DurationUnit.Week, DurationUnit.Second) => new Duration(value.Value * 7 * 24 * 3600, DurationUnit.Second),
+                (DurationUnit.Year365, DurationUnit.Second) => new Duration(value.Value * 365 * 24 * 3600, DurationUnit.Second),
+
+                // BaseUnit <-> BaseUnit
+                (DurationUnit.Second, DurationUnit.Second) => value,
+
+                // BaseUnit -> DurationUnit
+                (DurationUnit.Second, DurationUnit.Day) => new Duration(value.Value / (24 * 3600), DurationUnit.Day),
+                (DurationUnit.Second, DurationUnit.Hour) => new Duration(value.Value / 3600, DurationUnit.Hour),
+                (DurationUnit.Second, DurationUnit.JulianYear) => new Duration(value.Value / (365.25 * 24 * 3600), DurationUnit.JulianYear),
+                (DurationUnit.Second, DurationUnit.Microsecond) => new Duration((value.Value) / 1e-6d, DurationUnit.Microsecond),
+                (DurationUnit.Second, DurationUnit.Millisecond) => new Duration((value.Value) / 1e-3d, DurationUnit.Millisecond),
+                (DurationUnit.Second, DurationUnit.Minute) => new Duration(value.Value / 60, DurationUnit.Minute),
+                (DurationUnit.Second, DurationUnit.Month30) => new Duration(value.Value / (30 * 24 * 3600), DurationUnit.Month30),
+                (DurationUnit.Second, DurationUnit.Nanosecond) => new Duration((value.Value) / 1e-9d, DurationUnit.Nanosecond),
+                (DurationUnit.Second, DurationUnit.Week) => new Duration(value.Value / (7 * 24 * 3600), DurationUnit.Week),
+                (DurationUnit.Second, DurationUnit.Year365) => new Duration(value.Value / (365 * 24 * 3600), DurationUnit.Year365),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Day, new CultureInfo("en-US"), false, true, new string[]{"d", "day", "days"});

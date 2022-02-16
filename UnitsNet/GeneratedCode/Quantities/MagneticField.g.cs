@@ -253,6 +253,33 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MagneticField>(MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla, quantity => new MagneticField((quantity.Value) * 1e-9d, MagneticFieldUnit.Tesla));
         }
 
+        private static bool TryConvert(MagneticField value, MagneticFieldUnit targetUnit, out MagneticField? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MagneticFieldUnit -> BaseUnit
+                (MagneticFieldUnit.Gauss, MagneticFieldUnit.Tesla) => new MagneticField(value.Value / 1e4, MagneticFieldUnit.Tesla),
+                (MagneticFieldUnit.Microtesla, MagneticFieldUnit.Tesla) => new MagneticField((value.Value) * 1e-6d, MagneticFieldUnit.Tesla),
+                (MagneticFieldUnit.Milligauss, MagneticFieldUnit.Tesla) => new MagneticField((value.Value / 1e4) * 1e-3d, MagneticFieldUnit.Tesla),
+                (MagneticFieldUnit.Millitesla, MagneticFieldUnit.Tesla) => new MagneticField((value.Value) * 1e-3d, MagneticFieldUnit.Tesla),
+                (MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla) => new MagneticField((value.Value) * 1e-9d, MagneticFieldUnit.Tesla),
+
+                // BaseUnit <-> BaseUnit
+                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Tesla) => value,
+
+                // BaseUnit -> MagneticFieldUnit
+                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Gauss) => new MagneticField(value.Value * 1e4, MagneticFieldUnit.Gauss),
+                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Microtesla) => new MagneticField((value.Value) / 1e-6d, MagneticFieldUnit.Microtesla),
+                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Milligauss) => new MagneticField((value.Value * 1e4) / 1e-3d, MagneticFieldUnit.Milligauss),
+                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Millitesla) => new MagneticField((value.Value) / 1e-3d, MagneticFieldUnit.Millitesla),
+                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Nanotesla) => new MagneticField((value.Value) / 1e-9d, MagneticFieldUnit.Nanotesla),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFieldUnit.Gauss, new CultureInfo("en-US"), false, true, new string[]{"G"});

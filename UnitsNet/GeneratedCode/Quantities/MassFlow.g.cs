@@ -466,6 +466,87 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond, quantity => new MassFlow(1000 * quantity.Value / 3.6, MassFlowUnit.GramPerSecond));
         }
 
+        private static bool TryConvert(MassFlow value, MassFlowUnit targetUnit, out MassFlow? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MassFlowUnit -> BaseUnit
+                (MassFlowUnit.CentigramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e-2d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.CentigramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value) * 1e-2d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.DecagramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e1d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.DecagramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value) * 1e1d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.DecigramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e-1d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.DecigramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value) * 1e-1d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.GramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value / 86400, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.GramPerHour, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value / 3600, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.HectogramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e2d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.HectogramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value) * 1e2d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.KilogramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e3d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.KilogramPerHour, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value / 3.6, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.KilogramPerMinute, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value / 0.06, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.KilogramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value) * 1e3d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MegagramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e6d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MegapoundPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 190.47936) * 1e6d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MegapoundPerHour, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 7.93664) * 1e6d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MegapoundPerMinute, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 0.132277) * 1e6d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MegapoundPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value * 453.59237) * 1e6d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MicrogramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e-6d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MicrogramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value) * 1e-6d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MilligramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e-3d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.MilligramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value) * 1e-3d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.NanogramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value / 86400) * 1e-9d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.NanogramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((value.Value) * 1e-9d, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.PoundPerDay, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value / 190.47936, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.PoundPerHour, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value / 7.93664, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.PoundPerMinute, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value / 0.132277, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.PoundPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value * 453.59237, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.ShortTonPerHour, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value * 251.9957611, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.TonnePerDay, MassFlowUnit.GramPerSecond) => new MassFlow(value.Value / 0.0864000, MassFlowUnit.GramPerSecond),
+                (MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond) => new MassFlow(1000 * value.Value / 3.6, MassFlowUnit.GramPerSecond),
+
+                // BaseUnit <-> BaseUnit
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerSecond) => value,
+
+                // BaseUnit -> MassFlowUnit
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerDay) => new MassFlow((value.Value * 86400) / 1e-2d, MassFlowUnit.CentigramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerSecond) => new MassFlow((value.Value) / 1e-2d, MassFlowUnit.CentigramPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerDay) => new MassFlow((value.Value * 86400) / 1e1d, MassFlowUnit.DecagramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerSecond) => new MassFlow((value.Value) / 1e1d, MassFlowUnit.DecagramPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerDay) => new MassFlow((value.Value * 86400) / 1e-1d, MassFlowUnit.DecigramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerSecond) => new MassFlow((value.Value) / 1e-1d, MassFlowUnit.DecigramPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerDay) => new MassFlow(value.Value * 86400, MassFlowUnit.GramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerHour) => new MassFlow(value.Value * 3600, MassFlowUnit.GramPerHour),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerDay) => new MassFlow((value.Value * 86400) / 1e2d, MassFlowUnit.HectogramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerSecond) => new MassFlow((value.Value) / 1e2d, MassFlowUnit.HectogramPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerDay) => new MassFlow((value.Value * 86400) / 1e3d, MassFlowUnit.KilogramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerHour) => new MassFlow(value.Value * 3.6, MassFlowUnit.KilogramPerHour),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerMinute) => new MassFlow(value.Value * 0.06, MassFlowUnit.KilogramPerMinute),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerSecond) => new MassFlow((value.Value) / 1e3d, MassFlowUnit.KilogramPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegagramPerDay) => new MassFlow((value.Value * 86400) / 1e6d, MassFlowUnit.MegagramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerDay) => new MassFlow((value.Value * 190.47936) / 1e6d, MassFlowUnit.MegapoundPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerHour) => new MassFlow((value.Value * 7.93664) / 1e6d, MassFlowUnit.MegapoundPerHour),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerMinute) => new MassFlow((value.Value * 0.132277) / 1e6d, MassFlowUnit.MegapoundPerMinute),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerSecond) => new MassFlow((value.Value / 453.59237) / 1e6d, MassFlowUnit.MegapoundPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerDay) => new MassFlow((value.Value * 86400) / 1e-6d, MassFlowUnit.MicrogramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerSecond) => new MassFlow((value.Value) / 1e-6d, MassFlowUnit.MicrogramPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerDay) => new MassFlow((value.Value * 86400) / 1e-3d, MassFlowUnit.MilligramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerSecond) => new MassFlow((value.Value) / 1e-3d, MassFlowUnit.MilligramPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerDay) => new MassFlow((value.Value * 86400) / 1e-9d, MassFlowUnit.NanogramPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerSecond) => new MassFlow((value.Value) / 1e-9d, MassFlowUnit.NanogramPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerDay) => new MassFlow(value.Value * 190.47936, MassFlowUnit.PoundPerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerHour) => new MassFlow(value.Value * 7.93664, MassFlowUnit.PoundPerHour),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerMinute) => new MassFlow(value.Value * 0.132277, MassFlowUnit.PoundPerMinute),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerSecond) => new MassFlow(value.Value / 453.59237, MassFlowUnit.PoundPerSecond),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.ShortTonPerHour) => new MassFlow(value.Value / 251.9957611, MassFlowUnit.ShortTonPerHour),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerDay) => new MassFlow(value.Value * 0.0864000, MassFlowUnit.TonnePerDay),
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerHour) => new MassFlow(value.Value * 3.6 / 1000, MassFlowUnit.TonnePerHour),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MassFlowUnit.CentigramPerDay, new CultureInfo("en-US"), false, true, new string[]{"cg/d"});

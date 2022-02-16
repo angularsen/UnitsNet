@@ -314,6 +314,49 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter, quantity => new Irradiance(quantity.Value * 10000, IrradianceUnit.WattPerSquareMeter));
         }
 
+        private static bool TryConvert(Irradiance value, IrradianceUnit targetUnit, out Irradiance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // IrradianceUnit -> BaseUnit
+                (IrradianceUnit.KilowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value * 10000) * 1e3d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.KilowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value) * 1e3d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.MegawattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value * 10000) * 1e6d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.MegawattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value) * 1e6d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.MicrowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value * 10000) * 1e-6d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.MicrowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value) * 1e-6d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.MilliwattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value * 10000) * 1e-3d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.MilliwattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value) * 1e-3d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.NanowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value * 10000) * 1e-9d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.NanowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value) * 1e-9d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.PicowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value * 10000) * 1e-12d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.PicowattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((value.Value) * 1e-12d, IrradianceUnit.WattPerSquareMeter),
+                (IrradianceUnit.WattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance(value.Value * 10000, IrradianceUnit.WattPerSquareMeter),
+
+                // BaseUnit <-> BaseUnit
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => value,
+
+                // BaseUnit -> IrradianceUnit
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.KilowattPerSquareCentimeter) => new Irradiance((value.Value * 0.0001) / 1e3d, IrradianceUnit.KilowattPerSquareCentimeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.KilowattPerSquareMeter) => new Irradiance((value.Value) / 1e3d, IrradianceUnit.KilowattPerSquareMeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MegawattPerSquareCentimeter) => new Irradiance((value.Value * 0.0001) / 1e6d, IrradianceUnit.MegawattPerSquareCentimeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MegawattPerSquareMeter) => new Irradiance((value.Value) / 1e6d, IrradianceUnit.MegawattPerSquareMeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MicrowattPerSquareCentimeter) => new Irradiance((value.Value * 0.0001) / 1e-6d, IrradianceUnit.MicrowattPerSquareCentimeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MicrowattPerSquareMeter) => new Irradiance((value.Value) / 1e-6d, IrradianceUnit.MicrowattPerSquareMeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MilliwattPerSquareCentimeter) => new Irradiance((value.Value * 0.0001) / 1e-3d, IrradianceUnit.MilliwattPerSquareCentimeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.MilliwattPerSquareMeter) => new Irradiance((value.Value) / 1e-3d, IrradianceUnit.MilliwattPerSquareMeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.NanowattPerSquareCentimeter) => new Irradiance((value.Value * 0.0001) / 1e-9d, IrradianceUnit.NanowattPerSquareCentimeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.NanowattPerSquareMeter) => new Irradiance((value.Value) / 1e-9d, IrradianceUnit.NanowattPerSquareMeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.PicowattPerSquareCentimeter) => new Irradiance((value.Value * 0.0001) / 1e-12d, IrradianceUnit.PicowattPerSquareCentimeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.PicowattPerSquareMeter) => new Irradiance((value.Value) / 1e-12d, IrradianceUnit.PicowattPerSquareMeter),
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareCentimeter) => new Irradiance(value.Value * 0.0001, IrradianceUnit.WattPerSquareCentimeter),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.KilowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kW/cm²"});

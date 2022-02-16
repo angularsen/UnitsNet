@@ -234,6 +234,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter, quantity => new TemperatureGradient((quantity.Value / 0.3048) * 5 / 9, TemperatureGradientUnit.KelvinPerMeter));
         }
 
+        private static bool TryConvert(TemperatureGradient value, TemperatureGradientUnit targetUnit, out TemperatureGradient? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // TemperatureGradientUnit -> BaseUnit
+                (TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(value.Value / 1e3, TemperatureGradientUnit.KelvinPerMeter),
+                (TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(value.Value, TemperatureGradientUnit.KelvinPerMeter),
+                (TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient((value.Value / 0.3048) * 5 / 9, TemperatureGradientUnit.KelvinPerMeter),
+
+                // BaseUnit <-> BaseUnit
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.KelvinPerMeter) => value,
+
+                // BaseUnit -> TemperatureGradientUnit
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer) => new TemperatureGradient(value.Value * 1e3, TemperatureGradientUnit.DegreeCelsiusPerKilometer),
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerMeter) => new TemperatureGradient(value.Value, TemperatureGradientUnit.DegreeCelsiusPerMeter),
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot) => new TemperatureGradient((value.Value * 0.3048) * 9 / 5, TemperatureGradientUnit.DegreeFahrenheitPerFoot),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"∆°C/km"});

@@ -234,6 +234,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere, quantity => new ApparentPower((quantity.Value) * 1e6d, ApparentPowerUnit.Voltampere));
         }
 
+        private static bool TryConvert(ApparentPower value, ApparentPowerUnit targetUnit, out ApparentPower? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ApparentPowerUnit -> BaseUnit
+                (ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((value.Value) * 1e9d, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((value.Value) * 1e3d, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((value.Value) * 1e6d, ApparentPowerUnit.Voltampere),
+
+                // BaseUnit <-> BaseUnit
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Voltampere) => value,
+
+                // BaseUnit -> ApparentPowerUnit
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere) => new ApparentPower((value.Value) / 1e9d, ApparentPowerUnit.Gigavoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere) => new ApparentPower((value.Value) / 1e3d, ApparentPowerUnit.Kilovoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere) => new ApparentPower((value.Value) / 1e6d, ApparentPowerUnit.Megavoltampere),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Gigavoltampere, new CultureInfo("en-US"), false, true, new string[]{"GVA"});

@@ -218,6 +218,25 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => new VolumeFlowPerArea(quantity.Value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
         }
 
+        private static bool TryConvert(VolumeFlowPerArea value, VolumeFlowPerAreaUnit targetUnit, out VolumeFlowPerArea? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // VolumeFlowPerAreaUnit -> BaseUnit
+                (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(value.Value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
+
+                // BaseUnit <-> BaseUnit
+                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => value,
+
+                // BaseUnit -> VolumeFlowPerAreaUnit
+                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(value.Value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"CFM/ft²"});

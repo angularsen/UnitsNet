@@ -554,6 +554,109 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => new PowerDensity(quantity.Value * 1.0e3, PowerDensityUnit.WattPerCubicMeter));
         }
 
+        private static bool TryConvert(PowerDensity value, PowerDensityUnit targetUnit, out PowerDensity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // PowerDensityUnit -> BaseUnit
+                (PowerDensityUnit.DecawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.DecawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.DecawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.DecawattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.DeciwattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e-1d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.DeciwattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e-1d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.DeciwattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e-1d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.DeciwattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e-1d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.GigawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e9d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.GigawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e9d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.GigawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e9d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.GigawattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e9d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.KilowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e3d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.KilowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e3d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.KilowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e3d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.KilowattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e3d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MegawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e6d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MegawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e6d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MegawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e6d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MegawattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e6d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MicrowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e-6d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MicrowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e-6d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MicrowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e-6d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MicrowattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e-6d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MilliwattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e-3d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MilliwattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e-3d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MilliwattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e-3d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.MilliwattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e-3d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.NanowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e-9d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.NanowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e-9d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.NanowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e-9d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.NanowattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e-9d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.PicowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e-12d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.PicowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e-12d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.PicowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e-12d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.PicowattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e-12d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.TerawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 3.531466672148859e1) * 1e12d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.TerawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 6.102374409473228e4) * 1e12d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.TerawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value) * 1e12d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.TerawattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((value.Value * 1.0e3) * 1e12d, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(value.Value * 3.531466672148859e1, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(value.Value * 6.102374409473228e4, PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.WattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(value.Value * 1.0e3, PowerDensityUnit.WattPerCubicMeter),
+
+                // BaseUnit <-> BaseUnit
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => value,
+
+                // BaseUnit -> PowerDensityUnit
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e1d, PowerDensityUnit.DecawattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e1d, PowerDensityUnit.DecawattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicMeter) => new PowerDensity((value.Value) / 1e1d, PowerDensityUnit.DecawattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e1d, PowerDensityUnit.DecawattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e-1d, PowerDensityUnit.DeciwattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e-1d, PowerDensityUnit.DeciwattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicMeter) => new PowerDensity((value.Value) / 1e-1d, PowerDensityUnit.DeciwattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e-1d, PowerDensityUnit.DeciwattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e9d, PowerDensityUnit.GigawattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e9d, PowerDensityUnit.GigawattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicMeter) => new PowerDensity((value.Value) / 1e9d, PowerDensityUnit.GigawattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e9d, PowerDensityUnit.GigawattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e3d, PowerDensityUnit.KilowattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e3d, PowerDensityUnit.KilowattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicMeter) => new PowerDensity((value.Value) / 1e3d, PowerDensityUnit.KilowattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e3d, PowerDensityUnit.KilowattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e6d, PowerDensityUnit.MegawattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e6d, PowerDensityUnit.MegawattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicMeter) => new PowerDensity((value.Value) / 1e6d, PowerDensityUnit.MegawattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e6d, PowerDensityUnit.MegawattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e-6d, PowerDensityUnit.MicrowattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e-6d, PowerDensityUnit.MicrowattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicMeter) => new PowerDensity((value.Value) / 1e-6d, PowerDensityUnit.MicrowattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e-6d, PowerDensityUnit.MicrowattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e-3d, PowerDensityUnit.MilliwattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e-3d, PowerDensityUnit.MilliwattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicMeter) => new PowerDensity((value.Value) / 1e-3d, PowerDensityUnit.MilliwattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e-3d, PowerDensityUnit.MilliwattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e-9d, PowerDensityUnit.NanowattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e-9d, PowerDensityUnit.NanowattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicMeter) => new PowerDensity((value.Value) / 1e-9d, PowerDensityUnit.NanowattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e-9d, PowerDensityUnit.NanowattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e-12d, PowerDensityUnit.PicowattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e-12d, PowerDensityUnit.PicowattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicMeter) => new PowerDensity((value.Value) / 1e-12d, PowerDensityUnit.PicowattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e-12d, PowerDensityUnit.PicowattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicFoot) => new PowerDensity((value.Value / 3.531466672148859e1) / 1e12d, PowerDensityUnit.TerawattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicInch) => new PowerDensity((value.Value / 6.102374409473228e4) / 1e12d, PowerDensityUnit.TerawattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicMeter) => new PowerDensity((value.Value) / 1e12d, PowerDensityUnit.TerawattPerCubicMeter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerLiter) => new PowerDensity((value.Value / 1.0e3) / 1e12d, PowerDensityUnit.TerawattPerLiter),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicFoot) => new PowerDensity(value.Value / 3.531466672148859e1, PowerDensityUnit.WattPerCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicInch) => new PowerDensity(value.Value / 6.102374409473228e4, PowerDensityUnit.WattPerCubicInch),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerLiter) => new PowerDensity(value.Value / 1.0e3, PowerDensityUnit.WattPerLiter),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DecawattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"daW/ft³"});

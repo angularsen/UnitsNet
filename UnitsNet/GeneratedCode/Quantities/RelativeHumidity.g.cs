@@ -210,6 +210,23 @@ namespace UnitsNet
             // Register in unit converter: RelativeHumidityUnit -> BaseUnit
         }
 
+        private static bool TryConvert(RelativeHumidity value, RelativeHumidityUnit targetUnit, out RelativeHumidity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // RelativeHumidityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (RelativeHumidityUnit.Percent, RelativeHumidityUnit.Percent) => value,
+
+                // BaseUnit -> RelativeHumidityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(RelativeHumidityUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%RH"});

@@ -402,6 +402,71 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Tonne, MassUnit.Kilogram, quantity => new Mass(quantity.Value * 1e3, MassUnit.Kilogram));
         }
 
+        private static bool TryConvert(Mass value, MassUnit targetUnit, out Mass? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MassUnit -> BaseUnit
+                (MassUnit.Centigram, MassUnit.Kilogram) => new Mass((value.Value / 1e3) * 1e-2d, MassUnit.Kilogram),
+                (MassUnit.Decagram, MassUnit.Kilogram) => new Mass((value.Value / 1e3) * 1e1d, MassUnit.Kilogram),
+                (MassUnit.Decigram, MassUnit.Kilogram) => new Mass((value.Value / 1e3) * 1e-1d, MassUnit.Kilogram),
+                (MassUnit.EarthMass, MassUnit.Kilogram) => new Mass(value.Value * 5.9722E+24, MassUnit.Kilogram),
+                (MassUnit.Grain, MassUnit.Kilogram) => new Mass(value.Value / 15432.358352941431, MassUnit.Kilogram),
+                (MassUnit.Gram, MassUnit.Kilogram) => new Mass(value.Value / 1e3, MassUnit.Kilogram),
+                (MassUnit.Hectogram, MassUnit.Kilogram) => new Mass((value.Value / 1e3) * 1e2d, MassUnit.Kilogram),
+                (MassUnit.Kilopound, MassUnit.Kilogram) => new Mass((value.Value * 0.45359237) * 1e3d, MassUnit.Kilogram),
+                (MassUnit.Kilotonne, MassUnit.Kilogram) => new Mass((value.Value * 1e3) * 1e3d, MassUnit.Kilogram),
+                (MassUnit.LongHundredweight, MassUnit.Kilogram) => new Mass(value.Value / 0.01968413055222121, MassUnit.Kilogram),
+                (MassUnit.LongTon, MassUnit.Kilogram) => new Mass(value.Value * 1.0160469088e3, MassUnit.Kilogram),
+                (MassUnit.Megapound, MassUnit.Kilogram) => new Mass((value.Value * 0.45359237) * 1e6d, MassUnit.Kilogram),
+                (MassUnit.Megatonne, MassUnit.Kilogram) => new Mass((value.Value * 1e3) * 1e6d, MassUnit.Kilogram),
+                (MassUnit.Microgram, MassUnit.Kilogram) => new Mass((value.Value / 1e3) * 1e-6d, MassUnit.Kilogram),
+                (MassUnit.Milligram, MassUnit.Kilogram) => new Mass((value.Value / 1e3) * 1e-3d, MassUnit.Kilogram),
+                (MassUnit.Nanogram, MassUnit.Kilogram) => new Mass((value.Value / 1e3) * 1e-9d, MassUnit.Kilogram),
+                (MassUnit.Ounce, MassUnit.Kilogram) => new Mass(value.Value / 35.2739619, MassUnit.Kilogram),
+                (MassUnit.Pound, MassUnit.Kilogram) => new Mass(value.Value * 0.45359237, MassUnit.Kilogram),
+                (MassUnit.ShortHundredweight, MassUnit.Kilogram) => new Mass(value.Value / 0.022046226218487758, MassUnit.Kilogram),
+                (MassUnit.ShortTon, MassUnit.Kilogram) => new Mass(value.Value * 9.0718474e2, MassUnit.Kilogram),
+                (MassUnit.Slug, MassUnit.Kilogram) => new Mass(value.Value / 6.852176556196105e-2, MassUnit.Kilogram),
+                (MassUnit.SolarMass, MassUnit.Kilogram) => new Mass(value.Value * 1.98947e30, MassUnit.Kilogram),
+                (MassUnit.Stone, MassUnit.Kilogram) => new Mass(value.Value / 0.1574731728702698, MassUnit.Kilogram),
+                (MassUnit.Tonne, MassUnit.Kilogram) => new Mass(value.Value * 1e3, MassUnit.Kilogram),
+
+                // BaseUnit <-> BaseUnit
+                (MassUnit.Kilogram, MassUnit.Kilogram) => value,
+
+                // BaseUnit -> MassUnit
+                (MassUnit.Kilogram, MassUnit.Centigram) => new Mass((value.Value * 1e3) / 1e-2d, MassUnit.Centigram),
+                (MassUnit.Kilogram, MassUnit.Decagram) => new Mass((value.Value * 1e3) / 1e1d, MassUnit.Decagram),
+                (MassUnit.Kilogram, MassUnit.Decigram) => new Mass((value.Value * 1e3) / 1e-1d, MassUnit.Decigram),
+                (MassUnit.Kilogram, MassUnit.EarthMass) => new Mass(value.Value / 5.9722E+24, MassUnit.EarthMass),
+                (MassUnit.Kilogram, MassUnit.Grain) => new Mass(value.Value * 15432.358352941431, MassUnit.Grain),
+                (MassUnit.Kilogram, MassUnit.Gram) => new Mass(value.Value * 1e3, MassUnit.Gram),
+                (MassUnit.Kilogram, MassUnit.Hectogram) => new Mass((value.Value * 1e3) / 1e2d, MassUnit.Hectogram),
+                (MassUnit.Kilogram, MassUnit.Kilopound) => new Mass((value.Value / 0.45359237) / 1e3d, MassUnit.Kilopound),
+                (MassUnit.Kilogram, MassUnit.Kilotonne) => new Mass((value.Value / 1e3) / 1e3d, MassUnit.Kilotonne),
+                (MassUnit.Kilogram, MassUnit.LongHundredweight) => new Mass(value.Value * 0.01968413055222121, MassUnit.LongHundredweight),
+                (MassUnit.Kilogram, MassUnit.LongTon) => new Mass(value.Value / 1.0160469088e3, MassUnit.LongTon),
+                (MassUnit.Kilogram, MassUnit.Megapound) => new Mass((value.Value / 0.45359237) / 1e6d, MassUnit.Megapound),
+                (MassUnit.Kilogram, MassUnit.Megatonne) => new Mass((value.Value / 1e3) / 1e6d, MassUnit.Megatonne),
+                (MassUnit.Kilogram, MassUnit.Microgram) => new Mass((value.Value * 1e3) / 1e-6d, MassUnit.Microgram),
+                (MassUnit.Kilogram, MassUnit.Milligram) => new Mass((value.Value * 1e3) / 1e-3d, MassUnit.Milligram),
+                (MassUnit.Kilogram, MassUnit.Nanogram) => new Mass((value.Value * 1e3) / 1e-9d, MassUnit.Nanogram),
+                (MassUnit.Kilogram, MassUnit.Ounce) => new Mass(value.Value * 35.2739619, MassUnit.Ounce),
+                (MassUnit.Kilogram, MassUnit.Pound) => new Mass(value.Value / 0.45359237, MassUnit.Pound),
+                (MassUnit.Kilogram, MassUnit.ShortHundredweight) => new Mass(value.Value * 0.022046226218487758, MassUnit.ShortHundredweight),
+                (MassUnit.Kilogram, MassUnit.ShortTon) => new Mass(value.Value / 9.0718474e2, MassUnit.ShortTon),
+                (MassUnit.Kilogram, MassUnit.Slug) => new Mass(value.Value * 6.852176556196105e-2, MassUnit.Slug),
+                (MassUnit.Kilogram, MassUnit.SolarMass) => new Mass(value.Value / 1.98947e30, MassUnit.SolarMass),
+                (MassUnit.Kilogram, MassUnit.Stone) => new Mass(value.Value * 0.1574731728702698, MassUnit.Stone),
+                (MassUnit.Kilogram, MassUnit.Tonne) => new Mass(value.Value / 1e3, MassUnit.Tonne),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Centigram, new CultureInfo("en-US"), false, true, new string[]{"cg"});

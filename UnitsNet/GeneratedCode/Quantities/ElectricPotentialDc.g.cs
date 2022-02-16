@@ -242,6 +242,31 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.MillivoltDc, ElectricPotentialDcUnit.VoltDc, quantity => new ElectricPotentialDc((quantity.Value) * 1e-3d, ElectricPotentialDcUnit.VoltDc));
         }
 
+        private static bool TryConvert(ElectricPotentialDc value, ElectricPotentialDcUnit targetUnit, out ElectricPotentialDc? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricPotentialDcUnit -> BaseUnit
+                (ElectricPotentialDcUnit.KilovoltDc, ElectricPotentialDcUnit.VoltDc) => new ElectricPotentialDc((value.Value) * 1e3d, ElectricPotentialDcUnit.VoltDc),
+                (ElectricPotentialDcUnit.MegavoltDc, ElectricPotentialDcUnit.VoltDc) => new ElectricPotentialDc((value.Value) * 1e6d, ElectricPotentialDcUnit.VoltDc),
+                (ElectricPotentialDcUnit.MicrovoltDc, ElectricPotentialDcUnit.VoltDc) => new ElectricPotentialDc((value.Value) * 1e-6d, ElectricPotentialDcUnit.VoltDc),
+                (ElectricPotentialDcUnit.MillivoltDc, ElectricPotentialDcUnit.VoltDc) => new ElectricPotentialDc((value.Value) * 1e-3d, ElectricPotentialDcUnit.VoltDc),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.VoltDc) => value,
+
+                // BaseUnit -> ElectricPotentialDcUnit
+                (ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.KilovoltDc) => new ElectricPotentialDc((value.Value) / 1e3d, ElectricPotentialDcUnit.KilovoltDc),
+                (ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MegavoltDc) => new ElectricPotentialDc((value.Value) / 1e6d, ElectricPotentialDcUnit.MegavoltDc),
+                (ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MicrovoltDc) => new ElectricPotentialDc((value.Value) / 1e-6d, ElectricPotentialDcUnit.MicrovoltDc),
+                (ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MillivoltDc) => new ElectricPotentialDc((value.Value) / 1e-3d, ElectricPotentialDcUnit.MillivoltDc),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.KilovoltDc, new CultureInfo("en-US"), false, true, new string[]{"kVdc"});

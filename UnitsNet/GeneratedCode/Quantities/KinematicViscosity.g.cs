@@ -277,6 +277,39 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.Stokes, KinematicViscosityUnit.SquareMeterPerSecond, quantity => new KinematicViscosity(quantity.Value / 1e4, KinematicViscosityUnit.SquareMeterPerSecond));
         }
 
+        private static bool TryConvert(KinematicViscosity value, KinematicViscosityUnit targetUnit, out KinematicViscosity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // KinematicViscosityUnit -> BaseUnit
+                (KinematicViscosityUnit.Centistokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((value.Value / 1e4) * 1e-2d, KinematicViscosityUnit.SquareMeterPerSecond),
+                (KinematicViscosityUnit.Decistokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((value.Value / 1e4) * 1e-1d, KinematicViscosityUnit.SquareMeterPerSecond),
+                (KinematicViscosityUnit.Kilostokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((value.Value / 1e4) * 1e3d, KinematicViscosityUnit.SquareMeterPerSecond),
+                (KinematicViscosityUnit.Microstokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((value.Value / 1e4) * 1e-6d, KinematicViscosityUnit.SquareMeterPerSecond),
+                (KinematicViscosityUnit.Millistokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((value.Value / 1e4) * 1e-3d, KinematicViscosityUnit.SquareMeterPerSecond),
+                (KinematicViscosityUnit.Nanostokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((value.Value / 1e4) * 1e-9d, KinematicViscosityUnit.SquareMeterPerSecond),
+                (KinematicViscosityUnit.SquareFootPerSecond, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity(value.Value / 10.7639, KinematicViscosityUnit.SquareMeterPerSecond),
+                (KinematicViscosityUnit.Stokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity(value.Value / 1e4, KinematicViscosityUnit.SquareMeterPerSecond),
+
+                // BaseUnit <-> BaseUnit
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareMeterPerSecond) => value,
+
+                // BaseUnit -> KinematicViscosityUnit
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Centistokes) => new KinematicViscosity((value.Value * 1e4) / 1e-2d, KinematicViscosityUnit.Centistokes),
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Decistokes) => new KinematicViscosity((value.Value * 1e4) / 1e-1d, KinematicViscosityUnit.Decistokes),
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Kilostokes) => new KinematicViscosity((value.Value * 1e4) / 1e3d, KinematicViscosityUnit.Kilostokes),
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Microstokes) => new KinematicViscosity((value.Value * 1e4) / 1e-6d, KinematicViscosityUnit.Microstokes),
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Millistokes) => new KinematicViscosity((value.Value * 1e4) / 1e-3d, KinematicViscosityUnit.Millistokes),
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Nanostokes) => new KinematicViscosity((value.Value * 1e4) / 1e-9d, KinematicViscosityUnit.Nanostokes),
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareFootPerSecond) => new KinematicViscosity(value.Value * 10.7639, KinematicViscosityUnit.SquareFootPerSecond),
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Stokes) => new KinematicViscosity(value.Value * 1e4, KinematicViscosityUnit.Stokes),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Centistokes, new CultureInfo("en-US"), false, true, new string[]{"cSt"});

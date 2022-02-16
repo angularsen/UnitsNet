@@ -298,6 +298,45 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value / 1e-3) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
         }
 
+        private static bool TryConvert(MassFlux value, MassFluxUnit targetUnit, out MassFlux? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MassFluxUnit -> BaseUnit
+                (MassFluxUnit.GramPerHourPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux(value.Value / 3.6e2, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.GramPerHourPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux(value.Value / 3.6e6, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.GramPerHourPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux(value.Value / 3.6e0, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.GramPerSecondPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux(value.Value / 1e-1, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.GramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux(value.Value / 1e3, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.GramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux(value.Value / 1e-3, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.KilogramPerHourPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((value.Value / 3.6e2) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.KilogramPerHourPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((value.Value / 3.6e6) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.KilogramPerHourPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((value.Value / 3.6e0) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((value.Value / 1e-1) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((value.Value / 1e-3) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
+
+                // BaseUnit <-> BaseUnit
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => value,
+
+                // BaseUnit -> MassFluxUnit
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareCentimeter) => new MassFlux(value.Value * 3.6e2, MassFluxUnit.GramPerHourPerSquareCentimeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareMeter) => new MassFlux(value.Value * 3.6e6, MassFluxUnit.GramPerHourPerSquareMeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareMillimeter) => new MassFlux(value.Value * 3.6e0, MassFluxUnit.GramPerHourPerSquareMillimeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareCentimeter) => new MassFlux(value.Value * 1e-1, MassFluxUnit.GramPerSecondPerSquareCentimeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareMeter) => new MassFlux(value.Value * 1e3, MassFluxUnit.GramPerSecondPerSquareMeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareMillimeter) => new MassFlux(value.Value * 1e-3, MassFluxUnit.GramPerSecondPerSquareMillimeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareCentimeter) => new MassFlux((value.Value * 3.6e2) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareCentimeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareMeter) => new MassFlux((value.Value * 3.6e6) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareMeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareMillimeter) => new MassFlux((value.Value * 3.6e0) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareMillimeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareCentimeter) => new MassFlux((value.Value * 1e-1) / 1e3d, MassFluxUnit.KilogramPerSecondPerSquareCentimeter),
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMillimeter) => new MassFlux((value.Value * 1e-3) / 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMillimeter),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·cm⁻²"});

@@ -234,6 +234,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.MegavoltampereReactive, ReactivePowerUnit.VoltampereReactive, quantity => new ReactivePower((quantity.Value) * 1e6d, ReactivePowerUnit.VoltampereReactive));
         }
 
+        private static bool TryConvert(ReactivePower value, ReactivePowerUnit targetUnit, out ReactivePower? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ReactivePowerUnit -> BaseUnit
+                (ReactivePowerUnit.GigavoltampereReactive, ReactivePowerUnit.VoltampereReactive) => new ReactivePower((value.Value) * 1e9d, ReactivePowerUnit.VoltampereReactive),
+                (ReactivePowerUnit.KilovoltampereReactive, ReactivePowerUnit.VoltampereReactive) => new ReactivePower((value.Value) * 1e3d, ReactivePowerUnit.VoltampereReactive),
+                (ReactivePowerUnit.MegavoltampereReactive, ReactivePowerUnit.VoltampereReactive) => new ReactivePower((value.Value) * 1e6d, ReactivePowerUnit.VoltampereReactive),
+
+                // BaseUnit <-> BaseUnit
+                (ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.VoltampereReactive) => value,
+
+                // BaseUnit -> ReactivePowerUnit
+                (ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.GigavoltampereReactive) => new ReactivePower((value.Value) / 1e9d, ReactivePowerUnit.GigavoltampereReactive),
+                (ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.KilovoltampereReactive) => new ReactivePower((value.Value) / 1e3d, ReactivePowerUnit.KilovoltampereReactive),
+                (ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.MegavoltampereReactive) => new ReactivePower((value.Value) / 1e6d, ReactivePowerUnit.MegavoltampereReactive),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.GigavoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"Gvar"});

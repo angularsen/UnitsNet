@@ -221,6 +221,25 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin, quantity => new ThermalConductivity(quantity.Value * 1.73073467, ThermalConductivityUnit.WattPerMeterKelvin));
         }
 
+        private static bool TryConvert(ThermalConductivity value, ThermalConductivityUnit targetUnit, out ThermalConductivity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ThermalConductivityUnit -> BaseUnit
+                (ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(value.Value * 1.73073467, ThermalConductivityUnit.WattPerMeterKelvin),
+
+                // BaseUnit <-> BaseUnit
+                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.WattPerMeterKelvin) => value,
+
+                // BaseUnit -> ThermalConductivityUnit
+                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit) => new ThermalConductivity(value.Value / 1.73073467, ThermalConductivityUnit.BtuPerHourFootFahrenheit),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/h·ft·°F"});

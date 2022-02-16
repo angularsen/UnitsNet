@@ -226,6 +226,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => new MolarEntropy((quantity.Value) * 1e6d, MolarEntropyUnit.JoulePerMoleKelvin));
         }
 
+        private static bool TryConvert(MolarEntropy value, MolarEntropyUnit targetUnit, out MolarEntropy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MolarEntropyUnit -> BaseUnit
+                (MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((value.Value) * 1e3d, MolarEntropyUnit.JoulePerMoleKelvin),
+                (MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((value.Value) * 1e6d, MolarEntropyUnit.JoulePerMoleKelvin),
+
+                // BaseUnit <-> BaseUnit
+                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => value,
+
+                // BaseUnit -> MolarEntropyUnit
+                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin) => new MolarEntropy((value.Value) / 1e3d, MolarEntropyUnit.KilojoulePerMoleKelvin),
+                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.MegajoulePerMoleKelvin) => new MolarEntropy((value.Value) / 1e6d, MolarEntropyUnit.MegajoulePerMoleKelvin),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarEntropyUnit.JoulePerMoleKelvin, new CultureInfo("en-US"), false, true, new string[]{"J/(mol*K)"});

@@ -266,6 +266,37 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Picoampere, ElectricCurrentUnit.Ampere, quantity => new ElectricCurrent((quantity.Value) * 1e-12d, ElectricCurrentUnit.Ampere));
         }
 
+        private static bool TryConvert(ElectricCurrent value, ElectricCurrentUnit targetUnit, out ElectricCurrent? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricCurrentUnit -> BaseUnit
+                (ElectricCurrentUnit.Centiampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((value.Value) * 1e-2d, ElectricCurrentUnit.Ampere),
+                (ElectricCurrentUnit.Kiloampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((value.Value) * 1e3d, ElectricCurrentUnit.Ampere),
+                (ElectricCurrentUnit.Megaampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((value.Value) * 1e6d, ElectricCurrentUnit.Ampere),
+                (ElectricCurrentUnit.Microampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((value.Value) * 1e-6d, ElectricCurrentUnit.Ampere),
+                (ElectricCurrentUnit.Milliampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((value.Value) * 1e-3d, ElectricCurrentUnit.Ampere),
+                (ElectricCurrentUnit.Nanoampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((value.Value) * 1e-9d, ElectricCurrentUnit.Ampere),
+                (ElectricCurrentUnit.Picoampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((value.Value) * 1e-12d, ElectricCurrentUnit.Ampere),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Ampere) => value,
+
+                // BaseUnit -> ElectricCurrentUnit
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Centiampere) => new ElectricCurrent((value.Value) / 1e-2d, ElectricCurrentUnit.Centiampere),
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Kiloampere) => new ElectricCurrent((value.Value) / 1e3d, ElectricCurrentUnit.Kiloampere),
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Megaampere) => new ElectricCurrent((value.Value) / 1e6d, ElectricCurrentUnit.Megaampere),
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Microampere) => new ElectricCurrent((value.Value) / 1e-6d, ElectricCurrentUnit.Microampere),
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Milliampere) => new ElectricCurrent((value.Value) / 1e-3d, ElectricCurrentUnit.Milliampere),
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Nanoampere) => new ElectricCurrent((value.Value) / 1e-9d, ElectricCurrentUnit.Nanoampere),
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Picoampere) => new ElectricCurrent((value.Value) / 1e-12d, ElectricCurrentUnit.Picoampere),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Ampere, new CultureInfo("en-US"), false, true, new string[]{"A"});

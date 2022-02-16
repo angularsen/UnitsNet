@@ -274,6 +274,39 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.MegajoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin, quantity => new SpecificEntropy((quantity.Value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin));
         }
 
+        private static bool TryConvert(SpecificEntropy value, SpecificEntropyUnit targetUnit, out SpecificEntropy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // SpecificEntropyUnit -> BaseUnit
+                (SpecificEntropyUnit.BtuPerPoundFahrenheit, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy(value.Value * 4.1868e3, SpecificEntropyUnit.JoulePerKilogramKelvin),
+                (SpecificEntropyUnit.CaloriePerGramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy(value.Value * 4.184e3, SpecificEntropyUnit.JoulePerKilogramKelvin),
+                (SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy(value.Value, SpecificEntropyUnit.JoulePerKilogramKelvin),
+                (SpecificEntropyUnit.KilocaloriePerGramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((value.Value * 4.184e3) * 1e3d, SpecificEntropyUnit.JoulePerKilogramKelvin),
+                (SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((value.Value) * 1e3d, SpecificEntropyUnit.JoulePerKilogramKelvin),
+                (SpecificEntropyUnit.KilojoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((value.Value) * 1e3d, SpecificEntropyUnit.JoulePerKilogramKelvin),
+                (SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((value.Value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin),
+                (SpecificEntropyUnit.MegajoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((value.Value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin),
+
+                // BaseUnit <-> BaseUnit
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => value,
+
+                // BaseUnit -> SpecificEntropyUnit
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.BtuPerPoundFahrenheit) => new SpecificEntropy(value.Value / 4.1868e3, SpecificEntropyUnit.BtuPerPoundFahrenheit),
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.CaloriePerGramKelvin) => new SpecificEntropy(value.Value / 4.184e3, SpecificEntropyUnit.CaloriePerGramKelvin),
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius) => new SpecificEntropy(value.Value, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius),
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilocaloriePerGramKelvin) => new SpecificEntropy((value.Value / 4.184e3) / 1e3d, SpecificEntropyUnit.KilocaloriePerGramKelvin),
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius) => new SpecificEntropy((value.Value) / 1e3d, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius),
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.KilojoulePerKilogramKelvin) => new SpecificEntropy((value.Value) / 1e3d, SpecificEntropyUnit.KilojoulePerKilogramKelvin),
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius) => new SpecificEntropy((value.Value) / 1e6d, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius),
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramKelvin) => new SpecificEntropy((value.Value) / 1e6d, SpecificEntropyUnit.MegajoulePerKilogramKelvin),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.BtuPerPoundFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/lb·°F", "BTU/lbm·°F"});

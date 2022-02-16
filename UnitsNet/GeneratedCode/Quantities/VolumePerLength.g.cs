@@ -258,6 +258,35 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumePerLength>(VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLengthUnit.CubicMeterPerMeter, quantity => new VolumePerLength(quantity.Value / 1.91713408, VolumePerLengthUnit.CubicMeterPerMeter));
         }
 
+        private static bool TryConvert(VolumePerLength value, VolumePerLengthUnit targetUnit, out VolumePerLength? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // VolumePerLengthUnit -> BaseUnit
+                (VolumePerLengthUnit.CubicYardPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(value.Value * 2.50838208, VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.CubicYardPerUsSurveyFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(value.Value * 2.50837706323584, VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.LiterPerKilometer, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(value.Value / 1e6, VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.LiterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(value.Value / 1000, VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.LiterPerMillimeter, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(value.Value, VolumePerLengthUnit.CubicMeterPerMeter),
+                (VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(value.Value / 1.91713408, VolumePerLengthUnit.CubicMeterPerMeter),
+
+                // BaseUnit <-> BaseUnit
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter) => value,
+
+                // BaseUnit -> VolumePerLengthUnit
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerFoot) => new VolumePerLength(value.Value / 2.50838208, VolumePerLengthUnit.CubicYardPerFoot),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerUsSurveyFoot) => new VolumePerLength(value.Value / 2.50837706323584, VolumePerLengthUnit.CubicYardPerUsSurveyFoot),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerKilometer) => new VolumePerLength(value.Value * 1e6, VolumePerLengthUnit.LiterPerKilometer),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerMeter) => new VolumePerLength(value.Value * 1000, VolumePerLengthUnit.LiterPerMeter),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.LiterPerMillimeter) => new VolumePerLength(value.Value, VolumePerLengthUnit.LiterPerMillimeter),
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.OilBarrelPerFoot) => new VolumePerLength(value.Value * 1.91713408, VolumePerLengthUnit.OilBarrelPerFoot),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumePerLengthUnit.CubicMeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"m³/m"});

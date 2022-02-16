@@ -322,6 +322,51 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Force>(ForceUnit.TonneForce, ForceUnit.Newton, quantity => new Force(quantity.Value * 9.80665002864e3, ForceUnit.Newton));
         }
 
+        private static bool TryConvert(Force value, ForceUnit targetUnit, out Force? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ForceUnit -> BaseUnit
+                (ForceUnit.Decanewton, ForceUnit.Newton) => new Force((value.Value) * 1e1d, ForceUnit.Newton),
+                (ForceUnit.Dyn, ForceUnit.Newton) => new Force(value.Value / 1e5, ForceUnit.Newton),
+                (ForceUnit.KilogramForce, ForceUnit.Newton) => new Force(value.Value * 9.80665002864, ForceUnit.Newton),
+                (ForceUnit.Kilonewton, ForceUnit.Newton) => new Force((value.Value) * 1e3d, ForceUnit.Newton),
+                (ForceUnit.KiloPond, ForceUnit.Newton) => new Force(value.Value * 9.80665002864, ForceUnit.Newton),
+                (ForceUnit.KilopoundForce, ForceUnit.Newton) => new Force((value.Value * 4.4482216152605095551842641431421) * 1e3d, ForceUnit.Newton),
+                (ForceUnit.Meganewton, ForceUnit.Newton) => new Force((value.Value) * 1e6d, ForceUnit.Newton),
+                (ForceUnit.Micronewton, ForceUnit.Newton) => new Force((value.Value) * 1e-6d, ForceUnit.Newton),
+                (ForceUnit.Millinewton, ForceUnit.Newton) => new Force((value.Value) * 1e-3d, ForceUnit.Newton),
+                (ForceUnit.OunceForce, ForceUnit.Newton) => new Force(value.Value * 2.780138509537812e-1, ForceUnit.Newton),
+                (ForceUnit.Poundal, ForceUnit.Newton) => new Force(value.Value * 0.13825502798973041652092282466083, ForceUnit.Newton),
+                (ForceUnit.PoundForce, ForceUnit.Newton) => new Force(value.Value * 4.4482216152605095551842641431421, ForceUnit.Newton),
+                (ForceUnit.ShortTonForce, ForceUnit.Newton) => new Force(value.Value * 8.896443230521e3, ForceUnit.Newton),
+                (ForceUnit.TonneForce, ForceUnit.Newton) => new Force(value.Value * 9.80665002864e3, ForceUnit.Newton),
+
+                // BaseUnit <-> BaseUnit
+                (ForceUnit.Newton, ForceUnit.Newton) => value,
+
+                // BaseUnit -> ForceUnit
+                (ForceUnit.Newton, ForceUnit.Decanewton) => new Force((value.Value) / 1e1d, ForceUnit.Decanewton),
+                (ForceUnit.Newton, ForceUnit.Dyn) => new Force(value.Value * 1e5, ForceUnit.Dyn),
+                (ForceUnit.Newton, ForceUnit.KilogramForce) => new Force(value.Value / 9.80665002864, ForceUnit.KilogramForce),
+                (ForceUnit.Newton, ForceUnit.Kilonewton) => new Force((value.Value) / 1e3d, ForceUnit.Kilonewton),
+                (ForceUnit.Newton, ForceUnit.KiloPond) => new Force(value.Value / 9.80665002864, ForceUnit.KiloPond),
+                (ForceUnit.Newton, ForceUnit.KilopoundForce) => new Force((value.Value / 4.4482216152605095551842641431421) / 1e3d, ForceUnit.KilopoundForce),
+                (ForceUnit.Newton, ForceUnit.Meganewton) => new Force((value.Value) / 1e6d, ForceUnit.Meganewton),
+                (ForceUnit.Newton, ForceUnit.Micronewton) => new Force((value.Value) / 1e-6d, ForceUnit.Micronewton),
+                (ForceUnit.Newton, ForceUnit.Millinewton) => new Force((value.Value) / 1e-3d, ForceUnit.Millinewton),
+                (ForceUnit.Newton, ForceUnit.OunceForce) => new Force(value.Value / 2.780138509537812e-1, ForceUnit.OunceForce),
+                (ForceUnit.Newton, ForceUnit.Poundal) => new Force(value.Value / 0.13825502798973041652092282466083, ForceUnit.Poundal),
+                (ForceUnit.Newton, ForceUnit.PoundForce) => new Force(value.Value / 4.4482216152605095551842641431421, ForceUnit.PoundForce),
+                (ForceUnit.Newton, ForceUnit.ShortTonForce) => new Force(value.Value / 8.896443230521e3, ForceUnit.ShortTonForce),
+                (ForceUnit.Newton, ForceUnit.TonneForce) => new Force(value.Value / 9.80665002864e3, ForceUnit.TonneForce),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ForceUnit.Decanewton, new CultureInfo("en-US"), false, true, new string[]{"daN"});

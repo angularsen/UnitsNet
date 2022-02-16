@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: LuminousFluxUnit -> BaseUnit
         }
 
+        private static bool TryConvert(LuminousFlux value, LuminousFluxUnit targetUnit, out LuminousFlux? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LuminousFluxUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (LuminousFluxUnit.Lumen, LuminousFluxUnit.Lumen) => value,
+
+                // BaseUnit -> LuminousFluxUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LuminousFluxUnit.Lumen, new CultureInfo("en-US"), false, true, new string[]{"lm"});

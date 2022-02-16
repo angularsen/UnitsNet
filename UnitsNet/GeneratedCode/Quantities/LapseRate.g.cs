@@ -211,6 +211,23 @@ namespace UnitsNet
             // Register in unit converter: LapseRateUnit -> BaseUnit
         }
 
+        private static bool TryConvert(LapseRate value, LapseRateUnit targetUnit, out LapseRate? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LapseRateUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (LapseRateUnit.DegreeCelsiusPerKilometer, LapseRateUnit.DegreeCelsiusPerKilometer) => value,
+
+                // BaseUnit -> LapseRateUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LapseRateUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"∆°C/km"});

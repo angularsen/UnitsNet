@@ -314,6 +314,49 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.StandardGravity, AccelerationUnit.MeterPerSecondSquared, quantity => new Acceleration(quantity.Value * 9.80665, AccelerationUnit.MeterPerSecondSquared));
         }
 
+        private static bool TryConvert(Acceleration value, AccelerationUnit targetUnit, out Acceleration? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // AccelerationUnit -> BaseUnit
+                (AccelerationUnit.CentimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((value.Value) * 1e-2d, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.DecimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((value.Value) * 1e-1d, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.FootPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration(value.Value * 0.304800, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.InchPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration(value.Value * 0.0254, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.KilometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((value.Value) * 1e3d, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.KnotPerHour, AccelerationUnit.MeterPerSecondSquared) => new Acceleration(value.Value * 0.5144444444444 / 3600, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.KnotPerMinute, AccelerationUnit.MeterPerSecondSquared) => new Acceleration(value.Value * 0.5144444444444 / 60, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.KnotPerSecond, AccelerationUnit.MeterPerSecondSquared) => new Acceleration(value.Value * 0.5144444444444, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.MicrometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((value.Value) * 1e-6d, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.MillimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((value.Value) * 1e-3d, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.MillistandardGravity, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((value.Value * 9.80665) * 1e-3d, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.NanometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((value.Value) * 1e-9d, AccelerationUnit.MeterPerSecondSquared),
+                (AccelerationUnit.StandardGravity, AccelerationUnit.MeterPerSecondSquared) => new Acceleration(value.Value * 9.80665, AccelerationUnit.MeterPerSecondSquared),
+
+                // BaseUnit <-> BaseUnit
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => value,
+
+                // BaseUnit -> AccelerationUnit
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.CentimeterPerSecondSquared) => new Acceleration((value.Value) / 1e-2d, AccelerationUnit.CentimeterPerSecondSquared),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.DecimeterPerSecondSquared) => new Acceleration((value.Value) / 1e-1d, AccelerationUnit.DecimeterPerSecondSquared),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.FootPerSecondSquared) => new Acceleration(value.Value / 0.304800, AccelerationUnit.FootPerSecondSquared),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.InchPerSecondSquared) => new Acceleration(value.Value / 0.0254, AccelerationUnit.InchPerSecondSquared),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KilometerPerSecondSquared) => new Acceleration((value.Value) / 1e3d, AccelerationUnit.KilometerPerSecondSquared),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerHour) => new Acceleration(value.Value / 0.5144444444444 * 3600, AccelerationUnit.KnotPerHour),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerMinute) => new Acceleration(value.Value / 0.5144444444444 * 60, AccelerationUnit.KnotPerMinute),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.KnotPerSecond) => new Acceleration(value.Value / 0.5144444444444, AccelerationUnit.KnotPerSecond),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MicrometerPerSecondSquared) => new Acceleration((value.Value) / 1e-6d, AccelerationUnit.MicrometerPerSecondSquared),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MillimeterPerSecondSquared) => new Acceleration((value.Value) / 1e-3d, AccelerationUnit.MillimeterPerSecondSquared),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MillistandardGravity) => new Acceleration((value.Value / 9.80665) / 1e-3d, AccelerationUnit.MillistandardGravity),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.NanometerPerSecondSquared) => new Acceleration((value.Value) / 1e-9d, AccelerationUnit.NanometerPerSecondSquared),
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.StandardGravity) => new Acceleration(value.Value / 9.80665, AccelerationUnit.StandardGravity),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.CentimeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"cm/s²"});

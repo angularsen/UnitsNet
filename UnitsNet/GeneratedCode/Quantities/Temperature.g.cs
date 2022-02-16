@@ -282,6 +282,41 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.SolarTemperature, TemperatureUnit.Kelvin, quantity => new Temperature(quantity.Value * 5778, TemperatureUnit.Kelvin));
         }
 
+        private static bool TryConvert(Temperature value, TemperatureUnit targetUnit, out Temperature? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // TemperatureUnit -> BaseUnit
+                (TemperatureUnit.DegreeCelsius, TemperatureUnit.Kelvin) => new Temperature(value.Value + 273.15, TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeDelisle, TemperatureUnit.Kelvin) => new Temperature(value.Value * -2 / 3 + 373.15, TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeFahrenheit, TemperatureUnit.Kelvin) => new Temperature(value.Value * 5 / 9 + 459.67 * 5 / 9, TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeNewton, TemperatureUnit.Kelvin) => new Temperature(value.Value * 100 / 33 + 273.15, TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeRankine, TemperatureUnit.Kelvin) => new Temperature(value.Value * 5 / 9, TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeReaumur, TemperatureUnit.Kelvin) => new Temperature(value.Value * 5 / 4 + 273.15, TemperatureUnit.Kelvin),
+                (TemperatureUnit.DegreeRoemer, TemperatureUnit.Kelvin) => new Temperature(value.Value * 40 / 21 + 273.15 - 7.5 * 40d / 21, TemperatureUnit.Kelvin),
+                (TemperatureUnit.MillidegreeCelsius, TemperatureUnit.Kelvin) => new Temperature(value.Value / 1000 + 273.15, TemperatureUnit.Kelvin),
+                (TemperatureUnit.SolarTemperature, TemperatureUnit.Kelvin) => new Temperature(value.Value * 5778, TemperatureUnit.Kelvin),
+
+                // BaseUnit <-> BaseUnit
+                (TemperatureUnit.Kelvin, TemperatureUnit.Kelvin) => value,
+
+                // BaseUnit -> TemperatureUnit
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeCelsius) => new Temperature(value.Value - 273.15, TemperatureUnit.DegreeCelsius),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeDelisle) => new Temperature((value.Value - 373.15) * -3 / 2, TemperatureUnit.DegreeDelisle),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeFahrenheit) => new Temperature((value.Value - 459.67 * 5 / 9) * 9 / 5, TemperatureUnit.DegreeFahrenheit),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeNewton) => new Temperature((value.Value - 273.15) * 33 / 100, TemperatureUnit.DegreeNewton),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeRankine) => new Temperature(value.Value * 9 / 5, TemperatureUnit.DegreeRankine),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeReaumur) => new Temperature((value.Value - 273.15) * 4 / 5, TemperatureUnit.DegreeReaumur),
+                (TemperatureUnit.Kelvin, TemperatureUnit.DegreeRoemer) => new Temperature((value.Value - (273.15 - 7.5 * 40d / 21)) * 21 / 40, TemperatureUnit.DegreeRoemer),
+                (TemperatureUnit.Kelvin, TemperatureUnit.MillidegreeCelsius) => new Temperature((value.Value - 273.15) * 1000, TemperatureUnit.MillidegreeCelsius),
+                (TemperatureUnit.Kelvin, TemperatureUnit.SolarTemperature) => new Temperature(value.Value / 5778, TemperatureUnit.SolarTemperature),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"°C"});

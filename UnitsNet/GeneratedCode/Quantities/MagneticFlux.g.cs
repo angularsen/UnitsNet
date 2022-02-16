@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: MagneticFluxUnit -> BaseUnit
         }
 
+        private static bool TryConvert(MagneticFlux value, MagneticFluxUnit targetUnit, out MagneticFlux? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MagneticFluxUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (MagneticFluxUnit.Weber, MagneticFluxUnit.Weber) => value,
+
+                // BaseUnit -> MagneticFluxUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MagneticFluxUnit.Weber, new CultureInfo("en-US"), false, true, new string[]{"Wb"});

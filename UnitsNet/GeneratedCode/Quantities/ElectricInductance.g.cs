@@ -237,6 +237,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry, quantity => new ElectricInductance((quantity.Value) * 1e-9d, ElectricInductanceUnit.Henry));
         }
 
+        private static bool TryConvert(ElectricInductance value, ElectricInductanceUnit targetUnit, out ElectricInductance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricInductanceUnit -> BaseUnit
+                (ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry) => new ElectricInductance((value.Value) * 1e-6d, ElectricInductanceUnit.Henry),
+                (ElectricInductanceUnit.Millihenry, ElectricInductanceUnit.Henry) => new ElectricInductance((value.Value) * 1e-3d, ElectricInductanceUnit.Henry),
+                (ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry) => new ElectricInductance((value.Value) * 1e-9d, ElectricInductanceUnit.Henry),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry) => value,
+
+                // BaseUnit -> ElectricInductanceUnit
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry) => new ElectricInductance((value.Value) / 1e-6d, ElectricInductanceUnit.Microhenry),
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry) => new ElectricInductance((value.Value) / 1e-3d, ElectricInductanceUnit.Millihenry),
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry) => new ElectricInductance((value.Value) / 1e-9d, ElectricInductanceUnit.Nanohenry),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), false, true, new string[]{"H"});

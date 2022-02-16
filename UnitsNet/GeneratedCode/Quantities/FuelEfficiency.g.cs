@@ -237,6 +237,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<FuelEfficiency>(FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.LiterPer100Kilometers, quantity => new FuelEfficiency((100 * 3.785411784) / (1.609344 * quantity.Value), FuelEfficiencyUnit.LiterPer100Kilometers));
         }
 
+        private static bool TryConvert(FuelEfficiency value, FuelEfficiencyUnit targetUnit, out FuelEfficiency? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // FuelEfficiencyUnit -> BaseUnit
+                (FuelEfficiencyUnit.KilometerPerLiter, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency(100 / value.Value, FuelEfficiencyUnit.LiterPer100Kilometers),
+                (FuelEfficiencyUnit.MilePerUkGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((100 * 4.54609188) / (1.609344 * value.Value), FuelEfficiencyUnit.LiterPer100Kilometers),
+                (FuelEfficiencyUnit.MilePerUsGallon, FuelEfficiencyUnit.LiterPer100Kilometers) => new FuelEfficiency((100 * 3.785411784) / (1.609344 * value.Value), FuelEfficiencyUnit.LiterPer100Kilometers),
+
+                // BaseUnit <-> BaseUnit
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.LiterPer100Kilometers) => value,
+
+                // BaseUnit -> FuelEfficiencyUnit
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.KilometerPerLiter) => new FuelEfficiency(100 / value.Value, FuelEfficiencyUnit.KilometerPerLiter),
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUkGallon) => new FuelEfficiency((100 * 4.54609188) / (1.609344 * value.Value), FuelEfficiencyUnit.MilePerUkGallon),
+                (FuelEfficiencyUnit.LiterPer100Kilometers, FuelEfficiencyUnit.MilePerUsGallon) => new FuelEfficiency((100 * 3.785411784) / (1.609344 * value.Value), FuelEfficiencyUnit.MilePerUsGallon),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(FuelEfficiencyUnit.KilometerPerLiter, new CultureInfo("en-US"), false, true, new string[]{"km/L"});

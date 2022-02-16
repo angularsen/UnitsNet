@@ -229,6 +229,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
         }
 
+        private static bool TryConvert(ElectricCurrentDensity value, ElectricCurrentDensityUnit targetUnit, out ElectricCurrentDensity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricCurrentDensityUnit -> BaseUnit
+                (ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(value.Value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter),
+                (ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(value.Value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareMeter) => value,
+
+                // BaseUnit -> ElectricCurrentDensityUnit
+                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot) => new ElectricCurrentDensity(value.Value / 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareFoot),
+                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch) => new ElectricCurrentDensity(value.Value / 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareInch),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"A/ft²"});

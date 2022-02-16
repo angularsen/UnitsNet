@@ -405,6 +405,71 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value * 3.6e3, SpecificEnergyUnit.JoulePerKilogram));
         }
 
+        private static bool TryConvert(SpecificEnergy value, SpecificEnergyUnit targetUnit, out SpecificEnergy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // SpecificEnergyUnit -> BaseUnit
+                (SpecificEnergyUnit.BtuPerPound, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(value.Value * 2326.000075362, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.CaloriePerGram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(value.Value * 4.184e3, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.GigawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * (24 * 3.6e3)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.GigawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * ((24 * 3.6e3) / 9.0718474e2)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.GigawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * ((24 * 3.6e3) / 1e3)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.GigawattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * 3.6e3) * 1e9d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.KilocaloriePerGram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * 4.184e3) * 1e3d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.KilojoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value) * 1e3d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.KilowattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * (24 * 3.6e3)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.KilowattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * ((24 * 3.6e3) / 9.0718474e2)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.KilowattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * ((24 * 3.6e3) / 1e3)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.KilowattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * 3.6e3) * 1e3d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.MegajoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.MegawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * (24 * 3.6e3)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.MegawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * ((24 * 3.6e3) / 9.0718474e2)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.MegawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * ((24 * 3.6e3) / 1e3)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.MegawattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * 3.6e3) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.TerawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * (24 * 3.6e3)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.TerawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * ((24 * 3.6e3) / 9.0718474e2)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.TerawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((value.Value * ((24 * 3.6e3) / 1e3)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.WattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(value.Value * (24 * 3.6e3), SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.WattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(value.Value * ((24 * 3.6e3) / 9.0718474e2), SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.WattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(value.Value * ((24 * 3.6e3) / 1e3), SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.WattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(value.Value * 3.6e3, SpecificEnergyUnit.JoulePerKilogram),
+
+                // BaseUnit <-> BaseUnit
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram) => value,
+
+                // BaseUnit -> SpecificEnergyUnit
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.BtuPerPound) => new SpecificEnergy(value.Value / 2326.000075362, SpecificEnergyUnit.BtuPerPound),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.CaloriePerGram) => new SpecificEnergy(value.Value / 4.184e3, SpecificEnergyUnit.CaloriePerGram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerKilogram) => new SpecificEnergy((value.Value / (24 * 3.6e3)) / 1e9d, SpecificEnergyUnit.GigawattDayPerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerShortTon) => new SpecificEnergy((value.Value / ((24 * 3.6e3) / 9.0718474e2)) / 1e9d, SpecificEnergyUnit.GigawattDayPerShortTon),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerTonne) => new SpecificEnergy((value.Value / ((24 * 3.6e3) / 1e3)) / 1e9d, SpecificEnergyUnit.GigawattDayPerTonne),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattHourPerKilogram) => new SpecificEnergy((value.Value / 3.6e3) / 1e9d, SpecificEnergyUnit.GigawattHourPerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilocaloriePerGram) => new SpecificEnergy((value.Value / 4.184e3) / 1e3d, SpecificEnergyUnit.KilocaloriePerGram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilojoulePerKilogram) => new SpecificEnergy((value.Value) / 1e3d, SpecificEnergyUnit.KilojoulePerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerKilogram) => new SpecificEnergy((value.Value / (24 * 3.6e3)) / 1e3d, SpecificEnergyUnit.KilowattDayPerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerShortTon) => new SpecificEnergy((value.Value / ((24 * 3.6e3) / 9.0718474e2)) / 1e3d, SpecificEnergyUnit.KilowattDayPerShortTon),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerTonne) => new SpecificEnergy((value.Value / ((24 * 3.6e3) / 1e3)) / 1e3d, SpecificEnergyUnit.KilowattDayPerTonne),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattHourPerKilogram) => new SpecificEnergy((value.Value / 3.6e3) / 1e3d, SpecificEnergyUnit.KilowattHourPerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegajoulePerKilogram) => new SpecificEnergy((value.Value) / 1e6d, SpecificEnergyUnit.MegajoulePerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerKilogram) => new SpecificEnergy((value.Value / (24 * 3.6e3)) / 1e6d, SpecificEnergyUnit.MegawattDayPerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerShortTon) => new SpecificEnergy((value.Value / ((24 * 3.6e3) / 9.0718474e2)) / 1e6d, SpecificEnergyUnit.MegawattDayPerShortTon),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerTonne) => new SpecificEnergy((value.Value / ((24 * 3.6e3) / 1e3)) / 1e6d, SpecificEnergyUnit.MegawattDayPerTonne),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattHourPerKilogram) => new SpecificEnergy((value.Value / 3.6e3) / 1e6d, SpecificEnergyUnit.MegawattHourPerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerKilogram) => new SpecificEnergy((value.Value / (24 * 3.6e3)) / 1e12d, SpecificEnergyUnit.TerawattDayPerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerShortTon) => new SpecificEnergy((value.Value / ((24 * 3.6e3) / 9.0718474e2)) / 1e12d, SpecificEnergyUnit.TerawattDayPerShortTon),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerTonne) => new SpecificEnergy((value.Value / ((24 * 3.6e3) / 1e3)) / 1e12d, SpecificEnergyUnit.TerawattDayPerTonne),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerKilogram) => new SpecificEnergy(value.Value / (24 * 3.6e3), SpecificEnergyUnit.WattDayPerKilogram),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerShortTon) => new SpecificEnergy(value.Value / ((24 * 3.6e3) / 9.0718474e2), SpecificEnergyUnit.WattDayPerShortTon),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerTonne) => new SpecificEnergy(value.Value / ((24 * 3.6e3) / 1e3), SpecificEnergyUnit.WattDayPerTonne),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattHourPerKilogram) => new SpecificEnergy(value.Value / 3.6e3, SpecificEnergyUnit.WattHourPerKilogram),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.BtuPerPound, new CultureInfo("en-US"), false, true, new string[]{"btu/lb"});

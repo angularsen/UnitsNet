@@ -237,6 +237,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Illuminance>(IlluminanceUnit.Millilux, IlluminanceUnit.Lux, quantity => new Illuminance((quantity.Value) * 1e-3d, IlluminanceUnit.Lux));
         }
 
+        private static bool TryConvert(Illuminance value, IlluminanceUnit targetUnit, out Illuminance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // IlluminanceUnit -> BaseUnit
+                (IlluminanceUnit.Kilolux, IlluminanceUnit.Lux) => new Illuminance((value.Value) * 1e3d, IlluminanceUnit.Lux),
+                (IlluminanceUnit.Megalux, IlluminanceUnit.Lux) => new Illuminance((value.Value) * 1e6d, IlluminanceUnit.Lux),
+                (IlluminanceUnit.Millilux, IlluminanceUnit.Lux) => new Illuminance((value.Value) * 1e-3d, IlluminanceUnit.Lux),
+
+                // BaseUnit <-> BaseUnit
+                (IlluminanceUnit.Lux, IlluminanceUnit.Lux) => value,
+
+                // BaseUnit -> IlluminanceUnit
+                (IlluminanceUnit.Lux, IlluminanceUnit.Kilolux) => new Illuminance((value.Value) / 1e3d, IlluminanceUnit.Kilolux),
+                (IlluminanceUnit.Lux, IlluminanceUnit.Megalux) => new Illuminance((value.Value) / 1e6d, IlluminanceUnit.Megalux),
+                (IlluminanceUnit.Lux, IlluminanceUnit.Millilux) => new Illuminance((value.Value) / 1e-3d, IlluminanceUnit.Millilux),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(IlluminanceUnit.Kilolux, new CultureInfo("en-US"), false, true, new string[]{"klx"});

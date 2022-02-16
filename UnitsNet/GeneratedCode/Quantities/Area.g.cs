@@ -314,6 +314,49 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Area>(AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter, quantity => new Area(quantity.Value * 0.09290341161, AreaUnit.SquareMeter));
         }
 
+        private static bool TryConvert(Area value, AreaUnit targetUnit, out Area? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // AreaUnit -> BaseUnit
+                (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(value.Value * 4046.85642, AreaUnit.SquareMeter),
+                (AreaUnit.Hectare, AreaUnit.SquareMeter) => new Area(value.Value * 1e4, AreaUnit.SquareMeter),
+                (AreaUnit.SquareCentimeter, AreaUnit.SquareMeter) => new Area(value.Value * 1e-4, AreaUnit.SquareMeter),
+                (AreaUnit.SquareDecimeter, AreaUnit.SquareMeter) => new Area(value.Value * 1e-2, AreaUnit.SquareMeter),
+                (AreaUnit.SquareFoot, AreaUnit.SquareMeter) => new Area(value.Value * 9.290304e-2, AreaUnit.SquareMeter),
+                (AreaUnit.SquareInch, AreaUnit.SquareMeter) => new Area(value.Value * 0.00064516, AreaUnit.SquareMeter),
+                (AreaUnit.SquareKilometer, AreaUnit.SquareMeter) => new Area(value.Value * 1e6, AreaUnit.SquareMeter),
+                (AreaUnit.SquareMicrometer, AreaUnit.SquareMeter) => new Area(value.Value * 1e-12, AreaUnit.SquareMeter),
+                (AreaUnit.SquareMile, AreaUnit.SquareMeter) => new Area(value.Value * 2.59e6, AreaUnit.SquareMeter),
+                (AreaUnit.SquareMillimeter, AreaUnit.SquareMeter) => new Area(value.Value * 1e-6, AreaUnit.SquareMeter),
+                (AreaUnit.SquareNauticalMile, AreaUnit.SquareMeter) => new Area(value.Value * 3429904, AreaUnit.SquareMeter),
+                (AreaUnit.SquareYard, AreaUnit.SquareMeter) => new Area(value.Value * 0.836127, AreaUnit.SquareMeter),
+                (AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter) => new Area(value.Value * 0.09290341161, AreaUnit.SquareMeter),
+
+                // BaseUnit <-> BaseUnit
+                (AreaUnit.SquareMeter, AreaUnit.SquareMeter) => value,
+
+                // BaseUnit -> AreaUnit
+                (AreaUnit.SquareMeter, AreaUnit.Acre) => new Area(value.Value / 4046.85642, AreaUnit.Acre),
+                (AreaUnit.SquareMeter, AreaUnit.Hectare) => new Area(value.Value / 1e4, AreaUnit.Hectare),
+                (AreaUnit.SquareMeter, AreaUnit.SquareCentimeter) => new Area(value.Value / 1e-4, AreaUnit.SquareCentimeter),
+                (AreaUnit.SquareMeter, AreaUnit.SquareDecimeter) => new Area(value.Value / 1e-2, AreaUnit.SquareDecimeter),
+                (AreaUnit.SquareMeter, AreaUnit.SquareFoot) => new Area(value.Value / 9.290304e-2, AreaUnit.SquareFoot),
+                (AreaUnit.SquareMeter, AreaUnit.SquareInch) => new Area(value.Value / 0.00064516, AreaUnit.SquareInch),
+                (AreaUnit.SquareMeter, AreaUnit.SquareKilometer) => new Area(value.Value / 1e6, AreaUnit.SquareKilometer),
+                (AreaUnit.SquareMeter, AreaUnit.SquareMicrometer) => new Area(value.Value / 1e-12, AreaUnit.SquareMicrometer),
+                (AreaUnit.SquareMeter, AreaUnit.SquareMile) => new Area(value.Value / 2.59e6, AreaUnit.SquareMile),
+                (AreaUnit.SquareMeter, AreaUnit.SquareMillimeter) => new Area(value.Value / 1e-6, AreaUnit.SquareMillimeter),
+                (AreaUnit.SquareMeter, AreaUnit.SquareNauticalMile) => new Area(value.Value / 3429904, AreaUnit.SquareNauticalMile),
+                (AreaUnit.SquareMeter, AreaUnit.SquareYard) => new Area(value.Value / 0.836127, AreaUnit.SquareYard),
+                (AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot) => new Area(value.Value / 0.09290341161, AreaUnit.UsSurveySquareFoot),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Acre, new CultureInfo("en-US"), false, true, new string[]{"ac"});

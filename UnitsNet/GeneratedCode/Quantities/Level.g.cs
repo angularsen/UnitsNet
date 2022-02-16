@@ -218,6 +218,25 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => new Level((1 / 0.115129254) * quantity.Value, LevelUnit.Decibel));
         }
 
+        private static bool TryConvert(Level value, LevelUnit targetUnit, out Level? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LevelUnit -> BaseUnit
+                (LevelUnit.Neper, LevelUnit.Decibel) => new Level((1 / 0.115129254) * value.Value, LevelUnit.Decibel),
+
+                // BaseUnit <-> BaseUnit
+                (LevelUnit.Decibel, LevelUnit.Decibel) => value,
+
+                // BaseUnit -> LevelUnit
+                (LevelUnit.Decibel, LevelUnit.Neper) => new Level(0.115129254 * value.Value, LevelUnit.Neper),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LevelUnit.Decibel, new CultureInfo("en-US"), false, true, new string[]{"dB"});

@@ -226,6 +226,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactiveEnergy>(ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour, quantity => new ReactiveEnergy((quantity.Value) * 1e6d, ReactiveEnergyUnit.VoltampereReactiveHour));
         }
 
+        private static bool TryConvert(ReactiveEnergy value, ReactiveEnergyUnit targetUnit, out ReactiveEnergy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ReactiveEnergyUnit -> BaseUnit
+                (ReactiveEnergyUnit.KilovoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour) => new ReactiveEnergy((value.Value) * 1e3d, ReactiveEnergyUnit.VoltampereReactiveHour),
+                (ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour) => new ReactiveEnergy((value.Value) * 1e6d, ReactiveEnergyUnit.VoltampereReactiveHour),
+
+                // BaseUnit <-> BaseUnit
+                (ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour) => value,
+
+                // BaseUnit -> ReactiveEnergyUnit
+                (ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.KilovoltampereReactiveHour) => new ReactiveEnergy((value.Value) / 1e3d, ReactiveEnergyUnit.KilovoltampereReactiveHour),
+                (ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.MegavoltampereReactiveHour) => new ReactiveEnergy((value.Value) / 1e6d, ReactiveEnergyUnit.MegavoltampereReactiveHour),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ReactiveEnergyUnit.KilovoltampereReactiveHour, new CultureInfo("en-US"), false, true, new string[]{"kvarh"});

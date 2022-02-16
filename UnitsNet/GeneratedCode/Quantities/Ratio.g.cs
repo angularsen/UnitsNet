@@ -250,6 +250,33 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Ratio>(RatioUnit.Percent, RatioUnit.DecimalFraction, quantity => new Ratio(quantity.Value / 1e2, RatioUnit.DecimalFraction));
         }
 
+        private static bool TryConvert(Ratio value, RatioUnit targetUnit, out Ratio? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // RatioUnit -> BaseUnit
+                (RatioUnit.PartPerBillion, RatioUnit.DecimalFraction) => new Ratio(value.Value / 1e9, RatioUnit.DecimalFraction),
+                (RatioUnit.PartPerMillion, RatioUnit.DecimalFraction) => new Ratio(value.Value / 1e6, RatioUnit.DecimalFraction),
+                (RatioUnit.PartPerThousand, RatioUnit.DecimalFraction) => new Ratio(value.Value / 1e3, RatioUnit.DecimalFraction),
+                (RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction) => new Ratio(value.Value / 1e12, RatioUnit.DecimalFraction),
+                (RatioUnit.Percent, RatioUnit.DecimalFraction) => new Ratio(value.Value / 1e2, RatioUnit.DecimalFraction),
+
+                // BaseUnit <-> BaseUnit
+                (RatioUnit.DecimalFraction, RatioUnit.DecimalFraction) => value,
+
+                // BaseUnit -> RatioUnit
+                (RatioUnit.DecimalFraction, RatioUnit.PartPerBillion) => new Ratio(value.Value * 1e9, RatioUnit.PartPerBillion),
+                (RatioUnit.DecimalFraction, RatioUnit.PartPerMillion) => new Ratio(value.Value * 1e6, RatioUnit.PartPerMillion),
+                (RatioUnit.DecimalFraction, RatioUnit.PartPerThousand) => new Ratio(value.Value * 1e3, RatioUnit.PartPerThousand),
+                (RatioUnit.DecimalFraction, RatioUnit.PartPerTrillion) => new Ratio(value.Value * 1e12, RatioUnit.PartPerTrillion),
+                (RatioUnit.DecimalFraction, RatioUnit.Percent) => new Ratio(value.Value * 1e2, RatioUnit.Percent),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(RatioUnit.DecimalFraction, new CultureInfo("en-US"), false, true, new string[]{""});

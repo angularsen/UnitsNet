@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: ElectricFieldUnit -> BaseUnit
         }
 
+        private static bool TryConvert(ElectricField value, ElectricFieldUnit targetUnit, out ElectricField? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricFieldUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (ElectricFieldUnit.VoltPerMeter, ElectricFieldUnit.VoltPerMeter) => value,
+
+                // BaseUnit -> ElectricFieldUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricFieldUnit.VoltPerMeter, new CultureInfo("en-US"), false, true, new string[]{"V/m"});

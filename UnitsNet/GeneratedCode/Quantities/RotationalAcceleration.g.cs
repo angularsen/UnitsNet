@@ -234,6 +234,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration((2 * Math.PI) * quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
         }
 
+        private static bool TryConvert(RotationalAcceleration value, RotationalAccelerationUnit targetUnit, out RotationalAcceleration? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // RotationalAccelerationUnit -> BaseUnit
+                (RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration((Math.PI / 180) * value.Value, RotationalAccelerationUnit.RadianPerSecondSquared),
+                (RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(((2 * Math.PI) / 60) * value.Value, RotationalAccelerationUnit.RadianPerSecondSquared),
+                (RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration((2 * Math.PI) * value.Value, RotationalAccelerationUnit.RadianPerSecondSquared),
+
+                // BaseUnit <-> BaseUnit
+                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => value,
+
+                // BaseUnit -> RotationalAccelerationUnit
+                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared) => new RotationalAcceleration((180 / Math.PI) * value.Value, RotationalAccelerationUnit.DegreePerSecondSquared),
+                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerMinutePerSecond) => new RotationalAcceleration((60 / (2 * Math.PI)) * value.Value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond),
+                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared) => new RotationalAcceleration((1 / (2 * Math.PI)) * value.Value, RotationalAccelerationUnit.RevolutionPerSecondSquared),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.DegreePerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"°/s²", "deg/s²"});

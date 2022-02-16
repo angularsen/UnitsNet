@@ -226,6 +226,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentEnergy>(ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour, quantity => new ApparentEnergy((quantity.Value) * 1e6d, ApparentEnergyUnit.VoltampereHour));
         }
 
+        private static bool TryConvert(ApparentEnergy value, ApparentEnergyUnit targetUnit, out ApparentEnergy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ApparentEnergyUnit -> BaseUnit
+                (ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour) => new ApparentEnergy((value.Value) * 1e3d, ApparentEnergyUnit.VoltampereHour),
+                (ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour) => new ApparentEnergy((value.Value) * 1e6d, ApparentEnergyUnit.VoltampereHour),
+
+                // BaseUnit <-> BaseUnit
+                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour) => value,
+
+                // BaseUnit -> ApparentEnergyUnit
+                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour) => new ApparentEnergy((value.Value) / 1e3d, ApparentEnergyUnit.KilovoltampereHour),
+                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.MegavoltampereHour) => new ApparentEnergy((value.Value) / 1e6d, ApparentEnergyUnit.MegavoltampereHour),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ApparentEnergyUnit.KilovoltampereHour, new CultureInfo("en-US"), false, true, new string[]{"kVAh"});

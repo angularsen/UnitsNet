@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: LuminousIntensityUnit -> BaseUnit
         }
 
+        private static bool TryConvert(LuminousIntensity value, LuminousIntensityUnit targetUnit, out LuminousIntensity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LuminousIntensityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela) => value,
+
+                // BaseUnit -> LuminousIntensityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LuminousIntensityUnit.Candela, new CultureInfo("en-US"), false, true, new string[]{"cd"});

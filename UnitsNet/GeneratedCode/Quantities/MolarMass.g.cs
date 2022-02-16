@@ -298,6 +298,45 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole, quantity => new MolarMass(quantity.Value * 0.45359237, MolarMassUnit.KilogramPerMole));
         }
 
+        private static bool TryConvert(MolarMass value, MolarMassUnit targetUnit, out MolarMass? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MolarMassUnit -> BaseUnit
+                (MolarMassUnit.CentigramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value / 1e3) * 1e-2d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.DecagramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value / 1e3) * 1e1d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.DecigramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value / 1e3) * 1e-1d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.GramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass(value.Value / 1e3, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.HectogramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value / 1e3) * 1e2d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.KilopoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value * 0.45359237) * 1e3d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.MegapoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value * 0.45359237) * 1e6d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.MicrogramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value / 1e3) * 1e-6d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.MilligramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value / 1e3) * 1e-3d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.NanogramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((value.Value / 1e3) * 1e-9d, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass(value.Value * 0.45359237, MolarMassUnit.KilogramPerMole),
+
+                // BaseUnit <-> BaseUnit
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerMole) => value,
+
+                // BaseUnit -> MolarMassUnit
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.CentigramPerMole) => new MolarMass((value.Value * 1e3) / 1e-2d, MolarMassUnit.CentigramPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.DecagramPerMole) => new MolarMass((value.Value * 1e3) / 1e1d, MolarMassUnit.DecagramPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.DecigramPerMole) => new MolarMass((value.Value * 1e3) / 1e-1d, MolarMassUnit.DecigramPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.GramPerMole) => new MolarMass(value.Value * 1e3, MolarMassUnit.GramPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.HectogramPerMole) => new MolarMass((value.Value * 1e3) / 1e2d, MolarMassUnit.HectogramPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.KilopoundPerMole) => new MolarMass((value.Value / 0.45359237) / 1e3d, MolarMassUnit.KilopoundPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.MegapoundPerMole) => new MolarMass((value.Value / 0.45359237) / 1e6d, MolarMassUnit.MegapoundPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.MicrogramPerMole) => new MolarMass((value.Value * 1e3) / 1e-6d, MolarMassUnit.MicrogramPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.MilligramPerMole) => new MolarMass((value.Value * 1e3) / 1e-3d, MolarMassUnit.MilligramPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.NanogramPerMole) => new MolarMass((value.Value * 1e3) / 1e-9d, MolarMassUnit.NanogramPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerMole) => new MolarMass(value.Value / 0.45359237, MolarMassUnit.PoundPerMole),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.CentigramPerMole, new CultureInfo("en-US"), false, true, new string[]{"cg/mol"});

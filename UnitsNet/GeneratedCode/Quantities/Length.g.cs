@@ -482,6 +482,91 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Yard, LengthUnit.Meter, quantity => new Length(quantity.Value * 0.9144, LengthUnit.Meter));
         }
 
+        private static bool TryConvert(Length value, LengthUnit targetUnit, out Length? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LengthUnit -> BaseUnit
+                (LengthUnit.Angstrom, LengthUnit.Meter) => new Length(value.Value * 1e-10, LengthUnit.Meter),
+                (LengthUnit.AstronomicalUnit, LengthUnit.Meter) => new Length(value.Value * 1.4959787070e11, LengthUnit.Meter),
+                (LengthUnit.Centimeter, LengthUnit.Meter) => new Length((value.Value) * 1e-2d, LengthUnit.Meter),
+                (LengthUnit.Chain, LengthUnit.Meter) => new Length(value.Value * 20.1168, LengthUnit.Meter),
+                (LengthUnit.Decameter, LengthUnit.Meter) => new Length((value.Value) * 1e1d, LengthUnit.Meter),
+                (LengthUnit.Decimeter, LengthUnit.Meter) => new Length((value.Value) * 1e-1d, LengthUnit.Meter),
+                (LengthUnit.DtpPica, LengthUnit.Meter) => new Length(value.Value / 236.220472441, LengthUnit.Meter),
+                (LengthUnit.DtpPoint, LengthUnit.Meter) => new Length((value.Value / 72) * 2.54e-2, LengthUnit.Meter),
+                (LengthUnit.Fathom, LengthUnit.Meter) => new Length(value.Value * 1.8288, LengthUnit.Meter),
+                (LengthUnit.Foot, LengthUnit.Meter) => new Length(value.Value * 0.3048, LengthUnit.Meter),
+                (LengthUnit.Hand, LengthUnit.Meter) => new Length(value.Value * 1.016e-1, LengthUnit.Meter),
+                (LengthUnit.Hectometer, LengthUnit.Meter) => new Length((value.Value) * 1e2d, LengthUnit.Meter),
+                (LengthUnit.Inch, LengthUnit.Meter) => new Length(value.Value * 2.54e-2, LengthUnit.Meter),
+                (LengthUnit.KilolightYear, LengthUnit.Meter) => new Length((value.Value * 9.46073047258e15) * 1e3d, LengthUnit.Meter),
+                (LengthUnit.Kilometer, LengthUnit.Meter) => new Length((value.Value) * 1e3d, LengthUnit.Meter),
+                (LengthUnit.Kiloparsec, LengthUnit.Meter) => new Length((value.Value * 3.08567758128e16) * 1e3d, LengthUnit.Meter),
+                (LengthUnit.LightYear, LengthUnit.Meter) => new Length(value.Value * 9.46073047258e15, LengthUnit.Meter),
+                (LengthUnit.MegalightYear, LengthUnit.Meter) => new Length((value.Value * 9.46073047258e15) * 1e6d, LengthUnit.Meter),
+                (LengthUnit.Megaparsec, LengthUnit.Meter) => new Length((value.Value * 3.08567758128e16) * 1e6d, LengthUnit.Meter),
+                (LengthUnit.Microinch, LengthUnit.Meter) => new Length(value.Value * 2.54e-8, LengthUnit.Meter),
+                (LengthUnit.Micrometer, LengthUnit.Meter) => new Length((value.Value) * 1e-6d, LengthUnit.Meter),
+                (LengthUnit.Mil, LengthUnit.Meter) => new Length(value.Value * 2.54e-5, LengthUnit.Meter),
+                (LengthUnit.Mile, LengthUnit.Meter) => new Length(value.Value * 1609.34, LengthUnit.Meter),
+                (LengthUnit.Millimeter, LengthUnit.Meter) => new Length((value.Value) * 1e-3d, LengthUnit.Meter),
+                (LengthUnit.Nanometer, LengthUnit.Meter) => new Length((value.Value) * 1e-9d, LengthUnit.Meter),
+                (LengthUnit.NauticalMile, LengthUnit.Meter) => new Length(value.Value * 1852, LengthUnit.Meter),
+                (LengthUnit.Parsec, LengthUnit.Meter) => new Length(value.Value * 3.08567758128e16, LengthUnit.Meter),
+                (LengthUnit.PrinterPica, LengthUnit.Meter) => new Length(value.Value / 237.106301584, LengthUnit.Meter),
+                (LengthUnit.PrinterPoint, LengthUnit.Meter) => new Length((value.Value / 72.27) * 2.54e-2, LengthUnit.Meter),
+                (LengthUnit.Shackle, LengthUnit.Meter) => new Length(value.Value * 27.432, LengthUnit.Meter),
+                (LengthUnit.SolarRadius, LengthUnit.Meter) => new Length(value.Value * 6.95510000E+08, LengthUnit.Meter),
+                (LengthUnit.Twip, LengthUnit.Meter) => new Length(value.Value / 56692.913385826, LengthUnit.Meter),
+                (LengthUnit.UsSurveyFoot, LengthUnit.Meter) => new Length(value.Value * 1200 / 3937, LengthUnit.Meter),
+                (LengthUnit.Yard, LengthUnit.Meter) => new Length(value.Value * 0.9144, LengthUnit.Meter),
+
+                // BaseUnit <-> BaseUnit
+                (LengthUnit.Meter, LengthUnit.Meter) => value,
+
+                // BaseUnit -> LengthUnit
+                (LengthUnit.Meter, LengthUnit.Angstrom) => new Length(value.Value / 1e-10, LengthUnit.Angstrom),
+                (LengthUnit.Meter, LengthUnit.AstronomicalUnit) => new Length(value.Value / 1.4959787070e11, LengthUnit.AstronomicalUnit),
+                (LengthUnit.Meter, LengthUnit.Centimeter) => new Length((value.Value) / 1e-2d, LengthUnit.Centimeter),
+                (LengthUnit.Meter, LengthUnit.Chain) => new Length(value.Value / 20.1168, LengthUnit.Chain),
+                (LengthUnit.Meter, LengthUnit.Decameter) => new Length((value.Value) / 1e1d, LengthUnit.Decameter),
+                (LengthUnit.Meter, LengthUnit.Decimeter) => new Length((value.Value) / 1e-1d, LengthUnit.Decimeter),
+                (LengthUnit.Meter, LengthUnit.DtpPica) => new Length(value.Value * 236.220472441, LengthUnit.DtpPica),
+                (LengthUnit.Meter, LengthUnit.DtpPoint) => new Length((value.Value / 2.54e-2) * 72, LengthUnit.DtpPoint),
+                (LengthUnit.Meter, LengthUnit.Fathom) => new Length(value.Value / 1.8288, LengthUnit.Fathom),
+                (LengthUnit.Meter, LengthUnit.Foot) => new Length(value.Value / 0.3048, LengthUnit.Foot),
+                (LengthUnit.Meter, LengthUnit.Hand) => new Length(value.Value / 1.016e-1, LengthUnit.Hand),
+                (LengthUnit.Meter, LengthUnit.Hectometer) => new Length((value.Value) / 1e2d, LengthUnit.Hectometer),
+                (LengthUnit.Meter, LengthUnit.Inch) => new Length(value.Value / 2.54e-2, LengthUnit.Inch),
+                (LengthUnit.Meter, LengthUnit.KilolightYear) => new Length((value.Value / 9.46073047258e15) / 1e3d, LengthUnit.KilolightYear),
+                (LengthUnit.Meter, LengthUnit.Kilometer) => new Length((value.Value) / 1e3d, LengthUnit.Kilometer),
+                (LengthUnit.Meter, LengthUnit.Kiloparsec) => new Length((value.Value / 3.08567758128e16) / 1e3d, LengthUnit.Kiloparsec),
+                (LengthUnit.Meter, LengthUnit.LightYear) => new Length(value.Value / 9.46073047258e15, LengthUnit.LightYear),
+                (LengthUnit.Meter, LengthUnit.MegalightYear) => new Length((value.Value / 9.46073047258e15) / 1e6d, LengthUnit.MegalightYear),
+                (LengthUnit.Meter, LengthUnit.Megaparsec) => new Length((value.Value / 3.08567758128e16) / 1e6d, LengthUnit.Megaparsec),
+                (LengthUnit.Meter, LengthUnit.Microinch) => new Length(value.Value / 2.54e-8, LengthUnit.Microinch),
+                (LengthUnit.Meter, LengthUnit.Micrometer) => new Length((value.Value) / 1e-6d, LengthUnit.Micrometer),
+                (LengthUnit.Meter, LengthUnit.Mil) => new Length(value.Value / 2.54e-5, LengthUnit.Mil),
+                (LengthUnit.Meter, LengthUnit.Mile) => new Length(value.Value / 1609.34, LengthUnit.Mile),
+                (LengthUnit.Meter, LengthUnit.Millimeter) => new Length((value.Value) / 1e-3d, LengthUnit.Millimeter),
+                (LengthUnit.Meter, LengthUnit.Nanometer) => new Length((value.Value) / 1e-9d, LengthUnit.Nanometer),
+                (LengthUnit.Meter, LengthUnit.NauticalMile) => new Length(value.Value / 1852, LengthUnit.NauticalMile),
+                (LengthUnit.Meter, LengthUnit.Parsec) => new Length(value.Value / 3.08567758128e16, LengthUnit.Parsec),
+                (LengthUnit.Meter, LengthUnit.PrinterPica) => new Length(value.Value * 237.106301584, LengthUnit.PrinterPica),
+                (LengthUnit.Meter, LengthUnit.PrinterPoint) => new Length((value.Value / 2.54e-2) * 72.27, LengthUnit.PrinterPoint),
+                (LengthUnit.Meter, LengthUnit.Shackle) => new Length(value.Value / 27.432, LengthUnit.Shackle),
+                (LengthUnit.Meter, LengthUnit.SolarRadius) => new Length(value.Value / 6.95510000E+08, LengthUnit.SolarRadius),
+                (LengthUnit.Meter, LengthUnit.Twip) => new Length(value.Value * 56692.913385826, LengthUnit.Twip),
+                (LengthUnit.Meter, LengthUnit.UsSurveyFoot) => new Length(value.Value * 3937 / 1200, LengthUnit.UsSurveyFoot),
+                (LengthUnit.Meter, LengthUnit.Yard) => new Length(value.Value / 0.9144, LengthUnit.Yard),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"Å", "A"});

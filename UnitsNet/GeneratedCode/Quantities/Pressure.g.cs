@@ -562,6 +562,111 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Torr, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 1.3332266752 * 1e2, PressureUnit.Pascal));
         }
 
+        private static bool TryConvert(Pressure value, PressureUnit targetUnit, out Pressure? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // PressureUnit -> BaseUnit
+                (PressureUnit.Atmosphere, PressureUnit.Pascal) => new Pressure(value.Value * 1.01325 * 1e5, PressureUnit.Pascal),
+                (PressureUnit.Bar, PressureUnit.Pascal) => new Pressure(value.Value * 1e5, PressureUnit.Pascal),
+                (PressureUnit.Centibar, PressureUnit.Pascal) => new Pressure((value.Value * 1e5) * 1e-2d, PressureUnit.Pascal),
+                (PressureUnit.Decapascal, PressureUnit.Pascal) => new Pressure((value.Value) * 1e1d, PressureUnit.Pascal),
+                (PressureUnit.Decibar, PressureUnit.Pascal) => new Pressure((value.Value * 1e5) * 1e-1d, PressureUnit.Pascal),
+                (PressureUnit.DynePerSquareCentimeter, PressureUnit.Pascal) => new Pressure(value.Value * 1.0e-1, PressureUnit.Pascal),
+                (PressureUnit.FootOfElevation, PressureUnit.Pascal) => new Pressure(Math.Pow(1.0 - (value.Value / 145366.45), 5.2553026003237266401799415610351) * 101325.0, PressureUnit.Pascal),
+                (PressureUnit.FootOfHead, PressureUnit.Pascal) => new Pressure(value.Value * 2989.0669, PressureUnit.Pascal),
+                (PressureUnit.Gigapascal, PressureUnit.Pascal) => new Pressure((value.Value) * 1e9d, PressureUnit.Pascal),
+                (PressureUnit.Hectopascal, PressureUnit.Pascal) => new Pressure((value.Value) * 1e2d, PressureUnit.Pascal),
+                (PressureUnit.InchOfMercury, PressureUnit.Pascal) => new Pressure(value.Value / 2.95299830714159e-4, PressureUnit.Pascal),
+                (PressureUnit.InchOfWaterColumn, PressureUnit.Pascal) => new Pressure(value.Value * 249.08890833333, PressureUnit.Pascal),
+                (PressureUnit.Kilobar, PressureUnit.Pascal) => new Pressure((value.Value * 1e5) * 1e3d, PressureUnit.Pascal),
+                (PressureUnit.KilogramForcePerSquareCentimeter, PressureUnit.Pascal) => new Pressure(value.Value * 9.80665e4, PressureUnit.Pascal),
+                (PressureUnit.KilogramForcePerSquareMeter, PressureUnit.Pascal) => new Pressure(value.Value * 9.80665019960652, PressureUnit.Pascal),
+                (PressureUnit.KilogramForcePerSquareMillimeter, PressureUnit.Pascal) => new Pressure(value.Value * 9.80665e6, PressureUnit.Pascal),
+                (PressureUnit.KilonewtonPerSquareCentimeter, PressureUnit.Pascal) => new Pressure((value.Value * 1e4) * 1e3d, PressureUnit.Pascal),
+                (PressureUnit.KilonewtonPerSquareMeter, PressureUnit.Pascal) => new Pressure((value.Value) * 1e3d, PressureUnit.Pascal),
+                (PressureUnit.KilonewtonPerSquareMillimeter, PressureUnit.Pascal) => new Pressure((value.Value * 1e6) * 1e3d, PressureUnit.Pascal),
+                (PressureUnit.Kilopascal, PressureUnit.Pascal) => new Pressure((value.Value) * 1e3d, PressureUnit.Pascal),
+                (PressureUnit.KilopoundForcePerSquareFoot, PressureUnit.Pascal) => new Pressure((value.Value * 4.788025898033584e1) * 1e3d, PressureUnit.Pascal),
+                (PressureUnit.KilopoundForcePerSquareInch, PressureUnit.Pascal) => new Pressure((value.Value * 6.894757293168361e3) * 1e3d, PressureUnit.Pascal),
+                (PressureUnit.Megabar, PressureUnit.Pascal) => new Pressure((value.Value * 1e5) * 1e6d, PressureUnit.Pascal),
+                (PressureUnit.MeganewtonPerSquareMeter, PressureUnit.Pascal) => new Pressure((value.Value) * 1e6d, PressureUnit.Pascal),
+                (PressureUnit.Megapascal, PressureUnit.Pascal) => new Pressure((value.Value) * 1e6d, PressureUnit.Pascal),
+                (PressureUnit.MeterOfElevation, PressureUnit.Pascal) => new Pressure(Math.Pow(1.0 - (value.Value / 44307.69396), 5.2553026003237266401799415610351) * 101325.0, PressureUnit.Pascal),
+                (PressureUnit.MeterOfHead, PressureUnit.Pascal) => new Pressure(value.Value * 9804.139432, PressureUnit.Pascal),
+                (PressureUnit.Microbar, PressureUnit.Pascal) => new Pressure((value.Value * 1e5) * 1e-6d, PressureUnit.Pascal),
+                (PressureUnit.Micropascal, PressureUnit.Pascal) => new Pressure((value.Value) * 1e-6d, PressureUnit.Pascal),
+                (PressureUnit.Millibar, PressureUnit.Pascal) => new Pressure((value.Value * 1e5) * 1e-3d, PressureUnit.Pascal),
+                (PressureUnit.MillimeterOfMercury, PressureUnit.Pascal) => new Pressure(value.Value / 7.50061561302643e-3, PressureUnit.Pascal),
+                (PressureUnit.MillimeterOfWaterColumn, PressureUnit.Pascal) => new Pressure(value.Value * 9.806650000000272e0, PressureUnit.Pascal),
+                (PressureUnit.Millipascal, PressureUnit.Pascal) => new Pressure((value.Value) * 1e-3d, PressureUnit.Pascal),
+                (PressureUnit.NewtonPerSquareCentimeter, PressureUnit.Pascal) => new Pressure(value.Value * 1e4, PressureUnit.Pascal),
+                (PressureUnit.NewtonPerSquareMeter, PressureUnit.Pascal) => new Pressure(value.Value, PressureUnit.Pascal),
+                (PressureUnit.NewtonPerSquareMillimeter, PressureUnit.Pascal) => new Pressure(value.Value * 1e6, PressureUnit.Pascal),
+                (PressureUnit.PoundForcePerSquareFoot, PressureUnit.Pascal) => new Pressure(value.Value * 4.788025898033584e1, PressureUnit.Pascal),
+                (PressureUnit.PoundForcePerSquareInch, PressureUnit.Pascal) => new Pressure(value.Value * 6.894757293168361e3, PressureUnit.Pascal),
+                (PressureUnit.PoundPerInchSecondSquared, PressureUnit.Pascal) => new Pressure(value.Value * 1.785796732283465e1, PressureUnit.Pascal),
+                (PressureUnit.TechnicalAtmosphere, PressureUnit.Pascal) => new Pressure(value.Value * 9.80680592331 * 1e4, PressureUnit.Pascal),
+                (PressureUnit.TonneForcePerSquareCentimeter, PressureUnit.Pascal) => new Pressure(value.Value * 9.80665e7, PressureUnit.Pascal),
+                (PressureUnit.TonneForcePerSquareMeter, PressureUnit.Pascal) => new Pressure(value.Value * 9.80665e3, PressureUnit.Pascal),
+                (PressureUnit.TonneForcePerSquareMillimeter, PressureUnit.Pascal) => new Pressure(value.Value * 9.80665e9, PressureUnit.Pascal),
+                (PressureUnit.Torr, PressureUnit.Pascal) => new Pressure(value.Value * 1.3332266752 * 1e2, PressureUnit.Pascal),
+
+                // BaseUnit <-> BaseUnit
+                (PressureUnit.Pascal, PressureUnit.Pascal) => value,
+
+                // BaseUnit -> PressureUnit
+                (PressureUnit.Pascal, PressureUnit.Atmosphere) => new Pressure(value.Value / (1.01325 * 1e5), PressureUnit.Atmosphere),
+                (PressureUnit.Pascal, PressureUnit.Bar) => new Pressure(value.Value / 1e5, PressureUnit.Bar),
+                (PressureUnit.Pascal, PressureUnit.Centibar) => new Pressure((value.Value / 1e5) / 1e-2d, PressureUnit.Centibar),
+                (PressureUnit.Pascal, PressureUnit.Decapascal) => new Pressure((value.Value) / 1e1d, PressureUnit.Decapascal),
+                (PressureUnit.Pascal, PressureUnit.Decibar) => new Pressure((value.Value / 1e5) / 1e-1d, PressureUnit.Decibar),
+                (PressureUnit.Pascal, PressureUnit.DynePerSquareCentimeter) => new Pressure(value.Value / 1.0e-1, PressureUnit.DynePerSquareCentimeter),
+                (PressureUnit.Pascal, PressureUnit.FootOfElevation) => new Pressure((1.0 - Math.Pow(value.Value / 101325.0, 0.190284)) * 145366.45, PressureUnit.FootOfElevation),
+                (PressureUnit.Pascal, PressureUnit.FootOfHead) => new Pressure(value.Value * 0.000334552565551, PressureUnit.FootOfHead),
+                (PressureUnit.Pascal, PressureUnit.Gigapascal) => new Pressure((value.Value) / 1e9d, PressureUnit.Gigapascal),
+                (PressureUnit.Pascal, PressureUnit.Hectopascal) => new Pressure((value.Value) / 1e2d, PressureUnit.Hectopascal),
+                (PressureUnit.Pascal, PressureUnit.InchOfMercury) => new Pressure(value.Value * 2.95299830714159e-4, PressureUnit.InchOfMercury),
+                (PressureUnit.Pascal, PressureUnit.InchOfWaterColumn) => new Pressure(value.Value / 249.08890833333, PressureUnit.InchOfWaterColumn),
+                (PressureUnit.Pascal, PressureUnit.Kilobar) => new Pressure((value.Value / 1e5) / 1e3d, PressureUnit.Kilobar),
+                (PressureUnit.Pascal, PressureUnit.KilogramForcePerSquareCentimeter) => new Pressure(value.Value / 9.80665e4, PressureUnit.KilogramForcePerSquareCentimeter),
+                (PressureUnit.Pascal, PressureUnit.KilogramForcePerSquareMeter) => new Pressure(value.Value * 0.101971619222242, PressureUnit.KilogramForcePerSquareMeter),
+                (PressureUnit.Pascal, PressureUnit.KilogramForcePerSquareMillimeter) => new Pressure(value.Value / 9.80665e6, PressureUnit.KilogramForcePerSquareMillimeter),
+                (PressureUnit.Pascal, PressureUnit.KilonewtonPerSquareCentimeter) => new Pressure((value.Value / 1e4) / 1e3d, PressureUnit.KilonewtonPerSquareCentimeter),
+                (PressureUnit.Pascal, PressureUnit.KilonewtonPerSquareMeter) => new Pressure((value.Value) / 1e3d, PressureUnit.KilonewtonPerSquareMeter),
+                (PressureUnit.Pascal, PressureUnit.KilonewtonPerSquareMillimeter) => new Pressure((value.Value / 1e6) / 1e3d, PressureUnit.KilonewtonPerSquareMillimeter),
+                (PressureUnit.Pascal, PressureUnit.Kilopascal) => new Pressure((value.Value) / 1e3d, PressureUnit.Kilopascal),
+                (PressureUnit.Pascal, PressureUnit.KilopoundForcePerSquareFoot) => new Pressure((value.Value / 4.788025898033584e1) / 1e3d, PressureUnit.KilopoundForcePerSquareFoot),
+                (PressureUnit.Pascal, PressureUnit.KilopoundForcePerSquareInch) => new Pressure((value.Value / 6.894757293168361e3) / 1e3d, PressureUnit.KilopoundForcePerSquareInch),
+                (PressureUnit.Pascal, PressureUnit.Megabar) => new Pressure((value.Value / 1e5) / 1e6d, PressureUnit.Megabar),
+                (PressureUnit.Pascal, PressureUnit.MeganewtonPerSquareMeter) => new Pressure((value.Value) / 1e6d, PressureUnit.MeganewtonPerSquareMeter),
+                (PressureUnit.Pascal, PressureUnit.Megapascal) => new Pressure((value.Value) / 1e6d, PressureUnit.Megapascal),
+                (PressureUnit.Pascal, PressureUnit.MeterOfElevation) => new Pressure((1.0 - Math.Pow(value.Value / 101325.0, 0.190284)) * 44307.69396, PressureUnit.MeterOfElevation),
+                (PressureUnit.Pascal, PressureUnit.MeterOfHead) => new Pressure(value.Value * 0.0001019977334, PressureUnit.MeterOfHead),
+                (PressureUnit.Pascal, PressureUnit.Microbar) => new Pressure((value.Value / 1e5) / 1e-6d, PressureUnit.Microbar),
+                (PressureUnit.Pascal, PressureUnit.Micropascal) => new Pressure((value.Value) / 1e-6d, PressureUnit.Micropascal),
+                (PressureUnit.Pascal, PressureUnit.Millibar) => new Pressure((value.Value / 1e5) / 1e-3d, PressureUnit.Millibar),
+                (PressureUnit.Pascal, PressureUnit.MillimeterOfMercury) => new Pressure(value.Value * 7.50061561302643e-3, PressureUnit.MillimeterOfMercury),
+                (PressureUnit.Pascal, PressureUnit.MillimeterOfWaterColumn) => new Pressure(value.Value / 9.806650000000272e0, PressureUnit.MillimeterOfWaterColumn),
+                (PressureUnit.Pascal, PressureUnit.Millipascal) => new Pressure((value.Value) / 1e-3d, PressureUnit.Millipascal),
+                (PressureUnit.Pascal, PressureUnit.NewtonPerSquareCentimeter) => new Pressure(value.Value / 1e4, PressureUnit.NewtonPerSquareCentimeter),
+                (PressureUnit.Pascal, PressureUnit.NewtonPerSquareMeter) => new Pressure(value.Value, PressureUnit.NewtonPerSquareMeter),
+                (PressureUnit.Pascal, PressureUnit.NewtonPerSquareMillimeter) => new Pressure(value.Value / 1e6, PressureUnit.NewtonPerSquareMillimeter),
+                (PressureUnit.Pascal, PressureUnit.PoundForcePerSquareFoot) => new Pressure(value.Value / 4.788025898033584e1, PressureUnit.PoundForcePerSquareFoot),
+                (PressureUnit.Pascal, PressureUnit.PoundForcePerSquareInch) => new Pressure(value.Value / 6.894757293168361e3, PressureUnit.PoundForcePerSquareInch),
+                (PressureUnit.Pascal, PressureUnit.PoundPerInchSecondSquared) => new Pressure(value.Value / 1.785796732283465e1, PressureUnit.PoundPerInchSecondSquared),
+                (PressureUnit.Pascal, PressureUnit.TechnicalAtmosphere) => new Pressure(value.Value / (9.80680592331 * 1e4), PressureUnit.TechnicalAtmosphere),
+                (PressureUnit.Pascal, PressureUnit.TonneForcePerSquareCentimeter) => new Pressure(value.Value / 9.80665e7, PressureUnit.TonneForcePerSquareCentimeter),
+                (PressureUnit.Pascal, PressureUnit.TonneForcePerSquareMeter) => new Pressure(value.Value / 9.80665e3, PressureUnit.TonneForcePerSquareMeter),
+                (PressureUnit.Pascal, PressureUnit.TonneForcePerSquareMillimeter) => new Pressure(value.Value / 9.80665e9, PressureUnit.TonneForcePerSquareMillimeter),
+                (PressureUnit.Pascal, PressureUnit.Torr) => new Pressure(value.Value / (1.3332266752 * 1e2), PressureUnit.Torr),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(PressureUnit.Atmosphere, new CultureInfo("en-US"), false, true, new string[]{"atm"});

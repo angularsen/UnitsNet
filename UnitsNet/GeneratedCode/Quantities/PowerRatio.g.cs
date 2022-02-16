@@ -218,6 +218,25 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt, quantity => new PowerRatio(quantity.Value - 30, PowerRatioUnit.DecibelWatt));
         }
 
+        private static bool TryConvert(PowerRatio value, PowerRatioUnit targetUnit, out PowerRatio? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // PowerRatioUnit -> BaseUnit
+                (PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt) => new PowerRatio(value.Value - 30, PowerRatioUnit.DecibelWatt),
+
+                // BaseUnit <-> BaseUnit
+                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt) => value,
+
+                // BaseUnit -> PowerRatioUnit
+                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt) => new PowerRatio(value.Value + 30, PowerRatioUnit.DecibelMilliwatt),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), false, true, new string[]{"dBmW", "dBm"});

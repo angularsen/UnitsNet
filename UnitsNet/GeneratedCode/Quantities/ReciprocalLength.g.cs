@@ -285,6 +285,41 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value / 0.9144, ReciprocalLengthUnit.InverseMeter));
         }
 
+        private static bool TryConvert(ReciprocalLength value, ReciprocalLengthUnit targetUnit, out ReciprocalLength? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ReciprocalLengthUnit -> BaseUnit
+                (ReciprocalLengthUnit.InverseCentimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value * 1e2, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value / 0.3048, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseInch, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value / 2.54e-2, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMicroinch, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value / 2.54e-8, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMil, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value / 2.54e-5, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMile, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value / 1609.34, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMillimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value * 1e3, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseUsSurveyFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value * 3937 / 1200, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(value.Value / 0.9144, ReciprocalLengthUnit.InverseMeter),
+
+                // BaseUnit <-> BaseUnit
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMeter) => value,
+
+                // BaseUnit -> ReciprocalLengthUnit
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseCentimeter) => new ReciprocalLength(value.Value / 1e2, ReciprocalLengthUnit.InverseCentimeter),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseFoot) => new ReciprocalLength(value.Value * 0.3048, ReciprocalLengthUnit.InverseFoot),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseInch) => new ReciprocalLength(value.Value * 2.54e-2, ReciprocalLengthUnit.InverseInch),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMicroinch) => new ReciprocalLength(value.Value * 2.54e-8, ReciprocalLengthUnit.InverseMicroinch),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMil) => new ReciprocalLength(value.Value * 2.54e-5, ReciprocalLengthUnit.InverseMil),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMile) => new ReciprocalLength(value.Value * 1609.34, ReciprocalLengthUnit.InverseMile),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMillimeter) => new ReciprocalLength(value.Value / 1e3, ReciprocalLengthUnit.InverseMillimeter),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseUsSurveyFoot) => new ReciprocalLength(value.Value * 1200 / 3937, ReciprocalLengthUnit.InverseUsSurveyFoot),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseYard) => new ReciprocalLength(value.Value * 0.9144, ReciprocalLengthUnit.InverseYard),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm⁻¹", "1/cm"});

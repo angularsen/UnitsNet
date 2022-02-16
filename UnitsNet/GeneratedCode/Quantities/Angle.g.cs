@@ -330,6 +330,53 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Tilt, AngleUnit.Degree, quantity => new Angle(Math.Asin(quantity.Value) * 180 / Math.PI, AngleUnit.Degree));
         }
 
+        private static bool TryConvert(Angle value, AngleUnit targetUnit, out Angle? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // AngleUnit -> BaseUnit
+                (AngleUnit.Arcminute, AngleUnit.Degree) => new Angle(value.Value / 60, AngleUnit.Degree),
+                (AngleUnit.Arcsecond, AngleUnit.Degree) => new Angle(value.Value / 3600, AngleUnit.Degree),
+                (AngleUnit.Centiradian, AngleUnit.Degree) => new Angle((value.Value * 180 / Math.PI) * 1e-2d, AngleUnit.Degree),
+                (AngleUnit.Deciradian, AngleUnit.Degree) => new Angle((value.Value * 180 / Math.PI) * 1e-1d, AngleUnit.Degree),
+                (AngleUnit.Gradian, AngleUnit.Degree) => new Angle(value.Value * 0.9, AngleUnit.Degree),
+                (AngleUnit.Microdegree, AngleUnit.Degree) => new Angle((value.Value) * 1e-6d, AngleUnit.Degree),
+                (AngleUnit.Microradian, AngleUnit.Degree) => new Angle((value.Value * 180 / Math.PI) * 1e-6d, AngleUnit.Degree),
+                (AngleUnit.Millidegree, AngleUnit.Degree) => new Angle((value.Value) * 1e-3d, AngleUnit.Degree),
+                (AngleUnit.Milliradian, AngleUnit.Degree) => new Angle((value.Value * 180 / Math.PI) * 1e-3d, AngleUnit.Degree),
+                (AngleUnit.Nanodegree, AngleUnit.Degree) => new Angle((value.Value) * 1e-9d, AngleUnit.Degree),
+                (AngleUnit.Nanoradian, AngleUnit.Degree) => new Angle((value.Value * 180 / Math.PI) * 1e-9d, AngleUnit.Degree),
+                (AngleUnit.NatoMil, AngleUnit.Degree) => new Angle(value.Value * 9 / 160, AngleUnit.Degree),
+                (AngleUnit.Radian, AngleUnit.Degree) => new Angle(value.Value * 180 / Math.PI, AngleUnit.Degree),
+                (AngleUnit.Revolution, AngleUnit.Degree) => new Angle(value.Value * 360, AngleUnit.Degree),
+                (AngleUnit.Tilt, AngleUnit.Degree) => new Angle(Math.Asin(value.Value) * 180 / Math.PI, AngleUnit.Degree),
+
+                // BaseUnit <-> BaseUnit
+                (AngleUnit.Degree, AngleUnit.Degree) => value,
+
+                // BaseUnit -> AngleUnit
+                (AngleUnit.Degree, AngleUnit.Arcminute) => new Angle(value.Value * 60, AngleUnit.Arcminute),
+                (AngleUnit.Degree, AngleUnit.Arcsecond) => new Angle(value.Value * 3600, AngleUnit.Arcsecond),
+                (AngleUnit.Degree, AngleUnit.Centiradian) => new Angle((value.Value / 180 * Math.PI) / 1e-2d, AngleUnit.Centiradian),
+                (AngleUnit.Degree, AngleUnit.Deciradian) => new Angle((value.Value / 180 * Math.PI) / 1e-1d, AngleUnit.Deciradian),
+                (AngleUnit.Degree, AngleUnit.Gradian) => new Angle(value.Value / 0.9, AngleUnit.Gradian),
+                (AngleUnit.Degree, AngleUnit.Microdegree) => new Angle((value.Value) / 1e-6d, AngleUnit.Microdegree),
+                (AngleUnit.Degree, AngleUnit.Microradian) => new Angle((value.Value / 180 * Math.PI) / 1e-6d, AngleUnit.Microradian),
+                (AngleUnit.Degree, AngleUnit.Millidegree) => new Angle((value.Value) / 1e-3d, AngleUnit.Millidegree),
+                (AngleUnit.Degree, AngleUnit.Milliradian) => new Angle((value.Value / 180 * Math.PI) / 1e-3d, AngleUnit.Milliradian),
+                (AngleUnit.Degree, AngleUnit.Nanodegree) => new Angle((value.Value) / 1e-9d, AngleUnit.Nanodegree),
+                (AngleUnit.Degree, AngleUnit.Nanoradian) => new Angle((value.Value / 180 * Math.PI) / 1e-9d, AngleUnit.Nanoradian),
+                (AngleUnit.Degree, AngleUnit.NatoMil) => new Angle(value.Value * 160 / 9, AngleUnit.NatoMil),
+                (AngleUnit.Degree, AngleUnit.Radian) => new Angle(value.Value / 180 * Math.PI, AngleUnit.Radian),
+                (AngleUnit.Degree, AngleUnit.Revolution) => new Angle(value.Value / 360, AngleUnit.Revolution),
+                (AngleUnit.Degree, AngleUnit.Tilt) => new Angle(Math.Sin(value.Value / 180 * Math.PI), AngleUnit.Tilt),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Arcminute, new CultureInfo("en-US"), false, true, new string[]{"'", "arcmin", "amin", "min"});

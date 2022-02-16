@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: PermittivityUnit -> BaseUnit
         }
 
+        private static bool TryConvert(Permittivity value, PermittivityUnit targetUnit, out Permittivity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // PermittivityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (PermittivityUnit.FaradPerMeter, PermittivityUnit.FaradPerMeter) => value,
+
+                // BaseUnit -> PermittivityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(PermittivityUnit.FaradPerMeter, new CultureInfo("en-US"), false, true, new string[]{"F/m"});

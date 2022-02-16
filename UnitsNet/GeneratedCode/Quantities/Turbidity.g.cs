@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: TurbidityUnit -> BaseUnit
         }
 
+        private static bool TryConvert(Turbidity value, TurbidityUnit targetUnit, out Turbidity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // TurbidityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (TurbidityUnit.NTU, TurbidityUnit.NTU) => value,
+
+                // BaseUnit -> TurbidityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(TurbidityUnit.NTU, new CultureInfo("en-US"), false, true, new string[]{"NTU"});

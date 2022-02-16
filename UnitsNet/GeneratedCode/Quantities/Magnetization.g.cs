@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: MagnetizationUnit -> BaseUnit
         }
 
+        private static bool TryConvert(Magnetization value, MagnetizationUnit targetUnit, out Magnetization? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MagnetizationUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (MagnetizationUnit.AmperePerMeter, MagnetizationUnit.AmperePerMeter) => value,
+
+                // BaseUnit -> MagnetizationUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MagnetizationUnit.AmperePerMeter, new CultureInfo("en-US"), false, true, new string[]{"A/m"});

@@ -258,6 +258,35 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Entropy>(EntropyUnit.MegajoulePerKelvin, EntropyUnit.JoulePerKelvin, quantity => new Entropy((quantity.Value) * 1e6d, EntropyUnit.JoulePerKelvin));
         }
 
+        private static bool TryConvert(Entropy value, EntropyUnit targetUnit, out Entropy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // EntropyUnit -> BaseUnit
+                (EntropyUnit.CaloriePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy(value.Value * 4.184, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.JoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin) => new Entropy(value.Value, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.KilocaloriePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((value.Value * 4.184) * 1e3d, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.KilojoulePerDegreeCelsius, EntropyUnit.JoulePerKelvin) => new Entropy((value.Value) * 1e3d, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.KilojoulePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((value.Value) * 1e3d, EntropyUnit.JoulePerKelvin),
+                (EntropyUnit.MegajoulePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((value.Value) * 1e6d, EntropyUnit.JoulePerKelvin),
+
+                // BaseUnit <-> BaseUnit
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerKelvin) => value,
+
+                // BaseUnit -> EntropyUnit
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.CaloriePerKelvin) => new Entropy(value.Value / 4.184, EntropyUnit.CaloriePerKelvin),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerDegreeCelsius) => new Entropy(value.Value, EntropyUnit.JoulePerDegreeCelsius),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilocaloriePerKelvin) => new Entropy((value.Value / 4.184) / 1e3d, EntropyUnit.KilocaloriePerKelvin),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerDegreeCelsius) => new Entropy((value.Value) / 1e3d, EntropyUnit.KilojoulePerDegreeCelsius),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.KilojoulePerKelvin) => new Entropy((value.Value) / 1e3d, EntropyUnit.KilojoulePerKelvin),
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.MegajoulePerKelvin) => new Entropy((value.Value) / 1e6d, EntropyUnit.MegajoulePerKelvin),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(EntropyUnit.CaloriePerKelvin, new CultureInfo("en-US"), false, true, new string[]{"cal/K"});

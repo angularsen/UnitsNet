@@ -317,6 +317,49 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Terawatt, LuminosityUnit.Watt, quantity => new Luminosity((quantity.Value) * 1e12d, LuminosityUnit.Watt));
         }
 
+        private static bool TryConvert(Luminosity value, LuminosityUnit targetUnit, out Luminosity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // LuminosityUnit -> BaseUnit
+                (LuminosityUnit.Decawatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e1d, LuminosityUnit.Watt),
+                (LuminosityUnit.Deciwatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e-1d, LuminosityUnit.Watt),
+                (LuminosityUnit.Femtowatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e-15d, LuminosityUnit.Watt),
+                (LuminosityUnit.Gigawatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e9d, LuminosityUnit.Watt),
+                (LuminosityUnit.Kilowatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e3d, LuminosityUnit.Watt),
+                (LuminosityUnit.Megawatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e6d, LuminosityUnit.Watt),
+                (LuminosityUnit.Microwatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e-6d, LuminosityUnit.Watt),
+                (LuminosityUnit.Milliwatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e-3d, LuminosityUnit.Watt),
+                (LuminosityUnit.Nanowatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e-9d, LuminosityUnit.Watt),
+                (LuminosityUnit.Petawatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e15d, LuminosityUnit.Watt),
+                (LuminosityUnit.Picowatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e-12d, LuminosityUnit.Watt),
+                (LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt) => new Luminosity(value.Value * 3.846e26, LuminosityUnit.Watt),
+                (LuminosityUnit.Terawatt, LuminosityUnit.Watt) => new Luminosity((value.Value) * 1e12d, LuminosityUnit.Watt),
+
+                // BaseUnit <-> BaseUnit
+                (LuminosityUnit.Watt, LuminosityUnit.Watt) => value,
+
+                // BaseUnit -> LuminosityUnit
+                (LuminosityUnit.Watt, LuminosityUnit.Decawatt) => new Luminosity((value.Value) / 1e1d, LuminosityUnit.Decawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Deciwatt) => new Luminosity((value.Value) / 1e-1d, LuminosityUnit.Deciwatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Femtowatt) => new Luminosity((value.Value) / 1e-15d, LuminosityUnit.Femtowatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Gigawatt) => new Luminosity((value.Value) / 1e9d, LuminosityUnit.Gigawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Kilowatt) => new Luminosity((value.Value) / 1e3d, LuminosityUnit.Kilowatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Megawatt) => new Luminosity((value.Value) / 1e6d, LuminosityUnit.Megawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Microwatt) => new Luminosity((value.Value) / 1e-6d, LuminosityUnit.Microwatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Milliwatt) => new Luminosity((value.Value) / 1e-3d, LuminosityUnit.Milliwatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Nanowatt) => new Luminosity((value.Value) / 1e-9d, LuminosityUnit.Nanowatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Petawatt) => new Luminosity((value.Value) / 1e15d, LuminosityUnit.Petawatt),
+                (LuminosityUnit.Watt, LuminosityUnit.Picowatt) => new Luminosity((value.Value) / 1e-12d, LuminosityUnit.Picowatt),
+                (LuminosityUnit.Watt, LuminosityUnit.SolarLuminosity) => new Luminosity(value.Value / 3.846e26, LuminosityUnit.SolarLuminosity),
+                (LuminosityUnit.Watt, LuminosityUnit.Terawatt) => new Luminosity((value.Value) / 1e12d, LuminosityUnit.Terawatt),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Decawatt, new CultureInfo("en-US"), false, true, new string[]{"daW"});

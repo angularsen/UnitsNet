@@ -242,6 +242,31 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt, quantity => new ElectricPotential((quantity.Value) * 1e-3d, ElectricPotentialUnit.Volt));
         }
 
+        private static bool TryConvert(ElectricPotential value, ElectricPotentialUnit targetUnit, out ElectricPotential? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricPotentialUnit -> BaseUnit
+                (ElectricPotentialUnit.Kilovolt, ElectricPotentialUnit.Volt) => new ElectricPotential((value.Value) * 1e3d, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Megavolt, ElectricPotentialUnit.Volt) => new ElectricPotential((value.Value) * 1e6d, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Microvolt, ElectricPotentialUnit.Volt) => new ElectricPotential((value.Value) * 1e-6d, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt) => new ElectricPotential((value.Value) * 1e-3d, ElectricPotentialUnit.Volt),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Volt) => value,
+
+                // BaseUnit -> ElectricPotentialUnit
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Kilovolt) => new ElectricPotential((value.Value) / 1e3d, ElectricPotentialUnit.Kilovolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Megavolt) => new ElectricPotential((value.Value) / 1e6d, ElectricPotentialUnit.Megavolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Microvolt) => new ElectricPotential((value.Value) / 1e-6d, ElectricPotentialUnit.Microvolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Millivolt) => new ElectricPotential((value.Value) / 1e-3d, ElectricPotentialUnit.Millivolt),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Kilovolt, new CultureInfo("en-US"), false, true, new string[]{"kV"});

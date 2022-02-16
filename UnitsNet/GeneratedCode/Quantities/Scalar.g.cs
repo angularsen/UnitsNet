@@ -210,6 +210,23 @@ namespace UnitsNet
             // Register in unit converter: ScalarUnit -> BaseUnit
         }
 
+        private static bool TryConvert(Scalar value, ScalarUnit targetUnit, out Scalar? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ScalarUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (ScalarUnit.Amount, ScalarUnit.Amount) => value,
+
+                // BaseUnit -> ScalarUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ScalarUnit.Amount, new CultureInfo("en-US"), false, true, new string[]{""});

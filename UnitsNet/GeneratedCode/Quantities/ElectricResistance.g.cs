@@ -250,6 +250,33 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Milliohm, ElectricResistanceUnit.Ohm, quantity => new ElectricResistance((quantity.Value) * 1e-3d, ElectricResistanceUnit.Ohm));
         }
 
+        private static bool TryConvert(ElectricResistance value, ElectricResistanceUnit targetUnit, out ElectricResistance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricResistanceUnit -> BaseUnit
+                (ElectricResistanceUnit.Gigaohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((value.Value) * 1e9d, ElectricResistanceUnit.Ohm),
+                (ElectricResistanceUnit.Kiloohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((value.Value) * 1e3d, ElectricResistanceUnit.Ohm),
+                (ElectricResistanceUnit.Megaohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((value.Value) * 1e6d, ElectricResistanceUnit.Ohm),
+                (ElectricResistanceUnit.Microohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((value.Value) * 1e-6d, ElectricResistanceUnit.Ohm),
+                (ElectricResistanceUnit.Milliohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((value.Value) * 1e-3d, ElectricResistanceUnit.Ohm),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Ohm) => value,
+
+                // BaseUnit -> ElectricResistanceUnit
+                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Gigaohm) => new ElectricResistance((value.Value) / 1e9d, ElectricResistanceUnit.Gigaohm),
+                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Kiloohm) => new ElectricResistance((value.Value) / 1e3d, ElectricResistanceUnit.Kiloohm),
+                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Megaohm) => new ElectricResistance((value.Value) / 1e6d, ElectricResistanceUnit.Megaohm),
+                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Microohm) => new ElectricResistance((value.Value) / 1e-6d, ElectricResistanceUnit.Microohm),
+                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Milliohm) => new ElectricResistance((value.Value) / 1e-3d, ElectricResistanceUnit.Milliohm),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), false, true, new string[]{"GΩ"});

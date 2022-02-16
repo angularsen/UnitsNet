@@ -245,6 +245,31 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb));
         }
 
+        private static bool TryConvert(ElectricCharge value, ElectricChargeUnit targetUnit, out ElectricCharge? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricChargeUnit -> BaseUnit
+                (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(value.Value / 2.77777777777e-4, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((value.Value / 2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((value.Value / 2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb),
+                (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((value.Value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Coulomb) => value,
+
+                // BaseUnit -> ElectricChargeUnit
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(value.Value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour) => new ElectricCharge((value.Value * 2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour) => new ElectricCharge((value.Value * 2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour),
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour) => new ElectricCharge((value.Value * 2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), false, true, new string[]{"A-h", "Ah"});

@@ -218,6 +218,25 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RatioChangeRate>(RatioChangeRateUnit.PercentPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond, quantity => new RatioChangeRate(quantity.Value / 1e2, RatioChangeRateUnit.DecimalFractionPerSecond));
         }
 
+        private static bool TryConvert(RatioChangeRate value, RatioChangeRateUnit targetUnit, out RatioChangeRate? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // RatioChangeRateUnit -> BaseUnit
+                (RatioChangeRateUnit.PercentPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond) => new RatioChangeRate(value.Value / 1e2, RatioChangeRateUnit.DecimalFractionPerSecond),
+
+                // BaseUnit <-> BaseUnit
+                (RatioChangeRateUnit.DecimalFractionPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond) => value,
+
+                // BaseUnit -> RatioChangeRateUnit
+                (RatioChangeRateUnit.DecimalFractionPerSecond, RatioChangeRateUnit.PercentPerSecond) => new RatioChangeRate(value.Value * 1e2, RatioChangeRateUnit.PercentPerSecond),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(RatioChangeRateUnit.DecimalFractionPerSecond, new CultureInfo("en-US"), false, true, new string[]{"/s"});

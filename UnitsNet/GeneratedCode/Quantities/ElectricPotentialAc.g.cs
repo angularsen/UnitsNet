@@ -242,6 +242,31 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.MillivoltAc, ElectricPotentialAcUnit.VoltAc, quantity => new ElectricPotentialAc((quantity.Value) * 1e-3d, ElectricPotentialAcUnit.VoltAc));
         }
 
+        private static bool TryConvert(ElectricPotentialAc value, ElectricPotentialAcUnit targetUnit, out ElectricPotentialAc? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricPotentialAcUnit -> BaseUnit
+                (ElectricPotentialAcUnit.KilovoltAc, ElectricPotentialAcUnit.VoltAc) => new ElectricPotentialAc((value.Value) * 1e3d, ElectricPotentialAcUnit.VoltAc),
+                (ElectricPotentialAcUnit.MegavoltAc, ElectricPotentialAcUnit.VoltAc) => new ElectricPotentialAc((value.Value) * 1e6d, ElectricPotentialAcUnit.VoltAc),
+                (ElectricPotentialAcUnit.MicrovoltAc, ElectricPotentialAcUnit.VoltAc) => new ElectricPotentialAc((value.Value) * 1e-6d, ElectricPotentialAcUnit.VoltAc),
+                (ElectricPotentialAcUnit.MillivoltAc, ElectricPotentialAcUnit.VoltAc) => new ElectricPotentialAc((value.Value) * 1e-3d, ElectricPotentialAcUnit.VoltAc),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.VoltAc) => value,
+
+                // BaseUnit -> ElectricPotentialAcUnit
+                (ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.KilovoltAc) => new ElectricPotentialAc((value.Value) / 1e3d, ElectricPotentialAcUnit.KilovoltAc),
+                (ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MegavoltAc) => new ElectricPotentialAc((value.Value) / 1e6d, ElectricPotentialAcUnit.MegavoltAc),
+                (ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MicrovoltAc) => new ElectricPotentialAc((value.Value) / 1e-6d, ElectricPotentialAcUnit.MicrovoltAc),
+                (ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MillivoltAc) => new ElectricPotentialAc((value.Value) / 1e-3d, ElectricPotentialAcUnit.MillivoltAc),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.KilovoltAc, new CultureInfo("en-US"), false, true, new string[]{"kVac"});

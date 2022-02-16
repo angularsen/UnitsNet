@@ -234,6 +234,29 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricAdmittance>(ElectricAdmittanceUnit.Nanosiemens, ElectricAdmittanceUnit.Siemens, quantity => new ElectricAdmittance((quantity.Value) * 1e-9d, ElectricAdmittanceUnit.Siemens));
         }
 
+        private static bool TryConvert(ElectricAdmittance value, ElectricAdmittanceUnit targetUnit, out ElectricAdmittance? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricAdmittanceUnit -> BaseUnit
+                (ElectricAdmittanceUnit.Microsiemens, ElectricAdmittanceUnit.Siemens) => new ElectricAdmittance((value.Value) * 1e-6d, ElectricAdmittanceUnit.Siemens),
+                (ElectricAdmittanceUnit.Millisiemens, ElectricAdmittanceUnit.Siemens) => new ElectricAdmittance((value.Value) * 1e-3d, ElectricAdmittanceUnit.Siemens),
+                (ElectricAdmittanceUnit.Nanosiemens, ElectricAdmittanceUnit.Siemens) => new ElectricAdmittance((value.Value) * 1e-9d, ElectricAdmittanceUnit.Siemens),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Siemens) => value,
+
+                // BaseUnit -> ElectricAdmittanceUnit
+                (ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Microsiemens) => new ElectricAdmittance((value.Value) / 1e-6d, ElectricAdmittanceUnit.Microsiemens),
+                (ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Millisiemens) => new ElectricAdmittance((value.Value) / 1e-3d, ElectricAdmittanceUnit.Millisiemens),
+                (ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Nanosiemens) => new ElectricAdmittance((value.Value) / 1e-9d, ElectricAdmittanceUnit.Nanosiemens),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricAdmittanceUnit.Microsiemens, new CultureInfo("en-US"), false, true, new string[]{"µS"});

@@ -226,6 +226,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<CoefficientOfThermalExpansion>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin, quantity => new CoefficientOfThermalExpansion(quantity.Value * 9 / 5, CoefficientOfThermalExpansionUnit.InverseKelvin));
         }
 
+        private static bool TryConvert(CoefficientOfThermalExpansion value, CoefficientOfThermalExpansionUnit targetUnit, out CoefficientOfThermalExpansion? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // CoefficientOfThermalExpansionUnit -> BaseUnit
+                (CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.InverseKelvin) => new CoefficientOfThermalExpansion(value.Value, CoefficientOfThermalExpansionUnit.InverseKelvin),
+                (CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin) => new CoefficientOfThermalExpansion(value.Value * 9 / 5, CoefficientOfThermalExpansionUnit.InverseKelvin),
+
+                // BaseUnit <-> BaseUnit
+                (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseKelvin) => value,
+
+                // BaseUnit -> CoefficientOfThermalExpansionUnit
+                (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius) => new CoefficientOfThermalExpansion(value.Value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius),
+                (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit) => new CoefficientOfThermalExpansion(value.Value * 5 / 9, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"°C⁻¹", "1/°C"});

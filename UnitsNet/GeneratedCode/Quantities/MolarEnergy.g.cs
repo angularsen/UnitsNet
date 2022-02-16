@@ -226,6 +226,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => new MolarEnergy((quantity.Value) * 1e6d, MolarEnergyUnit.JoulePerMole));
         }
 
+        private static bool TryConvert(MolarEnergy value, MolarEnergyUnit targetUnit, out MolarEnergy? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // MolarEnergyUnit -> BaseUnit
+                (MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnit.JoulePerMole) => new MolarEnergy((value.Value) * 1e3d, MolarEnergyUnit.JoulePerMole),
+                (MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole) => new MolarEnergy((value.Value) * 1e6d, MolarEnergyUnit.JoulePerMole),
+
+                // BaseUnit <-> BaseUnit
+                (MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.JoulePerMole) => value,
+
+                // BaseUnit -> MolarEnergyUnit
+                (MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.KilojoulePerMole) => new MolarEnergy((value.Value) / 1e3d, MolarEnergyUnit.KilojoulePerMole),
+                (MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.MegajoulePerMole) => new MolarEnergy((value.Value) / 1e6d, MolarEnergyUnit.MegajoulePerMole),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"J/mol"});

@@ -213,6 +213,23 @@ namespace UnitsNet
             // Register in unit converter: PermeabilityUnit -> BaseUnit
         }
 
+        private static bool TryConvert(Permeability value, PermeabilityUnit targetUnit, out Permeability? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // PermeabilityUnit -> BaseUnit
+
+                // BaseUnit <-> BaseUnit
+                (PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter) => value,
+
+                // BaseUnit -> PermeabilityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(PermeabilityUnit.HenryPerMeter, new CultureInfo("en-US"), false, true, new string[]{"H/m"});

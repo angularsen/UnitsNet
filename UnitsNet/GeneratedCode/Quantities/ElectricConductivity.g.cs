@@ -229,6 +229,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter, quantity => new ElectricConductivity(quantity.Value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter));
         }
 
+        private static bool TryConvert(ElectricConductivity value, ElectricConductivityUnit targetUnit, out ElectricConductivity? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // ElectricConductivityUnit -> BaseUnit
+                (ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(value.Value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter),
+                (ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(value.Value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter),
+
+                // BaseUnit <-> BaseUnit
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter) => value,
+
+                // BaseUnit -> ElectricConductivityUnit
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot) => new ElectricConductivity(value.Value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot),
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch) => new ElectricConductivity(value.Value / 3.937007874015748e1, ElectricConductivityUnit.SiemensPerInch),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), false, true, new string[]{"S/ft"});

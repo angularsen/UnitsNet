@@ -226,6 +226,27 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume((quantity.Value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram));
         }
 
+        private static bool TryConvert(SpecificVolume value, SpecificVolumeUnit targetUnit, out SpecificVolume? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // SpecificVolumeUnit -> BaseUnit
+                (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(value.Value / 16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram),
+                (SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume((value.Value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram),
+
+                // BaseUnit <-> BaseUnit
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => value,
+
+                // BaseUnit -> SpecificVolumeUnit
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(value.Value * 16.01846353, SpecificVolumeUnit.CubicFootPerPound),
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram) => new SpecificVolume((value.Value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), false, true, new string[]{"ft³/lb"});

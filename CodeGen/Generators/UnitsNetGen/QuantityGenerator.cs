@@ -366,34 +366,76 @@ namespace UnitsNet
         {{
             // Register in unit converter: BaseUnit -> {_quantity.Name}Unit");
 
-        foreach(var unit in _quantity.Units)
-        {
-            if (unit.SingularName == _quantity.BaseUnit)
-                continue;
+            foreach(var unit in _quantity.Units)
+            {
+                if (unit.SingularName == _quantity.BaseUnit)
+                    continue;
 
-        var func = unit.FromBaseToUnitFunc.Replace("{x}", "quantity.Value");
-        Writer.WL($@"
+                var func = unit.FromBaseToUnitFunc.Replace("{x}", "quantity.Value");
+                Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => new {_quantity.Name}({func}, {_quantity.Name}Unit.{unit.SingularName}));");
-        }
-        Writer.WL();
-        Writer.WL($@"
+            }
+
+            Writer.WL();
+            Writer.WL($@"
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity);
 
             // Register in unit converter: {_quantity.Name}Unit -> BaseUnit");
 
-        foreach(var unit in _quantity.Units)
-        {
-            if (unit.SingularName == _quantity.BaseUnit)
-                continue;
+            foreach(var unit in _quantity.Units)
+            {
+                if (unit.SingularName == _quantity.BaseUnit)
+                    continue;
 
-            var func = unit.FromUnitToBaseFunc.Replace("{x}", "quantity.Value");
-            Writer.WL($@"
+                var func = unit.FromUnitToBaseFunc.Replace("{x}", "quantity.Value");
+                Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}));");
-        }
+            }
 
-        Writer.WL($@"
+            Writer.WL($@"
+        }}
+
+        private static bool TryConvert({_quantity.Name} value, {_quantity.Name}Unit targetUnit, out {_quantity.Name}? converted)
+        {{
+            converted = (value.Unit, targetUnit) switch
+            {{
+                // {_quantity.Name}Unit -> BaseUnit");
+
+                foreach(var unit in _quantity.Units)
+                {
+                    if (unit.SingularName == _quantity.BaseUnit)
+                        continue;
+
+                    var func = unit.FromUnitToBaseFunc.Replace("{x}", "value.Value" );
+                    Writer.WL($@"
+                ({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}) => new {_quantity.Name}({func}, {_unitEnumName}.{_quantity.BaseUnit}),");
+                }
+
+                Writer.WL();
+                Writer.WL($@"
+
+                // BaseUnit <-> BaseUnit
+                ({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}) => value,
+
+                // BaseUnit -> {_quantity.Name}Unit");
+                foreach(var unit in _quantity.Units)
+                {
+                    if (unit.SingularName == _quantity.BaseUnit)
+                        continue;
+
+                    var func = unit.FromBaseToUnitFunc.Replace("{x}", "value.Value" );
+                    Writer.WL($@"
+                ({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}) => new {_quantity.Name}({func}, {_quantity.Name}Unit.{unit.SingularName}),");
+                }
+
+                Writer.WL();
+                Writer.WL($@"
+                _ => null!
+            }};
+
+            return converted != null;
         }}
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)

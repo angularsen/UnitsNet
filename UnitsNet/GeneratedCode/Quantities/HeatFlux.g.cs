@@ -346,6 +346,57 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareInch, HeatFluxUnit.WattPerSquareMeter, quantity => new HeatFlux(quantity.Value * 1.5500031e3, HeatFluxUnit.WattPerSquareMeter));
         }
 
+        private static bool TryConvert(HeatFlux value, HeatFluxUnit targetUnit, out HeatFlux? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // HeatFluxUnit -> BaseUnit
+                (HeatFluxUnit.BtuPerHourSquareFoot, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 3.15459075, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.BtuPerMinuteSquareFoot, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 1.89275445e2, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.BtuPerSecondSquareFoot, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 1.13565267e4, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.BtuPerSecondSquareInch, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 1.63533984e6, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.CaloriePerSecondSquareCentimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 4.1868e4, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.CentiwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((value.Value) * 1e-2d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.DeciwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((value.Value) * 1e-1d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.KilocaloriePerHourSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 1.163, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((value.Value * 4.1868e4) * 1e3d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.KilowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((value.Value) * 1e3d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.MicrowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((value.Value) * 1e-6d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.MilliwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((value.Value) * 1e-3d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.NanowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((value.Value) * 1e-9d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.PoundForcePerFootSecond, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 1.459390293720636e1, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.PoundPerSecondCubed, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 4.5359237e-1, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareFoot, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 1.07639e1, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareInch, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(value.Value * 1.5500031e3, HeatFluxUnit.WattPerSquareMeter),
+
+                // BaseUnit <-> BaseUnit
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => value,
+
+                // BaseUnit -> HeatFluxUnit
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerHourSquareFoot) => new HeatFlux(value.Value / 3.15459075, HeatFluxUnit.BtuPerHourSquareFoot),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerMinuteSquareFoot) => new HeatFlux(value.Value / 1.89275445e2, HeatFluxUnit.BtuPerMinuteSquareFoot),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerSecondSquareFoot) => new HeatFlux(value.Value / 1.13565267e4, HeatFluxUnit.BtuPerSecondSquareFoot),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerSecondSquareInch) => new HeatFlux(value.Value / 1.63533984e6, HeatFluxUnit.BtuPerSecondSquareInch),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CaloriePerSecondSquareCentimeter) => new HeatFlux(value.Value / 4.1868e4, HeatFluxUnit.CaloriePerSecondSquareCentimeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CentiwattPerSquareMeter) => new HeatFlux((value.Value) / 1e-2d, HeatFluxUnit.CentiwattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.DeciwattPerSquareMeter) => new HeatFlux((value.Value) / 1e-1d, HeatFluxUnit.DeciwattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilocaloriePerHourSquareMeter) => new HeatFlux(value.Value / 1.163, HeatFluxUnit.KilocaloriePerHourSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter) => new HeatFlux((value.Value / 4.1868e4) / 1e3d, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilowattPerSquareMeter) => new HeatFlux((value.Value) / 1e3d, HeatFluxUnit.KilowattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MicrowattPerSquareMeter) => new HeatFlux((value.Value) / 1e-6d, HeatFluxUnit.MicrowattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MilliwattPerSquareMeter) => new HeatFlux((value.Value) / 1e-3d, HeatFluxUnit.MilliwattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.NanowattPerSquareMeter) => new HeatFlux((value.Value) / 1e-9d, HeatFluxUnit.NanowattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundForcePerFootSecond) => new HeatFlux(value.Value / 1.459390293720636e1, HeatFluxUnit.PoundForcePerFootSecond),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundPerSecondCubed) => new HeatFlux(value.Value / 4.5359237e-1, HeatFluxUnit.PoundPerSecondCubed),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareFoot) => new HeatFlux(value.Value / 1.07639e1, HeatFluxUnit.WattPerSquareFoot),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareInch) => new HeatFlux(value.Value / 1.5500031e3, HeatFluxUnit.WattPerSquareInch),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerHourSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"BTU/h·ft²"});

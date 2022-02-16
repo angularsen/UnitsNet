@@ -261,6 +261,35 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.WattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => new Irradiation(quantity.Value * 3600d, IrradiationUnit.JoulePerSquareMeter));
         }
 
+        private static bool TryConvert(Irradiation value, IrradiationUnit targetUnit, out Irradiation? converted)
+        {
+            converted = (value.Unit, targetUnit) switch
+            {
+                // IrradiationUnit -> BaseUnit
+                (IrradiationUnit.JoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(value.Value * 1e4, IrradiationUnit.JoulePerSquareMeter),
+                (IrradiationUnit.JoulePerSquareMillimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(value.Value * 1e6, IrradiationUnit.JoulePerSquareMeter),
+                (IrradiationUnit.KilojoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((value.Value) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
+                (IrradiationUnit.KilowattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((value.Value * 3600d) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
+                (IrradiationUnit.MillijoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((value.Value * 1e4) * 1e-3d, IrradiationUnit.JoulePerSquareMeter),
+                (IrradiationUnit.WattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(value.Value * 3600d, IrradiationUnit.JoulePerSquareMeter),
+
+                // BaseUnit <-> BaseUnit
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => value,
+
+                // BaseUnit -> IrradiationUnit
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareCentimeter) => new Irradiation(value.Value / 1e4, IrradiationUnit.JoulePerSquareCentimeter),
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMillimeter) => new Irradiation(value.Value / 1e6, IrradiationUnit.JoulePerSquareMillimeter),
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilojoulePerSquareMeter) => new Irradiation((value.Value) / 1e3d, IrradiationUnit.KilojoulePerSquareMeter),
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilowattHourPerSquareMeter) => new Irradiation((value.Value / 3600d) / 1e3d, IrradiationUnit.KilowattHourPerSquareMeter),
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.MillijoulePerSquareCentimeter) => new Irradiation((value.Value / 1e4) / 1e-3d, IrradiationUnit.MillijoulePerSquareCentimeter),
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.WattHourPerSquareMeter) => new Irradiation(value.Value / 3600d, IrradiationUnit.WattHourPerSquareMeter),
+
+                _ => null!
+            };
+
+            return converted != null;
+        }
+
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.JoulePerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"J/cm²"});
