@@ -1140,7 +1140,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1161,9 +1161,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MassUnit unit, out Mass? converted)
+        private bool TryToUnit(MassUnit unit, out Mass? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MassUnit -> BaseUnit
                 (MassUnit.Centigram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-2d, MassUnit.Kilogram),
@@ -1192,7 +1192,7 @@ namespace UnitsNet
                 (MassUnit.Tonne, MassUnit.Kilogram) => new Mass(_value * 1e3, MassUnit.Kilogram),
 
                 // BaseUnit <-> BaseUnit
-                (MassUnit.Kilogram, MassUnit.Kilogram) => value,
+                (MassUnit.Kilogram, MassUnit.Kilogram) => this,
 
                 // BaseUnit -> MassUnit
                 (MassUnit.Kilogram, MassUnit.Centigram) => new Mass((_value * 1e3) / 1e-2d, MassUnit.Centigram),

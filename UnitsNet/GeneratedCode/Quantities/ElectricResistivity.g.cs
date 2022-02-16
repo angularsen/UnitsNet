@@ -899,7 +899,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -920,9 +920,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricResistivityUnit unit, out ElectricResistivity? converted)
+        private bool TryToUnit(ElectricResistivityUnit unit, out ElectricResistivity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricResistivityUnit -> BaseUnit
                 (ElectricResistivityUnit.KiloohmCentimeter, ElectricResistivityUnit.OhmMeter) => new ElectricResistivity((_value / 100) * 1e3d, ElectricResistivityUnit.OhmMeter),
@@ -940,7 +940,7 @@ namespace UnitsNet
                 (ElectricResistivityUnit.PicoohmMeter, ElectricResistivityUnit.OhmMeter) => new ElectricResistivity((_value) * 1e-12d, ElectricResistivityUnit.OhmMeter),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.OhmMeter) => value,
+                (ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.OhmMeter) => this,
 
                 // BaseUnit -> ElectricResistivityUnit
                 (ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.KiloohmCentimeter) => new ElectricResistivity((_value * 100) / 1e3d, ElectricResistivityUnit.KiloohmCentimeter),

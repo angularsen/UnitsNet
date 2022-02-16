@@ -823,7 +823,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -844,9 +844,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(DynamicViscosityUnit unit, out DynamicViscosity? converted)
+        private bool TryToUnit(DynamicViscosityUnit unit, out DynamicViscosity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // DynamicViscosityUnit -> BaseUnit
                 (DynamicViscosityUnit.Centipoise, DynamicViscosityUnit.NewtonSecondPerMeterSquared) => new DynamicViscosity((_value / 10) * 1e-2d, DynamicViscosityUnit.NewtonSecondPerMeterSquared),
@@ -860,7 +860,7 @@ namespace UnitsNet
                 (DynamicViscosityUnit.Reyn, DynamicViscosityUnit.NewtonSecondPerMeterSquared) => new DynamicViscosity(_value * 6.8947572931683613e3, DynamicViscosityUnit.NewtonSecondPerMeterSquared),
 
                 // BaseUnit <-> BaseUnit
-                (DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.NewtonSecondPerMeterSquared) => value,
+                (DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.NewtonSecondPerMeterSquared) => this,
 
                 // BaseUnit -> DynamicViscosityUnit
                 (DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.Centipoise) => new DynamicViscosity((_value * 10) / 1e-2d, DynamicViscosityUnit.Centipoise),

@@ -1108,7 +1108,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1129,9 +1129,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(TorqueUnit unit, out Torque? converted)
+        private bool TryToUnit(TorqueUnit unit, out Torque? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // TorqueUnit -> BaseUnit
                 (TorqueUnit.GramForceCentimeter, TorqueUnit.NewtonMeter) => new Torque(_value * 9.80665e-5, TorqueUnit.NewtonMeter),
@@ -1160,7 +1160,7 @@ namespace UnitsNet
                 (TorqueUnit.TonneForceMillimeter, TorqueUnit.NewtonMeter) => new Torque(_value * 9.80665, TorqueUnit.NewtonMeter),
 
                 // BaseUnit <-> BaseUnit
-                (TorqueUnit.NewtonMeter, TorqueUnit.NewtonMeter) => value,
+                (TorqueUnit.NewtonMeter, TorqueUnit.NewtonMeter) => this,
 
                 // BaseUnit -> TorqueUnit
                 (TorqueUnit.NewtonMeter, TorqueUnit.GramForceCentimeter) => new Torque(_value / 9.80665e-5, TorqueUnit.GramForceCentimeter),

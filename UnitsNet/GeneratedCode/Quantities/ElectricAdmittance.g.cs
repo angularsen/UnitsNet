@@ -706,7 +706,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -727,9 +727,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricAdmittanceUnit unit, out ElectricAdmittance? converted)
+        private bool TryToUnit(ElectricAdmittanceUnit unit, out ElectricAdmittance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricAdmittanceUnit -> BaseUnit
                 (ElectricAdmittanceUnit.Microsiemens, ElectricAdmittanceUnit.Siemens) => new ElectricAdmittance((_value) * 1e-6d, ElectricAdmittanceUnit.Siemens),
@@ -737,7 +737,7 @@ namespace UnitsNet
                 (ElectricAdmittanceUnit.Nanosiemens, ElectricAdmittanceUnit.Siemens) => new ElectricAdmittance((_value) * 1e-9d, ElectricAdmittanceUnit.Siemens),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Siemens) => value,
+                (ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Siemens) => this,
 
                 // BaseUnit -> ElectricAdmittanceUnit
                 (ElectricAdmittanceUnit.Siemens, ElectricAdmittanceUnit.Microsiemens) => new ElectricAdmittance((_value) / 1e-6d, ElectricAdmittanceUnit.Microsiemens),

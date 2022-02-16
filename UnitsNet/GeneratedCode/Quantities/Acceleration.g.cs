@@ -910,7 +910,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -931,9 +931,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(AccelerationUnit unit, out Acceleration? converted)
+        private bool TryToUnit(AccelerationUnit unit, out Acceleration? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // AccelerationUnit -> BaseUnit
                 (AccelerationUnit.CentimeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((_value) * 1e-2d, AccelerationUnit.MeterPerSecondSquared),
@@ -951,7 +951,7 @@ namespace UnitsNet
                 (AccelerationUnit.StandardGravity, AccelerationUnit.MeterPerSecondSquared) => new Acceleration(_value * 9.80665, AccelerationUnit.MeterPerSecondSquared),
 
                 // BaseUnit <-> BaseUnit
-                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => value,
+                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => this,
 
                 // BaseUnit -> AccelerationUnit
                 (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.CentimeterPerSecondSquared) => new Acceleration((_value) / 1e-2d, AccelerationUnit.CentimeterPerSecondSquared),

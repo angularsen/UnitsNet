@@ -766,7 +766,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -787,9 +787,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(CapacitanceUnit unit, out Capacitance? converted)
+        private bool TryToUnit(CapacitanceUnit unit, out Capacitance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // CapacitanceUnit -> BaseUnit
                 (CapacitanceUnit.Kilofarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e3d, CapacitanceUnit.Farad),
@@ -800,7 +800,7 @@ namespace UnitsNet
                 (CapacitanceUnit.Picofarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e-12d, CapacitanceUnit.Farad),
 
                 // BaseUnit <-> BaseUnit
-                (CapacitanceUnit.Farad, CapacitanceUnit.Farad) => value,
+                (CapacitanceUnit.Farad, CapacitanceUnit.Farad) => this,
 
                 // BaseUnit -> CapacitanceUnit
                 (CapacitanceUnit.Farad, CapacitanceUnit.Kilofarad) => new Capacitance((_value) / 1e3d, CapacitanceUnit.Kilofarad),

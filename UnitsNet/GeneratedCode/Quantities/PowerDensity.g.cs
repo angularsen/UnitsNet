@@ -1466,7 +1466,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1487,9 +1487,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(PowerDensityUnit unit, out PowerDensity? converted)
+        private bool TryToUnit(PowerDensityUnit unit, out PowerDensity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // PowerDensityUnit -> BaseUnit
                 (PowerDensityUnit.DecawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 3.531466672148859e1) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
@@ -1537,7 +1537,7 @@ namespace UnitsNet
                 (PowerDensityUnit.WattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(_value * 1.0e3, PowerDensityUnit.WattPerCubicMeter),
 
                 // BaseUnit <-> BaseUnit
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => value,
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => this,
 
                 // BaseUnit -> PowerDensityUnit
                 (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicFoot) => new PowerDensity((_value / 3.531466672148859e1) / 1e1d, PowerDensityUnit.DecawattPerCubicFoot),

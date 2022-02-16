@@ -1108,7 +1108,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1129,9 +1129,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(SpecificEnergyUnit unit, out SpecificEnergy? converted)
+        private bool TryToUnit(SpecificEnergyUnit unit, out SpecificEnergy? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // SpecificEnergyUnit -> BaseUnit
                 (SpecificEnergyUnit.BtuPerPound, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(_value * 2326.000075362, SpecificEnergyUnit.JoulePerKilogram),
@@ -1160,7 +1160,7 @@ namespace UnitsNet
                 (SpecificEnergyUnit.WattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(_value * 3.6e3, SpecificEnergyUnit.JoulePerKilogram),
 
                 // BaseUnit <-> BaseUnit
-                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram) => value,
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram) => this,
 
                 // BaseUnit -> SpecificEnergyUnit
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.BtuPerPound) => new SpecificEnergy(_value / 2326.000075362, SpecificEnergyUnit.BtuPerPound),

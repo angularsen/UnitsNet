@@ -725,7 +725,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -746,9 +746,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricPotentialDcUnit unit, out ElectricPotentialDc? converted)
+        private bool TryToUnit(ElectricPotentialDcUnit unit, out ElectricPotentialDc? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricPotentialDcUnit -> BaseUnit
                 (ElectricPotentialDcUnit.KilovoltDc, ElectricPotentialDcUnit.VoltDc) => new ElectricPotentialDc((_value) * 1e3d, ElectricPotentialDcUnit.VoltDc),
@@ -757,7 +757,7 @@ namespace UnitsNet
                 (ElectricPotentialDcUnit.MillivoltDc, ElectricPotentialDcUnit.VoltDc) => new ElectricPotentialDc((_value) * 1e-3d, ElectricPotentialDcUnit.VoltDc),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.VoltDc) => value,
+                (ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.VoltDc) => this,
 
                 // BaseUnit -> ElectricPotentialDcUnit
                 (ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.KilovoltDc) => new ElectricPotentialDc((_value) / 1e3d, ElectricPotentialDcUnit.KilovoltDc),

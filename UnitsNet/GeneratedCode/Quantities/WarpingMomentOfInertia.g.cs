@@ -744,7 +744,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -765,9 +765,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(WarpingMomentOfInertiaUnit unit, out WarpingMomentOfInertia? converted)
+        private bool TryToUnit(WarpingMomentOfInertiaUnit unit, out WarpingMomentOfInertia? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // WarpingMomentOfInertiaUnit -> BaseUnit
                 (WarpingMomentOfInertiaUnit.CentimeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value / 1e12, WarpingMomentOfInertiaUnit.MeterToTheSixth),
@@ -777,7 +777,7 @@ namespace UnitsNet
                 (WarpingMomentOfInertiaUnit.MillimeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => new WarpingMomentOfInertia(_value / 1e18, WarpingMomentOfInertiaUnit.MeterToTheSixth),
 
                 // BaseUnit <-> BaseUnit
-                (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => value,
+                (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.MeterToTheSixth) => this,
 
                 // BaseUnit -> WarpingMomentOfInertiaUnit
                 (WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.CentimeterToTheSixth) => new WarpingMomentOfInertia(_value * 1e12, WarpingMomentOfInertiaUnit.CentimeterToTheSixth),

@@ -858,7 +858,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -879,9 +879,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MassFluxUnit unit, out MassFlux? converted)
+        private bool TryToUnit(MassFluxUnit unit, out MassFlux? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MassFluxUnit -> BaseUnit
                 (MassFluxUnit.GramPerHourPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux(_value / 3.6e2, MassFluxUnit.KilogramPerSecondPerSquareMeter),
@@ -897,7 +897,7 @@ namespace UnitsNet
                 (MassFluxUnit.KilogramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((_value / 1e-3) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => value,
+                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => this,
 
                 // BaseUnit -> MassFluxUnit
                 (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareCentimeter) => new MassFlux(_value * 3.6e2, MassFluxUnit.GramPerHourPerSquareCentimeter),

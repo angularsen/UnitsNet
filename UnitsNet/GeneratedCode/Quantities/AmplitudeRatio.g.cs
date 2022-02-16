@@ -714,7 +714,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -735,9 +735,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(AmplitudeRatioUnit unit, out AmplitudeRatio? converted)
+        private bool TryToUnit(AmplitudeRatioUnit unit, out AmplitudeRatio? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // AmplitudeRatioUnit -> BaseUnit
                 (AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value - 120, AmplitudeRatioUnit.DecibelVolt),
@@ -745,7 +745,7 @@ namespace UnitsNet
                 (AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value - 2.218487499, AmplitudeRatioUnit.DecibelVolt),
 
                 // BaseUnit <-> BaseUnit
-                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelVolt) => value,
+                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelVolt) => this,
 
                 // BaseUnit -> AmplitudeRatioUnit
                 (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt) => new AmplitudeRatio(_value + 120, AmplitudeRatioUnit.DecibelMicrovolt),

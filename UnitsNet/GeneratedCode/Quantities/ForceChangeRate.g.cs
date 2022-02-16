@@ -915,7 +915,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -936,9 +936,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ForceChangeRateUnit unit, out ForceChangeRate? converted)
+        private bool TryToUnit(ForceChangeRateUnit unit, out ForceChangeRate? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ForceChangeRateUnit -> BaseUnit
                 (ForceChangeRateUnit.CentinewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value) * 1e-2d, ForceChangeRateUnit.NewtonPerSecond),
@@ -957,7 +957,7 @@ namespace UnitsNet
                 (ForceChangeRateUnit.PoundForcePerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value * 4.4482216152605095551842641431421, ForceChangeRateUnit.NewtonPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => value,
+                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => this,
 
                 // BaseUnit -> ForceChangeRateUnit
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.CentinewtonPerSecond) => new ForceChangeRate((_value) / 1e-2d, ForceChangeRateUnit.CentinewtonPerSecond),

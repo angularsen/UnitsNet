@@ -801,7 +801,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -822,9 +822,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(SpecificEntropyUnit unit, out SpecificEntropy? converted)
+        private bool TryToUnit(SpecificEntropyUnit unit, out SpecificEntropy? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // SpecificEntropyUnit -> BaseUnit
                 (SpecificEntropyUnit.BtuPerPoundFahrenheit, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy(_value * 4.1868e3, SpecificEntropyUnit.JoulePerKilogramKelvin),
@@ -837,7 +837,7 @@ namespace UnitsNet
                 (SpecificEntropyUnit.MegajoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((_value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin),
 
                 // BaseUnit <-> BaseUnit
-                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => value,
+                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => this,
 
                 // BaseUnit -> SpecificEntropyUnit
                 (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.BtuPerPoundFahrenheit) => new SpecificEntropy(_value / 4.1868e3, SpecificEntropyUnit.BtuPerPoundFahrenheit),

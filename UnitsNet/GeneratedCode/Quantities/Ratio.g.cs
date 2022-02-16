@@ -744,7 +744,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -765,9 +765,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(RatioUnit unit, out Ratio? converted)
+        private bool TryToUnit(RatioUnit unit, out Ratio? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // RatioUnit -> BaseUnit
                 (RatioUnit.PartPerBillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1e9, RatioUnit.DecimalFraction),
@@ -777,7 +777,7 @@ namespace UnitsNet
                 (RatioUnit.Percent, RatioUnit.DecimalFraction) => new Ratio(_value / 1e2, RatioUnit.DecimalFraction),
 
                 // BaseUnit <-> BaseUnit
-                (RatioUnit.DecimalFraction, RatioUnit.DecimalFraction) => value,
+                (RatioUnit.DecimalFraction, RatioUnit.DecimalFraction) => this,
 
                 // BaseUnit -> RatioUnit
                 (RatioUnit.DecimalFraction, RatioUnit.PartPerBillion) => new Ratio(_value * 1e9, RatioUnit.PartPerBillion),

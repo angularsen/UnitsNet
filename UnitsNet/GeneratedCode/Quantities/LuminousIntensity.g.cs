@@ -652,7 +652,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -673,14 +673,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(LuminousIntensityUnit unit, out LuminousIntensity? converted)
+        private bool TryToUnit(LuminousIntensityUnit unit, out LuminousIntensity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // LuminousIntensityUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela) => value,
+                (LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela) => this,
 
                 // BaseUnit -> LuminousIntensityUnit
 

@@ -763,7 +763,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -784,9 +784,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(EntropyUnit unit, out Entropy? converted)
+        private bool TryToUnit(EntropyUnit unit, out Entropy? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // EntropyUnit -> BaseUnit
                 (EntropyUnit.CaloriePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy(_value * 4.184, EntropyUnit.JoulePerKelvin),
@@ -797,7 +797,7 @@ namespace UnitsNet
                 (EntropyUnit.MegajoulePerKelvin, EntropyUnit.JoulePerKelvin) => new Entropy((_value) * 1e6d, EntropyUnit.JoulePerKelvin),
 
                 // BaseUnit <-> BaseUnit
-                (EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerKelvin) => value,
+                (EntropyUnit.JoulePerKelvin, EntropyUnit.JoulePerKelvin) => this,
 
                 // BaseUnit -> EntropyUnit
                 (EntropyUnit.JoulePerKelvin, EntropyUnit.CaloriePerKelvin) => new Entropy(_value / 4.184, EntropyUnit.CaloriePerKelvin),

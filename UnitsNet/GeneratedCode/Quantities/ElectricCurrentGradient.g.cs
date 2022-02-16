@@ -706,7 +706,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -727,9 +727,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricCurrentGradientUnit unit, out ElectricCurrentGradient? converted)
+        private bool TryToUnit(ElectricCurrentGradientUnit unit, out ElectricCurrentGradient? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricCurrentGradientUnit -> BaseUnit
                 (ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(_value * 1E6, ElectricCurrentGradientUnit.AmperePerSecond),
@@ -737,7 +737,7 @@ namespace UnitsNet
                 (ElectricCurrentGradientUnit.AmperePerNanosecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(_value * 1E9, ElectricCurrentGradientUnit.AmperePerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerSecond) => value,
+                (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerSecond) => this,
 
                 // BaseUnit -> ElectricCurrentGradientUnit
                 (ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerMicrosecond) => new ElectricCurrentGradient(_value / 1E6, ElectricCurrentGradientUnit.AmperePerMicrosecond),

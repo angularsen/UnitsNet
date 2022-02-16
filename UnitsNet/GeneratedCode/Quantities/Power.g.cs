@@ -1110,7 +1110,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1131,9 +1131,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(PowerUnit unit, out Power? converted)
+        private bool TryToUnit(PowerUnit unit, out Power? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // PowerUnit -> BaseUnit
                 (PowerUnit.BoilerHorsepower, PowerUnit.Watt) => new Power(_value * 9812.5m, PowerUnit.Watt),
@@ -1162,7 +1162,7 @@ namespace UnitsNet
                 (PowerUnit.Terawatt, PowerUnit.Watt) => new Power((_value) * 1e12m, PowerUnit.Watt),
 
                 // BaseUnit <-> BaseUnit
-                (PowerUnit.Watt, PowerUnit.Watt) => value,
+                (PowerUnit.Watt, PowerUnit.Watt) => this,
 
                 // BaseUnit -> PowerUnit
                 (PowerUnit.Watt, PowerUnit.BoilerHorsepower) => new Power(_value / 9812.5m, PowerUnit.BoilerHorsepower),

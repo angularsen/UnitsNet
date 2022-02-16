@@ -687,7 +687,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -708,16 +708,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(SpecificVolumeUnit unit, out SpecificVolume? converted)
+        private bool TryToUnit(SpecificVolumeUnit unit, out SpecificVolume? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // SpecificVolumeUnit -> BaseUnit
                 (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(_value / 16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram),
                 (SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume((_value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram),
 
                 // BaseUnit <-> BaseUnit
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => value,
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => this,
 
                 // BaseUnit -> SpecificVolumeUnit
                 (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(_value * 16.01846353, SpecificVolumeUnit.CubicFootPerPound),

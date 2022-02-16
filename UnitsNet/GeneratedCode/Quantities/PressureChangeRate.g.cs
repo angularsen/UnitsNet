@@ -910,7 +910,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -931,9 +931,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(PressureChangeRateUnit unit, out PressureChangeRate? converted)
+        private bool TryToUnit(PressureChangeRateUnit unit, out PressureChangeRate? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // PressureChangeRateUnit -> BaseUnit
                 (PressureChangeRateUnit.AtmospherePerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value * 1.01325 * 1e5, PressureChangeRateUnit.PascalPerSecond),
@@ -951,7 +951,7 @@ namespace UnitsNet
                 (PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value * 6.894757293168361e3, PressureChangeRateUnit.PascalPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PascalPerSecond) => value,
+                (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PascalPerSecond) => this,
 
                 // BaseUnit -> PressureChangeRateUnit
                 (PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.AtmospherePerSecond) => new PressureChangeRate(_value / (1.01325 * 1e5), PressureChangeRateUnit.AtmospherePerSecond),

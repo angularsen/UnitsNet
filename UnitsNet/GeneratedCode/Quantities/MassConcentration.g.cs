@@ -1568,7 +1568,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1589,9 +1589,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MassConcentrationUnit unit, out MassConcentration? converted)
+        private bool TryToUnit(MassConcentrationUnit unit, out MassConcentration? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MassConcentrationUnit -> BaseUnit
                 (MassConcentrationUnit.CentigramPerDeciliter, MassConcentrationUnit.KilogramPerCubicMeter) => new MassConcentration((_value / 1e-1) * 1e-2d, MassConcentrationUnit.KilogramPerCubicMeter),
@@ -1644,7 +1644,7 @@ namespace UnitsNet
                 (MassConcentrationUnit.TonnePerCubicMillimeter, MassConcentrationUnit.KilogramPerCubicMeter) => new MassConcentration(_value / 1e-12, MassConcentrationUnit.KilogramPerCubicMeter),
 
                 // BaseUnit <-> BaseUnit
-                (MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter) => value,
+                (MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter) => this,
 
                 // BaseUnit -> MassConcentrationUnit
                 (MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerDeciliter) => new MassConcentration((_value * 1e-1) / 1e-2d, MassConcentrationUnit.CentigramPerDeciliter),

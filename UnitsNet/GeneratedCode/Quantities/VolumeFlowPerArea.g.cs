@@ -668,7 +668,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -689,15 +689,15 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(VolumeFlowPerAreaUnit unit, out VolumeFlowPerArea? converted)
+        private bool TryToUnit(VolumeFlowPerAreaUnit unit, out VolumeFlowPerArea? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // VolumeFlowPerAreaUnit -> BaseUnit
                 (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(_value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => value,
+                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => this,
 
                 // BaseUnit -> VolumeFlowPerAreaUnit
                 (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(_value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),

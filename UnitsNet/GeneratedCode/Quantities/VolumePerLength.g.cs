@@ -763,7 +763,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -784,9 +784,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(VolumePerLengthUnit unit, out VolumePerLength? converted)
+        private bool TryToUnit(VolumePerLengthUnit unit, out VolumePerLength? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // VolumePerLengthUnit -> BaseUnit
                 (VolumePerLengthUnit.CubicYardPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 2.50838208, VolumePerLengthUnit.CubicMeterPerMeter),
@@ -797,7 +797,7 @@ namespace UnitsNet
                 (VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value / 1.91713408, VolumePerLengthUnit.CubicMeterPerMeter),
 
                 // BaseUnit <-> BaseUnit
-                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter) => value,
+                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter) => this,
 
                 // BaseUnit -> VolumePerLengthUnit
                 (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerFoot) => new VolumePerLength(_value / 2.50838208, VolumePerLengthUnit.CubicYardPerFoot),

@@ -687,7 +687,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -708,16 +708,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MolarEnergyUnit unit, out MolarEnergy? converted)
+        private bool TryToUnit(MolarEnergyUnit unit, out MolarEnergy? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MolarEnergyUnit -> BaseUnit
                 (MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnit.JoulePerMole) => new MolarEnergy((_value) * 1e3d, MolarEnergyUnit.JoulePerMole),
                 (MolarEnergyUnit.MegajoulePerMole, MolarEnergyUnit.JoulePerMole) => new MolarEnergy((_value) * 1e6d, MolarEnergyUnit.JoulePerMole),
 
                 // BaseUnit <-> BaseUnit
-                (MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.JoulePerMole) => value,
+                (MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.JoulePerMole) => this,
 
                 // BaseUnit -> MolarEnergyUnit
                 (MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.KilojoulePerMole) => new MolarEnergy((_value) / 1e3d, MolarEnergyUnit.KilojoulePerMole),

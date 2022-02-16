@@ -1257,7 +1257,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1278,9 +1278,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(RotationalStiffnessUnit unit, out RotationalStiffness? converted)
+        private bool TryToUnit(RotationalStiffnessUnit unit, out RotationalStiffness? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // RotationalStiffnessUnit -> BaseUnit
                 (RotationalStiffnessUnit.CentinewtonMeterPerDegree, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness((_value * (180 / Math.PI)) * 1e-2d, RotationalStiffnessUnit.NewtonMeterPerRadian),
@@ -1317,7 +1317,7 @@ namespace UnitsNet
                 (RotationalStiffnessUnit.PoundForceFootPerDegrees, RotationalStiffnessUnit.NewtonMeterPerRadian) => new RotationalStiffness(_value * 77.6826, RotationalStiffnessUnit.NewtonMeterPerRadian),
 
                 // BaseUnit <-> BaseUnit
-                (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian) => value,
+                (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.NewtonMeterPerRadian) => this,
 
                 // BaseUnit -> RotationalStiffnessUnit
                 (RotationalStiffnessUnit.NewtonMeterPerRadian, RotationalStiffnessUnit.CentinewtonMeterPerDegree) => new RotationalStiffness((_value / (180 / Math.PI)) / 1e-2d, RotationalStiffnessUnit.CentinewtonMeterPerDegree),

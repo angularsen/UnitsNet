@@ -671,7 +671,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -692,15 +692,15 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ThermalConductivityUnit unit, out ThermalConductivity? converted)
+        private bool TryToUnit(ThermalConductivityUnit unit, out ThermalConductivity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ThermalConductivityUnit -> BaseUnit
                 (ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(_value * 1.73073467, ThermalConductivityUnit.WattPerMeterKelvin),
 
                 // BaseUnit <-> BaseUnit
-                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.WattPerMeterKelvin) => value,
+                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.WattPerMeterKelvin) => this,
 
                 // BaseUnit -> ThermalConductivityUnit
                 (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit) => new ThermalConductivity(_value / 1.73073467, ThermalConductivityUnit.BtuPerHourFootFahrenheit),

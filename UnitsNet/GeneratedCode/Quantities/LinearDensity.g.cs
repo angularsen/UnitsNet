@@ -899,7 +899,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -920,9 +920,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(LinearDensityUnit unit, out LinearDensity? converted)
+        private bool TryToUnit(LinearDensityUnit unit, out LinearDensity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // LinearDensityUnit -> BaseUnit
                 (LinearDensityUnit.GramPerCentimeter, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value * 1e-1, LinearDensityUnit.KilogramPerMeter),
@@ -940,7 +940,7 @@ namespace UnitsNet
                 (LinearDensityUnit.PoundPerInch, LinearDensityUnit.KilogramPerMeter) => new LinearDensity(_value / 5.5997415e-2, LinearDensityUnit.KilogramPerMeter),
 
                 // BaseUnit <-> BaseUnit
-                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMeter) => value,
+                (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.KilogramPerMeter) => this,
 
                 // BaseUnit -> LinearDensityUnit
                 (LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.GramPerCentimeter) => new LinearDensity(_value / 1e-1, LinearDensityUnit.GramPerCentimeter),

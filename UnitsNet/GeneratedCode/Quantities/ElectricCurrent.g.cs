@@ -782,7 +782,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -803,9 +803,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricCurrentUnit unit, out ElectricCurrent? converted)
+        private bool TryToUnit(ElectricCurrentUnit unit, out ElectricCurrent? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricCurrentUnit -> BaseUnit
                 (ElectricCurrentUnit.Centiampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e-2d, ElectricCurrentUnit.Ampere),
@@ -817,7 +817,7 @@ namespace UnitsNet
                 (ElectricCurrentUnit.Picoampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e-12d, ElectricCurrentUnit.Ampere),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Ampere) => value,
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Ampere) => this,
 
                 // BaseUnit -> ElectricCurrentUnit
                 (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Centiampere) => new ElectricCurrent((_value) / 1e-2d, ElectricCurrentUnit.Centiampere),

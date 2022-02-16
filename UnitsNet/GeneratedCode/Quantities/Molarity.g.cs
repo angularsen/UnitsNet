@@ -817,7 +817,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -838,9 +838,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MolarityUnit unit, out Molarity? converted)
+        private bool TryToUnit(MolarityUnit unit, out Molarity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MolarityUnit -> BaseUnit
                 (MolarityUnit.CentimolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-2d, MolarityUnit.MolesPerCubicMeter),
@@ -860,7 +860,7 @@ namespace UnitsNet
                 (MolarityUnit.PicomolesPerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-12d, MolarityUnit.MolesPerCubicMeter),
 
                 // BaseUnit <-> BaseUnit
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerCubicMeter) => value,
+                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerCubicMeter) => this,
 
                 // BaseUnit -> MolarityUnit
                 (MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolePerLiter) => new Molarity((_value * 1e-3) / 1e-2d, MolarityUnit.CentimolePerLiter),

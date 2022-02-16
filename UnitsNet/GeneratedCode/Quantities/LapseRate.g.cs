@@ -650,7 +650,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -671,14 +671,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(LapseRateUnit unit, out LapseRate? converted)
+        private bool TryToUnit(LapseRateUnit unit, out LapseRate? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // LapseRateUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (LapseRateUnit.DegreeCelsiusPerKilometer, LapseRateUnit.DegreeCelsiusPerKilometer) => value,
+                (LapseRateUnit.DegreeCelsiusPerKilometer, LapseRateUnit.DegreeCelsiusPerKilometer) => this,
 
                 // BaseUnit -> LapseRateUnit
 

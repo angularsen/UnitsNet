@@ -649,7 +649,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -670,14 +670,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(VitaminAUnit unit, out VitaminA? converted)
+        private bool TryToUnit(VitaminAUnit unit, out VitaminA? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // VitaminAUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (VitaminAUnit.InternationalUnit, VitaminAUnit.InternationalUnit) => value,
+                (VitaminAUnit.InternationalUnit, VitaminAUnit.InternationalUnit) => this,
 
                 // BaseUnit -> VitaminAUnit
 

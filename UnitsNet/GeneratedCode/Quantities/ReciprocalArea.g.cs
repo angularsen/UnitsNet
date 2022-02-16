@@ -842,7 +842,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -863,9 +863,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ReciprocalAreaUnit unit, out ReciprocalArea? converted)
+        private bool TryToUnit(ReciprocalAreaUnit unit, out ReciprocalArea? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ReciprocalAreaUnit -> BaseUnit
                 (ReciprocalAreaUnit.InverseSquareCentimeter, ReciprocalAreaUnit.InverseSquareMeter) => new ReciprocalArea(_value / 1e-4, ReciprocalAreaUnit.InverseSquareMeter),
@@ -880,7 +880,7 @@ namespace UnitsNet
                 (ReciprocalAreaUnit.InverseUsSurveySquareFoot, ReciprocalAreaUnit.InverseSquareMeter) => new ReciprocalArea(_value / 0.09290341161, ReciprocalAreaUnit.InverseSquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMeter) => value,
+                (ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMeter) => this,
 
                 // BaseUnit -> ReciprocalAreaUnit
                 (ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareCentimeter) => new ReciprocalArea(_value * 1e-4, ReciprocalAreaUnit.InverseSquareCentimeter),

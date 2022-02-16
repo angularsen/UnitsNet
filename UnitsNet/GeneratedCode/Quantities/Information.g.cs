@@ -1129,7 +1129,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1150,9 +1150,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(InformationUnit unit, out Information? converted)
+        private bool TryToUnit(InformationUnit unit, out Information? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // InformationUnit -> BaseUnit
                 (InformationUnit.Byte, InformationUnit.Bit) => new Information(_value * 8m, InformationUnit.Bit),
@@ -1182,7 +1182,7 @@ namespace UnitsNet
                 (InformationUnit.Terabyte, InformationUnit.Bit) => new Information((_value * 8m) * 1e12m, InformationUnit.Bit),
 
                 // BaseUnit <-> BaseUnit
-                (InformationUnit.Bit, InformationUnit.Bit) => value,
+                (InformationUnit.Bit, InformationUnit.Bit) => this,
 
                 // BaseUnit -> InformationUnit
                 (InformationUnit.Bit, InformationUnit.Byte) => new Information(_value / 8m, InformationUnit.Byte),

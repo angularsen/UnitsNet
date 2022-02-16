@@ -709,7 +709,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -730,9 +730,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricInductanceUnit unit, out ElectricInductance? converted)
+        private bool TryToUnit(ElectricInductanceUnit unit, out ElectricInductance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricInductanceUnit -> BaseUnit
                 (ElectricInductanceUnit.Microhenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-6d, ElectricInductanceUnit.Henry),
@@ -740,7 +740,7 @@ namespace UnitsNet
                 (ElectricInductanceUnit.Nanohenry, ElectricInductanceUnit.Henry) => new ElectricInductance((_value) * 1e-9d, ElectricInductanceUnit.Henry),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry) => value,
+                (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry) => this,
 
                 // BaseUnit -> ElectricInductanceUnit
                 (ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry) => new ElectricInductance((_value) / 1e-6d, ElectricInductanceUnit.Microhenry),

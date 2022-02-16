@@ -804,7 +804,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -825,9 +825,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(VolumetricHeatCapacityUnit unit, out VolumetricHeatCapacity? converted)
+        private bool TryToUnit(VolumetricHeatCapacityUnit unit, out VolumetricHeatCapacity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // VolumetricHeatCapacityUnit -> BaseUnit
                 (VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity(_value / 1.4910660e-5, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
@@ -840,7 +840,7 @@ namespace UnitsNet
                 (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity((_value) * 1e6d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
 
                 // BaseUnit <-> BaseUnit
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => value,
+                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => this,
 
                 // BaseUnit -> VolumetricHeatCapacityUnit
                 (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit) => new VolumetricHeatCapacity(_value * 1.4910660e-5, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit),

@@ -649,7 +649,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -670,14 +670,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ScalarUnit unit, out Scalar? converted)
+        private bool TryToUnit(ScalarUnit unit, out Scalar? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ScalarUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (ScalarUnit.Amount, ScalarUnit.Amount) => value,
+                (ScalarUnit.Amount, ScalarUnit.Amount) => this,
 
                 // BaseUnit -> ScalarUnit
 

@@ -652,7 +652,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -673,14 +673,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(PermeabilityUnit unit, out Permeability? converted)
+        private bool TryToUnit(PermeabilityUnit unit, out Permeability? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // PermeabilityUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter) => value,
+                (PermeabilityUnit.HenryPerMeter, PermeabilityUnit.HenryPerMeter) => this,
 
                 // BaseUnit -> PermeabilityUnit
 

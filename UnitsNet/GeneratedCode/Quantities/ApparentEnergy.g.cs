@@ -687,7 +687,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -708,16 +708,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ApparentEnergyUnit unit, out ApparentEnergy? converted)
+        private bool TryToUnit(ApparentEnergyUnit unit, out ApparentEnergy? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ApparentEnergyUnit -> BaseUnit
                 (ApparentEnergyUnit.KilovoltampereHour, ApparentEnergyUnit.VoltampereHour) => new ApparentEnergy((_value) * 1e3d, ApparentEnergyUnit.VoltampereHour),
                 (ApparentEnergyUnit.MegavoltampereHour, ApparentEnergyUnit.VoltampereHour) => new ApparentEnergy((_value) * 1e6d, ApparentEnergyUnit.VoltampereHour),
 
                 // BaseUnit <-> BaseUnit
-                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour) => value,
+                (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.VoltampereHour) => this,
 
                 // BaseUnit -> ApparentEnergyUnit
                 (ApparentEnergyUnit.VoltampereHour, ApparentEnergyUnit.KilovoltampereHour) => new ApparentEnergy((_value) / 1e3d, ApparentEnergyUnit.KilovoltampereHour),

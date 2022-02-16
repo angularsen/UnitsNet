@@ -687,7 +687,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -708,16 +708,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ReactiveEnergyUnit unit, out ReactiveEnergy? converted)
+        private bool TryToUnit(ReactiveEnergyUnit unit, out ReactiveEnergy? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ReactiveEnergyUnit -> BaseUnit
                 (ReactiveEnergyUnit.KilovoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour) => new ReactiveEnergy((_value) * 1e3d, ReactiveEnergyUnit.VoltampereReactiveHour),
                 (ReactiveEnergyUnit.MegavoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour) => new ReactiveEnergy((_value) * 1e6d, ReactiveEnergyUnit.VoltampereReactiveHour),
 
                 // BaseUnit <-> BaseUnit
-                (ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour) => value,
+                (ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.VoltampereReactiveHour) => this,
 
                 // BaseUnit -> ReactiveEnergyUnit
                 (ReactiveEnergyUnit.VoltampereReactiveHour, ReactiveEnergyUnit.KilovoltampereReactiveHour) => new ReactiveEnergy((_value) / 1e3d, ReactiveEnergyUnit.KilovoltampereReactiveHour),

@@ -801,7 +801,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -822,9 +822,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(TemperatureDeltaUnit unit, out TemperatureDelta? converted)
+        private bool TryToUnit(TemperatureDeltaUnit unit, out TemperatureDelta? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // TemperatureDeltaUnit -> BaseUnit
                 (TemperatureDeltaUnit.DegreeCelsius, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(_value, TemperatureDeltaUnit.Kelvin),
@@ -837,7 +837,7 @@ namespace UnitsNet
                 (TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta((_value) * 1e-3d, TemperatureDeltaUnit.Kelvin),
 
                 // BaseUnit <-> BaseUnit
-                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.Kelvin) => value,
+                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.Kelvin) => this,
 
                 // BaseUnit -> TemperatureDeltaUnit
                 (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeCelsius) => new TemperatureDelta(_value, TemperatureDeltaUnit.DegreeCelsius),

@@ -728,7 +728,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -749,9 +749,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricChargeUnit unit, out ElectricCharge? converted)
+        private bool TryToUnit(ElectricChargeUnit unit, out ElectricCharge? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricChargeUnit -> BaseUnit
                 (ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge(_value / 2.77777777777e-4, ElectricChargeUnit.Coulomb),
@@ -760,7 +760,7 @@ namespace UnitsNet
                 (ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb) => new ElectricCharge((_value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Coulomb) => value,
+                (ElectricChargeUnit.Coulomb, ElectricChargeUnit.Coulomb) => this,
 
                 // BaseUnit -> ElectricChargeUnit
                 (ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour) => new ElectricCharge(_value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour),

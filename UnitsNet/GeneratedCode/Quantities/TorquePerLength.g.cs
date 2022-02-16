@@ -1032,7 +1032,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1053,9 +1053,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(TorquePerLengthUnit unit, out TorquePerLength? converted)
+        private bool TryToUnit(TorquePerLengthUnit unit, out TorquePerLength? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // TorquePerLengthUnit -> BaseUnit
                 (TorquePerLengthUnit.KilogramForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 0.0980665019960652, TorquePerLengthUnit.NewtonMeterPerMeter),
@@ -1080,7 +1080,7 @@ namespace UnitsNet
                 (TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 9.80665019960652, TorquePerLengthUnit.NewtonMeterPerMeter),
 
                 // BaseUnit <-> BaseUnit
-                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => value,
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => this,
 
                 // BaseUnit -> TorquePerLengthUnit
                 (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceCentimeterPerMeter) => new TorquePerLength(_value * 10.1971619222242, TorquePerLengthUnit.KilogramForceCentimeterPerMeter),

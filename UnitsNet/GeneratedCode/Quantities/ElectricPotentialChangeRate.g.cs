@@ -1010,7 +1010,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1031,9 +1031,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricPotentialChangeRateUnit unit, out ElectricPotentialChangeRate? converted)
+        private bool TryToUnit(ElectricPotentialChangeRateUnit unit, out ElectricPotentialChangeRate? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricPotentialChangeRateUnit -> BaseUnit
                 (ElectricPotentialChangeRateUnit.KilovoltPerHour, ElectricPotentialChangeRateUnit.VoltPerSecond) => new ElectricPotentialChangeRate((_value / 3600) * 1e3d, ElectricPotentialChangeRateUnit.VoltPerSecond),
@@ -1057,7 +1057,7 @@ namespace UnitsNet
                 (ElectricPotentialChangeRateUnit.VoltPerMinute, ElectricPotentialChangeRateUnit.VoltPerSecond) => new ElectricPotentialChangeRate(_value / 60, ElectricPotentialChangeRateUnit.VoltPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond) => value,
+                (ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerSecond) => this,
 
                 // BaseUnit -> ElectricPotentialChangeRateUnit
                 (ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.KilovoltPerHour) => new ElectricPotentialChangeRate((_value * 3600) / 1e3d, ElectricPotentialChangeRateUnit.KilovoltPerHour),

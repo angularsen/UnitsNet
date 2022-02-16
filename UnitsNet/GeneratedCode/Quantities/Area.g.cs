@@ -923,7 +923,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -944,9 +944,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(AreaUnit unit, out Area? converted)
+        private bool TryToUnit(AreaUnit unit, out Area? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // AreaUnit -> BaseUnit
                 (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(_value * 4046.85642, AreaUnit.SquareMeter),
@@ -964,7 +964,7 @@ namespace UnitsNet
                 (AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter) => new Area(_value * 0.09290341161, AreaUnit.SquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (AreaUnit.SquareMeter, AreaUnit.SquareMeter) => value,
+                (AreaUnit.SquareMeter, AreaUnit.SquareMeter) => this,
 
                 // BaseUnit -> AreaUnit
                 (AreaUnit.SquareMeter, AreaUnit.Acre) => new Area(_value / 4046.85642, AreaUnit.Acre),

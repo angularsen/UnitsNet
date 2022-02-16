@@ -1013,7 +1013,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1034,9 +1034,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(VolumeConcentrationUnit unit, out VolumeConcentration? converted)
+        private bool TryToUnit(VolumeConcentrationUnit unit, out VolumeConcentration? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // VolumeConcentrationUnit -> BaseUnit
                 (VolumeConcentrationUnit.CentilitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((_value) * 1e-2d, VolumeConcentrationUnit.DecimalFraction),
@@ -1060,7 +1060,7 @@ namespace UnitsNet
                 (VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((_value / 1e-3) * 1e-12d, VolumeConcentrationUnit.DecimalFraction),
 
                 // BaseUnit <-> BaseUnit
-                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecimalFraction) => value,
+                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecimalFraction) => this,
 
                 // BaseUnit -> VolumeConcentrationUnit
                 (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerLiter) => new VolumeConcentration((_value) / 1e-2d, VolumeConcentrationUnit.CentilitersPerLiter),

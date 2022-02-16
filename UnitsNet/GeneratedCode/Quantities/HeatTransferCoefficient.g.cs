@@ -687,7 +687,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -708,16 +708,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(HeatTransferCoefficientUnit unit, out HeatTransferCoefficient? converted)
+        private bool TryToUnit(HeatTransferCoefficientUnit unit, out HeatTransferCoefficient? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // HeatTransferCoefficientUnit -> BaseUnit
                 (HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => new HeatTransferCoefficient(_value * 5.6782633411134878, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin),
                 (HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => new HeatTransferCoefficient(_value, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin),
 
                 // BaseUnit <-> BaseUnit
-                (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => value,
+                (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin) => this,
 
                 // BaseUnit -> HeatTransferCoefficientUnit
                 (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit) => new HeatTransferCoefficient(_value / 5.6782633411134878, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit),

@@ -690,7 +690,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -711,16 +711,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricCurrentDensityUnit unit, out ElectricCurrentDensity? converted)
+        private bool TryToUnit(ElectricCurrentDensityUnit unit, out ElectricCurrentDensity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricCurrentDensityUnit -> BaseUnit
                 (ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter),
                 (ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareMeter) => value,
+                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareMeter) => this,
 
                 // BaseUnit -> ElectricCurrentDensityUnit
                 (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot) => new ElectricCurrentDensity(_value / 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareFoot),

@@ -687,7 +687,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -708,16 +708,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(CoefficientOfThermalExpansionUnit unit, out CoefficientOfThermalExpansion? converted)
+        private bool TryToUnit(CoefficientOfThermalExpansionUnit unit, out CoefficientOfThermalExpansion? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // CoefficientOfThermalExpansionUnit -> BaseUnit
                 (CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.InverseKelvin) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.InverseKelvin),
                 (CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin) => new CoefficientOfThermalExpansion(_value * 9 / 5, CoefficientOfThermalExpansionUnit.InverseKelvin),
 
                 // BaseUnit <-> BaseUnit
-                (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseKelvin) => value,
+                (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseKelvin) => this,
 
                 // BaseUnit -> CoefficientOfThermalExpansionUnit
                 (CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius),

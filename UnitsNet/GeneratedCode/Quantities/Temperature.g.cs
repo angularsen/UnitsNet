@@ -774,7 +774,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -795,9 +795,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(TemperatureUnit unit, out Temperature? converted)
+        private bool TryToUnit(TemperatureUnit unit, out Temperature? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // TemperatureUnit -> BaseUnit
                 (TemperatureUnit.DegreeCelsius, TemperatureUnit.Kelvin) => new Temperature(_value + 273.15, TemperatureUnit.Kelvin),
@@ -811,7 +811,7 @@ namespace UnitsNet
                 (TemperatureUnit.SolarTemperature, TemperatureUnit.Kelvin) => new Temperature(_value * 5778, TemperatureUnit.Kelvin),
 
                 // BaseUnit <-> BaseUnit
-                (TemperatureUnit.Kelvin, TemperatureUnit.Kelvin) => value,
+                (TemperatureUnit.Kelvin, TemperatureUnit.Kelvin) => this,
 
                 // BaseUnit -> TemperatureUnit
                 (TemperatureUnit.Kelvin, TemperatureUnit.DegreeCelsius) => new Temperature(_value - 273.15, TemperatureUnit.DegreeCelsius),

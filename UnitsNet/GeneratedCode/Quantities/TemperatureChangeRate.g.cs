@@ -820,7 +820,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -841,9 +841,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(TemperatureChangeRateUnit unit, out TemperatureChangeRate? converted)
+        private bool TryToUnit(TemperatureChangeRateUnit unit, out TemperatureChangeRate? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // TemperatureChangeRateUnit -> BaseUnit
                 (TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) * 1e-2d, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
@@ -857,7 +857,7 @@ namespace UnitsNet
                 (TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) * 1e-9d, TemperatureChangeRateUnit.DegreeCelsiusPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => value,
+                (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond) => this,
 
                 // BaseUnit -> TemperatureChangeRateUnit
                 (TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond) => new TemperatureChangeRate((_value) / 1e-2d, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond),

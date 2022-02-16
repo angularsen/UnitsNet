@@ -896,7 +896,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -917,9 +917,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(IrradianceUnit unit, out Irradiance? converted)
+        private bool TryToUnit(IrradianceUnit unit, out Irradiance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // IrradianceUnit -> BaseUnit
                 (IrradianceUnit.KilowattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance((_value * 10000) * 1e3d, IrradianceUnit.WattPerSquareMeter),
@@ -937,7 +937,7 @@ namespace UnitsNet
                 (IrradianceUnit.WattPerSquareCentimeter, IrradianceUnit.WattPerSquareMeter) => new Irradiance(_value * 10000, IrradianceUnit.WattPerSquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => value,
+                (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareMeter) => this,
 
                 // BaseUnit -> IrradianceUnit
                 (IrradianceUnit.WattPerSquareMeter, IrradianceUnit.KilowattPerSquareCentimeter) => new Irradiance((_value * 0.0001) / 1e3d, IrradianceUnit.KilowattPerSquareCentimeter),

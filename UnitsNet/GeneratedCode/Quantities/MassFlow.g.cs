@@ -1259,7 +1259,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1280,9 +1280,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MassFlowUnit unit, out MassFlow? converted)
+        private bool TryToUnit(MassFlowUnit unit, out MassFlow? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MassFlowUnit -> BaseUnit
                 (MassFlowUnit.CentigramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e-2d, MassFlowUnit.GramPerSecond),
@@ -1319,7 +1319,7 @@ namespace UnitsNet
                 (MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond) => new MassFlow(1000 * _value / 3.6, MassFlowUnit.GramPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerSecond) => value,
+                (MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerSecond) => this,
 
                 // BaseUnit -> MassFlowUnit
                 (MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerDay) => new MassFlow((_value * 86400) / 1e-2d, MassFlowUnit.CentigramPerDay),

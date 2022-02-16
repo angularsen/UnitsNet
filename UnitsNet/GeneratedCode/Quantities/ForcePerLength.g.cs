@@ -1358,7 +1358,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1379,9 +1379,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ForcePerLengthUnit unit, out ForcePerLength? converted)
+        private bool TryToUnit(ForcePerLengthUnit unit, out ForcePerLength? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ForcePerLengthUnit -> BaseUnit
                 (ForcePerLengthUnit.CentinewtonPerCentimeter, ForcePerLengthUnit.NewtonPerMeter) => new ForcePerLength((_value * 1e2) * 1e-2d, ForcePerLengthUnit.NewtonPerMeter),
@@ -1423,7 +1423,7 @@ namespace UnitsNet
                 (ForcePerLengthUnit.TonneForcePerMillimeter, ForcePerLengthUnit.NewtonPerMeter) => new ForcePerLength(_value * 9.80665002864e6, ForcePerLengthUnit.NewtonPerMeter),
 
                 // BaseUnit <-> BaseUnit
-                (ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter) => value,
+                (ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.NewtonPerMeter) => this,
 
                 // BaseUnit -> ForcePerLengthUnit
                 (ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.CentinewtonPerCentimeter) => new ForcePerLength((_value / 1e2) / 1e-2d, ForcePerLengthUnit.CentinewtonPerCentimeter),

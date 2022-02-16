@@ -766,7 +766,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -787,9 +787,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(IrradiationUnit unit, out Irradiation? converted)
+        private bool TryToUnit(IrradiationUnit unit, out Irradiation? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // IrradiationUnit -> BaseUnit
                 (IrradiationUnit.JoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 1e4, IrradiationUnit.JoulePerSquareMeter),
@@ -800,7 +800,7 @@ namespace UnitsNet
                 (IrradiationUnit.WattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 3600d, IrradiationUnit.JoulePerSquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => value,
+                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => this,
 
                 // BaseUnit -> IrradiationUnit
                 (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareCentimeter) => new Irradiation(_value / 1e4, IrradiationUnit.JoulePerSquareCentimeter),

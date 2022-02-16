@@ -849,7 +849,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -870,9 +870,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(DurationUnit unit, out Duration? converted)
+        private bool TryToUnit(DurationUnit unit, out Duration? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // DurationUnit -> BaseUnit
                 (DurationUnit.Day, DurationUnit.Second) => new Duration(_value * 24 * 3600, DurationUnit.Second),
@@ -887,7 +887,7 @@ namespace UnitsNet
                 (DurationUnit.Year365, DurationUnit.Second) => new Duration(_value * 365 * 24 * 3600, DurationUnit.Second),
 
                 // BaseUnit <-> BaseUnit
-                (DurationUnit.Second, DurationUnit.Second) => value,
+                (DurationUnit.Second, DurationUnit.Second) => this,
 
                 // BaseUnit -> DurationUnit
                 (DurationUnit.Second, DurationUnit.Day) => new Duration(_value / (24 * 3600), DurationUnit.Day),

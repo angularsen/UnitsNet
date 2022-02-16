@@ -801,7 +801,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -822,9 +822,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(StandardVolumeFlowUnit unit, out StandardVolumeFlow? converted)
+        private bool TryToUnit(StandardVolumeFlowUnit unit, out StandardVolumeFlow? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // StandardVolumeFlowUnit -> BaseUnit
                 (StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value / 6e7, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
@@ -837,7 +837,7 @@ namespace UnitsNet
                 (StandardVolumeFlowUnit.StandardLiterPerMinute, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => new StandardVolumeFlow(_value / 60000, StandardVolumeFlowUnit.StandardCubicMeterPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => value,
+                (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicMeterPerSecond) => this,
 
                 // BaseUnit -> StandardVolumeFlowUnit
                 (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute) => new StandardVolumeFlow(_value * 6e7, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute),

@@ -899,7 +899,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -920,9 +920,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(LuminosityUnit unit, out Luminosity? converted)
+        private bool TryToUnit(LuminosityUnit unit, out Luminosity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // LuminosityUnit -> BaseUnit
                 (LuminosityUnit.Decawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e1d, LuminosityUnit.Watt),
@@ -940,7 +940,7 @@ namespace UnitsNet
                 (LuminosityUnit.Terawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e12d, LuminosityUnit.Watt),
 
                 // BaseUnit <-> BaseUnit
-                (LuminosityUnit.Watt, LuminosityUnit.Watt) => value,
+                (LuminosityUnit.Watt, LuminosityUnit.Watt) => this,
 
                 // BaseUnit -> LuminosityUnit
                 (LuminosityUnit.Watt, LuminosityUnit.Decawatt) => new Luminosity((_value) / 1e1d, LuminosityUnit.Decawatt),

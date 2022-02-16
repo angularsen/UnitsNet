@@ -870,7 +870,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -891,9 +891,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MolarMassUnit unit, out MolarMass? converted)
+        private bool TryToUnit(MolarMassUnit unit, out MolarMass? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MolarMassUnit -> BaseUnit
                 (MolarMassUnit.CentigramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-2d, MolarMassUnit.KilogramPerMole),
@@ -909,7 +909,7 @@ namespace UnitsNet
                 (MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass(_value * 0.45359237, MolarMassUnit.KilogramPerMole),
 
                 // BaseUnit <-> BaseUnit
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerMole) => value,
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerMole) => this,
 
                 // BaseUnit -> MolarMassUnit
                 (MolarMassUnit.KilogramPerMole, MolarMassUnit.CentigramPerMole) => new MolarMass((_value * 1e3) / 1e-2d, MolarMassUnit.CentigramPerMole),

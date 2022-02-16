@@ -652,7 +652,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -673,14 +673,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(SolidAngleUnit unit, out SolidAngle? converted)
+        private bool TryToUnit(SolidAngleUnit unit, out SolidAngle? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // SolidAngleUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (SolidAngleUnit.Steradian, SolidAngleUnit.Steradian) => value,
+                (SolidAngleUnit.Steradian, SolidAngleUnit.Steradian) => this,
 
                 // BaseUnit -> SolidAngleUnit
 

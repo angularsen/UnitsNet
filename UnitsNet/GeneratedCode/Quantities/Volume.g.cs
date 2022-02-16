@@ -1665,7 +1665,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1686,9 +1686,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(VolumeUnit unit, out Volume? converted)
+        private bool TryToUnit(VolumeUnit unit, out Volume? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // VolumeUnit -> BaseUnit
                 (VolumeUnit.AcreFoot, VolumeUnit.CubicMeter) => new Volume(_value / 0.000810714, VolumeUnit.CubicMeter),
@@ -1744,7 +1744,7 @@ namespace UnitsNet
                 (VolumeUnit.UsTeaspoon, VolumeUnit.CubicMeter) => new Volume(_value * 4.92892159375e-6, VolumeUnit.CubicMeter),
 
                 // BaseUnit <-> BaseUnit
-                (VolumeUnit.CubicMeter, VolumeUnit.CubicMeter) => value,
+                (VolumeUnit.CubicMeter, VolumeUnit.CubicMeter) => this,
 
                 // BaseUnit -> VolumeUnit
                 (VolumeUnit.CubicMeter, VolumeUnit.AcreFoot) => new Volume(_value * 0.000810714, VolumeUnit.AcreFoot),

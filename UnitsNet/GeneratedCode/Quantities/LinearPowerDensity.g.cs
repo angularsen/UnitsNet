@@ -1108,7 +1108,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1129,9 +1129,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(LinearPowerDensityUnit unit, out LinearPowerDensity? converted)
+        private bool TryToUnit(LinearPowerDensityUnit unit, out LinearPowerDensity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // LinearPowerDensityUnit -> BaseUnit
                 (LinearPowerDensityUnit.GigawattPerCentimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity((_value * 1e2) * 1e9d, LinearPowerDensityUnit.WattPerMeter),
@@ -1160,7 +1160,7 @@ namespace UnitsNet
                 (LinearPowerDensityUnit.WattPerMillimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity(_value * 1e3, LinearPowerDensityUnit.WattPerMeter),
 
                 // BaseUnit <-> BaseUnit
-                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerMeter) => value,
+                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerMeter) => this,
 
                 // BaseUnit -> LinearPowerDensityUnit
                 (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerCentimeter) => new LinearPowerDensity((_value / 1e2) / 1e9d, LinearPowerDensityUnit.GigawattPerCentimeter),

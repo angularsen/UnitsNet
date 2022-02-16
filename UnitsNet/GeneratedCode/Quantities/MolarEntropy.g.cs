@@ -687,7 +687,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -708,16 +708,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MolarEntropyUnit unit, out MolarEntropy? converted)
+        private bool TryToUnit(MolarEntropyUnit unit, out MolarEntropy? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MolarEntropyUnit -> BaseUnit
                 (MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((_value) * 1e3d, MolarEntropyUnit.JoulePerMoleKelvin),
                 (MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((_value) * 1e6d, MolarEntropyUnit.JoulePerMoleKelvin),
 
                 // BaseUnit <-> BaseUnit
-                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => value,
+                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => this,
 
                 // BaseUnit -> MolarEntropyUnit
                 (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin) => new MolarEntropy((_value) / 1e3d, MolarEntropyUnit.KilojoulePerMoleKelvin),

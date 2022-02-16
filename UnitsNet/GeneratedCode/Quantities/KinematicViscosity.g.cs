@@ -812,7 +812,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -833,9 +833,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(KinematicViscosityUnit unit, out KinematicViscosity? converted)
+        private bool TryToUnit(KinematicViscosityUnit unit, out KinematicViscosity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // KinematicViscosityUnit -> BaseUnit
                 (KinematicViscosityUnit.Centistokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity((_value / 1e4) * 1e-2d, KinematicViscosityUnit.SquareMeterPerSecond),
@@ -848,7 +848,7 @@ namespace UnitsNet
                 (KinematicViscosityUnit.Stokes, KinematicViscosityUnit.SquareMeterPerSecond) => new KinematicViscosity(_value / 1e4, KinematicViscosityUnit.SquareMeterPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareMeterPerSecond) => value,
+                (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.SquareMeterPerSecond) => this,
 
                 // BaseUnit -> KinematicViscosityUnit
                 (KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Centistokes) => new KinematicViscosity((_value * 1e4) / 1e-2d, KinematicViscosityUnit.Centistokes),

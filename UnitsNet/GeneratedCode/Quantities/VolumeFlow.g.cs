@@ -1835,7 +1835,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1856,9 +1856,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(VolumeFlowUnit unit, out VolumeFlow? converted)
+        private bool TryToUnit(VolumeFlowUnit unit, out VolumeFlow? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // VolumeFlowUnit -> BaseUnit
                 (VolumeFlowUnit.AcreFootPerDay, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow(_value / 70.0457, VolumeFlowUnit.CubicMeterPerSecond),
@@ -1924,7 +1924,7 @@ namespace UnitsNet
                 (VolumeFlowUnit.UsGallonPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => new VolumeFlow(_value / 264.1720523581484, VolumeFlowUnit.CubicMeterPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => value,
+                (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.CubicMeterPerSecond) => this,
 
                 // BaseUnit -> VolumeFlowUnit
                 (VolumeFlowUnit.CubicMeterPerSecond, VolumeFlowUnit.AcreFootPerDay) => new VolumeFlow(_value * 70.0457, VolumeFlowUnit.AcreFootPerDay),

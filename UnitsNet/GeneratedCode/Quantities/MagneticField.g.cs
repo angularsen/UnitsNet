@@ -747,7 +747,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -768,9 +768,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MagneticFieldUnit unit, out MagneticField? converted)
+        private bool TryToUnit(MagneticFieldUnit unit, out MagneticField? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MagneticFieldUnit -> BaseUnit
                 (MagneticFieldUnit.Gauss, MagneticFieldUnit.Tesla) => new MagneticField(_value / 1e4, MagneticFieldUnit.Tesla),
@@ -780,7 +780,7 @@ namespace UnitsNet
                 (MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla) => new MagneticField((_value) * 1e-9d, MagneticFieldUnit.Tesla),
 
                 // BaseUnit <-> BaseUnit
-                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Tesla) => value,
+                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Tesla) => this,
 
                 // BaseUnit -> MagneticFieldUnit
                 (MagneticFieldUnit.Tesla, MagneticFieldUnit.Gauss) => new MagneticField(_value * 1e4, MagneticFieldUnit.Gauss),

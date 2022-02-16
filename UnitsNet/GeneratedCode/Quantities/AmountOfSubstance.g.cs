@@ -915,7 +915,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -936,9 +936,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(AmountOfSubstanceUnit unit, out AmountOfSubstance? converted)
+        private bool TryToUnit(AmountOfSubstanceUnit unit, out AmountOfSubstance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // AmountOfSubstanceUnit -> BaseUnit
                 (AmountOfSubstanceUnit.Centimole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((_value) * 1e-2d, AmountOfSubstanceUnit.Mole),
@@ -957,7 +957,7 @@ namespace UnitsNet
                 (AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * 453.59237, AmountOfSubstanceUnit.Mole),
 
                 // BaseUnit <-> BaseUnit
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Mole) => value,
+                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Mole) => this,
 
                 // BaseUnit -> AmountOfSubstanceUnit
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Centimole) => new AmountOfSubstance((_value) / 1e-2d, AmountOfSubstanceUnit.Centimole),

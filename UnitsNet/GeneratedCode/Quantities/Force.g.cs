@@ -928,7 +928,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -949,9 +949,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ForceUnit unit, out Force? converted)
+        private bool TryToUnit(ForceUnit unit, out Force? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ForceUnit -> BaseUnit
                 (ForceUnit.Decanewton, ForceUnit.Newton) => new Force((_value) * 1e1d, ForceUnit.Newton),
@@ -970,7 +970,7 @@ namespace UnitsNet
                 (ForceUnit.TonneForce, ForceUnit.Newton) => new Force(_value * 9.80665002864e3, ForceUnit.Newton),
 
                 // BaseUnit <-> BaseUnit
-                (ForceUnit.Newton, ForceUnit.Newton) => value,
+                (ForceUnit.Newton, ForceUnit.Newton) => this,
 
                 // BaseUnit -> ForceUnit
                 (ForceUnit.Newton, ForceUnit.Decanewton) => new Force((_value) / 1e1d, ForceUnit.Decanewton),

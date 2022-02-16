@@ -649,7 +649,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -670,14 +670,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(AreaDensityUnit unit, out AreaDensity? converted)
+        private bool TryToUnit(AreaDensityUnit unit, out AreaDensity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // AreaDensityUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => value,
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => this,
 
                 // BaseUnit -> AreaDensityUnit
 

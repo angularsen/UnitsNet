@@ -1327,7 +1327,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1348,9 +1348,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(LengthUnit unit, out Length? converted)
+        private bool TryToUnit(LengthUnit unit, out Length? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // LengthUnit -> BaseUnit
                 (LengthUnit.Angstrom, LengthUnit.Meter) => new Length(_value * 1e-10, LengthUnit.Meter),
@@ -1389,7 +1389,7 @@ namespace UnitsNet
                 (LengthUnit.Yard, LengthUnit.Meter) => new Length(_value * 0.9144, LengthUnit.Meter),
 
                 // BaseUnit <-> BaseUnit
-                (LengthUnit.Meter, LengthUnit.Meter) => value,
+                (LengthUnit.Meter, LengthUnit.Meter) => this,
 
                 // BaseUnit -> LengthUnit
                 (LengthUnit.Meter, LengthUnit.Angstrom) => new Length(_value / 1e-10, LengthUnit.Angstrom),

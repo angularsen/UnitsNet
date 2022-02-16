@@ -1089,7 +1089,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1110,9 +1110,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MassFractionUnit unit, out MassFraction? converted)
+        private bool TryToUnit(MassFractionUnit unit, out MassFraction? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MassFractionUnit -> BaseUnit
                 (MassFractionUnit.CentigramPerGram, MassFractionUnit.DecimalFraction) => new MassFraction((_value) * 1e-2d, MassFractionUnit.DecimalFraction),
@@ -1140,7 +1140,7 @@ namespace UnitsNet
                 (MassFractionUnit.Percent, MassFractionUnit.DecimalFraction) => new MassFraction(_value / 1e2, MassFractionUnit.DecimalFraction),
 
                 // BaseUnit <-> BaseUnit
-                (MassFractionUnit.DecimalFraction, MassFractionUnit.DecimalFraction) => value,
+                (MassFractionUnit.DecimalFraction, MassFractionUnit.DecimalFraction) => this,
 
                 // BaseUnit -> MassFractionUnit
                 (MassFractionUnit.DecimalFraction, MassFractionUnit.CentigramPerGram) => new MassFraction((_value) / 1e-2d, MassFractionUnit.CentigramPerGram),

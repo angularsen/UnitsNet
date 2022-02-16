@@ -959,7 +959,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }}
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {{
                 return converted!.Value;
             }}
@@ -980,9 +980,9 @@ namespace UnitsNet
             }}
         }}
 
-        private bool TryConvert({_quantity.Name}Unit unit, out {_quantity.Name}? converted)
+        private bool TryToUnit({_quantity.Name}Unit unit, out {_quantity.Name}? converted)
         {{
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {{
                 // {_quantity.Name}Unit -> BaseUnit");
 
@@ -1000,7 +1000,7 @@ namespace UnitsNet
             Writer.WL($@"
 
                 // BaseUnit <-> BaseUnit
-                ({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}) => value,
+                ({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}) => this,
 
                 // BaseUnit -> {_quantity.Name}Unit");
             foreach(var unit in _quantity.Units)

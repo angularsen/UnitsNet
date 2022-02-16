@@ -1606,7 +1606,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1627,9 +1627,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(DensityUnit unit, out Density? converted)
+        private bool TryToUnit(DensityUnit unit, out Density? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // DensityUnit -> BaseUnit
                 (DensityUnit.CentigramPerDeciliter, DensityUnit.KilogramPerCubicMeter) => new Density((_value / 1e-1) * 1e-2d, DensityUnit.KilogramPerCubicMeter),
@@ -1684,7 +1684,7 @@ namespace UnitsNet
                 (DensityUnit.TonnePerCubicMillimeter, DensityUnit.KilogramPerCubicMeter) => new Density(_value / 1e-12, DensityUnit.KilogramPerCubicMeter),
 
                 // BaseUnit <-> BaseUnit
-                (DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicMeter) => value,
+                (DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerCubicMeter) => this,
 
                 // BaseUnit -> DensityUnit
                 (DensityUnit.KilogramPerCubicMeter, DensityUnit.CentigramPerDeciliter) => new Density((_value * 1e-1) / 1e-2d, DensityUnit.CentigramPerDeciliter),

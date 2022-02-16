@@ -1162,7 +1162,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1183,9 +1183,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(MassMomentOfInertiaUnit unit, out MassMomentOfInertia? converted)
+        private bool TryToUnit(MassMomentOfInertiaUnit unit, out MassMomentOfInertia? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // MassMomentOfInertiaUnit -> BaseUnit
                 (MassMomentOfInertiaUnit.GramSquareCentimeter, MassMomentOfInertiaUnit.KilogramSquareMeter) => new MassMomentOfInertia(_value / 1e7, MassMomentOfInertiaUnit.KilogramSquareMeter),
@@ -1217,7 +1217,7 @@ namespace UnitsNet
                 (MassMomentOfInertiaUnit.TonneSquareMilimeter, MassMomentOfInertiaUnit.KilogramSquareMeter) => new MassMomentOfInertia(_value / 1e3, MassMomentOfInertiaUnit.KilogramSquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter) => value,
+                (MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.KilogramSquareMeter) => this,
 
                 // BaseUnit -> MassMomentOfInertiaUnit
                 (MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.GramSquareCentimeter) => new MassMomentOfInertia(_value * 1e7, MassMomentOfInertiaUnit.GramSquareCentimeter),

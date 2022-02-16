@@ -709,7 +709,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -730,9 +730,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(IlluminanceUnit unit, out Illuminance? converted)
+        private bool TryToUnit(IlluminanceUnit unit, out Illuminance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // IlluminanceUnit -> BaseUnit
                 (IlluminanceUnit.Kilolux, IlluminanceUnit.Lux) => new Illuminance((_value) * 1e3d, IlluminanceUnit.Lux),
@@ -740,7 +740,7 @@ namespace UnitsNet
                 (IlluminanceUnit.Millilux, IlluminanceUnit.Lux) => new Illuminance((_value) * 1e-3d, IlluminanceUnit.Lux),
 
                 // BaseUnit <-> BaseUnit
-                (IlluminanceUnit.Lux, IlluminanceUnit.Lux) => value,
+                (IlluminanceUnit.Lux, IlluminanceUnit.Lux) => this,
 
                 // BaseUnit -> IlluminanceUnit
                 (IlluminanceUnit.Lux, IlluminanceUnit.Kilolux) => new Illuminance((_value) / 1e3d, IlluminanceUnit.Kilolux),

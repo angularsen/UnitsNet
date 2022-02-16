@@ -972,7 +972,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -993,9 +993,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(HeatFluxUnit unit, out HeatFlux? converted)
+        private bool TryToUnit(HeatFluxUnit unit, out HeatFlux? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // HeatFluxUnit -> BaseUnit
                 (HeatFluxUnit.BtuPerHourSquareFoot, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value * 3.15459075, HeatFluxUnit.WattPerSquareMeter),
@@ -1017,7 +1017,7 @@ namespace UnitsNet
                 (HeatFluxUnit.WattPerSquareInch, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value * 1.5500031e3, HeatFluxUnit.WattPerSquareMeter),
 
                 // BaseUnit <-> BaseUnit
-                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => value,
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => this,
 
                 // BaseUnit -> HeatFluxUnit
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerHourSquareFoot) => new HeatFlux(_value / 3.15459075, HeatFluxUnit.BtuPerHourSquareFoot),

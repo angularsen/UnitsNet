@@ -846,7 +846,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -867,9 +867,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(FrequencyUnit unit, out Frequency? converted)
+        private bool TryToUnit(FrequencyUnit unit, out Frequency? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // FrequencyUnit -> BaseUnit
                 (FrequencyUnit.BeatPerMinute, FrequencyUnit.Hertz) => new Frequency(_value / 60, FrequencyUnit.Hertz),
@@ -884,7 +884,7 @@ namespace UnitsNet
                 (FrequencyUnit.Terahertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e12d, FrequencyUnit.Hertz),
 
                 // BaseUnit <-> BaseUnit
-                (FrequencyUnit.Hertz, FrequencyUnit.Hertz) => value,
+                (FrequencyUnit.Hertz, FrequencyUnit.Hertz) => this,
 
                 // BaseUnit -> FrequencyUnit
                 (FrequencyUnit.Hertz, FrequencyUnit.BeatPerMinute) => new Frequency(_value * 60, FrequencyUnit.BeatPerMinute),

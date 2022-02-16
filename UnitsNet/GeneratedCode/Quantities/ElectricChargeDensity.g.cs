@@ -652,7 +652,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -673,14 +673,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricChargeDensityUnit unit, out ElectricChargeDensity? converted)
+        private bool TryToUnit(ElectricChargeDensityUnit unit, out ElectricChargeDensity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricChargeDensityUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (ElectricChargeDensityUnit.CoulombPerCubicMeter, ElectricChargeDensityUnit.CoulombPerCubicMeter) => value,
+                (ElectricChargeDensityUnit.CoulombPerCubicMeter, ElectricChargeDensityUnit.CoulombPerCubicMeter) => this,
 
                 // BaseUnit -> ElectricChargeDensityUnit
 

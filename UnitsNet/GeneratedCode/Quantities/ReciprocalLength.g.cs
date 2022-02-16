@@ -823,7 +823,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -844,9 +844,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ReciprocalLengthUnit unit, out ReciprocalLength? converted)
+        private bool TryToUnit(ReciprocalLengthUnit unit, out ReciprocalLength? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ReciprocalLengthUnit -> BaseUnit
                 (ReciprocalLengthUnit.InverseCentimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 1e2, ReciprocalLengthUnit.InverseMeter),
@@ -860,7 +860,7 @@ namespace UnitsNet
                 (ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 0.9144, ReciprocalLengthUnit.InverseMeter),
 
                 // BaseUnit <-> BaseUnit
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMeter) => value,
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMeter) => this,
 
                 // BaseUnit -> ReciprocalLengthUnit
                 (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseCentimeter) => new ReciprocalLength(_value / 1e2, ReciprocalLengthUnit.InverseCentimeter),

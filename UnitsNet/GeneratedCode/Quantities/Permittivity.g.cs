@@ -652,7 +652,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -673,14 +673,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(PermittivityUnit unit, out Permittivity? converted)
+        private bool TryToUnit(PermittivityUnit unit, out Permittivity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // PermittivityUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (PermittivityUnit.FaradPerMeter, PermittivityUnit.FaradPerMeter) => value,
+                (PermittivityUnit.FaradPerMeter, PermittivityUnit.FaradPerMeter) => this,
 
                 // BaseUnit -> PermittivityUnit
 

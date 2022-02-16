@@ -649,7 +649,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -670,14 +670,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(RelativeHumidityUnit unit, out RelativeHumidity? converted)
+        private bool TryToUnit(RelativeHumidityUnit unit, out RelativeHumidity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // RelativeHumidityUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (RelativeHumidityUnit.Percent, RelativeHumidityUnit.Percent) => value,
+                (RelativeHumidityUnit.Percent, RelativeHumidityUnit.Percent) => this,
 
                 // BaseUnit -> RelativeHumidityUnit
 

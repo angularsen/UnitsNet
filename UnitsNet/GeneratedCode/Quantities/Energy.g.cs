@@ -1335,7 +1335,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1356,9 +1356,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(EnergyUnit unit, out Energy? converted)
+        private bool TryToUnit(EnergyUnit unit, out Energy? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // EnergyUnit -> BaseUnit
                 (EnergyUnit.BritishThermalUnit, EnergyUnit.Joule) => new Energy(_value * 1055.05585262, EnergyUnit.Joule),
@@ -1398,7 +1398,7 @@ namespace UnitsNet
                 (EnergyUnit.WattHour, EnergyUnit.Joule) => new Energy(_value * 3600d, EnergyUnit.Joule),
 
                 // BaseUnit <-> BaseUnit
-                (EnergyUnit.Joule, EnergyUnit.Joule) => value,
+                (EnergyUnit.Joule, EnergyUnit.Joule) => this,
 
                 // BaseUnit -> EnergyUnit
                 (EnergyUnit.Joule, EnergyUnit.BritishThermalUnit) => new Energy(_value / 1055.05585262, EnergyUnit.BritishThermalUnit),

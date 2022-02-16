@@ -744,7 +744,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -765,9 +765,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricResistanceUnit unit, out ElectricResistance? converted)
+        private bool TryToUnit(ElectricResistanceUnit unit, out ElectricResistance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricResistanceUnit -> BaseUnit
                 (ElectricResistanceUnit.Gigaohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e9d, ElectricResistanceUnit.Ohm),
@@ -777,7 +777,7 @@ namespace UnitsNet
                 (ElectricResistanceUnit.Milliohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e-3d, ElectricResistanceUnit.Ohm),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Ohm) => value,
+                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Ohm) => this,
 
                 // BaseUnit -> ElectricResistanceUnit
                 (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Gigaohm) => new ElectricResistance((_value) / 1e9d, ElectricResistanceUnit.Gigaohm),

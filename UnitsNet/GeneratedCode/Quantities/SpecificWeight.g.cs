@@ -956,7 +956,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -977,9 +977,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(SpecificWeightUnit unit, out SpecificWeight? converted)
+        private bool TryToUnit(SpecificWeightUnit unit, out SpecificWeight? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // SpecificWeightUnit -> BaseUnit
                 (SpecificWeightUnit.KilogramForcePerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665e6, SpecificWeightUnit.NewtonPerCubicMeter),
@@ -1000,7 +1000,7 @@ namespace UnitsNet
                 (SpecificWeightUnit.TonneForcePerCubicMillimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665e12, SpecificWeightUnit.NewtonPerCubicMeter),
 
                 // BaseUnit <-> BaseUnit
-                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => value,
+                (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.NewtonPerCubicMeter) => this,
 
                 // BaseUnit -> SpecificWeightUnit
                 (SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.KilogramForcePerCubicCentimeter) => new SpecificWeight(_value / 9.80665e6, SpecificWeightUnit.KilogramForcePerCubicCentimeter),

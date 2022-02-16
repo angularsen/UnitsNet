@@ -676,7 +676,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -697,15 +697,15 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(PowerRatioUnit unit, out PowerRatio? converted)
+        private bool TryToUnit(PowerRatioUnit unit, out PowerRatio? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // PowerRatioUnit -> BaseUnit
                 (PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt) => new PowerRatio(_value - 30, PowerRatioUnit.DecibelWatt),
 
                 // BaseUnit <-> BaseUnit
-                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt) => value,
+                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt) => this,
 
                 // BaseUnit -> PowerRatioUnit
                 (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt) => new PowerRatio(_value + 30, PowerRatioUnit.DecibelMilliwatt),

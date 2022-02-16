@@ -690,7 +690,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -711,16 +711,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricConductanceUnit unit, out ElectricConductance? converted)
+        private bool TryToUnit(ElectricConductanceUnit unit, out ElectricConductance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricConductanceUnit -> BaseUnit
                 (ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((_value) * 1e-6d, ElectricConductanceUnit.Siemens),
                 (ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((_value) * 1e-3d, ElectricConductanceUnit.Siemens),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens) => value,
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens) => this,
 
                 // BaseUnit -> ElectricConductanceUnit
                 (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens) => new ElectricConductance((_value) / 1e-6d, ElectricConductanceUnit.Microsiemens),

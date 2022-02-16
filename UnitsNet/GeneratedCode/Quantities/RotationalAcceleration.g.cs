@@ -706,7 +706,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -727,9 +727,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(RotationalAccelerationUnit unit, out RotationalAcceleration? converted)
+        private bool TryToUnit(RotationalAccelerationUnit unit, out RotationalAcceleration? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // RotationalAccelerationUnit -> BaseUnit
                 (RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration((Math.PI / 180) * _value, RotationalAccelerationUnit.RadianPerSecondSquared),
@@ -737,7 +737,7 @@ namespace UnitsNet
                 (RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration((2 * Math.PI) * _value, RotationalAccelerationUnit.RadianPerSecondSquared),
 
                 // BaseUnit <-> BaseUnit
-                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => value,
+                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => this,
 
                 // BaseUnit -> RotationalAccelerationUnit
                 (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared) => new RotationalAcceleration((180 / Math.PI) * _value, RotationalAccelerationUnit.DegreePerSecondSquared),

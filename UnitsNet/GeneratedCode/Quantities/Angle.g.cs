@@ -946,7 +946,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -967,9 +967,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(AngleUnit unit, out Angle? converted)
+        private bool TryToUnit(AngleUnit unit, out Angle? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // AngleUnit -> BaseUnit
                 (AngleUnit.Arcminute, AngleUnit.Degree) => new Angle(_value / 60, AngleUnit.Degree),
@@ -989,7 +989,7 @@ namespace UnitsNet
                 (AngleUnit.Tilt, AngleUnit.Degree) => new Angle(Math.Asin(_value) * 180 / Math.PI, AngleUnit.Degree),
 
                 // BaseUnit <-> BaseUnit
-                (AngleUnit.Degree, AngleUnit.Degree) => value,
+                (AngleUnit.Degree, AngleUnit.Degree) => this,
 
                 // BaseUnit -> AngleUnit
                 (AngleUnit.Degree, AngleUnit.Arcminute) => new Angle(_value * 60, AngleUnit.Arcminute),

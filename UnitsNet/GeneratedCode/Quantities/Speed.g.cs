@@ -1261,7 +1261,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1282,9 +1282,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(SpeedUnit unit, out Speed? converted)
+        private bool TryToUnit(SpeedUnit unit, out Speed? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // SpeedUnit -> BaseUnit
                 (SpeedUnit.CentimeterPerHour, SpeedUnit.MeterPerSecond) => new Speed((_value / 3600) * 1e-2d, SpeedUnit.MeterPerSecond),
@@ -1320,7 +1320,7 @@ namespace UnitsNet
                 (SpeedUnit.YardPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * 0.9144, SpeedUnit.MeterPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerSecond) => value,
+                (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerSecond) => this,
 
                 // BaseUnit -> SpeedUnit
                 (SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerHour) => new Speed((_value * 3600) / 1e-2d, SpeedUnit.CentimeterPerHour),

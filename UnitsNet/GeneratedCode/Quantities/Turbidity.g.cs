@@ -652,7 +652,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -673,14 +673,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(TurbidityUnit unit, out Turbidity? converted)
+        private bool TryToUnit(TurbidityUnit unit, out Turbidity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // TurbidityUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (TurbidityUnit.NTU, TurbidityUnit.NTU) => value,
+                (TurbidityUnit.NTU, TurbidityUnit.NTU) => this,
 
                 // BaseUnit -> TurbidityUnit
 

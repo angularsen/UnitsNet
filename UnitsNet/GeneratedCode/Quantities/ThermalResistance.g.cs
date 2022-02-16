@@ -744,7 +744,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -765,9 +765,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ThermalResistanceUnit unit, out ThermalResistance? converted)
+        private bool TryToUnit(ThermalResistanceUnit unit, out ThermalResistance? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ThermalResistanceUnit -> BaseUnit
                 (ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 176.1121482159839, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
@@ -777,7 +777,7 @@ namespace UnitsNet
                 (ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 1000, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
 
                 // BaseUnit <-> BaseUnit
-                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => value,
+                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => this,
 
                 // BaseUnit -> ThermalResistanceUnit
                 (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu) => new ThermalResistance(_value / 176.1121482159839, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu),

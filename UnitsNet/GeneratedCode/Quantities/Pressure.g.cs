@@ -1516,7 +1516,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -1537,9 +1537,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(PressureUnit unit, out Pressure? converted)
+        private bool TryToUnit(PressureUnit unit, out Pressure? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // PressureUnit -> BaseUnit
                 (PressureUnit.Atmosphere, PressureUnit.Pascal) => new Pressure(_value * 1.01325 * 1e5, PressureUnit.Pascal),
@@ -1588,7 +1588,7 @@ namespace UnitsNet
                 (PressureUnit.Torr, PressureUnit.Pascal) => new Pressure(_value * 1.3332266752 * 1e2, PressureUnit.Pascal),
 
                 // BaseUnit <-> BaseUnit
-                (PressureUnit.Pascal, PressureUnit.Pascal) => value,
+                (PressureUnit.Pascal, PressureUnit.Pascal) => this,
 
                 // BaseUnit -> PressureUnit
                 (PressureUnit.Pascal, PressureUnit.Atmosphere) => new Pressure(_value / (1.01325 * 1e5), PressureUnit.Atmosphere),

@@ -652,7 +652,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -673,14 +673,14 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricFieldUnit unit, out ElectricField? converted)
+        private bool TryToUnit(ElectricFieldUnit unit, out ElectricField? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricFieldUnit -> BaseUnit
 
                 // BaseUnit <-> BaseUnit
-                (ElectricFieldUnit.VoltPerMeter, ElectricFieldUnit.VoltPerMeter) => value,
+                (ElectricFieldUnit.VoltPerMeter, ElectricFieldUnit.VoltPerMeter) => this,
 
                 // BaseUnit -> ElectricFieldUnit
 

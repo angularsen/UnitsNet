@@ -744,7 +744,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -765,9 +765,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(AreaMomentOfInertiaUnit unit, out AreaMomentOfInertia? converted)
+        private bool TryToUnit(AreaMomentOfInertiaUnit unit, out AreaMomentOfInertia? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // AreaMomentOfInertiaUnit -> BaseUnit
                 (AreaMomentOfInertiaUnit.CentimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1e8, AreaMomentOfInertiaUnit.MeterToTheFourth),
@@ -777,7 +777,7 @@ namespace UnitsNet
                 (AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => new AreaMomentOfInertia(_value / 1e12, AreaMomentOfInertiaUnit.MeterToTheFourth),
 
                 // BaseUnit <-> BaseUnit
-                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => value,
+                (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth) => this,
 
                 // BaseUnit -> AreaMomentOfInertiaUnit
                 (AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.CentimeterToTheFourth) => new AreaMomentOfInertia(_value * 1e8, AreaMomentOfInertiaUnit.CentimeterToTheFourth),

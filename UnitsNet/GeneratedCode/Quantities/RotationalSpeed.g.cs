@@ -889,7 +889,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -910,9 +910,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(RotationalSpeedUnit unit, out RotationalSpeed? converted)
+        private bool TryToUnit(RotationalSpeedUnit unit, out RotationalSpeed? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // RotationalSpeedUnit -> BaseUnit
                 (RotationalSpeedUnit.CentiradianPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed((_value) * 1e-2d, RotationalSpeedUnit.RadianPerSecond),
@@ -929,7 +929,7 @@ namespace UnitsNet
                 (RotationalSpeedUnit.RevolutionPerSecond, RotationalSpeedUnit.RadianPerSecond) => new RotationalSpeed(_value * 6.2831853072, RotationalSpeedUnit.RadianPerSecond),
 
                 // BaseUnit <-> BaseUnit
-                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RadianPerSecond) => value,
+                (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.RadianPerSecond) => this,
 
                 // BaseUnit -> RotationalSpeedUnit
                 (RotationalSpeedUnit.RadianPerSecond, RotationalSpeedUnit.CentiradianPerSecond) => new RotationalSpeed((_value) / 1e-2d, RotationalSpeedUnit.CentiradianPerSecond),

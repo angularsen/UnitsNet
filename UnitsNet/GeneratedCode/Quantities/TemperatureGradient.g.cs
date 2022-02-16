@@ -706,7 +706,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -727,9 +727,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(TemperatureGradientUnit unit, out TemperatureGradient? converted)
+        private bool TryToUnit(TemperatureGradientUnit unit, out TemperatureGradient? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // TemperatureGradientUnit -> BaseUnit
                 (TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value / 1e3, TemperatureGradientUnit.KelvinPerMeter),
@@ -737,7 +737,7 @@ namespace UnitsNet
                 (TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient((_value / 0.3048) * 5 / 9, TemperatureGradientUnit.KelvinPerMeter),
 
                 // BaseUnit <-> BaseUnit
-                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.KelvinPerMeter) => value,
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.KelvinPerMeter) => this,
 
                 // BaseUnit -> TemperatureGradientUnit
                 (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer) => new TemperatureGradient(_value * 1e3, TemperatureGradientUnit.DegreeCelsiusPerKilometer),

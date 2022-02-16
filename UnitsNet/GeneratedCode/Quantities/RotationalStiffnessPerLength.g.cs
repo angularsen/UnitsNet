@@ -725,7 +725,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -746,9 +746,9 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(RotationalStiffnessPerLengthUnit unit, out RotationalStiffnessPerLength? converted)
+        private bool TryToUnit(RotationalStiffnessPerLengthUnit unit, out RotationalStiffnessPerLength? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // RotationalStiffnessPerLengthUnit -> BaseUnit
                 (RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter) => new RotationalStiffnessPerLength((_value) * 1e3d, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter),
@@ -757,7 +757,7 @@ namespace UnitsNet
                 (RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter) => new RotationalStiffnessPerLength(_value * 254.864324570, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter),
 
                 // BaseUnit <-> BaseUnit
-                (RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter) => value,
+                (RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter) => this,
 
                 // BaseUnit -> RotationalStiffnessPerLengthUnit
                 (RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter) => new RotationalStiffnessPerLength((_value) / 1e3d, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter),

@@ -690,7 +690,7 @@ namespace UnitsNet
                 // Already in requested units.
                 return this;
             }
-            else if (TryConvert(this, unit, out var converted))
+            else if (TryToUnit(unit, out var converted))
             {
                 return converted!.Value;
             }
@@ -711,16 +711,16 @@ namespace UnitsNet
             }
         }
 
-        private bool TryConvert(ElectricConductivityUnit unit, out ElectricConductivity? converted)
+        private bool TryToUnit(ElectricConductivityUnit unit, out ElectricConductivity? converted)
         {
-            converted = (value.Unit, targetUnit) switch
+            converted = (_unit, unit) switch
             {
                 // ElectricConductivityUnit -> BaseUnit
                 (ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter),
                 (ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter),
 
                 // BaseUnit <-> BaseUnit
-                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter) => value,
+                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter) => this,
 
                 // BaseUnit -> ElectricConductivityUnit
                 (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot) => new ElectricConductivity(_value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot),
