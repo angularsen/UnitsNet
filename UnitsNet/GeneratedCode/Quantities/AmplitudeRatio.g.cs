@@ -477,7 +477,7 @@ namespace UnitsNet
         {
             // Logarithmic addition
             // Formula: 20 * log10(10^(x/20) + 10^(y/20))
-            return new AmplitudeRatio(20 * Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.GetValueAs(left.Unit)/20)), left.Unit);
+            return new AmplitudeRatio(20 * Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.ToUnit(left.Unit).Value/20)), left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic subtraction of two <see cref="AmplitudeRatio"/>.</summary>
@@ -485,7 +485,7 @@ namespace UnitsNet
         {
             // Logarithmic subtraction
             // Formula: 20 * log10(10^(x/20) - 10^(y/20))
-            return new AmplitudeRatio(20 * Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.GetValueAs(left.Unit)/20)), left.Unit);
+            return new AmplitudeRatio(20 * Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.ToUnit(left.Unit).Value/20)), left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
@@ -513,7 +513,7 @@ namespace UnitsNet
         public static double operator /(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
+            return Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
         }
 
         #endregion
@@ -523,25 +523,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -570,7 +570,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(AmplitudeRatio other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -587,7 +587,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(AmplitudeRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(AmplitudeRatio other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -661,10 +661,10 @@ namespace UnitsNet
         public double As(AmplitudeRatioUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -709,12 +709,7 @@ namespace UnitsNet
         /// <returns>A AmplitudeRatio with the specified unit.</returns>
         public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -745,15 +740,18 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(AmplitudeRatioUnit unit, out AmplitudeRatio? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // AmplitudeRatioUnit -> BaseUnit
                 (AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value - 120, AmplitudeRatioUnit.DecibelVolt),
                 (AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value - 60, AmplitudeRatioUnit.DecibelVolt),
                 (AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value - 2.218487499, AmplitudeRatioUnit.DecibelVolt),
-
-                // BaseUnit <-> BaseUnit
-                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelVolt) => this,
 
                 // BaseUnit -> AmplitudeRatioUnit
                 (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt) => new AmplitudeRatio(_value + 120, AmplitudeRatioUnit.DecibelMicrovolt),
@@ -798,12 +796,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(AmplitudeRatioUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

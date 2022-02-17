@@ -782,13 +782,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="VolumeConcentration"/> from adding two <see cref="VolumeConcentration"/>.</summary>
         public static VolumeConcentration operator +(VolumeConcentration left, VolumeConcentration right)
         {
-            return new VolumeConcentration(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new VolumeConcentration(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeConcentration"/> from subtracting two <see cref="VolumeConcentration"/>.</summary>
         public static VolumeConcentration operator -(VolumeConcentration left, VolumeConcentration right)
         {
-            return new VolumeConcentration(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new VolumeConcentration(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeConcentration"/> from multiplying value and <see cref="VolumeConcentration"/>.</summary>
@@ -822,25 +822,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VolumeConcentration left, VolumeConcentration right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VolumeConcentration left, VolumeConcentration right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(VolumeConcentration left, VolumeConcentration right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VolumeConcentration left, VolumeConcentration right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -869,7 +869,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(VolumeConcentration other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -886,7 +886,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(VolumeConcentration other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -960,10 +960,10 @@ namespace UnitsNet
         public double As(VolumeConcentrationUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1008,12 +1008,7 @@ namespace UnitsNet
         /// <returns>A VolumeConcentration with the specified unit.</returns>
         public VolumeConcentration ToUnit(VolumeConcentrationUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -1044,6 +1039,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(VolumeConcentrationUnit unit, out VolumeConcentration? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // VolumeConcentrationUnit -> BaseUnit
@@ -1066,9 +1067,6 @@ namespace UnitsNet
                 (VolumeConcentrationUnit.Percent, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration(_value / 1e2, VolumeConcentrationUnit.DecimalFraction),
                 (VolumeConcentrationUnit.PicolitersPerLiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((_value) * 1e-12d, VolumeConcentrationUnit.DecimalFraction),
                 (VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction) => new VolumeConcentration((_value / 1e-3) * 1e-12d, VolumeConcentrationUnit.DecimalFraction),
-
-                // BaseUnit <-> BaseUnit
-                (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecimalFraction) => this,
 
                 // BaseUnit -> VolumeConcentrationUnit
                 (VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerLiter) => new VolumeConcentration((_value) / 1e-2d, VolumeConcentrationUnit.CentilitersPerLiter),
@@ -1129,12 +1127,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(VolumeConcentrationUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

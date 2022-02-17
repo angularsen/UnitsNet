@@ -1337,13 +1337,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="MassConcentration"/> from adding two <see cref="MassConcentration"/>.</summary>
         public static MassConcentration operator +(MassConcentration left, MassConcentration right)
         {
-            return new MassConcentration(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new MassConcentration(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="MassConcentration"/> from subtracting two <see cref="MassConcentration"/>.</summary>
         public static MassConcentration operator -(MassConcentration left, MassConcentration right)
         {
-            return new MassConcentration(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new MassConcentration(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="MassConcentration"/> from multiplying value and <see cref="MassConcentration"/>.</summary>
@@ -1377,25 +1377,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MassConcentration left, MassConcentration right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MassConcentration left, MassConcentration right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MassConcentration left, MassConcentration right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MassConcentration left, MassConcentration right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -1424,7 +1424,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(MassConcentration other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -1441,7 +1441,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MassConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MassConcentration other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1515,10 +1515,10 @@ namespace UnitsNet
         public double As(MassConcentrationUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1563,12 +1563,7 @@ namespace UnitsNet
         /// <returns>A MassConcentration with the specified unit.</returns>
         public MassConcentration ToUnit(MassConcentrationUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -1599,6 +1594,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MassConcentrationUnit unit, out MassConcentration? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // MassConcentrationUnit -> BaseUnit
@@ -1650,9 +1651,6 @@ namespace UnitsNet
                 (MassConcentrationUnit.TonnePerCubicCentimeter, MassConcentrationUnit.KilogramPerCubicMeter) => new MassConcentration(_value / 1e-9, MassConcentrationUnit.KilogramPerCubicMeter),
                 (MassConcentrationUnit.TonnePerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter) => new MassConcentration(_value / 0.001, MassConcentrationUnit.KilogramPerCubicMeter),
                 (MassConcentrationUnit.TonnePerCubicMillimeter, MassConcentrationUnit.KilogramPerCubicMeter) => new MassConcentration(_value / 1e-12, MassConcentrationUnit.KilogramPerCubicMeter),
-
-                // BaseUnit <-> BaseUnit
-                (MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.KilogramPerCubicMeter) => this,
 
                 // BaseUnit -> MassConcentrationUnit
                 (MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.CentigramPerDeciliter) => new MassConcentration((_value * 1e-1) / 1e-2d, MassConcentrationUnit.CentigramPerDeciliter),
@@ -1742,12 +1740,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MassConcentrationUnit> IQuantity<MassConcentrationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(MassConcentrationUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

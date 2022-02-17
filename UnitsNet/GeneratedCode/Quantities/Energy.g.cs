@@ -1104,13 +1104,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Energy"/> from adding two <see cref="Energy"/>.</summary>
         public static Energy operator +(Energy left, Energy right)
         {
-            return new Energy(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Energy(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from subtracting two <see cref="Energy"/>.</summary>
         public static Energy operator -(Energy left, Energy right)
         {
-            return new Energy(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Energy(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from multiplying value and <see cref="Energy"/>.</summary>
@@ -1144,25 +1144,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Energy left, Energy right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Energy left, Energy right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Energy left, Energy right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Energy left, Energy right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -1191,7 +1191,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Energy other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -1208,7 +1208,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Energy other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1282,10 +1282,10 @@ namespace UnitsNet
         public double As(EnergyUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1330,12 +1330,7 @@ namespace UnitsNet
         /// <returns>A Energy with the specified unit.</returns>
         public Energy ToUnit(EnergyUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -1366,6 +1361,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(EnergyUnit unit, out Energy? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // EnergyUnit -> BaseUnit
@@ -1404,9 +1405,6 @@ namespace UnitsNet
                 (EnergyUnit.ThermUs, EnergyUnit.Joule) => new Energy(_value * 1.054804e8, EnergyUnit.Joule),
                 (EnergyUnit.WattDay, EnergyUnit.Joule) => new Energy(_value * 24 * 3600d, EnergyUnit.Joule),
                 (EnergyUnit.WattHour, EnergyUnit.Joule) => new Energy(_value * 3600d, EnergyUnit.Joule),
-
-                // BaseUnit <-> BaseUnit
-                (EnergyUnit.Joule, EnergyUnit.Joule) => this,
 
                 // BaseUnit -> EnergyUnit
                 (EnergyUnit.Joule, EnergyUnit.BritishThermalUnit) => new Energy(_value / 1055.05585262, EnergyUnit.BritishThermalUnit),
@@ -1483,12 +1481,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<EnergyUnit> IQuantity<EnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(EnergyUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

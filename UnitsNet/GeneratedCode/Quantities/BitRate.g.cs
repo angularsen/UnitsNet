@@ -901,13 +901,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="BitRate"/> from adding two <see cref="BitRate"/>.</summary>
         public static BitRate operator +(BitRate left, BitRate right)
         {
-            return new BitRate(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new BitRate(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="BitRate"/> from subtracting two <see cref="BitRate"/>.</summary>
         public static BitRate operator -(BitRate left, BitRate right)
         {
-            return new BitRate(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new BitRate(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="BitRate"/> from multiplying value and <see cref="BitRate"/>.</summary>
@@ -941,25 +941,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(BitRate left, BitRate right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(BitRate left, BitRate right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(BitRate left, BitRate right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(BitRate left, BitRate right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -988,7 +988,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(BitRate other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -1005,7 +1005,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(BitRate other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1079,10 +1079,10 @@ namespace UnitsNet
         public double As(BitRateUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1127,12 +1127,7 @@ namespace UnitsNet
         /// <returns>A BitRate with the specified unit.</returns>
         public BitRate ToUnit(BitRateUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -1163,6 +1158,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(BitRateUnit unit, out BitRate? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // BitRateUnit -> BaseUnit
@@ -1191,9 +1192,6 @@ namespace UnitsNet
                 (BitRateUnit.TebibytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8m) * (1024m * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
                 (BitRateUnit.TerabitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * 1e12m, BitRateUnit.BitPerSecond),
                 (BitRateUnit.TerabytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8m) * 1e12m, BitRateUnit.BitPerSecond),
-
-                // BaseUnit <-> BaseUnit
-                (BitRateUnit.BitPerSecond, BitRateUnit.BitPerSecond) => this,
 
                 // BaseUnit -> BitRateUnit
                 (BitRateUnit.BitPerSecond, BitRateUnit.BytePerSecond) => new BitRate(_value / 8m, BitRateUnit.BytePerSecond),
@@ -1260,12 +1258,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private decimal GetValueAs(BitRateUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (decimal)converted.Value;
-        }
 
         #endregion
 

@@ -475,13 +475,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="TemperatureGradient"/> from adding two <see cref="TemperatureGradient"/>.</summary>
         public static TemperatureGradient operator +(TemperatureGradient left, TemperatureGradient right)
         {
-            return new TemperatureGradient(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new TemperatureGradient(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from subtracting two <see cref="TemperatureGradient"/>.</summary>
         public static TemperatureGradient operator -(TemperatureGradient left, TemperatureGradient right)
         {
-            return new TemperatureGradient(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new TemperatureGradient(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from multiplying value and <see cref="TemperatureGradient"/>.</summary>
@@ -515,25 +515,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(TemperatureGradient left, TemperatureGradient right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(TemperatureGradient left, TemperatureGradient right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(TemperatureGradient left, TemperatureGradient right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(TemperatureGradient left, TemperatureGradient right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -562,7 +562,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(TemperatureGradient other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -579,7 +579,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(TemperatureGradient, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(TemperatureGradient other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -653,10 +653,10 @@ namespace UnitsNet
         public double As(TemperatureGradientUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -701,12 +701,7 @@ namespace UnitsNet
         /// <returns>A TemperatureGradient with the specified unit.</returns>
         public TemperatureGradient ToUnit(TemperatureGradientUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -737,15 +732,18 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(TemperatureGradientUnit unit, out TemperatureGradient? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // TemperatureGradientUnit -> BaseUnit
                 (TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value / 1e3, TemperatureGradientUnit.KelvinPerMeter),
                 (TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value, TemperatureGradientUnit.KelvinPerMeter),
                 (TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient((_value / 0.3048) * 5 / 9, TemperatureGradientUnit.KelvinPerMeter),
-
-                // BaseUnit <-> BaseUnit
-                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.KelvinPerMeter) => this,
 
                 // BaseUnit -> TemperatureGradientUnit
                 (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer) => new TemperatureGradient(_value * 1e3, TemperatureGradientUnit.DegreeCelsiusPerKilometer),
@@ -790,12 +788,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(TemperatureGradientUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

@@ -697,13 +697,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Force"/> from adding two <see cref="Force"/>.</summary>
         public static Force operator +(Force left, Force right)
         {
-            return new Force(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Force(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Force"/> from subtracting two <see cref="Force"/>.</summary>
         public static Force operator -(Force left, Force right)
         {
-            return new Force(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Force(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Force"/> from multiplying value and <see cref="Force"/>.</summary>
@@ -737,25 +737,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Force left, Force right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Force left, Force right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Force left, Force right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Force left, Force right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -784,7 +784,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Force other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -801,7 +801,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Force, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Force other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -875,10 +875,10 @@ namespace UnitsNet
         public double As(ForceUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -923,12 +923,7 @@ namespace UnitsNet
         /// <returns>A Force with the specified unit.</returns>
         public Force ToUnit(ForceUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -959,6 +954,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ForceUnit unit, out Force? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ForceUnit -> BaseUnit
@@ -976,9 +977,6 @@ namespace UnitsNet
                 (ForceUnit.PoundForce, ForceUnit.Newton) => new Force(_value * 4.4482216152605095551842641431421, ForceUnit.Newton),
                 (ForceUnit.ShortTonForce, ForceUnit.Newton) => new Force(_value * 8.896443230521e3, ForceUnit.Newton),
                 (ForceUnit.TonneForce, ForceUnit.Newton) => new Force(_value * 9.80665002864e3, ForceUnit.Newton),
-
-                // BaseUnit <-> BaseUnit
-                (ForceUnit.Newton, ForceUnit.Newton) => this,
 
                 // BaseUnit -> ForceUnit
                 (ForceUnit.Newton, ForceUnit.Decanewton) => new Force((_value) / 1e1d, ForceUnit.Decanewton),
@@ -1034,12 +1032,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ForceUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

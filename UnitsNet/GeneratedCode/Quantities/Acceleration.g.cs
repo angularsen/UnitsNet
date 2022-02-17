@@ -679,13 +679,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Acceleration"/> from adding two <see cref="Acceleration"/>.</summary>
         public static Acceleration operator +(Acceleration left, Acceleration right)
         {
-            return new Acceleration(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Acceleration(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Acceleration"/> from subtracting two <see cref="Acceleration"/>.</summary>
         public static Acceleration operator -(Acceleration left, Acceleration right)
         {
-            return new Acceleration(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Acceleration(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Acceleration"/> from multiplying value and <see cref="Acceleration"/>.</summary>
@@ -719,25 +719,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Acceleration left, Acceleration right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Acceleration left, Acceleration right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Acceleration left, Acceleration right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Acceleration left, Acceleration right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -766,7 +766,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Acceleration other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -783,7 +783,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Acceleration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Acceleration other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -857,10 +857,10 @@ namespace UnitsNet
         public double As(AccelerationUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -905,12 +905,7 @@ namespace UnitsNet
         /// <returns>A Acceleration with the specified unit.</returns>
         public Acceleration ToUnit(AccelerationUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -941,6 +936,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(AccelerationUnit unit, out Acceleration? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // AccelerationUnit -> BaseUnit
@@ -957,9 +958,6 @@ namespace UnitsNet
                 (AccelerationUnit.MillistandardGravity, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((_value * 9.80665) * 1e-3d, AccelerationUnit.MeterPerSecondSquared),
                 (AccelerationUnit.NanometerPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => new Acceleration((_value) * 1e-9d, AccelerationUnit.MeterPerSecondSquared),
                 (AccelerationUnit.StandardGravity, AccelerationUnit.MeterPerSecondSquared) => new Acceleration(_value * 9.80665, AccelerationUnit.MeterPerSecondSquared),
-
-                // BaseUnit <-> BaseUnit
-                (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.MeterPerSecondSquared) => this,
 
                 // BaseUnit -> AccelerationUnit
                 (AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.CentimeterPerSecondSquared) => new Acceleration((_value) / 1e-2d, AccelerationUnit.CentimeterPerSecondSquared),
@@ -1014,12 +1012,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(AccelerationUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

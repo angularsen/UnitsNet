@@ -684,13 +684,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="AmountOfSubstance"/> from adding two <see cref="AmountOfSubstance"/>.</summary>
         public static AmountOfSubstance operator +(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return new AmountOfSubstance(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new AmountOfSubstance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from subtracting two <see cref="AmountOfSubstance"/>.</summary>
         public static AmountOfSubstance operator -(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return new AmountOfSubstance(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new AmountOfSubstance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from multiplying value and <see cref="AmountOfSubstance"/>.</summary>
@@ -724,25 +724,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -771,7 +771,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(AmountOfSubstance other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -788,7 +788,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(AmountOfSubstance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(AmountOfSubstance other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -862,10 +862,10 @@ namespace UnitsNet
         public double As(AmountOfSubstanceUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -910,12 +910,7 @@ namespace UnitsNet
         /// <returns>A AmountOfSubstance with the specified unit.</returns>
         public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -946,6 +941,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(AmountOfSubstanceUnit unit, out AmountOfSubstance? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // AmountOfSubstanceUnit -> BaseUnit
@@ -963,9 +964,6 @@ namespace UnitsNet
                 (AmountOfSubstanceUnit.Nanomole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((_value) * 1e-9d, AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.NanopoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((_value * 453.59237) * 1e-9d, AmountOfSubstanceUnit.Mole),
                 (AmountOfSubstanceUnit.PoundMole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance(_value * 453.59237, AmountOfSubstanceUnit.Mole),
-
-                // BaseUnit <-> BaseUnit
-                (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Mole) => this,
 
                 // BaseUnit -> AmountOfSubstanceUnit
                 (AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.Centimole) => new AmountOfSubstance((_value) / 1e-2d, AmountOfSubstanceUnit.Centimole),
@@ -1021,12 +1019,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(AmountOfSubstanceUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

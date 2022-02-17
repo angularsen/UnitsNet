@@ -475,13 +475,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ApparentPower"/> from adding two <see cref="ApparentPower"/>.</summary>
         public static ApparentPower operator +(ApparentPower left, ApparentPower right)
         {
-            return new ApparentPower(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ApparentPower(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ApparentPower"/> from subtracting two <see cref="ApparentPower"/>.</summary>
         public static ApparentPower operator -(ApparentPower left, ApparentPower right)
         {
-            return new ApparentPower(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ApparentPower(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ApparentPower"/> from multiplying value and <see cref="ApparentPower"/>.</summary>
@@ -515,25 +515,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ApparentPower left, ApparentPower right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ApparentPower left, ApparentPower right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ApparentPower left, ApparentPower right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ApparentPower left, ApparentPower right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -562,7 +562,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ApparentPower other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -579,7 +579,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ApparentPower, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ApparentPower other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -653,10 +653,10 @@ namespace UnitsNet
         public double As(ApparentPowerUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -701,12 +701,7 @@ namespace UnitsNet
         /// <returns>A ApparentPower with the specified unit.</returns>
         public ApparentPower ToUnit(ApparentPowerUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -737,15 +732,18 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ApparentPowerUnit unit, out ApparentPower? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ApparentPowerUnit -> BaseUnit
                 (ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e9d, ApparentPowerUnit.Voltampere),
                 (ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e3d, ApparentPowerUnit.Voltampere),
                 (ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e6d, ApparentPowerUnit.Voltampere),
-
-                // BaseUnit <-> BaseUnit
-                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Voltampere) => this,
 
                 // BaseUnit -> ApparentPowerUnit
                 (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere) => new ApparentPower((_value) / 1e9d, ApparentPowerUnit.Gigavoltampere),
@@ -790,12 +788,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ApparentPowerUnit> IQuantity<ApparentPowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ApparentPowerUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

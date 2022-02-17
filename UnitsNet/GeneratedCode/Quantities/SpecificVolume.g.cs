@@ -456,13 +456,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="SpecificVolume"/> from adding two <see cref="SpecificVolume"/>.</summary>
         public static SpecificVolume operator +(SpecificVolume left, SpecificVolume right)
         {
-            return new SpecificVolume(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new SpecificVolume(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from subtracting two <see cref="SpecificVolume"/>.</summary>
         public static SpecificVolume operator -(SpecificVolume left, SpecificVolume right)
         {
-            return new SpecificVolume(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new SpecificVolume(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from multiplying value and <see cref="SpecificVolume"/>.</summary>
@@ -496,25 +496,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SpecificVolume left, SpecificVolume right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SpecificVolume left, SpecificVolume right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(SpecificVolume left, SpecificVolume right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SpecificVolume left, SpecificVolume right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -543,7 +543,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(SpecificVolume other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -560,7 +560,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(SpecificVolume, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(SpecificVolume other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -634,10 +634,10 @@ namespace UnitsNet
         public double As(SpecificVolumeUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -682,12 +682,7 @@ namespace UnitsNet
         /// <returns>A SpecificVolume with the specified unit.</returns>
         public SpecificVolume ToUnit(SpecificVolumeUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -718,14 +713,17 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(SpecificVolumeUnit unit, out SpecificVolume? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // SpecificVolumeUnit -> BaseUnit
                 (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(_value / 16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram),
                 (SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume((_value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram),
-
-                // BaseUnit <-> BaseUnit
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => this,
 
                 // BaseUnit -> SpecificVolumeUnit
                 (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(_value * 16.01846353, SpecificVolumeUnit.CubicFootPerPound),
@@ -769,12 +767,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpecificVolumeUnit> IQuantity<SpecificVolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(SpecificVolumeUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

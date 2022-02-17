@@ -570,13 +570,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="TemperatureDelta"/> from adding two <see cref="TemperatureDelta"/>.</summary>
         public static TemperatureDelta operator +(TemperatureDelta left, TemperatureDelta right)
         {
-            return new TemperatureDelta(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new TemperatureDelta(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureDelta"/> from subtracting two <see cref="TemperatureDelta"/>.</summary>
         public static TemperatureDelta operator -(TemperatureDelta left, TemperatureDelta right)
         {
-            return new TemperatureDelta(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new TemperatureDelta(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureDelta"/> from multiplying value and <see cref="TemperatureDelta"/>.</summary>
@@ -610,25 +610,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(TemperatureDelta left, TemperatureDelta right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(TemperatureDelta left, TemperatureDelta right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(TemperatureDelta left, TemperatureDelta right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(TemperatureDelta left, TemperatureDelta right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -657,7 +657,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(TemperatureDelta other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -674,7 +674,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(TemperatureDelta, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(TemperatureDelta other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -748,10 +748,10 @@ namespace UnitsNet
         public double As(TemperatureDeltaUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -796,12 +796,7 @@ namespace UnitsNet
         /// <returns>A TemperatureDelta with the specified unit.</returns>
         public TemperatureDelta ToUnit(TemperatureDeltaUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -832,6 +827,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(TemperatureDeltaUnit unit, out TemperatureDelta? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // TemperatureDeltaUnit -> BaseUnit
@@ -843,9 +844,6 @@ namespace UnitsNet
                 (TemperatureDeltaUnit.DegreeReaumur, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(_value * 5 / 4, TemperatureDeltaUnit.Kelvin),
                 (TemperatureDeltaUnit.DegreeRoemer, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta(_value * 40 / 21, TemperatureDeltaUnit.Kelvin),
                 (TemperatureDeltaUnit.MillidegreeCelsius, TemperatureDeltaUnit.Kelvin) => new TemperatureDelta((_value) * 1e-3d, TemperatureDeltaUnit.Kelvin),
-
-                // BaseUnit <-> BaseUnit
-                (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.Kelvin) => this,
 
                 // BaseUnit -> TemperatureDeltaUnit
                 (TemperatureDeltaUnit.Kelvin, TemperatureDeltaUnit.DegreeCelsius) => new TemperatureDelta(_value, TemperatureDeltaUnit.DegreeCelsius),
@@ -895,12 +893,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(TemperatureDeltaUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

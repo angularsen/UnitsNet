@@ -668,13 +668,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Luminosity"/> from adding two <see cref="Luminosity"/>.</summary>
         public static Luminosity operator +(Luminosity left, Luminosity right)
         {
-            return new Luminosity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Luminosity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Luminosity"/> from subtracting two <see cref="Luminosity"/>.</summary>
         public static Luminosity operator -(Luminosity left, Luminosity right)
         {
-            return new Luminosity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Luminosity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Luminosity"/> from multiplying value and <see cref="Luminosity"/>.</summary>
@@ -708,25 +708,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Luminosity left, Luminosity right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Luminosity left, Luminosity right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Luminosity left, Luminosity right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Luminosity left, Luminosity right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -755,7 +755,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Luminosity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -772,7 +772,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Luminosity other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -846,10 +846,10 @@ namespace UnitsNet
         public double As(LuminosityUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -894,12 +894,7 @@ namespace UnitsNet
         /// <returns>A Luminosity with the specified unit.</returns>
         public Luminosity ToUnit(LuminosityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -930,6 +925,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(LuminosityUnit unit, out Luminosity? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // LuminosityUnit -> BaseUnit
@@ -946,9 +947,6 @@ namespace UnitsNet
                 (LuminosityUnit.Picowatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e-12d, LuminosityUnit.Watt),
                 (LuminosityUnit.SolarLuminosity, LuminosityUnit.Watt) => new Luminosity(_value * 3.846e26, LuminosityUnit.Watt),
                 (LuminosityUnit.Terawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e12d, LuminosityUnit.Watt),
-
-                // BaseUnit <-> BaseUnit
-                (LuminosityUnit.Watt, LuminosityUnit.Watt) => this,
 
                 // BaseUnit -> LuminosityUnit
                 (LuminosityUnit.Watt, LuminosityUnit.Decawatt) => new Luminosity((_value) / 1e1d, LuminosityUnit.Decawatt),
@@ -1003,12 +1001,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LuminosityUnit> IQuantity<LuminosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(LuminosityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

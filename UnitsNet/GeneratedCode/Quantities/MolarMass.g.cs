@@ -639,13 +639,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="MolarMass"/> from adding two <see cref="MolarMass"/>.</summary>
         public static MolarMass operator +(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new MolarMass(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="MolarMass"/> from subtracting two <see cref="MolarMass"/>.</summary>
         public static MolarMass operator -(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new MolarMass(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="MolarMass"/> from multiplying value and <see cref="MolarMass"/>.</summary>
@@ -679,25 +679,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MolarMass left, MolarMass right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MolarMass left, MolarMass right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MolarMass left, MolarMass right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MolarMass left, MolarMass right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -726,7 +726,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(MolarMass other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -743,7 +743,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MolarMass, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MolarMass other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -817,10 +817,10 @@ namespace UnitsNet
         public double As(MolarMassUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -865,12 +865,7 @@ namespace UnitsNet
         /// <returns>A MolarMass with the specified unit.</returns>
         public MolarMass ToUnit(MolarMassUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -901,6 +896,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MolarMassUnit unit, out MolarMass? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // MolarMassUnit -> BaseUnit
@@ -915,9 +916,6 @@ namespace UnitsNet
                 (MolarMassUnit.MilligramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-3d, MolarMassUnit.KilogramPerMole),
                 (MolarMassUnit.NanogramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-9d, MolarMassUnit.KilogramPerMole),
                 (MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass(_value * 0.45359237, MolarMassUnit.KilogramPerMole),
-
-                // BaseUnit <-> BaseUnit
-                (MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerMole) => this,
 
                 // BaseUnit -> MolarMassUnit
                 (MolarMassUnit.KilogramPerMole, MolarMassUnit.CentigramPerMole) => new MolarMass((_value * 1e3) / 1e-2d, MolarMassUnit.CentigramPerMole),
@@ -970,12 +968,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(MolarMassUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

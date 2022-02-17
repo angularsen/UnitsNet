@@ -440,13 +440,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ThermalConductivity"/> from adding two <see cref="ThermalConductivity"/>.</summary>
         public static ThermalConductivity operator +(ThermalConductivity left, ThermalConductivity right)
         {
-            return new ThermalConductivity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ThermalConductivity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from subtracting two <see cref="ThermalConductivity"/>.</summary>
         public static ThermalConductivity operator -(ThermalConductivity left, ThermalConductivity right)
         {
-            return new ThermalConductivity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ThermalConductivity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from multiplying value and <see cref="ThermalConductivity"/>.</summary>
@@ -480,25 +480,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ThermalConductivity left, ThermalConductivity right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ThermalConductivity left, ThermalConductivity right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ThermalConductivity left, ThermalConductivity right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ThermalConductivity left, ThermalConductivity right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -527,7 +527,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ThermalConductivity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -544,7 +544,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ThermalConductivity other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -618,10 +618,10 @@ namespace UnitsNet
         public double As(ThermalConductivityUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -666,12 +666,7 @@ namespace UnitsNet
         /// <returns>A ThermalConductivity with the specified unit.</returns>
         public ThermalConductivity ToUnit(ThermalConductivityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -702,13 +697,16 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ThermalConductivityUnit unit, out ThermalConductivity? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ThermalConductivityUnit -> BaseUnit
                 (ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(_value * 1.73073467, ThermalConductivityUnit.WattPerMeterKelvin),
-
-                // BaseUnit <-> BaseUnit
-                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.WattPerMeterKelvin) => this,
 
                 // BaseUnit -> ThermalConductivityUnit
                 (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit) => new ThermalConductivity(_value / 1.73073467, ThermalConductivityUnit.BtuPerHourFootFahrenheit),
@@ -751,12 +749,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ThermalConductivityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

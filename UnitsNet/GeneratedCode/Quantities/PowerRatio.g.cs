@@ -439,7 +439,7 @@ namespace UnitsNet
         {
             // Logarithmic addition
             // Formula: 10 * log10(10^(x/10) + 10^(y/10))
-            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.ToUnit(left.Unit).Value/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic subtraction of two <see cref="PowerRatio"/>.</summary>
@@ -447,7 +447,7 @@ namespace UnitsNet
         {
             // Logarithmic subtraction
             // Formula: 10 * log10(10^(x/10) - 10^(y/10))
-            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.ToUnit(left.Unit).Value/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
@@ -475,7 +475,7 @@ namespace UnitsNet
         public static double operator /(PowerRatio left, PowerRatio right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
+            return Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
         }
 
         #endregion
@@ -485,25 +485,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(PowerRatio left, PowerRatio right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(PowerRatio left, PowerRatio right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(PowerRatio left, PowerRatio right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(PowerRatio left, PowerRatio right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -532,7 +532,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(PowerRatio other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -549,7 +549,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(PowerRatio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(PowerRatio other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -623,10 +623,10 @@ namespace UnitsNet
         public double As(PowerRatioUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -671,12 +671,7 @@ namespace UnitsNet
         /// <returns>A PowerRatio with the specified unit.</returns>
         public PowerRatio ToUnit(PowerRatioUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -707,13 +702,16 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(PowerRatioUnit unit, out PowerRatio? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // PowerRatioUnit -> BaseUnit
                 (PowerRatioUnit.DecibelMilliwatt, PowerRatioUnit.DecibelWatt) => new PowerRatio(_value - 30, PowerRatioUnit.DecibelWatt),
-
-                // BaseUnit <-> BaseUnit
-                (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt) => this,
 
                 // BaseUnit -> PowerRatioUnit
                 (PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt) => new PowerRatio(_value + 30, PowerRatioUnit.DecibelMilliwatt),
@@ -756,12 +754,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(PowerRatioUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

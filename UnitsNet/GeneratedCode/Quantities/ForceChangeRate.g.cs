@@ -684,13 +684,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ForceChangeRate"/> from adding two <see cref="ForceChangeRate"/>.</summary>
         public static ForceChangeRate operator +(ForceChangeRate left, ForceChangeRate right)
         {
-            return new ForceChangeRate(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ForceChangeRate(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ForceChangeRate"/> from subtracting two <see cref="ForceChangeRate"/>.</summary>
         public static ForceChangeRate operator -(ForceChangeRate left, ForceChangeRate right)
         {
-            return new ForceChangeRate(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ForceChangeRate(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ForceChangeRate"/> from multiplying value and <see cref="ForceChangeRate"/>.</summary>
@@ -724,25 +724,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ForceChangeRate left, ForceChangeRate right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ForceChangeRate left, ForceChangeRate right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ForceChangeRate left, ForceChangeRate right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ForceChangeRate left, ForceChangeRate right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -771,7 +771,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ForceChangeRate other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -788,7 +788,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ForceChangeRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ForceChangeRate other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -862,10 +862,10 @@ namespace UnitsNet
         public double As(ForceChangeRateUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -910,12 +910,7 @@ namespace UnitsNet
         /// <returns>A ForceChangeRate with the specified unit.</returns>
         public ForceChangeRate ToUnit(ForceChangeRateUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -946,6 +941,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ForceChangeRateUnit unit, out ForceChangeRate? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ForceChangeRateUnit -> BaseUnit
@@ -963,9 +964,6 @@ namespace UnitsNet
                 (ForceChangeRateUnit.NewtonPerMinute, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value / 60, ForceChangeRateUnit.NewtonPerSecond),
                 (ForceChangeRateUnit.PoundForcePerMinute, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value * 4.4482216152605095551842641431421 / 60, ForceChangeRateUnit.NewtonPerSecond),
                 (ForceChangeRateUnit.PoundForcePerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate(_value * 4.4482216152605095551842641431421, ForceChangeRateUnit.NewtonPerSecond),
-
-                // BaseUnit <-> BaseUnit
-                (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => this,
 
                 // BaseUnit -> ForceChangeRateUnit
                 (ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.CentinewtonPerSecond) => new ForceChangeRate((_value) / 1e-2d, ForceChangeRateUnit.CentinewtonPerSecond),
@@ -1021,12 +1019,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ForceChangeRateUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

@@ -583,25 +583,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Temperature left, Temperature right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Temperature left, Temperature right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Temperature left, Temperature right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Temperature left, Temperature right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -630,7 +630,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Temperature other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -647,7 +647,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Temperature other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -721,10 +721,10 @@ namespace UnitsNet
         public double As(TemperatureUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -769,12 +769,7 @@ namespace UnitsNet
         /// <returns>A Temperature with the specified unit.</returns>
         public Temperature ToUnit(TemperatureUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -805,6 +800,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(TemperatureUnit unit, out Temperature? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // TemperatureUnit -> BaseUnit
@@ -817,9 +818,6 @@ namespace UnitsNet
                 (TemperatureUnit.DegreeRoemer, TemperatureUnit.Kelvin) => new Temperature(_value * 40 / 21 + 273.15 - 7.5 * 40d / 21, TemperatureUnit.Kelvin),
                 (TemperatureUnit.MillidegreeCelsius, TemperatureUnit.Kelvin) => new Temperature(_value / 1000 + 273.15, TemperatureUnit.Kelvin),
                 (TemperatureUnit.SolarTemperature, TemperatureUnit.Kelvin) => new Temperature(_value * 5778, TemperatureUnit.Kelvin),
-
-                // BaseUnit <-> BaseUnit
-                (TemperatureUnit.Kelvin, TemperatureUnit.Kelvin) => this,
 
                 // BaseUnit -> TemperatureUnit
                 (TemperatureUnit.Kelvin, TemperatureUnit.DegreeCelsius) => new Temperature(_value - 273.15, TemperatureUnit.DegreeCelsius),
@@ -870,12 +868,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureUnit> IQuantity<TemperatureUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(TemperatureUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

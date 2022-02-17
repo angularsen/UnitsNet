@@ -570,13 +570,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="SpecificEntropy"/> from adding two <see cref="SpecificEntropy"/>.</summary>
         public static SpecificEntropy operator +(SpecificEntropy left, SpecificEntropy right)
         {
-            return new SpecificEntropy(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new SpecificEntropy(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEntropy"/> from subtracting two <see cref="SpecificEntropy"/>.</summary>
         public static SpecificEntropy operator -(SpecificEntropy left, SpecificEntropy right)
         {
-            return new SpecificEntropy(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new SpecificEntropy(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEntropy"/> from multiplying value and <see cref="SpecificEntropy"/>.</summary>
@@ -610,25 +610,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SpecificEntropy left, SpecificEntropy right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SpecificEntropy left, SpecificEntropy right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(SpecificEntropy left, SpecificEntropy right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SpecificEntropy left, SpecificEntropy right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -657,7 +657,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(SpecificEntropy other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -674,7 +674,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(SpecificEntropy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(SpecificEntropy other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -748,10 +748,10 @@ namespace UnitsNet
         public double As(SpecificEntropyUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -796,12 +796,7 @@ namespace UnitsNet
         /// <returns>A SpecificEntropy with the specified unit.</returns>
         public SpecificEntropy ToUnit(SpecificEntropyUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -832,6 +827,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(SpecificEntropyUnit unit, out SpecificEntropy? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // SpecificEntropyUnit -> BaseUnit
@@ -843,9 +844,6 @@ namespace UnitsNet
                 (SpecificEntropyUnit.KilojoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((_value) * 1e3d, SpecificEntropyUnit.JoulePerKilogramKelvin),
                 (SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((_value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin),
                 (SpecificEntropyUnit.MegajoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy((_value) * 1e6d, SpecificEntropyUnit.JoulePerKilogramKelvin),
-
-                // BaseUnit <-> BaseUnit
-                (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.JoulePerKilogramKelvin) => this,
 
                 // BaseUnit -> SpecificEntropyUnit
                 (SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.BtuPerPoundFahrenheit) => new SpecificEntropy(_value / 4.1868e3, SpecificEntropyUnit.BtuPerPoundFahrenheit),
@@ -895,12 +893,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpecificEntropyUnit> IQuantity<SpecificEntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(SpecificEntropyUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

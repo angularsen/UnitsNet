@@ -494,13 +494,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricPotentialAc"/> from adding two <see cref="ElectricPotentialAc"/>.</summary>
         public static ElectricPotentialAc operator +(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new ElectricPotentialAc(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricPotentialAc(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricPotentialAc"/> from subtracting two <see cref="ElectricPotentialAc"/>.</summary>
         public static ElectricPotentialAc operator -(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new ElectricPotentialAc(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricPotentialAc(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricPotentialAc"/> from multiplying value and <see cref="ElectricPotentialAc"/>.</summary>
@@ -534,25 +534,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -581,7 +581,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricPotentialAc other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -598,7 +598,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricPotentialAc, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricPotentialAc other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -672,10 +672,10 @@ namespace UnitsNet
         public double As(ElectricPotentialAcUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -720,12 +720,7 @@ namespace UnitsNet
         /// <returns>A ElectricPotentialAc with the specified unit.</returns>
         public ElectricPotentialAc ToUnit(ElectricPotentialAcUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -756,6 +751,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricPotentialAcUnit unit, out ElectricPotentialAc? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ElectricPotentialAcUnit -> BaseUnit
@@ -763,9 +764,6 @@ namespace UnitsNet
                 (ElectricPotentialAcUnit.MegavoltAc, ElectricPotentialAcUnit.VoltAc) => new ElectricPotentialAc((_value) * 1e6d, ElectricPotentialAcUnit.VoltAc),
                 (ElectricPotentialAcUnit.MicrovoltAc, ElectricPotentialAcUnit.VoltAc) => new ElectricPotentialAc((_value) * 1e-6d, ElectricPotentialAcUnit.VoltAc),
                 (ElectricPotentialAcUnit.MillivoltAc, ElectricPotentialAcUnit.VoltAc) => new ElectricPotentialAc((_value) * 1e-3d, ElectricPotentialAcUnit.VoltAc),
-
-                // BaseUnit <-> BaseUnit
-                (ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.VoltAc) => this,
 
                 // BaseUnit -> ElectricPotentialAcUnit
                 (ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.KilovoltAc) => new ElectricPotentialAc((_value) / 1e3d, ElectricPotentialAcUnit.KilovoltAc),
@@ -811,12 +809,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricPotentialAcUnit> IQuantity<ElectricPotentialAcUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ElectricPotentialAcUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

@@ -627,13 +627,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="MassFlux"/> from adding two <see cref="MassFlux"/>.</summary>
         public static MassFlux operator +(MassFlux left, MassFlux right)
         {
-            return new MassFlux(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new MassFlux(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="MassFlux"/> from subtracting two <see cref="MassFlux"/>.</summary>
         public static MassFlux operator -(MassFlux left, MassFlux right)
         {
-            return new MassFlux(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new MassFlux(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="MassFlux"/> from multiplying value and <see cref="MassFlux"/>.</summary>
@@ -667,25 +667,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MassFlux left, MassFlux right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MassFlux left, MassFlux right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MassFlux left, MassFlux right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MassFlux left, MassFlux right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -714,7 +714,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(MassFlux other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -731,7 +731,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MassFlux, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MassFlux other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -805,10 +805,10 @@ namespace UnitsNet
         public double As(MassFluxUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -853,12 +853,7 @@ namespace UnitsNet
         /// <returns>A MassFlux with the specified unit.</returns>
         public MassFlux ToUnit(MassFluxUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -889,6 +884,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MassFluxUnit unit, out MassFlux? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // MassFluxUnit -> BaseUnit
@@ -903,9 +904,6 @@ namespace UnitsNet
                 (MassFluxUnit.KilogramPerHourPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((_value / 3.6e0) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
                 (MassFluxUnit.KilogramPerSecondPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((_value / 1e-1) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
                 (MassFluxUnit.KilogramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => new MassFlux((_value / 1e-3) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter),
-
-                // BaseUnit <-> BaseUnit
-                (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter) => this,
 
                 // BaseUnit -> MassFluxUnit
                 (MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareCentimeter) => new MassFlux(_value * 3.6e2, MassFluxUnit.GramPerHourPerSquareCentimeter),
@@ -958,12 +956,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MassFluxUnit> IQuantity<MassFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(MassFluxUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

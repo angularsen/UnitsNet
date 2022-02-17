@@ -551,13 +551,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricCurrent"/> from adding two <see cref="ElectricCurrent"/>.</summary>
         public static ElectricCurrent operator +(ElectricCurrent left, ElectricCurrent right)
         {
-            return new ElectricCurrent(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricCurrent(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from subtracting two <see cref="ElectricCurrent"/>.</summary>
         public static ElectricCurrent operator -(ElectricCurrent left, ElectricCurrent right)
         {
-            return new ElectricCurrent(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricCurrent(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from multiplying value and <see cref="ElectricCurrent"/>.</summary>
@@ -591,25 +591,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricCurrent left, ElectricCurrent right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricCurrent left, ElectricCurrent right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricCurrent left, ElectricCurrent right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricCurrent left, ElectricCurrent right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -638,7 +638,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricCurrent other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -655,7 +655,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricCurrent other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -729,10 +729,10 @@ namespace UnitsNet
         public double As(ElectricCurrentUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -777,12 +777,7 @@ namespace UnitsNet
         /// <returns>A ElectricCurrent with the specified unit.</returns>
         public ElectricCurrent ToUnit(ElectricCurrentUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -813,6 +808,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricCurrentUnit unit, out ElectricCurrent? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ElectricCurrentUnit -> BaseUnit
@@ -823,9 +824,6 @@ namespace UnitsNet
                 (ElectricCurrentUnit.Milliampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e-3d, ElectricCurrentUnit.Ampere),
                 (ElectricCurrentUnit.Nanoampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e-9d, ElectricCurrentUnit.Ampere),
                 (ElectricCurrentUnit.Picoampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e-12d, ElectricCurrentUnit.Ampere),
-
-                // BaseUnit <-> BaseUnit
-                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Ampere) => this,
 
                 // BaseUnit -> ElectricCurrentUnit
                 (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Centiampere) => new ElectricCurrent((_value) / 1e-2d, ElectricCurrentUnit.Centiampere),
@@ -874,12 +872,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricCurrentUnit> IQuantity<ElectricCurrentUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ElectricCurrentUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

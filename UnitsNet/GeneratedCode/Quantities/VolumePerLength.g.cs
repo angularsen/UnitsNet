@@ -532,13 +532,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="VolumePerLength"/> from adding two <see cref="VolumePerLength"/>.</summary>
         public static VolumePerLength operator +(VolumePerLength left, VolumePerLength right)
         {
-            return new VolumePerLength(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new VolumePerLength(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength"/> from subtracting two <see cref="VolumePerLength"/>.</summary>
         public static VolumePerLength operator -(VolumePerLength left, VolumePerLength right)
         {
-            return new VolumePerLength(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new VolumePerLength(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength"/> from multiplying value and <see cref="VolumePerLength"/>.</summary>
@@ -572,25 +572,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VolumePerLength left, VolumePerLength right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VolumePerLength left, VolumePerLength right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(VolumePerLength left, VolumePerLength right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VolumePerLength left, VolumePerLength right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -619,7 +619,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(VolumePerLength other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -636,7 +636,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(VolumePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(VolumePerLength other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -710,10 +710,10 @@ namespace UnitsNet
         public double As(VolumePerLengthUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -758,12 +758,7 @@ namespace UnitsNet
         /// <returns>A VolumePerLength with the specified unit.</returns>
         public VolumePerLength ToUnit(VolumePerLengthUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -794,6 +789,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(VolumePerLengthUnit unit, out VolumePerLength? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // VolumePerLengthUnit -> BaseUnit
@@ -803,9 +804,6 @@ namespace UnitsNet
                 (VolumePerLengthUnit.LiterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value / 1000, VolumePerLengthUnit.CubicMeterPerMeter),
                 (VolumePerLengthUnit.LiterPerMillimeter, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value, VolumePerLengthUnit.CubicMeterPerMeter),
                 (VolumePerLengthUnit.OilBarrelPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value / 1.91713408, VolumePerLengthUnit.CubicMeterPerMeter),
-
-                // BaseUnit <-> BaseUnit
-                (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicMeterPerMeter) => this,
 
                 // BaseUnit -> VolumePerLengthUnit
                 (VolumePerLengthUnit.CubicMeterPerMeter, VolumePerLengthUnit.CubicYardPerFoot) => new VolumePerLength(_value / 2.50838208, VolumePerLengthUnit.CubicYardPerFoot),
@@ -853,12 +851,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(VolumePerLengthUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

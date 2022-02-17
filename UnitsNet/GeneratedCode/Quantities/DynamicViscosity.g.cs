@@ -592,13 +592,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="DynamicViscosity"/> from adding two <see cref="DynamicViscosity"/>.</summary>
         public static DynamicViscosity operator +(DynamicViscosity left, DynamicViscosity right)
         {
-            return new DynamicViscosity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new DynamicViscosity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="DynamicViscosity"/> from subtracting two <see cref="DynamicViscosity"/>.</summary>
         public static DynamicViscosity operator -(DynamicViscosity left, DynamicViscosity right)
         {
-            return new DynamicViscosity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new DynamicViscosity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="DynamicViscosity"/> from multiplying value and <see cref="DynamicViscosity"/>.</summary>
@@ -632,25 +632,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(DynamicViscosity left, DynamicViscosity right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(DynamicViscosity left, DynamicViscosity right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(DynamicViscosity left, DynamicViscosity right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(DynamicViscosity left, DynamicViscosity right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -679,7 +679,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(DynamicViscosity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(DynamicViscosity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(DynamicViscosity other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -770,10 +770,10 @@ namespace UnitsNet
         public double As(DynamicViscosityUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -818,12 +818,7 @@ namespace UnitsNet
         /// <returns>A DynamicViscosity with the specified unit.</returns>
         public DynamicViscosity ToUnit(DynamicViscosityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -854,6 +849,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(DynamicViscosityUnit unit, out DynamicViscosity? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // DynamicViscosityUnit -> BaseUnit
@@ -866,9 +867,6 @@ namespace UnitsNet
                 (DynamicViscosityUnit.PoundForceSecondPerSquareInch, DynamicViscosityUnit.NewtonSecondPerMeterSquared) => new DynamicViscosity(_value * 6.8947572931683613e3, DynamicViscosityUnit.NewtonSecondPerMeterSquared),
                 (DynamicViscosityUnit.PoundPerFootSecond, DynamicViscosityUnit.NewtonSecondPerMeterSquared) => new DynamicViscosity(_value * 1.4881639, DynamicViscosityUnit.NewtonSecondPerMeterSquared),
                 (DynamicViscosityUnit.Reyn, DynamicViscosityUnit.NewtonSecondPerMeterSquared) => new DynamicViscosity(_value * 6.8947572931683613e3, DynamicViscosityUnit.NewtonSecondPerMeterSquared),
-
-                // BaseUnit <-> BaseUnit
-                (DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.NewtonSecondPerMeterSquared) => this,
 
                 // BaseUnit -> DynamicViscosityUnit
                 (DynamicViscosityUnit.NewtonSecondPerMeterSquared, DynamicViscosityUnit.Centipoise) => new DynamicViscosity((_value * 10) / 1e-2d, DynamicViscosityUnit.Centipoise),
@@ -919,12 +917,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(DynamicViscosityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

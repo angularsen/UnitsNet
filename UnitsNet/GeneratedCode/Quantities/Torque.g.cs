@@ -877,13 +877,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Torque"/> from adding two <see cref="Torque"/>.</summary>
         public static Torque operator +(Torque left, Torque right)
         {
-            return new Torque(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Torque(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Torque"/> from subtracting two <see cref="Torque"/>.</summary>
         public static Torque operator -(Torque left, Torque right)
         {
-            return new Torque(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Torque(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Torque"/> from multiplying value and <see cref="Torque"/>.</summary>
@@ -917,25 +917,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Torque left, Torque right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Torque left, Torque right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Torque left, Torque right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Torque left, Torque right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -964,7 +964,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Torque other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -981,7 +981,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Torque, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Torque other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1055,10 +1055,10 @@ namespace UnitsNet
         public double As(TorqueUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1103,12 +1103,7 @@ namespace UnitsNet
         /// <returns>A Torque with the specified unit.</returns>
         public Torque ToUnit(TorqueUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -1139,6 +1134,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(TorqueUnit unit, out Torque? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // TorqueUnit -> BaseUnit
@@ -1166,9 +1167,6 @@ namespace UnitsNet
                 (TorqueUnit.TonneForceCentimeter, TorqueUnit.NewtonMeter) => new Torque(_value * 9.80665e1, TorqueUnit.NewtonMeter),
                 (TorqueUnit.TonneForceMeter, TorqueUnit.NewtonMeter) => new Torque(_value * 9.80665e3, TorqueUnit.NewtonMeter),
                 (TorqueUnit.TonneForceMillimeter, TorqueUnit.NewtonMeter) => new Torque(_value * 9.80665, TorqueUnit.NewtonMeter),
-
-                // BaseUnit <-> BaseUnit
-                (TorqueUnit.NewtonMeter, TorqueUnit.NewtonMeter) => this,
 
                 // BaseUnit -> TorqueUnit
                 (TorqueUnit.NewtonMeter, TorqueUnit.GramForceCentimeter) => new Torque(_value / 9.80665e-5, TorqueUnit.GramForceCentimeter),
@@ -1234,12 +1232,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TorqueUnit> IQuantity<TorqueUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(TorqueUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

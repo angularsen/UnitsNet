@@ -459,13 +459,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricConductivity"/> from adding two <see cref="ElectricConductivity"/>.</summary>
         public static ElectricConductivity operator +(ElectricConductivity left, ElectricConductivity right)
         {
-            return new ElectricConductivity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricConductivity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductivity"/> from subtracting two <see cref="ElectricConductivity"/>.</summary>
         public static ElectricConductivity operator -(ElectricConductivity left, ElectricConductivity right)
         {
-            return new ElectricConductivity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricConductivity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductivity"/> from multiplying value and <see cref="ElectricConductivity"/>.</summary>
@@ -499,25 +499,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricConductivity left, ElectricConductivity right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricConductivity left, ElectricConductivity right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricConductivity left, ElectricConductivity right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricConductivity left, ElectricConductivity right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -546,7 +546,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricConductivity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -563,7 +563,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricConductivity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricConductivity other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -637,10 +637,10 @@ namespace UnitsNet
         public double As(ElectricConductivityUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -685,12 +685,7 @@ namespace UnitsNet
         /// <returns>A ElectricConductivity with the specified unit.</returns>
         public ElectricConductivity ToUnit(ElectricConductivityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -721,14 +716,17 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricConductivityUnit unit, out ElectricConductivity? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ElectricConductivityUnit -> BaseUnit
                 (ElectricConductivityUnit.SiemensPerFoot, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 3.2808398950131234, ElectricConductivityUnit.SiemensPerMeter),
                 (ElectricConductivityUnit.SiemensPerInch, ElectricConductivityUnit.SiemensPerMeter) => new ElectricConductivity(_value * 3.937007874015748e1, ElectricConductivityUnit.SiemensPerMeter),
-
-                // BaseUnit <-> BaseUnit
-                (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter) => this,
 
                 // BaseUnit -> ElectricConductivityUnit
                 (ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot) => new ElectricConductivity(_value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot),
@@ -772,12 +770,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ElectricConductivityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

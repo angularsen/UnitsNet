@@ -513,13 +513,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricResistance"/> from adding two <see cref="ElectricResistance"/>.</summary>
         public static ElectricResistance operator +(ElectricResistance left, ElectricResistance right)
         {
-            return new ElectricResistance(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricResistance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance"/> from subtracting two <see cref="ElectricResistance"/>.</summary>
         public static ElectricResistance operator -(ElectricResistance left, ElectricResistance right)
         {
-            return new ElectricResistance(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricResistance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistance"/> from multiplying value and <see cref="ElectricResistance"/>.</summary>
@@ -553,25 +553,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricResistance left, ElectricResistance right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricResistance left, ElectricResistance right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricResistance left, ElectricResistance right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricResistance left, ElectricResistance right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -600,7 +600,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricResistance other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -617,7 +617,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricResistance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricResistance other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -691,10 +691,10 @@ namespace UnitsNet
         public double As(ElectricResistanceUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -739,12 +739,7 @@ namespace UnitsNet
         /// <returns>A ElectricResistance with the specified unit.</returns>
         public ElectricResistance ToUnit(ElectricResistanceUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -775,6 +770,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricResistanceUnit unit, out ElectricResistance? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ElectricResistanceUnit -> BaseUnit
@@ -783,9 +784,6 @@ namespace UnitsNet
                 (ElectricResistanceUnit.Megaohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e6d, ElectricResistanceUnit.Ohm),
                 (ElectricResistanceUnit.Microohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e-6d, ElectricResistanceUnit.Ohm),
                 (ElectricResistanceUnit.Milliohm, ElectricResistanceUnit.Ohm) => new ElectricResistance((_value) * 1e-3d, ElectricResistanceUnit.Ohm),
-
-                // BaseUnit <-> BaseUnit
-                (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Ohm) => this,
 
                 // BaseUnit -> ElectricResistanceUnit
                 (ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Gigaohm) => new ElectricResistance((_value) / 1e9d, ElectricResistanceUnit.Gigaohm),
@@ -832,12 +830,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ElectricResistanceUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

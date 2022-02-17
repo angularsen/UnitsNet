@@ -1030,13 +1030,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Speed"/> from adding two <see cref="Speed"/>.</summary>
         public static Speed operator +(Speed left, Speed right)
         {
-            return new Speed(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Speed(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from subtracting two <see cref="Speed"/>.</summary>
         public static Speed operator -(Speed left, Speed right)
         {
-            return new Speed(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Speed(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
@@ -1070,25 +1070,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Speed left, Speed right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Speed left, Speed right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Speed left, Speed right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Speed left, Speed right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -1117,7 +1117,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Speed other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -1134,7 +1134,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Speed, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Speed other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1208,10 +1208,10 @@ namespace UnitsNet
         public double As(SpeedUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1256,12 +1256,7 @@ namespace UnitsNet
         /// <returns>A Speed with the specified unit.</returns>
         public Speed ToUnit(SpeedUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -1292,6 +1287,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(SpeedUnit unit, out Speed? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // SpeedUnit -> BaseUnit
@@ -1326,9 +1327,6 @@ namespace UnitsNet
                 (SpeedUnit.YardPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value * 0.9144 / 3600, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.YardPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value * 0.9144 / 60, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.YardPerSecond, SpeedUnit.MeterPerSecond) => new Speed(_value * 0.9144, SpeedUnit.MeterPerSecond),
-
-                // BaseUnit <-> BaseUnit
-                (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerSecond) => this,
 
                 // BaseUnit -> SpeedUnit
                 (SpeedUnit.MeterPerSecond, SpeedUnit.CentimeterPerHour) => new Speed((_value * 3600) / 1e-2d, SpeedUnit.CentimeterPerHour),
@@ -1401,12 +1399,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(SpeedUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

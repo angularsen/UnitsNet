@@ -513,13 +513,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Ratio"/> from adding two <see cref="Ratio"/>.</summary>
         public static Ratio operator +(Ratio left, Ratio right)
         {
-            return new Ratio(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Ratio(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Ratio"/> from subtracting two <see cref="Ratio"/>.</summary>
         public static Ratio operator -(Ratio left, Ratio right)
         {
-            return new Ratio(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Ratio(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
@@ -553,25 +553,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Ratio left, Ratio right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Ratio left, Ratio right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Ratio left, Ratio right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Ratio left, Ratio right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -600,7 +600,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Ratio other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -617,7 +617,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Ratio, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Ratio other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -691,10 +691,10 @@ namespace UnitsNet
         public double As(RatioUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -739,12 +739,7 @@ namespace UnitsNet
         /// <returns>A Ratio with the specified unit.</returns>
         public Ratio ToUnit(RatioUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -775,6 +770,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(RatioUnit unit, out Ratio? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // RatioUnit -> BaseUnit
@@ -783,9 +784,6 @@ namespace UnitsNet
                 (RatioUnit.PartPerThousand, RatioUnit.DecimalFraction) => new Ratio(_value / 1e3, RatioUnit.DecimalFraction),
                 (RatioUnit.PartPerTrillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1e12, RatioUnit.DecimalFraction),
                 (RatioUnit.Percent, RatioUnit.DecimalFraction) => new Ratio(_value / 1e2, RatioUnit.DecimalFraction),
-
-                // BaseUnit <-> BaseUnit
-                (RatioUnit.DecimalFraction, RatioUnit.DecimalFraction) => this,
 
                 // BaseUnit -> RatioUnit
                 (RatioUnit.DecimalFraction, RatioUnit.PartPerBillion) => new Ratio(_value * 1e9, RatioUnit.PartPerBillion),
@@ -832,12 +830,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(RatioUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

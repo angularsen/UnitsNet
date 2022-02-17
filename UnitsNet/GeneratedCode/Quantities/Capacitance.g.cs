@@ -535,13 +535,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Capacitance"/> from adding two <see cref="Capacitance"/>.</summary>
         public static Capacitance operator +(Capacitance left, Capacitance right)
         {
-            return new Capacitance(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Capacitance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Capacitance"/> from subtracting two <see cref="Capacitance"/>.</summary>
         public static Capacitance operator -(Capacitance left, Capacitance right)
         {
-            return new Capacitance(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Capacitance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Capacitance"/> from multiplying value and <see cref="Capacitance"/>.</summary>
@@ -575,25 +575,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Capacitance left, Capacitance right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Capacitance left, Capacitance right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Capacitance left, Capacitance right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Capacitance left, Capacitance right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -622,7 +622,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Capacitance other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -639,7 +639,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Capacitance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Capacitance other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -713,10 +713,10 @@ namespace UnitsNet
         public double As(CapacitanceUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -761,12 +761,7 @@ namespace UnitsNet
         /// <returns>A Capacitance with the specified unit.</returns>
         public Capacitance ToUnit(CapacitanceUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -797,6 +792,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(CapacitanceUnit unit, out Capacitance? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // CapacitanceUnit -> BaseUnit
@@ -806,9 +807,6 @@ namespace UnitsNet
                 (CapacitanceUnit.Millifarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e-3d, CapacitanceUnit.Farad),
                 (CapacitanceUnit.Nanofarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e-9d, CapacitanceUnit.Farad),
                 (CapacitanceUnit.Picofarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e-12d, CapacitanceUnit.Farad),
-
-                // BaseUnit <-> BaseUnit
-                (CapacitanceUnit.Farad, CapacitanceUnit.Farad) => this,
 
                 // BaseUnit -> CapacitanceUnit
                 (CapacitanceUnit.Farad, CapacitanceUnit.Kilofarad) => new Capacitance((_value) / 1e3d, CapacitanceUnit.Kilofarad),
@@ -856,12 +854,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(CapacitanceUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

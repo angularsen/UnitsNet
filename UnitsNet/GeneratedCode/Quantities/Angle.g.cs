@@ -715,13 +715,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Angle"/> from adding two <see cref="Angle"/>.</summary>
         public static Angle operator +(Angle left, Angle right)
         {
-            return new Angle(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Angle(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Angle"/> from subtracting two <see cref="Angle"/>.</summary>
         public static Angle operator -(Angle left, Angle right)
         {
-            return new Angle(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Angle(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Angle"/> from multiplying value and <see cref="Angle"/>.</summary>
@@ -755,25 +755,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Angle left, Angle right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Angle left, Angle right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Angle left, Angle right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Angle left, Angle right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -802,7 +802,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Angle other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -819,7 +819,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Angle, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Angle other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -893,10 +893,10 @@ namespace UnitsNet
         public double As(AngleUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -941,12 +941,7 @@ namespace UnitsNet
         /// <returns>A Angle with the specified unit.</returns>
         public Angle ToUnit(AngleUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -977,6 +972,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(AngleUnit unit, out Angle? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // AngleUnit -> BaseUnit
@@ -995,9 +996,6 @@ namespace UnitsNet
                 (AngleUnit.Radian, AngleUnit.Degree) => new Angle(_value * 180 / Math.PI, AngleUnit.Degree),
                 (AngleUnit.Revolution, AngleUnit.Degree) => new Angle(_value * 360, AngleUnit.Degree),
                 (AngleUnit.Tilt, AngleUnit.Degree) => new Angle(Math.Asin(_value) * 180 / Math.PI, AngleUnit.Degree),
-
-                // BaseUnit <-> BaseUnit
-                (AngleUnit.Degree, AngleUnit.Degree) => this,
 
                 // BaseUnit -> AngleUnit
                 (AngleUnit.Degree, AngleUnit.Arcminute) => new Angle(_value * 60, AngleUnit.Arcminute),
@@ -1054,12 +1052,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(AngleUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

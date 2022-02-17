@@ -879,13 +879,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Power"/> from adding two <see cref="Power"/>.</summary>
         public static Power operator +(Power left, Power right)
         {
-            return new Power(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Power(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Power"/> from subtracting two <see cref="Power"/>.</summary>
         public static Power operator -(Power left, Power right)
         {
-            return new Power(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Power(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Power"/> from multiplying value and <see cref="Power"/>.</summary>
@@ -919,25 +919,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Power left, Power right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Power left, Power right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Power left, Power right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Power left, Power right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -966,7 +966,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Power other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -983,7 +983,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Power other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1057,10 +1057,10 @@ namespace UnitsNet
         public double As(PowerUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1105,12 +1105,7 @@ namespace UnitsNet
         /// <returns>A Power with the specified unit.</returns>
         public Power ToUnit(PowerUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -1141,6 +1136,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(PowerUnit unit, out Power? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // PowerUnit -> BaseUnit
@@ -1168,9 +1169,6 @@ namespace UnitsNet
                 (PowerUnit.Petawatt, PowerUnit.Watt) => new Power((_value) * 1e15m, PowerUnit.Watt),
                 (PowerUnit.Picowatt, PowerUnit.Watt) => new Power((_value) * 1e-12m, PowerUnit.Watt),
                 (PowerUnit.Terawatt, PowerUnit.Watt) => new Power((_value) * 1e12m, PowerUnit.Watt),
-
-                // BaseUnit <-> BaseUnit
-                (PowerUnit.Watt, PowerUnit.Watt) => this,
 
                 // BaseUnit -> PowerUnit
                 (PowerUnit.Watt, PowerUnit.BoilerHorsepower) => new Power(_value / 9812.5m, PowerUnit.BoilerHorsepower),
@@ -1236,12 +1234,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private decimal GetValueAs(PowerUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (decimal)converted.Value;
-        }
 
         #endregion
 

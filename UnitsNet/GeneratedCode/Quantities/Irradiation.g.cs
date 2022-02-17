@@ -535,13 +535,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Irradiation"/> from adding two <see cref="Irradiation"/>.</summary>
         public static Irradiation operator +(Irradiation left, Irradiation right)
         {
-            return new Irradiation(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Irradiation(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from subtracting two <see cref="Irradiation"/>.</summary>
         public static Irradiation operator -(Irradiation left, Irradiation right)
         {
-            return new Irradiation(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Irradiation(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from multiplying value and <see cref="Irradiation"/>.</summary>
@@ -575,25 +575,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Irradiation left, Irradiation right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Irradiation left, Irradiation right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Irradiation left, Irradiation right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Irradiation left, Irradiation right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -622,7 +622,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Irradiation other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -639,7 +639,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Irradiation, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Irradiation other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -713,10 +713,10 @@ namespace UnitsNet
         public double As(IrradiationUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -761,12 +761,7 @@ namespace UnitsNet
         /// <returns>A Irradiation with the specified unit.</returns>
         public Irradiation ToUnit(IrradiationUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -797,6 +792,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(IrradiationUnit unit, out Irradiation? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // IrradiationUnit -> BaseUnit
@@ -806,9 +807,6 @@ namespace UnitsNet
                 (IrradiationUnit.KilowattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * 3600d) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
                 (IrradiationUnit.MillijoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * 1e4) * 1e-3d, IrradiationUnit.JoulePerSquareMeter),
                 (IrradiationUnit.WattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 3600d, IrradiationUnit.JoulePerSquareMeter),
-
-                // BaseUnit <-> BaseUnit
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => this,
 
                 // BaseUnit -> IrradiationUnit
                 (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareCentimeter) => new Irradiation(_value / 1e4, IrradiationUnit.JoulePerSquareCentimeter),
@@ -856,12 +854,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(IrradiationUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

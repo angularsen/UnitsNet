@@ -656,13 +656,13 @@ namespace UnitsNet
         /// <summary>Get <see cref=""{_quantity.Name}""/> from adding two <see cref=""{_quantity.Name}""/>.</summary>
         public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
         {{
-            return new {_quantity.Name}(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new {_quantity.Name}(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from subtracting two <see cref=""{_quantity.Name}""/>.</summary>
         public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
         {{
-            return new {_quantity.Name}(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new {_quantity.Name}(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
@@ -712,7 +712,7 @@ namespace UnitsNet
         {{
             // Logarithmic addition
             // Formula: {x} * log10(10^(x/{x}) + 10^(y/{x}))
-            return new {_quantity.Name}({x} * Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
+            return new {_quantity.Name}({x} * Math.Log10(Math.Pow(10, left.Value/{x}) + Math.Pow(10, right.ToUnit(left.Unit).Value/{x})), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic subtraction of two <see cref=""{_quantity.Name}""/>.</summary>
@@ -720,7 +720,7 @@ namespace UnitsNet
         {{
             // Logarithmic subtraction
             // Formula: {x} * log10(10^(x/{x}) - 10^(y/{x}))
-            return new {_quantity.Name}({x} * Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.GetValueAs(left.Unit)/{x})), left.Unit);
+            return new {_quantity.Name}({x} * Math.Log10(Math.Pow(10, left.Value/{x}) - Math.Pow(10, right.ToUnit(left.Unit).Value/{x})), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
@@ -748,11 +748,11 @@ namespace UnitsNet
         public static double operator /({_quantity.Name} left, {_quantity.Name} right)
         {{
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
+            return Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
         }}
 
         #endregion
-");
+" );
         }
 
         private void GenerateEqualityAndComparison()
@@ -763,25 +763,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=({_quantity.Name} left, {_quantity.Name} right)
         {{
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }}
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=({_quantity.Name} left, {_quantity.Name} right)
         {{
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }}
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <({_quantity.Name} left, {_quantity.Name} right)
         {{
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }}
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >({_quantity.Name} left, {_quantity.Name} right)
         {{
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }}
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -810,7 +810,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo({_quantity.Name} other)
         {{
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }}
 
         /// <inheritdoc />
@@ -827,7 +827,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for safely comparing floating point values.</remarks>
         public bool Equals({_quantity.Name} other)
         {{
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }}
 
         /// <summary>
@@ -906,10 +906,10 @@ namespace UnitsNet
         public double As({_unitEnumName} unit)
         {{
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }}
 
         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
@@ -954,12 +954,7 @@ namespace UnitsNet
         /// <returns>A {_quantity.Name} with the specified unit.</returns>
         public {_quantity.Name} ToUnit({_unitEnumName} unit, UnitConverter unitConverter)
         {{
-            if (Unit == unit)
-            {{
-                // Already in requested units.
-                return this;
-            }}
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {{
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -990,6 +985,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit({_quantity.Name}Unit unit, out {_quantity.Name}? converted)
         {{
+            if (_unit == unit)
+            {{
+                converted = this;
+                return true;
+            }}
+
             converted = (_unit, unit) switch
             {{
                 // {_quantity.Name}Unit -> BaseUnit");
@@ -1006,9 +1007,6 @@ namespace UnitsNet
 
             Writer.WL();
             Writer.WL($@"
-
-                // BaseUnit <-> BaseUnit
-                ({_unitEnumName}.{_quantity.BaseUnit}, {_unitEnumName}.{_quantity.BaseUnit}) => this,
 
                 // BaseUnit -> {_quantity.Name}Unit");
             foreach(var unit in _quantity.Units)
@@ -1061,12 +1059,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private {_valueType} GetValueAs({_unitEnumName} unit)
-        {{
-            var converted = ToUnit(unit);
-            return ({_valueType})converted.Value;
-        }}
 
         #endregion
 ");

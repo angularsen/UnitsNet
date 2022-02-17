@@ -516,13 +516,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="MagneticField"/> from adding two <see cref="MagneticField"/>.</summary>
         public static MagneticField operator +(MagneticField left, MagneticField right)
         {
-            return new MagneticField(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new MagneticField(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="MagneticField"/> from subtracting two <see cref="MagneticField"/>.</summary>
         public static MagneticField operator -(MagneticField left, MagneticField right)
         {
-            return new MagneticField(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new MagneticField(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="MagneticField"/> from multiplying value and <see cref="MagneticField"/>.</summary>
@@ -556,25 +556,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MagneticField left, MagneticField right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MagneticField left, MagneticField right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MagneticField left, MagneticField right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MagneticField left, MagneticField right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -603,7 +603,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(MagneticField other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -620,7 +620,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(MagneticField, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(MagneticField other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -694,10 +694,10 @@ namespace UnitsNet
         public double As(MagneticFieldUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -742,12 +742,7 @@ namespace UnitsNet
         /// <returns>A MagneticField with the specified unit.</returns>
         public MagneticField ToUnit(MagneticFieldUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -778,6 +773,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MagneticFieldUnit unit, out MagneticField? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // MagneticFieldUnit -> BaseUnit
@@ -786,9 +787,6 @@ namespace UnitsNet
                 (MagneticFieldUnit.Milligauss, MagneticFieldUnit.Tesla) => new MagneticField((_value / 1e4) * 1e-3d, MagneticFieldUnit.Tesla),
                 (MagneticFieldUnit.Millitesla, MagneticFieldUnit.Tesla) => new MagneticField((_value) * 1e-3d, MagneticFieldUnit.Tesla),
                 (MagneticFieldUnit.Nanotesla, MagneticFieldUnit.Tesla) => new MagneticField((_value) * 1e-9d, MagneticFieldUnit.Tesla),
-
-                // BaseUnit <-> BaseUnit
-                (MagneticFieldUnit.Tesla, MagneticFieldUnit.Tesla) => this,
 
                 // BaseUnit -> MagneticFieldUnit
                 (MagneticFieldUnit.Tesla, MagneticFieldUnit.Gauss) => new MagneticField(_value * 1e4, MagneticFieldUnit.Gauss),
@@ -835,12 +833,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(MagneticFieldUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

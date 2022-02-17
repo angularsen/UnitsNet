@@ -592,13 +592,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ReciprocalLength"/> from adding two <see cref="ReciprocalLength"/>.</summary>
         public static ReciprocalLength operator +(ReciprocalLength left, ReciprocalLength right)
         {
-            return new ReciprocalLength(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ReciprocalLength(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from subtracting two <see cref="ReciprocalLength"/>.</summary>
         public static ReciprocalLength operator -(ReciprocalLength left, ReciprocalLength right)
         {
-            return new ReciprocalLength(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ReciprocalLength(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from multiplying value and <see cref="ReciprocalLength"/>.</summary>
@@ -632,25 +632,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ReciprocalLength left, ReciprocalLength right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ReciprocalLength left, ReciprocalLength right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ReciprocalLength left, ReciprocalLength right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ReciprocalLength left, ReciprocalLength right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -679,7 +679,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ReciprocalLength other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ReciprocalLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ReciprocalLength other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -770,10 +770,10 @@ namespace UnitsNet
         public double As(ReciprocalLengthUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -818,12 +818,7 @@ namespace UnitsNet
         /// <returns>A ReciprocalLength with the specified unit.</returns>
         public ReciprocalLength ToUnit(ReciprocalLengthUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -854,6 +849,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ReciprocalLengthUnit unit, out ReciprocalLength? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // ReciprocalLengthUnit -> BaseUnit
@@ -866,9 +867,6 @@ namespace UnitsNet
                 (ReciprocalLengthUnit.InverseMillimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 1e3, ReciprocalLengthUnit.InverseMeter),
                 (ReciprocalLengthUnit.InverseUsSurveyFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 3937 / 1200, ReciprocalLengthUnit.InverseMeter),
                 (ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 0.9144, ReciprocalLengthUnit.InverseMeter),
-
-                // BaseUnit <-> BaseUnit
-                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMeter) => this,
 
                 // BaseUnit -> ReciprocalLengthUnit
                 (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseCentimeter) => new ReciprocalLength(_value / 1e2, ReciprocalLengthUnit.InverseCentimeter),
@@ -919,12 +917,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ReciprocalLengthUnit> IQuantity<ReciprocalLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ReciprocalLengthUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

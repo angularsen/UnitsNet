@@ -877,13 +877,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="LinearPowerDensity"/> from adding two <see cref="LinearPowerDensity"/>.</summary>
         public static LinearPowerDensity operator +(LinearPowerDensity left, LinearPowerDensity right)
         {
-            return new LinearPowerDensity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new LinearPowerDensity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="LinearPowerDensity"/> from subtracting two <see cref="LinearPowerDensity"/>.</summary>
         public static LinearPowerDensity operator -(LinearPowerDensity left, LinearPowerDensity right)
         {
-            return new LinearPowerDensity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new LinearPowerDensity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="LinearPowerDensity"/> from multiplying value and <see cref="LinearPowerDensity"/>.</summary>
@@ -917,25 +917,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(LinearPowerDensity left, LinearPowerDensity right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(LinearPowerDensity left, LinearPowerDensity right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(LinearPowerDensity left, LinearPowerDensity right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(LinearPowerDensity left, LinearPowerDensity right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -964,7 +964,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(LinearPowerDensity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -981,7 +981,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(LinearPowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(LinearPowerDensity other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1055,10 +1055,10 @@ namespace UnitsNet
         public double As(LinearPowerDensityUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1103,12 +1103,7 @@ namespace UnitsNet
         /// <returns>A LinearPowerDensity with the specified unit.</returns>
         public LinearPowerDensity ToUnit(LinearPowerDensityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
-            {
-                // Already in requested units.
-                return this;
-            }
-            else if (TryToUnit(unit, out var converted))
+            if (TryToUnit(unit, out var converted))
             {
                 // Try to convert using the auto-generated conversion methods.
                 return converted!.Value;
@@ -1139,6 +1134,12 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(LinearPowerDensityUnit unit, out LinearPowerDensity? converted)
         {
+            if (_unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
             converted = (_unit, unit) switch
             {
                 // LinearPowerDensityUnit -> BaseUnit
@@ -1166,9 +1167,6 @@ namespace UnitsNet
                 (LinearPowerDensityUnit.WattPerFoot, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity(_value * 3.280839895, LinearPowerDensityUnit.WattPerMeter),
                 (LinearPowerDensityUnit.WattPerInch, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity(_value * 39.37007874, LinearPowerDensityUnit.WattPerMeter),
                 (LinearPowerDensityUnit.WattPerMillimeter, LinearPowerDensityUnit.WattPerMeter) => new LinearPowerDensity(_value * 1e3, LinearPowerDensityUnit.WattPerMeter),
-
-                // BaseUnit <-> BaseUnit
-                (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.WattPerMeter) => this,
 
                 // BaseUnit -> LinearPowerDensityUnit
                 (LinearPowerDensityUnit.WattPerMeter, LinearPowerDensityUnit.GigawattPerCentimeter) => new LinearPowerDensity((_value / 1e2) / 1e9d, LinearPowerDensityUnit.GigawattPerCentimeter),
@@ -1234,12 +1232,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(LinearPowerDensityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 
