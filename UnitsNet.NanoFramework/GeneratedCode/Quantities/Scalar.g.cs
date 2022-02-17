@@ -80,9 +80,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ScalarUnit.Amount"/>
+        ///     Gets this <see cref="Scalar"/> converted into <see cref="ScalarUnit.Amount"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmount property.")]
         public double Amount => As(ScalarUnit.Amount);
+
+        /// <summary>
+        ///     Gets this <see cref="Scalar"/> converted into <see cref="ScalarUnit.Amount"/>.
+        /// </summary>
+        public Scalar ToAmount => ToUnit(ScalarUnit.Amount);
 
         #endregion
 

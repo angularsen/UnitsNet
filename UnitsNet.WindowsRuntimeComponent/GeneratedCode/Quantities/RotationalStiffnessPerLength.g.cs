@@ -164,29 +164,59 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter"/>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonMetersPerRadianPerMeter property.")]
         public double KilonewtonMetersPerRadianPerMeter => As(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundForceFeetPerDegreesPerFeet property.")]
         public double KilopoundForceFeetPerDegreesPerFeet => As(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMeganewtonMetersPerRadianPerMeter property.")]
         public double MeganewtonMetersPerRadianPerMeter => As(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonMetersPerRadianPerMeter property.")]
         public double NewtonMetersPerRadianPerMeter => As(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundForceFeetPerDegreesPerFeet property.")]
         public double PoundForceFeetPerDegreesPerFeet => As(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter"/>.
+        /// </summary>
+        public RotationalStiffnessPerLength ToKilonewtonMetersPerRadianPerMeter => ToUnit(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/>.
+        /// </summary>
+        public RotationalStiffnessPerLength ToKilopoundForceFeetPerDegreesPerFeet => ToUnit(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/>.
+        /// </summary>
+        public RotationalStiffnessPerLength ToMeganewtonMetersPerRadianPerMeter => ToUnit(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/>.
+        /// </summary>
+        public RotationalStiffnessPerLength ToNewtonMetersPerRadianPerMeter => ToUnit(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalStiffnessPerLength"/> converted into <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/>.
+        /// </summary>
+        public RotationalStiffnessPerLength ToPoundForceFeetPerDegreesPerFeet => ToUnit(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
 
         #endregion
 

@@ -83,89 +83,191 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsForcePerCubicCentimeter property.")]
         public double KilogramsForcePerCubicCentimeter => As(SpecificWeightUnit.KilogramForcePerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsForcePerCubicMeter property.")]
         public double KilogramsForcePerCubicMeter => As(SpecificWeightUnit.KilogramForcePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsForcePerCubicMillimeter property.")]
         public double KilogramsForcePerCubicMillimeter => As(SpecificWeightUnit.KilogramForcePerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonsPerCubicCentimeter property.")]
         public double KilonewtonsPerCubicCentimeter => As(SpecificWeightUnit.KilonewtonPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonsPerCubicMeter property.")]
         public double KilonewtonsPerCubicMeter => As(SpecificWeightUnit.KilonewtonPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonsPerCubicMillimeter property.")]
         public double KilonewtonsPerCubicMillimeter => As(SpecificWeightUnit.KilonewtonPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsForcePerCubicFoot property.")]
         public double KilopoundsForcePerCubicFoot => As(SpecificWeightUnit.KilopoundForcePerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsForcePerCubicInch property.")]
         public double KilopoundsForcePerCubicInch => As(SpecificWeightUnit.KilopoundForcePerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMeganewtonsPerCubicMeter property.")]
         public double MeganewtonsPerCubicMeter => As(SpecificWeightUnit.MeganewtonPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonsPerCubicCentimeter property.")]
         public double NewtonsPerCubicCentimeter => As(SpecificWeightUnit.NewtonPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonsPerCubicMeter property.")]
         public double NewtonsPerCubicMeter => As(SpecificWeightUnit.NewtonPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonsPerCubicMillimeter property.")]
         public double NewtonsPerCubicMillimeter => As(SpecificWeightUnit.NewtonPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsForcePerCubicFoot property.")]
         public double PoundsForcePerCubicFoot => As(SpecificWeightUnit.PoundForcePerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsForcePerCubicInch property.")]
         public double PoundsForcePerCubicInch => As(SpecificWeightUnit.PoundForcePerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesForcePerCubicCentimeter property.")]
         public double TonnesForcePerCubicCentimeter => As(SpecificWeightUnit.TonneForcePerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesForcePerCubicMeter property.")]
         public double TonnesForcePerCubicMeter => As(SpecificWeightUnit.TonneForcePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesForcePerCubicMillimeter property.")]
         public double TonnesForcePerCubicMillimeter => As(SpecificWeightUnit.TonneForcePerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicCentimeter"/>.
+        /// </summary>
+        public SpecificWeight ToKilogramsForcePerCubicCentimeter => ToUnit(SpecificWeightUnit.KilogramForcePerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMeter"/>.
+        /// </summary>
+        public SpecificWeight ToKilogramsForcePerCubicMeter => ToUnit(SpecificWeightUnit.KilogramForcePerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilogramForcePerCubicMillimeter"/>.
+        /// </summary>
+        public SpecificWeight ToKilogramsForcePerCubicMillimeter => ToUnit(SpecificWeightUnit.KilogramForcePerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicCentimeter"/>.
+        /// </summary>
+        public SpecificWeight ToKilonewtonsPerCubicCentimeter => ToUnit(SpecificWeightUnit.KilonewtonPerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMeter"/>.
+        /// </summary>
+        public SpecificWeight ToKilonewtonsPerCubicMeter => ToUnit(SpecificWeightUnit.KilonewtonPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilonewtonPerCubicMillimeter"/>.
+        /// </summary>
+        public SpecificWeight ToKilonewtonsPerCubicMillimeter => ToUnit(SpecificWeightUnit.KilonewtonPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicFoot"/>.
+        /// </summary>
+        public SpecificWeight ToKilopoundsForcePerCubicFoot => ToUnit(SpecificWeightUnit.KilopoundForcePerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.KilopoundForcePerCubicInch"/>.
+        /// </summary>
+        public SpecificWeight ToKilopoundsForcePerCubicInch => ToUnit(SpecificWeightUnit.KilopoundForcePerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.MeganewtonPerCubicMeter"/>.
+        /// </summary>
+        public SpecificWeight ToMeganewtonsPerCubicMeter => ToUnit(SpecificWeightUnit.MeganewtonPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.NewtonPerCubicCentimeter"/>.
+        /// </summary>
+        public SpecificWeight ToNewtonsPerCubicCentimeter => ToUnit(SpecificWeightUnit.NewtonPerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.NewtonPerCubicMeter"/>.
+        /// </summary>
+        public SpecificWeight ToNewtonsPerCubicMeter => ToUnit(SpecificWeightUnit.NewtonPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.NewtonPerCubicMillimeter"/>.
+        /// </summary>
+        public SpecificWeight ToNewtonsPerCubicMillimeter => ToUnit(SpecificWeightUnit.NewtonPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.PoundForcePerCubicFoot"/>.
+        /// </summary>
+        public SpecificWeight ToPoundsForcePerCubicFoot => ToUnit(SpecificWeightUnit.PoundForcePerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.PoundForcePerCubicInch"/>.
+        /// </summary>
+        public SpecificWeight ToPoundsForcePerCubicInch => ToUnit(SpecificWeightUnit.PoundForcePerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.TonneForcePerCubicCentimeter"/>.
+        /// </summary>
+        public SpecificWeight ToTonnesForcePerCubicCentimeter => ToUnit(SpecificWeightUnit.TonneForcePerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMeter"/>.
+        /// </summary>
+        public SpecificWeight ToTonnesForcePerCubicMeter => ToUnit(SpecificWeightUnit.TonneForcePerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificWeight"/> converted into <see cref="SpecificWeightUnit.TonneForcePerCubicMillimeter"/>.
+        /// </summary>
+        public SpecificWeight ToTonnesForcePerCubicMillimeter => ToUnit(SpecificWeightUnit.TonneForcePerCubicMillimeter);
 
         #endregion
 

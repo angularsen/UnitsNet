@@ -80,19 +80,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/>
+        ///     Gets this <see cref="ReactiveEnergy"/> converted into <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilovoltampereReactiveHours property.")]
         public double KilovoltampereReactiveHours => As(ReactiveEnergyUnit.KilovoltampereReactiveHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>
+        ///     Gets this <see cref="ReactiveEnergy"/> converted into <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegavoltampereReactiveHours property.")]
         public double MegavoltampereReactiveHours => As(ReactiveEnergyUnit.MegavoltampereReactiveHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>
+        ///     Gets this <see cref="ReactiveEnergy"/> converted into <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToVoltampereReactiveHours property.")]
         public double VoltampereReactiveHours => As(ReactiveEnergyUnit.VoltampereReactiveHour);
+
+        /// <summary>
+        ///     Gets this <see cref="ReactiveEnergy"/> converted into <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/>.
+        /// </summary>
+        public ReactiveEnergy ToKilovoltampereReactiveHours => ToUnit(ReactiveEnergyUnit.KilovoltampereReactiveHour);
+
+        /// <summary>
+        ///     Gets this <see cref="ReactiveEnergy"/> converted into <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>.
+        /// </summary>
+        public ReactiveEnergy ToMegavoltampereReactiveHours => ToUnit(ReactiveEnergyUnit.MegavoltampereReactiveHour);
+
+        /// <summary>
+        ///     Gets this <see cref="ReactiveEnergy"/> converted into <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>.
+        /// </summary>
+        public ReactiveEnergy ToVoltampereReactiveHours => ToUnit(ReactiveEnergyUnit.VoltampereReactiveHour);
 
         #endregion
 

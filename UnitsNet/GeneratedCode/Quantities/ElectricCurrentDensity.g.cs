@@ -193,19 +193,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>
+        ///     Gets this <see cref="ElectricCurrentDensity"/> converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperesPerSquareFoot property.")]
         public double AmperesPerSquareFoot => As(ElectricCurrentDensityUnit.AmperePerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>
+        ///     Gets this <see cref="ElectricCurrentDensity"/> converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperesPerSquareInch property.")]
         public double AmperesPerSquareInch => As(ElectricCurrentDensityUnit.AmperePerSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>
+        ///     Gets this <see cref="ElectricCurrentDensity"/> converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperesPerSquareMeter property.")]
         public double AmperesPerSquareMeter => As(ElectricCurrentDensityUnit.AmperePerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrentDensity"/> converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>.
+        /// </summary>
+        public ElectricCurrentDensity ToAmperesPerSquareFoot => ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrentDensity"/> converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>.
+        /// </summary>
+        public ElectricCurrentDensity ToAmperesPerSquareInch => ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrentDensity"/> converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>.
+        /// </summary>
+        public ElectricCurrentDensity ToAmperesPerSquareMeter => ToUnit(ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
         #endregion
 

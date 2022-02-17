@@ -191,9 +191,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFluxUnit.Weber"/>
+        ///     Gets this <see cref="MagneticFlux"/> converted into <see cref="MagneticFluxUnit.Weber"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWebers property.")]
         public double Webers => As(MagneticFluxUnit.Weber);
+
+        /// <summary>
+        ///     Gets this <see cref="MagneticFlux"/> converted into <see cref="MagneticFluxUnit.Weber"/>.
+        /// </summary>
+        public MagneticFlux ToWebers => ToUnit(MagneticFluxUnit.Weber);
 
         #endregion
 

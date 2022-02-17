@@ -83,259 +83,565 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerDeciliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.CentigramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentigramsPerDeciLiter property.")]
         public double CentigramsPerDeciLiter => As(DensityUnit.CentigramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerLiter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.CentigramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentigramsPerLiter property.")]
         public double CentigramsPerLiter => As(DensityUnit.CentigramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerMilliliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.CentigramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentigramsPerMilliliter property.")]
         public double CentigramsPerMilliliter => As(DensityUnit.CentigramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerDeciliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.DecigramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecigramsPerDeciLiter property.")]
         public double DecigramsPerDeciLiter => As(DensityUnit.DecigramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerLiter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.DecigramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecigramsPerLiter property.")]
         public double DecigramsPerLiter => As(DensityUnit.DecigramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerMilliliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.DecigramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecigramsPerMilliliter property.")]
         public double DecigramsPerMilliliter => As(DensityUnit.DecigramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicCentimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerCubicCentimeter property.")]
         public double GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicFoot"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerCubicFoot property.")]
         public double GramsPerCubicFoot => As(DensityUnit.GramPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicInch"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerCubicInch property.")]
         public double GramsPerCubicInch => As(DensityUnit.GramPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicMeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerCubicMeter property.")]
         public double GramsPerCubicMeter => As(DensityUnit.GramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicMillimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerCubicMillimeter property.")]
         public double GramsPerCubicMillimeter => As(DensityUnit.GramPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerDeciliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerDeciLiter property.")]
         public double GramsPerDeciLiter => As(DensityUnit.GramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerLiter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerLiter property.")]
         public double GramsPerLiter => As(DensityUnit.GramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerMilliliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerMilliliter property.")]
         public double GramsPerMilliliter => As(DensityUnit.GramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicCentimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilogramPerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerCubicCentimeter property.")]
         public double KilogramsPerCubicCentimeter => As(DensityUnit.KilogramPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicMeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilogramPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerCubicMeter property.")]
         public double KilogramsPerCubicMeter => As(DensityUnit.KilogramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicMillimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilogramPerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerCubicMillimeter property.")]
         public double KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerLiter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilogramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerLiter property.")]
         public double KilogramsPerLiter => As(DensityUnit.KilogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicFoot"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilopoundPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsPerCubicFoot property.")]
         public double KilopoundsPerCubicFoot => As(DensityUnit.KilopoundPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicInch"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilopoundPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsPerCubicInch property.")]
         public double KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerCubicMeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MicrogramPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerCubicMeter property.")]
         public double MicrogramsPerCubicMeter => As(DensityUnit.MicrogramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerDeciliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MicrogramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerDeciLiter property.")]
         public double MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerLiter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MicrogramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerLiter property.")]
         public double MicrogramsPerLiter => As(DensityUnit.MicrogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerMilliliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MicrogramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerMilliliter property.")]
         public double MicrogramsPerMilliliter => As(DensityUnit.MicrogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerCubicMeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MilligramPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerCubicMeter property.")]
         public double MilligramsPerCubicMeter => As(DensityUnit.MilligramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerDeciliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MilligramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerDeciLiter property.")]
         public double MilligramsPerDeciLiter => As(DensityUnit.MilligramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerLiter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MilligramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerLiter property.")]
         public double MilligramsPerLiter => As(DensityUnit.MilligramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerMilliliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MilligramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerMilliliter property.")]
         public double MilligramsPerMilliliter => As(DensityUnit.MilligramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerDeciliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.NanogramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanogramsPerDeciLiter property.")]
         public double NanogramsPerDeciLiter => As(DensityUnit.NanogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerLiter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.NanogramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanogramsPerLiter property.")]
         public double NanogramsPerLiter => As(DensityUnit.NanogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerMilliliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.NanogramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanogramsPerMilliliter property.")]
         public double NanogramsPerMilliliter => As(DensityUnit.NanogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerDeciliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PicogramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicogramsPerDeciLiter property.")]
         public double PicogramsPerDeciLiter => As(DensityUnit.PicogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerLiter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PicogramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicogramsPerLiter property.")]
         public double PicogramsPerLiter => As(DensityUnit.PicogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerMilliliter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PicogramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicogramsPerMilliliter property.")]
         public double PicogramsPerMilliliter => As(DensityUnit.PicogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicCentimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerCubicCentimeter property.")]
         public double PoundsPerCubicCentimeter => As(DensityUnit.PoundPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicFoot"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerCubicFoot property.")]
         public double PoundsPerCubicFoot => As(DensityUnit.PoundPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicInch"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerCubicInch property.")]
         public double PoundsPerCubicInch => As(DensityUnit.PoundPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerCubicMeter property.")]
         public double PoundsPerCubicMeter => As(DensityUnit.PoundPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMillimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerCubicMillimeter property.")]
         public double PoundsPerCubicMillimeter => As(DensityUnit.PoundPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerImperialGallon"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerImperialGallon"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerImperialGallon property.")]
         public double PoundsPerImperialGallon => As(DensityUnit.PoundPerImperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerUSGallon"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerUSGallon"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerUSGallon property.")]
         public double PoundsPerUSGallon => As(DensityUnit.PoundPerUSGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicCentimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSlugsPerCubicCentimeter property.")]
         public double SlugsPerCubicCentimeter => As(DensityUnit.SlugPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicFoot"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSlugsPerCubicFoot property.")]
         public double SlugsPerCubicFoot => As(DensityUnit.SlugPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicInch"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSlugsPerCubicInch property.")]
         public double SlugsPerCubicInch => As(DensityUnit.SlugPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicMeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSlugsPerCubicMeter property.")]
         public double SlugsPerCubicMeter => As(DensityUnit.SlugPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicMillimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSlugsPerCubicMillimeter property.")]
         public double SlugsPerCubicMillimeter => As(DensityUnit.SlugPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicCentimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesPerCubicCentimeter property.")]
         public double TonnesPerCubicCentimeter => As(DensityUnit.TonnePerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicFoot"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesPerCubicFoot property.")]
         public double TonnesPerCubicFoot => As(DensityUnit.TonnePerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicInch"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesPerCubicInch property.")]
         public double TonnesPerCubicInch => As(DensityUnit.TonnePerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicMeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesPerCubicMeter property.")]
         public double TonnesPerCubicMeter => As(DensityUnit.TonnePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicMillimeter"/>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesPerCubicMillimeter property.")]
         public double TonnesPerCubicMillimeter => As(DensityUnit.TonnePerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.CentigramPerDeciliter"/>.
+        /// </summary>
+        public Density ToCentigramsPerDeciLiter => ToUnit(DensityUnit.CentigramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.CentigramPerLiter"/>.
+        /// </summary>
+        public Density ToCentigramsPerLiter => ToUnit(DensityUnit.CentigramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.CentigramPerMilliliter"/>.
+        /// </summary>
+        public Density ToCentigramsPerMilliliter => ToUnit(DensityUnit.CentigramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.DecigramPerDeciliter"/>.
+        /// </summary>
+        public Density ToDecigramsPerDeciLiter => ToUnit(DensityUnit.DecigramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.DecigramPerLiter"/>.
+        /// </summary>
+        public Density ToDecigramsPerLiter => ToUnit(DensityUnit.DecigramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.DecigramPerMilliliter"/>.
+        /// </summary>
+        public Density ToDecigramsPerMilliliter => ToUnit(DensityUnit.DecigramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicCentimeter"/>.
+        /// </summary>
+        public Density ToGramsPerCubicCentimeter => ToUnit(DensityUnit.GramPerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicFoot"/>.
+        /// </summary>
+        public Density ToGramsPerCubicFoot => ToUnit(DensityUnit.GramPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicInch"/>.
+        /// </summary>
+        public Density ToGramsPerCubicInch => ToUnit(DensityUnit.GramPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicMeter"/>.
+        /// </summary>
+        public Density ToGramsPerCubicMeter => ToUnit(DensityUnit.GramPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerCubicMillimeter"/>.
+        /// </summary>
+        public Density ToGramsPerCubicMillimeter => ToUnit(DensityUnit.GramPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerDeciliter"/>.
+        /// </summary>
+        public Density ToGramsPerDeciLiter => ToUnit(DensityUnit.GramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerLiter"/>.
+        /// </summary>
+        public Density ToGramsPerLiter => ToUnit(DensityUnit.GramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.GramPerMilliliter"/>.
+        /// </summary>
+        public Density ToGramsPerMilliliter => ToUnit(DensityUnit.GramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilogramPerCubicCentimeter"/>.
+        /// </summary>
+        public Density ToKilogramsPerCubicCentimeter => ToUnit(DensityUnit.KilogramPerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilogramPerCubicMeter"/>.
+        /// </summary>
+        public Density ToKilogramsPerCubicMeter => ToUnit(DensityUnit.KilogramPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilogramPerCubicMillimeter"/>.
+        /// </summary>
+        public Density ToKilogramsPerCubicMillimeter => ToUnit(DensityUnit.KilogramPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilogramPerLiter"/>.
+        /// </summary>
+        public Density ToKilogramsPerLiter => ToUnit(DensityUnit.KilogramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilopoundPerCubicFoot"/>.
+        /// </summary>
+        public Density ToKilopoundsPerCubicFoot => ToUnit(DensityUnit.KilopoundPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.KilopoundPerCubicInch"/>.
+        /// </summary>
+        public Density ToKilopoundsPerCubicInch => ToUnit(DensityUnit.KilopoundPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MicrogramPerCubicMeter"/>.
+        /// </summary>
+        public Density ToMicrogramsPerCubicMeter => ToUnit(DensityUnit.MicrogramPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MicrogramPerDeciliter"/>.
+        /// </summary>
+        public Density ToMicrogramsPerDeciLiter => ToUnit(DensityUnit.MicrogramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MicrogramPerLiter"/>.
+        /// </summary>
+        public Density ToMicrogramsPerLiter => ToUnit(DensityUnit.MicrogramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MicrogramPerMilliliter"/>.
+        /// </summary>
+        public Density ToMicrogramsPerMilliliter => ToUnit(DensityUnit.MicrogramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MilligramPerCubicMeter"/>.
+        /// </summary>
+        public Density ToMilligramsPerCubicMeter => ToUnit(DensityUnit.MilligramPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MilligramPerDeciliter"/>.
+        /// </summary>
+        public Density ToMilligramsPerDeciLiter => ToUnit(DensityUnit.MilligramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MilligramPerLiter"/>.
+        /// </summary>
+        public Density ToMilligramsPerLiter => ToUnit(DensityUnit.MilligramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.MilligramPerMilliliter"/>.
+        /// </summary>
+        public Density ToMilligramsPerMilliliter => ToUnit(DensityUnit.MilligramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.NanogramPerDeciliter"/>.
+        /// </summary>
+        public Density ToNanogramsPerDeciLiter => ToUnit(DensityUnit.NanogramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.NanogramPerLiter"/>.
+        /// </summary>
+        public Density ToNanogramsPerLiter => ToUnit(DensityUnit.NanogramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.NanogramPerMilliliter"/>.
+        /// </summary>
+        public Density ToNanogramsPerMilliliter => ToUnit(DensityUnit.NanogramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PicogramPerDeciliter"/>.
+        /// </summary>
+        public Density ToPicogramsPerDeciLiter => ToUnit(DensityUnit.PicogramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PicogramPerLiter"/>.
+        /// </summary>
+        public Density ToPicogramsPerLiter => ToUnit(DensityUnit.PicogramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PicogramPerMilliliter"/>.
+        /// </summary>
+        public Density ToPicogramsPerMilliliter => ToUnit(DensityUnit.PicogramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicCentimeter"/>.
+        /// </summary>
+        public Density ToPoundsPerCubicCentimeter => ToUnit(DensityUnit.PoundPerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicFoot"/>.
+        /// </summary>
+        public Density ToPoundsPerCubicFoot => ToUnit(DensityUnit.PoundPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicInch"/>.
+        /// </summary>
+        public Density ToPoundsPerCubicInch => ToUnit(DensityUnit.PoundPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicMeter"/>.
+        /// </summary>
+        public Density ToPoundsPerCubicMeter => ToUnit(DensityUnit.PoundPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerCubicMillimeter"/>.
+        /// </summary>
+        public Density ToPoundsPerCubicMillimeter => ToUnit(DensityUnit.PoundPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerImperialGallon"/>.
+        /// </summary>
+        public Density ToPoundsPerImperialGallon => ToUnit(DensityUnit.PoundPerImperialGallon);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.PoundPerUSGallon"/>.
+        /// </summary>
+        public Density ToPoundsPerUSGallon => ToUnit(DensityUnit.PoundPerUSGallon);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicCentimeter"/>.
+        /// </summary>
+        public Density ToSlugsPerCubicCentimeter => ToUnit(DensityUnit.SlugPerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicFoot"/>.
+        /// </summary>
+        public Density ToSlugsPerCubicFoot => ToUnit(DensityUnit.SlugPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicInch"/>.
+        /// </summary>
+        public Density ToSlugsPerCubicInch => ToUnit(DensityUnit.SlugPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicMeter"/>.
+        /// </summary>
+        public Density ToSlugsPerCubicMeter => ToUnit(DensityUnit.SlugPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.SlugPerCubicMillimeter"/>.
+        /// </summary>
+        public Density ToSlugsPerCubicMillimeter => ToUnit(DensityUnit.SlugPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicCentimeter"/>.
+        /// </summary>
+        public Density ToTonnesPerCubicCentimeter => ToUnit(DensityUnit.TonnePerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicFoot"/>.
+        /// </summary>
+        public Density ToTonnesPerCubicFoot => ToUnit(DensityUnit.TonnePerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicInch"/>.
+        /// </summary>
+        public Density ToTonnesPerCubicInch => ToUnit(DensityUnit.TonnePerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicMeter"/>.
+        /// </summary>
+        public Density ToTonnesPerCubicMeter => ToUnit(DensityUnit.TonnePerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Density"/> converted into <see cref="DensityUnit.TonnePerCubicMillimeter"/>.
+        /// </summary>
+        public Density ToTonnesPerCubicMillimeter => ToUnit(DensityUnit.TonnePerCubicMillimeter);
 
         #endregion
 

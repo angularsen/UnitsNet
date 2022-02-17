@@ -83,59 +83,125 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareCentimeters property.")]
         public double InverseSquareCentimeters => As(ReciprocalAreaUnit.InverseSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareDecimeters property.")]
         public double InverseSquareDecimeters => As(ReciprocalAreaUnit.InverseSquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareFeet property.")]
         public double InverseSquareFeet => As(ReciprocalAreaUnit.InverseSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareInch"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareInches property.")]
         public double InverseSquareInches => As(ReciprocalAreaUnit.InverseSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareKilometers property.")]
         public double InverseSquareKilometers => As(ReciprocalAreaUnit.InverseSquareKilometer);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareMeters property.")]
         public double InverseSquareMeters => As(ReciprocalAreaUnit.InverseSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareMicrometers property.")]
         public double InverseSquareMicrometers => As(ReciprocalAreaUnit.InverseSquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMile"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareMile"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareMiles property.")]
         public double InverseSquareMiles => As(ReciprocalAreaUnit.InverseSquareMile);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareMillimeters property.")]
         public double InverseSquareMillimeters => As(ReciprocalAreaUnit.InverseSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareYard"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareYard"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseSquareYards property.")]
         public double InverseSquareYards => As(ReciprocalAreaUnit.InverseSquareYard);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseUsSurveySquareFeet property.")]
         public double InverseUsSurveySquareFeet => As(ReciprocalAreaUnit.InverseUsSurveySquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareCentimeters => ToUnit(ReciprocalAreaUnit.InverseSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareDecimeters => ToUnit(ReciprocalAreaUnit.InverseSquareDecimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareFeet => ToUnit(ReciprocalAreaUnit.InverseSquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareInch"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareInches => ToUnit(ReciprocalAreaUnit.InverseSquareInch);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareKilometers => ToUnit(ReciprocalAreaUnit.InverseSquareKilometer);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareMeters => ToUnit(ReciprocalAreaUnit.InverseSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareMicrometers => ToUnit(ReciprocalAreaUnit.InverseSquareMicrometer);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareMile"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareMiles => ToUnit(ReciprocalAreaUnit.InverseSquareMile);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareMillimeters => ToUnit(ReciprocalAreaUnit.InverseSquareMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseSquareYard"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseSquareYards => ToUnit(ReciprocalAreaUnit.InverseSquareYard);
+
+        /// <summary>
+        ///     Gets this <see cref="ReciprocalArea"/> converted into <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>.
+        /// </summary>
+        public ReciprocalArea ToInverseUsSurveySquareFeet => ToUnit(ReciprocalAreaUnit.InverseUsSurveySquareFoot);
 
         #endregion
 

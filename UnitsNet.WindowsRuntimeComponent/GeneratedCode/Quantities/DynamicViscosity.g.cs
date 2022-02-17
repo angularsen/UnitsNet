@@ -167,54 +167,114 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.Centipoise"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.Centipoise"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentipoise property.")]
         public double Centipoise => As(DynamicViscosityUnit.Centipoise);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.MicropascalSecond"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.MicropascalSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicropascalSeconds property.")]
         public double MicropascalSeconds => As(DynamicViscosityUnit.MicropascalSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.MillipascalSecond"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.MillipascalSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillipascalSeconds property.")]
         public double MillipascalSeconds => As(DynamicViscosityUnit.MillipascalSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.NewtonSecondPerMeterSquared"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.NewtonSecondPerMeterSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonSecondsPerMeterSquared property.")]
         public double NewtonSecondsPerMeterSquared => As(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.PascalSecond"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.PascalSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPascalSeconds property.")]
         public double PascalSeconds => As(DynamicViscosityUnit.PascalSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.Poise"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.Poise"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoise property.")]
         public double Poise => As(DynamicViscosityUnit.Poise);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareFoot"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsForceSecondPerSquareFoot property.")]
         public double PoundsForceSecondPerSquareFoot => As(DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareInch"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsForceSecondPerSquareInch property.")]
         public double PoundsForceSecondPerSquareInch => As(DynamicViscosityUnit.PoundForceSecondPerSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.PoundPerFootSecond"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.PoundPerFootSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerFootSecond property.")]
         public double PoundsPerFootSecond => As(DynamicViscosityUnit.PoundPerFootSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DynamicViscosityUnit.Reyn"/>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.Reyn"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToReyns property.")]
         public double Reyns => As(DynamicViscosityUnit.Reyn);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.Centipoise"/>.
+        /// </summary>
+        public DynamicViscosity ToCentipoise => ToUnit(DynamicViscosityUnit.Centipoise);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.MicropascalSecond"/>.
+        /// </summary>
+        public DynamicViscosity ToMicropascalSeconds => ToUnit(DynamicViscosityUnit.MicropascalSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.MillipascalSecond"/>.
+        /// </summary>
+        public DynamicViscosity ToMillipascalSeconds => ToUnit(DynamicViscosityUnit.MillipascalSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.NewtonSecondPerMeterSquared"/>.
+        /// </summary>
+        public DynamicViscosity ToNewtonSecondsPerMeterSquared => ToUnit(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.PascalSecond"/>.
+        /// </summary>
+        public DynamicViscosity ToPascalSeconds => ToUnit(DynamicViscosityUnit.PascalSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.Poise"/>.
+        /// </summary>
+        public DynamicViscosity ToPoise => ToUnit(DynamicViscosityUnit.Poise);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareFoot"/>.
+        /// </summary>
+        public DynamicViscosity ToPoundsForceSecondPerSquareFoot => ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.PoundForceSecondPerSquareInch"/>.
+        /// </summary>
+        public DynamicViscosity ToPoundsForceSecondPerSquareInch => ToUnit(DynamicViscosityUnit.PoundForceSecondPerSquareInch);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.PoundPerFootSecond"/>.
+        /// </summary>
+        public DynamicViscosity ToPoundsPerFootSecond => ToUnit(DynamicViscosityUnit.PoundPerFootSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="DynamicViscosity"/> converted into <see cref="DynamicViscosityUnit.Reyn"/>.
+        /// </summary>
+        public DynamicViscosity ToReyns => ToUnit(DynamicViscosityUnit.Reyn);
 
         #endregion
 

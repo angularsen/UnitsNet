@@ -194,24 +194,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
+        ///     Gets this <see cref="Illuminance"/> converted into <see cref="IlluminanceUnit.Kilolux"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilolux property.")]
         public double Kilolux => As(IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
+        ///     Gets this <see cref="Illuminance"/> converted into <see cref="IlluminanceUnit.Lux"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToLux property.")]
         public double Lux => As(IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
+        ///     Gets this <see cref="Illuminance"/> converted into <see cref="IlluminanceUnit.Megalux"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegalux property.")]
         public double Megalux => As(IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
+        ///     Gets this <see cref="Illuminance"/> converted into <see cref="IlluminanceUnit.Millilux"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillilux property.")]
         public double Millilux => As(IlluminanceUnit.Millilux);
+
+        /// <summary>
+        ///     Gets this <see cref="Illuminance"/> converted into <see cref="IlluminanceUnit.Kilolux"/>.
+        /// </summary>
+        public Illuminance ToKilolux => ToUnit(IlluminanceUnit.Kilolux);
+
+        /// <summary>
+        ///     Gets this <see cref="Illuminance"/> converted into <see cref="IlluminanceUnit.Lux"/>.
+        /// </summary>
+        public Illuminance ToLux => ToUnit(IlluminanceUnit.Lux);
+
+        /// <summary>
+        ///     Gets this <see cref="Illuminance"/> converted into <see cref="IlluminanceUnit.Megalux"/>.
+        /// </summary>
+        public Illuminance ToMegalux => ToUnit(IlluminanceUnit.Megalux);
+
+        /// <summary>
+        ///     Gets this <see cref="Illuminance"/> converted into <see cref="IlluminanceUnit.Millilux"/>.
+        /// </summary>
+        public Illuminance ToMillilux => ToUnit(IlluminanceUnit.Millilux);
 
         #endregion
 

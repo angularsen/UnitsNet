@@ -164,14 +164,26 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>
+        ///     Gets this <see cref="PowerRatio"/> converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecibelMilliwatts property.")]
         public double DecibelMilliwatts => As(PowerRatioUnit.DecibelMilliwatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelWatt"/>
+        ///     Gets this <see cref="PowerRatio"/> converted into <see cref="PowerRatioUnit.DecibelWatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecibelWatts property.")]
         public double DecibelWatts => As(PowerRatioUnit.DecibelWatt);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerRatio"/> converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>.
+        /// </summary>
+        public PowerRatio ToDecibelMilliwatts => ToUnit(PowerRatioUnit.DecibelMilliwatt);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerRatio"/> converted into <see cref="PowerRatioUnit.DecibelWatt"/>.
+        /// </summary>
+        public PowerRatio ToDecibelWatts => ToUnit(PowerRatioUnit.DecibelWatt);
 
         #endregion
 

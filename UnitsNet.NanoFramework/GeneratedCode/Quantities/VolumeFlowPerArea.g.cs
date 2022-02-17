@@ -80,14 +80,26 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>
+        ///     Gets this <see cref="VolumeFlowPerArea"/> converted into <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicFeetPerMinutePerSquareFoot property.")]
         public double CubicFeetPerMinutePerSquareFoot => As(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>
+        ///     Gets this <see cref="VolumeFlowPerArea"/> converted into <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicMetersPerSecondPerSquareMeter property.")]
         public double CubicMetersPerSecondPerSquareMeter => As(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlowPerArea"/> converted into <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>.
+        /// </summary>
+        public VolumeFlowPerArea ToCubicFeetPerMinutePerSquareFoot => ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlowPerArea"/> converted into <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
+        /// </summary>
+        public VolumeFlowPerArea ToCubicMetersPerSecondPerSquareMeter => ToUnit(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
 
         #endregion
 

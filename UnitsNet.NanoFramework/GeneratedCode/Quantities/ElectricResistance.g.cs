@@ -80,34 +80,70 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Gigaohm"/>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Gigaohm"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigaohms property.")]
         public double Gigaohms => As(ElectricResistanceUnit.Gigaohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Kiloohm"/>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Kiloohm"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKiloohms property.")]
         public double Kiloohms => As(ElectricResistanceUnit.Kiloohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Megaohm"/>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Megaohm"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegaohms property.")]
         public double Megaohms => As(ElectricResistanceUnit.Megaohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Microohm"/>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Microohm"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicroohms property.")]
         public double Microohms => As(ElectricResistanceUnit.Microohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Milliohm"/>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Milliohm"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliohms property.")]
         public double Milliohms => As(ElectricResistanceUnit.Milliohm);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Ohm"/>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Ohm"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOhms property.")]
         public double Ohms => As(ElectricResistanceUnit.Ohm);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Gigaohm"/>.
+        /// </summary>
+        public ElectricResistance ToGigaohms => ToUnit(ElectricResistanceUnit.Gigaohm);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Kiloohm"/>.
+        /// </summary>
+        public ElectricResistance ToKiloohms => ToUnit(ElectricResistanceUnit.Kiloohm);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Megaohm"/>.
+        /// </summary>
+        public ElectricResistance ToMegaohms => ToUnit(ElectricResistanceUnit.Megaohm);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Microohm"/>.
+        /// </summary>
+        public ElectricResistance ToMicroohms => ToUnit(ElectricResistanceUnit.Microohm);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Milliohm"/>.
+        /// </summary>
+        public ElectricResistance ToMilliohms => ToUnit(ElectricResistanceUnit.Milliohm);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistance"/> converted into <see cref="ElectricResistanceUnit.Ohm"/>.
+        /// </summary>
+        public ElectricResistance ToOhms => ToUnit(ElectricResistanceUnit.Ohm);
 
         #endregion
 

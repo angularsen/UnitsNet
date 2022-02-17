@@ -190,19 +190,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/>
+        ///     Gets this <see cref="SpecificVolume"/> converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicFeetPerPound property.")]
         public double CubicFeetPerPound => As(SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>
+        ///     Gets this <see cref="SpecificVolume"/> converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicMetersPerKilogram property.")]
         public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
+        ///     Gets this <see cref="SpecificVolume"/> converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillicubicMetersPerKilogram property.")]
         public double MillicubicMetersPerKilogram => As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificVolume"/> converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/>.
+        /// </summary>
+        public SpecificVolume ToCubicFeetPerPound => ToUnit(SpecificVolumeUnit.CubicFootPerPound);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificVolume"/> converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
+        /// </summary>
+        public SpecificVolume ToCubicMetersPerKilogram => ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram);
+
+        /// <summary>
+        ///     Gets this <see cref="SpecificVolume"/> converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
+        /// </summary>
+        public SpecificVolume ToMillicubicMetersPerKilogram => ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram);
 
         #endregion
 

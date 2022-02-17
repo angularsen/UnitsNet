@@ -80,134 +80,290 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Bit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Bit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToBits property.")]
         public double Bits => As(InformationUnit.Bit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Byte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Byte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToBytes property.")]
         public double Bytes => As(InformationUnit.Byte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Exabit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToExabits property.")]
         public double Exabits => As(InformationUnit.Exabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Exabyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToExabytes property.")]
         public double Exabytes => As(InformationUnit.Exabyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Exbibit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToExbibits property.")]
         public double Exbibits => As(InformationUnit.Exbibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Exbibyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToExbibytes property.")]
         public double Exbibytes => As(InformationUnit.Exbibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Gibibit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGibibits property.")]
         public double Gibibits => As(InformationUnit.Gibibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Gibibyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGibibytes property.")]
         public double Gibibytes => As(InformationUnit.Gibibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Gigabit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigabits property.")]
         public double Gigabits => As(InformationUnit.Gigabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Gigabyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigabytes property.")]
         public double Gigabytes => As(InformationUnit.Gigabyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Kibibit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKibibits property.")]
         public double Kibibits => As(InformationUnit.Kibibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Kibibyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKibibytes property.")]
         public double Kibibytes => As(InformationUnit.Kibibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Kilobit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilobits property.")]
         public double Kilobits => As(InformationUnit.Kilobit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Kilobyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilobytes property.")]
         public double Kilobytes => As(InformationUnit.Kilobyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Mebibit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMebibits property.")]
         public double Mebibits => As(InformationUnit.Mebibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Mebibyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMebibytes property.")]
         public double Mebibytes => As(InformationUnit.Mebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Megabit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegabits property.")]
         public double Megabits => As(InformationUnit.Megabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Megabyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegabytes property.")]
         public double Megabytes => As(InformationUnit.Megabyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Pebibit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPebibits property.")]
         public double Pebibits => As(InformationUnit.Pebibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Pebibyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPebibytes property.")]
         public double Pebibytes => As(InformationUnit.Pebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Petabit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPetabits property.")]
         public double Petabits => As(InformationUnit.Petabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Petabyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPetabytes property.")]
         public double Petabytes => As(InformationUnit.Petabyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Tebibit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTebibits property.")]
         public double Tebibits => As(InformationUnit.Tebibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Tebibyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTebibytes property.")]
         public double Tebibytes => As(InformationUnit.Tebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Terabit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTerabits property.")]
         public double Terabits => As(InformationUnit.Terabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Terabyte"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTerabytes property.")]
         public double Terabytes => As(InformationUnit.Terabyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Bit"/>.
+        /// </summary>
+        public Information ToBits => ToUnit(InformationUnit.Bit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Byte"/>.
+        /// </summary>
+        public Information ToBytes => ToUnit(InformationUnit.Byte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Exabit"/>.
+        /// </summary>
+        public Information ToExabits => ToUnit(InformationUnit.Exabit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Exabyte"/>.
+        /// </summary>
+        public Information ToExabytes => ToUnit(InformationUnit.Exabyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Exbibit"/>.
+        /// </summary>
+        public Information ToExbibits => ToUnit(InformationUnit.Exbibit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Exbibyte"/>.
+        /// </summary>
+        public Information ToExbibytes => ToUnit(InformationUnit.Exbibyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Gibibit"/>.
+        /// </summary>
+        public Information ToGibibits => ToUnit(InformationUnit.Gibibit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Gibibyte"/>.
+        /// </summary>
+        public Information ToGibibytes => ToUnit(InformationUnit.Gibibyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Gigabit"/>.
+        /// </summary>
+        public Information ToGigabits => ToUnit(InformationUnit.Gigabit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Gigabyte"/>.
+        /// </summary>
+        public Information ToGigabytes => ToUnit(InformationUnit.Gigabyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Kibibit"/>.
+        /// </summary>
+        public Information ToKibibits => ToUnit(InformationUnit.Kibibit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Kibibyte"/>.
+        /// </summary>
+        public Information ToKibibytes => ToUnit(InformationUnit.Kibibyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Kilobit"/>.
+        /// </summary>
+        public Information ToKilobits => ToUnit(InformationUnit.Kilobit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Kilobyte"/>.
+        /// </summary>
+        public Information ToKilobytes => ToUnit(InformationUnit.Kilobyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Mebibit"/>.
+        /// </summary>
+        public Information ToMebibits => ToUnit(InformationUnit.Mebibit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Mebibyte"/>.
+        /// </summary>
+        public Information ToMebibytes => ToUnit(InformationUnit.Mebibyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Megabit"/>.
+        /// </summary>
+        public Information ToMegabits => ToUnit(InformationUnit.Megabit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Megabyte"/>.
+        /// </summary>
+        public Information ToMegabytes => ToUnit(InformationUnit.Megabyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Pebibit"/>.
+        /// </summary>
+        public Information ToPebibits => ToUnit(InformationUnit.Pebibit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Pebibyte"/>.
+        /// </summary>
+        public Information ToPebibytes => ToUnit(InformationUnit.Pebibyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Petabit"/>.
+        /// </summary>
+        public Information ToPetabits => ToUnit(InformationUnit.Petabit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Petabyte"/>.
+        /// </summary>
+        public Information ToPetabytes => ToUnit(InformationUnit.Petabyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Tebibit"/>.
+        /// </summary>
+        public Information ToTebibits => ToUnit(InformationUnit.Tebibit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Tebibyte"/>.
+        /// </summary>
+        public Information ToTebibytes => ToUnit(InformationUnit.Tebibyte);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Terabit"/>.
+        /// </summary>
+        public Information ToTerabits => ToUnit(InformationUnit.Terabit);
+
+        /// <summary>
+        ///     Gets this <see cref="Information"/> converted into <see cref="InformationUnit.Terabyte"/>.
+        /// </summary>
+        public Information ToTerabytes => ToUnit(InformationUnit.Terabyte);
 
         #endregion
 

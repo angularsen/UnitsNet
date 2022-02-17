@@ -97,7 +97,7 @@ namespace UnitsNet
             GenerateInstanceConstructors();
             GenerateStaticProperties();
             GenerateProperties();
-            GenerateConversionProperties();
+            Common.QuantityGenerator.GenerateConversionProperties(_quantity, Writer);
             GenerateStaticMethods();
             GenerateStaticFactoryMethods();
             GenerateStaticParseMethods();
@@ -321,32 +321,6 @@ namespace UnitsNet
         ///     The <see cref=""BaseDimensions"" /> of this quantity.
         /// </summary>
         public BaseDimensions Dimensions => {_quantity.Name}.BaseDimensions;
-
-        #endregion
-");
-        }
-
-        private void GenerateConversionProperties()
-        {
-            Writer.WL(@"
-        #region Conversion Properties
-");
-            foreach (var unit in _quantity.Units)
-            {
-                if (unit.SkipConversionGeneration)
-                    continue;
-
-                Writer.WL($@"
-        /// <summary>
-        ///     Gets a <see cref=""double""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
-        /// </summary>");
-                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
-                Writer.WL($@"
-        public double {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
-");
-            }
-
-            Writer.WL(@"
 
         #endregion
 ");

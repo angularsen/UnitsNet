@@ -164,74 +164,158 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilowattsPerSquareCentimeter property.")]
         public double KilowattsPerSquareCentimeter => As(IrradianceUnit.KilowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.KilowattPerSquareMeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.KilowattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilowattsPerSquareMeter property.")]
         public double KilowattsPerSquareMeter => As(IrradianceUnit.KilowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegawattsPerSquareCentimeter property.")]
         public double MegawattsPerSquareCentimeter => As(IrradianceUnit.MegawattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MegawattPerSquareMeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MegawattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegawattsPerSquareMeter property.")]
         public double MegawattsPerSquareMeter => As(IrradianceUnit.MegawattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrowattsPerSquareCentimeter property.")]
         public double MicrowattsPerSquareCentimeter => As(IrradianceUnit.MicrowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MicrowattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrowattsPerSquareMeter property.")]
         public double MicrowattsPerSquareMeter => As(IrradianceUnit.MicrowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliwattsPerSquareCentimeter property.")]
         public double MilliwattsPerSquareCentimeter => As(IrradianceUnit.MilliwattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MilliwattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliwattsPerSquareMeter property.")]
         public double MilliwattsPerSquareMeter => As(IrradianceUnit.MilliwattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanowattsPerSquareCentimeter property.")]
         public double NanowattsPerSquareCentimeter => As(IrradianceUnit.NanowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.NanowattPerSquareMeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.NanowattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanowattsPerSquareMeter property.")]
         public double NanowattsPerSquareMeter => As(IrradianceUnit.NanowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicowattsPerSquareCentimeter property.")]
         public double PicowattsPerSquareCentimeter => As(IrradianceUnit.PicowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.PicowattPerSquareMeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.PicowattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicowattsPerSquareMeter property.")]
         public double PicowattsPerSquareMeter => As(IrradianceUnit.PicowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.WattPerSquareCentimeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.WattPerSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerSquareCentimeter property.")]
         public double WattsPerSquareCentimeter => As(IrradianceUnit.WattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.WattPerSquareMeter"/>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.WattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerSquareMeter property.")]
         public double WattsPerSquareMeter => As(IrradianceUnit.WattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/>.
+        /// </summary>
+        public Irradiance ToKilowattsPerSquareCentimeter => ToUnit(IrradianceUnit.KilowattPerSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.KilowattPerSquareMeter"/>.
+        /// </summary>
+        public Irradiance ToKilowattsPerSquareMeter => ToUnit(IrradianceUnit.KilowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>.
+        /// </summary>
+        public Irradiance ToMegawattsPerSquareCentimeter => ToUnit(IrradianceUnit.MegawattPerSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MegawattPerSquareMeter"/>.
+        /// </summary>
+        public Irradiance ToMegawattsPerSquareMeter => ToUnit(IrradianceUnit.MegawattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>.
+        /// </summary>
+        public Irradiance ToMicrowattsPerSquareCentimeter => ToUnit(IrradianceUnit.MicrowattPerSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>.
+        /// </summary>
+        public Irradiance ToMicrowattsPerSquareMeter => ToUnit(IrradianceUnit.MicrowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>.
+        /// </summary>
+        public Irradiance ToMilliwattsPerSquareCentimeter => ToUnit(IrradianceUnit.MilliwattPerSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>.
+        /// </summary>
+        public Irradiance ToMilliwattsPerSquareMeter => ToUnit(IrradianceUnit.MilliwattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>.
+        /// </summary>
+        public Irradiance ToNanowattsPerSquareCentimeter => ToUnit(IrradianceUnit.NanowattPerSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.NanowattPerSquareMeter"/>.
+        /// </summary>
+        public Irradiance ToNanowattsPerSquareMeter => ToUnit(IrradianceUnit.NanowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>.
+        /// </summary>
+        public Irradiance ToPicowattsPerSquareCentimeter => ToUnit(IrradianceUnit.PicowattPerSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.PicowattPerSquareMeter"/>.
+        /// </summary>
+        public Irradiance ToPicowattsPerSquareMeter => ToUnit(IrradianceUnit.PicowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.WattPerSquareCentimeter"/>.
+        /// </summary>
+        public Irradiance ToWattsPerSquareCentimeter => ToUnit(IrradianceUnit.WattPerSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Irradiance"/> converted into <see cref="IrradianceUnit.WattPerSquareMeter"/>.
+        /// </summary>
+        public Irradiance ToWattsPerSquareMeter => ToUnit(IrradianceUnit.WattPerSquareMeter);
 
         #endregion
 

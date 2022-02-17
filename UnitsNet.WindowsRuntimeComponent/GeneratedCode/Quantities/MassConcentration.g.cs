@@ -167,249 +167,543 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerDeciliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.CentigramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentigramsPerDeciliter property.")]
         public double CentigramsPerDeciliter => As(MassConcentrationUnit.CentigramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerLiter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.CentigramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentigramsPerLiter property.")]
         public double CentigramsPerLiter => As(MassConcentrationUnit.CentigramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerMicroliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.CentigramPerMicroliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentigramsPerMicroliter property.")]
         public double CentigramsPerMicroliter => As(MassConcentrationUnit.CentigramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerMilliliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.CentigramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentigramsPerMilliliter property.")]
         public double CentigramsPerMilliliter => As(MassConcentrationUnit.CentigramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerDeciliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.DecigramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecigramsPerDeciliter property.")]
         public double DecigramsPerDeciliter => As(MassConcentrationUnit.DecigramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerLiter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.DecigramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecigramsPerLiter property.")]
         public double DecigramsPerLiter => As(MassConcentrationUnit.DecigramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerMicroliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.DecigramPerMicroliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecigramsPerMicroliter property.")]
         public double DecigramsPerMicroliter => As(MassConcentrationUnit.DecigramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerMilliliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.DecigramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecigramsPerMilliliter property.")]
         public double DecigramsPerMilliliter => As(MassConcentrationUnit.DecigramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicCentimeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerCubicCentimeter property.")]
         public double GramsPerCubicCentimeter => As(MassConcentrationUnit.GramPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicMeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerCubicMeter property.")]
         public double GramsPerCubicMeter => As(MassConcentrationUnit.GramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicMillimeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerCubicMillimeter property.")]
         public double GramsPerCubicMillimeter => As(MassConcentrationUnit.GramPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerDeciliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerDeciliter property.")]
         public double GramsPerDeciliter => As(MassConcentrationUnit.GramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerLiter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerLiter property.")]
         public double GramsPerLiter => As(MassConcentrationUnit.GramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerMicroliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerMicroliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerMicroliter property.")]
         public double GramsPerMicroliter => As(MassConcentrationUnit.GramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerMilliliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerMilliliter property.")]
         public double GramsPerMilliliter => As(MassConcentrationUnit.GramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicCentimeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilogramPerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerCubicCentimeter property.")]
         public double KilogramsPerCubicCentimeter => As(MassConcentrationUnit.KilogramPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicMeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilogramPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerCubicMeter property.")]
         public double KilogramsPerCubicMeter => As(MassConcentrationUnit.KilogramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicMillimeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilogramPerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerCubicMillimeter property.")]
         public double KilogramsPerCubicMillimeter => As(MassConcentrationUnit.KilogramPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerLiter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilogramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerLiter property.")]
         public double KilogramsPerLiter => As(MassConcentrationUnit.KilogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilopoundPerCubicFoot"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilopoundPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsPerCubicFoot property.")]
         public double KilopoundsPerCubicFoot => As(MassConcentrationUnit.KilopoundPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilopoundPerCubicInch"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilopoundPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsPerCubicInch property.")]
         public double KilopoundsPerCubicInch => As(MassConcentrationUnit.KilopoundPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerCubicMeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerCubicMeter property.")]
         public double MicrogramsPerCubicMeter => As(MassConcentrationUnit.MicrogramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerDeciliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerDeciliter property.")]
         public double MicrogramsPerDeciliter => As(MassConcentrationUnit.MicrogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerLiter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerLiter property.")]
         public double MicrogramsPerLiter => As(MassConcentrationUnit.MicrogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerMicroliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerMicroliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerMicroliter property.")]
         public double MicrogramsPerMicroliter => As(MassConcentrationUnit.MicrogramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerMilliliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerMilliliter property.")]
         public double MicrogramsPerMilliliter => As(MassConcentrationUnit.MicrogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerCubicMeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerCubicMeter property.")]
         public double MilligramsPerCubicMeter => As(MassConcentrationUnit.MilligramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerDeciliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerDeciliter property.")]
         public double MilligramsPerDeciliter => As(MassConcentrationUnit.MilligramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerLiter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerLiter property.")]
         public double MilligramsPerLiter => As(MassConcentrationUnit.MilligramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerMicroliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerMicroliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerMicroliter property.")]
         public double MilligramsPerMicroliter => As(MassConcentrationUnit.MilligramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerMilliliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerMilliliter property.")]
         public double MilligramsPerMilliliter => As(MassConcentrationUnit.MilligramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerDeciliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.NanogramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanogramsPerDeciliter property.")]
         public double NanogramsPerDeciliter => As(MassConcentrationUnit.NanogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerLiter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.NanogramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanogramsPerLiter property.")]
         public double NanogramsPerLiter => As(MassConcentrationUnit.NanogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerMicroliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.NanogramPerMicroliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanogramsPerMicroliter property.")]
         public double NanogramsPerMicroliter => As(MassConcentrationUnit.NanogramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerMilliliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.NanogramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanogramsPerMilliliter property.")]
         public double NanogramsPerMilliliter => As(MassConcentrationUnit.NanogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.OuncePerImperialGallon"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.OuncePerImperialGallon"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOuncesPerImperialGallon property.")]
         public double OuncesPerImperialGallon => As(MassConcentrationUnit.OuncePerImperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.OuncePerUSGallon"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.OuncePerUSGallon"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOuncesPerUSGallon property.")]
         public double OuncesPerUSGallon => As(MassConcentrationUnit.OuncePerUSGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerDeciliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PicogramPerDeciliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicogramsPerDeciliter property.")]
         public double PicogramsPerDeciliter => As(MassConcentrationUnit.PicogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerLiter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PicogramPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicogramsPerLiter property.")]
         public double PicogramsPerLiter => As(MassConcentrationUnit.PicogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerMicroliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PicogramPerMicroliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicogramsPerMicroliter property.")]
         public double PicogramsPerMicroliter => As(MassConcentrationUnit.PicogramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerMilliliter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PicogramPerMilliliter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicogramsPerMilliliter property.")]
         public double PicogramsPerMilliliter => As(MassConcentrationUnit.PicogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerCubicFoot"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PoundPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerCubicFoot property.")]
         public double PoundsPerCubicFoot => As(MassConcentrationUnit.PoundPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerCubicInch"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PoundPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerCubicInch property.")]
         public double PoundsPerCubicInch => As(MassConcentrationUnit.PoundPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerImperialGallon"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PoundPerImperialGallon"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerImperialGallon property.")]
         public double PoundsPerImperialGallon => As(MassConcentrationUnit.PoundPerImperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerUSGallon"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PoundPerUSGallon"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerUSGallon property.")]
         public double PoundsPerUSGallon => As(MassConcentrationUnit.PoundPerUSGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.SlugPerCubicFoot"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.SlugPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSlugsPerCubicFoot property.")]
         public double SlugsPerCubicFoot => As(MassConcentrationUnit.SlugPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicCentimeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.TonnePerCubicCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesPerCubicCentimeter property.")]
         public double TonnesPerCubicCentimeter => As(MassConcentrationUnit.TonnePerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicMeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.TonnePerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesPerCubicMeter property.")]
         public double TonnesPerCubicMeter => As(MassConcentrationUnit.TonnePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicMillimeter"/>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.TonnePerCubicMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesPerCubicMillimeter property.")]
         public double TonnesPerCubicMillimeter => As(MassConcentrationUnit.TonnePerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.CentigramPerDeciliter"/>.
+        /// </summary>
+        public MassConcentration ToCentigramsPerDeciliter => ToUnit(MassConcentrationUnit.CentigramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.CentigramPerLiter"/>.
+        /// </summary>
+        public MassConcentration ToCentigramsPerLiter => ToUnit(MassConcentrationUnit.CentigramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.CentigramPerMicroliter"/>.
+        /// </summary>
+        public MassConcentration ToCentigramsPerMicroliter => ToUnit(MassConcentrationUnit.CentigramPerMicroliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.CentigramPerMilliliter"/>.
+        /// </summary>
+        public MassConcentration ToCentigramsPerMilliliter => ToUnit(MassConcentrationUnit.CentigramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.DecigramPerDeciliter"/>.
+        /// </summary>
+        public MassConcentration ToDecigramsPerDeciliter => ToUnit(MassConcentrationUnit.DecigramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.DecigramPerLiter"/>.
+        /// </summary>
+        public MassConcentration ToDecigramsPerLiter => ToUnit(MassConcentrationUnit.DecigramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.DecigramPerMicroliter"/>.
+        /// </summary>
+        public MassConcentration ToDecigramsPerMicroliter => ToUnit(MassConcentrationUnit.DecigramPerMicroliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.DecigramPerMilliliter"/>.
+        /// </summary>
+        public MassConcentration ToDecigramsPerMilliliter => ToUnit(MassConcentrationUnit.DecigramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerCubicCentimeter"/>.
+        /// </summary>
+        public MassConcentration ToGramsPerCubicCentimeter => ToUnit(MassConcentrationUnit.GramPerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerCubicMeter"/>.
+        /// </summary>
+        public MassConcentration ToGramsPerCubicMeter => ToUnit(MassConcentrationUnit.GramPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerCubicMillimeter"/>.
+        /// </summary>
+        public MassConcentration ToGramsPerCubicMillimeter => ToUnit(MassConcentrationUnit.GramPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerDeciliter"/>.
+        /// </summary>
+        public MassConcentration ToGramsPerDeciliter => ToUnit(MassConcentrationUnit.GramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerLiter"/>.
+        /// </summary>
+        public MassConcentration ToGramsPerLiter => ToUnit(MassConcentrationUnit.GramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerMicroliter"/>.
+        /// </summary>
+        public MassConcentration ToGramsPerMicroliter => ToUnit(MassConcentrationUnit.GramPerMicroliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.GramPerMilliliter"/>.
+        /// </summary>
+        public MassConcentration ToGramsPerMilliliter => ToUnit(MassConcentrationUnit.GramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilogramPerCubicCentimeter"/>.
+        /// </summary>
+        public MassConcentration ToKilogramsPerCubicCentimeter => ToUnit(MassConcentrationUnit.KilogramPerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilogramPerCubicMeter"/>.
+        /// </summary>
+        public MassConcentration ToKilogramsPerCubicMeter => ToUnit(MassConcentrationUnit.KilogramPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilogramPerCubicMillimeter"/>.
+        /// </summary>
+        public MassConcentration ToKilogramsPerCubicMillimeter => ToUnit(MassConcentrationUnit.KilogramPerCubicMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilogramPerLiter"/>.
+        /// </summary>
+        public MassConcentration ToKilogramsPerLiter => ToUnit(MassConcentrationUnit.KilogramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilopoundPerCubicFoot"/>.
+        /// </summary>
+        public MassConcentration ToKilopoundsPerCubicFoot => ToUnit(MassConcentrationUnit.KilopoundPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.KilopoundPerCubicInch"/>.
+        /// </summary>
+        public MassConcentration ToKilopoundsPerCubicInch => ToUnit(MassConcentrationUnit.KilopoundPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerCubicMeter"/>.
+        /// </summary>
+        public MassConcentration ToMicrogramsPerCubicMeter => ToUnit(MassConcentrationUnit.MicrogramPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerDeciliter"/>.
+        /// </summary>
+        public MassConcentration ToMicrogramsPerDeciliter => ToUnit(MassConcentrationUnit.MicrogramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerLiter"/>.
+        /// </summary>
+        public MassConcentration ToMicrogramsPerLiter => ToUnit(MassConcentrationUnit.MicrogramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerMicroliter"/>.
+        /// </summary>
+        public MassConcentration ToMicrogramsPerMicroliter => ToUnit(MassConcentrationUnit.MicrogramPerMicroliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MicrogramPerMilliliter"/>.
+        /// </summary>
+        public MassConcentration ToMicrogramsPerMilliliter => ToUnit(MassConcentrationUnit.MicrogramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerCubicMeter"/>.
+        /// </summary>
+        public MassConcentration ToMilligramsPerCubicMeter => ToUnit(MassConcentrationUnit.MilligramPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerDeciliter"/>.
+        /// </summary>
+        public MassConcentration ToMilligramsPerDeciliter => ToUnit(MassConcentrationUnit.MilligramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerLiter"/>.
+        /// </summary>
+        public MassConcentration ToMilligramsPerLiter => ToUnit(MassConcentrationUnit.MilligramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerMicroliter"/>.
+        /// </summary>
+        public MassConcentration ToMilligramsPerMicroliter => ToUnit(MassConcentrationUnit.MilligramPerMicroliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.MilligramPerMilliliter"/>.
+        /// </summary>
+        public MassConcentration ToMilligramsPerMilliliter => ToUnit(MassConcentrationUnit.MilligramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.NanogramPerDeciliter"/>.
+        /// </summary>
+        public MassConcentration ToNanogramsPerDeciliter => ToUnit(MassConcentrationUnit.NanogramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.NanogramPerLiter"/>.
+        /// </summary>
+        public MassConcentration ToNanogramsPerLiter => ToUnit(MassConcentrationUnit.NanogramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.NanogramPerMicroliter"/>.
+        /// </summary>
+        public MassConcentration ToNanogramsPerMicroliter => ToUnit(MassConcentrationUnit.NanogramPerMicroliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.NanogramPerMilliliter"/>.
+        /// </summary>
+        public MassConcentration ToNanogramsPerMilliliter => ToUnit(MassConcentrationUnit.NanogramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.OuncePerImperialGallon"/>.
+        /// </summary>
+        public MassConcentration ToOuncesPerImperialGallon => ToUnit(MassConcentrationUnit.OuncePerImperialGallon);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.OuncePerUSGallon"/>.
+        /// </summary>
+        public MassConcentration ToOuncesPerUSGallon => ToUnit(MassConcentrationUnit.OuncePerUSGallon);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PicogramPerDeciliter"/>.
+        /// </summary>
+        public MassConcentration ToPicogramsPerDeciliter => ToUnit(MassConcentrationUnit.PicogramPerDeciliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PicogramPerLiter"/>.
+        /// </summary>
+        public MassConcentration ToPicogramsPerLiter => ToUnit(MassConcentrationUnit.PicogramPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PicogramPerMicroliter"/>.
+        /// </summary>
+        public MassConcentration ToPicogramsPerMicroliter => ToUnit(MassConcentrationUnit.PicogramPerMicroliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PicogramPerMilliliter"/>.
+        /// </summary>
+        public MassConcentration ToPicogramsPerMilliliter => ToUnit(MassConcentrationUnit.PicogramPerMilliliter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PoundPerCubicFoot"/>.
+        /// </summary>
+        public MassConcentration ToPoundsPerCubicFoot => ToUnit(MassConcentrationUnit.PoundPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PoundPerCubicInch"/>.
+        /// </summary>
+        public MassConcentration ToPoundsPerCubicInch => ToUnit(MassConcentrationUnit.PoundPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PoundPerImperialGallon"/>.
+        /// </summary>
+        public MassConcentration ToPoundsPerImperialGallon => ToUnit(MassConcentrationUnit.PoundPerImperialGallon);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.PoundPerUSGallon"/>.
+        /// </summary>
+        public MassConcentration ToPoundsPerUSGallon => ToUnit(MassConcentrationUnit.PoundPerUSGallon);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.SlugPerCubicFoot"/>.
+        /// </summary>
+        public MassConcentration ToSlugsPerCubicFoot => ToUnit(MassConcentrationUnit.SlugPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.TonnePerCubicCentimeter"/>.
+        /// </summary>
+        public MassConcentration ToTonnesPerCubicCentimeter => ToUnit(MassConcentrationUnit.TonnePerCubicCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.TonnePerCubicMeter"/>.
+        /// </summary>
+        public MassConcentration ToTonnesPerCubicMeter => ToUnit(MassConcentrationUnit.TonnePerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="MassConcentration"/> converted into <see cref="MassConcentrationUnit.TonnePerCubicMillimeter"/>.
+        /// </summary>
+        public MassConcentration ToTonnesPerCubicMillimeter => ToUnit(MassConcentrationUnit.TonnePerCubicMillimeter);
 
         #endregion
 

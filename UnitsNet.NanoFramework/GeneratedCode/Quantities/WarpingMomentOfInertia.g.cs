@@ -80,34 +80,70 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentimetersToTheSixth property.")]
         public double CentimetersToTheSixth => As(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecimetersToTheSixth property.")]
         public double DecimetersToTheSixth => As(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToFeetToTheSixth property.")]
         public double FeetToTheSixth => As(WarpingMomentOfInertiaUnit.FootToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInchesToTheSixth property.")]
         public double InchesToTheSixth => As(WarpingMomentOfInertiaUnit.InchToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMetersToTheSixth property.")]
         public double MetersToTheSixth => As(WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillimetersToTheSixth property.")]
         public double MillimetersToTheSixth => As(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
+
+        /// <summary>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>.
+        /// </summary>
+        public WarpingMomentOfInertia ToCentimetersToTheSixth => ToUnit(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
+
+        /// <summary>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>.
+        /// </summary>
+        public WarpingMomentOfInertia ToDecimetersToTheSixth => ToUnit(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
+
+        /// <summary>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>.
+        /// </summary>
+        public WarpingMomentOfInertia ToFeetToTheSixth => ToUnit(WarpingMomentOfInertiaUnit.FootToTheSixth);
+
+        /// <summary>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>.
+        /// </summary>
+        public WarpingMomentOfInertia ToInchesToTheSixth => ToUnit(WarpingMomentOfInertiaUnit.InchToTheSixth);
+
+        /// <summary>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>.
+        /// </summary>
+        public WarpingMomentOfInertia ToMetersToTheSixth => ToUnit(WarpingMomentOfInertiaUnit.MeterToTheSixth);
+
+        /// <summary>
+        ///     Gets this <see cref="WarpingMomentOfInertia"/> converted into <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>.
+        /// </summary>
+        public WarpingMomentOfInertia ToMillimetersToTheSixth => ToUnit(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
 
         #endregion
 

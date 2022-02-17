@@ -80,9 +80,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LapseRateUnit.DegreeCelsiusPerKilometer"/>
+        ///     Gets this <see cref="LapseRate"/> converted into <see cref="LapseRateUnit.DegreeCelsiusPerKilometer"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDegreesCelciusPerKilometer property.")]
         public double DegreesCelciusPerKilometer => As(LapseRateUnit.DegreeCelsiusPerKilometer);
+
+        /// <summary>
+        ///     Gets this <see cref="LapseRate"/> converted into <see cref="LapseRateUnit.DegreeCelsiusPerKilometer"/>.
+        /// </summary>
+        public LapseRate ToDegreesCelciusPerKilometer => ToUnit(LapseRateUnit.DegreeCelsiusPerKilometer);
 
         #endregion
 

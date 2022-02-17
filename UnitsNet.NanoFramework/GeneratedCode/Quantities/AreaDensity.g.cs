@@ -80,9 +80,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
+        ///     Gets this <see cref="AreaDensity"/> converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerSquareMeter property.")]
         public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="AreaDensity"/> converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
+        /// </summary>
+        public AreaDensity ToKilogramsPerSquareMeter => ToUnit(AreaDensityUnit.KilogramPerSquareMeter);
 
         #endregion
 

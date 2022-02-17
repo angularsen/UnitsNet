@@ -164,19 +164,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>
+        ///     Gets this <see cref="MolarEntropy"/> converted into <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToJoulesPerMoleKelvin property.")]
         public double JoulesPerMoleKelvin => As(MolarEntropyUnit.JoulePerMoleKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>
+        ///     Gets this <see cref="MolarEntropy"/> converted into <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilojoulesPerMoleKelvin property.")]
         public double KilojoulesPerMoleKelvin => As(MolarEntropyUnit.KilojoulePerMoleKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>
+        ///     Gets this <see cref="MolarEntropy"/> converted into <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegajoulesPerMoleKelvin property.")]
         public double MegajoulesPerMoleKelvin => As(MolarEntropyUnit.MegajoulePerMoleKelvin);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarEntropy"/> converted into <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>.
+        /// </summary>
+        public MolarEntropy ToJoulesPerMoleKelvin => ToUnit(MolarEntropyUnit.JoulePerMoleKelvin);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarEntropy"/> converted into <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>.
+        /// </summary>
+        public MolarEntropy ToKilojoulesPerMoleKelvin => ToUnit(MolarEntropyUnit.KilojoulePerMoleKelvin);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarEntropy"/> converted into <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>.
+        /// </summary>
+        public MolarEntropy ToMegajoulesPerMoleKelvin => ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin);
 
         #endregion
 

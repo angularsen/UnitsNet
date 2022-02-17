@@ -200,69 +200,147 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.CentiradianPerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.CentiradianPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentiradiansPerSecond property.")]
         public double CentiradiansPerSecond => As(RotationalSpeedUnit.CentiradianPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.DeciradianPerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.DeciradianPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDeciradiansPerSecond property.")]
         public double DeciradiansPerSecond => As(RotationalSpeedUnit.DeciradianPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.DegreePerMinute"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.DegreePerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDegreesPerMinute property.")]
         public double DegreesPerMinute => As(RotationalSpeedUnit.DegreePerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.DegreePerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.DegreePerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDegreesPerSecond property.")]
         public double DegreesPerSecond => As(RotationalSpeedUnit.DegreePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.MicrodegreePerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.MicrodegreePerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrodegreesPerSecond property.")]
         public double MicrodegreesPerSecond => As(RotationalSpeedUnit.MicrodegreePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.MicroradianPerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.MicroradianPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicroradiansPerSecond property.")]
         public double MicroradiansPerSecond => As(RotationalSpeedUnit.MicroradianPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.MillidegreePerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.MillidegreePerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillidegreesPerSecond property.")]
         public double MillidegreesPerSecond => As(RotationalSpeedUnit.MillidegreePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.MilliradianPerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.MilliradianPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliradiansPerSecond property.")]
         public double MilliradiansPerSecond => As(RotationalSpeedUnit.MilliradianPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.NanodegreePerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.NanodegreePerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanodegreesPerSecond property.")]
         public double NanodegreesPerSecond => As(RotationalSpeedUnit.NanodegreePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.NanoradianPerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.NanoradianPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanoradiansPerSecond property.")]
         public double NanoradiansPerSecond => As(RotationalSpeedUnit.NanoradianPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.RadianPerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.RadianPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToRadiansPerSecond property.")]
         public double RadiansPerSecond => As(RotationalSpeedUnit.RadianPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.RevolutionPerMinute"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.RevolutionPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToRevolutionsPerMinute property.")]
         public double RevolutionsPerMinute => As(RotationalSpeedUnit.RevolutionPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.RevolutionPerSecond"/>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.RevolutionPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToRevolutionsPerSecond property.")]
         public double RevolutionsPerSecond => As(RotationalSpeedUnit.RevolutionPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.CentiradianPerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToCentiradiansPerSecond => ToUnit(RotationalSpeedUnit.CentiradianPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.DeciradianPerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToDeciradiansPerSecond => ToUnit(RotationalSpeedUnit.DeciradianPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.DegreePerMinute"/>.
+        /// </summary>
+        public RotationalSpeed ToDegreesPerMinute => ToUnit(RotationalSpeedUnit.DegreePerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.DegreePerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToDegreesPerSecond => ToUnit(RotationalSpeedUnit.DegreePerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.MicrodegreePerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToMicrodegreesPerSecond => ToUnit(RotationalSpeedUnit.MicrodegreePerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.MicroradianPerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToMicroradiansPerSecond => ToUnit(RotationalSpeedUnit.MicroradianPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.MillidegreePerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToMillidegreesPerSecond => ToUnit(RotationalSpeedUnit.MillidegreePerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.MilliradianPerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToMilliradiansPerSecond => ToUnit(RotationalSpeedUnit.MilliradianPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.NanodegreePerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToNanodegreesPerSecond => ToUnit(RotationalSpeedUnit.NanodegreePerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.NanoradianPerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToNanoradiansPerSecond => ToUnit(RotationalSpeedUnit.NanoradianPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.RadianPerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToRadiansPerSecond => ToUnit(RotationalSpeedUnit.RadianPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.RevolutionPerMinute"/>.
+        /// </summary>
+        public RotationalSpeed ToRevolutionsPerMinute => ToUnit(RotationalSpeedUnit.RevolutionPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalSpeed"/> converted into <see cref="RotationalSpeedUnit.RevolutionPerSecond"/>.
+        /// </summary>
+        public RotationalSpeed ToRevolutionsPerSecond => ToUnit(RotationalSpeedUnit.RevolutionPerSecond);
 
         #endregion
 

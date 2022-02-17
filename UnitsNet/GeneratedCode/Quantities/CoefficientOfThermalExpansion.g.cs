@@ -190,19 +190,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>
+        ///     Gets this <see cref="CoefficientOfThermalExpansion"/> converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseDegreeCelsius property.")]
         public double InverseDegreeCelsius => As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>
+        ///     Gets this <see cref="CoefficientOfThermalExpansion"/> converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseDegreeFahrenheit property.")]
         public double InverseDegreeFahrenheit => As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>
+        ///     Gets this <see cref="CoefficientOfThermalExpansion"/> converted into <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInverseKelvin property.")]
         public double InverseKelvin => As(CoefficientOfThermalExpansionUnit.InverseKelvin);
+
+        /// <summary>
+        ///     Gets this <see cref="CoefficientOfThermalExpansion"/> converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeCelsius"/>.
+        /// </summary>
+        public CoefficientOfThermalExpansion ToInverseDegreeCelsius => ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
+
+        /// <summary>
+        ///     Gets this <see cref="CoefficientOfThermalExpansion"/> converted into <see cref="CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit"/>.
+        /// </summary>
+        public CoefficientOfThermalExpansion ToInverseDegreeFahrenheit => ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
+
+        /// <summary>
+        ///     Gets this <see cref="CoefficientOfThermalExpansion"/> converted into <see cref="CoefficientOfThermalExpansionUnit.InverseKelvin"/>.
+        /// </summary>
+        public CoefficientOfThermalExpansion ToInverseKelvin => ToUnit(CoefficientOfThermalExpansionUnit.InverseKelvin);
 
         #endregion
 

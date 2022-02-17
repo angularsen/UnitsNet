@@ -80,14 +80,26 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>
+        ///     Gets this <see cref="RatioChangeRate"/> converted into <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecimalFractionsPerSecond property.")]
         public double DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioChangeRateUnit.PercentPerSecond"/>
+        ///     Gets this <see cref="RatioChangeRate"/> converted into <see cref="RatioChangeRateUnit.PercentPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPercentsPerSecond property.")]
         public double PercentsPerSecond => As(RatioChangeRateUnit.PercentPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RatioChangeRate"/> converted into <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>.
+        /// </summary>
+        public RatioChangeRate ToDecimalFractionsPerSecond => ToUnit(RatioChangeRateUnit.DecimalFractionPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RatioChangeRate"/> converted into <see cref="RatioChangeRateUnit.PercentPerSecond"/>.
+        /// </summary>
+        public RatioChangeRate ToPercentsPerSecond => ToUnit(RatioChangeRateUnit.PercentPerSecond);
 
         #endregion
 

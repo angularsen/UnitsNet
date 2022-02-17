@@ -204,74 +204,158 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.KiloohmCentimeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.KiloohmCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKiloohmsCentimeter property.")]
         public double KiloohmsCentimeter => As(ElectricResistivityUnit.KiloohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.KiloohmMeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.KiloohmMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKiloohmMeters property.")]
         public double KiloohmMeters => As(ElectricResistivityUnit.KiloohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MegaohmCentimeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MegaohmCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegaohmsCentimeter property.")]
         public double MegaohmsCentimeter => As(ElectricResistivityUnit.MegaohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MegaohmMeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MegaohmMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegaohmMeters property.")]
         public double MegaohmMeters => As(ElectricResistivityUnit.MegaohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MicroohmCentimeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MicroohmCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicroohmsCentimeter property.")]
         public double MicroohmsCentimeter => As(ElectricResistivityUnit.MicroohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MicroohmMeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MicroohmMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicroohmMeters property.")]
         public double MicroohmMeters => As(ElectricResistivityUnit.MicroohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MilliohmCentimeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MilliohmCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliohmsCentimeter property.")]
         public double MilliohmsCentimeter => As(ElectricResistivityUnit.MilliohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MilliohmMeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MilliohmMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliohmMeters property.")]
         public double MilliohmMeters => As(ElectricResistivityUnit.MilliohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.NanoohmCentimeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.NanoohmCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanoohmsCentimeter property.")]
         public double NanoohmsCentimeter => As(ElectricResistivityUnit.NanoohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.NanoohmMeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.NanoohmMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanoohmMeters property.")]
         public double NanoohmMeters => As(ElectricResistivityUnit.NanoohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.OhmCentimeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.OhmCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOhmsCentimeter property.")]
         public double OhmsCentimeter => As(ElectricResistivityUnit.OhmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.OhmMeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.OhmMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOhmMeters property.")]
         public double OhmMeters => As(ElectricResistivityUnit.OhmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.PicoohmCentimeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.PicoohmCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicoohmsCentimeter property.")]
         public double PicoohmsCentimeter => As(ElectricResistivityUnit.PicoohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.PicoohmMeter"/>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.PicoohmMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicoohmMeters property.")]
         public double PicoohmMeters => As(ElectricResistivityUnit.PicoohmMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.KiloohmCentimeter"/>.
+        /// </summary>
+        public ElectricResistivity ToKiloohmsCentimeter => ToUnit(ElectricResistivityUnit.KiloohmCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.KiloohmMeter"/>.
+        /// </summary>
+        public ElectricResistivity ToKiloohmMeters => ToUnit(ElectricResistivityUnit.KiloohmMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MegaohmCentimeter"/>.
+        /// </summary>
+        public ElectricResistivity ToMegaohmsCentimeter => ToUnit(ElectricResistivityUnit.MegaohmCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MegaohmMeter"/>.
+        /// </summary>
+        public ElectricResistivity ToMegaohmMeters => ToUnit(ElectricResistivityUnit.MegaohmMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MicroohmCentimeter"/>.
+        /// </summary>
+        public ElectricResistivity ToMicroohmsCentimeter => ToUnit(ElectricResistivityUnit.MicroohmCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MicroohmMeter"/>.
+        /// </summary>
+        public ElectricResistivity ToMicroohmMeters => ToUnit(ElectricResistivityUnit.MicroohmMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MilliohmCentimeter"/>.
+        /// </summary>
+        public ElectricResistivity ToMilliohmsCentimeter => ToUnit(ElectricResistivityUnit.MilliohmCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.MilliohmMeter"/>.
+        /// </summary>
+        public ElectricResistivity ToMilliohmMeters => ToUnit(ElectricResistivityUnit.MilliohmMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.NanoohmCentimeter"/>.
+        /// </summary>
+        public ElectricResistivity ToNanoohmsCentimeter => ToUnit(ElectricResistivityUnit.NanoohmCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.NanoohmMeter"/>.
+        /// </summary>
+        public ElectricResistivity ToNanoohmMeters => ToUnit(ElectricResistivityUnit.NanoohmMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.OhmCentimeter"/>.
+        /// </summary>
+        public ElectricResistivity ToOhmsCentimeter => ToUnit(ElectricResistivityUnit.OhmCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.OhmMeter"/>.
+        /// </summary>
+        public ElectricResistivity ToOhmMeters => ToUnit(ElectricResistivityUnit.OhmMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.PicoohmCentimeter"/>.
+        /// </summary>
+        public ElectricResistivity ToPicoohmsCentimeter => ToUnit(ElectricResistivityUnit.PicoohmCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricResistivity"/> converted into <see cref="ElectricResistivityUnit.PicoohmMeter"/>.
+        /// </summary>
+        public ElectricResistivity ToPicoohmMeters => ToUnit(ElectricResistivityUnit.PicoohmMeter);
 
         #endregion
 

@@ -191,24 +191,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>
+        ///     Gets this <see cref="ElectricCurrentGradient"/> converted into <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperesPerMicrosecond property.")]
         public double AmperesPerMicrosecond => As(ElectricCurrentGradientUnit.AmperePerMicrosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>
+        ///     Gets this <see cref="ElectricCurrentGradient"/> converted into <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperesPerMillisecond property.")]
         public double AmperesPerMillisecond => As(ElectricCurrentGradientUnit.AmperePerMillisecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>
+        ///     Gets this <see cref="ElectricCurrentGradient"/> converted into <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperesPerNanosecond property.")]
         public double AmperesPerNanosecond => As(ElectricCurrentGradientUnit.AmperePerNanosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>
+        ///     Gets this <see cref="ElectricCurrentGradient"/> converted into <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperesPerSecond property.")]
         public double AmperesPerSecond => As(ElectricCurrentGradientUnit.AmperePerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrentGradient"/> converted into <see cref="ElectricCurrentGradientUnit.AmperePerMicrosecond"/>.
+        /// </summary>
+        public ElectricCurrentGradient ToAmperesPerMicrosecond => ToUnit(ElectricCurrentGradientUnit.AmperePerMicrosecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrentGradient"/> converted into <see cref="ElectricCurrentGradientUnit.AmperePerMillisecond"/>.
+        /// </summary>
+        public ElectricCurrentGradient ToAmperesPerMillisecond => ToUnit(ElectricCurrentGradientUnit.AmperePerMillisecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrentGradient"/> converted into <see cref="ElectricCurrentGradientUnit.AmperePerNanosecond"/>.
+        /// </summary>
+        public ElectricCurrentGradient ToAmperesPerNanosecond => ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrentGradient"/> converted into <see cref="ElectricCurrentGradientUnit.AmperePerSecond"/>.
+        /// </summary>
+        public ElectricCurrentGradient ToAmperesPerSecond => ToUnit(ElectricCurrentGradientUnit.AmperePerSecond);
 
         #endregion
 

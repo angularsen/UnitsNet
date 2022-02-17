@@ -80,74 +80,158 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.Acre"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.Acre"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAcres property.")]
         public double Acres => As(AreaUnit.Acre);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.Hectare"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.Hectare"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToHectares property.")]
         public double Hectares => As(AreaUnit.Hectare);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareCentimeter"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareCentimeters property.")]
         public double SquareCentimeters => As(AreaUnit.SquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareDecimeter"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareDecimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareDecimeters property.")]
         public double SquareDecimeters => As(AreaUnit.SquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareFoot"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareFeet property.")]
         public double SquareFeet => As(AreaUnit.SquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareInch"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareInches property.")]
         public double SquareInches => As(AreaUnit.SquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareKilometer"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareKilometer"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareKilometers property.")]
         public double SquareKilometers => As(AreaUnit.SquareKilometer);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMeter"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareMeters property.")]
         public double SquareMeters => As(AreaUnit.SquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMicrometer"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareMicrometer"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareMicrometers property.")]
         public double SquareMicrometers => As(AreaUnit.SquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMile"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareMile"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareMiles property.")]
         public double SquareMiles => As(AreaUnit.SquareMile);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMillimeter"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareMillimeters property.")]
         public double SquareMillimeters => As(AreaUnit.SquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareNauticalMile"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareNauticalMile"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareNauticalMiles property.")]
         public double SquareNauticalMiles => As(AreaUnit.SquareNauticalMile);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareYard"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareYard"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSquareYards property.")]
         public double SquareYards => As(AreaUnit.SquareYard);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.UsSurveySquareFoot"/>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.UsSurveySquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUsSurveySquareFeet property.")]
         public double UsSurveySquareFeet => As(AreaUnit.UsSurveySquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.Acre"/>.
+        /// </summary>
+        public Area ToAcres => ToUnit(AreaUnit.Acre);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.Hectare"/>.
+        /// </summary>
+        public Area ToHectares => ToUnit(AreaUnit.Hectare);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareCentimeter"/>.
+        /// </summary>
+        public Area ToSquareCentimeters => ToUnit(AreaUnit.SquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareDecimeter"/>.
+        /// </summary>
+        public Area ToSquareDecimeters => ToUnit(AreaUnit.SquareDecimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareFoot"/>.
+        /// </summary>
+        public Area ToSquareFeet => ToUnit(AreaUnit.SquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareInch"/>.
+        /// </summary>
+        public Area ToSquareInches => ToUnit(AreaUnit.SquareInch);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareKilometer"/>.
+        /// </summary>
+        public Area ToSquareKilometers => ToUnit(AreaUnit.SquareKilometer);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareMeter"/>.
+        /// </summary>
+        public Area ToSquareMeters => ToUnit(AreaUnit.SquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareMicrometer"/>.
+        /// </summary>
+        public Area ToSquareMicrometers => ToUnit(AreaUnit.SquareMicrometer);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareMile"/>.
+        /// </summary>
+        public Area ToSquareMiles => ToUnit(AreaUnit.SquareMile);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareMillimeter"/>.
+        /// </summary>
+        public Area ToSquareMillimeters => ToUnit(AreaUnit.SquareMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareNauticalMile"/>.
+        /// </summary>
+        public Area ToSquareNauticalMiles => ToUnit(AreaUnit.SquareNauticalMile);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.SquareYard"/>.
+        /// </summary>
+        public Area ToSquareYards => ToUnit(AreaUnit.SquareYard);
+
+        /// <summary>
+        ///     Gets this <see cref="Area"/> converted into <see cref="AreaUnit.UsSurveySquareFoot"/>.
+        /// </summary>
+        public Area ToUsSurveySquareFeet => ToUnit(AreaUnit.UsSurveySquareFoot);
 
         #endregion
 

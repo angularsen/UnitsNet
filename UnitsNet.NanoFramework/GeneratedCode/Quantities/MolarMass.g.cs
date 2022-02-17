@@ -80,64 +80,136 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.CentigramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.CentigramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentigramsPerMole property.")]
         public double CentigramsPerMole => As(MolarMassUnit.CentigramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.DecagramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.DecagramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecagramsPerMole property.")]
         public double DecagramsPerMole => As(MolarMassUnit.DecagramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.DecigramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.DecigramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecigramsPerMole property.")]
         public double DecigramsPerMole => As(MolarMassUnit.DecigramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.GramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.GramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGramsPerMole property.")]
         public double GramsPerMole => As(MolarMassUnit.GramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.HectogramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.HectogramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToHectogramsPerMole property.")]
         public double HectogramsPerMole => As(MolarMassUnit.HectogramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.KilogramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.KilogramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsPerMole property.")]
         public double KilogramsPerMole => As(MolarMassUnit.KilogramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.KilopoundPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.KilopoundPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsPerMole property.")]
         public double KilopoundsPerMole => As(MolarMassUnit.KilopoundPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MegapoundPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.MegapoundPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegapoundsPerMole property.")]
         public double MegapoundsPerMole => As(MolarMassUnit.MegapoundPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MicrogramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.MicrogramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrogramsPerMole property.")]
         public double MicrogramsPerMole => As(MolarMassUnit.MicrogramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.MilligramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.MilligramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilligramsPerMole property.")]
         public double MilligramsPerMole => As(MolarMassUnit.MilligramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.NanogramPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.NanogramPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanogramsPerMole property.")]
         public double NanogramsPerMole => As(MolarMassUnit.NanogramPerMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.PoundPerMole"/>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.PoundPerMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerMole property.")]
         public double PoundsPerMole => As(MolarMassUnit.PoundPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.CentigramPerMole"/>.
+        /// </summary>
+        public MolarMass ToCentigramsPerMole => ToUnit(MolarMassUnit.CentigramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.DecagramPerMole"/>.
+        /// </summary>
+        public MolarMass ToDecagramsPerMole => ToUnit(MolarMassUnit.DecagramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.DecigramPerMole"/>.
+        /// </summary>
+        public MolarMass ToDecigramsPerMole => ToUnit(MolarMassUnit.DecigramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.GramPerMole"/>.
+        /// </summary>
+        public MolarMass ToGramsPerMole => ToUnit(MolarMassUnit.GramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.HectogramPerMole"/>.
+        /// </summary>
+        public MolarMass ToHectogramsPerMole => ToUnit(MolarMassUnit.HectogramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.KilogramPerMole"/>.
+        /// </summary>
+        public MolarMass ToKilogramsPerMole => ToUnit(MolarMassUnit.KilogramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.KilopoundPerMole"/>.
+        /// </summary>
+        public MolarMass ToKilopoundsPerMole => ToUnit(MolarMassUnit.KilopoundPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.MegapoundPerMole"/>.
+        /// </summary>
+        public MolarMass ToMegapoundsPerMole => ToUnit(MolarMassUnit.MegapoundPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.MicrogramPerMole"/>.
+        /// </summary>
+        public MolarMass ToMicrogramsPerMole => ToUnit(MolarMassUnit.MicrogramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.MilligramPerMole"/>.
+        /// </summary>
+        public MolarMass ToMilligramsPerMole => ToUnit(MolarMassUnit.MilligramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.NanogramPerMole"/>.
+        /// </summary>
+        public MolarMass ToNanogramsPerMole => ToUnit(MolarMassUnit.NanogramPerMole);
+
+        /// <summary>
+        ///     Gets this <see cref="MolarMass"/> converted into <see cref="MolarMassUnit.PoundPerMole"/>.
+        /// </summary>
+        public MolarMass ToPoundsPerMole => ToUnit(MolarMassUnit.PoundPerMole);
 
         #endregion
 

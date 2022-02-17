@@ -108,7 +108,7 @@ namespace UnitsNet
         /// </summary>
         public static {_quantity.Name} Zero {{ get; }} = new {_quantity.Name}(0, BaseUnit);");
 
-            GenerateConversionProperties();
+            Common.QuantityGenerator.GenerateConversionProperties(_quantity, Writer);
             GenerateStaticFactoryMethods();
             GenerateConversionMethods();
 
@@ -118,32 +118,6 @@ namespace UnitsNet
 ");
 
             return Writer.ToString();
-        }
-
-        private void GenerateConversionProperties()
-        {
-            Writer.WL(@"
-        #region Conversion Properties
-");
-            foreach (var unit in _quantity.Units)
-            {
-                if (unit.SkipConversionGeneration)
-                    continue;
-
-                Writer.WL($@"
-        /// <summary>
-        ///     Gets a <see cref=""double""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
-        /// </summary>");
-                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
-                Writer.WL($@"
-        public {_quantity.BaseType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
-");
-            }
-
-            Writer.WL(@"
-
-        #endregion
-");
         }
 
         private void GenerateStaticFactoryMethods()

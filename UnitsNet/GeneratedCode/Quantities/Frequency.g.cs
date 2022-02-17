@@ -198,59 +198,125 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.BeatPerMinute"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.BeatPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToBeatsPerMinute property.")]
         public double BeatsPerMinute => As(FrequencyUnit.BeatPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.BUnit"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.BUnit"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToBUnits property.")]
         public double BUnits => As(FrequencyUnit.BUnit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.CyclePerHour"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.CyclePerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCyclesPerHour property.")]
         public double CyclesPerHour => As(FrequencyUnit.CyclePerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.CyclePerMinute"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.CyclePerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCyclesPerMinute property.")]
         public double CyclesPerMinute => As(FrequencyUnit.CyclePerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Gigahertz"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Gigahertz"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigahertz property.")]
         public double Gigahertz => As(FrequencyUnit.Gigahertz);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Hertz"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Hertz"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToHertz property.")]
         public double Hertz => As(FrequencyUnit.Hertz);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Kilohertz"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Kilohertz"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilohertz property.")]
         public double Kilohertz => As(FrequencyUnit.Kilohertz);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Megahertz"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Megahertz"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegahertz property.")]
         public double Megahertz => As(FrequencyUnit.Megahertz);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.PerSecond"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.PerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPerSecond property.")]
         public double PerSecond => As(FrequencyUnit.PerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.RadianPerSecond"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.RadianPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToRadiansPerSecond property.")]
         public double RadiansPerSecond => As(FrequencyUnit.RadianPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Terahertz"/>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Terahertz"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTerahertz property.")]
         public double Terahertz => As(FrequencyUnit.Terahertz);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.BeatPerMinute"/>.
+        /// </summary>
+        public Frequency ToBeatsPerMinute => ToUnit(FrequencyUnit.BeatPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.BUnit"/>.
+        /// </summary>
+        public Frequency ToBUnits => ToUnit(FrequencyUnit.BUnit);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.CyclePerHour"/>.
+        /// </summary>
+        public Frequency ToCyclesPerHour => ToUnit(FrequencyUnit.CyclePerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.CyclePerMinute"/>.
+        /// </summary>
+        public Frequency ToCyclesPerMinute => ToUnit(FrequencyUnit.CyclePerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Gigahertz"/>.
+        /// </summary>
+        public Frequency ToGigahertz => ToUnit(FrequencyUnit.Gigahertz);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Hertz"/>.
+        /// </summary>
+        public Frequency ToHertz => ToUnit(FrequencyUnit.Hertz);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Kilohertz"/>.
+        /// </summary>
+        public Frequency ToKilohertz => ToUnit(FrequencyUnit.Kilohertz);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Megahertz"/>.
+        /// </summary>
+        public Frequency ToMegahertz => ToUnit(FrequencyUnit.Megahertz);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.PerSecond"/>.
+        /// </summary>
+        public Frequency ToPerSecond => ToUnit(FrequencyUnit.PerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.RadianPerSecond"/>.
+        /// </summary>
+        public Frequency ToRadiansPerSecond => ToUnit(FrequencyUnit.RadianPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="Frequency"/> converted into <see cref="FrequencyUnit.Terahertz"/>.
+        /// </summary>
+        public Frequency ToTerahertz => ToUnit(FrequencyUnit.Terahertz);
 
         #endregion
 

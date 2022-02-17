@@ -167,9 +167,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PermittivityUnit.FaradPerMeter"/>
+        ///     Gets this <see cref="Permittivity"/> converted into <see cref="PermittivityUnit.FaradPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToFaradsPerMeter property.")]
         public double FaradsPerMeter => As(PermittivityUnit.FaradPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Permittivity"/> converted into <see cref="PermittivityUnit.FaradPerMeter"/>.
+        /// </summary>
+        public Permittivity ToFaradsPerMeter => ToUnit(PermittivityUnit.FaradPerMeter);
 
         #endregion
 

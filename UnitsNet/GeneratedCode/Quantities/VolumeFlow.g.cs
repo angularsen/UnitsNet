@@ -249,314 +249,686 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.AcreFootPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.AcreFootPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAcreFeetPerDay property.")]
         public double AcreFeetPerDay => As(VolumeFlowUnit.AcreFootPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.AcreFootPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.AcreFootPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAcreFeetPerHour property.")]
         public double AcreFeetPerHour => As(VolumeFlowUnit.AcreFootPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.AcreFootPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.AcreFootPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAcreFeetPerMinute property.")]
         public double AcreFeetPerMinute => As(VolumeFlowUnit.AcreFootPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.AcreFootPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.AcreFootPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAcreFeetPerSecond property.")]
         public double AcreFeetPerSecond => As(VolumeFlowUnit.AcreFootPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CentiliterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CentiliterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentilitersPerDay property.")]
         public double CentilitersPerDay => As(VolumeFlowUnit.CentiliterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CentiliterPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CentiliterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentilitersPerHour property.")]
         public double CentilitersPerHour => As(VolumeFlowUnit.CentiliterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CentiliterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CentiliterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentilitersPerMinute property.")]
         public double CentilitersPerMinute => As(VolumeFlowUnit.CentiliterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CentiliterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CentiliterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentilitersPerSecond property.")]
         public double CentilitersPerSecond => As(VolumeFlowUnit.CentiliterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicCentimeterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicCentimeterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicCentimetersPerMinute property.")]
         public double CubicCentimetersPerMinute => As(VolumeFlowUnit.CubicCentimeterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicDecimeterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicDecimeterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicDecimetersPerMinute property.")]
         public double CubicDecimetersPerMinute => As(VolumeFlowUnit.CubicDecimeterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicFootPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicFootPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicFeetPerHour property.")]
         public double CubicFeetPerHour => As(VolumeFlowUnit.CubicFootPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicFootPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicFootPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicFeetPerMinute property.")]
         public double CubicFeetPerMinute => As(VolumeFlowUnit.CubicFootPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicFootPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicFootPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicFeetPerSecond property.")]
         public double CubicFeetPerSecond => As(VolumeFlowUnit.CubicFootPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMeterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMeterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicMetersPerDay property.")]
         public double CubicMetersPerDay => As(VolumeFlowUnit.CubicMeterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMeterPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMeterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicMetersPerHour property.")]
         public double CubicMetersPerHour => As(VolumeFlowUnit.CubicMeterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMeterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMeterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicMetersPerMinute property.")]
         public double CubicMetersPerMinute => As(VolumeFlowUnit.CubicMeterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMeterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMeterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicMetersPerSecond property.")]
         public double CubicMetersPerSecond => As(VolumeFlowUnit.CubicMeterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMillimeterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMillimeterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicMillimetersPerSecond property.")]
         public double CubicMillimetersPerSecond => As(VolumeFlowUnit.CubicMillimeterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicYardPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicYardPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicYardsPerDay property.")]
         public double CubicYardsPerDay => As(VolumeFlowUnit.CubicYardPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicYardPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicYardPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicYardsPerHour property.")]
         public double CubicYardsPerHour => As(VolumeFlowUnit.CubicYardPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicYardPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicYardPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicYardsPerMinute property.")]
         public double CubicYardsPerMinute => As(VolumeFlowUnit.CubicYardPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicYardPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicYardPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCubicYardsPerSecond property.")]
         public double CubicYardsPerSecond => As(VolumeFlowUnit.CubicYardPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.DeciliterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecilitersPerDay property.")]
         public double DecilitersPerDay => As(VolumeFlowUnit.DeciliterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.DeciliterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecilitersPerHour property.")]
         public double DecilitersPerHour => As(VolumeFlowUnit.DeciliterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.DeciliterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecilitersPerMinute property.")]
         public double DecilitersPerMinute => As(VolumeFlowUnit.DeciliterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.DeciliterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.DeciliterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecilitersPerSecond property.")]
         public double DecilitersPerSecond => As(VolumeFlowUnit.DeciliterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.KiloliterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KiloliterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilolitersPerDay property.")]
         public double KilolitersPerDay => As(VolumeFlowUnit.KiloliterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.KiloliterPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KiloliterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilolitersPerHour property.")]
         public double KilolitersPerHour => As(VolumeFlowUnit.KiloliterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.KiloliterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KiloliterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilolitersPerMinute property.")]
         public double KilolitersPerMinute => As(VolumeFlowUnit.KiloliterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.KiloliterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KiloliterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilolitersPerSecond property.")]
         public double KilolitersPerSecond => As(VolumeFlowUnit.KiloliterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.KilousGallonPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KilousGallonPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilousGallonsPerMinute property.")]
         public double KilousGallonsPerMinute => As(VolumeFlowUnit.KilousGallonPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.LiterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.LiterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToLitersPerDay property.")]
         public double LitersPerDay => As(VolumeFlowUnit.LiterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.LiterPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.LiterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToLitersPerHour property.")]
         public double LitersPerHour => As(VolumeFlowUnit.LiterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.LiterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.LiterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToLitersPerMinute property.")]
         public double LitersPerMinute => As(VolumeFlowUnit.LiterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.LiterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.LiterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToLitersPerSecond property.")]
         public double LitersPerSecond => As(VolumeFlowUnit.LiterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaliterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MegaliterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegalitersPerDay property.")]
         public double MegalitersPerDay => As(VolumeFlowUnit.MegaliterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegaukGallonsPerSecond property.")]
         public double MegaukGallonsPerSecond => As(VolumeFlowUnit.MegaukGallonPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MicroliterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MicroliterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrolitersPerDay property.")]
         public double MicrolitersPerDay => As(VolumeFlowUnit.MicroliterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MicroliterPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MicroliterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrolitersPerHour property.")]
         public double MicrolitersPerHour => As(VolumeFlowUnit.MicroliterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MicroliterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MicroliterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrolitersPerMinute property.")]
         public double MicrolitersPerMinute => As(VolumeFlowUnit.MicroliterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MicroliterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MicroliterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrolitersPerSecond property.")]
         public double MicrolitersPerSecond => As(VolumeFlowUnit.MicroliterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MilliliterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MilliliterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillilitersPerDay property.")]
         public double MillilitersPerDay => As(VolumeFlowUnit.MilliliterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MilliliterPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MilliliterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillilitersPerHour property.")]
         public double MillilitersPerHour => As(VolumeFlowUnit.MilliliterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MilliliterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MilliliterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillilitersPerMinute property.")]
         public double MillilitersPerMinute => As(VolumeFlowUnit.MilliliterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MilliliterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MilliliterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillilitersPerSecond property.")]
         public double MillilitersPerSecond => As(VolumeFlowUnit.MilliliterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.MillionUsGallonsPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MillionUsGallonsPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillionUsGallonsPerDay property.")]
         public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonsPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.NanoliterPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.NanoliterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanolitersPerDay property.")]
         public double NanolitersPerDay => As(VolumeFlowUnit.NanoliterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.NanoliterPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.NanoliterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanolitersPerHour property.")]
         public double NanolitersPerHour => As(VolumeFlowUnit.NanoliterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.NanoliterPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.NanoliterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanolitersPerMinute property.")]
         public double NanolitersPerMinute => As(VolumeFlowUnit.NanoliterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.NanoliterPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.NanoliterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanolitersPerSecond property.")]
         public double NanolitersPerSecond => As(VolumeFlowUnit.NanoliterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.OilBarrelPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.OilBarrelPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOilBarrelsPerDay property.")]
         public double OilBarrelsPerDay => As(VolumeFlowUnit.OilBarrelPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.OilBarrelPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.OilBarrelPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOilBarrelsPerHour property.")]
         public double OilBarrelsPerHour => As(VolumeFlowUnit.OilBarrelPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.OilBarrelPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.OilBarrelPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOilBarrelsPerMinute property.")]
         public double OilBarrelsPerMinute => As(VolumeFlowUnit.OilBarrelPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.OilBarrelPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.OilBarrelPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToOilBarrelsPerSecond property.")]
         public double OilBarrelsPerSecond => As(VolumeFlowUnit.OilBarrelPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.UkGallonPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UkGallonPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUkGallonsPerDay property.")]
         public double UkGallonsPerDay => As(VolumeFlowUnit.UkGallonPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.UkGallonPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UkGallonPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUkGallonsPerHour property.")]
         public double UkGallonsPerHour => As(VolumeFlowUnit.UkGallonPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.UkGallonPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UkGallonPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUkGallonsPerMinute property.")]
         public double UkGallonsPerMinute => As(VolumeFlowUnit.UkGallonPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.UkGallonPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UkGallonPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUkGallonsPerSecond property.")]
         public double UkGallonsPerSecond => As(VolumeFlowUnit.UkGallonPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.UsGallonPerDay"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UsGallonPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUsGallonsPerDay property.")]
         public double UsGallonsPerDay => As(VolumeFlowUnit.UsGallonPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.UsGallonPerHour"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UsGallonPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUsGallonsPerHour property.")]
         public double UsGallonsPerHour => As(VolumeFlowUnit.UsGallonPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.UsGallonPerMinute"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UsGallonPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUsGallonsPerMinute property.")]
         public double UsGallonsPerMinute => As(VolumeFlowUnit.UsGallonPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowUnit.UsGallonPerSecond"/>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UsGallonPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToUsGallonsPerSecond property.")]
         public double UsGallonsPerSecond => As(VolumeFlowUnit.UsGallonPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.AcreFootPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToAcreFeetPerDay => ToUnit(VolumeFlowUnit.AcreFootPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.AcreFootPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToAcreFeetPerHour => ToUnit(VolumeFlowUnit.AcreFootPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.AcreFootPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToAcreFeetPerMinute => ToUnit(VolumeFlowUnit.AcreFootPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.AcreFootPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToAcreFeetPerSecond => ToUnit(VolumeFlowUnit.AcreFootPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CentiliterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToCentilitersPerDay => ToUnit(VolumeFlowUnit.CentiliterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CentiliterPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToCentilitersPerHour => ToUnit(VolumeFlowUnit.CentiliterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CentiliterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToCentilitersPerMinute => ToUnit(VolumeFlowUnit.CentiliterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CentiliterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToCentilitersPerSecond => ToUnit(VolumeFlowUnit.CentiliterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicCentimeterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToCubicCentimetersPerMinute => ToUnit(VolumeFlowUnit.CubicCentimeterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicDecimeterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToCubicDecimetersPerMinute => ToUnit(VolumeFlowUnit.CubicDecimeterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicFootPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToCubicFeetPerHour => ToUnit(VolumeFlowUnit.CubicFootPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicFootPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToCubicFeetPerMinute => ToUnit(VolumeFlowUnit.CubicFootPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicFootPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToCubicFeetPerSecond => ToUnit(VolumeFlowUnit.CubicFootPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMeterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToCubicMetersPerDay => ToUnit(VolumeFlowUnit.CubicMeterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMeterPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToCubicMetersPerHour => ToUnit(VolumeFlowUnit.CubicMeterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMeterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToCubicMetersPerMinute => ToUnit(VolumeFlowUnit.CubicMeterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMeterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToCubicMetersPerSecond => ToUnit(VolumeFlowUnit.CubicMeterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicMillimeterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToCubicMillimetersPerSecond => ToUnit(VolumeFlowUnit.CubicMillimeterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicYardPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToCubicYardsPerDay => ToUnit(VolumeFlowUnit.CubicYardPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicYardPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToCubicYardsPerHour => ToUnit(VolumeFlowUnit.CubicYardPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicYardPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToCubicYardsPerMinute => ToUnit(VolumeFlowUnit.CubicYardPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.CubicYardPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToCubicYardsPerSecond => ToUnit(VolumeFlowUnit.CubicYardPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.DeciliterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToDecilitersPerDay => ToUnit(VolumeFlowUnit.DeciliterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.DeciliterPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToDecilitersPerHour => ToUnit(VolumeFlowUnit.DeciliterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.DeciliterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToDecilitersPerMinute => ToUnit(VolumeFlowUnit.DeciliterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.DeciliterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToDecilitersPerSecond => ToUnit(VolumeFlowUnit.DeciliterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KiloliterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToKilolitersPerDay => ToUnit(VolumeFlowUnit.KiloliterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KiloliterPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToKilolitersPerHour => ToUnit(VolumeFlowUnit.KiloliterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KiloliterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToKilolitersPerMinute => ToUnit(VolumeFlowUnit.KiloliterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KiloliterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToKilolitersPerSecond => ToUnit(VolumeFlowUnit.KiloliterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.KilousGallonPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToKilousGallonsPerMinute => ToUnit(VolumeFlowUnit.KilousGallonPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.LiterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToLitersPerDay => ToUnit(VolumeFlowUnit.LiterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.LiterPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToLitersPerHour => ToUnit(VolumeFlowUnit.LiterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.LiterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToLitersPerMinute => ToUnit(VolumeFlowUnit.LiterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.LiterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToLitersPerSecond => ToUnit(VolumeFlowUnit.LiterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MegaliterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToMegalitersPerDay => ToUnit(VolumeFlowUnit.MegaliterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MegaukGallonPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToMegaukGallonsPerSecond => ToUnit(VolumeFlowUnit.MegaukGallonPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MicroliterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToMicrolitersPerDay => ToUnit(VolumeFlowUnit.MicroliterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MicroliterPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToMicrolitersPerHour => ToUnit(VolumeFlowUnit.MicroliterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MicroliterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToMicrolitersPerMinute => ToUnit(VolumeFlowUnit.MicroliterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MicroliterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToMicrolitersPerSecond => ToUnit(VolumeFlowUnit.MicroliterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MilliliterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToMillilitersPerDay => ToUnit(VolumeFlowUnit.MilliliterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MilliliterPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToMillilitersPerHour => ToUnit(VolumeFlowUnit.MilliliterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MilliliterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToMillilitersPerMinute => ToUnit(VolumeFlowUnit.MilliliterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MilliliterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToMillilitersPerSecond => ToUnit(VolumeFlowUnit.MilliliterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.MillionUsGallonsPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToMillionUsGallonsPerDay => ToUnit(VolumeFlowUnit.MillionUsGallonsPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.NanoliterPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToNanolitersPerDay => ToUnit(VolumeFlowUnit.NanoliterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.NanoliterPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToNanolitersPerHour => ToUnit(VolumeFlowUnit.NanoliterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.NanoliterPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToNanolitersPerMinute => ToUnit(VolumeFlowUnit.NanoliterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.NanoliterPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToNanolitersPerSecond => ToUnit(VolumeFlowUnit.NanoliterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.OilBarrelPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToOilBarrelsPerDay => ToUnit(VolumeFlowUnit.OilBarrelPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.OilBarrelPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToOilBarrelsPerHour => ToUnit(VolumeFlowUnit.OilBarrelPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.OilBarrelPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToOilBarrelsPerMinute => ToUnit(VolumeFlowUnit.OilBarrelPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.OilBarrelPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToOilBarrelsPerSecond => ToUnit(VolumeFlowUnit.OilBarrelPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UkGallonPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToUkGallonsPerDay => ToUnit(VolumeFlowUnit.UkGallonPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UkGallonPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToUkGallonsPerHour => ToUnit(VolumeFlowUnit.UkGallonPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UkGallonPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToUkGallonsPerMinute => ToUnit(VolumeFlowUnit.UkGallonPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UkGallonPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToUkGallonsPerSecond => ToUnit(VolumeFlowUnit.UkGallonPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UsGallonPerDay"/>.
+        /// </summary>
+        public VolumeFlow ToUsGallonsPerDay => ToUnit(VolumeFlowUnit.UsGallonPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UsGallonPerHour"/>.
+        /// </summary>
+        public VolumeFlow ToUsGallonsPerHour => ToUnit(VolumeFlowUnit.UsGallonPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UsGallonPerMinute"/>.
+        /// </summary>
+        public VolumeFlow ToUsGallonsPerMinute => ToUnit(VolumeFlowUnit.UsGallonPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="VolumeFlow"/> converted into <see cref="VolumeFlowUnit.UsGallonPerSecond"/>.
+        /// </summary>
+        public VolumeFlow ToUsGallonsPerSecond => ToUnit(VolumeFlowUnit.UsGallonPerSecond);
 
         #endregion
 

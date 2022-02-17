@@ -167,9 +167,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousFluxUnit.Lumen"/>
+        ///     Gets this <see cref="LuminousFlux"/> converted into <see cref="LuminousFluxUnit.Lumen"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToLumens property.")]
         public double Lumens => As(LuminousFluxUnit.Lumen);
+
+        /// <summary>
+        ///     Gets this <see cref="LuminousFlux"/> converted into <see cref="LuminousFluxUnit.Lumen"/>.
+        /// </summary>
+        public LuminousFlux ToLumens => ToUnit(LuminousFluxUnit.Lumen);
 
         #endregion
 

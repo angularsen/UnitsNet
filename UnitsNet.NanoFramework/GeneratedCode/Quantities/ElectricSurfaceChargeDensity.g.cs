@@ -83,19 +83,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter"/>
+        ///     Gets this <see cref="ElectricSurfaceChargeDensity"/> converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCoulombsPerSquareCentimeter property.")]
         public double CoulombsPerSquareCentimeter => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>
+        ///     Gets this <see cref="ElectricSurfaceChargeDensity"/> converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCoulombsPerSquareInch property.")]
         public double CoulombsPerSquareInch => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>
+        ///     Gets this <see cref="ElectricSurfaceChargeDensity"/> converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCoulombsPerSquareMeter property.")]
         public double CoulombsPerSquareMeter => As(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricSurfaceChargeDensity"/> converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter"/>.
+        /// </summary>
+        public ElectricSurfaceChargeDensity ToCoulombsPerSquareCentimeter => ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricSurfaceChargeDensity"/> converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch"/>.
+        /// </summary>
+        public ElectricSurfaceChargeDensity ToCoulombsPerSquareInch => ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricSurfaceChargeDensity"/> converted into <see cref="ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter"/>.
+        /// </summary>
+        public ElectricSurfaceChargeDensity ToCoulombsPerSquareMeter => ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
 
         #endregion
 

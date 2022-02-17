@@ -204,74 +204,158 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Decawatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Decawatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecawatts property.")]
         public double Decawatts => As(LuminosityUnit.Decawatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Deciwatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Deciwatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDeciwatts property.")]
         public double Deciwatts => As(LuminosityUnit.Deciwatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Femtowatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Femtowatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToFemtowatts property.")]
         public double Femtowatts => As(LuminosityUnit.Femtowatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Gigawatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Gigawatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigawatts property.")]
         public double Gigawatts => As(LuminosityUnit.Gigawatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Kilowatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Kilowatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilowatts property.")]
         public double Kilowatts => As(LuminosityUnit.Kilowatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Megawatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Megawatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegawatts property.")]
         public double Megawatts => As(LuminosityUnit.Megawatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Microwatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Microwatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrowatts property.")]
         public double Microwatts => As(LuminosityUnit.Microwatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Milliwatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Milliwatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliwatts property.")]
         public double Milliwatts => As(LuminosityUnit.Milliwatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Nanowatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Nanowatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanowatts property.")]
         public double Nanowatts => As(LuminosityUnit.Nanowatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Petawatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Petawatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPetawatts property.")]
         public double Petawatts => As(LuminosityUnit.Petawatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Picowatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Picowatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicowatts property.")]
         public double Picowatts => As(LuminosityUnit.Picowatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.SolarLuminosity"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.SolarLuminosity"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToSolarLuminosities property.")]
         public double SolarLuminosities => As(LuminosityUnit.SolarLuminosity);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Terawatt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Terawatt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTerawatts property.")]
         public double Terawatts => As(LuminosityUnit.Terawatt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Watt"/>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Watt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWatts property.")]
         public double Watts => As(LuminosityUnit.Watt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Decawatt"/>.
+        /// </summary>
+        public Luminosity ToDecawatts => ToUnit(LuminosityUnit.Decawatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Deciwatt"/>.
+        /// </summary>
+        public Luminosity ToDeciwatts => ToUnit(LuminosityUnit.Deciwatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Femtowatt"/>.
+        /// </summary>
+        public Luminosity ToFemtowatts => ToUnit(LuminosityUnit.Femtowatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Gigawatt"/>.
+        /// </summary>
+        public Luminosity ToGigawatts => ToUnit(LuminosityUnit.Gigawatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Kilowatt"/>.
+        /// </summary>
+        public Luminosity ToKilowatts => ToUnit(LuminosityUnit.Kilowatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Megawatt"/>.
+        /// </summary>
+        public Luminosity ToMegawatts => ToUnit(LuminosityUnit.Megawatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Microwatt"/>.
+        /// </summary>
+        public Luminosity ToMicrowatts => ToUnit(LuminosityUnit.Microwatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Milliwatt"/>.
+        /// </summary>
+        public Luminosity ToMilliwatts => ToUnit(LuminosityUnit.Milliwatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Nanowatt"/>.
+        /// </summary>
+        public Luminosity ToNanowatts => ToUnit(LuminosityUnit.Nanowatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Petawatt"/>.
+        /// </summary>
+        public Luminosity ToPetawatts => ToUnit(LuminosityUnit.Petawatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Picowatt"/>.
+        /// </summary>
+        public Luminosity ToPicowatts => ToUnit(LuminosityUnit.Picowatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.SolarLuminosity"/>.
+        /// </summary>
+        public Luminosity ToSolarLuminosities => ToUnit(LuminosityUnit.SolarLuminosity);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Terawatt"/>.
+        /// </summary>
+        public Luminosity ToTerawatts => ToUnit(LuminosityUnit.Terawatt);
+
+        /// <summary>
+        ///     Gets this <see cref="Luminosity"/> converted into <see cref="LuminosityUnit.Watt"/>.
+        /// </summary>
+        public Luminosity ToWatts => ToUnit(LuminosityUnit.Watt);
 
         #endregion
 

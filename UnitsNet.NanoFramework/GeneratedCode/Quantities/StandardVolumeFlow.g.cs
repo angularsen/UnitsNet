@@ -80,49 +80,103 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardCubicCentimetersPerMinute property.")]
         public double StandardCubicCentimetersPerMinute => As(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardCubicFeetPerHour property.")]
         public double StandardCubicFeetPerHour => As(StandardVolumeFlowUnit.StandardCubicFootPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardCubicFeetPerMinute property.")]
         public double StandardCubicFeetPerMinute => As(StandardVolumeFlowUnit.StandardCubicFootPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardCubicFeetPerSecond property.")]
         public double StandardCubicFeetPerSecond => As(StandardVolumeFlowUnit.StandardCubicFootPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardCubicMetersPerDay property.")]
         public double StandardCubicMetersPerDay => As(StandardVolumeFlowUnit.StandardCubicMeterPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardCubicMetersPerHour property.")]
         public double StandardCubicMetersPerHour => As(StandardVolumeFlowUnit.StandardCubicMeterPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardCubicMetersPerMinute property.")]
         public double StandardCubicMetersPerMinute => As(StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardCubicMetersPerSecond property.")]
         public double StandardCubicMetersPerSecond => As(StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardLitersPerMinute property.")]
         public double StandardLitersPerMinute => As(StandardVolumeFlowUnit.StandardLiterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardCubicCentimetersPerMinute => ToUnit(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerHour"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardCubicFeetPerHour => ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerMinute"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardCubicFeetPerMinute => ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicFootPerSecond"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardCubicFeetPerSecond => ToUnit(StandardVolumeFlowUnit.StandardCubicFootPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerDay"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardCubicMetersPerDay => ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerDay);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerHour"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardCubicMetersPerHour => ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerMinute"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardCubicMetersPerMinute => ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardCubicMeterPerSecond"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardCubicMetersPerSecond => ToUnit(StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="StandardVolumeFlow"/> converted into <see cref="StandardVolumeFlowUnit.StandardLiterPerMinute"/>.
+        /// </summary>
+        public StandardVolumeFlow ToStandardLitersPerMinute => ToUnit(StandardVolumeFlowUnit.StandardLiterPerMinute);
 
         #endregion
 

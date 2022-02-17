@@ -167,9 +167,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeDensityUnit.CoulombPerCubicMeter"/>
+        ///     Gets this <see cref="ElectricChargeDensity"/> converted into <see cref="ElectricChargeDensityUnit.CoulombPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCoulombsPerCubicMeter property.")]
         public double CoulombsPerCubicMeter => As(ElectricChargeDensityUnit.CoulombPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricChargeDensity"/> converted into <see cref="ElectricChargeDensityUnit.CoulombPerCubicMeter"/>.
+        /// </summary>
+        public ElectricChargeDensity ToCoulombsPerCubicMeter => ToUnit(ElectricChargeDensityUnit.CoulombPerCubicMeter);
 
         #endregion
 

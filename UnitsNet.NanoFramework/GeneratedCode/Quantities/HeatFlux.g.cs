@@ -80,94 +80,202 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToBtusPerHourSquareFoot property.")]
         public double BtusPerHourSquareFoot => As(HeatFluxUnit.BtuPerHourSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToBtusPerMinuteSquareFoot property.")]
         public double BtusPerMinuteSquareFoot => As(HeatFluxUnit.BtuPerMinuteSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToBtusPerSecondSquareFoot property.")]
         public double BtusPerSecondSquareFoot => As(HeatFluxUnit.BtuPerSecondSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToBtusPerSecondSquareInch property.")]
         public double BtusPerSecondSquareInch => As(HeatFluxUnit.BtuPerSecondSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCaloriesPerSecondSquareCentimeter property.")]
         public double CaloriesPerSecondSquareCentimeter => As(HeatFluxUnit.CaloriePerSecondSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentiwattsPerSquareMeter property.")]
         public double CentiwattsPerSquareMeter => As(HeatFluxUnit.CentiwattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDeciwattsPerSquareMeter property.")]
         public double DeciwattsPerSquareMeter => As(HeatFluxUnit.DeciwattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilocaloriesPerHourSquareMeter property.")]
         public double KilocaloriesPerHourSquareMeter => As(HeatFluxUnit.KilocaloriePerHourSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilocaloriesPerSecondSquareCentimeter property.")]
         public double KilocaloriesPerSecondSquareCentimeter => As(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.KilowattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilowattsPerSquareMeter property.")]
         public double KilowattsPerSquareMeter => As(HeatFluxUnit.KilowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrowattsPerSquareMeter property.")]
         public double MicrowattsPerSquareMeter => As(HeatFluxUnit.MicrowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliwattsPerSquareMeter property.")]
         public double MilliwattsPerSquareMeter => As(HeatFluxUnit.MilliwattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.NanowattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanowattsPerSquareMeter property.")]
         public double NanowattsPerSquareMeter => As(HeatFluxUnit.NanowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.PoundForcePerFootSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsForcePerFootSecond property.")]
         public double PoundsForcePerFootSecond => As(HeatFluxUnit.PoundForcePerFootSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.PoundPerSecondCubed"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.PoundPerSecondCubed"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsPerSecondCubed property.")]
         public double PoundsPerSecondCubed => As(HeatFluxUnit.PoundPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareFoot"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.WattPerSquareFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerSquareFoot property.")]
         public double WattsPerSquareFoot => As(HeatFluxUnit.WattPerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareInch"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.WattPerSquareInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerSquareInch property.")]
         public double WattsPerSquareInch => As(HeatFluxUnit.WattPerSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareMeter"/>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.WattPerSquareMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerSquareMeter property.")]
         public double WattsPerSquareMeter => As(HeatFluxUnit.WattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>.
+        /// </summary>
+        public HeatFlux ToBtusPerHourSquareFoot => ToUnit(HeatFluxUnit.BtuPerHourSquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>.
+        /// </summary>
+        public HeatFlux ToBtusPerMinuteSquareFoot => ToUnit(HeatFluxUnit.BtuPerMinuteSquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>.
+        /// </summary>
+        public HeatFlux ToBtusPerSecondSquareFoot => ToUnit(HeatFluxUnit.BtuPerSecondSquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>.
+        /// </summary>
+        public HeatFlux ToBtusPerSecondSquareInch => ToUnit(HeatFluxUnit.BtuPerSecondSquareInch);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>.
+        /// </summary>
+        public HeatFlux ToCaloriesPerSecondSquareCentimeter => ToUnit(HeatFluxUnit.CaloriePerSecondSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>.
+        /// </summary>
+        public HeatFlux ToCentiwattsPerSquareMeter => ToUnit(HeatFluxUnit.CentiwattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>.
+        /// </summary>
+        public HeatFlux ToDeciwattsPerSquareMeter => ToUnit(HeatFluxUnit.DeciwattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>.
+        /// </summary>
+        public HeatFlux ToKilocaloriesPerHourSquareMeter => ToUnit(HeatFluxUnit.KilocaloriePerHourSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>.
+        /// </summary>
+        public HeatFlux ToKilocaloriesPerSecondSquareCentimeter => ToUnit(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>.
+        /// </summary>
+        public HeatFlux ToKilowattsPerSquareMeter => ToUnit(HeatFluxUnit.KilowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>.
+        /// </summary>
+        public HeatFlux ToMicrowattsPerSquareMeter => ToUnit(HeatFluxUnit.MicrowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>.
+        /// </summary>
+        public HeatFlux ToMilliwattsPerSquareMeter => ToUnit(HeatFluxUnit.MilliwattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>.
+        /// </summary>
+        public HeatFlux ToNanowattsPerSquareMeter => ToUnit(HeatFluxUnit.NanowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>.
+        /// </summary>
+        public HeatFlux ToPoundsForcePerFootSecond => ToUnit(HeatFluxUnit.PoundForcePerFootSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.PoundPerSecondCubed"/>.
+        /// </summary>
+        public HeatFlux ToPoundsPerSecondCubed => ToUnit(HeatFluxUnit.PoundPerSecondCubed);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.WattPerSquareFoot"/>.
+        /// </summary>
+        public HeatFlux ToWattsPerSquareFoot => ToUnit(HeatFluxUnit.WattPerSquareFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.WattPerSquareInch"/>.
+        /// </summary>
+        public HeatFlux ToWattsPerSquareInch => ToUnit(HeatFluxUnit.WattPerSquareInch);
+
+        /// <summary>
+        ///     Gets this <see cref="HeatFlux"/> converted into <see cref="HeatFluxUnit.WattPerSquareMeter"/>.
+        /// </summary>
+        public HeatFlux ToWattsPerSquareMeter => ToUnit(HeatFluxUnit.WattPerSquareMeter);
 
         #endregion
 

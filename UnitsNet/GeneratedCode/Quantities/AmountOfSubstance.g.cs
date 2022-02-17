@@ -202,79 +202,169 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Centimole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Centimole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentimoles property.")]
         public double Centimoles => As(AmountOfSubstanceUnit.Centimole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.CentipoundMole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.CentipoundMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentipoundMoles property.")]
         public double CentipoundMoles => As(AmountOfSubstanceUnit.CentipoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Decimole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Decimole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecimoles property.")]
         public double Decimoles => As(AmountOfSubstanceUnit.Decimole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.DecipoundMole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.DecipoundMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecipoundMoles property.")]
         public double DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Kilomole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Kilomole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilomoles property.")]
         public double Kilomoles => As(AmountOfSubstanceUnit.Kilomole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.KilopoundMole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.KilopoundMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundMoles property.")]
         public double KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Megamole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Megamole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegamoles property.")]
         public double Megamoles => As(AmountOfSubstanceUnit.Megamole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Micromole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Micromole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicromoles property.")]
         public double Micromoles => As(AmountOfSubstanceUnit.Micromole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MicropoundMole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.MicropoundMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicropoundMoles property.")]
         public double MicropoundMoles => As(AmountOfSubstanceUnit.MicropoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Millimole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Millimole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillimoles property.")]
         public double Millimoles => As(AmountOfSubstanceUnit.Millimole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MillipoundMole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.MillipoundMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillipoundMoles property.")]
         public double MillipoundMoles => As(AmountOfSubstanceUnit.MillipoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Mole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Mole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMoles property.")]
         public double Moles => As(AmountOfSubstanceUnit.Mole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Nanomole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Nanomole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanomoles property.")]
         public double Nanomoles => As(AmountOfSubstanceUnit.Nanomole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.NanopoundMole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.NanopoundMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanopoundMoles property.")]
         public double NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.PoundMole"/>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.PoundMole"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundMoles property.")]
         public double PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Centimole"/>.
+        /// </summary>
+        public AmountOfSubstance ToCentimoles => ToUnit(AmountOfSubstanceUnit.Centimole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.CentipoundMole"/>.
+        /// </summary>
+        public AmountOfSubstance ToCentipoundMoles => ToUnit(AmountOfSubstanceUnit.CentipoundMole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Decimole"/>.
+        /// </summary>
+        public AmountOfSubstance ToDecimoles => ToUnit(AmountOfSubstanceUnit.Decimole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.DecipoundMole"/>.
+        /// </summary>
+        public AmountOfSubstance ToDecipoundMoles => ToUnit(AmountOfSubstanceUnit.DecipoundMole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Kilomole"/>.
+        /// </summary>
+        public AmountOfSubstance ToKilomoles => ToUnit(AmountOfSubstanceUnit.Kilomole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.KilopoundMole"/>.
+        /// </summary>
+        public AmountOfSubstance ToKilopoundMoles => ToUnit(AmountOfSubstanceUnit.KilopoundMole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Megamole"/>.
+        /// </summary>
+        public AmountOfSubstance ToMegamoles => ToUnit(AmountOfSubstanceUnit.Megamole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Micromole"/>.
+        /// </summary>
+        public AmountOfSubstance ToMicromoles => ToUnit(AmountOfSubstanceUnit.Micromole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.MicropoundMole"/>.
+        /// </summary>
+        public AmountOfSubstance ToMicropoundMoles => ToUnit(AmountOfSubstanceUnit.MicropoundMole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Millimole"/>.
+        /// </summary>
+        public AmountOfSubstance ToMillimoles => ToUnit(AmountOfSubstanceUnit.Millimole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.MillipoundMole"/>.
+        /// </summary>
+        public AmountOfSubstance ToMillipoundMoles => ToUnit(AmountOfSubstanceUnit.MillipoundMole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Mole"/>.
+        /// </summary>
+        public AmountOfSubstance ToMoles => ToUnit(AmountOfSubstanceUnit.Mole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.Nanomole"/>.
+        /// </summary>
+        public AmountOfSubstance ToNanomoles => ToUnit(AmountOfSubstanceUnit.Nanomole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.NanopoundMole"/>.
+        /// </summary>
+        public AmountOfSubstance ToNanopoundMoles => ToUnit(AmountOfSubstanceUnit.NanopoundMole);
+
+        /// <summary>
+        ///     Gets this <see cref="AmountOfSubstance"/> converted into <see cref="AmountOfSubstanceUnit.PoundMole"/>.
+        /// </summary>
+        public AmountOfSubstance ToPoundMoles => ToUnit(AmountOfSubstanceUnit.PoundMole);
 
         #endregion
 

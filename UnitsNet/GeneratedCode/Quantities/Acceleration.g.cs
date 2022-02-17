@@ -201,74 +201,158 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.CentimeterPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentimetersPerSecondSquared property.")]
         public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.DecimeterPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecimetersPerSecondSquared property.")]
         public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.FootPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.FootPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToFeetPerSecondSquared property.")]
         public double FeetPerSecondSquared => As(AccelerationUnit.FootPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.InchPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.InchPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToInchesPerSecondSquared property.")]
         public double InchesPerSecondSquared => As(AccelerationUnit.InchPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KilometerPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.KilometerPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilometersPerSecondSquared property.")]
         public double KilometersPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerHour"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.KnotPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKnotsPerHour property.")]
         public double KnotsPerHour => As(AccelerationUnit.KnotPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerMinute"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.KnotPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKnotsPerMinute property.")]
         public double KnotsPerMinute => As(AccelerationUnit.KnotPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerSecond"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.KnotPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKnotsPerSecond property.")]
         public double KnotsPerSecond => As(AccelerationUnit.KnotPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MeterPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.MeterPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMetersPerSecondSquared property.")]
         public double MetersPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.MicrometerPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrometersPerSecondSquared property.")]
         public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.MillimeterPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillimetersPerSecondSquared property.")]
         public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MillistandardGravity"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.MillistandardGravity"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillistandardGravity property.")]
         public double MillistandardGravity => As(AccelerationUnit.MillistandardGravity);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.NanometerPerSecondSquared"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.NanometerPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanometersPerSecondSquared property.")]
         public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.StandardGravity"/>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.StandardGravity"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToStandardGravity property.")]
         public double StandardGravity => As(AccelerationUnit.StandardGravity);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToCentimetersPerSecondSquared => ToUnit(AccelerationUnit.CentimeterPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToDecimetersPerSecondSquared => ToUnit(AccelerationUnit.DecimeterPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.FootPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToFeetPerSecondSquared => ToUnit(AccelerationUnit.FootPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.InchPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToInchesPerSecondSquared => ToUnit(AccelerationUnit.InchPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.KilometerPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToKilometersPerSecondSquared => ToUnit(AccelerationUnit.KilometerPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.KnotPerHour"/>.
+        /// </summary>
+        public Acceleration ToKnotsPerHour => ToUnit(AccelerationUnit.KnotPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.KnotPerMinute"/>.
+        /// </summary>
+        public Acceleration ToKnotsPerMinute => ToUnit(AccelerationUnit.KnotPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.KnotPerSecond"/>.
+        /// </summary>
+        public Acceleration ToKnotsPerSecond => ToUnit(AccelerationUnit.KnotPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.MeterPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToMetersPerSecondSquared => ToUnit(AccelerationUnit.MeterPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToMicrometersPerSecondSquared => ToUnit(AccelerationUnit.MicrometerPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToMillimetersPerSecondSquared => ToUnit(AccelerationUnit.MillimeterPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.MillistandardGravity"/>.
+        /// </summary>
+        public Acceleration ToMillistandardGravity => ToUnit(AccelerationUnit.MillistandardGravity);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.NanometerPerSecondSquared"/>.
+        /// </summary>
+        public Acceleration ToNanometersPerSecondSquared => ToUnit(AccelerationUnit.NanometerPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="Acceleration"/> converted into <see cref="AccelerationUnit.StandardGravity"/>.
+        /// </summary>
+        public Acceleration ToStandardGravity => ToUnit(AccelerationUnit.StandardGravity);
 
         #endregion
 

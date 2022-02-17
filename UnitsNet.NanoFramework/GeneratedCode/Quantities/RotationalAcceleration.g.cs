@@ -80,24 +80,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>
+        ///     Gets this <see cref="RotationalAcceleration"/> converted into <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDegreesPerSecondSquared property.")]
         public double DegreesPerSecondSquared => As(RotationalAccelerationUnit.DegreePerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>
+        ///     Gets this <see cref="RotationalAcceleration"/> converted into <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToRadiansPerSecondSquared property.")]
         public double RadiansPerSecondSquared => As(RotationalAccelerationUnit.RadianPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>
+        ///     Gets this <see cref="RotationalAcceleration"/> converted into <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToRevolutionsPerMinutePerSecond property.")]
         public double RevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>
+        ///     Gets this <see cref="RotationalAcceleration"/> converted into <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToRevolutionsPerSecondSquared property.")]
         public double RevolutionsPerSecondSquared => As(RotationalAccelerationUnit.RevolutionPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalAcceleration"/> converted into <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>.
+        /// </summary>
+        public RotationalAcceleration ToDegreesPerSecondSquared => ToUnit(RotationalAccelerationUnit.DegreePerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalAcceleration"/> converted into <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>.
+        /// </summary>
+        public RotationalAcceleration ToRadiansPerSecondSquared => ToUnit(RotationalAccelerationUnit.RadianPerSecondSquared);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalAcceleration"/> converted into <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>.
+        /// </summary>
+        public RotationalAcceleration ToRevolutionsPerMinutePerSecond => ToUnit(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="RotationalAcceleration"/> converted into <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>.
+        /// </summary>
+        public RotationalAcceleration ToRevolutionsPerSecondSquared => ToUnit(RotationalAccelerationUnit.RevolutionPerSecondSquared);
 
         #endregion
 

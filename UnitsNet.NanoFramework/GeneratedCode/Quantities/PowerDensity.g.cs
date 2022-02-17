@@ -80,224 +80,488 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DecawattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecawattsPerCubicFoot property.")]
         public double DecawattsPerCubicFoot => As(PowerDensityUnit.DecawattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DecawattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecawattsPerCubicInch property.")]
         public double DecawattsPerCubicInch => As(PowerDensityUnit.DecawattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DecawattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecawattsPerCubicMeter property.")]
         public double DecawattsPerCubicMeter => As(PowerDensityUnit.DecawattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DecawattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecawattsPerLiter property.")]
         public double DecawattsPerLiter => As(PowerDensityUnit.DecawattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DeciwattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDeciwattsPerCubicFoot property.")]
         public double DeciwattsPerCubicFoot => As(PowerDensityUnit.DeciwattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DeciwattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDeciwattsPerCubicInch property.")]
         public double DeciwattsPerCubicInch => As(PowerDensityUnit.DeciwattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DeciwattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDeciwattsPerCubicMeter property.")]
         public double DeciwattsPerCubicMeter => As(PowerDensityUnit.DeciwattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DeciwattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDeciwattsPerLiter property.")]
         public double DeciwattsPerLiter => As(PowerDensityUnit.DeciwattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.GigawattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigawattsPerCubicFoot property.")]
         public double GigawattsPerCubicFoot => As(PowerDensityUnit.GigawattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.GigawattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigawattsPerCubicInch property.")]
         public double GigawattsPerCubicInch => As(PowerDensityUnit.GigawattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.GigawattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigawattsPerCubicMeter property.")]
         public double GigawattsPerCubicMeter => As(PowerDensityUnit.GigawattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.GigawattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigawattsPerLiter property.")]
         public double GigawattsPerLiter => As(PowerDensityUnit.GigawattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.KilowattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilowattsPerCubicFoot property.")]
         public double KilowattsPerCubicFoot => As(PowerDensityUnit.KilowattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.KilowattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilowattsPerCubicInch property.")]
         public double KilowattsPerCubicInch => As(PowerDensityUnit.KilowattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.KilowattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilowattsPerCubicMeter property.")]
         public double KilowattsPerCubicMeter => As(PowerDensityUnit.KilowattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.KilowattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilowattsPerLiter property.")]
         public double KilowattsPerLiter => As(PowerDensityUnit.KilowattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MegawattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegawattsPerCubicFoot property.")]
         public double MegawattsPerCubicFoot => As(PowerDensityUnit.MegawattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MegawattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegawattsPerCubicInch property.")]
         public double MegawattsPerCubicInch => As(PowerDensityUnit.MegawattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MegawattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegawattsPerCubicMeter property.")]
         public double MegawattsPerCubicMeter => As(PowerDensityUnit.MegawattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MegawattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegawattsPerLiter property.")]
         public double MegawattsPerLiter => As(PowerDensityUnit.MegawattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MicrowattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrowattsPerCubicFoot property.")]
         public double MicrowattsPerCubicFoot => As(PowerDensityUnit.MicrowattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MicrowattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrowattsPerCubicInch property.")]
         public double MicrowattsPerCubicInch => As(PowerDensityUnit.MicrowattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MicrowattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrowattsPerCubicMeter property.")]
         public double MicrowattsPerCubicMeter => As(PowerDensityUnit.MicrowattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MicrowattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrowattsPerLiter property.")]
         public double MicrowattsPerLiter => As(PowerDensityUnit.MicrowattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MilliwattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliwattsPerCubicFoot property.")]
         public double MilliwattsPerCubicFoot => As(PowerDensityUnit.MilliwattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MilliwattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliwattsPerCubicInch property.")]
         public double MilliwattsPerCubicInch => As(PowerDensityUnit.MilliwattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MilliwattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliwattsPerCubicMeter property.")]
         public double MilliwattsPerCubicMeter => As(PowerDensityUnit.MilliwattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MilliwattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliwattsPerLiter property.")]
         public double MilliwattsPerLiter => As(PowerDensityUnit.MilliwattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.NanowattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanowattsPerCubicFoot property.")]
         public double NanowattsPerCubicFoot => As(PowerDensityUnit.NanowattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.NanowattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanowattsPerCubicInch property.")]
         public double NanowattsPerCubicInch => As(PowerDensityUnit.NanowattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.NanowattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanowattsPerCubicMeter property.")]
         public double NanowattsPerCubicMeter => As(PowerDensityUnit.NanowattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.NanowattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanowattsPerLiter property.")]
         public double NanowattsPerLiter => As(PowerDensityUnit.NanowattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.PicowattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicowattsPerCubicFoot property.")]
         public double PicowattsPerCubicFoot => As(PowerDensityUnit.PicowattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.PicowattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicowattsPerCubicInch property.")]
         public double PicowattsPerCubicInch => As(PowerDensityUnit.PicowattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.PicowattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicowattsPerCubicMeter property.")]
         public double PicowattsPerCubicMeter => As(PowerDensityUnit.PicowattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.PicowattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicowattsPerLiter property.")]
         public double PicowattsPerLiter => As(PowerDensityUnit.PicowattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.TerawattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTerawattsPerCubicFoot property.")]
         public double TerawattsPerCubicFoot => As(PowerDensityUnit.TerawattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.TerawattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTerawattsPerCubicInch property.")]
         public double TerawattsPerCubicInch => As(PowerDensityUnit.TerawattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.TerawattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTerawattsPerCubicMeter property.")]
         public double TerawattsPerCubicMeter => As(PowerDensityUnit.TerawattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.TerawattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTerawattsPerLiter property.")]
         public double TerawattsPerLiter => As(PowerDensityUnit.TerawattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicFoot"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.WattPerCubicFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerCubicFoot property.")]
         public double WattsPerCubicFoot => As(PowerDensityUnit.WattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicInch"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.WattPerCubicInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerCubicInch property.")]
         public double WattsPerCubicInch => As(PowerDensityUnit.WattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicMeter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.WattPerCubicMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerCubicMeter property.")]
         public double WattsPerCubicMeter => As(PowerDensityUnit.WattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerLiter"/>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.WattPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToWattsPerLiter property.")]
         public double WattsPerLiter => As(PowerDensityUnit.WattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToDecawattsPerCubicFoot => ToUnit(PowerDensityUnit.DecawattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DecawattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToDecawattsPerCubicInch => ToUnit(PowerDensityUnit.DecawattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DecawattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToDecawattsPerCubicMeter => ToUnit(PowerDensityUnit.DecawattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DecawattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToDecawattsPerLiter => ToUnit(PowerDensityUnit.DecawattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DeciwattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToDeciwattsPerCubicFoot => ToUnit(PowerDensityUnit.DeciwattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DeciwattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToDeciwattsPerCubicInch => ToUnit(PowerDensityUnit.DeciwattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DeciwattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToDeciwattsPerCubicMeter => ToUnit(PowerDensityUnit.DeciwattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.DeciwattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToDeciwattsPerLiter => ToUnit(PowerDensityUnit.DeciwattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.GigawattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToGigawattsPerCubicFoot => ToUnit(PowerDensityUnit.GigawattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.GigawattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToGigawattsPerCubicInch => ToUnit(PowerDensityUnit.GigawattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.GigawattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToGigawattsPerCubicMeter => ToUnit(PowerDensityUnit.GigawattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.GigawattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToGigawattsPerLiter => ToUnit(PowerDensityUnit.GigawattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.KilowattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToKilowattsPerCubicFoot => ToUnit(PowerDensityUnit.KilowattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.KilowattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToKilowattsPerCubicInch => ToUnit(PowerDensityUnit.KilowattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.KilowattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToKilowattsPerCubicMeter => ToUnit(PowerDensityUnit.KilowattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.KilowattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToKilowattsPerLiter => ToUnit(PowerDensityUnit.KilowattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MegawattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToMegawattsPerCubicFoot => ToUnit(PowerDensityUnit.MegawattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MegawattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToMegawattsPerCubicInch => ToUnit(PowerDensityUnit.MegawattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MegawattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToMegawattsPerCubicMeter => ToUnit(PowerDensityUnit.MegawattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MegawattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToMegawattsPerLiter => ToUnit(PowerDensityUnit.MegawattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MicrowattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToMicrowattsPerCubicFoot => ToUnit(PowerDensityUnit.MicrowattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MicrowattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToMicrowattsPerCubicInch => ToUnit(PowerDensityUnit.MicrowattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MicrowattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToMicrowattsPerCubicMeter => ToUnit(PowerDensityUnit.MicrowattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MicrowattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToMicrowattsPerLiter => ToUnit(PowerDensityUnit.MicrowattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MilliwattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToMilliwattsPerCubicFoot => ToUnit(PowerDensityUnit.MilliwattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MilliwattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToMilliwattsPerCubicInch => ToUnit(PowerDensityUnit.MilliwattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MilliwattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToMilliwattsPerCubicMeter => ToUnit(PowerDensityUnit.MilliwattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.MilliwattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToMilliwattsPerLiter => ToUnit(PowerDensityUnit.MilliwattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.NanowattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToNanowattsPerCubicFoot => ToUnit(PowerDensityUnit.NanowattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.NanowattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToNanowattsPerCubicInch => ToUnit(PowerDensityUnit.NanowattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.NanowattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToNanowattsPerCubicMeter => ToUnit(PowerDensityUnit.NanowattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.NanowattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToNanowattsPerLiter => ToUnit(PowerDensityUnit.NanowattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.PicowattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToPicowattsPerCubicFoot => ToUnit(PowerDensityUnit.PicowattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.PicowattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToPicowattsPerCubicInch => ToUnit(PowerDensityUnit.PicowattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.PicowattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToPicowattsPerCubicMeter => ToUnit(PowerDensityUnit.PicowattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.PicowattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToPicowattsPerLiter => ToUnit(PowerDensityUnit.PicowattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.TerawattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToTerawattsPerCubicFoot => ToUnit(PowerDensityUnit.TerawattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.TerawattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToTerawattsPerCubicInch => ToUnit(PowerDensityUnit.TerawattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.TerawattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToTerawattsPerCubicMeter => ToUnit(PowerDensityUnit.TerawattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.TerawattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToTerawattsPerLiter => ToUnit(PowerDensityUnit.TerawattPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.WattPerCubicFoot"/>.
+        /// </summary>
+        public PowerDensity ToWattsPerCubicFoot => ToUnit(PowerDensityUnit.WattPerCubicFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.WattPerCubicInch"/>.
+        /// </summary>
+        public PowerDensity ToWattsPerCubicInch => ToUnit(PowerDensityUnit.WattPerCubicInch);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.WattPerCubicMeter"/>.
+        /// </summary>
+        public PowerDensity ToWattsPerCubicMeter => ToUnit(PowerDensityUnit.WattPerCubicMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="PowerDensity"/> converted into <see cref="PowerDensityUnit.WattPerLiter"/>.
+        /// </summary>
+        public PowerDensity ToWattsPerLiter => ToUnit(PowerDensityUnit.WattPerLiter);
 
         #endregion
 

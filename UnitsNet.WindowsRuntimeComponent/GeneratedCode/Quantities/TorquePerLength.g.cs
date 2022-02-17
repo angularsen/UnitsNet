@@ -164,109 +164,235 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilogramForceCentimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilogramForceCentimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramForceCentimetersPerMeter property.")]
         public double KilogramForceCentimetersPerMeter => As(TorquePerLengthUnit.KilogramForceCentimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilogramForceMeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilogramForceMeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramForceMetersPerMeter property.")]
         public double KilogramForceMetersPerMeter => As(TorquePerLengthUnit.KilogramForceMeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilogramForceMillimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilogramForceMillimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramForceMillimetersPerMeter property.")]
         public double KilogramForceMillimetersPerMeter => As(TorquePerLengthUnit.KilogramForceMillimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilonewtonCentimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilonewtonCentimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonCentimetersPerMeter property.")]
         public double KilonewtonCentimetersPerMeter => As(TorquePerLengthUnit.KilonewtonCentimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilonewtonMeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilonewtonMeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonMetersPerMeter property.")]
         public double KilonewtonMetersPerMeter => As(TorquePerLengthUnit.KilonewtonMeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilonewtonMillimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilonewtonMillimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonMillimetersPerMeter property.")]
         public double KilonewtonMillimetersPerMeter => As(TorquePerLengthUnit.KilonewtonMillimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilopoundForceFootPerFoot"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilopoundForceFootPerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundForceFeetPerFoot property.")]
         public double KilopoundForceFeetPerFoot => As(TorquePerLengthUnit.KilopoundForceFootPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.KilopoundForceInchPerFoot"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilopoundForceInchPerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundForceInchesPerFoot property.")]
         public double KilopoundForceInchesPerFoot => As(TorquePerLengthUnit.KilopoundForceInchPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MeganewtonCentimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MeganewtonCentimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMeganewtonCentimetersPerMeter property.")]
         public double MeganewtonCentimetersPerMeter => As(TorquePerLengthUnit.MeganewtonCentimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MeganewtonMeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MeganewtonMeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMeganewtonMetersPerMeter property.")]
         public double MeganewtonMetersPerMeter => As(TorquePerLengthUnit.MeganewtonMeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MeganewtonMillimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MeganewtonMillimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMeganewtonMillimetersPerMeter property.")]
         public double MeganewtonMillimetersPerMeter => As(TorquePerLengthUnit.MeganewtonMillimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MegapoundForceFootPerFoot"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MegapoundForceFootPerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegapoundForceFeetPerFoot property.")]
         public double MegapoundForceFeetPerFoot => As(TorquePerLengthUnit.MegapoundForceFootPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.MegapoundForceInchPerFoot"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MegapoundForceInchPerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegapoundForceInchesPerFoot property.")]
         public double MegapoundForceInchesPerFoot => As(TorquePerLengthUnit.MegapoundForceInchPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.NewtonCentimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.NewtonCentimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonCentimetersPerMeter property.")]
         public double NewtonCentimetersPerMeter => As(TorquePerLengthUnit.NewtonCentimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.NewtonMeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.NewtonMeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonMetersPerMeter property.")]
         public double NewtonMetersPerMeter => As(TorquePerLengthUnit.NewtonMeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.NewtonMillimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.NewtonMillimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonMillimetersPerMeter property.")]
         public double NewtonMillimetersPerMeter => As(TorquePerLengthUnit.NewtonMillimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.PoundForceFootPerFoot"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.PoundForceFootPerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundForceFeetPerFoot property.")]
         public double PoundForceFeetPerFoot => As(TorquePerLengthUnit.PoundForceFootPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.PoundForceInchPerFoot"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.PoundForceInchPerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundForceInchesPerFoot property.")]
         public double PoundForceInchesPerFoot => As(TorquePerLengthUnit.PoundForceInchPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.TonneForceCentimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.TonneForceCentimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonneForceCentimetersPerMeter property.")]
         public double TonneForceCentimetersPerMeter => As(TorquePerLengthUnit.TonneForceCentimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.TonneForceMeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.TonneForceMeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonneForceMetersPerMeter property.")]
         public double TonneForceMetersPerMeter => As(TorquePerLengthUnit.TonneForceMeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TorquePerLengthUnit.TonneForceMillimeterPerMeter"/>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.TonneForceMillimeterPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonneForceMillimetersPerMeter property.")]
         public double TonneForceMillimetersPerMeter => As(TorquePerLengthUnit.TonneForceMillimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilogramForceCentimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToKilogramForceCentimetersPerMeter => ToUnit(TorquePerLengthUnit.KilogramForceCentimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilogramForceMeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToKilogramForceMetersPerMeter => ToUnit(TorquePerLengthUnit.KilogramForceMeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilogramForceMillimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToKilogramForceMillimetersPerMeter => ToUnit(TorquePerLengthUnit.KilogramForceMillimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilonewtonCentimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToKilonewtonCentimetersPerMeter => ToUnit(TorquePerLengthUnit.KilonewtonCentimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilonewtonMeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToKilonewtonMetersPerMeter => ToUnit(TorquePerLengthUnit.KilonewtonMeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilonewtonMillimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToKilonewtonMillimetersPerMeter => ToUnit(TorquePerLengthUnit.KilonewtonMillimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilopoundForceFootPerFoot"/>.
+        /// </summary>
+        public TorquePerLength ToKilopoundForceFeetPerFoot => ToUnit(TorquePerLengthUnit.KilopoundForceFootPerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.KilopoundForceInchPerFoot"/>.
+        /// </summary>
+        public TorquePerLength ToKilopoundForceInchesPerFoot => ToUnit(TorquePerLengthUnit.KilopoundForceInchPerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MeganewtonCentimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToMeganewtonCentimetersPerMeter => ToUnit(TorquePerLengthUnit.MeganewtonCentimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MeganewtonMeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToMeganewtonMetersPerMeter => ToUnit(TorquePerLengthUnit.MeganewtonMeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MeganewtonMillimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToMeganewtonMillimetersPerMeter => ToUnit(TorquePerLengthUnit.MeganewtonMillimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MegapoundForceFootPerFoot"/>.
+        /// </summary>
+        public TorquePerLength ToMegapoundForceFeetPerFoot => ToUnit(TorquePerLengthUnit.MegapoundForceFootPerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.MegapoundForceInchPerFoot"/>.
+        /// </summary>
+        public TorquePerLength ToMegapoundForceInchesPerFoot => ToUnit(TorquePerLengthUnit.MegapoundForceInchPerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.NewtonCentimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToNewtonCentimetersPerMeter => ToUnit(TorquePerLengthUnit.NewtonCentimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.NewtonMeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToNewtonMetersPerMeter => ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.NewtonMillimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToNewtonMillimetersPerMeter => ToUnit(TorquePerLengthUnit.NewtonMillimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.PoundForceFootPerFoot"/>.
+        /// </summary>
+        public TorquePerLength ToPoundForceFeetPerFoot => ToUnit(TorquePerLengthUnit.PoundForceFootPerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.PoundForceInchPerFoot"/>.
+        /// </summary>
+        public TorquePerLength ToPoundForceInchesPerFoot => ToUnit(TorquePerLengthUnit.PoundForceInchPerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.TonneForceCentimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToTonneForceCentimetersPerMeter => ToUnit(TorquePerLengthUnit.TonneForceCentimeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.TonneForceMeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToTonneForceMetersPerMeter => ToUnit(TorquePerLengthUnit.TonneForceMeterPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="TorquePerLength"/> converted into <see cref="TorquePerLengthUnit.TonneForceMillimeterPerMeter"/>.
+        /// </summary>
+        public TorquePerLength ToTonneForceMillimetersPerMeter => ToUnit(TorquePerLengthUnit.TonneForceMillimeterPerMeter);
 
         #endregion
 

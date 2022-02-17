@@ -164,24 +164,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Gigavoltampere"/>
+        ///     Gets this <see cref="ApparentPower"/> converted into <see cref="ApparentPowerUnit.Gigavoltampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigavoltamperes property.")]
         public double Gigavoltamperes => As(ApparentPowerUnit.Gigavoltampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Kilovoltampere"/>
+        ///     Gets this <see cref="ApparentPower"/> converted into <see cref="ApparentPowerUnit.Kilovoltampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilovoltamperes property.")]
         public double Kilovoltamperes => As(ApparentPowerUnit.Kilovoltampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Megavoltampere"/>
+        ///     Gets this <see cref="ApparentPower"/> converted into <see cref="ApparentPowerUnit.Megavoltampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegavoltamperes property.")]
         public double Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Voltampere"/>
+        ///     Gets this <see cref="ApparentPower"/> converted into <see cref="ApparentPowerUnit.Voltampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToVoltamperes property.")]
         public double Voltamperes => As(ApparentPowerUnit.Voltampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ApparentPower"/> converted into <see cref="ApparentPowerUnit.Gigavoltampere"/>.
+        /// </summary>
+        public ApparentPower ToGigavoltamperes => ToUnit(ApparentPowerUnit.Gigavoltampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ApparentPower"/> converted into <see cref="ApparentPowerUnit.Kilovoltampere"/>.
+        /// </summary>
+        public ApparentPower ToKilovoltamperes => ToUnit(ApparentPowerUnit.Kilovoltampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ApparentPower"/> converted into <see cref="ApparentPowerUnit.Megavoltampere"/>.
+        /// </summary>
+        public ApparentPower ToMegavoltamperes => ToUnit(ApparentPowerUnit.Megavoltampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ApparentPower"/> converted into <see cref="ApparentPowerUnit.Voltampere"/>.
+        /// </summary>
+        public ApparentPower ToVoltamperes => ToUnit(ApparentPowerUnit.Voltampere);
 
         #endregion
 

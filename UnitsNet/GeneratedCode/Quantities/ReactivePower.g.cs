@@ -191,24 +191,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.GigavoltampereReactive"/>
+        ///     Gets this <see cref="ReactivePower"/> converted into <see cref="ReactivePowerUnit.GigavoltampereReactive"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToGigavoltamperesReactive property.")]
         public double GigavoltamperesReactive => As(ReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.KilovoltampereReactive"/>
+        ///     Gets this <see cref="ReactivePower"/> converted into <see cref="ReactivePowerUnit.KilovoltampereReactive"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilovoltamperesReactive property.")]
         public double KilovoltamperesReactive => As(ReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.MegavoltampereReactive"/>
+        ///     Gets this <see cref="ReactivePower"/> converted into <see cref="ReactivePowerUnit.MegavoltampereReactive"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegavoltamperesReactive property.")]
         public double MegavoltamperesReactive => As(ReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.VoltampereReactive"/>
+        ///     Gets this <see cref="ReactivePower"/> converted into <see cref="ReactivePowerUnit.VoltampereReactive"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToVoltamperesReactive property.")]
         public double VoltamperesReactive => As(ReactivePowerUnit.VoltampereReactive);
+
+        /// <summary>
+        ///     Gets this <see cref="ReactivePower"/> converted into <see cref="ReactivePowerUnit.GigavoltampereReactive"/>.
+        /// </summary>
+        public ReactivePower ToGigavoltamperesReactive => ToUnit(ReactivePowerUnit.GigavoltampereReactive);
+
+        /// <summary>
+        ///     Gets this <see cref="ReactivePower"/> converted into <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
+        /// </summary>
+        public ReactivePower ToKilovoltamperesReactive => ToUnit(ReactivePowerUnit.KilovoltampereReactive);
+
+        /// <summary>
+        ///     Gets this <see cref="ReactivePower"/> converted into <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
+        /// </summary>
+        public ReactivePower ToMegavoltamperesReactive => ToUnit(ReactivePowerUnit.MegavoltampereReactive);
+
+        /// <summary>
+        ///     Gets this <see cref="ReactivePower"/> converted into <see cref="ReactivePowerUnit.VoltampereReactive"/>.
+        /// </summary>
+        public ReactivePower ToVoltamperesReactive => ToUnit(ReactivePowerUnit.VoltampereReactive);
 
         #endregion
 

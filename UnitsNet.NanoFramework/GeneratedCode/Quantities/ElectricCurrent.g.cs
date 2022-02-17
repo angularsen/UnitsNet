@@ -80,44 +80,92 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Ampere"/>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Ampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperes property.")]
         public double Amperes => As(ElectricCurrentUnit.Ampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Centiampere"/>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Centiampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentiamperes property.")]
         public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Kiloampere"/>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Kiloampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKiloamperes property.")]
         public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Megaampere"/>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Megaampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegaamperes property.")]
         public double Megaamperes => As(ElectricCurrentUnit.Megaampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Microampere"/>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Microampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicroamperes property.")]
         public double Microamperes => As(ElectricCurrentUnit.Microampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Milliampere"/>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Milliampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilliamperes property.")]
         public double Milliamperes => As(ElectricCurrentUnit.Milliampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Nanoampere"/>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Nanoampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanoamperes property.")]
         public double Nanoamperes => As(ElectricCurrentUnit.Nanoampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Picoampere"/>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Picoampere"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPicoamperes property.")]
         public double Picoamperes => As(ElectricCurrentUnit.Picoampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Ampere"/>.
+        /// </summary>
+        public ElectricCurrent ToAmperes => ToUnit(ElectricCurrentUnit.Ampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Centiampere"/>.
+        /// </summary>
+        public ElectricCurrent ToCentiamperes => ToUnit(ElectricCurrentUnit.Centiampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Kiloampere"/>.
+        /// </summary>
+        public ElectricCurrent ToKiloamperes => ToUnit(ElectricCurrentUnit.Kiloampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Megaampere"/>.
+        /// </summary>
+        public ElectricCurrent ToMegaamperes => ToUnit(ElectricCurrentUnit.Megaampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Microampere"/>.
+        /// </summary>
+        public ElectricCurrent ToMicroamperes => ToUnit(ElectricCurrentUnit.Microampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Milliampere"/>.
+        /// </summary>
+        public ElectricCurrent ToMilliamperes => ToUnit(ElectricCurrentUnit.Milliampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Nanoampere"/>.
+        /// </summary>
+        public ElectricCurrent ToNanoamperes => ToUnit(ElectricCurrentUnit.Nanoampere);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricCurrent"/> converted into <see cref="ElectricCurrentUnit.Picoampere"/>.
+        /// </summary>
+        public ElectricCurrent ToPicoamperes => ToUnit(ElectricCurrentUnit.Picoampere);
 
         #endregion
 

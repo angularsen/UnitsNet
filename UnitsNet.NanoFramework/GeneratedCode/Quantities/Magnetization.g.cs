@@ -83,9 +83,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagnetizationUnit.AmperePerMeter"/>
+        ///     Gets this <see cref="Magnetization"/> converted into <see cref="MagnetizationUnit.AmperePerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToAmperesPerMeter property.")]
         public double AmperesPerMeter => As(MagnetizationUnit.AmperePerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="Magnetization"/> converted into <see cref="MagnetizationUnit.AmperePerMeter"/>.
+        /// </summary>
+        public Magnetization ToAmperesPerMeter => ToUnit(MagnetizationUnit.AmperePerMeter);
 
         #endregion
 

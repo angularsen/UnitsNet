@@ -167,24 +167,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>
+        ///     Gets this <see cref="FuelEfficiency"/> converted into <see cref="FuelEfficiencyUnit.KilometerPerLiter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilometersPerLiters property.")]
         public double KilometersPerLiters => As(FuelEfficiencyUnit.KilometerPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>
+        ///     Gets this <see cref="FuelEfficiency"/> converted into <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToLitersPer100Kilometers property.")]
         public double LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
+        ///     Gets this <see cref="FuelEfficiency"/> converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilesPerUkGallon property.")]
         public double MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>
+        ///     Gets this <see cref="FuelEfficiency"/> converted into <see cref="FuelEfficiencyUnit.MilePerUsGallon"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMilesPerUsGallon property.")]
         public double MilesPerUsGallon => As(FuelEfficiencyUnit.MilePerUsGallon);
+
+        /// <summary>
+        ///     Gets this <see cref="FuelEfficiency"/> converted into <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>.
+        /// </summary>
+        public FuelEfficiency ToKilometersPerLiters => ToUnit(FuelEfficiencyUnit.KilometerPerLiter);
+
+        /// <summary>
+        ///     Gets this <see cref="FuelEfficiency"/> converted into <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
+        /// </summary>
+        public FuelEfficiency ToLitersPer100Kilometers => ToUnit(FuelEfficiencyUnit.LiterPer100Kilometers);
+
+        /// <summary>
+        ///     Gets this <see cref="FuelEfficiency"/> converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
+        /// </summary>
+        public FuelEfficiency ToMilesPerUkGallon => ToUnit(FuelEfficiencyUnit.MilePerUkGallon);
+
+        /// <summary>
+        ///     Gets this <see cref="FuelEfficiency"/> converted into <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>.
+        /// </summary>
+        public FuelEfficiency ToMilesPerUsGallon => ToUnit(FuelEfficiencyUnit.MilePerUsGallon);
 
         #endregion
 

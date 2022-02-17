@@ -194,24 +194,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Henry"/>
+        ///     Gets this <see cref="ElectricInductance"/> converted into <see cref="ElectricInductanceUnit.Henry"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToHenries property.")]
         public double Henries => As(ElectricInductanceUnit.Henry);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Microhenry"/>
+        ///     Gets this <see cref="ElectricInductance"/> converted into <see cref="ElectricInductanceUnit.Microhenry"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrohenries property.")]
         public double Microhenries => As(ElectricInductanceUnit.Microhenry);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Millihenry"/>
+        ///     Gets this <see cref="ElectricInductance"/> converted into <see cref="ElectricInductanceUnit.Millihenry"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillihenries property.")]
         public double Millihenries => As(ElectricInductanceUnit.Millihenry);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Nanohenry"/>
+        ///     Gets this <see cref="ElectricInductance"/> converted into <see cref="ElectricInductanceUnit.Nanohenry"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanohenries property.")]
         public double Nanohenries => As(ElectricInductanceUnit.Nanohenry);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricInductance"/> converted into <see cref="ElectricInductanceUnit.Henry"/>.
+        /// </summary>
+        public ElectricInductance ToHenries => ToUnit(ElectricInductanceUnit.Henry);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricInductance"/> converted into <see cref="ElectricInductanceUnit.Microhenry"/>.
+        /// </summary>
+        public ElectricInductance ToMicrohenries => ToUnit(ElectricInductanceUnit.Microhenry);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricInductance"/> converted into <see cref="ElectricInductanceUnit.Millihenry"/>.
+        /// </summary>
+        public ElectricInductance ToMillihenries => ToUnit(ElectricInductanceUnit.Millihenry);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricInductance"/> converted into <see cref="ElectricInductanceUnit.Nanohenry"/>.
+        /// </summary>
+        public ElectricInductance ToNanohenries => ToUnit(ElectricInductanceUnit.Nanohenry);
 
         #endregion
 

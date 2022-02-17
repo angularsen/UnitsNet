@@ -207,104 +207,224 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerHour"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilovoltsPerHours property.")]
         public double KilovoltsPerHours => As(ElectricPotentialChangeRateUnit.KilovoltPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilovoltsPerMicroseconds property.")]
         public double KilovoltsPerMicroseconds => As(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMinute"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilovoltsPerMinutes property.")]
         public double KilovoltsPerMinutes => As(ElectricPotentialChangeRateUnit.KilovoltPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerSecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilovoltsPerSeconds property.")]
         public double KilovoltsPerSeconds => As(ElectricPotentialChangeRateUnit.KilovoltPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerHour"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegavoltsPerHours property.")]
         public double MegavoltsPerHours => As(ElectricPotentialChangeRateUnit.MegavoltPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegavoltsPerMicroseconds property.")]
         public double MegavoltsPerMicroseconds => As(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMinute"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegavoltsPerMinutes property.")]
         public double MegavoltsPerMinutes => As(ElectricPotentialChangeRateUnit.MegavoltPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerSecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMegavoltsPerSeconds property.")]
         public double MegavoltsPerSeconds => As(ElectricPotentialChangeRateUnit.MegavoltPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerHour"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrovoltsPerHours property.")]
         public double MicrovoltsPerHours => As(ElectricPotentialChangeRateUnit.MicrovoltPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrovoltsPerMicroseconds property.")]
         public double MicrovoltsPerMicroseconds => As(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMinute"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrovoltsPerMinutes property.")]
         public double MicrovoltsPerMinutes => As(ElectricPotentialChangeRateUnit.MicrovoltPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerSecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicrovoltsPerSeconds property.")]
         public double MicrovoltsPerSeconds => As(ElectricPotentialChangeRateUnit.MicrovoltPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerHour"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillivoltsPerHours property.")]
         public double MillivoltsPerHours => As(ElectricPotentialChangeRateUnit.MillivoltPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillivoltsPerMicroseconds property.")]
         public double MillivoltsPerMicroseconds => As(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMinute"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillivoltsPerMinutes property.")]
         public double MillivoltsPerMinutes => As(ElectricPotentialChangeRateUnit.MillivoltPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerSecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillivoltsPerSeconds property.")]
         public double MillivoltsPerSeconds => As(ElectricPotentialChangeRateUnit.MillivoltPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerHour"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerHour"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToVoltsPerHours property.")]
         public double VoltsPerHours => As(ElectricPotentialChangeRateUnit.VoltPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerMicrosecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerMicrosecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToVoltsPerMicroseconds property.")]
         public double VoltsPerMicroseconds => As(ElectricPotentialChangeRateUnit.VoltPerMicrosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerMinute"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerMinute"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToVoltsPerMinutes property.")]
         public double VoltsPerMinutes => As(ElectricPotentialChangeRateUnit.VoltPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerSecond"/>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerSecond"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToVoltsPerSeconds property.")]
         public double VoltsPerSeconds => As(ElectricPotentialChangeRateUnit.VoltPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerHour"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToKilovoltsPerHours => ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToKilovoltsPerMicroseconds => ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerMinute"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToKilovoltsPerMinutes => ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.KilovoltPerSecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToKilovoltsPerSeconds => ToUnit(ElectricPotentialChangeRateUnit.KilovoltPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerHour"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMegavoltsPerHours => ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMegavoltsPerMicroseconds => ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerMinute"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMegavoltsPerMinutes => ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MegavoltPerSecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMegavoltsPerSeconds => ToUnit(ElectricPotentialChangeRateUnit.MegavoltPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerHour"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMicrovoltsPerHours => ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMicrovoltsPerMicroseconds => ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerMinute"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMicrovoltsPerMinutes => ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MicrovoltPerSecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMicrovoltsPerSeconds => ToUnit(ElectricPotentialChangeRateUnit.MicrovoltPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerHour"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMillivoltsPerHours => ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMillivoltsPerMicroseconds => ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerMinute"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMillivoltsPerMinutes => ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.MillivoltPerSecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToMillivoltsPerSeconds => ToUnit(ElectricPotentialChangeRateUnit.MillivoltPerSecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerHour"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToVoltsPerHours => ToUnit(ElectricPotentialChangeRateUnit.VoltPerHour);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerMicrosecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToVoltsPerMicroseconds => ToUnit(ElectricPotentialChangeRateUnit.VoltPerMicrosecond);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerMinute"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToVoltsPerMinutes => ToUnit(ElectricPotentialChangeRateUnit.VoltPerMinute);
+
+        /// <summary>
+        ///     Gets this <see cref="ElectricPotentialChangeRate"/> converted into <see cref="ElectricPotentialChangeRateUnit.VoltPerSecond"/>.
+        /// </summary>
+        public ElectricPotentialChangeRate ToVoltsPerSeconds => ToUnit(ElectricPotentialChangeRateUnit.VoltPerSecond);
 
         #endregion
 

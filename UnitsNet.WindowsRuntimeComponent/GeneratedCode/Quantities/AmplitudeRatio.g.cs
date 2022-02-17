@@ -164,24 +164,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
+        ///     Gets this <see cref="AmplitudeRatio"/> converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecibelMicrovolts property.")]
         public double DecibelMicrovolts => As(AmplitudeRatioUnit.DecibelMicrovolt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
+        ///     Gets this <see cref="AmplitudeRatio"/> converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecibelMillivolts property.")]
         public double DecibelMillivolts => As(AmplitudeRatioUnit.DecibelMillivolt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
+        ///     Gets this <see cref="AmplitudeRatio"/> converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecibelsUnloaded property.")]
         public double DecibelsUnloaded => As(AmplitudeRatioUnit.DecibelUnloaded);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>
+        ///     Gets this <see cref="AmplitudeRatio"/> converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecibelVolts property.")]
         public double DecibelVolts => As(AmplitudeRatioUnit.DecibelVolt);
+
+        /// <summary>
+        ///     Gets this <see cref="AmplitudeRatio"/> converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>.
+        /// </summary>
+        public AmplitudeRatio ToDecibelMicrovolts => ToUnit(AmplitudeRatioUnit.DecibelMicrovolt);
+
+        /// <summary>
+        ///     Gets this <see cref="AmplitudeRatio"/> converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
+        /// </summary>
+        public AmplitudeRatio ToDecibelMillivolts => ToUnit(AmplitudeRatioUnit.DecibelMillivolt);
+
+        /// <summary>
+        ///     Gets this <see cref="AmplitudeRatio"/> converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
+        /// </summary>
+        public AmplitudeRatio ToDecibelsUnloaded => ToUnit(AmplitudeRatioUnit.DecibelUnloaded);
+
+        /// <summary>
+        ///     Gets this <see cref="AmplitudeRatio"/> converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
+        /// </summary>
+        public AmplitudeRatio ToDecibelVolts => ToUnit(AmplitudeRatioUnit.DecibelVolt);
 
         #endregion
 

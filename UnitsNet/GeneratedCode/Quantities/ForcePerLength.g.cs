@@ -225,194 +225,422 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.CentinewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.CentinewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentinewtonsPerCentimeter property.")]
         public double CentinewtonsPerCentimeter => As(ForcePerLengthUnit.CentinewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.CentinewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.CentinewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentinewtonsPerMeter property.")]
         public double CentinewtonsPerMeter => As(ForcePerLengthUnit.CentinewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.CentinewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.CentinewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToCentinewtonsPerMillimeter property.")]
         public double CentinewtonsPerMillimeter => As(ForcePerLengthUnit.CentinewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.DecanewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecanewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecanewtonsPerCentimeter property.")]
         public double DecanewtonsPerCentimeter => As(ForcePerLengthUnit.DecanewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.DecanewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecanewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecanewtonsPerMeter property.")]
         public double DecanewtonsPerMeter => As(ForcePerLengthUnit.DecanewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.DecanewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecanewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecanewtonsPerMillimeter property.")]
         public double DecanewtonsPerMillimeter => As(ForcePerLengthUnit.DecanewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.DecinewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecinewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecinewtonsPerCentimeter property.")]
         public double DecinewtonsPerCentimeter => As(ForcePerLengthUnit.DecinewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.DecinewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecinewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecinewtonsPerMeter property.")]
         public double DecinewtonsPerMeter => As(ForcePerLengthUnit.DecinewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.DecinewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecinewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToDecinewtonsPerMillimeter property.")]
         public double DecinewtonsPerMillimeter => As(ForcePerLengthUnit.DecinewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.KilogramForcePerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilogramForcePerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsForcePerCentimeter property.")]
         public double KilogramsForcePerCentimeter => As(ForcePerLengthUnit.KilogramForcePerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.KilogramForcePerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilogramForcePerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsForcePerMeter property.")]
         public double KilogramsForcePerMeter => As(ForcePerLengthUnit.KilogramForcePerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.KilogramForcePerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilogramForcePerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilogramsForcePerMillimeter property.")]
         public double KilogramsForcePerMillimeter => As(ForcePerLengthUnit.KilogramForcePerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.KilonewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilonewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonsPerCentimeter property.")]
         public double KilonewtonsPerCentimeter => As(ForcePerLengthUnit.KilonewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.KilonewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilonewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonsPerMeter property.")]
         public double KilonewtonsPerMeter => As(ForcePerLengthUnit.KilonewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.KilonewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilonewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilonewtonsPerMillimeter property.")]
         public double KilonewtonsPerMillimeter => As(ForcePerLengthUnit.KilonewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.KilopoundForcePerFoot"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilopoundForcePerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsForcePerFoot property.")]
         public double KilopoundsForcePerFoot => As(ForcePerLengthUnit.KilopoundForcePerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.KilopoundForcePerInch"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilopoundForcePerInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToKilopoundsForcePerInch property.")]
         public double KilopoundsForcePerInch => As(ForcePerLengthUnit.KilopoundForcePerInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MeganewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MeganewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMeganewtonsPerCentimeter property.")]
         public double MeganewtonsPerCentimeter => As(ForcePerLengthUnit.MeganewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MeganewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MeganewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMeganewtonsPerMeter property.")]
         public double MeganewtonsPerMeter => As(ForcePerLengthUnit.MeganewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MeganewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MeganewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMeganewtonsPerMillimeter property.")]
         public double MeganewtonsPerMillimeter => As(ForcePerLengthUnit.MeganewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MicronewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MicronewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicronewtonsPerCentimeter property.")]
         public double MicronewtonsPerCentimeter => As(ForcePerLengthUnit.MicronewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MicronewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MicronewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicronewtonsPerMeter property.")]
         public double MicronewtonsPerMeter => As(ForcePerLengthUnit.MicronewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MicronewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MicronewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMicronewtonsPerMillimeter property.")]
         public double MicronewtonsPerMillimeter => As(ForcePerLengthUnit.MicronewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MillinewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MillinewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillinewtonsPerCentimeter property.")]
         public double MillinewtonsPerCentimeter => As(ForcePerLengthUnit.MillinewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MillinewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MillinewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillinewtonsPerMeter property.")]
         public double MillinewtonsPerMeter => As(ForcePerLengthUnit.MillinewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.MillinewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MillinewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToMillinewtonsPerMillimeter property.")]
         public double MillinewtonsPerMillimeter => As(ForcePerLengthUnit.MillinewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.NanonewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NanonewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanonewtonsPerCentimeter property.")]
         public double NanonewtonsPerCentimeter => As(ForcePerLengthUnit.NanonewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.NanonewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NanonewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanonewtonsPerMeter property.")]
         public double NanonewtonsPerMeter => As(ForcePerLengthUnit.NanonewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.NanonewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NanonewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNanonewtonsPerMillimeter property.")]
         public double NanonewtonsPerMillimeter => As(ForcePerLengthUnit.NanonewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.NewtonPerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NewtonPerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonsPerCentimeter property.")]
         public double NewtonsPerCentimeter => As(ForcePerLengthUnit.NewtonPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.NewtonPerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NewtonPerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonsPerMeter property.")]
         public double NewtonsPerMeter => As(ForcePerLengthUnit.NewtonPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.NewtonPerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NewtonPerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNewtonsPerMillimeter property.")]
         public double NewtonsPerMillimeter => As(ForcePerLengthUnit.NewtonPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.PoundForcePerFoot"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.PoundForcePerFoot"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsForcePerFoot property.")]
         public double PoundsForcePerFoot => As(ForcePerLengthUnit.PoundForcePerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.PoundForcePerInch"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.PoundForcePerInch"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsForcePerInch property.")]
         public double PoundsForcePerInch => As(ForcePerLengthUnit.PoundForcePerInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.PoundForcePerYard"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.PoundForcePerYard"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToPoundsForcePerYard property.")]
         public double PoundsForcePerYard => As(ForcePerLengthUnit.PoundForcePerYard);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.TonneForcePerCentimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.TonneForcePerCentimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesForcePerCentimeter property.")]
         public double TonnesForcePerCentimeter => As(ForcePerLengthUnit.TonneForcePerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.TonneForcePerMeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.TonneForcePerMeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesForcePerMeter property.")]
         public double TonnesForcePerMeter => As(ForcePerLengthUnit.TonneForcePerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForcePerLengthUnit.TonneForcePerMillimeter"/>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.TonneForcePerMillimeter"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToTonnesForcePerMillimeter property.")]
         public double TonnesForcePerMillimeter => As(ForcePerLengthUnit.TonneForcePerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.CentinewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToCentinewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.CentinewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.CentinewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToCentinewtonsPerMeter => ToUnit(ForcePerLengthUnit.CentinewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.CentinewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToCentinewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.CentinewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecanewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToDecanewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.DecanewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecanewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToDecanewtonsPerMeter => ToUnit(ForcePerLengthUnit.DecanewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecanewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToDecanewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.DecanewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecinewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToDecinewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.DecinewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecinewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToDecinewtonsPerMeter => ToUnit(ForcePerLengthUnit.DecinewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.DecinewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToDecinewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.DecinewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilogramForcePerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToKilogramsForcePerCentimeter => ToUnit(ForcePerLengthUnit.KilogramForcePerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilogramForcePerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToKilogramsForcePerMeter => ToUnit(ForcePerLengthUnit.KilogramForcePerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilogramForcePerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToKilogramsForcePerMillimeter => ToUnit(ForcePerLengthUnit.KilogramForcePerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilonewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToKilonewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.KilonewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilonewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToKilonewtonsPerMeter => ToUnit(ForcePerLengthUnit.KilonewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilonewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToKilonewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.KilonewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilopoundForcePerFoot"/>.
+        /// </summary>
+        public ForcePerLength ToKilopoundsForcePerFoot => ToUnit(ForcePerLengthUnit.KilopoundForcePerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.KilopoundForcePerInch"/>.
+        /// </summary>
+        public ForcePerLength ToKilopoundsForcePerInch => ToUnit(ForcePerLengthUnit.KilopoundForcePerInch);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MeganewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToMeganewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.MeganewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MeganewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToMeganewtonsPerMeter => ToUnit(ForcePerLengthUnit.MeganewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MeganewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToMeganewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.MeganewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MicronewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToMicronewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.MicronewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MicronewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToMicronewtonsPerMeter => ToUnit(ForcePerLengthUnit.MicronewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MicronewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToMicronewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.MicronewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MillinewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToMillinewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.MillinewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MillinewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToMillinewtonsPerMeter => ToUnit(ForcePerLengthUnit.MillinewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.MillinewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToMillinewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.MillinewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NanonewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToNanonewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.NanonewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NanonewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToNanonewtonsPerMeter => ToUnit(ForcePerLengthUnit.NanonewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NanonewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToNanonewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.NanonewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NewtonPerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToNewtonsPerCentimeter => ToUnit(ForcePerLengthUnit.NewtonPerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NewtonPerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToNewtonsPerMeter => ToUnit(ForcePerLengthUnit.NewtonPerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.NewtonPerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToNewtonsPerMillimeter => ToUnit(ForcePerLengthUnit.NewtonPerMillimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.PoundForcePerFoot"/>.
+        /// </summary>
+        public ForcePerLength ToPoundsForcePerFoot => ToUnit(ForcePerLengthUnit.PoundForcePerFoot);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.PoundForcePerInch"/>.
+        /// </summary>
+        public ForcePerLength ToPoundsForcePerInch => ToUnit(ForcePerLengthUnit.PoundForcePerInch);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.PoundForcePerYard"/>.
+        /// </summary>
+        public ForcePerLength ToPoundsForcePerYard => ToUnit(ForcePerLengthUnit.PoundForcePerYard);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.TonneForcePerCentimeter"/>.
+        /// </summary>
+        public ForcePerLength ToTonnesForcePerCentimeter => ToUnit(ForcePerLengthUnit.TonneForcePerCentimeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.TonneForcePerMeter"/>.
+        /// </summary>
+        public ForcePerLength ToTonnesForcePerMeter => ToUnit(ForcePerLengthUnit.TonneForcePerMeter);
+
+        /// <summary>
+        ///     Gets this <see cref="ForcePerLength"/> converted into <see cref="ForcePerLengthUnit.TonneForcePerMillimeter"/>.
+        /// </summary>
+        public ForcePerLength ToTonnesForcePerMillimeter => ToUnit(ForcePerLengthUnit.TonneForcePerMillimeter);
 
         #endregion
 

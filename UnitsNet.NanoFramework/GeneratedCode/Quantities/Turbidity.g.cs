@@ -83,9 +83,15 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TurbidityUnit.NTU"/>
+        ///     Gets this <see cref="Turbidity"/> converted into <see cref="TurbidityUnit.NTU"/> as a <see cref="double"/>.
         /// </summary>
+        [Obsolete("Use the ToNTU property.")]
         public double NTU => As(TurbidityUnit.NTU);
+
+        /// <summary>
+        ///     Gets this <see cref="Turbidity"/> converted into <see cref="TurbidityUnit.NTU"/>.
+        /// </summary>
+        public Turbidity ToNTU => ToUnit(TurbidityUnit.NTU);
 
         #endregion
 
