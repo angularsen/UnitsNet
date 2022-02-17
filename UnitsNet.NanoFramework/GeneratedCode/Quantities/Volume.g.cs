@@ -80,574 +80,574 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.AcreFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.AcreFoot">AcreFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToAcreFeet property.")]
         public double AcreFeet => As(VolumeUnit.AcreFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.AuTablespoon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.AuTablespoon">AuTablespoons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToAuTablespoons property.")]
         public double AuTablespoons => As(VolumeUnit.AuTablespoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.BoardFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.BoardFoot">BoardFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBoardFeet property.")]
         public double BoardFeet => As(VolumeUnit.BoardFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Centiliter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Centiliter">Centiliters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentiliters property.")]
         public double Centiliters => As(VolumeUnit.Centiliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicCentimeter">CubicCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicCentimeters property.")]
         public double CubicCentimeters => As(VolumeUnit.CubicCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicDecimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicDecimeter">CubicDecimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicDecimeters property.")]
         public double CubicDecimeters => As(VolumeUnit.CubicDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicFoot">CubicFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicFeet property.")]
         public double CubicFeet => As(VolumeUnit.CubicFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicHectometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicHectometer">CubicHectometers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicHectometers property.")]
         public double CubicHectometers => As(VolumeUnit.CubicHectometer);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicInch">CubicInches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicInches property.")]
         public double CubicInches => As(VolumeUnit.CubicInch);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicKilometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicKilometer">CubicKilometers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicKilometers property.")]
         public double CubicKilometers => As(VolumeUnit.CubicKilometer);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMeter">CubicMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicMeters property.")]
         public double CubicMeters => As(VolumeUnit.CubicMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMicrometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMicrometer">CubicMicrometers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicMicrometers property.")]
         public double CubicMicrometers => As(VolumeUnit.CubicMicrometer);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMile"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMile">CubicMiles</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicMiles property.")]
         public double CubicMiles => As(VolumeUnit.CubicMile);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMillimeter">CubicMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicMillimeters property.")]
         public double CubicMillimeters => As(VolumeUnit.CubicMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicYard"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicYard">CubicYards</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicYards property.")]
         public double CubicYards => As(VolumeUnit.CubicYard);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Decaliter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Decaliter">Decaliters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecaliters property.")]
         public double Decaliters => As(VolumeUnit.Decaliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.DecausGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.DecausGallon">DecausGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecausGallons property.")]
         public double DecausGallons => As(VolumeUnit.DecausGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Deciliter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Deciliter">Deciliters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDeciliters property.")]
         public double Deciliters => As(VolumeUnit.Deciliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.DeciusGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.DeciusGallon">DeciusGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDeciusGallons property.")]
         public double DeciusGallons => As(VolumeUnit.DeciusGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectocubicFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectocubicFoot">HectocubicFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectocubicFeet property.")]
         public double HectocubicFeet => As(VolumeUnit.HectocubicFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectocubicMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectocubicMeter">HectocubicMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectocubicMeters property.")]
         public double HectocubicMeters => As(VolumeUnit.HectocubicMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Hectoliter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Hectoliter">Hectoliters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectoliters property.")]
         public double Hectoliters => As(VolumeUnit.Hectoliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectousGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectousGallon">HectousGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectousGallons property.")]
         public double HectousGallons => As(VolumeUnit.HectousGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialBeerBarrel"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialBeerBarrel">ImperialBeerBarrels</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToImperialBeerBarrels property.")]
         public double ImperialBeerBarrels => As(VolumeUnit.ImperialBeerBarrel);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialGallon">ImperialGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToImperialGallons property.")]
         public double ImperialGallons => As(VolumeUnit.ImperialGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialOunce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialOunce">ImperialOunces</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToImperialOunces property.")]
         public double ImperialOunces => As(VolumeUnit.ImperialOunce);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialPint"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialPint">ImperialPints</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToImperialPints property.")]
         public double ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilocubicFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilocubicFoot">KilocubicFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilocubicFeet property.")]
         public double KilocubicFeet => As(VolumeUnit.KilocubicFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilocubicMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilocubicMeter">KilocubicMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilocubicMeters property.")]
         public double KilocubicMeters => As(VolumeUnit.KilocubicMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KiloimperialGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KiloimperialGallon">KiloimperialGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKiloimperialGallons property.")]
         public double KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Kiloliter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Kiloliter">Kiloliters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKiloliters property.")]
         public double Kiloliters => As(VolumeUnit.Kiloliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilousGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilousGallon">KilousGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilousGallons property.")]
         public double KilousGallons => As(VolumeUnit.KilousGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Liter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Liter">Liters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLiters property.")]
         public double Liters => As(VolumeUnit.Liter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegacubicFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegacubicFoot">MegacubicFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegacubicFeet property.")]
         public double MegacubicFeet => As(VolumeUnit.MegacubicFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegaimperialGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegaimperialGallon">MegaimperialGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegaimperialGallons property.")]
         public double MegaimperialGallons => As(VolumeUnit.MegaimperialGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Megaliter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Megaliter">Megaliters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegaliters property.")]
         public double Megaliters => As(VolumeUnit.Megaliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegausGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegausGallon">MegausGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegausGallons property.")]
         public double MegausGallons => As(VolumeUnit.MegausGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MetricCup"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MetricCup">MetricCups</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetricCups property.")]
         public double MetricCups => As(VolumeUnit.MetricCup);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MetricTeaspoon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MetricTeaspoon">MetricTeaspoons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetricTeaspoons property.")]
         public double MetricTeaspoons => As(VolumeUnit.MetricTeaspoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Microliter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Microliter">Microliters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicroliters property.")]
         public double Microliters => As(VolumeUnit.Microliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Milliliter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Milliliter">Milliliters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliliters property.")]
         public double Milliliters => As(VolumeUnit.Milliliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.OilBarrel"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.OilBarrel">OilBarrels</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToOilBarrels property.")]
         public double OilBarrels => As(VolumeUnit.OilBarrel);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UkTablespoon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UkTablespoon">UkTablespoons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUkTablespoons property.")]
         public double UkTablespoons => As(VolumeUnit.UkTablespoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsBeerBarrel"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsBeerBarrel">UsBeerBarrels</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsBeerBarrels property.")]
         public double UsBeerBarrels => As(VolumeUnit.UsBeerBarrel);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsCustomaryCup"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsCustomaryCup">UsCustomaryCups</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsCustomaryCups property.")]
         public double UsCustomaryCups => As(VolumeUnit.UsCustomaryCup);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsGallon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsGallon">UsGallons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsGallons property.")]
         public double UsGallons => As(VolumeUnit.UsGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsLegalCup"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsLegalCup">UsLegalCups</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsLegalCups property.")]
         public double UsLegalCups => As(VolumeUnit.UsLegalCup);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsOunce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsOunce">UsOunces</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsOunces property.")]
         public double UsOunces => As(VolumeUnit.UsOunce);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsPint"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsPint">UsPints</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsPints property.")]
         public double UsPints => As(VolumeUnit.UsPint);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsQuart"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsQuart">UsQuarts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsQuarts property.")]
         public double UsQuarts => As(VolumeUnit.UsQuart);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsTablespoon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsTablespoon">UsTablespoons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsTablespoons property.")]
         public double UsTablespoons => As(VolumeUnit.UsTablespoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsTeaspoon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsTeaspoon">UsTeaspoons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsTeaspoons property.")]
         public double UsTeaspoons => As(VolumeUnit.UsTeaspoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.AcreFoot"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.AcreFoot">AcreFeet</see>.
         /// </summary>
         public Volume ToAcreFeet => ToUnit(VolumeUnit.AcreFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.AuTablespoon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.AuTablespoon">AuTablespoons</see>.
         /// </summary>
         public Volume ToAuTablespoons => ToUnit(VolumeUnit.AuTablespoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.BoardFoot"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.BoardFoot">BoardFeet</see>.
         /// </summary>
         public Volume ToBoardFeet => ToUnit(VolumeUnit.BoardFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Centiliter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Centiliter">Centiliters</see>.
         /// </summary>
         public Volume ToCentiliters => ToUnit(VolumeUnit.Centiliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicCentimeter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicCentimeter">CubicCentimeters</see>.
         /// </summary>
         public Volume ToCubicCentimeters => ToUnit(VolumeUnit.CubicCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicDecimeter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicDecimeter">CubicDecimeters</see>.
         /// </summary>
         public Volume ToCubicDecimeters => ToUnit(VolumeUnit.CubicDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicFoot"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicFoot">CubicFeet</see>.
         /// </summary>
         public Volume ToCubicFeet => ToUnit(VolumeUnit.CubicFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicHectometer"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicHectometer">CubicHectometers</see>.
         /// </summary>
         public Volume ToCubicHectometers => ToUnit(VolumeUnit.CubicHectometer);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicInch"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicInch">CubicInches</see>.
         /// </summary>
         public Volume ToCubicInches => ToUnit(VolumeUnit.CubicInch);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicKilometer"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicKilometer">CubicKilometers</see>.
         /// </summary>
         public Volume ToCubicKilometers => ToUnit(VolumeUnit.CubicKilometer);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMeter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMeter">CubicMeters</see>.
         /// </summary>
         public Volume ToCubicMeters => ToUnit(VolumeUnit.CubicMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMicrometer"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMicrometer">CubicMicrometers</see>.
         /// </summary>
         public Volume ToCubicMicrometers => ToUnit(VolumeUnit.CubicMicrometer);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMile"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMile">CubicMiles</see>.
         /// </summary>
         public Volume ToCubicMiles => ToUnit(VolumeUnit.CubicMile);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMillimeter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicMillimeter">CubicMillimeters</see>.
         /// </summary>
         public Volume ToCubicMillimeters => ToUnit(VolumeUnit.CubicMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicYard"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.CubicYard">CubicYards</see>.
         /// </summary>
         public Volume ToCubicYards => ToUnit(VolumeUnit.CubicYard);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Decaliter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Decaliter">Decaliters</see>.
         /// </summary>
         public Volume ToDecaliters => ToUnit(VolumeUnit.Decaliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.DecausGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.DecausGallon">DecausGallons</see>.
         /// </summary>
         public Volume ToDecausGallons => ToUnit(VolumeUnit.DecausGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Deciliter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Deciliter">Deciliters</see>.
         /// </summary>
         public Volume ToDeciliters => ToUnit(VolumeUnit.Deciliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.DeciusGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.DeciusGallon">DeciusGallons</see>.
         /// </summary>
         public Volume ToDeciusGallons => ToUnit(VolumeUnit.DeciusGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectocubicFoot"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectocubicFoot">HectocubicFeet</see>.
         /// </summary>
         public Volume ToHectocubicFeet => ToUnit(VolumeUnit.HectocubicFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectocubicMeter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectocubicMeter">HectocubicMeters</see>.
         /// </summary>
         public Volume ToHectocubicMeters => ToUnit(VolumeUnit.HectocubicMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Hectoliter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Hectoliter">Hectoliters</see>.
         /// </summary>
         public Volume ToHectoliters => ToUnit(VolumeUnit.Hectoliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectousGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.HectousGallon">HectousGallons</see>.
         /// </summary>
         public Volume ToHectousGallons => ToUnit(VolumeUnit.HectousGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialBeerBarrel">ImperialBeerBarrels</see>.
         /// </summary>
         public Volume ToImperialBeerBarrels => ToUnit(VolumeUnit.ImperialBeerBarrel);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialGallon">ImperialGallons</see>.
         /// </summary>
         public Volume ToImperialGallons => ToUnit(VolumeUnit.ImperialGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialOunce"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialOunce">ImperialOunces</see>.
         /// </summary>
         public Volume ToImperialOunces => ToUnit(VolumeUnit.ImperialOunce);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialPint"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.ImperialPint">ImperialPints</see>.
         /// </summary>
         public Volume ToImperialPints => ToUnit(VolumeUnit.ImperialPint);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilocubicFoot"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilocubicFoot">KilocubicFeet</see>.
         /// </summary>
         public Volume ToKilocubicFeet => ToUnit(VolumeUnit.KilocubicFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilocubicMeter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilocubicMeter">KilocubicMeters</see>.
         /// </summary>
         public Volume ToKilocubicMeters => ToUnit(VolumeUnit.KilocubicMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KiloimperialGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KiloimperialGallon">KiloimperialGallons</see>.
         /// </summary>
         public Volume ToKiloimperialGallons => ToUnit(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Kiloliter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Kiloliter">Kiloliters</see>.
         /// </summary>
         public Volume ToKiloliters => ToUnit(VolumeUnit.Kiloliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilousGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.KilousGallon">KilousGallons</see>.
         /// </summary>
         public Volume ToKilousGallons => ToUnit(VolumeUnit.KilousGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Liter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Liter">Liters</see>.
         /// </summary>
         public Volume ToLiters => ToUnit(VolumeUnit.Liter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegacubicFoot"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegacubicFoot">MegacubicFeet</see>.
         /// </summary>
         public Volume ToMegacubicFeet => ToUnit(VolumeUnit.MegacubicFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegaimperialGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegaimperialGallon">MegaimperialGallons</see>.
         /// </summary>
         public Volume ToMegaimperialGallons => ToUnit(VolumeUnit.MegaimperialGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Megaliter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Megaliter">Megaliters</see>.
         /// </summary>
         public Volume ToMegaliters => ToUnit(VolumeUnit.Megaliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegausGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MegausGallon">MegausGallons</see>.
         /// </summary>
         public Volume ToMegausGallons => ToUnit(VolumeUnit.MegausGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MetricCup"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MetricCup">MetricCups</see>.
         /// </summary>
         public Volume ToMetricCups => ToUnit(VolumeUnit.MetricCup);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MetricTeaspoon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.MetricTeaspoon">MetricTeaspoons</see>.
         /// </summary>
         public Volume ToMetricTeaspoons => ToUnit(VolumeUnit.MetricTeaspoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Microliter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Microliter">Microliters</see>.
         /// </summary>
         public Volume ToMicroliters => ToUnit(VolumeUnit.Microliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Milliliter"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.Milliliter">Milliliters</see>.
         /// </summary>
         public Volume ToMilliliters => ToUnit(VolumeUnit.Milliliter);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.OilBarrel"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.OilBarrel">OilBarrels</see>.
         /// </summary>
         public Volume ToOilBarrels => ToUnit(VolumeUnit.OilBarrel);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UkTablespoon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UkTablespoon">UkTablespoons</see>.
         /// </summary>
         public Volume ToUkTablespoons => ToUnit(VolumeUnit.UkTablespoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsBeerBarrel"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsBeerBarrel">UsBeerBarrels</see>.
         /// </summary>
         public Volume ToUsBeerBarrels => ToUnit(VolumeUnit.UsBeerBarrel);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsCustomaryCup"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsCustomaryCup">UsCustomaryCups</see>.
         /// </summary>
         public Volume ToUsCustomaryCups => ToUnit(VolumeUnit.UsCustomaryCup);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsGallon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsGallon">UsGallons</see>.
         /// </summary>
         public Volume ToUsGallons => ToUnit(VolumeUnit.UsGallon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsLegalCup"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsLegalCup">UsLegalCups</see>.
         /// </summary>
         public Volume ToUsLegalCups => ToUnit(VolumeUnit.UsLegalCup);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsOunce"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsOunce">UsOunces</see>.
         /// </summary>
         public Volume ToUsOunces => ToUnit(VolumeUnit.UsOunce);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsPint"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsPint">UsPints</see>.
         /// </summary>
         public Volume ToUsPints => ToUnit(VolumeUnit.UsPint);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsQuart"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsQuart">UsQuarts</see>.
         /// </summary>
         public Volume ToUsQuarts => ToUnit(VolumeUnit.UsQuart);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsTablespoon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsTablespoon">UsTablespoons</see>.
         /// </summary>
         public Volume ToUsTablespoons => ToUnit(VolumeUnit.UsTablespoon);
 
         /// <summary>
-        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsTeaspoon"/>.
+        ///     Gets this <see cref="Volume"/> converted into <see cref="VolumeUnit.UsTeaspoon">UsTeaspoons</see>.
         /// </summary>
         public Volume ToUsTeaspoons => ToUnit(VolumeUnit.UsTeaspoon);
 

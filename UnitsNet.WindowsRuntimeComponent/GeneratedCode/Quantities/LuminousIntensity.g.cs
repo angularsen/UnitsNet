@@ -167,13 +167,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="LuminousIntensity"/> converted into <see cref="LuminousIntensityUnit.Candela"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LuminousIntensity"/> converted into <see cref="LuminousIntensityUnit.Candela">Candela</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCandela property.")]
         public double Candela => As(LuminousIntensityUnit.Candela);
 
         /// <summary>
-        ///     Gets this <see cref="LuminousIntensity"/> converted into <see cref="LuminousIntensityUnit.Candela"/>.
+        ///     Gets this <see cref="LuminousIntensity"/> converted into <see cref="LuminousIntensityUnit.Candela">Candela</see>.
         /// </summary>
         public LuminousIntensity ToCandela => ToUnit(LuminousIntensityUnit.Candela);
 

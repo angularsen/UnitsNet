@@ -164,68 +164,68 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth">CentimetersToTheFourth</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentimetersToTheFourth property.")]
         public double CentimetersToTheFourth => As(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth">DecimetersToTheFourth</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecimetersToTheFourth property.")]
         public double DecimetersToTheFourth => As(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.FootToTheFourth">FeetToTheFourth</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFeetToTheFourth property.")]
         public double FeetToTheFourth => As(AreaMomentOfInertiaUnit.FootToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.InchToTheFourth">InchesToTheFourth</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInchesToTheFourth property.")]
         public double InchesToTheFourth => As(AreaMomentOfInertiaUnit.InchToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth">MetersToTheFourth</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetersToTheFourth property.")]
         public double MetersToTheFourth => As(AreaMomentOfInertiaUnit.MeterToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth">MillimetersToTheFourth</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimetersToTheFourth property.")]
         public double MillimetersToTheFourth => As(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.CentimeterToTheFourth">CentimetersToTheFourth</see>.
         /// </summary>
         public AreaMomentOfInertia ToCentimetersToTheFourth => ToUnit(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.DecimeterToTheFourth">DecimetersToTheFourth</see>.
         /// </summary>
         public AreaMomentOfInertia ToDecimetersToTheFourth => ToUnit(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.FootToTheFourth"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.FootToTheFourth">FeetToTheFourth</see>.
         /// </summary>
         public AreaMomentOfInertia ToFeetToTheFourth => ToUnit(AreaMomentOfInertiaUnit.FootToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.InchToTheFourth"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.InchToTheFourth">InchesToTheFourth</see>.
         /// </summary>
         public AreaMomentOfInertia ToInchesToTheFourth => ToUnit(AreaMomentOfInertiaUnit.InchToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.MeterToTheFourth">MetersToTheFourth</see>.
         /// </summary>
         public AreaMomentOfInertia ToMetersToTheFourth => ToUnit(AreaMomentOfInertiaUnit.MeterToTheFourth);
 
         /// <summary>
-        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth"/>.
+        ///     Gets this <see cref="AreaMomentOfInertia"/> converted into <see cref="AreaMomentOfInertiaUnit.MillimeterToTheFourth">MillimetersToTheFourth</see>.
         /// </summary>
         public AreaMomentOfInertia ToMillimetersToTheFourth => ToUnit(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
 

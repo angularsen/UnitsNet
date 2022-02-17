@@ -191,13 +191,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="SolidAngle"/> converted into <see cref="SolidAngleUnit.Steradian"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SolidAngle"/> converted into <see cref="SolidAngleUnit.Steradian">Steradians</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSteradians property.")]
         public double Steradians => As(SolidAngleUnit.Steradian);
 
         /// <summary>
-        ///     Gets this <see cref="SolidAngle"/> converted into <see cref="SolidAngleUnit.Steradian"/>.
+        ///     Gets this <see cref="SolidAngle"/> converted into <see cref="SolidAngleUnit.Steradian">Steradians</see>.
         /// </summary>
         public SolidAngle ToSteradians => ToUnit(SolidAngleUnit.Steradian);
 

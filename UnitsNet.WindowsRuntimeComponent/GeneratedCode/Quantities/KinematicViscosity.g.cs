@@ -167,101 +167,101 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Centistokes"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Centistokes">Centistokes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentistokes property.")]
         public double Centistokes => As(KinematicViscosityUnit.Centistokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Decistokes"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Decistokes">Decistokes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecistokes property.")]
         public double Decistokes => As(KinematicViscosityUnit.Decistokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Kilostokes"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Kilostokes">Kilostokes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilostokes property.")]
         public double Kilostokes => As(KinematicViscosityUnit.Kilostokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Microstokes"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Microstokes">Microstokes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrostokes property.")]
         public double Microstokes => As(KinematicViscosityUnit.Microstokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Millistokes"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Millistokes">Millistokes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillistokes property.")]
         public double Millistokes => As(KinematicViscosityUnit.Millistokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Nanostokes"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Nanostokes">Nanostokes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanostokes property.")]
         public double Nanostokes => As(KinematicViscosityUnit.Nanostokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.SquareFootPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.SquareFootPerSecond">SquareFeetPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSquareFeetPerSecond property.")]
         public double SquareFeetPerSecond => As(KinematicViscosityUnit.SquareFootPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.SquareMeterPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.SquareMeterPerSecond">SquareMetersPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSquareMetersPerSecond property.")]
         public double SquareMetersPerSecond => As(KinematicViscosityUnit.SquareMeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Stokes"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Stokes">Stokes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToStokes property.")]
         public double Stokes => As(KinematicViscosityUnit.Stokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Centistokes"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Centistokes">Centistokes</see>.
         /// </summary>
         public KinematicViscosity ToCentistokes => ToUnit(KinematicViscosityUnit.Centistokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Decistokes"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Decistokes">Decistokes</see>.
         /// </summary>
         public KinematicViscosity ToDecistokes => ToUnit(KinematicViscosityUnit.Decistokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Kilostokes"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Kilostokes">Kilostokes</see>.
         /// </summary>
         public KinematicViscosity ToKilostokes => ToUnit(KinematicViscosityUnit.Kilostokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Microstokes"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Microstokes">Microstokes</see>.
         /// </summary>
         public KinematicViscosity ToMicrostokes => ToUnit(KinematicViscosityUnit.Microstokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Millistokes"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Millistokes">Millistokes</see>.
         /// </summary>
         public KinematicViscosity ToMillistokes => ToUnit(KinematicViscosityUnit.Millistokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Nanostokes"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Nanostokes">Nanostokes</see>.
         /// </summary>
         public KinematicViscosity ToNanostokes => ToUnit(KinematicViscosityUnit.Nanostokes);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.SquareFootPerSecond"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.SquareFootPerSecond">SquareFeetPerSecond</see>.
         /// </summary>
         public KinematicViscosity ToSquareFeetPerSecond => ToUnit(KinematicViscosityUnit.SquareFootPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.SquareMeterPerSecond"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.SquareMeterPerSecond">SquareMetersPerSecond</see>.
         /// </summary>
         public KinematicViscosity ToSquareMetersPerSecond => ToUnit(KinematicViscosityUnit.SquareMeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Stokes"/>.
+        ///     Gets this <see cref="KinematicViscosity"/> converted into <see cref="KinematicViscosityUnit.Stokes">Stokes</see>.
         /// </summary>
         public KinematicViscosity ToStokes => ToUnit(KinematicViscosityUnit.Stokes);
 

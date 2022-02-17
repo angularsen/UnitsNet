@@ -80,123 +80,123 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Day"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Day">Days</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDays property.")]
         public double Days => As(DurationUnit.Day);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Hour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Hour">Hours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHours property.")]
         public double Hours => As(DurationUnit.Hour);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.JulianYear"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.JulianYear">JulianYears</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJulianYears property.")]
         public double JulianYears => As(DurationUnit.JulianYear);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Microsecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Microsecond">Microseconds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicroseconds property.")]
         public double Microseconds => As(DurationUnit.Microsecond);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Millisecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Millisecond">Milliseconds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliseconds property.")]
         public double Milliseconds => As(DurationUnit.Millisecond);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Minute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Minute">Minutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMinutes property.")]
         public double Minutes => As(DurationUnit.Minute);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Month30"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Month30">Months30</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMonths30 property.")]
         public double Months30 => As(DurationUnit.Month30);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Nanosecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Nanosecond">Nanoseconds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanoseconds property.")]
         public double Nanoseconds => As(DurationUnit.Nanosecond);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Second"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Second">Seconds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSeconds property.")]
         public double Seconds => As(DurationUnit.Second);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Week"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Week">Weeks</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWeeks property.")]
         public double Weeks => As(DurationUnit.Week);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Year365"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Year365">Years365</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToYears365 property.")]
         public double Years365 => As(DurationUnit.Year365);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Day"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Day">Days</see>.
         /// </summary>
         public Duration ToDays => ToUnit(DurationUnit.Day);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Hour"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Hour">Hours</see>.
         /// </summary>
         public Duration ToHours => ToUnit(DurationUnit.Hour);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.JulianYear"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.JulianYear">JulianYears</see>.
         /// </summary>
         public Duration ToJulianYears => ToUnit(DurationUnit.JulianYear);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Microsecond"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Microsecond">Microseconds</see>.
         /// </summary>
         public Duration ToMicroseconds => ToUnit(DurationUnit.Microsecond);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Millisecond"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Millisecond">Milliseconds</see>.
         /// </summary>
         public Duration ToMilliseconds => ToUnit(DurationUnit.Millisecond);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Minute"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Minute">Minutes</see>.
         /// </summary>
         public Duration ToMinutes => ToUnit(DurationUnit.Minute);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Month30"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Month30">Months30</see>.
         /// </summary>
         public Duration ToMonths30 => ToUnit(DurationUnit.Month30);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Nanosecond"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Nanosecond">Nanoseconds</see>.
         /// </summary>
         public Duration ToNanoseconds => ToUnit(DurationUnit.Nanosecond);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Second"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Second">Seconds</see>.
         /// </summary>
         public Duration ToSeconds => ToUnit(DurationUnit.Second);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Week"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Week">Weeks</see>.
         /// </summary>
         public Duration ToWeeks => ToUnit(DurationUnit.Week);
 
         /// <summary>
-        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Year365"/>.
+        ///     Gets this <see cref="Duration"/> converted into <see cref="DurationUnit.Year365">Years365</see>.
         /// </summary>
         public Duration ToYears365 => ToUnit(DurationUnit.Year365);
 

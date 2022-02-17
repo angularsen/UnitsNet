@@ -221,288 +221,288 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.BitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.BitPerSecond">BitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBitsPerSecond property.")]
         public double BitsPerSecond => As(BitRateUnit.BitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.BytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.BytePerSecond">BytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBytesPerSecond property.")]
         public double BytesPerSecond => As(BitRateUnit.BytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExabitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExabitPerSecond">ExabitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToExabitsPerSecond property.")]
         public double ExabitsPerSecond => As(BitRateUnit.ExabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExabytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExabytePerSecond">ExabytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToExabytesPerSecond property.")]
         public double ExabytesPerSecond => As(BitRateUnit.ExabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExbibitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExbibitPerSecond">ExbibitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToExbibitsPerSecond property.")]
         public double ExbibitsPerSecond => As(BitRateUnit.ExbibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExbibytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExbibytePerSecond">ExbibytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToExbibytesPerSecond property.")]
         public double ExbibytesPerSecond => As(BitRateUnit.ExbibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GibibitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GibibitPerSecond">GibibitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGibibitsPerSecond property.")]
         public double GibibitsPerSecond => As(BitRateUnit.GibibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GibibytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GibibytePerSecond">GibibytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGibibytesPerSecond property.")]
         public double GibibytesPerSecond => As(BitRateUnit.GibibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GigabitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GigabitPerSecond">GigabitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigabitsPerSecond property.")]
         public double GigabitsPerSecond => As(BitRateUnit.GigabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GigabytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GigabytePerSecond">GigabytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigabytesPerSecond property.")]
         public double GigabytesPerSecond => As(BitRateUnit.GigabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KibibitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KibibitPerSecond">KibibitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKibibitsPerSecond property.")]
         public double KibibitsPerSecond => As(BitRateUnit.KibibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KibibytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KibibytePerSecond">KibibytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKibibytesPerSecond property.")]
         public double KibibytesPerSecond => As(BitRateUnit.KibibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KilobitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KilobitPerSecond">KilobitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilobitsPerSecond property.")]
         public double KilobitsPerSecond => As(BitRateUnit.KilobitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KilobytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KilobytePerSecond">KilobytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilobytesPerSecond property.")]
         public double KilobytesPerSecond => As(BitRateUnit.KilobytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MebibitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MebibitPerSecond">MebibitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMebibitsPerSecond property.")]
         public double MebibitsPerSecond => As(BitRateUnit.MebibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MebibytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MebibytePerSecond">MebibytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMebibytesPerSecond property.")]
         public double MebibytesPerSecond => As(BitRateUnit.MebibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MegabitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MegabitPerSecond">MegabitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegabitsPerSecond property.")]
         public double MegabitsPerSecond => As(BitRateUnit.MegabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MegabytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MegabytePerSecond">MegabytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegabytesPerSecond property.")]
         public double MegabytesPerSecond => As(BitRateUnit.MegabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PebibitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PebibitPerSecond">PebibitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPebibitsPerSecond property.")]
         public double PebibitsPerSecond => As(BitRateUnit.PebibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PebibytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PebibytePerSecond">PebibytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPebibytesPerSecond property.")]
         public double PebibytesPerSecond => As(BitRateUnit.PebibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PetabitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PetabitPerSecond">PetabitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPetabitsPerSecond property.")]
         public double PetabitsPerSecond => As(BitRateUnit.PetabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PetabytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PetabytePerSecond">PetabytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPetabytesPerSecond property.")]
         public double PetabytesPerSecond => As(BitRateUnit.PetabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TebibitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TebibitPerSecond">TebibitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTebibitsPerSecond property.")]
         public double TebibitsPerSecond => As(BitRateUnit.TebibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TebibytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TebibytePerSecond">TebibytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTebibytesPerSecond property.")]
         public double TebibytesPerSecond => As(BitRateUnit.TebibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TerabitPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TerabitPerSecond">TerabitsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTerabitsPerSecond property.")]
         public double TerabitsPerSecond => As(BitRateUnit.TerabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TerabytePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TerabytePerSecond">TerabytesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTerabytesPerSecond property.")]
         public double TerabytesPerSecond => As(BitRateUnit.TerabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.BitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.BitPerSecond">BitsPerSecond</see>.
         /// </summary>
         public BitRate ToBitsPerSecond => ToUnit(BitRateUnit.BitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.BytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.BytePerSecond">BytesPerSecond</see>.
         /// </summary>
         public BitRate ToBytesPerSecond => ToUnit(BitRateUnit.BytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExabitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExabitPerSecond">ExabitsPerSecond</see>.
         /// </summary>
         public BitRate ToExabitsPerSecond => ToUnit(BitRateUnit.ExabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExabytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExabytePerSecond">ExabytesPerSecond</see>.
         /// </summary>
         public BitRate ToExabytesPerSecond => ToUnit(BitRateUnit.ExabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExbibitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExbibitPerSecond">ExbibitsPerSecond</see>.
         /// </summary>
         public BitRate ToExbibitsPerSecond => ToUnit(BitRateUnit.ExbibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExbibytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.ExbibytePerSecond">ExbibytesPerSecond</see>.
         /// </summary>
         public BitRate ToExbibytesPerSecond => ToUnit(BitRateUnit.ExbibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GibibitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GibibitPerSecond">GibibitsPerSecond</see>.
         /// </summary>
         public BitRate ToGibibitsPerSecond => ToUnit(BitRateUnit.GibibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GibibytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GibibytePerSecond">GibibytesPerSecond</see>.
         /// </summary>
         public BitRate ToGibibytesPerSecond => ToUnit(BitRateUnit.GibibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GigabitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GigabitPerSecond">GigabitsPerSecond</see>.
         /// </summary>
         public BitRate ToGigabitsPerSecond => ToUnit(BitRateUnit.GigabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GigabytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.GigabytePerSecond">GigabytesPerSecond</see>.
         /// </summary>
         public BitRate ToGigabytesPerSecond => ToUnit(BitRateUnit.GigabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KibibitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KibibitPerSecond">KibibitsPerSecond</see>.
         /// </summary>
         public BitRate ToKibibitsPerSecond => ToUnit(BitRateUnit.KibibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KibibytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KibibytePerSecond">KibibytesPerSecond</see>.
         /// </summary>
         public BitRate ToKibibytesPerSecond => ToUnit(BitRateUnit.KibibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KilobitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KilobitPerSecond">KilobitsPerSecond</see>.
         /// </summary>
         public BitRate ToKilobitsPerSecond => ToUnit(BitRateUnit.KilobitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KilobytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.KilobytePerSecond">KilobytesPerSecond</see>.
         /// </summary>
         public BitRate ToKilobytesPerSecond => ToUnit(BitRateUnit.KilobytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MebibitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MebibitPerSecond">MebibitsPerSecond</see>.
         /// </summary>
         public BitRate ToMebibitsPerSecond => ToUnit(BitRateUnit.MebibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MebibytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MebibytePerSecond">MebibytesPerSecond</see>.
         /// </summary>
         public BitRate ToMebibytesPerSecond => ToUnit(BitRateUnit.MebibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MegabitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MegabitPerSecond">MegabitsPerSecond</see>.
         /// </summary>
         public BitRate ToMegabitsPerSecond => ToUnit(BitRateUnit.MegabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MegabytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.MegabytePerSecond">MegabytesPerSecond</see>.
         /// </summary>
         public BitRate ToMegabytesPerSecond => ToUnit(BitRateUnit.MegabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PebibitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PebibitPerSecond">PebibitsPerSecond</see>.
         /// </summary>
         public BitRate ToPebibitsPerSecond => ToUnit(BitRateUnit.PebibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PebibytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PebibytePerSecond">PebibytesPerSecond</see>.
         /// </summary>
         public BitRate ToPebibytesPerSecond => ToUnit(BitRateUnit.PebibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PetabitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PetabitPerSecond">PetabitsPerSecond</see>.
         /// </summary>
         public BitRate ToPetabitsPerSecond => ToUnit(BitRateUnit.PetabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PetabytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.PetabytePerSecond">PetabytesPerSecond</see>.
         /// </summary>
         public BitRate ToPetabytesPerSecond => ToUnit(BitRateUnit.PetabytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TebibitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TebibitPerSecond">TebibitsPerSecond</see>.
         /// </summary>
         public BitRate ToTebibitsPerSecond => ToUnit(BitRateUnit.TebibitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TebibytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TebibytePerSecond">TebibytesPerSecond</see>.
         /// </summary>
         public BitRate ToTebibytesPerSecond => ToUnit(BitRateUnit.TebibytePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TerabitPerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TerabitPerSecond">TerabitsPerSecond</see>.
         /// </summary>
         public BitRate ToTerabitsPerSecond => ToUnit(BitRateUnit.TerabitPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TerabytePerSecond"/>.
+        ///     Gets this <see cref="BitRate"/> converted into <see cref="BitRateUnit.TerabytePerSecond">TerabytesPerSecond</see>.
         /// </summary>
         public BitRate ToTerabytesPerSecond => ToUnit(BitRateUnit.TerabytePerSecond);
 

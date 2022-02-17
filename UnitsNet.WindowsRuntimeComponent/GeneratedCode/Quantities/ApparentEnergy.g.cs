@@ -164,35 +164,35 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.KilovoltampereHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.KilovoltampereHour">KilovoltampereHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilovoltampereHours property.")]
         public double KilovoltampereHours => As(ApparentEnergyUnit.KilovoltampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.MegavoltampereHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.MegavoltampereHour">MegavoltampereHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegavoltampereHours property.")]
         public double MegavoltampereHours => As(ApparentEnergyUnit.MegavoltampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.VoltampereHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.VoltampereHour">VoltampereHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToVoltampereHours property.")]
         public double VoltampereHours => As(ApparentEnergyUnit.VoltampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.KilovoltampereHour"/>.
+        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.KilovoltampereHour">KilovoltampereHours</see>.
         /// </summary>
         public ApparentEnergy ToKilovoltampereHours => ToUnit(ApparentEnergyUnit.KilovoltampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.MegavoltampereHour"/>.
+        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.MegavoltampereHour">MegavoltampereHours</see>.
         /// </summary>
         public ApparentEnergy ToMegavoltampereHours => ToUnit(ApparentEnergyUnit.MegavoltampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.VoltampereHour"/>.
+        ///     Gets this <see cref="ApparentEnergy"/> converted into <see cref="ApparentEnergyUnit.VoltampereHour">VoltampereHours</see>.
         /// </summary>
         public ApparentEnergy ToVoltampereHours => ToUnit(ApparentEnergyUnit.VoltampereHour);
 

@@ -80,310 +80,310 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareCentimeter">GramSquareCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramSquareCentimeters property.")]
         public double GramSquareCentimeters => As(MassMomentOfInertiaUnit.GramSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareDecimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareDecimeter">GramSquareDecimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramSquareDecimeters property.")]
         public double GramSquareDecimeters => As(MassMomentOfInertiaUnit.GramSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareMeter">GramSquareMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramSquareMeters property.")]
         public double GramSquareMeters => As(MassMomentOfInertiaUnit.GramSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareMillimeter">GramSquareMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramSquareMillimeters property.")]
         public double GramSquareMillimeters => As(MassMomentOfInertiaUnit.GramSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareCentimeter">KilogramSquareCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramSquareCentimeters property.")]
         public double KilogramSquareCentimeters => As(MassMomentOfInertiaUnit.KilogramSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareDecimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareDecimeter">KilogramSquareDecimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramSquareDecimeters property.")]
         public double KilogramSquareDecimeters => As(MassMomentOfInertiaUnit.KilogramSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMeter">KilogramSquareMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramSquareMeters property.")]
         public double KilogramSquareMeters => As(MassMomentOfInertiaUnit.KilogramSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMillimeter">KilogramSquareMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramSquareMillimeters property.")]
         public double KilogramSquareMillimeters => As(MassMomentOfInertiaUnit.KilogramSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareCentimeter">KilotonneSquareCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilotonneSquareCentimeters property.")]
         public double KilotonneSquareCentimeters => As(MassMomentOfInertiaUnit.KilotonneSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareDecimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareDecimeter">KilotonneSquareDecimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilotonneSquareDecimeters property.")]
         public double KilotonneSquareDecimeters => As(MassMomentOfInertiaUnit.KilotonneSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMeter">KilotonneSquareMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilotonneSquareMeters property.")]
         public double KilotonneSquareMeters => As(MassMomentOfInertiaUnit.KilotonneSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMilimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMilimeter">KilotonneSquareMilimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilotonneSquareMilimeters property.")]
         public double KilotonneSquareMilimeters => As(MassMomentOfInertiaUnit.KilotonneSquareMilimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareCentimeter">MegatonneSquareCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegatonneSquareCentimeters property.")]
         public double MegatonneSquareCentimeters => As(MassMomentOfInertiaUnit.MegatonneSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareDecimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareDecimeter">MegatonneSquareDecimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegatonneSquareDecimeters property.")]
         public double MegatonneSquareDecimeters => As(MassMomentOfInertiaUnit.MegatonneSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMeter">MegatonneSquareMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegatonneSquareMeters property.")]
         public double MegatonneSquareMeters => As(MassMomentOfInertiaUnit.MegatonneSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMilimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMilimeter">MegatonneSquareMilimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegatonneSquareMilimeters property.")]
         public double MegatonneSquareMilimeters => As(MassMomentOfInertiaUnit.MegatonneSquareMilimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareCentimeter">MilligramSquareCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramSquareCentimeters property.")]
         public double MilligramSquareCentimeters => As(MassMomentOfInertiaUnit.MilligramSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareDecimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareDecimeter">MilligramSquareDecimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramSquareDecimeters property.")]
         public double MilligramSquareDecimeters => As(MassMomentOfInertiaUnit.MilligramSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMeter">MilligramSquareMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramSquareMeters property.")]
         public double MilligramSquareMeters => As(MassMomentOfInertiaUnit.MilligramSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMillimeter">MilligramSquareMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramSquareMillimeters property.")]
         public double MilligramSquareMillimeters => As(MassMomentOfInertiaUnit.MilligramSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.PoundSquareFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.PoundSquareFoot">PoundSquareFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundSquareFeet property.")]
         public double PoundSquareFeet => As(MassMomentOfInertiaUnit.PoundSquareFoot);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.PoundSquareInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.PoundSquareInch">PoundSquareInches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundSquareInches property.")]
         public double PoundSquareInches => As(MassMomentOfInertiaUnit.PoundSquareInch);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.SlugSquareFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.SlugSquareFoot">SlugSquareFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSlugSquareFeet property.")]
         public double SlugSquareFeet => As(MassMomentOfInertiaUnit.SlugSquareFoot);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.SlugSquareInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.SlugSquareInch">SlugSquareInches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSlugSquareInches property.")]
         public double SlugSquareInches => As(MassMomentOfInertiaUnit.SlugSquareInch);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareCentimeter">TonneSquareCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonneSquareCentimeters property.")]
         public double TonneSquareCentimeters => As(MassMomentOfInertiaUnit.TonneSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareDecimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareDecimeter">TonneSquareDecimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonneSquareDecimeters property.")]
         public double TonneSquareDecimeters => As(MassMomentOfInertiaUnit.TonneSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMeter">TonneSquareMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonneSquareMeters property.")]
         public double TonneSquareMeters => As(MassMomentOfInertiaUnit.TonneSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMilimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMilimeter">TonneSquareMilimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonneSquareMilimeters property.")]
         public double TonneSquareMilimeters => As(MassMomentOfInertiaUnit.TonneSquareMilimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareCentimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareCentimeter">GramSquareCentimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToGramSquareCentimeters => ToUnit(MassMomentOfInertiaUnit.GramSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareDecimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareDecimeter">GramSquareDecimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToGramSquareDecimeters => ToUnit(MassMomentOfInertiaUnit.GramSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareMeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareMeter">GramSquareMeters</see>.
         /// </summary>
         public MassMomentOfInertia ToGramSquareMeters => ToUnit(MassMomentOfInertiaUnit.GramSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareMillimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.GramSquareMillimeter">GramSquareMillimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToGramSquareMillimeters => ToUnit(MassMomentOfInertiaUnit.GramSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareCentimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareCentimeter">KilogramSquareCentimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToKilogramSquareCentimeters => ToUnit(MassMomentOfInertiaUnit.KilogramSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareDecimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareDecimeter">KilogramSquareDecimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToKilogramSquareDecimeters => ToUnit(MassMomentOfInertiaUnit.KilogramSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMeter">KilogramSquareMeters</see>.
         /// </summary>
         public MassMomentOfInertia ToKilogramSquareMeters => ToUnit(MassMomentOfInertiaUnit.KilogramSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMillimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilogramSquareMillimeter">KilogramSquareMillimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToKilogramSquareMillimeters => ToUnit(MassMomentOfInertiaUnit.KilogramSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareCentimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareCentimeter">KilotonneSquareCentimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToKilotonneSquareCentimeters => ToUnit(MassMomentOfInertiaUnit.KilotonneSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareDecimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareDecimeter">KilotonneSquareDecimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToKilotonneSquareDecimeters => ToUnit(MassMomentOfInertiaUnit.KilotonneSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMeter">KilotonneSquareMeters</see>.
         /// </summary>
         public MassMomentOfInertia ToKilotonneSquareMeters => ToUnit(MassMomentOfInertiaUnit.KilotonneSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMilimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.KilotonneSquareMilimeter">KilotonneSquareMilimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToKilotonneSquareMilimeters => ToUnit(MassMomentOfInertiaUnit.KilotonneSquareMilimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareCentimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareCentimeter">MegatonneSquareCentimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToMegatonneSquareCentimeters => ToUnit(MassMomentOfInertiaUnit.MegatonneSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareDecimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareDecimeter">MegatonneSquareDecimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToMegatonneSquareDecimeters => ToUnit(MassMomentOfInertiaUnit.MegatonneSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMeter">MegatonneSquareMeters</see>.
         /// </summary>
         public MassMomentOfInertia ToMegatonneSquareMeters => ToUnit(MassMomentOfInertiaUnit.MegatonneSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMilimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MegatonneSquareMilimeter">MegatonneSquareMilimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToMegatonneSquareMilimeters => ToUnit(MassMomentOfInertiaUnit.MegatonneSquareMilimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareCentimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareCentimeter">MilligramSquareCentimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToMilligramSquareCentimeters => ToUnit(MassMomentOfInertiaUnit.MilligramSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareDecimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareDecimeter">MilligramSquareDecimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToMilligramSquareDecimeters => ToUnit(MassMomentOfInertiaUnit.MilligramSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMeter">MilligramSquareMeters</see>.
         /// </summary>
         public MassMomentOfInertia ToMilligramSquareMeters => ToUnit(MassMomentOfInertiaUnit.MilligramSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMillimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.MilligramSquareMillimeter">MilligramSquareMillimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToMilligramSquareMillimeters => ToUnit(MassMomentOfInertiaUnit.MilligramSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.PoundSquareFoot"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.PoundSquareFoot">PoundSquareFeet</see>.
         /// </summary>
         public MassMomentOfInertia ToPoundSquareFeet => ToUnit(MassMomentOfInertiaUnit.PoundSquareFoot);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.PoundSquareInch"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.PoundSquareInch">PoundSquareInches</see>.
         /// </summary>
         public MassMomentOfInertia ToPoundSquareInches => ToUnit(MassMomentOfInertiaUnit.PoundSquareInch);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.SlugSquareFoot"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.SlugSquareFoot">SlugSquareFeet</see>.
         /// </summary>
         public MassMomentOfInertia ToSlugSquareFeet => ToUnit(MassMomentOfInertiaUnit.SlugSquareFoot);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.SlugSquareInch"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.SlugSquareInch">SlugSquareInches</see>.
         /// </summary>
         public MassMomentOfInertia ToSlugSquareInches => ToUnit(MassMomentOfInertiaUnit.SlugSquareInch);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareCentimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareCentimeter">TonneSquareCentimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToTonneSquareCentimeters => ToUnit(MassMomentOfInertiaUnit.TonneSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareDecimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareDecimeter">TonneSquareDecimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToTonneSquareDecimeters => ToUnit(MassMomentOfInertiaUnit.TonneSquareDecimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMeter">TonneSquareMeters</see>.
         /// </summary>
         public MassMomentOfInertia ToTonneSquareMeters => ToUnit(MassMomentOfInertiaUnit.TonneSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMilimeter"/>.
+        ///     Gets this <see cref="MassMomentOfInertia"/> converted into <see cref="MassMomentOfInertiaUnit.TonneSquareMilimeter">TonneSquareMilimeters</see>.
         /// </summary>
         public MassMomentOfInertia ToTonneSquareMilimeters => ToUnit(MassMomentOfInertiaUnit.TonneSquareMilimeter);
 

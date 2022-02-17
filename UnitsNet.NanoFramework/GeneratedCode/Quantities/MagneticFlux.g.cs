@@ -83,13 +83,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="MagneticFlux"/> converted into <see cref="MagneticFluxUnit.Weber"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MagneticFlux"/> converted into <see cref="MagneticFluxUnit.Weber">Webers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWebers property.")]
         public double Webers => As(MagneticFluxUnit.Weber);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticFlux"/> converted into <see cref="MagneticFluxUnit.Weber"/>.
+        ///     Gets this <see cref="MagneticFlux"/> converted into <see cref="MagneticFluxUnit.Weber">Webers</see>.
         /// </summary>
         public MagneticFlux ToWebers => ToUnit(MagneticFluxUnit.Weber);
 

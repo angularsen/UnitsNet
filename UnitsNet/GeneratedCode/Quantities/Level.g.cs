@@ -189,24 +189,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Level"/> converted into <see cref="LevelUnit.Decibel"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Level"/> converted into <see cref="LevelUnit.Decibel">Decibels</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecibels property.")]
         public double Decibels => As(LevelUnit.Decibel);
 
         /// <summary>
-        ///     Gets this <see cref="Level"/> converted into <see cref="LevelUnit.Neper"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Level"/> converted into <see cref="LevelUnit.Neper">Nepers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNepers property.")]
         public double Nepers => As(LevelUnit.Neper);
 
         /// <summary>
-        ///     Gets this <see cref="Level"/> converted into <see cref="LevelUnit.Decibel"/>.
+        ///     Gets this <see cref="Level"/> converted into <see cref="LevelUnit.Decibel">Decibels</see>.
         /// </summary>
         public Level ToDecibels => ToUnit(LevelUnit.Decibel);
 
         /// <summary>
-        ///     Gets this <see cref="Level"/> converted into <see cref="LevelUnit.Neper"/>.
+        ///     Gets this <see cref="Level"/> converted into <see cref="LevelUnit.Neper">Nepers</see>.
         /// </summary>
         public Level ToNepers => ToUnit(LevelUnit.Neper);
 

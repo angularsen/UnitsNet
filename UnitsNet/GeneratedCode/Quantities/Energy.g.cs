@@ -223,398 +223,398 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.BritishThermalUnit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.BritishThermalUnit">BritishThermalUnits</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBritishThermalUnits property.")]
         public double BritishThermalUnits => As(EnergyUnit.BritishThermalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Calorie"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Calorie">Calories</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCalories property.")]
         public double Calories => As(EnergyUnit.Calorie);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermEc"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermEc">DecathermsEc</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecathermsEc property.")]
         public double DecathermsEc => As(EnergyUnit.DecathermEc);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermImperial"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermImperial">DecathermsImperial</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecathermsImperial property.")]
         public double DecathermsImperial => As(EnergyUnit.DecathermImperial);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermUs"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermUs">DecathermsUs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecathermsUs property.")]
         public double DecathermsUs => As(EnergyUnit.DecathermUs);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ElectronVolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ElectronVolt">ElectronVolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToElectronVolts property.")]
         public double ElectronVolts => As(EnergyUnit.ElectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Erg"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Erg">Ergs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToErgs property.")]
         public double Ergs => As(EnergyUnit.Erg);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.FootPound"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.FootPound">FootPounds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFootPounds property.")]
         public double FootPounds => As(EnergyUnit.FootPound);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigabritishThermalUnit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigabritishThermalUnit">GigabritishThermalUnits</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigabritishThermalUnits property.")]
         public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigaelectronVolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigaelectronVolt">GigaelectronVolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigaelectronVolts property.")]
         public double GigaelectronVolts => As(EnergyUnit.GigaelectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Gigajoule"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Gigajoule">Gigajoules</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigajoules property.")]
         public double Gigajoules => As(EnergyUnit.Gigajoule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigawattDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigawattDay">GigawattDays</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattDays property.")]
         public double GigawattDays => As(EnergyUnit.GigawattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigawattHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigawattHour">GigawattHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattHours property.")]
         public double GigawattHours => As(EnergyUnit.GigawattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.HorsepowerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.HorsepowerHour">HorsepowerHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHorsepowerHours property.")]
         public double HorsepowerHours => As(EnergyUnit.HorsepowerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Joule"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Joule">Joules</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoules property.")]
         public double Joules => As(EnergyUnit.Joule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilobritishThermalUnit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilobritishThermalUnit">KilobritishThermalUnits</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilobritishThermalUnits property.")]
         public double KilobritishThermalUnits => As(EnergyUnit.KilobritishThermalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Kilocalorie"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Kilocalorie">Kilocalories</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilocalories property.")]
         public double Kilocalories => As(EnergyUnit.Kilocalorie);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KiloelectronVolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KiloelectronVolt">KiloelectronVolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKiloelectronVolts property.")]
         public double KiloelectronVolts => As(EnergyUnit.KiloelectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Kilojoule"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Kilojoule">Kilojoules</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoules property.")]
         public double Kilojoules => As(EnergyUnit.Kilojoule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilowattDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilowattDay">KilowattDays</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattDays property.")]
         public double KilowattDays => As(EnergyUnit.KilowattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilowattHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilowattHour">KilowattHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattHours property.")]
         public double KilowattHours => As(EnergyUnit.KilowattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegabritishThermalUnit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegabritishThermalUnit">MegabritishThermalUnits</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegabritishThermalUnits property.")]
         public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Megacalorie"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Megacalorie">Megacalories</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegacalories property.")]
         public double Megacalories => As(EnergyUnit.Megacalorie);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegaelectronVolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegaelectronVolt">MegaelectronVolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegaelectronVolts property.")]
         public double MegaelectronVolts => As(EnergyUnit.MegaelectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Megajoule"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Megajoule">Megajoules</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoules property.")]
         public double Megajoules => As(EnergyUnit.Megajoule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegawattDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegawattDay">MegawattDays</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattDays property.")]
         public double MegawattDays => As(EnergyUnit.MegawattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegawattHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegawattHour">MegawattHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattHours property.")]
         public double MegawattHours => As(EnergyUnit.MegawattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Millijoule"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Millijoule">Millijoules</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillijoules property.")]
         public double Millijoules => As(EnergyUnit.Millijoule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TeraelectronVolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TeraelectronVolt">TeraelectronVolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTeraelectronVolts property.")]
         public double TeraelectronVolts => As(EnergyUnit.TeraelectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TerawattDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TerawattDay">TerawattDays</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTerawattDays property.")]
         public double TerawattDays => As(EnergyUnit.TerawattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TerawattHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TerawattHour">TerawattHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTerawattHours property.")]
         public double TerawattHours => As(EnergyUnit.TerawattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermEc"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermEc">ThermsEc</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToThermsEc property.")]
         public double ThermsEc => As(EnergyUnit.ThermEc);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermImperial"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermImperial">ThermsImperial</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToThermsImperial property.")]
         public double ThermsImperial => As(EnergyUnit.ThermImperial);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermUs"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermUs">ThermsUs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToThermsUs property.")]
         public double ThermsUs => As(EnergyUnit.ThermUs);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.WattDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.WattDay">WattDays</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattDays property.")]
         public double WattDays => As(EnergyUnit.WattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.WattHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.WattHour">WattHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattHours property.")]
         public double WattHours => As(EnergyUnit.WattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.BritishThermalUnit"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.BritishThermalUnit">BritishThermalUnits</see>.
         /// </summary>
         public Energy ToBritishThermalUnits => ToUnit(EnergyUnit.BritishThermalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Calorie"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Calorie">Calories</see>.
         /// </summary>
         public Energy ToCalories => ToUnit(EnergyUnit.Calorie);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermEc"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermEc">DecathermsEc</see>.
         /// </summary>
         public Energy ToDecathermsEc => ToUnit(EnergyUnit.DecathermEc);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermImperial"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermImperial">DecathermsImperial</see>.
         /// </summary>
         public Energy ToDecathermsImperial => ToUnit(EnergyUnit.DecathermImperial);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermUs"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.DecathermUs">DecathermsUs</see>.
         /// </summary>
         public Energy ToDecathermsUs => ToUnit(EnergyUnit.DecathermUs);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ElectronVolt"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ElectronVolt">ElectronVolts</see>.
         /// </summary>
         public Energy ToElectronVolts => ToUnit(EnergyUnit.ElectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Erg"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Erg">Ergs</see>.
         /// </summary>
         public Energy ToErgs => ToUnit(EnergyUnit.Erg);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.FootPound"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.FootPound">FootPounds</see>.
         /// </summary>
         public Energy ToFootPounds => ToUnit(EnergyUnit.FootPound);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigabritishThermalUnit"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigabritishThermalUnit">GigabritishThermalUnits</see>.
         /// </summary>
         public Energy ToGigabritishThermalUnits => ToUnit(EnergyUnit.GigabritishThermalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigaelectronVolt"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigaelectronVolt">GigaelectronVolts</see>.
         /// </summary>
         public Energy ToGigaelectronVolts => ToUnit(EnergyUnit.GigaelectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Gigajoule"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Gigajoule">Gigajoules</see>.
         /// </summary>
         public Energy ToGigajoules => ToUnit(EnergyUnit.Gigajoule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigawattDay"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigawattDay">GigawattDays</see>.
         /// </summary>
         public Energy ToGigawattDays => ToUnit(EnergyUnit.GigawattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigawattHour"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.GigawattHour">GigawattHours</see>.
         /// </summary>
         public Energy ToGigawattHours => ToUnit(EnergyUnit.GigawattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.HorsepowerHour"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.HorsepowerHour">HorsepowerHours</see>.
         /// </summary>
         public Energy ToHorsepowerHours => ToUnit(EnergyUnit.HorsepowerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Joule"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Joule">Joules</see>.
         /// </summary>
         public Energy ToJoules => ToUnit(EnergyUnit.Joule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilobritishThermalUnit"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilobritishThermalUnit">KilobritishThermalUnits</see>.
         /// </summary>
         public Energy ToKilobritishThermalUnits => ToUnit(EnergyUnit.KilobritishThermalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Kilocalorie"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Kilocalorie">Kilocalories</see>.
         /// </summary>
         public Energy ToKilocalories => ToUnit(EnergyUnit.Kilocalorie);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KiloelectronVolt"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KiloelectronVolt">KiloelectronVolts</see>.
         /// </summary>
         public Energy ToKiloelectronVolts => ToUnit(EnergyUnit.KiloelectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Kilojoule"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Kilojoule">Kilojoules</see>.
         /// </summary>
         public Energy ToKilojoules => ToUnit(EnergyUnit.Kilojoule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilowattDay"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilowattDay">KilowattDays</see>.
         /// </summary>
         public Energy ToKilowattDays => ToUnit(EnergyUnit.KilowattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilowattHour"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.KilowattHour">KilowattHours</see>.
         /// </summary>
         public Energy ToKilowattHours => ToUnit(EnergyUnit.KilowattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegabritishThermalUnit"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegabritishThermalUnit">MegabritishThermalUnits</see>.
         /// </summary>
         public Energy ToMegabritishThermalUnits => ToUnit(EnergyUnit.MegabritishThermalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Megacalorie"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Megacalorie">Megacalories</see>.
         /// </summary>
         public Energy ToMegacalories => ToUnit(EnergyUnit.Megacalorie);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegaelectronVolt"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegaelectronVolt">MegaelectronVolts</see>.
         /// </summary>
         public Energy ToMegaelectronVolts => ToUnit(EnergyUnit.MegaelectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Megajoule"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Megajoule">Megajoules</see>.
         /// </summary>
         public Energy ToMegajoules => ToUnit(EnergyUnit.Megajoule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegawattDay"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegawattDay">MegawattDays</see>.
         /// </summary>
         public Energy ToMegawattDays => ToUnit(EnergyUnit.MegawattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegawattHour"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.MegawattHour">MegawattHours</see>.
         /// </summary>
         public Energy ToMegawattHours => ToUnit(EnergyUnit.MegawattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Millijoule"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.Millijoule">Millijoules</see>.
         /// </summary>
         public Energy ToMillijoules => ToUnit(EnergyUnit.Millijoule);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TeraelectronVolt"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TeraelectronVolt">TeraelectronVolts</see>.
         /// </summary>
         public Energy ToTeraelectronVolts => ToUnit(EnergyUnit.TeraelectronVolt);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TerawattDay"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TerawattDay">TerawattDays</see>.
         /// </summary>
         public Energy ToTerawattDays => ToUnit(EnergyUnit.TerawattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TerawattHour"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.TerawattHour">TerawattHours</see>.
         /// </summary>
         public Energy ToTerawattHours => ToUnit(EnergyUnit.TerawattHour);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermEc"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermEc">ThermsEc</see>.
         /// </summary>
         public Energy ToThermsEc => ToUnit(EnergyUnit.ThermEc);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermImperial"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermImperial">ThermsImperial</see>.
         /// </summary>
         public Energy ToThermsImperial => ToUnit(EnergyUnit.ThermImperial);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermUs"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.ThermUs">ThermsUs</see>.
         /// </summary>
         public Energy ToThermsUs => ToUnit(EnergyUnit.ThermUs);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.WattDay"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.WattDay">WattDays</see>.
         /// </summary>
         public Energy ToWattDays => ToUnit(EnergyUnit.WattDay);
 
         /// <summary>
-        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.WattHour"/>.
+        ///     Gets this <see cref="Energy"/> converted into <see cref="EnergyUnit.WattHour">WattHours</see>.
         /// </summary>
         public Energy ToWattHours => ToUnit(EnergyUnit.WattHour);
 

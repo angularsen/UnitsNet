@@ -201,156 +201,156 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.AtmospherePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.AtmospherePerSecond">AtmospheresPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToAtmospheresPerSecond property.")]
         public double AtmospheresPerSecond => As(PressureChangeRateUnit.AtmospherePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopascalPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopascalPerMinute">KilopascalsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopascalsPerMinute property.")]
         public double KilopascalsPerMinute => As(PressureChangeRateUnit.KilopascalPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopascalPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopascalPerSecond">KilopascalsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopascalsPerSecond property.")]
         public double KilopascalsPerSecond => As(PressureChangeRateUnit.KilopascalPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute">KilopoundsForcePerSquareInchPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundsForcePerSquareInchPerMinute property.")]
         public double KilopoundsForcePerSquareInchPerMinute => As(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond">KilopoundsForcePerSquareInchPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundsForcePerSquareInchPerSecond property.")]
         public double KilopoundsForcePerSquareInchPerSecond => As(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapascalPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapascalPerMinute">MegapascalsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapascalsPerMinute property.")]
         public double MegapascalsPerMinute => As(PressureChangeRateUnit.MegapascalPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapascalPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapascalPerSecond">MegapascalsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapascalsPerSecond property.")]
         public double MegapascalsPerSecond => As(PressureChangeRateUnit.MegapascalPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute">MegapoundsForcePerSquareInchPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapoundsForcePerSquareInchPerMinute property.")]
         public double MegapoundsForcePerSquareInchPerMinute => As(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond">MegapoundsForcePerSquareInchPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapoundsForcePerSquareInchPerSecond property.")]
         public double MegapoundsForcePerSquareInchPerSecond => As(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond">MillimetersOfMercuryPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimetersOfMercuryPerSecond property.")]
         public double MillimetersOfMercuryPerSecond => As(PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PascalPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PascalPerMinute">PascalsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPascalsPerMinute property.")]
         public double PascalsPerMinute => As(PressureChangeRateUnit.PascalPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PascalPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PascalPerSecond">PascalsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPascalsPerSecond property.")]
         public double PascalsPerSecond => As(PressureChangeRateUnit.PascalPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerMinute">PoundsForcePerSquareInchPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsForcePerSquareInchPerMinute property.")]
         public double PoundsForcePerSquareInchPerMinute => As(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerSecond">PoundsForcePerSquareInchPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsForcePerSquareInchPerSecond property.")]
         public double PoundsForcePerSquareInchPerSecond => As(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.AtmospherePerSecond"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.AtmospherePerSecond">AtmospheresPerSecond</see>.
         /// </summary>
         public PressureChangeRate ToAtmospheresPerSecond => ToUnit(PressureChangeRateUnit.AtmospherePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopascalPerMinute"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopascalPerMinute">KilopascalsPerMinute</see>.
         /// </summary>
         public PressureChangeRate ToKilopascalsPerMinute => ToUnit(PressureChangeRateUnit.KilopascalPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopascalPerSecond"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopascalPerSecond">KilopascalsPerSecond</see>.
         /// </summary>
         public PressureChangeRate ToKilopascalsPerSecond => ToUnit(PressureChangeRateUnit.KilopascalPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute">KilopoundsForcePerSquareInchPerMinute</see>.
         /// </summary>
         public PressureChangeRate ToKilopoundsForcePerSquareInchPerMinute => ToUnit(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond">KilopoundsForcePerSquareInchPerSecond</see>.
         /// </summary>
         public PressureChangeRate ToKilopoundsForcePerSquareInchPerSecond => ToUnit(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapascalPerMinute"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapascalPerMinute">MegapascalsPerMinute</see>.
         /// </summary>
         public PressureChangeRate ToMegapascalsPerMinute => ToUnit(PressureChangeRateUnit.MegapascalPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapascalPerSecond"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapascalPerSecond">MegapascalsPerSecond</see>.
         /// </summary>
         public PressureChangeRate ToMegapascalsPerSecond => ToUnit(PressureChangeRateUnit.MegapascalPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute">MegapoundsForcePerSquareInchPerMinute</see>.
         /// </summary>
         public PressureChangeRate ToMegapoundsForcePerSquareInchPerMinute => ToUnit(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond">MegapoundsForcePerSquareInchPerSecond</see>.
         /// </summary>
         public PressureChangeRate ToMegapoundsForcePerSquareInchPerSecond => ToUnit(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.MillimeterOfMercuryPerSecond">MillimetersOfMercuryPerSecond</see>.
         /// </summary>
         public PressureChangeRate ToMillimetersOfMercuryPerSecond => ToUnit(PressureChangeRateUnit.MillimeterOfMercuryPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PascalPerMinute"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PascalPerMinute">PascalsPerMinute</see>.
         /// </summary>
         public PressureChangeRate ToPascalsPerMinute => ToUnit(PressureChangeRateUnit.PascalPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PascalPerSecond"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PascalPerSecond">PascalsPerSecond</see>.
         /// </summary>
         public PressureChangeRate ToPascalsPerSecond => ToUnit(PressureChangeRateUnit.PascalPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerMinute"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerMinute">PoundsForcePerSquareInchPerMinute</see>.
         /// </summary>
         public PressureChangeRate ToPoundsForcePerSquareInchPerMinute => ToUnit(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerSecond"/>.
+        ///     Gets this <see cref="PressureChangeRate"/> converted into <see cref="PressureChangeRateUnit.PoundForcePerSquareInchPerSecond">PoundsForcePerSquareInchPerSecond</see>.
         /// </summary>
         public PressureChangeRate ToPoundsForcePerSquareInchPerSecond => ToUnit(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond);
 

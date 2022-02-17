@@ -195,57 +195,57 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.AmpereHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.AmpereHour">AmpereHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToAmpereHours property.")]
         public double AmpereHours => As(ElectricChargeUnit.AmpereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.Coulomb"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.Coulomb">Coulombs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCoulombs property.")]
         public double Coulombs => As(ElectricChargeUnit.Coulomb);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.KiloampereHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.KiloampereHour">KiloampereHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKiloampereHours property.")]
         public double KiloampereHours => As(ElectricChargeUnit.KiloampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.MegaampereHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.MegaampereHour">MegaampereHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegaampereHours property.")]
         public double MegaampereHours => As(ElectricChargeUnit.MegaampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.MilliampereHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.MilliampereHour">MilliampereHours</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliampereHours property.")]
         public double MilliampereHours => As(ElectricChargeUnit.MilliampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.AmpereHour"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.AmpereHour">AmpereHours</see>.
         /// </summary>
         public ElectricCharge ToAmpereHours => ToUnit(ElectricChargeUnit.AmpereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.Coulomb"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.Coulomb">Coulombs</see>.
         /// </summary>
         public ElectricCharge ToCoulombs => ToUnit(ElectricChargeUnit.Coulomb);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.KiloampereHour"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.KiloampereHour">KiloampereHours</see>.
         /// </summary>
         public ElectricCharge ToKiloampereHours => ToUnit(ElectricChargeUnit.KiloampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.MegaampereHour"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.MegaampereHour">MegaampereHours</see>.
         /// </summary>
         public ElectricCharge ToMegaampereHours => ToUnit(ElectricChargeUnit.MegaampereHour);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.MilliampereHour"/>.
+        ///     Gets this <see cref="ElectricCharge"/> converted into <see cref="ElectricChargeUnit.MilliampereHour">MilliampereHours</see>.
         /// </summary>
         public ElectricCharge ToMilliampereHours => ToUnit(ElectricChargeUnit.MilliampereHour);
 

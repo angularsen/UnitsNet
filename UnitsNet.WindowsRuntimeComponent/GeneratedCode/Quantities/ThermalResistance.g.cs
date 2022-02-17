@@ -164,68 +164,68 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu">HourSquareFeetDegreesFahrenheitPerBtu</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHourSquareFeetDegreesFahrenheitPerBtu property.")]
         public double HourSquareFeetDegreesFahrenheitPerBtu => As(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie">SquareCentimeterHourDegreesCelsiusPerKilocalorie</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSquareCentimeterHourDegreesCelsiusPerKilocalorie property.")]
         public double SquareCentimeterHourDegreesCelsiusPerKilocalorie => As(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt">SquareCentimeterKelvinsPerWatt</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSquareCentimeterKelvinsPerWatt property.")]
         public double SquareCentimeterKelvinsPerWatt => As(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt">SquareMeterDegreesCelsiusPerWatt</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSquareMeterDegreesCelsiusPerWatt property.")]
         public double SquareMeterDegreesCelsiusPerWatt => As(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt">SquareMeterKelvinsPerKilowatt</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSquareMeterKelvinsPerKilowatt property.")]
         public double SquareMeterKelvinsPerKilowatt => As(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt">SquareMeterKelvinsPerWatt</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSquareMeterKelvinsPerWatt property.")]
         public double SquareMeterKelvinsPerWatt => As(ThermalResistanceUnit.SquareMeterKelvinPerWatt);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu">HourSquareFeetDegreesFahrenheitPerBtu</see>.
         /// </summary>
         public ThermalResistance ToHourSquareFeetDegreesFahrenheitPerBtu => ToUnit(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie">SquareCentimeterHourDegreesCelsiusPerKilocalorie</see>.
         /// </summary>
         public ThermalResistance ToSquareCentimeterHourDegreesCelsiusPerKilocalorie => ToUnit(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareCentimeterKelvinPerWatt">SquareCentimeterKelvinsPerWatt</see>.
         /// </summary>
         public ThermalResistance ToSquareCentimeterKelvinsPerWatt => ToUnit(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt">SquareMeterDegreesCelsiusPerWatt</see>.
         /// </summary>
         public ThermalResistance ToSquareMeterDegreesCelsiusPerWatt => ToUnit(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerKilowatt">SquareMeterKelvinsPerKilowatt</see>.
         /// </summary>
         public ThermalResistance ToSquareMeterKelvinsPerKilowatt => ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt"/>.
+        ///     Gets this <see cref="ThermalResistance"/> converted into <see cref="ThermalResistanceUnit.SquareMeterKelvinPerWatt">SquareMeterKelvinsPerWatt</see>.
         /// </summary>
         public ThermalResistance ToSquareMeterKelvinsPerWatt => ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerWatt);
 

@@ -80,79 +80,79 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.CaloriePerKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.CaloriePerKelvin">CaloriesPerKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCaloriesPerKelvin property.")]
         public double CaloriesPerKelvin => As(EntropyUnit.CaloriePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.JoulePerDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.JoulePerDegreeCelsius">JoulesPerDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerDegreeCelsius property.")]
         public double JoulesPerDegreeCelsius => As(EntropyUnit.JoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.JoulePerKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.JoulePerKelvin">JoulesPerKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerKelvin property.")]
         public double JoulesPerKelvin => As(EntropyUnit.JoulePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilocaloriePerKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilocaloriePerKelvin">KilocaloriesPerKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilocaloriesPerKelvin property.")]
         public double KilocaloriesPerKelvin => As(EntropyUnit.KilocaloriePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilojoulePerDegreeCelsius">KilojoulesPerDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerDegreeCelsius property.")]
         public double KilojoulesPerDegreeCelsius => As(EntropyUnit.KilojoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilojoulePerKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilojoulePerKelvin">KilojoulesPerKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerKelvin property.")]
         public double KilojoulesPerKelvin => As(EntropyUnit.KilojoulePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.MegajoulePerKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.MegajoulePerKelvin">MegajoulesPerKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoulesPerKelvin property.")]
         public double MegajoulesPerKelvin => As(EntropyUnit.MegajoulePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.CaloriePerKelvin"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.CaloriePerKelvin">CaloriesPerKelvin</see>.
         /// </summary>
         public Entropy ToCaloriesPerKelvin => ToUnit(EntropyUnit.CaloriePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.JoulePerDegreeCelsius"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.JoulePerDegreeCelsius">JoulesPerDegreeCelsius</see>.
         /// </summary>
         public Entropy ToJoulesPerDegreeCelsius => ToUnit(EntropyUnit.JoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.JoulePerKelvin"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.JoulePerKelvin">JoulesPerKelvin</see>.
         /// </summary>
         public Entropy ToJoulesPerKelvin => ToUnit(EntropyUnit.JoulePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilocaloriePerKelvin"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilocaloriePerKelvin">KilocaloriesPerKelvin</see>.
         /// </summary>
         public Entropy ToKilocaloriesPerKelvin => ToUnit(EntropyUnit.KilocaloriePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilojoulePerDegreeCelsius">KilojoulesPerDegreeCelsius</see>.
         /// </summary>
         public Entropy ToKilojoulesPerDegreeCelsius => ToUnit(EntropyUnit.KilojoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilojoulePerKelvin"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.KilojoulePerKelvin">KilojoulesPerKelvin</see>.
         /// </summary>
         public Entropy ToKilojoulesPerKelvin => ToUnit(EntropyUnit.KilojoulePerKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.MegajoulePerKelvin"/>.
+        ///     Gets this <see cref="Entropy"/> converted into <see cref="EntropyUnit.MegajoulePerKelvin">MegajoulesPerKelvin</see>.
         /// </summary>
         public Entropy ToMegajoulesPerKelvin => ToUnit(EntropyUnit.MegajoulePerKelvin);
 

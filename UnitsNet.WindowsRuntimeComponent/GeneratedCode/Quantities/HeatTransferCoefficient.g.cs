@@ -164,35 +164,35 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit">BtusPerSquareFootDegreeFahrenheit</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBtusPerSquareFootDegreeFahrenheit property.")]
         public double BtusPerSquareFootDegreeFahrenheit => As(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius">WattsPerSquareMeterCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattsPerSquareMeterCelsius property.")]
         public double WattsPerSquareMeterCelsius => As(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin">WattsPerSquareMeterKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattsPerSquareMeterKelvin property.")]
         public double WattsPerSquareMeterKelvin => As(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>.
+        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit">BtusPerSquareFootDegreeFahrenheit</see>.
         /// </summary>
         public HeatTransferCoefficient ToBtusPerSquareFootDegreeFahrenheit => ToUnit(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius"/>.
+        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterCelsius">WattsPerSquareMeterCelsius</see>.
         /// </summary>
         public HeatTransferCoefficient ToWattsPerSquareMeterCelsius => ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin"/>.
+        ///     Gets this <see cref="HeatTransferCoefficient"/> converted into <see cref="HeatTransferCoefficientUnit.WattPerSquareMeterKelvin">WattsPerSquareMeterKelvin</see>.
         /// </summary>
         public HeatTransferCoefficient ToWattsPerSquareMeterKelvin => ToUnit(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
 

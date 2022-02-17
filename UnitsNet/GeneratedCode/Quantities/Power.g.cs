@@ -217,277 +217,277 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.BoilerHorsepower"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.BoilerHorsepower">BoilerHorsepower</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBoilerHorsepower property.")]
         public double BoilerHorsepower => As(PowerUnit.BoilerHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.BritishThermalUnitPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.BritishThermalUnitPerHour">BritishThermalUnitsPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBritishThermalUnitsPerHour property.")]
         public double BritishThermalUnitsPerHour => As(PowerUnit.BritishThermalUnitPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Decawatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Decawatt">Decawatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecawatts property.")]
         public double Decawatts => As(PowerUnit.Decawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Deciwatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Deciwatt">Deciwatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDeciwatts property.")]
         public double Deciwatts => As(PowerUnit.Deciwatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.ElectricalHorsepower"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.ElectricalHorsepower">ElectricalHorsepower</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToElectricalHorsepower property.")]
         public double ElectricalHorsepower => As(PowerUnit.ElectricalHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Femtowatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Femtowatt">Femtowatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFemtowatts property.")]
         public double Femtowatts => As(PowerUnit.Femtowatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.GigajoulePerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.GigajoulePerHour">GigajoulesPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigajoulesPerHour property.")]
         public double GigajoulesPerHour => As(PowerUnit.GigajoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Gigawatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Gigawatt">Gigawatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawatts property.")]
         public double Gigawatts => As(PowerUnit.Gigawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.HydraulicHorsepower"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.HydraulicHorsepower">HydraulicHorsepower</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHydraulicHorsepower property.")]
         public double HydraulicHorsepower => As(PowerUnit.HydraulicHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.JoulePerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.JoulePerHour">JoulesPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerHour property.")]
         public double JoulesPerHour => As(PowerUnit.JoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.KilobritishThermalUnitPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.KilobritishThermalUnitPerHour">KilobritishThermalUnitsPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilobritishThermalUnitsPerHour property.")]
         public double KilobritishThermalUnitsPerHour => As(PowerUnit.KilobritishThermalUnitPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.KilojoulePerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.KilojoulePerHour">KilojoulesPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerHour property.")]
         public double KilojoulesPerHour => As(PowerUnit.KilojoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Kilowatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Kilowatt">Kilowatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowatts property.")]
         public double Kilowatts => As(PowerUnit.Kilowatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MechanicalHorsepower"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MechanicalHorsepower">MechanicalHorsepower</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMechanicalHorsepower property.")]
         public double MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MegajoulePerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MegajoulePerHour">MegajoulesPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoulesPerHour property.")]
         public double MegajoulesPerHour => As(PowerUnit.MegajoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Megawatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Megawatt">Megawatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawatts property.")]
         public double Megawatts => As(PowerUnit.Megawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MetricHorsepower"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MetricHorsepower">MetricHorsepower</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetricHorsepower property.")]
         public double MetricHorsepower => As(PowerUnit.MetricHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Microwatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Microwatt">Microwatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrowatts property.")]
         public double Microwatts => As(PowerUnit.Microwatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MillijoulePerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MillijoulePerHour">MillijoulesPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillijoulesPerHour property.")]
         public double MillijoulesPerHour => As(PowerUnit.MillijoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Milliwatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Milliwatt">Milliwatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliwatts property.")]
         public double Milliwatts => As(PowerUnit.Milliwatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Nanowatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Nanowatt">Nanowatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanowatts property.")]
         public double Nanowatts => As(PowerUnit.Nanowatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Petawatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Petawatt">Petawatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPetawatts property.")]
         public double Petawatts => As(PowerUnit.Petawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Picowatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Picowatt">Picowatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPicowatts property.")]
         public double Picowatts => As(PowerUnit.Picowatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Terawatt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Terawatt">Terawatts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTerawatts property.")]
         public double Terawatts => As(PowerUnit.Terawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Watt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Watt">Watts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWatts property.")]
         public double Watts => As(PowerUnit.Watt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.BoilerHorsepower"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.BoilerHorsepower">BoilerHorsepower</see>.
         /// </summary>
         public Power ToBoilerHorsepower => ToUnit(PowerUnit.BoilerHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.BritishThermalUnitPerHour"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.BritishThermalUnitPerHour">BritishThermalUnitsPerHour</see>.
         /// </summary>
         public Power ToBritishThermalUnitsPerHour => ToUnit(PowerUnit.BritishThermalUnitPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Decawatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Decawatt">Decawatts</see>.
         /// </summary>
         public Power ToDecawatts => ToUnit(PowerUnit.Decawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Deciwatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Deciwatt">Deciwatts</see>.
         /// </summary>
         public Power ToDeciwatts => ToUnit(PowerUnit.Deciwatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.ElectricalHorsepower"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.ElectricalHorsepower">ElectricalHorsepower</see>.
         /// </summary>
         public Power ToElectricalHorsepower => ToUnit(PowerUnit.ElectricalHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Femtowatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Femtowatt">Femtowatts</see>.
         /// </summary>
         public Power ToFemtowatts => ToUnit(PowerUnit.Femtowatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.GigajoulePerHour"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.GigajoulePerHour">GigajoulesPerHour</see>.
         /// </summary>
         public Power ToGigajoulesPerHour => ToUnit(PowerUnit.GigajoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Gigawatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Gigawatt">Gigawatts</see>.
         /// </summary>
         public Power ToGigawatts => ToUnit(PowerUnit.Gigawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.HydraulicHorsepower"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.HydraulicHorsepower">HydraulicHorsepower</see>.
         /// </summary>
         public Power ToHydraulicHorsepower => ToUnit(PowerUnit.HydraulicHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.JoulePerHour"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.JoulePerHour">JoulesPerHour</see>.
         /// </summary>
         public Power ToJoulesPerHour => ToUnit(PowerUnit.JoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.KilobritishThermalUnitPerHour"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.KilobritishThermalUnitPerHour">KilobritishThermalUnitsPerHour</see>.
         /// </summary>
         public Power ToKilobritishThermalUnitsPerHour => ToUnit(PowerUnit.KilobritishThermalUnitPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.KilojoulePerHour"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.KilojoulePerHour">KilojoulesPerHour</see>.
         /// </summary>
         public Power ToKilojoulesPerHour => ToUnit(PowerUnit.KilojoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Kilowatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Kilowatt">Kilowatts</see>.
         /// </summary>
         public Power ToKilowatts => ToUnit(PowerUnit.Kilowatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MechanicalHorsepower"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MechanicalHorsepower">MechanicalHorsepower</see>.
         /// </summary>
         public Power ToMechanicalHorsepower => ToUnit(PowerUnit.MechanicalHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MegajoulePerHour"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MegajoulePerHour">MegajoulesPerHour</see>.
         /// </summary>
         public Power ToMegajoulesPerHour => ToUnit(PowerUnit.MegajoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Megawatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Megawatt">Megawatts</see>.
         /// </summary>
         public Power ToMegawatts => ToUnit(PowerUnit.Megawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MetricHorsepower"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MetricHorsepower">MetricHorsepower</see>.
         /// </summary>
         public Power ToMetricHorsepower => ToUnit(PowerUnit.MetricHorsepower);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Microwatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Microwatt">Microwatts</see>.
         /// </summary>
         public Power ToMicrowatts => ToUnit(PowerUnit.Microwatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MillijoulePerHour"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.MillijoulePerHour">MillijoulesPerHour</see>.
         /// </summary>
         public Power ToMillijoulesPerHour => ToUnit(PowerUnit.MillijoulePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Milliwatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Milliwatt">Milliwatts</see>.
         /// </summary>
         public Power ToMilliwatts => ToUnit(PowerUnit.Milliwatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Nanowatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Nanowatt">Nanowatts</see>.
         /// </summary>
         public Power ToNanowatts => ToUnit(PowerUnit.Nanowatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Petawatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Petawatt">Petawatts</see>.
         /// </summary>
         public Power ToPetawatts => ToUnit(PowerUnit.Petawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Picowatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Picowatt">Picowatts</see>.
         /// </summary>
         public Power ToPicowatts => ToUnit(PowerUnit.Picowatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Terawatt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Terawatt">Terawatts</see>.
         /// </summary>
         public Power ToTerawatts => ToUnit(PowerUnit.Terawatt);
 
         /// <summary>
-        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Watt"/>.
+        ///     Gets this <see cref="Power"/> converted into <see cref="PowerUnit.Watt">Watts</see>.
         /// </summary>
         public Power ToWatts => ToUnit(PowerUnit.Watt);
 

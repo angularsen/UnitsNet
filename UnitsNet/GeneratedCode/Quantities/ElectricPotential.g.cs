@@ -192,57 +192,57 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Kilovolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Kilovolt">Kilovolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilovolts property.")]
         public double Kilovolts => As(ElectricPotentialUnit.Kilovolt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Megavolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Megavolt">Megavolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegavolts property.")]
         public double Megavolts => As(ElectricPotentialUnit.Megavolt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Microvolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Microvolt">Microvolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrovolts property.")]
         public double Microvolts => As(ElectricPotentialUnit.Microvolt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Millivolt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Millivolt">Millivolts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillivolts property.")]
         public double Millivolts => As(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Volt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Volt">Volts</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToVolts property.")]
         public double Volts => As(ElectricPotentialUnit.Volt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Kilovolt"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Kilovolt">Kilovolts</see>.
         /// </summary>
         public ElectricPotential ToKilovolts => ToUnit(ElectricPotentialUnit.Kilovolt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Megavolt"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Megavolt">Megavolts</see>.
         /// </summary>
         public ElectricPotential ToMegavolts => ToUnit(ElectricPotentialUnit.Megavolt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Microvolt"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Microvolt">Microvolts</see>.
         /// </summary>
         public ElectricPotential ToMicrovolts => ToUnit(ElectricPotentialUnit.Microvolt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Millivolt"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Millivolt">Millivolts</see>.
         /// </summary>
         public ElectricPotential ToMillivolts => ToUnit(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Volt"/>.
+        ///     Gets this <see cref="ElectricPotential"/> converted into <see cref="ElectricPotentialUnit.Volt">Volts</see>.
         /// </summary>
         public ElectricPotential ToVolts => ToUnit(ElectricPotentialUnit.Volt);
 

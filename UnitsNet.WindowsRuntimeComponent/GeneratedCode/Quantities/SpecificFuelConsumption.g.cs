@@ -167,46 +167,46 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond">GramsPerKiloNewtonSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerKiloNewtonSecond property.")]
         public double GramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour">KilogramsPerKilogramForceHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerKilogramForceHour property.")]
         public double KilogramsPerKilogramForceHour => As(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond">KilogramsPerKiloNewtonSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerKiloNewtonSecond property.")]
         public double KilogramsPerKiloNewtonSecond => As(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour">PoundsMassPerPoundForceHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsMassPerPoundForceHour property.")]
         public double PoundsMassPerPoundForceHour => As(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond"/>.
+        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond">GramsPerKiloNewtonSecond</see>.
         /// </summary>
         public SpecificFuelConsumption ToGramsPerKiloNewtonSecond => ToUnit(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour"/>.
+        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour">KilogramsPerKilogramForceHour</see>.
         /// </summary>
         public SpecificFuelConsumption ToKilogramsPerKilogramForceHour => ToUnit(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond"/>.
+        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond">KilogramsPerKiloNewtonSecond</see>.
         /// </summary>
         public SpecificFuelConsumption ToKilogramsPerKiloNewtonSecond => ToUnit(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour"/>.
+        ///     Gets this <see cref="SpecificFuelConsumption"/> converted into <see cref="SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour">PoundsMassPerPoundForceHour</see>.
         /// </summary>
         public SpecificFuelConsumption ToPoundsMassPerPoundForceHour => ToUnit(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
 

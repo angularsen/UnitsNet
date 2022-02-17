@@ -167,222 +167,222 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.CentilitersPerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.CentilitersPerLiter">CentilitersPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentilitersPerLiter property.")]
         public double CentilitersPerLiter => As(VolumeConcentrationUnit.CentilitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.CentilitersPerMililiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.CentilitersPerMililiter">CentilitersPerMililiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentilitersPerMililiter property.")]
         public double CentilitersPerMililiter => As(VolumeConcentrationUnit.CentilitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecilitersPerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecilitersPerLiter">DecilitersPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecilitersPerLiter property.")]
         public double DecilitersPerLiter => As(VolumeConcentrationUnit.DecilitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecilitersPerMililiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecilitersPerMililiter">DecilitersPerMililiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecilitersPerMililiter property.")]
         public double DecilitersPerMililiter => As(VolumeConcentrationUnit.DecilitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecimalFraction"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecimalFraction">DecimalFractions</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecimalFractions property.")]
         public double DecimalFractions => As(VolumeConcentrationUnit.DecimalFraction);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.LitersPerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.LitersPerLiter">LitersPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLitersPerLiter property.")]
         public double LitersPerLiter => As(VolumeConcentrationUnit.LitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.LitersPerMililiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.LitersPerMililiter">LitersPerMililiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLitersPerMililiter property.")]
         public double LitersPerMililiter => As(VolumeConcentrationUnit.LitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MicrolitersPerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MicrolitersPerLiter">MicrolitersPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrolitersPerLiter property.")]
         public double MicrolitersPerLiter => As(VolumeConcentrationUnit.MicrolitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter">MicrolitersPerMililiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrolitersPerMililiter property.")]
         public double MicrolitersPerMililiter => As(VolumeConcentrationUnit.MicrolitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MillilitersPerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MillilitersPerLiter">MillilitersPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillilitersPerLiter property.")]
         public double MillilitersPerLiter => As(VolumeConcentrationUnit.MillilitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MillilitersPerMililiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MillilitersPerMililiter">MillilitersPerMililiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillilitersPerMililiter property.")]
         public double MillilitersPerMililiter => As(VolumeConcentrationUnit.MillilitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.NanolitersPerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.NanolitersPerLiter">NanolitersPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanolitersPerLiter property.")]
         public double NanolitersPerLiter => As(VolumeConcentrationUnit.NanolitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.NanolitersPerMililiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.NanolitersPerMililiter">NanolitersPerMililiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanolitersPerMililiter property.")]
         public double NanolitersPerMililiter => As(VolumeConcentrationUnit.NanolitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerBillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerBillion">PartsPerBillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerBillion property.")]
         public double PartsPerBillion => As(VolumeConcentrationUnit.PartPerBillion);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerMillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerMillion">PartsPerMillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerMillion property.")]
         public double PartsPerMillion => As(VolumeConcentrationUnit.PartPerMillion);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerThousand"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerThousand">PartsPerThousand</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerThousand property.")]
         public double PartsPerThousand => As(VolumeConcentrationUnit.PartPerThousand);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerTrillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerTrillion">PartsPerTrillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerTrillion property.")]
         public double PartsPerTrillion => As(VolumeConcentrationUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.Percent"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.Percent">Percent</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPercent property.")]
         public double Percent => As(VolumeConcentrationUnit.Percent);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PicolitersPerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PicolitersPerLiter">PicolitersPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPicolitersPerLiter property.")]
         public double PicolitersPerLiter => As(VolumeConcentrationUnit.PicolitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PicolitersPerMililiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PicolitersPerMililiter">PicolitersPerMililiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPicolitersPerMililiter property.")]
         public double PicolitersPerMililiter => As(VolumeConcentrationUnit.PicolitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.CentilitersPerLiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.CentilitersPerLiter">CentilitersPerLiter</see>.
         /// </summary>
         public VolumeConcentration ToCentilitersPerLiter => ToUnit(VolumeConcentrationUnit.CentilitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.CentilitersPerMililiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.CentilitersPerMililiter">CentilitersPerMililiter</see>.
         /// </summary>
         public VolumeConcentration ToCentilitersPerMililiter => ToUnit(VolumeConcentrationUnit.CentilitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecilitersPerLiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecilitersPerLiter">DecilitersPerLiter</see>.
         /// </summary>
         public VolumeConcentration ToDecilitersPerLiter => ToUnit(VolumeConcentrationUnit.DecilitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecilitersPerMililiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecilitersPerMililiter">DecilitersPerMililiter</see>.
         /// </summary>
         public VolumeConcentration ToDecilitersPerMililiter => ToUnit(VolumeConcentrationUnit.DecilitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecimalFraction"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.DecimalFraction">DecimalFractions</see>.
         /// </summary>
         public VolumeConcentration ToDecimalFractions => ToUnit(VolumeConcentrationUnit.DecimalFraction);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.LitersPerLiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.LitersPerLiter">LitersPerLiter</see>.
         /// </summary>
         public VolumeConcentration ToLitersPerLiter => ToUnit(VolumeConcentrationUnit.LitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.LitersPerMililiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.LitersPerMililiter">LitersPerMililiter</see>.
         /// </summary>
         public VolumeConcentration ToLitersPerMililiter => ToUnit(VolumeConcentrationUnit.LitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MicrolitersPerLiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MicrolitersPerLiter">MicrolitersPerLiter</see>.
         /// </summary>
         public VolumeConcentration ToMicrolitersPerLiter => ToUnit(VolumeConcentrationUnit.MicrolitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter">MicrolitersPerMililiter</see>.
         /// </summary>
         public VolumeConcentration ToMicrolitersPerMililiter => ToUnit(VolumeConcentrationUnit.MicrolitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MillilitersPerLiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MillilitersPerLiter">MillilitersPerLiter</see>.
         /// </summary>
         public VolumeConcentration ToMillilitersPerLiter => ToUnit(VolumeConcentrationUnit.MillilitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MillilitersPerMililiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.MillilitersPerMililiter">MillilitersPerMililiter</see>.
         /// </summary>
         public VolumeConcentration ToMillilitersPerMililiter => ToUnit(VolumeConcentrationUnit.MillilitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.NanolitersPerLiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.NanolitersPerLiter">NanolitersPerLiter</see>.
         /// </summary>
         public VolumeConcentration ToNanolitersPerLiter => ToUnit(VolumeConcentrationUnit.NanolitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.NanolitersPerMililiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.NanolitersPerMililiter">NanolitersPerMililiter</see>.
         /// </summary>
         public VolumeConcentration ToNanolitersPerMililiter => ToUnit(VolumeConcentrationUnit.NanolitersPerMililiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerBillion"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerBillion">PartsPerBillion</see>.
         /// </summary>
         public VolumeConcentration ToPartsPerBillion => ToUnit(VolumeConcentrationUnit.PartPerBillion);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerMillion"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerMillion">PartsPerMillion</see>.
         /// </summary>
         public VolumeConcentration ToPartsPerMillion => ToUnit(VolumeConcentrationUnit.PartPerMillion);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerThousand"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerThousand">PartsPerThousand</see>.
         /// </summary>
         public VolumeConcentration ToPartsPerThousand => ToUnit(VolumeConcentrationUnit.PartPerThousand);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerTrillion"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PartPerTrillion">PartsPerTrillion</see>.
         /// </summary>
         public VolumeConcentration ToPartsPerTrillion => ToUnit(VolumeConcentrationUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.Percent"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.Percent">Percent</see>.
         /// </summary>
         public VolumeConcentration ToPercent => ToUnit(VolumeConcentrationUnit.Percent);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PicolitersPerLiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PicolitersPerLiter">PicolitersPerLiter</see>.
         /// </summary>
         public VolumeConcentration ToPicolitersPerLiter => ToUnit(VolumeConcentrationUnit.PicolitersPerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PicolitersPerMililiter"/>.
+        ///     Gets this <see cref="VolumeConcentration"/> converted into <see cref="VolumeConcentrationUnit.PicolitersPerMililiter">PicolitersPerMililiter</see>.
         /// </summary>
         public VolumeConcentration ToPicolitersPerMililiter => ToUnit(VolumeConcentrationUnit.PicolitersPerMililiter);
 

@@ -196,101 +196,101 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.BtuPerPoundFahrenheit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.BtuPerPoundFahrenheit">BtusPerPoundFahrenheit</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBtusPerPoundFahrenheit property.")]
         public double BtusPerPoundFahrenheit => As(SpecificEntropyUnit.BtuPerPoundFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.CaloriePerGramKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.CaloriePerGramKelvin">CaloriesPerGramKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCaloriesPerGramKelvin property.")]
         public double CaloriesPerGramKelvin => As(SpecificEntropyUnit.CaloriePerGramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.JoulePerKilogramDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.JoulePerKilogramDegreeCelsius">JoulesPerKilogramDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerKilogramDegreeCelsius property.")]
         public double JoulesPerKilogramDegreeCelsius => As(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.JoulePerKilogramKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.JoulePerKilogramKelvin">JoulesPerKilogramKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerKilogramKelvin property.")]
         public double JoulesPerKilogramKelvin => As(SpecificEntropyUnit.JoulePerKilogramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilocaloriePerGramKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilocaloriePerGramKelvin">KilocaloriesPerGramKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilocaloriesPerGramKelvin property.")]
         public double KilocaloriesPerGramKelvin => As(SpecificEntropyUnit.KilocaloriePerGramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius">KilojoulesPerKilogramDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerKilogramDegreeCelsius property.")]
         public double KilojoulesPerKilogramDegreeCelsius => As(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramKelvin">KilojoulesPerKilogramKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerKilogramKelvin property.")]
         public double KilojoulesPerKilogramKelvin => As(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius">MegajoulesPerKilogramDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoulesPerKilogramDegreeCelsius property.")]
         public double MegajoulesPerKilogramDegreeCelsius => As(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramKelvin">MegajoulesPerKilogramKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoulesPerKilogramKelvin property.")]
         public double MegajoulesPerKilogramKelvin => As(SpecificEntropyUnit.MegajoulePerKilogramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.BtuPerPoundFahrenheit"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.BtuPerPoundFahrenheit">BtusPerPoundFahrenheit</see>.
         /// </summary>
         public SpecificEntropy ToBtusPerPoundFahrenheit => ToUnit(SpecificEntropyUnit.BtuPerPoundFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.CaloriePerGramKelvin"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.CaloriePerGramKelvin">CaloriesPerGramKelvin</see>.
         /// </summary>
         public SpecificEntropy ToCaloriesPerGramKelvin => ToUnit(SpecificEntropyUnit.CaloriePerGramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.JoulePerKilogramDegreeCelsius"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.JoulePerKilogramDegreeCelsius">JoulesPerKilogramDegreeCelsius</see>.
         /// </summary>
         public SpecificEntropy ToJoulesPerKilogramDegreeCelsius => ToUnit(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.JoulePerKilogramKelvin"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.JoulePerKilogramKelvin">JoulesPerKilogramKelvin</see>.
         /// </summary>
         public SpecificEntropy ToJoulesPerKilogramKelvin => ToUnit(SpecificEntropyUnit.JoulePerKilogramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilocaloriePerGramKelvin"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilocaloriePerGramKelvin">KilocaloriesPerGramKelvin</see>.
         /// </summary>
         public SpecificEntropy ToKilocaloriesPerGramKelvin => ToUnit(SpecificEntropyUnit.KilocaloriePerGramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius">KilojoulesPerKilogramDegreeCelsius</see>.
         /// </summary>
         public SpecificEntropy ToKilojoulesPerKilogramDegreeCelsius => ToUnit(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramKelvin"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.KilojoulePerKilogramKelvin">KilojoulesPerKilogramKelvin</see>.
         /// </summary>
         public SpecificEntropy ToKilojoulesPerKilogramKelvin => ToUnit(SpecificEntropyUnit.KilojoulePerKilogramKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius">MegajoulesPerKilogramDegreeCelsius</see>.
         /// </summary>
         public SpecificEntropy ToMegajoulesPerKilogramDegreeCelsius => ToUnit(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramKelvin"/>.
+        ///     Gets this <see cref="SpecificEntropy"/> converted into <see cref="SpecificEntropyUnit.MegajoulePerKilogramKelvin">MegajoulesPerKilogramKelvin</see>.
         /// </summary>
         public SpecificEntropy ToMegajoulesPerKilogramKelvin => ToUnit(SpecificEntropyUnit.MegajoulePerKilogramKelvin);
 

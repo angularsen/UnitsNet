@@ -194,79 +194,79 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicMeterPerMeter">CubicMetersPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicMetersPerMeter property.")]
         public double CubicMetersPerMeter => As(VolumePerLengthUnit.CubicMeterPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicYardPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicYardPerFoot">CubicYardsPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicYardsPerFoot property.")]
         public double CubicYardsPerFoot => As(VolumePerLengthUnit.CubicYardPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot">CubicYardsPerUsSurveyFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCubicYardsPerUsSurveyFoot property.")]
         public double CubicYardsPerUsSurveyFoot => As(VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerKilometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerKilometer">LitersPerKilometer</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLitersPerKilometer property.")]
         public double LitersPerKilometer => As(VolumePerLengthUnit.LiterPerKilometer);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerMeter">LitersPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLitersPerMeter property.")]
         public double LitersPerMeter => As(VolumePerLengthUnit.LiterPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerMillimeter">LitersPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLitersPerMillimeter property.")]
         public double LitersPerMillimeter => As(VolumePerLengthUnit.LiterPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.OilBarrelPerFoot">OilBarrelsPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToOilBarrelsPerFoot property.")]
         public double OilBarrelsPerFoot => As(VolumePerLengthUnit.OilBarrelPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicMeterPerMeter">CubicMetersPerMeter</see>.
         /// </summary>
         public VolumePerLength ToCubicMetersPerMeter => ToUnit(VolumePerLengthUnit.CubicMeterPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicYardPerFoot">CubicYardsPerFoot</see>.
         /// </summary>
         public VolumePerLength ToCubicYardsPerFoot => ToUnit(VolumePerLengthUnit.CubicYardPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot">CubicYardsPerUsSurveyFoot</see>.
         /// </summary>
         public VolumePerLength ToCubicYardsPerUsSurveyFoot => ToUnit(VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerKilometer"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerKilometer">LitersPerKilometer</see>.
         /// </summary>
         public VolumePerLength ToLitersPerKilometer => ToUnit(VolumePerLengthUnit.LiterPerKilometer);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerMeter"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerMeter">LitersPerMeter</see>.
         /// </summary>
         public VolumePerLength ToLitersPerMeter => ToUnit(VolumePerLengthUnit.LiterPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.LiterPerMillimeter">LitersPerMillimeter</see>.
         /// </summary>
         public VolumePerLength ToLitersPerMillimeter => ToUnit(VolumePerLengthUnit.LiterPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>.
+        ///     Gets this <see cref="VolumePerLength"/> converted into <see cref="VolumePerLengthUnit.OilBarrelPerFoot">OilBarrelsPerFoot</see>.
         /// </summary>
         public VolumePerLength ToOilBarrelsPerFoot => ToUnit(VolumePerLengthUnit.OilBarrelPerFoot);
 

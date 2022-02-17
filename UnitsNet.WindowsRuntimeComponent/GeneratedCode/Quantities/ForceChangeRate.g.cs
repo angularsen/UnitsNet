@@ -164,167 +164,167 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.CentinewtonPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.CentinewtonPerSecond">CentinewtonsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentinewtonsPerSecond property.")]
         public double CentinewtonsPerSecond => As(ForceChangeRateUnit.CentinewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecanewtonPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecanewtonPerMinute">DecanewtonsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecanewtonsPerMinute property.")]
         public double DecanewtonsPerMinute => As(ForceChangeRateUnit.DecanewtonPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecanewtonPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecanewtonPerSecond">DecanewtonsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecanewtonsPerSecond property.")]
         public double DecanewtonsPerSecond => As(ForceChangeRateUnit.DecanewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecinewtonPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecinewtonPerSecond">DecinewtonsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecinewtonsPerSecond property.")]
         public double DecinewtonsPerSecond => As(ForceChangeRateUnit.DecinewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilonewtonPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilonewtonPerMinute">KilonewtonsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtonsPerMinute property.")]
         public double KilonewtonsPerMinute => As(ForceChangeRateUnit.KilonewtonPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilonewtonPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilonewtonPerSecond">KilonewtonsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtonsPerSecond property.")]
         public double KilonewtonsPerSecond => As(ForceChangeRateUnit.KilonewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilopoundForcePerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilopoundForcePerMinute">KilopoundsForcePerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundsForcePerMinute property.")]
         public double KilopoundsForcePerMinute => As(ForceChangeRateUnit.KilopoundForcePerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilopoundForcePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilopoundForcePerSecond">KilopoundsForcePerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundsForcePerSecond property.")]
         public double KilopoundsForcePerSecond => As(ForceChangeRateUnit.KilopoundForcePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.MicronewtonPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.MicronewtonPerSecond">MicronewtonsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicronewtonsPerSecond property.")]
         public double MicronewtonsPerSecond => As(ForceChangeRateUnit.MicronewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.MillinewtonPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.MillinewtonPerSecond">MillinewtonsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillinewtonsPerSecond property.")]
         public double MillinewtonsPerSecond => As(ForceChangeRateUnit.MillinewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NanonewtonPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NanonewtonPerSecond">NanonewtonsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanonewtonsPerSecond property.")]
         public double NanonewtonsPerSecond => As(ForceChangeRateUnit.NanonewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NewtonPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NewtonPerMinute">NewtonsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtonsPerMinute property.")]
         public double NewtonsPerMinute => As(ForceChangeRateUnit.NewtonPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NewtonPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NewtonPerSecond">NewtonsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtonsPerSecond property.")]
         public double NewtonsPerSecond => As(ForceChangeRateUnit.NewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.PoundForcePerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.PoundForcePerMinute">PoundsForcePerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsForcePerMinute property.")]
         public double PoundsForcePerMinute => As(ForceChangeRateUnit.PoundForcePerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.PoundForcePerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.PoundForcePerSecond">PoundsForcePerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsForcePerSecond property.")]
         public double PoundsForcePerSecond => As(ForceChangeRateUnit.PoundForcePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.CentinewtonPerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.CentinewtonPerSecond">CentinewtonsPerSecond</see>.
         /// </summary>
         public ForceChangeRate ToCentinewtonsPerSecond => ToUnit(ForceChangeRateUnit.CentinewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecanewtonPerMinute"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecanewtonPerMinute">DecanewtonsPerMinute</see>.
         /// </summary>
         public ForceChangeRate ToDecanewtonsPerMinute => ToUnit(ForceChangeRateUnit.DecanewtonPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecanewtonPerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecanewtonPerSecond">DecanewtonsPerSecond</see>.
         /// </summary>
         public ForceChangeRate ToDecanewtonsPerSecond => ToUnit(ForceChangeRateUnit.DecanewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecinewtonPerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.DecinewtonPerSecond">DecinewtonsPerSecond</see>.
         /// </summary>
         public ForceChangeRate ToDecinewtonsPerSecond => ToUnit(ForceChangeRateUnit.DecinewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilonewtonPerMinute"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilonewtonPerMinute">KilonewtonsPerMinute</see>.
         /// </summary>
         public ForceChangeRate ToKilonewtonsPerMinute => ToUnit(ForceChangeRateUnit.KilonewtonPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilonewtonPerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilonewtonPerSecond">KilonewtonsPerSecond</see>.
         /// </summary>
         public ForceChangeRate ToKilonewtonsPerSecond => ToUnit(ForceChangeRateUnit.KilonewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilopoundForcePerMinute"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilopoundForcePerMinute">KilopoundsForcePerMinute</see>.
         /// </summary>
         public ForceChangeRate ToKilopoundsForcePerMinute => ToUnit(ForceChangeRateUnit.KilopoundForcePerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilopoundForcePerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.KilopoundForcePerSecond">KilopoundsForcePerSecond</see>.
         /// </summary>
         public ForceChangeRate ToKilopoundsForcePerSecond => ToUnit(ForceChangeRateUnit.KilopoundForcePerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.MicronewtonPerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.MicronewtonPerSecond">MicronewtonsPerSecond</see>.
         /// </summary>
         public ForceChangeRate ToMicronewtonsPerSecond => ToUnit(ForceChangeRateUnit.MicronewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.MillinewtonPerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.MillinewtonPerSecond">MillinewtonsPerSecond</see>.
         /// </summary>
         public ForceChangeRate ToMillinewtonsPerSecond => ToUnit(ForceChangeRateUnit.MillinewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NanonewtonPerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NanonewtonPerSecond">NanonewtonsPerSecond</see>.
         /// </summary>
         public ForceChangeRate ToNanonewtonsPerSecond => ToUnit(ForceChangeRateUnit.NanonewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NewtonPerMinute"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NewtonPerMinute">NewtonsPerMinute</see>.
         /// </summary>
         public ForceChangeRate ToNewtonsPerMinute => ToUnit(ForceChangeRateUnit.NewtonPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NewtonPerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.NewtonPerSecond">NewtonsPerSecond</see>.
         /// </summary>
         public ForceChangeRate ToNewtonsPerSecond => ToUnit(ForceChangeRateUnit.NewtonPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.PoundForcePerMinute"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.PoundForcePerMinute">PoundsForcePerMinute</see>.
         /// </summary>
         public ForceChangeRate ToPoundsForcePerMinute => ToUnit(ForceChangeRateUnit.PoundForcePerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.PoundForcePerSecond"/>.
+        ///     Gets this <see cref="ForceChangeRate"/> converted into <see cref="ForceChangeRateUnit.PoundForcePerSecond">PoundsForcePerSecond</see>.
         /// </summary>
         public ForceChangeRate ToPoundsForcePerSecond => ToUnit(ForceChangeRateUnit.PoundForcePerSecond);
 

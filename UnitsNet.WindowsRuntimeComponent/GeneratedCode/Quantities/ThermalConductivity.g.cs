@@ -167,24 +167,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ThermalConductivity"/> converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ThermalConductivity"/> converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit">BtusPerHourFootFahrenheit</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBtusPerHourFootFahrenheit property.")]
         public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalConductivity"/> converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ThermalConductivity"/> converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin">WattsPerMeterKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattsPerMeterKelvin property.")]
         public double WattsPerMeterKelvin => As(ThermalConductivityUnit.WattPerMeterKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalConductivity"/> converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>.
+        ///     Gets this <see cref="ThermalConductivity"/> converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit">BtusPerHourFootFahrenheit</see>.
         /// </summary>
         public ThermalConductivity ToBtusPerHourFootFahrenheit => ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="ThermalConductivity"/> converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
+        ///     Gets this <see cref="ThermalConductivity"/> converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin">WattsPerMeterKelvin</see>.
         /// </summary>
         public ThermalConductivity ToWattsPerMeterKelvin => ToUnit(ThermalConductivityUnit.WattPerMeterKelvin);
 

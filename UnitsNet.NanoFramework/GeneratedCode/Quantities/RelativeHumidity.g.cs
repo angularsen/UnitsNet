@@ -80,13 +80,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="RelativeHumidity"/> converted into <see cref="RelativeHumidityUnit.Percent"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="RelativeHumidity"/> converted into <see cref="RelativeHumidityUnit.Percent">Percent</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPercent property.")]
         public double Percent => As(RelativeHumidityUnit.Percent);
 
         /// <summary>
-        ///     Gets this <see cref="RelativeHumidity"/> converted into <see cref="RelativeHumidityUnit.Percent"/>.
+        ///     Gets this <see cref="RelativeHumidity"/> converted into <see cref="RelativeHumidityUnit.Percent">Percent</see>.
         /// </summary>
         public RelativeHumidity ToPercent => ToUnit(RelativeHumidityUnit.Percent);
 

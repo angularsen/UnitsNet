@@ -83,13 +83,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Permeability"/> converted into <see cref="PermeabilityUnit.HenryPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Permeability"/> converted into <see cref="PermeabilityUnit.HenryPerMeter">HenriesPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHenriesPerMeter property.")]
         public double HenriesPerMeter => As(PermeabilityUnit.HenryPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Permeability"/> converted into <see cref="PermeabilityUnit.HenryPerMeter"/>.
+        ///     Gets this <see cref="Permeability"/> converted into <see cref="PermeabilityUnit.HenryPerMeter">HenriesPerMeter</see>.
         /// </summary>
         public Permeability ToHenriesPerMeter => ToUnit(PermeabilityUnit.HenryPerMeter);
 

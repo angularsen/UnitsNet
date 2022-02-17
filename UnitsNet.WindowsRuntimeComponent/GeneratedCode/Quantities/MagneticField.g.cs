@@ -167,68 +167,68 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Gauss"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Gauss">Gausses</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGausses property.")]
         public double Gausses => As(MagneticFieldUnit.Gauss);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Microtesla"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Microtesla">Microteslas</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicroteslas property.")]
         public double Microteslas => As(MagneticFieldUnit.Microtesla);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Milligauss"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Milligauss">Milligausses</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligausses property.")]
         public double Milligausses => As(MagneticFieldUnit.Milligauss);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Millitesla"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Millitesla">Milliteslas</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliteslas property.")]
         public double Milliteslas => As(MagneticFieldUnit.Millitesla);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Nanotesla"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Nanotesla">Nanoteslas</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanoteslas property.")]
         public double Nanoteslas => As(MagneticFieldUnit.Nanotesla);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Tesla"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Tesla">Teslas</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTeslas property.")]
         public double Teslas => As(MagneticFieldUnit.Tesla);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Gauss"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Gauss">Gausses</see>.
         /// </summary>
         public MagneticField ToGausses => ToUnit(MagneticFieldUnit.Gauss);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Microtesla"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Microtesla">Microteslas</see>.
         /// </summary>
         public MagneticField ToMicroteslas => ToUnit(MagneticFieldUnit.Microtesla);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Milligauss"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Milligauss">Milligausses</see>.
         /// </summary>
         public MagneticField ToMilligausses => ToUnit(MagneticFieldUnit.Milligauss);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Millitesla"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Millitesla">Milliteslas</see>.
         /// </summary>
         public MagneticField ToMilliteslas => ToUnit(MagneticFieldUnit.Millitesla);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Nanotesla"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Nanotesla">Nanoteslas</see>.
         /// </summary>
         public MagneticField ToNanoteslas => ToUnit(MagneticFieldUnit.Nanotesla);
 
         /// <summary>
-        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Tesla"/>.
+        ///     Gets this <see cref="MagneticField"/> converted into <see cref="MagneticFieldUnit.Tesla">Teslas</see>.
         /// </summary>
         public MagneticField ToTeslas => ToUnit(MagneticFieldUnit.Tesla);
 

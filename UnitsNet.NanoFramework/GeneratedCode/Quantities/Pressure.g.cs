@@ -80,497 +80,497 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Atmosphere"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Atmosphere">Atmospheres</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToAtmospheres property.")]
         public double Atmospheres => As(PressureUnit.Atmosphere);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Bar"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Bar">Bars</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBars property.")]
         public double Bars => As(PressureUnit.Bar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Centibar"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Centibar">Centibars</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentibars property.")]
         public double Centibars => As(PressureUnit.Centibar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Decapascal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Decapascal">Decapascals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecapascals property.")]
         public double Decapascals => As(PressureUnit.Decapascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Decibar"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Decibar">Decibars</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecibars property.")]
         public double Decibars => As(PressureUnit.Decibar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.DynePerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.DynePerSquareCentimeter">DynesPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDynesPerSquareCentimeter property.")]
         public double DynesPerSquareCentimeter => As(PressureUnit.DynePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.FootOfElevation"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.FootOfElevation">FeetOfElevation</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFeetOfElevation property.")]
         public double FeetOfElevation => As(PressureUnit.FootOfElevation);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.FootOfHead"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.FootOfHead">FeetOfHead</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFeetOfHead property.")]
         public double FeetOfHead => As(PressureUnit.FootOfHead);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Gigapascal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Gigapascal">Gigapascals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigapascals property.")]
         public double Gigapascals => As(PressureUnit.Gigapascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Hectopascal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Hectopascal">Hectopascals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectopascals property.")]
         public double Hectopascals => As(PressureUnit.Hectopascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.InchOfMercury"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.InchOfMercury">InchesOfMercury</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInchesOfMercury property.")]
         public double InchesOfMercury => As(PressureUnit.InchOfMercury);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.InchOfWaterColumn"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.InchOfWaterColumn">InchesOfWaterColumn</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInchesOfWaterColumn property.")]
         public double InchesOfWaterColumn => As(PressureUnit.InchOfWaterColumn);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Kilobar"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Kilobar">Kilobars</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilobars property.")]
         public double Kilobars => As(PressureUnit.Kilobar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareCentimeter">KilogramsForcePerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsForcePerSquareCentimeter property.")]
         public double KilogramsForcePerSquareCentimeter => As(PressureUnit.KilogramForcePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareMeter">KilogramsForcePerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsForcePerSquareMeter property.")]
         public double KilogramsForcePerSquareMeter => As(PressureUnit.KilogramForcePerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareMillimeter">KilogramsForcePerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsForcePerSquareMillimeter property.")]
         public double KilogramsForcePerSquareMillimeter => As(PressureUnit.KilogramForcePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareCentimeter">KilonewtonsPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtonsPerSquareCentimeter property.")]
         public double KilonewtonsPerSquareCentimeter => As(PressureUnit.KilonewtonPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareMeter">KilonewtonsPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtonsPerSquareMeter property.")]
         public double KilonewtonsPerSquareMeter => As(PressureUnit.KilonewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareMillimeter">KilonewtonsPerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtonsPerSquareMillimeter property.")]
         public double KilonewtonsPerSquareMillimeter => As(PressureUnit.KilonewtonPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Kilopascal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Kilopascal">Kilopascals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopascals property.")]
         public double Kilopascals => As(PressureUnit.Kilopascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilopoundForcePerSquareFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilopoundForcePerSquareFoot">KilopoundsForcePerSquareFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundsForcePerSquareFoot property.")]
         public double KilopoundsForcePerSquareFoot => As(PressureUnit.KilopoundForcePerSquareFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilopoundForcePerSquareInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilopoundForcePerSquareInch">KilopoundsForcePerSquareInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundsForcePerSquareInch property.")]
         public double KilopoundsForcePerSquareInch => As(PressureUnit.KilopoundForcePerSquareInch);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Megabar"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Megabar">Megabars</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegabars property.")]
         public double Megabars => As(PressureUnit.Megabar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeganewtonPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeganewtonPerSquareMeter">MeganewtonsPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMeganewtonsPerSquareMeter property.")]
         public double MeganewtonsPerSquareMeter => As(PressureUnit.MeganewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Megapascal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Megapascal">Megapascals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapascals property.")]
         public double Megapascals => As(PressureUnit.Megapascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeterOfElevation"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeterOfElevation">MetersOfElevation</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetersOfElevation property.")]
         public double MetersOfElevation => As(PressureUnit.MeterOfElevation);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeterOfHead"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeterOfHead">MetersOfHead</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetersOfHead property.")]
         public double MetersOfHead => As(PressureUnit.MeterOfHead);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Microbar"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Microbar">Microbars</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrobars property.")]
         public double Microbars => As(PressureUnit.Microbar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Micropascal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Micropascal">Micropascals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicropascals property.")]
         public double Micropascals => As(PressureUnit.Micropascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Millibar"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Millibar">Millibars</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillibars property.")]
         public double Millibars => As(PressureUnit.Millibar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MillimeterOfMercury"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MillimeterOfMercury">MillimetersOfMercury</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimetersOfMercury property.")]
         public double MillimetersOfMercury => As(PressureUnit.MillimeterOfMercury);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MillimeterOfWaterColumn"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MillimeterOfWaterColumn">MillimeterOfWaterColumn</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimeterOfWaterColumn property.")]
         public double MillimeterOfWaterColumn => As(PressureUnit.MillimeterOfWaterColumn);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Millipascal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Millipascal">Millipascals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillipascals property.")]
         public double Millipascals => As(PressureUnit.Millipascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareCentimeter">NewtonsPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtonsPerSquareCentimeter property.")]
         public double NewtonsPerSquareCentimeter => As(PressureUnit.NewtonPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareMeter">NewtonsPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtonsPerSquareMeter property.")]
         public double NewtonsPerSquareMeter => As(PressureUnit.NewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareMillimeter">NewtonsPerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtonsPerSquareMillimeter property.")]
         public double NewtonsPerSquareMillimeter => As(PressureUnit.NewtonPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Pascal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Pascal">Pascals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPascals property.")]
         public double Pascals => As(PressureUnit.Pascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundForcePerSquareFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundForcePerSquareFoot">PoundsForcePerSquareFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsForcePerSquareFoot property.")]
         public double PoundsForcePerSquareFoot => As(PressureUnit.PoundForcePerSquareFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundForcePerSquareInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundForcePerSquareInch">PoundsForcePerSquareInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsForcePerSquareInch property.")]
         public double PoundsForcePerSquareInch => As(PressureUnit.PoundForcePerSquareInch);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundPerInchSecondSquared"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundPerInchSecondSquared">PoundsPerInchSecondSquared</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsPerInchSecondSquared property.")]
         public double PoundsPerInchSecondSquared => As(PressureUnit.PoundPerInchSecondSquared);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TechnicalAtmosphere"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TechnicalAtmosphere">TechnicalAtmospheres</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTechnicalAtmospheres property.")]
         public double TechnicalAtmospheres => As(PressureUnit.TechnicalAtmosphere);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareCentimeter">TonnesForcePerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonnesForcePerSquareCentimeter property.")]
         public double TonnesForcePerSquareCentimeter => As(PressureUnit.TonneForcePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareMeter">TonnesForcePerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonnesForcePerSquareMeter property.")]
         public double TonnesForcePerSquareMeter => As(PressureUnit.TonneForcePerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareMillimeter">TonnesForcePerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonnesForcePerSquareMillimeter property.")]
         public double TonnesForcePerSquareMillimeter => As(PressureUnit.TonneForcePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Torr"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Torr">Torrs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTorrs property.")]
         public double Torrs => As(PressureUnit.Torr);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Atmosphere"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Atmosphere">Atmospheres</see>.
         /// </summary>
         public Pressure ToAtmospheres => ToUnit(PressureUnit.Atmosphere);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Bar"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Bar">Bars</see>.
         /// </summary>
         public Pressure ToBars => ToUnit(PressureUnit.Bar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Centibar"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Centibar">Centibars</see>.
         /// </summary>
         public Pressure ToCentibars => ToUnit(PressureUnit.Centibar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Decapascal"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Decapascal">Decapascals</see>.
         /// </summary>
         public Pressure ToDecapascals => ToUnit(PressureUnit.Decapascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Decibar"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Decibar">Decibars</see>.
         /// </summary>
         public Pressure ToDecibars => ToUnit(PressureUnit.Decibar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.DynePerSquareCentimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.DynePerSquareCentimeter">DynesPerSquareCentimeter</see>.
         /// </summary>
         public Pressure ToDynesPerSquareCentimeter => ToUnit(PressureUnit.DynePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.FootOfElevation"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.FootOfElevation">FeetOfElevation</see>.
         /// </summary>
         public Pressure ToFeetOfElevation => ToUnit(PressureUnit.FootOfElevation);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.FootOfHead"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.FootOfHead">FeetOfHead</see>.
         /// </summary>
         public Pressure ToFeetOfHead => ToUnit(PressureUnit.FootOfHead);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Gigapascal"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Gigapascal">Gigapascals</see>.
         /// </summary>
         public Pressure ToGigapascals => ToUnit(PressureUnit.Gigapascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Hectopascal"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Hectopascal">Hectopascals</see>.
         /// </summary>
         public Pressure ToHectopascals => ToUnit(PressureUnit.Hectopascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.InchOfMercury"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.InchOfMercury">InchesOfMercury</see>.
         /// </summary>
         public Pressure ToInchesOfMercury => ToUnit(PressureUnit.InchOfMercury);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.InchOfWaterColumn"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.InchOfWaterColumn">InchesOfWaterColumn</see>.
         /// </summary>
         public Pressure ToInchesOfWaterColumn => ToUnit(PressureUnit.InchOfWaterColumn);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Kilobar"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Kilobar">Kilobars</see>.
         /// </summary>
         public Pressure ToKilobars => ToUnit(PressureUnit.Kilobar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareCentimeter">KilogramsForcePerSquareCentimeter</see>.
         /// </summary>
         public Pressure ToKilogramsForcePerSquareCentimeter => ToUnit(PressureUnit.KilogramForcePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareMeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareMeter">KilogramsForcePerSquareMeter</see>.
         /// </summary>
         public Pressure ToKilogramsForcePerSquareMeter => ToUnit(PressureUnit.KilogramForcePerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilogramForcePerSquareMillimeter">KilogramsForcePerSquareMillimeter</see>.
         /// </summary>
         public Pressure ToKilogramsForcePerSquareMillimeter => ToUnit(PressureUnit.KilogramForcePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareCentimeter">KilonewtonsPerSquareCentimeter</see>.
         /// </summary>
         public Pressure ToKilonewtonsPerSquareCentimeter => ToUnit(PressureUnit.KilonewtonPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareMeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareMeter">KilonewtonsPerSquareMeter</see>.
         /// </summary>
         public Pressure ToKilonewtonsPerSquareMeter => ToUnit(PressureUnit.KilonewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilonewtonPerSquareMillimeter">KilonewtonsPerSquareMillimeter</see>.
         /// </summary>
         public Pressure ToKilonewtonsPerSquareMillimeter => ToUnit(PressureUnit.KilonewtonPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Kilopascal"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Kilopascal">Kilopascals</see>.
         /// </summary>
         public Pressure ToKilopascals => ToUnit(PressureUnit.Kilopascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilopoundForcePerSquareFoot">KilopoundsForcePerSquareFoot</see>.
         /// </summary>
         public Pressure ToKilopoundsForcePerSquareFoot => ToUnit(PressureUnit.KilopoundForcePerSquareFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilopoundForcePerSquareInch"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.KilopoundForcePerSquareInch">KilopoundsForcePerSquareInch</see>.
         /// </summary>
         public Pressure ToKilopoundsForcePerSquareInch => ToUnit(PressureUnit.KilopoundForcePerSquareInch);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Megabar"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Megabar">Megabars</see>.
         /// </summary>
         public Pressure ToMegabars => ToUnit(PressureUnit.Megabar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeganewtonPerSquareMeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeganewtonPerSquareMeter">MeganewtonsPerSquareMeter</see>.
         /// </summary>
         public Pressure ToMeganewtonsPerSquareMeter => ToUnit(PressureUnit.MeganewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Megapascal"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Megapascal">Megapascals</see>.
         /// </summary>
         public Pressure ToMegapascals => ToUnit(PressureUnit.Megapascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeterOfElevation"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeterOfElevation">MetersOfElevation</see>.
         /// </summary>
         public Pressure ToMetersOfElevation => ToUnit(PressureUnit.MeterOfElevation);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeterOfHead"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MeterOfHead">MetersOfHead</see>.
         /// </summary>
         public Pressure ToMetersOfHead => ToUnit(PressureUnit.MeterOfHead);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Microbar"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Microbar">Microbars</see>.
         /// </summary>
         public Pressure ToMicrobars => ToUnit(PressureUnit.Microbar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Micropascal"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Micropascal">Micropascals</see>.
         /// </summary>
         public Pressure ToMicropascals => ToUnit(PressureUnit.Micropascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Millibar"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Millibar">Millibars</see>.
         /// </summary>
         public Pressure ToMillibars => ToUnit(PressureUnit.Millibar);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MillimeterOfMercury"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MillimeterOfMercury">MillimetersOfMercury</see>.
         /// </summary>
         public Pressure ToMillimetersOfMercury => ToUnit(PressureUnit.MillimeterOfMercury);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MillimeterOfWaterColumn"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.MillimeterOfWaterColumn">MillimeterOfWaterColumn</see>.
         /// </summary>
         public Pressure ToMillimeterOfWaterColumn => ToUnit(PressureUnit.MillimeterOfWaterColumn);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Millipascal"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Millipascal">Millipascals</see>.
         /// </summary>
         public Pressure ToMillipascals => ToUnit(PressureUnit.Millipascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareCentimeter">NewtonsPerSquareCentimeter</see>.
         /// </summary>
         public Pressure ToNewtonsPerSquareCentimeter => ToUnit(PressureUnit.NewtonPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareMeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareMeter">NewtonsPerSquareMeter</see>.
         /// </summary>
         public Pressure ToNewtonsPerSquareMeter => ToUnit(PressureUnit.NewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareMillimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.NewtonPerSquareMillimeter">NewtonsPerSquareMillimeter</see>.
         /// </summary>
         public Pressure ToNewtonsPerSquareMillimeter => ToUnit(PressureUnit.NewtonPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Pascal"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Pascal">Pascals</see>.
         /// </summary>
         public Pressure ToPascals => ToUnit(PressureUnit.Pascal);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundForcePerSquareFoot"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundForcePerSquareFoot">PoundsForcePerSquareFoot</see>.
         /// </summary>
         public Pressure ToPoundsForcePerSquareFoot => ToUnit(PressureUnit.PoundForcePerSquareFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundForcePerSquareInch"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundForcePerSquareInch">PoundsForcePerSquareInch</see>.
         /// </summary>
         public Pressure ToPoundsForcePerSquareInch => ToUnit(PressureUnit.PoundForcePerSquareInch);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundPerInchSecondSquared"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.PoundPerInchSecondSquared">PoundsPerInchSecondSquared</see>.
         /// </summary>
         public Pressure ToPoundsPerInchSecondSquared => ToUnit(PressureUnit.PoundPerInchSecondSquared);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TechnicalAtmosphere"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TechnicalAtmosphere">TechnicalAtmospheres</see>.
         /// </summary>
         public Pressure ToTechnicalAtmospheres => ToUnit(PressureUnit.TechnicalAtmosphere);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareCentimeter">TonnesForcePerSquareCentimeter</see>.
         /// </summary>
         public Pressure ToTonnesForcePerSquareCentimeter => ToUnit(PressureUnit.TonneForcePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareMeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareMeter">TonnesForcePerSquareMeter</see>.
         /// </summary>
         public Pressure ToTonnesForcePerSquareMeter => ToUnit(PressureUnit.TonneForcePerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.TonneForcePerSquareMillimeter">TonnesForcePerSquareMillimeter</see>.
         /// </summary>
         public Pressure ToTonnesForcePerSquareMillimeter => ToUnit(PressureUnit.TonneForcePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Torr"/>.
+        ///     Gets this <see cref="Pressure"/> converted into <see cref="PressureUnit.Torr">Torrs</see>.
         /// </summary>
         public Pressure ToTorrs => ToUnit(PressureUnit.Torr);
 

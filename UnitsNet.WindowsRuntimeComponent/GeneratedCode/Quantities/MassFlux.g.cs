@@ -164,134 +164,134 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter">GramsPerHourPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerHourPerSquareCentimeter property.")]
         public double GramsPerHourPerSquareCentimeter => As(MassFluxUnit.GramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareMeter">GramsPerHourPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerHourPerSquareMeter property.")]
         public double GramsPerHourPerSquareMeter => As(MassFluxUnit.GramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter">GramsPerHourPerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerHourPerSquareMillimeter property.")]
         public double GramsPerHourPerSquareMillimeter => As(MassFluxUnit.GramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter">GramsPerSecondPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerSecondPerSquareCentimeter property.")]
         public double GramsPerSecondPerSquareCentimeter => As(MassFluxUnit.GramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMeter">GramsPerSecondPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerSecondPerSquareMeter property.")]
         public double GramsPerSecondPerSquareMeter => As(MassFluxUnit.GramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter">GramsPerSecondPerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerSecondPerSquareMillimeter property.")]
         public double GramsPerSecondPerSquareMillimeter => As(MassFluxUnit.GramPerSecondPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter">KilogramsPerHourPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerHourPerSquareCentimeter property.")]
         public double KilogramsPerHourPerSquareCentimeter => As(MassFluxUnit.KilogramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter">KilogramsPerHourPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerHourPerSquareMeter property.")]
         public double KilogramsPerHourPerSquareMeter => As(MassFluxUnit.KilogramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter">KilogramsPerHourPerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerHourPerSquareMillimeter property.")]
         public double KilogramsPerHourPerSquareMillimeter => As(MassFluxUnit.KilogramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter">KilogramsPerSecondPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerSecondPerSquareCentimeter property.")]
         public double KilogramsPerSecondPerSquareCentimeter => As(MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter">KilogramsPerSecondPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerSecondPerSquareMeter property.")]
         public double KilogramsPerSecondPerSquareMeter => As(MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter">KilogramsPerSecondPerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerSecondPerSquareMillimeter property.")]
         public double KilogramsPerSecondPerSquareMillimeter => As(MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter">GramsPerHourPerSquareCentimeter</see>.
         /// </summary>
         public MassFlux ToGramsPerHourPerSquareCentimeter => ToUnit(MassFluxUnit.GramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareMeter">GramsPerHourPerSquareMeter</see>.
         /// </summary>
         public MassFlux ToGramsPerHourPerSquareMeter => ToUnit(MassFluxUnit.GramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter">GramsPerHourPerSquareMillimeter</see>.
         /// </summary>
         public MassFlux ToGramsPerHourPerSquareMillimeter => ToUnit(MassFluxUnit.GramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter">GramsPerSecondPerSquareCentimeter</see>.
         /// </summary>
         public MassFlux ToGramsPerSecondPerSquareCentimeter => ToUnit(MassFluxUnit.GramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMeter">GramsPerSecondPerSquareMeter</see>.
         /// </summary>
         public MassFlux ToGramsPerSecondPerSquareMeter => ToUnit(MassFluxUnit.GramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter">GramsPerSecondPerSquareMillimeter</see>.
         /// </summary>
         public MassFlux ToGramsPerSecondPerSquareMillimeter => ToUnit(MassFluxUnit.GramPerSecondPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter">KilogramsPerHourPerSquareCentimeter</see>.
         /// </summary>
         public MassFlux ToKilogramsPerHourPerSquareCentimeter => ToUnit(MassFluxUnit.KilogramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter">KilogramsPerHourPerSquareMeter</see>.
         /// </summary>
         public MassFlux ToKilogramsPerHourPerSquareMeter => ToUnit(MassFluxUnit.KilogramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter">KilogramsPerHourPerSquareMillimeter</see>.
         /// </summary>
         public MassFlux ToKilogramsPerHourPerSquareMillimeter => ToUnit(MassFluxUnit.KilogramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter">KilogramsPerSecondPerSquareCentimeter</see>.
         /// </summary>
         public MassFlux ToKilogramsPerSecondPerSquareCentimeter => ToUnit(MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter">KilogramsPerSecondPerSquareMeter</see>.
         /// </summary>
         public MassFlux ToKilogramsPerSecondPerSquareMeter => ToUnit(MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>.
+        ///     Gets this <see cref="MassFlux"/> converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter">KilogramsPerSecondPerSquareMillimeter</see>.
         /// </summary>
         public MassFlux ToKilogramsPerSecondPerSquareMillimeter => ToUnit(MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
 

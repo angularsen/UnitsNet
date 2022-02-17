@@ -80,112 +80,112 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond">CentidegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentidegreesCelsiusPerSecond property.")]
         public double CentidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond">DecadegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecadegreesCelsiusPerSecond property.")]
         public double DecadegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond">DecidegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecidegreesCelsiusPerSecond property.")]
         public double DecidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute">DegreesCelsiusPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesCelsiusPerMinute property.")]
         public double DegreesCelsiusPerMinute => As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond">DegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesCelsiusPerSecond property.")]
         public double DegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond">HectodegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectodegreesCelsiusPerSecond property.")]
         public double HectodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond">KilodegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilodegreesCelsiusPerSecond property.")]
         public double KilodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond">MicrodegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrodegreesCelsiusPerSecond property.")]
         public double MicrodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond">MillidegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillidegreesCelsiusPerSecond property.")]
         public double MillidegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond">NanodegreesCelsiusPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanodegreesCelsiusPerSecond property.")]
         public double NanodegreesCelsiusPerSecond => As(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond">CentidegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToCentidegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond">DecadegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToDecadegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond">DecidegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToDecidegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute">DegreesCelsiusPerMinute</see>.
         /// </summary>
         public TemperatureChangeRate ToDegreesCelsiusPerMinute => ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond">DegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToDegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond">HectodegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToHectodegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond">KilodegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToKilodegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond">MicrodegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToMicrodegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond">MillidegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToMillidegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>.
+        ///     Gets this <see cref="TemperatureChangeRate"/> converted into <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond">NanodegreesCelsiusPerSecond</see>.
         /// </summary>
         public TemperatureChangeRate ToNanodegreesCelsiusPerSecond => ToUnit(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
 

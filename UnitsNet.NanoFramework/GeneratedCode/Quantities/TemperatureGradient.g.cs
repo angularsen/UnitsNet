@@ -80,46 +80,46 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer">DegreesCelciusPerKilometer</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesCelciusPerKilometer property.")]
         public double DegreesCelciusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter">DegreesCelciusPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesCelciusPerMeter property.")]
         public double DegreesCelciusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot">DegreesFahrenheitPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesFahrenheitPerFoot property.")]
         public double DegreesFahrenheitPerFoot => As(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.KelvinPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.KelvinPerMeter">KelvinsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKelvinsPerMeter property.")]
         public double KelvinsPerMeter => As(TemperatureGradientUnit.KelvinPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>.
+        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer">DegreesCelciusPerKilometer</see>.
         /// </summary>
         public TemperatureGradient ToDegreesCelciusPerKilometer => ToUnit(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>.
+        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter">DegreesCelciusPerMeter</see>.
         /// </summary>
         public TemperatureGradient ToDegreesCelciusPerMeter => ToUnit(TemperatureGradientUnit.DegreeCelsiusPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>.
+        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot">DegreesFahrenheitPerFoot</see>.
         /// </summary>
         public TemperatureGradient ToDegreesFahrenheitPerFoot => ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.KelvinPerMeter"/>.
+        ///     Gets this <see cref="TemperatureGradient"/> converted into <see cref="TemperatureGradientUnit.KelvinPerMeter">KelvinsPerMeter</see>.
         /// </summary>
         public TemperatureGradient ToKelvinsPerMeter => ToUnit(TemperatureGradientUnit.KelvinPerMeter);
 

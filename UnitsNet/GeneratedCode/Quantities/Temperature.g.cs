@@ -197,112 +197,112 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeCelsius">DegreesCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesCelsius property.")]
         public double DegreesCelsius => As(TemperatureUnit.DegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeDelisle"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeDelisle">DegreesDelisle</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesDelisle property.")]
         public double DegreesDelisle => As(TemperatureUnit.DegreeDelisle);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeFahrenheit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeFahrenheit">DegreesFahrenheit</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesFahrenheit property.")]
         public double DegreesFahrenheit => As(TemperatureUnit.DegreeFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeNewton"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeNewton">DegreesNewton</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesNewton property.")]
         public double DegreesNewton => As(TemperatureUnit.DegreeNewton);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeRankine"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeRankine">DegreesRankine</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesRankine property.")]
         public double DegreesRankine => As(TemperatureUnit.DegreeRankine);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeReaumur"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeReaumur">DegreesReaumur</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesReaumur property.")]
         public double DegreesReaumur => As(TemperatureUnit.DegreeReaumur);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeRoemer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeRoemer">DegreesRoemer</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegreesRoemer property.")]
         public double DegreesRoemer => As(TemperatureUnit.DegreeRoemer);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.Kelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.Kelvin">Kelvins</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKelvins property.")]
         public double Kelvins => As(TemperatureUnit.Kelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.MillidegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.MillidegreeCelsius">MillidegreesCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillidegreesCelsius property.")]
         public double MillidegreesCelsius => As(TemperatureUnit.MillidegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.SolarTemperature"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.SolarTemperature">SolarTemperatures</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSolarTemperatures property.")]
         public double SolarTemperatures => As(TemperatureUnit.SolarTemperature);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeCelsius"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeCelsius">DegreesCelsius</see>.
         /// </summary>
         public Temperature ToDegreesCelsius => ToUnit(TemperatureUnit.DegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeDelisle"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeDelisle">DegreesDelisle</see>.
         /// </summary>
         public Temperature ToDegreesDelisle => ToUnit(TemperatureUnit.DegreeDelisle);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeFahrenheit"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeFahrenheit">DegreesFahrenheit</see>.
         /// </summary>
         public Temperature ToDegreesFahrenheit => ToUnit(TemperatureUnit.DegreeFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeNewton"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeNewton">DegreesNewton</see>.
         /// </summary>
         public Temperature ToDegreesNewton => ToUnit(TemperatureUnit.DegreeNewton);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeRankine"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeRankine">DegreesRankine</see>.
         /// </summary>
         public Temperature ToDegreesRankine => ToUnit(TemperatureUnit.DegreeRankine);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeReaumur"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeReaumur">DegreesReaumur</see>.
         /// </summary>
         public Temperature ToDegreesReaumur => ToUnit(TemperatureUnit.DegreeReaumur);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeRoemer"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.DegreeRoemer">DegreesRoemer</see>.
         /// </summary>
         public Temperature ToDegreesRoemer => ToUnit(TemperatureUnit.DegreeRoemer);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.Kelvin"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.Kelvin">Kelvins</see>.
         /// </summary>
         public Temperature ToKelvins => ToUnit(TemperatureUnit.Kelvin);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.MillidegreeCelsius"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.MillidegreeCelsius">MillidegreesCelsius</see>.
         /// </summary>
         public Temperature ToMillidegreesCelsius => ToUnit(TemperatureUnit.MillidegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.SolarTemperature"/>.
+        ///     Gets this <see cref="Temperature"/> converted into <see cref="TemperatureUnit.SolarTemperature">SolarTemperatures</see>.
         /// </summary>
         public Temperature ToSolarTemperatures => ToUnit(TemperatureUnit.SolarTemperature);
 

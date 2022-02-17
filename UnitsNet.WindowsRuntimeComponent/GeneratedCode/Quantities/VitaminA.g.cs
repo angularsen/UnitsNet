@@ -164,13 +164,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="VitaminA"/> converted into <see cref="VitaminAUnit.InternationalUnit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VitaminA"/> converted into <see cref="VitaminAUnit.InternationalUnit">InternationalUnits</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInternationalUnits property.")]
         public double InternationalUnits => As(VitaminAUnit.InternationalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="VitaminA"/> converted into <see cref="VitaminAUnit.InternationalUnit"/>.
+        ///     Gets this <see cref="VitaminA"/> converted into <see cref="VitaminAUnit.InternationalUnit">InternationalUnits</see>.
         /// </summary>
         public VitaminA ToInternationalUnits => ToUnit(VitaminAUnit.InternationalUnit);
 

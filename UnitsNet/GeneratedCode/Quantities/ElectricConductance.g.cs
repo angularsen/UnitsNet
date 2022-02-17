@@ -193,35 +193,35 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Microsiemens"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Microsiemens">Microsiemens</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrosiemens property.")]
         public double Microsiemens => As(ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Millisiemens"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Millisiemens">Millisiemens</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillisiemens property.")]
         public double Millisiemens => As(ElectricConductanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Siemens"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Siemens">Siemens</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSiemens property.")]
         public double Siemens => As(ElectricConductanceUnit.Siemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Microsiemens"/>.
+        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Microsiemens">Microsiemens</see>.
         /// </summary>
         public ElectricConductance ToMicrosiemens => ToUnit(ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Millisiemens"/>.
+        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Millisiemens">Millisiemens</see>.
         /// </summary>
         public ElectricConductance ToMillisiemens => ToUnit(ElectricConductanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Siemens"/>.
+        ///     Gets this <see cref="ElectricConductance"/> converted into <see cref="ElectricConductanceUnit.Siemens">Siemens</see>.
         /// </summary>
         public ElectricConductance ToSiemens => ToUnit(ElectricConductanceUnit.Siemens);
 

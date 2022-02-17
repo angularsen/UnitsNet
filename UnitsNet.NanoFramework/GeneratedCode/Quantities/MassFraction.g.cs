@@ -83,266 +83,266 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.CentigramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.CentigramPerGram">CentigramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentigramsPerGram property.")]
         public double CentigramsPerGram => As(MassFractionUnit.CentigramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.CentigramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.CentigramPerKilogram">CentigramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentigramsPerKilogram property.")]
         public double CentigramsPerKilogram => As(MassFractionUnit.CentigramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecagramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecagramPerGram">DecagramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecagramsPerGram property.")]
         public double DecagramsPerGram => As(MassFractionUnit.DecagramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecagramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecagramPerKilogram">DecagramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecagramsPerKilogram property.")]
         public double DecagramsPerKilogram => As(MassFractionUnit.DecagramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecigramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecigramPerGram">DecigramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecigramsPerGram property.")]
         public double DecigramsPerGram => As(MassFractionUnit.DecigramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecigramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecigramPerKilogram">DecigramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecigramsPerKilogram property.")]
         public double DecigramsPerKilogram => As(MassFractionUnit.DecigramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecimalFraction"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecimalFraction">DecimalFractions</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecimalFractions property.")]
         public double DecimalFractions => As(MassFractionUnit.DecimalFraction);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.GramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.GramPerGram">GramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerGram property.")]
         public double GramsPerGram => As(MassFractionUnit.GramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.GramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.GramPerKilogram">GramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerKilogram property.")]
         public double GramsPerKilogram => As(MassFractionUnit.GramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.HectogramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.HectogramPerGram">HectogramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectogramsPerGram property.")]
         public double HectogramsPerGram => As(MassFractionUnit.HectogramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.HectogramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.HectogramPerKilogram">HectogramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectogramsPerKilogram property.")]
         public double HectogramsPerKilogram => As(MassFractionUnit.HectogramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.KilogramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.KilogramPerGram">KilogramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerGram property.")]
         public double KilogramsPerGram => As(MassFractionUnit.KilogramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.KilogramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.KilogramPerKilogram">KilogramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerKilogram property.")]
         public double KilogramsPerKilogram => As(MassFractionUnit.KilogramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MicrogramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MicrogramPerGram">MicrogramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrogramsPerGram property.")]
         public double MicrogramsPerGram => As(MassFractionUnit.MicrogramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MicrogramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MicrogramPerKilogram">MicrogramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrogramsPerKilogram property.")]
         public double MicrogramsPerKilogram => As(MassFractionUnit.MicrogramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MilligramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MilligramPerGram">MilligramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramsPerGram property.")]
         public double MilligramsPerGram => As(MassFractionUnit.MilligramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MilligramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MilligramPerKilogram">MilligramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramsPerKilogram property.")]
         public double MilligramsPerKilogram => As(MassFractionUnit.MilligramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.NanogramPerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.NanogramPerGram">NanogramsPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanogramsPerGram property.")]
         public double NanogramsPerGram => As(MassFractionUnit.NanogramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.NanogramPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.NanogramPerKilogram">NanogramsPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanogramsPerKilogram property.")]
         public double NanogramsPerKilogram => As(MassFractionUnit.NanogramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerBillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerBillion">PartsPerBillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerBillion property.")]
         public double PartsPerBillion => As(MassFractionUnit.PartPerBillion);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerMillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerMillion">PartsPerMillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerMillion property.")]
         public double PartsPerMillion => As(MassFractionUnit.PartPerMillion);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerThousand"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerThousand">PartsPerThousand</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerThousand property.")]
         public double PartsPerThousand => As(MassFractionUnit.PartPerThousand);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerTrillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerTrillion">PartsPerTrillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerTrillion property.")]
         public double PartsPerTrillion => As(MassFractionUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.Percent"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.Percent">Percent</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPercent property.")]
         public double Percent => As(MassFractionUnit.Percent);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.CentigramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.CentigramPerGram">CentigramsPerGram</see>.
         /// </summary>
         public MassFraction ToCentigramsPerGram => ToUnit(MassFractionUnit.CentigramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.CentigramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.CentigramPerKilogram">CentigramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToCentigramsPerKilogram => ToUnit(MassFractionUnit.CentigramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecagramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecagramPerGram">DecagramsPerGram</see>.
         /// </summary>
         public MassFraction ToDecagramsPerGram => ToUnit(MassFractionUnit.DecagramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecagramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecagramPerKilogram">DecagramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToDecagramsPerKilogram => ToUnit(MassFractionUnit.DecagramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecigramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecigramPerGram">DecigramsPerGram</see>.
         /// </summary>
         public MassFraction ToDecigramsPerGram => ToUnit(MassFractionUnit.DecigramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecigramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecigramPerKilogram">DecigramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToDecigramsPerKilogram => ToUnit(MassFractionUnit.DecigramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecimalFraction"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.DecimalFraction">DecimalFractions</see>.
         /// </summary>
         public MassFraction ToDecimalFractions => ToUnit(MassFractionUnit.DecimalFraction);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.GramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.GramPerGram">GramsPerGram</see>.
         /// </summary>
         public MassFraction ToGramsPerGram => ToUnit(MassFractionUnit.GramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.GramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.GramPerKilogram">GramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToGramsPerKilogram => ToUnit(MassFractionUnit.GramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.HectogramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.HectogramPerGram">HectogramsPerGram</see>.
         /// </summary>
         public MassFraction ToHectogramsPerGram => ToUnit(MassFractionUnit.HectogramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.HectogramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.HectogramPerKilogram">HectogramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToHectogramsPerKilogram => ToUnit(MassFractionUnit.HectogramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.KilogramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.KilogramPerGram">KilogramsPerGram</see>.
         /// </summary>
         public MassFraction ToKilogramsPerGram => ToUnit(MassFractionUnit.KilogramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.KilogramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.KilogramPerKilogram">KilogramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToKilogramsPerKilogram => ToUnit(MassFractionUnit.KilogramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MicrogramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MicrogramPerGram">MicrogramsPerGram</see>.
         /// </summary>
         public MassFraction ToMicrogramsPerGram => ToUnit(MassFractionUnit.MicrogramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MicrogramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MicrogramPerKilogram">MicrogramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToMicrogramsPerKilogram => ToUnit(MassFractionUnit.MicrogramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MilligramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MilligramPerGram">MilligramsPerGram</see>.
         /// </summary>
         public MassFraction ToMilligramsPerGram => ToUnit(MassFractionUnit.MilligramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MilligramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.MilligramPerKilogram">MilligramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToMilligramsPerKilogram => ToUnit(MassFractionUnit.MilligramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.NanogramPerGram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.NanogramPerGram">NanogramsPerGram</see>.
         /// </summary>
         public MassFraction ToNanogramsPerGram => ToUnit(MassFractionUnit.NanogramPerGram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.NanogramPerKilogram"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.NanogramPerKilogram">NanogramsPerKilogram</see>.
         /// </summary>
         public MassFraction ToNanogramsPerKilogram => ToUnit(MassFractionUnit.NanogramPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerBillion"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerBillion">PartsPerBillion</see>.
         /// </summary>
         public MassFraction ToPartsPerBillion => ToUnit(MassFractionUnit.PartPerBillion);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerMillion"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerMillion">PartsPerMillion</see>.
         /// </summary>
         public MassFraction ToPartsPerMillion => ToUnit(MassFractionUnit.PartPerMillion);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerThousand"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerThousand">PartsPerThousand</see>.
         /// </summary>
         public MassFraction ToPartsPerThousand => ToUnit(MassFractionUnit.PartPerThousand);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerTrillion"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.PartPerTrillion">PartsPerTrillion</see>.
         /// </summary>
         public MassFraction ToPartsPerTrillion => ToUnit(MassFractionUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.Percent"/>.
+        ///     Gets this <see cref="MassFraction"/> converted into <see cref="MassFractionUnit.Percent">Percent</see>.
         /// </summary>
         public MassFraction ToPercent => ToUnit(MassFractionUnit.Percent);
 

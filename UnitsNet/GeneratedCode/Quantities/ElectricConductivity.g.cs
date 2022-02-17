@@ -193,35 +193,35 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerFoot">SiemensPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSiemensPerFoot property.")]
         public double SiemensPerFoot => As(ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerInch">SiemensPerInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSiemensPerInch property.")]
         public double SiemensPerInch => As(ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerMeter">SiemensPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSiemensPerMeter property.")]
         public double SiemensPerMeter => As(ElectricConductivityUnit.SiemensPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
+        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerFoot">SiemensPerFoot</see>.
         /// </summary>
         public ElectricConductivity ToSiemensPerFoot => ToUnit(ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
+        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerInch">SiemensPerInch</see>.
         /// </summary>
         public ElectricConductivity ToSiemensPerInch => ToUnit(ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
+        ///     Gets this <see cref="ElectricConductivity"/> converted into <see cref="ElectricConductivityUnit.SiemensPerMeter">SiemensPerMeter</see>.
         /// </summary>
         public ElectricConductivity ToSiemensPerMeter => ToUnit(ElectricConductivityUnit.SiemensPerMeter);
 

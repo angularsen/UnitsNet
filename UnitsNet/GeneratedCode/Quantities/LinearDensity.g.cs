@@ -204,156 +204,156 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerCentimeter">GramsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerCentimeter property.")]
         public double GramsPerCentimeter => As(LinearDensityUnit.GramPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerMeter">GramsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerMeter property.")]
         public double GramsPerMeter => As(LinearDensityUnit.GramPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerMillimeter">GramsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerMillimeter property.")]
         public double GramsPerMillimeter => As(LinearDensityUnit.GramPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerCentimeter">KilogramsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerCentimeter property.")]
         public double KilogramsPerCentimeter => As(LinearDensityUnit.KilogramPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerMeter">KilogramsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerMeter property.")]
         public double KilogramsPerMeter => As(LinearDensityUnit.KilogramPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerMillimeter">KilogramsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerMillimeter property.")]
         public double KilogramsPerMillimeter => As(LinearDensityUnit.KilogramPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerCentimeter">MicrogramsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrogramsPerCentimeter property.")]
         public double MicrogramsPerCentimeter => As(LinearDensityUnit.MicrogramPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerMeter">MicrogramsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrogramsPerMeter property.")]
         public double MicrogramsPerMeter => As(LinearDensityUnit.MicrogramPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerMillimeter">MicrogramsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrogramsPerMillimeter property.")]
         public double MicrogramsPerMillimeter => As(LinearDensityUnit.MicrogramPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerCentimeter">MilligramsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramsPerCentimeter property.")]
         public double MilligramsPerCentimeter => As(LinearDensityUnit.MilligramPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerMeter">MilligramsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramsPerMeter property.")]
         public double MilligramsPerMeter => As(LinearDensityUnit.MilligramPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerMillimeter">MilligramsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramsPerMillimeter property.")]
         public double MilligramsPerMillimeter => As(LinearDensityUnit.MilligramPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.PoundPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.PoundPerFoot">PoundsPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsPerFoot property.")]
         public double PoundsPerFoot => As(LinearDensityUnit.PoundPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.PoundPerInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.PoundPerInch">PoundsPerInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsPerInch property.")]
         public double PoundsPerInch => As(LinearDensityUnit.PoundPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerCentimeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerCentimeter">GramsPerCentimeter</see>.
         /// </summary>
         public LinearDensity ToGramsPerCentimeter => ToUnit(LinearDensityUnit.GramPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerMeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerMeter">GramsPerMeter</see>.
         /// </summary>
         public LinearDensity ToGramsPerMeter => ToUnit(LinearDensityUnit.GramPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerMillimeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.GramPerMillimeter">GramsPerMillimeter</see>.
         /// </summary>
         public LinearDensity ToGramsPerMillimeter => ToUnit(LinearDensityUnit.GramPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerCentimeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerCentimeter">KilogramsPerCentimeter</see>.
         /// </summary>
         public LinearDensity ToKilogramsPerCentimeter => ToUnit(LinearDensityUnit.KilogramPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerMeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerMeter">KilogramsPerMeter</see>.
         /// </summary>
         public LinearDensity ToKilogramsPerMeter => ToUnit(LinearDensityUnit.KilogramPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerMillimeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.KilogramPerMillimeter">KilogramsPerMillimeter</see>.
         /// </summary>
         public LinearDensity ToKilogramsPerMillimeter => ToUnit(LinearDensityUnit.KilogramPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerCentimeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerCentimeter">MicrogramsPerCentimeter</see>.
         /// </summary>
         public LinearDensity ToMicrogramsPerCentimeter => ToUnit(LinearDensityUnit.MicrogramPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerMeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerMeter">MicrogramsPerMeter</see>.
         /// </summary>
         public LinearDensity ToMicrogramsPerMeter => ToUnit(LinearDensityUnit.MicrogramPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerMillimeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MicrogramPerMillimeter">MicrogramsPerMillimeter</see>.
         /// </summary>
         public LinearDensity ToMicrogramsPerMillimeter => ToUnit(LinearDensityUnit.MicrogramPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerCentimeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerCentimeter">MilligramsPerCentimeter</see>.
         /// </summary>
         public LinearDensity ToMilligramsPerCentimeter => ToUnit(LinearDensityUnit.MilligramPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerMeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerMeter">MilligramsPerMeter</see>.
         /// </summary>
         public LinearDensity ToMilligramsPerMeter => ToUnit(LinearDensityUnit.MilligramPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerMillimeter"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.MilligramPerMillimeter">MilligramsPerMillimeter</see>.
         /// </summary>
         public LinearDensity ToMilligramsPerMillimeter => ToUnit(LinearDensityUnit.MilligramPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.PoundPerFoot"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.PoundPerFoot">PoundsPerFoot</see>.
         /// </summary>
         public LinearDensity ToPoundsPerFoot => ToUnit(LinearDensityUnit.PoundPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.PoundPerInch"/>.
+        ///     Gets this <see cref="LinearDensity"/> converted into <see cref="LinearDensityUnit.PoundPerInch">PoundsPerInch</see>.
         /// </summary>
         public LinearDensity ToPoundsPerInch => ToUnit(LinearDensityUnit.PoundPerInch);
 

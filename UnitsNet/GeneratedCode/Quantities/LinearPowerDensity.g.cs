@@ -215,277 +215,277 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerCentimeter">GigawattsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattsPerCentimeter property.")]
         public double GigawattsPerCentimeter => As(LinearPowerDensityUnit.GigawattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerFoot">GigawattsPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattsPerFoot property.")]
         public double GigawattsPerFoot => As(LinearPowerDensityUnit.GigawattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerInch">GigawattsPerInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattsPerInch property.")]
         public double GigawattsPerInch => As(LinearPowerDensityUnit.GigawattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerMeter">GigawattsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattsPerMeter property.")]
         public double GigawattsPerMeter => As(LinearPowerDensityUnit.GigawattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerMillimeter">GigawattsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattsPerMillimeter property.")]
         public double GigawattsPerMillimeter => As(LinearPowerDensityUnit.GigawattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerCentimeter">KilowattsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattsPerCentimeter property.")]
         public double KilowattsPerCentimeter => As(LinearPowerDensityUnit.KilowattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerFoot">KilowattsPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattsPerFoot property.")]
         public double KilowattsPerFoot => As(LinearPowerDensityUnit.KilowattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerInch">KilowattsPerInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattsPerInch property.")]
         public double KilowattsPerInch => As(LinearPowerDensityUnit.KilowattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerMeter">KilowattsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattsPerMeter property.")]
         public double KilowattsPerMeter => As(LinearPowerDensityUnit.KilowattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerMillimeter">KilowattsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattsPerMillimeter property.")]
         public double KilowattsPerMillimeter => As(LinearPowerDensityUnit.KilowattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerCentimeter">MegawattsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattsPerCentimeter property.")]
         public double MegawattsPerCentimeter => As(LinearPowerDensityUnit.MegawattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerFoot">MegawattsPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattsPerFoot property.")]
         public double MegawattsPerFoot => As(LinearPowerDensityUnit.MegawattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerInch">MegawattsPerInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattsPerInch property.")]
         public double MegawattsPerInch => As(LinearPowerDensityUnit.MegawattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerMeter">MegawattsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattsPerMeter property.")]
         public double MegawattsPerMeter => As(LinearPowerDensityUnit.MegawattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerMillimeter">MegawattsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattsPerMillimeter property.")]
         public double MegawattsPerMillimeter => As(LinearPowerDensityUnit.MegawattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter">MilliwattsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliwattsPerCentimeter property.")]
         public double MilliwattsPerCentimeter => As(LinearPowerDensityUnit.MilliwattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerFoot">MilliwattsPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliwattsPerFoot property.")]
         public double MilliwattsPerFoot => As(LinearPowerDensityUnit.MilliwattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerInch">MilliwattsPerInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliwattsPerInch property.")]
         public double MilliwattsPerInch => As(LinearPowerDensityUnit.MilliwattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerMeter">MilliwattsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliwattsPerMeter property.")]
         public double MilliwattsPerMeter => As(LinearPowerDensityUnit.MilliwattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter">MilliwattsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliwattsPerMillimeter property.")]
         public double MilliwattsPerMillimeter => As(LinearPowerDensityUnit.MilliwattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerCentimeter">WattsPerCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattsPerCentimeter property.")]
         public double WattsPerCentimeter => As(LinearPowerDensityUnit.WattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerFoot">WattsPerFoot</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattsPerFoot property.")]
         public double WattsPerFoot => As(LinearPowerDensityUnit.WattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerInch">WattsPerInch</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattsPerInch property.")]
         public double WattsPerInch => As(LinearPowerDensityUnit.WattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerMeter">WattsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattsPerMeter property.")]
         public double WattsPerMeter => As(LinearPowerDensityUnit.WattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerMillimeter">WattsPerMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattsPerMillimeter property.")]
         public double WattsPerMillimeter => As(LinearPowerDensityUnit.WattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerCentimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerCentimeter">GigawattsPerCentimeter</see>.
         /// </summary>
         public LinearPowerDensity ToGigawattsPerCentimeter => ToUnit(LinearPowerDensityUnit.GigawattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerFoot"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerFoot">GigawattsPerFoot</see>.
         /// </summary>
         public LinearPowerDensity ToGigawattsPerFoot => ToUnit(LinearPowerDensityUnit.GigawattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerInch"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerInch">GigawattsPerInch</see>.
         /// </summary>
         public LinearPowerDensity ToGigawattsPerInch => ToUnit(LinearPowerDensityUnit.GigawattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerMeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerMeter">GigawattsPerMeter</see>.
         /// </summary>
         public LinearPowerDensity ToGigawattsPerMeter => ToUnit(LinearPowerDensityUnit.GigawattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerMillimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.GigawattPerMillimeter">GigawattsPerMillimeter</see>.
         /// </summary>
         public LinearPowerDensity ToGigawattsPerMillimeter => ToUnit(LinearPowerDensityUnit.GigawattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerCentimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerCentimeter">KilowattsPerCentimeter</see>.
         /// </summary>
         public LinearPowerDensity ToKilowattsPerCentimeter => ToUnit(LinearPowerDensityUnit.KilowattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerFoot"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerFoot">KilowattsPerFoot</see>.
         /// </summary>
         public LinearPowerDensity ToKilowattsPerFoot => ToUnit(LinearPowerDensityUnit.KilowattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerInch"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerInch">KilowattsPerInch</see>.
         /// </summary>
         public LinearPowerDensity ToKilowattsPerInch => ToUnit(LinearPowerDensityUnit.KilowattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerMeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerMeter">KilowattsPerMeter</see>.
         /// </summary>
         public LinearPowerDensity ToKilowattsPerMeter => ToUnit(LinearPowerDensityUnit.KilowattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerMillimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.KilowattPerMillimeter">KilowattsPerMillimeter</see>.
         /// </summary>
         public LinearPowerDensity ToKilowattsPerMillimeter => ToUnit(LinearPowerDensityUnit.KilowattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerCentimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerCentimeter">MegawattsPerCentimeter</see>.
         /// </summary>
         public LinearPowerDensity ToMegawattsPerCentimeter => ToUnit(LinearPowerDensityUnit.MegawattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerFoot"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerFoot">MegawattsPerFoot</see>.
         /// </summary>
         public LinearPowerDensity ToMegawattsPerFoot => ToUnit(LinearPowerDensityUnit.MegawattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerInch"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerInch">MegawattsPerInch</see>.
         /// </summary>
         public LinearPowerDensity ToMegawattsPerInch => ToUnit(LinearPowerDensityUnit.MegawattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerMeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerMeter">MegawattsPerMeter</see>.
         /// </summary>
         public LinearPowerDensity ToMegawattsPerMeter => ToUnit(LinearPowerDensityUnit.MegawattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerMillimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MegawattPerMillimeter">MegawattsPerMillimeter</see>.
         /// </summary>
         public LinearPowerDensity ToMegawattsPerMillimeter => ToUnit(LinearPowerDensityUnit.MegawattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter">MilliwattsPerCentimeter</see>.
         /// </summary>
         public LinearPowerDensity ToMilliwattsPerCentimeter => ToUnit(LinearPowerDensityUnit.MilliwattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerFoot"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerFoot">MilliwattsPerFoot</see>.
         /// </summary>
         public LinearPowerDensity ToMilliwattsPerFoot => ToUnit(LinearPowerDensityUnit.MilliwattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerInch"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerInch">MilliwattsPerInch</see>.
         /// </summary>
         public LinearPowerDensity ToMilliwattsPerInch => ToUnit(LinearPowerDensityUnit.MilliwattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerMeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerMeter">MilliwattsPerMeter</see>.
         /// </summary>
         public LinearPowerDensity ToMilliwattsPerMeter => ToUnit(LinearPowerDensityUnit.MilliwattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter">MilliwattsPerMillimeter</see>.
         /// </summary>
         public LinearPowerDensity ToMilliwattsPerMillimeter => ToUnit(LinearPowerDensityUnit.MilliwattPerMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerCentimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerCentimeter">WattsPerCentimeter</see>.
         /// </summary>
         public LinearPowerDensity ToWattsPerCentimeter => ToUnit(LinearPowerDensityUnit.WattPerCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerFoot"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerFoot">WattsPerFoot</see>.
         /// </summary>
         public LinearPowerDensity ToWattsPerFoot => ToUnit(LinearPowerDensityUnit.WattPerFoot);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerInch"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerInch">WattsPerInch</see>.
         /// </summary>
         public LinearPowerDensity ToWattsPerInch => ToUnit(LinearPowerDensityUnit.WattPerInch);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerMeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerMeter">WattsPerMeter</see>.
         /// </summary>
         public LinearPowerDensity ToWattsPerMeter => ToUnit(LinearPowerDensityUnit.WattPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerMillimeter"/>.
+        ///     Gets this <see cref="LinearPowerDensity"/> converted into <see cref="LinearPowerDensityUnit.WattPerMillimeter">WattsPerMillimeter</see>.
         /// </summary>
         public LinearPowerDensity ToWattsPerMillimeter => ToUnit(LinearPowerDensityUnit.WattPerMillimeter);
 

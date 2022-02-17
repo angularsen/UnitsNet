@@ -199,101 +199,101 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit">BtusPerCubicFootDegreeFahrenheit</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBtusPerCubicFootDegreeFahrenheit property.")]
         public double BtusPerCubicFootDegreeFahrenheit => As(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius">CaloriesPerCubicCentimeterDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCaloriesPerCubicCentimeterDegreeCelsius property.")]
         public double CaloriesPerCubicCentimeterDegreeCelsius => As(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius">JoulesPerCubicMeterDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerCubicMeterDegreeCelsius property.")]
         public double JoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin">JoulesPerCubicMeterKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerCubicMeterKelvin property.")]
         public double JoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius">KilocaloriesPerCubicCentimeterDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilocaloriesPerCubicCentimeterDegreeCelsius property.")]
         public double KilocaloriesPerCubicCentimeterDegreeCelsius => As(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius">KilojoulesPerCubicMeterDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerCubicMeterDegreeCelsius property.")]
         public double KilojoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin">KilojoulesPerCubicMeterKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerCubicMeterKelvin property.")]
         public double KilojoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius">MegajoulesPerCubicMeterDegreeCelsius</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoulesPerCubicMeterDegreeCelsius property.")]
         public double MegajoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin">MegajoulesPerCubicMeterKelvin</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoulesPerCubicMeterKelvin property.")]
         public double MegajoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit">BtusPerCubicFootDegreeFahrenheit</see>.
         /// </summary>
         public VolumetricHeatCapacity ToBtusPerCubicFootDegreeFahrenheit => ToUnit(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius">CaloriesPerCubicCentimeterDegreeCelsius</see>.
         /// </summary>
         public VolumetricHeatCapacity ToCaloriesPerCubicCentimeterDegreeCelsius => ToUnit(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius">JoulesPerCubicMeterDegreeCelsius</see>.
         /// </summary>
         public VolumetricHeatCapacity ToJoulesPerCubicMeterDegreeCelsius => ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin">JoulesPerCubicMeterKelvin</see>.
         /// </summary>
         public VolumetricHeatCapacity ToJoulesPerCubicMeterKelvin => ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius">KilocaloriesPerCubicCentimeterDegreeCelsius</see>.
         /// </summary>
         public VolumetricHeatCapacity ToKilocaloriesPerCubicCentimeterDegreeCelsius => ToUnit(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius">KilojoulesPerCubicMeterDegreeCelsius</see>.
         /// </summary>
         public VolumetricHeatCapacity ToKilojoulesPerCubicMeterDegreeCelsius => ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin">KilojoulesPerCubicMeterKelvin</see>.
         /// </summary>
         public VolumetricHeatCapacity ToKilojoulesPerCubicMeterKelvin => ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius">MegajoulesPerCubicMeterDegreeCelsius</see>.
         /// </summary>
         public VolumetricHeatCapacity ToMegajoulesPerCubicMeterDegreeCelsius => ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/>.
+        ///     Gets this <see cref="VolumetricHeatCapacity"/> converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin">MegajoulesPerCubicMeterKelvin</see>.
         /// </summary>
         public VolumetricHeatCapacity ToMegajoulesPerCubicMeterKelvin => ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
 

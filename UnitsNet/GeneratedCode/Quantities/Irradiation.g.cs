@@ -197,79 +197,79 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter">JoulesPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerSquareCentimeter property.")]
         public double JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareMeter">JoulesPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerSquareMeter property.")]
         public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter">JoulesPerSquareMillimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerSquareMillimeter property.")]
         public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter">KilojoulesPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerSquareMeter property.")]
         public double KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter">KilowattHoursPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattHoursPerSquareMeter property.")]
         public double KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter">MillijoulesPerSquareCentimeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillijoulesPerSquareCentimeter property.")]
         public double MillijoulesPerSquareCentimeter => As(IrradiationUnit.MillijoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.WattHourPerSquareMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.WattHourPerSquareMeter">WattHoursPerSquareMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattHoursPerSquareMeter property.")]
         public double WattHoursPerSquareMeter => As(IrradiationUnit.WattHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter">JoulesPerSquareCentimeter</see>.
         /// </summary>
         public Irradiation ToJoulesPerSquareCentimeter => ToUnit(IrradiationUnit.JoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareMeter"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareMeter">JoulesPerSquareMeter</see>.
         /// </summary>
         public Irradiation ToJoulesPerSquareMeter => ToUnit(IrradiationUnit.JoulePerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter">JoulesPerSquareMillimeter</see>.
         /// </summary>
         public Irradiation ToJoulesPerSquareMillimeter => ToUnit(IrradiationUnit.JoulePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter">KilojoulesPerSquareMeter</see>.
         /// </summary>
         public Irradiation ToKilojoulesPerSquareMeter => ToUnit(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter">KilowattHoursPerSquareMeter</see>.
         /// </summary>
         public Irradiation ToKilowattHoursPerSquareMeter => ToUnit(IrradiationUnit.KilowattHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter">MillijoulesPerSquareCentimeter</see>.
         /// </summary>
         public Irradiation ToMillijoulesPerSquareCentimeter => ToUnit(IrradiationUnit.MillijoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.WattHourPerSquareMeter"/>.
+        ///     Gets this <see cref="Irradiation"/> converted into <see cref="IrradiationUnit.WattHourPerSquareMeter">WattHoursPerSquareMeter</see>.
         /// </summary>
         public Irradiation ToWattHoursPerSquareMeter => ToUnit(IrradiationUnit.WattHourPerSquareMeter);
 

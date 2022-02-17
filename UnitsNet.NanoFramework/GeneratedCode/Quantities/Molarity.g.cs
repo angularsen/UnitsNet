@@ -83,90 +83,90 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.CentimolePerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.CentimolePerLiter">CentimolesPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentimolesPerLiter property.")]
         public double CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.DecimolePerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.DecimolePerLiter">DecimolesPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecimolesPerLiter property.")]
         public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MicromolePerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MicromolePerLiter">MicromolesPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicromolesPerLiter property.")]
         public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MillimolePerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MillimolePerLiter">MillimolesPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimolesPerLiter property.")]
         public double MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MolePerCubicMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MolePerCubicMeter">MolesPerCubicMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMolesPerCubicMeter property.")]
         public double MolesPerCubicMeter => As(MolarityUnit.MolePerCubicMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MolePerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MolePerLiter">MolesPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMolesPerLiter property.")]
         public double MolesPerLiter => As(MolarityUnit.MolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.NanomolePerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.NanomolePerLiter">NanomolesPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanomolesPerLiter property.")]
         public double NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.PicomolePerLiter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.PicomolePerLiter">PicomolesPerLiter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPicomolesPerLiter property.")]
         public double PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.CentimolePerLiter"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.CentimolePerLiter">CentimolesPerLiter</see>.
         /// </summary>
         public Molarity ToCentimolesPerLiter => ToUnit(MolarityUnit.CentimolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.DecimolePerLiter"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.DecimolePerLiter">DecimolesPerLiter</see>.
         /// </summary>
         public Molarity ToDecimolesPerLiter => ToUnit(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MicromolePerLiter"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MicromolePerLiter">MicromolesPerLiter</see>.
         /// </summary>
         public Molarity ToMicromolesPerLiter => ToUnit(MolarityUnit.MicromolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MillimolePerLiter"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MillimolePerLiter">MillimolesPerLiter</see>.
         /// </summary>
         public Molarity ToMillimolesPerLiter => ToUnit(MolarityUnit.MillimolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MolePerCubicMeter"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MolePerCubicMeter">MolesPerCubicMeter</see>.
         /// </summary>
         public Molarity ToMolesPerCubicMeter => ToUnit(MolarityUnit.MolePerCubicMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MolePerLiter"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.MolePerLiter">MolesPerLiter</see>.
         /// </summary>
         public Molarity ToMolesPerLiter => ToUnit(MolarityUnit.MolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.NanomolePerLiter"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.NanomolePerLiter">NanomolesPerLiter</see>.
         /// </summary>
         public Molarity ToNanomolesPerLiter => ToUnit(MolarityUnit.NanomolePerLiter);
 
         /// <summary>
-        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.PicomolePerLiter"/>.
+        ///     Gets this <see cref="Molarity"/> converted into <see cref="MolarityUnit.PicomolePerLiter">PicomolesPerLiter</see>.
         /// </summary>
         public Molarity ToPicomolesPerLiter => ToUnit(MolarityUnit.PicomolePerLiter);
 

@@ -220,365 +220,365 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.CentigramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.CentigramPerDay">CentigramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentigramsPerDay property.")]
         public double CentigramsPerDay => As(MassFlowUnit.CentigramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.CentigramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.CentigramPerSecond">CentigramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentigramsPerSecond property.")]
         public double CentigramsPerSecond => As(MassFlowUnit.CentigramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecagramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecagramPerDay">DecagramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecagramsPerDay property.")]
         public double DecagramsPerDay => As(MassFlowUnit.DecagramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecagramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecagramPerSecond">DecagramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecagramsPerSecond property.")]
         public double DecagramsPerSecond => As(MassFlowUnit.DecagramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecigramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecigramPerDay">DecigramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecigramsPerDay property.")]
         public double DecigramsPerDay => As(MassFlowUnit.DecigramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecigramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecigramPerSecond">DecigramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecigramsPerSecond property.")]
         public double DecigramsPerSecond => As(MassFlowUnit.DecigramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerDay">GramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerDay property.")]
         public double GramsPerDay => As(MassFlowUnit.GramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerHour">GramsPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerHour property.")]
         public double GramsPerHour => As(MassFlowUnit.GramPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerSecond">GramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerSecond property.")]
         public double GramsPerSecond => As(MassFlowUnit.GramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.HectogramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.HectogramPerDay">HectogramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectogramsPerDay property.")]
         public double HectogramsPerDay => As(MassFlowUnit.HectogramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.HectogramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.HectogramPerSecond">HectogramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectogramsPerSecond property.")]
         public double HectogramsPerSecond => As(MassFlowUnit.HectogramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerDay">KilogramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerDay property.")]
         public double KilogramsPerDay => As(MassFlowUnit.KilogramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerHour">KilogramsPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerHour property.")]
         public double KilogramsPerHour => As(MassFlowUnit.KilogramPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerMinute">KilogramsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerMinute property.")]
         public double KilogramsPerMinute => As(MassFlowUnit.KilogramPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerSecond">KilogramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerSecond property.")]
         public double KilogramsPerSecond => As(MassFlowUnit.KilogramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegagramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegagramPerDay">MegagramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegagramsPerDay property.")]
         public double MegagramsPerDay => As(MassFlowUnit.MegagramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerDay">MegapoundsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapoundsPerDay property.")]
         public double MegapoundsPerDay => As(MassFlowUnit.MegapoundPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerHour">MegapoundsPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapoundsPerHour property.")]
         public double MegapoundsPerHour => As(MassFlowUnit.MegapoundPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerMinute">MegapoundsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapoundsPerMinute property.")]
         public double MegapoundsPerMinute => As(MassFlowUnit.MegapoundPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerSecond">MegapoundsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapoundsPerSecond property.")]
         public double MegapoundsPerSecond => As(MassFlowUnit.MegapoundPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MicrogramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MicrogramPerDay">MicrogramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrogramsPerDay property.")]
         public double MicrogramsPerDay => As(MassFlowUnit.MicrogramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MicrogramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MicrogramPerSecond">MicrogramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrogramsPerSecond property.")]
         public double MicrogramsPerSecond => As(MassFlowUnit.MicrogramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MilligramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MilligramPerDay">MilligramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramsPerDay property.")]
         public double MilligramsPerDay => As(MassFlowUnit.MilligramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MilligramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MilligramPerSecond">MilligramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligramsPerSecond property.")]
         public double MilligramsPerSecond => As(MassFlowUnit.MilligramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.NanogramPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.NanogramPerDay">NanogramsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanogramsPerDay property.")]
         public double NanogramsPerDay => As(MassFlowUnit.NanogramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.NanogramPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.NanogramPerSecond">NanogramsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanogramsPerSecond property.")]
         public double NanogramsPerSecond => As(MassFlowUnit.NanogramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerDay">PoundsPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsPerDay property.")]
         public double PoundsPerDay => As(MassFlowUnit.PoundPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerHour">PoundsPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsPerHour property.")]
         public double PoundsPerHour => As(MassFlowUnit.PoundPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerMinute">PoundsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsPerMinute property.")]
         public double PoundsPerMinute => As(MassFlowUnit.PoundPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerSecond">PoundsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsPerSecond property.")]
         public double PoundsPerSecond => As(MassFlowUnit.PoundPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.ShortTonPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.ShortTonPerHour">ShortTonsPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToShortTonsPerHour property.")]
         public double ShortTonsPerHour => As(MassFlowUnit.ShortTonPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.TonnePerDay"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.TonnePerDay">TonnesPerDay</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonnesPerDay property.")]
         public double TonnesPerDay => As(MassFlowUnit.TonnePerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.TonnePerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.TonnePerHour">TonnesPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonnesPerHour property.")]
         public double TonnesPerHour => As(MassFlowUnit.TonnePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.CentigramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.CentigramPerDay">CentigramsPerDay</see>.
         /// </summary>
         public MassFlow ToCentigramsPerDay => ToUnit(MassFlowUnit.CentigramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.CentigramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.CentigramPerSecond">CentigramsPerSecond</see>.
         /// </summary>
         public MassFlow ToCentigramsPerSecond => ToUnit(MassFlowUnit.CentigramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecagramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecagramPerDay">DecagramsPerDay</see>.
         /// </summary>
         public MassFlow ToDecagramsPerDay => ToUnit(MassFlowUnit.DecagramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecagramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecagramPerSecond">DecagramsPerSecond</see>.
         /// </summary>
         public MassFlow ToDecagramsPerSecond => ToUnit(MassFlowUnit.DecagramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecigramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecigramPerDay">DecigramsPerDay</see>.
         /// </summary>
         public MassFlow ToDecigramsPerDay => ToUnit(MassFlowUnit.DecigramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecigramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.DecigramPerSecond">DecigramsPerSecond</see>.
         /// </summary>
         public MassFlow ToDecigramsPerSecond => ToUnit(MassFlowUnit.DecigramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerDay">GramsPerDay</see>.
         /// </summary>
         public MassFlow ToGramsPerDay => ToUnit(MassFlowUnit.GramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerHour"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerHour">GramsPerHour</see>.
         /// </summary>
         public MassFlow ToGramsPerHour => ToUnit(MassFlowUnit.GramPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.GramPerSecond">GramsPerSecond</see>.
         /// </summary>
         public MassFlow ToGramsPerSecond => ToUnit(MassFlowUnit.GramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.HectogramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.HectogramPerDay">HectogramsPerDay</see>.
         /// </summary>
         public MassFlow ToHectogramsPerDay => ToUnit(MassFlowUnit.HectogramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.HectogramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.HectogramPerSecond">HectogramsPerSecond</see>.
         /// </summary>
         public MassFlow ToHectogramsPerSecond => ToUnit(MassFlowUnit.HectogramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerDay">KilogramsPerDay</see>.
         /// </summary>
         public MassFlow ToKilogramsPerDay => ToUnit(MassFlowUnit.KilogramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerHour"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerHour">KilogramsPerHour</see>.
         /// </summary>
         public MassFlow ToKilogramsPerHour => ToUnit(MassFlowUnit.KilogramPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerMinute"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerMinute">KilogramsPerMinute</see>.
         /// </summary>
         public MassFlow ToKilogramsPerMinute => ToUnit(MassFlowUnit.KilogramPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.KilogramPerSecond">KilogramsPerSecond</see>.
         /// </summary>
         public MassFlow ToKilogramsPerSecond => ToUnit(MassFlowUnit.KilogramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegagramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegagramPerDay">MegagramsPerDay</see>.
         /// </summary>
         public MassFlow ToMegagramsPerDay => ToUnit(MassFlowUnit.MegagramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerDay">MegapoundsPerDay</see>.
         /// </summary>
         public MassFlow ToMegapoundsPerDay => ToUnit(MassFlowUnit.MegapoundPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerHour"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerHour">MegapoundsPerHour</see>.
         /// </summary>
         public MassFlow ToMegapoundsPerHour => ToUnit(MassFlowUnit.MegapoundPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerMinute"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerMinute">MegapoundsPerMinute</see>.
         /// </summary>
         public MassFlow ToMegapoundsPerMinute => ToUnit(MassFlowUnit.MegapoundPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MegapoundPerSecond">MegapoundsPerSecond</see>.
         /// </summary>
         public MassFlow ToMegapoundsPerSecond => ToUnit(MassFlowUnit.MegapoundPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MicrogramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MicrogramPerDay">MicrogramsPerDay</see>.
         /// </summary>
         public MassFlow ToMicrogramsPerDay => ToUnit(MassFlowUnit.MicrogramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MicrogramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MicrogramPerSecond">MicrogramsPerSecond</see>.
         /// </summary>
         public MassFlow ToMicrogramsPerSecond => ToUnit(MassFlowUnit.MicrogramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MilligramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MilligramPerDay">MilligramsPerDay</see>.
         /// </summary>
         public MassFlow ToMilligramsPerDay => ToUnit(MassFlowUnit.MilligramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MilligramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.MilligramPerSecond">MilligramsPerSecond</see>.
         /// </summary>
         public MassFlow ToMilligramsPerSecond => ToUnit(MassFlowUnit.MilligramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.NanogramPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.NanogramPerDay">NanogramsPerDay</see>.
         /// </summary>
         public MassFlow ToNanogramsPerDay => ToUnit(MassFlowUnit.NanogramPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.NanogramPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.NanogramPerSecond">NanogramsPerSecond</see>.
         /// </summary>
         public MassFlow ToNanogramsPerSecond => ToUnit(MassFlowUnit.NanogramPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerDay">PoundsPerDay</see>.
         /// </summary>
         public MassFlow ToPoundsPerDay => ToUnit(MassFlowUnit.PoundPerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerHour"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerHour">PoundsPerHour</see>.
         /// </summary>
         public MassFlow ToPoundsPerHour => ToUnit(MassFlowUnit.PoundPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerMinute"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerMinute">PoundsPerMinute</see>.
         /// </summary>
         public MassFlow ToPoundsPerMinute => ToUnit(MassFlowUnit.PoundPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerSecond"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.PoundPerSecond">PoundsPerSecond</see>.
         /// </summary>
         public MassFlow ToPoundsPerSecond => ToUnit(MassFlowUnit.PoundPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.ShortTonPerHour"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.ShortTonPerHour">ShortTonsPerHour</see>.
         /// </summary>
         public MassFlow ToShortTonsPerHour => ToUnit(MassFlowUnit.ShortTonPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.TonnePerDay"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.TonnePerDay">TonnesPerDay</see>.
         /// </summary>
         public MassFlow ToTonnesPerDay => ToUnit(MassFlowUnit.TonnePerDay);
 
         /// <summary>
-        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.TonnePerHour"/>.
+        ///     Gets this <see cref="MassFlow"/> converted into <see cref="MassFlowUnit.TonnePerHour">TonnesPerHour</see>.
         /// </summary>
         public MassFlow ToTonnesPerHour => ToUnit(MassFlowUnit.TonnePerHour);
 

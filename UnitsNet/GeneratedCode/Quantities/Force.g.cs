@@ -202,167 +202,167 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Decanewton"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Decanewton">Decanewtons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecanewtons property.")]
         public double Decanewtons => As(ForceUnit.Decanewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Dyn"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Dyn">Dyne</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDyne property.")]
         public double Dyne => As(ForceUnit.Dyn);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KilogramForce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KilogramForce">KilogramsForce</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsForce property.")]
         public double KilogramsForce => As(ForceUnit.KilogramForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Kilonewton"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Kilonewton">Kilonewtons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtons property.")]
         public double Kilonewtons => As(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KiloPond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KiloPond">KiloPonds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKiloPonds property.")]
         public double KiloPonds => As(ForceUnit.KiloPond);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KilopoundForce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KilopoundForce">KilopoundsForce</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundsForce property.")]
         public double KilopoundsForce => As(ForceUnit.KilopoundForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Meganewton"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Meganewton">Meganewtons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMeganewtons property.")]
         public double Meganewtons => As(ForceUnit.Meganewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Micronewton"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Micronewton">Micronewtons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicronewtons property.")]
         public double Micronewtons => As(ForceUnit.Micronewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Millinewton"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Millinewton">Millinewtons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillinewtons property.")]
         public double Millinewtons => As(ForceUnit.Millinewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Newton"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Newton">Newtons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtons property.")]
         public double Newtons => As(ForceUnit.Newton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.OunceForce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.OunceForce">OunceForce</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToOunceForce property.")]
         public double OunceForce => As(ForceUnit.OunceForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Poundal"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Poundal">Poundals</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundals property.")]
         public double Poundals => As(ForceUnit.Poundal);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.PoundForce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.PoundForce">PoundsForce</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsForce property.")]
         public double PoundsForce => As(ForceUnit.PoundForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.ShortTonForce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.ShortTonForce">ShortTonsForce</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToShortTonsForce property.")]
         public double ShortTonsForce => As(ForceUnit.ShortTonForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.TonneForce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.TonneForce">TonnesForce</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonnesForce property.")]
         public double TonnesForce => As(ForceUnit.TonneForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Decanewton"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Decanewton">Decanewtons</see>.
         /// </summary>
         public Force ToDecanewtons => ToUnit(ForceUnit.Decanewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Dyn"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Dyn">Dyne</see>.
         /// </summary>
         public Force ToDyne => ToUnit(ForceUnit.Dyn);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KilogramForce"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KilogramForce">KilogramsForce</see>.
         /// </summary>
         public Force ToKilogramsForce => ToUnit(ForceUnit.KilogramForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Kilonewton"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Kilonewton">Kilonewtons</see>.
         /// </summary>
         public Force ToKilonewtons => ToUnit(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KiloPond"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KiloPond">KiloPonds</see>.
         /// </summary>
         public Force ToKiloPonds => ToUnit(ForceUnit.KiloPond);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KilopoundForce"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.KilopoundForce">KilopoundsForce</see>.
         /// </summary>
         public Force ToKilopoundsForce => ToUnit(ForceUnit.KilopoundForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Meganewton"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Meganewton">Meganewtons</see>.
         /// </summary>
         public Force ToMeganewtons => ToUnit(ForceUnit.Meganewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Micronewton"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Micronewton">Micronewtons</see>.
         /// </summary>
         public Force ToMicronewtons => ToUnit(ForceUnit.Micronewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Millinewton"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Millinewton">Millinewtons</see>.
         /// </summary>
         public Force ToMillinewtons => ToUnit(ForceUnit.Millinewton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Newton"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Newton">Newtons</see>.
         /// </summary>
         public Force ToNewtons => ToUnit(ForceUnit.Newton);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.OunceForce"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.OunceForce">OunceForce</see>.
         /// </summary>
         public Force ToOunceForce => ToUnit(ForceUnit.OunceForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Poundal"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.Poundal">Poundals</see>.
         /// </summary>
         public Force ToPoundals => ToUnit(ForceUnit.Poundal);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.PoundForce"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.PoundForce">PoundsForce</see>.
         /// </summary>
         public Force ToPoundsForce => ToUnit(ForceUnit.PoundForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.ShortTonForce"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.ShortTonForce">ShortTonsForce</see>.
         /// </summary>
         public Force ToShortTonsForce => ToUnit(ForceUnit.ShortTonForce);
 
         /// <summary>
-        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.TonneForce"/>.
+        ///     Gets this <see cref="Force"/> converted into <see cref="ForceUnit.TonneForce">TonnesForce</see>.
         /// </summary>
         public Force ToTonnesForce => ToUnit(ForceUnit.TonneForce);
 

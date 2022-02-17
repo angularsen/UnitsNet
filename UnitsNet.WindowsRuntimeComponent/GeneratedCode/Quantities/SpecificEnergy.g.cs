@@ -167,277 +167,277 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.BtuPerPound"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.BtuPerPound">BtuPerPound</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToBtuPerPound property.")]
         public double BtuPerPound => As(SpecificEnergyUnit.BtuPerPound);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.CaloriePerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.CaloriePerGram">CaloriesPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCaloriesPerGram property.")]
         public double CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerKilogram">GigawattDaysPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattDaysPerKilogram property.")]
         public double GigawattDaysPerKilogram => As(SpecificEnergyUnit.GigawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerShortTon">GigawattDaysPerShortTon</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattDaysPerShortTon property.")]
         public double GigawattDaysPerShortTon => As(SpecificEnergyUnit.GigawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerTonne">GigawattDaysPerTonne</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattDaysPerTonne property.")]
         public double GigawattDaysPerTonne => As(SpecificEnergyUnit.GigawattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattHourPerKilogram">GigawattHoursPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGigawattHoursPerKilogram property.")]
         public double GigawattHoursPerKilogram => As(SpecificEnergyUnit.GigawattHourPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.JoulePerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.JoulePerKilogram">JoulesPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerKilogram property.")]
         public double JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilocaloriePerGram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilocaloriePerGram">KilocaloriesPerGram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilocaloriesPerGram property.")]
         public double KilocaloriesPerGram => As(SpecificEnergyUnit.KilocaloriePerGram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilojoulePerKilogram">KilojoulesPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerKilogram property.")]
         public double KilojoulesPerKilogram => As(SpecificEnergyUnit.KilojoulePerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerKilogram">KilowattDaysPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattDaysPerKilogram property.")]
         public double KilowattDaysPerKilogram => As(SpecificEnergyUnit.KilowattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerShortTon">KilowattDaysPerShortTon</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattDaysPerShortTon property.")]
         public double KilowattDaysPerShortTon => As(SpecificEnergyUnit.KilowattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerTonne">KilowattDaysPerTonne</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattDaysPerTonne property.")]
         public double KilowattDaysPerTonne => As(SpecificEnergyUnit.KilowattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattHourPerKilogram">KilowattHoursPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilowattHoursPerKilogram property.")]
         public double KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram">MegajoulesPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoulesPerKilogram property.")]
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram">MegawattDaysPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattDaysPerKilogram property.")]
         public double MegawattDaysPerKilogram => As(SpecificEnergyUnit.MegawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerShortTon">MegawattDaysPerShortTon</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattDaysPerShortTon property.")]
         public double MegawattDaysPerShortTon => As(SpecificEnergyUnit.MegawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerTonne">MegawattDaysPerTonne</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattDaysPerTonne property.")]
         public double MegawattDaysPerTonne => As(SpecificEnergyUnit.MegawattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram">MegawattHoursPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegawattHoursPerKilogram property.")]
         public double MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram">TerawattDaysPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTerawattDaysPerKilogram property.")]
         public double TerawattDaysPerKilogram => As(SpecificEnergyUnit.TerawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerShortTon">TerawattDaysPerShortTon</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTerawattDaysPerShortTon property.")]
         public double TerawattDaysPerShortTon => As(SpecificEnergyUnit.TerawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerTonne">TerawattDaysPerTonne</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTerawattDaysPerTonne property.")]
         public double TerawattDaysPerTonne => As(SpecificEnergyUnit.TerawattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerKilogram">WattDaysPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattDaysPerKilogram property.")]
         public double WattDaysPerKilogram => As(SpecificEnergyUnit.WattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerShortTon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerShortTon">WattDaysPerShortTon</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattDaysPerShortTon property.")]
         public double WattDaysPerShortTon => As(SpecificEnergyUnit.WattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerTonne"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerTonne">WattDaysPerTonne</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattDaysPerTonne property.")]
         public double WattDaysPerTonne => As(SpecificEnergyUnit.WattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattHourPerKilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattHourPerKilogram">WattHoursPerKilogram</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToWattHoursPerKilogram property.")]
         public double WattHoursPerKilogram => As(SpecificEnergyUnit.WattHourPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.BtuPerPound"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.BtuPerPound">BtuPerPound</see>.
         /// </summary>
         public SpecificEnergy ToBtuPerPound => ToUnit(SpecificEnergyUnit.BtuPerPound);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.CaloriePerGram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.CaloriePerGram">CaloriesPerGram</see>.
         /// </summary>
         public SpecificEnergy ToCaloriesPerGram => ToUnit(SpecificEnergyUnit.CaloriePerGram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerKilogram">GigawattDaysPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToGigawattDaysPerKilogram => ToUnit(SpecificEnergyUnit.GigawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerShortTon">GigawattDaysPerShortTon</see>.
         /// </summary>
         public SpecificEnergy ToGigawattDaysPerShortTon => ToUnit(SpecificEnergyUnit.GigawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattDayPerTonne">GigawattDaysPerTonne</see>.
         /// </summary>
         public SpecificEnergy ToGigawattDaysPerTonne => ToUnit(SpecificEnergyUnit.GigawattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.GigawattHourPerKilogram">GigawattHoursPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToGigawattHoursPerKilogram => ToUnit(SpecificEnergyUnit.GigawattHourPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.JoulePerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.JoulePerKilogram">JoulesPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToJoulesPerKilogram => ToUnit(SpecificEnergyUnit.JoulePerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilocaloriePerGram">KilocaloriesPerGram</see>.
         /// </summary>
         public SpecificEnergy ToKilocaloriesPerGram => ToUnit(SpecificEnergyUnit.KilocaloriePerGram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilojoulePerKilogram">KilojoulesPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToKilojoulesPerKilogram => ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerKilogram">KilowattDaysPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToKilowattDaysPerKilogram => ToUnit(SpecificEnergyUnit.KilowattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerShortTon">KilowattDaysPerShortTon</see>.
         /// </summary>
         public SpecificEnergy ToKilowattDaysPerShortTon => ToUnit(SpecificEnergyUnit.KilowattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattDayPerTonne">KilowattDaysPerTonne</see>.
         /// </summary>
         public SpecificEnergy ToKilowattDaysPerTonne => ToUnit(SpecificEnergyUnit.KilowattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.KilowattHourPerKilogram">KilowattHoursPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToKilowattHoursPerKilogram => ToUnit(SpecificEnergyUnit.KilowattHourPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram">MegajoulesPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToMegajoulesPerKilogram => ToUnit(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram">MegawattDaysPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToMegawattDaysPerKilogram => ToUnit(SpecificEnergyUnit.MegawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerShortTon">MegawattDaysPerShortTon</see>.
         /// </summary>
         public SpecificEnergy ToMegawattDaysPerShortTon => ToUnit(SpecificEnergyUnit.MegawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattDayPerTonne">MegawattDaysPerTonne</see>.
         /// </summary>
         public SpecificEnergy ToMegawattDaysPerTonne => ToUnit(SpecificEnergyUnit.MegawattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram">MegawattHoursPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToMegawattHoursPerKilogram => ToUnit(SpecificEnergyUnit.MegawattHourPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram">TerawattDaysPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToTerawattDaysPerKilogram => ToUnit(SpecificEnergyUnit.TerawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerShortTon">TerawattDaysPerShortTon</see>.
         /// </summary>
         public SpecificEnergy ToTerawattDaysPerShortTon => ToUnit(SpecificEnergyUnit.TerawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.TerawattDayPerTonne">TerawattDaysPerTonne</see>.
         /// </summary>
         public SpecificEnergy ToTerawattDaysPerTonne => ToUnit(SpecificEnergyUnit.TerawattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerKilogram">WattDaysPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToWattDaysPerKilogram => ToUnit(SpecificEnergyUnit.WattDayPerKilogram);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerShortTon">WattDaysPerShortTon</see>.
         /// </summary>
         public SpecificEnergy ToWattDaysPerShortTon => ToUnit(SpecificEnergyUnit.WattDayPerShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerTonne"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattDayPerTonne">WattDaysPerTonne</see>.
         /// </summary>
         public SpecificEnergy ToWattDaysPerTonne => ToUnit(SpecificEnergyUnit.WattDayPerTonne);
 
         /// <summary>
-        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>.
+        ///     Gets this <see cref="SpecificEnergy"/> converted into <see cref="SpecificEnergyUnit.WattHourPerKilogram">WattHoursPerKilogram</see>.
         /// </summary>
         public SpecificEnergy ToWattHoursPerKilogram => ToUnit(SpecificEnergyUnit.WattHourPerKilogram);
 

@@ -80,277 +80,277 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Centigram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Centigram">Centigrams</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentigrams property.")]
         public double Centigrams => As(MassUnit.Centigram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Decagram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Decagram">Decagrams</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecagrams property.")]
         public double Decagrams => As(MassUnit.Decagram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Decigram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Decigram">Decigrams</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecigrams property.")]
         public double Decigrams => As(MassUnit.Decigram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.EarthMass"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.EarthMass">EarthMasses</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToEarthMasses property.")]
         public double EarthMasses => As(MassUnit.EarthMass);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Grain"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Grain">Grains</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGrains property.")]
         public double Grains => As(MassUnit.Grain);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Gram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Gram">Grams</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGrams property.")]
         public double Grams => As(MassUnit.Gram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Hectogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Hectogram">Hectograms</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectograms property.")]
         public double Hectograms => As(MassUnit.Hectogram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilogram">Kilograms</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilograms property.")]
         public double Kilograms => As(MassUnit.Kilogram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilopound"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilopound">Kilopounds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopounds property.")]
         public double Kilopounds => As(MassUnit.Kilopound);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilotonne"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilotonne">Kilotonnes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilotonnes property.")]
         public double Kilotonnes => As(MassUnit.Kilotonne);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.LongHundredweight"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.LongHundredweight">LongHundredweight</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLongHundredweight property.")]
         public double LongHundredweight => As(MassUnit.LongHundredweight);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.LongTon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.LongTon">LongTons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLongTons property.")]
         public double LongTons => As(MassUnit.LongTon);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Megapound"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Megapound">Megapounds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapounds property.")]
         public double Megapounds => As(MassUnit.Megapound);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Megatonne"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Megatonne">Megatonnes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegatonnes property.")]
         public double Megatonnes => As(MassUnit.Megatonne);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Microgram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Microgram">Micrograms</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrograms property.")]
         public double Micrograms => As(MassUnit.Microgram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Milligram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Milligram">Milligrams</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilligrams property.")]
         public double Milligrams => As(MassUnit.Milligram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Nanogram"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Nanogram">Nanograms</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanograms property.")]
         public double Nanograms => As(MassUnit.Nanogram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Ounce"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Ounce">Ounces</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToOunces property.")]
         public double Ounces => As(MassUnit.Ounce);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Pound"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Pound">Pounds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPounds property.")]
         public double Pounds => As(MassUnit.Pound);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.ShortHundredweight"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.ShortHundredweight">ShortHundredweight</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToShortHundredweight property.")]
         public double ShortHundredweight => As(MassUnit.ShortHundredweight);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.ShortTon"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.ShortTon">ShortTons</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToShortTons property.")]
         public double ShortTons => As(MassUnit.ShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Slug"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Slug">Slugs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSlugs property.")]
         public double Slugs => As(MassUnit.Slug);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.SolarMass"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.SolarMass">SolarMasses</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSolarMasses property.")]
         public double SolarMasses => As(MassUnit.SolarMass);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Stone"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Stone">Stone</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToStone property.")]
         public double Stone => As(MassUnit.Stone);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Tonne"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Tonne">Tonnes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonnes property.")]
         public double Tonnes => As(MassUnit.Tonne);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Centigram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Centigram">Centigrams</see>.
         /// </summary>
         public Mass ToCentigrams => ToUnit(MassUnit.Centigram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Decagram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Decagram">Decagrams</see>.
         /// </summary>
         public Mass ToDecagrams => ToUnit(MassUnit.Decagram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Decigram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Decigram">Decigrams</see>.
         /// </summary>
         public Mass ToDecigrams => ToUnit(MassUnit.Decigram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.EarthMass"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.EarthMass">EarthMasses</see>.
         /// </summary>
         public Mass ToEarthMasses => ToUnit(MassUnit.EarthMass);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Grain"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Grain">Grains</see>.
         /// </summary>
         public Mass ToGrains => ToUnit(MassUnit.Grain);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Gram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Gram">Grams</see>.
         /// </summary>
         public Mass ToGrams => ToUnit(MassUnit.Gram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Hectogram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Hectogram">Hectograms</see>.
         /// </summary>
         public Mass ToHectograms => ToUnit(MassUnit.Hectogram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilogram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilogram">Kilograms</see>.
         /// </summary>
         public Mass ToKilograms => ToUnit(MassUnit.Kilogram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilopound"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilopound">Kilopounds</see>.
         /// </summary>
         public Mass ToKilopounds => ToUnit(MassUnit.Kilopound);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilotonne"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Kilotonne">Kilotonnes</see>.
         /// </summary>
         public Mass ToKilotonnes => ToUnit(MassUnit.Kilotonne);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.LongHundredweight"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.LongHundredweight">LongHundredweight</see>.
         /// </summary>
         public Mass ToLongHundredweight => ToUnit(MassUnit.LongHundredweight);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.LongTon"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.LongTon">LongTons</see>.
         /// </summary>
         public Mass ToLongTons => ToUnit(MassUnit.LongTon);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Megapound"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Megapound">Megapounds</see>.
         /// </summary>
         public Mass ToMegapounds => ToUnit(MassUnit.Megapound);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Megatonne"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Megatonne">Megatonnes</see>.
         /// </summary>
         public Mass ToMegatonnes => ToUnit(MassUnit.Megatonne);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Microgram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Microgram">Micrograms</see>.
         /// </summary>
         public Mass ToMicrograms => ToUnit(MassUnit.Microgram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Milligram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Milligram">Milligrams</see>.
         /// </summary>
         public Mass ToMilligrams => ToUnit(MassUnit.Milligram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Nanogram"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Nanogram">Nanograms</see>.
         /// </summary>
         public Mass ToNanograms => ToUnit(MassUnit.Nanogram);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Ounce"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Ounce">Ounces</see>.
         /// </summary>
         public Mass ToOunces => ToUnit(MassUnit.Ounce);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Pound"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Pound">Pounds</see>.
         /// </summary>
         public Mass ToPounds => ToUnit(MassUnit.Pound);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.ShortHundredweight"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.ShortHundredweight">ShortHundredweight</see>.
         /// </summary>
         public Mass ToShortHundredweight => ToUnit(MassUnit.ShortHundredweight);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.ShortTon"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.ShortTon">ShortTons</see>.
         /// </summary>
         public Mass ToShortTons => ToUnit(MassUnit.ShortTon);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Slug"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Slug">Slugs</see>.
         /// </summary>
         public Mass ToSlugs => ToUnit(MassUnit.Slug);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.SolarMass"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.SolarMass">SolarMasses</see>.
         /// </summary>
         public Mass ToSolarMasses => ToUnit(MassUnit.SolarMass);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Stone"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Stone">Stone</see>.
         /// </summary>
         public Mass ToStone => ToUnit(MassUnit.Stone);
 
         /// <summary>
-        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Tonne"/>.
+        ///     Gets this <see cref="Mass"/> converted into <see cref="MassUnit.Tonne">Tonnes</see>.
         /// </summary>
         public Mass ToTonnes => ToUnit(MassUnit.Tonne);
 

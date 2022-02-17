@@ -167,13 +167,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ElectricField"/> converted into <see cref="ElectricFieldUnit.VoltPerMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricField"/> converted into <see cref="ElectricFieldUnit.VoltPerMeter">VoltsPerMeter</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToVoltsPerMeter property.")]
         public double VoltsPerMeter => As(ElectricFieldUnit.VoltPerMeter);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricField"/> converted into <see cref="ElectricFieldUnit.VoltPerMeter"/>.
+        ///     Gets this <see cref="ElectricField"/> converted into <see cref="ElectricFieldUnit.VoltPerMeter">VoltsPerMeter</see>.
         /// </summary>
         public ElectricField ToVoltsPerMeter => ToUnit(ElectricFieldUnit.VoltPerMeter);
 

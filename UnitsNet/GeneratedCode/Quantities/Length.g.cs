@@ -222,387 +222,387 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Angstrom"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Angstrom">Angstroms</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToAngstroms property.")]
         public double Angstroms => As(LengthUnit.Angstrom);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.AstronomicalUnit"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.AstronomicalUnit">AstronomicalUnits</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToAstronomicalUnits property.")]
         public double AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Centimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Centimeter">Centimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentimeters property.")]
         public double Centimeters => As(LengthUnit.Centimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Chain"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Chain">Chains</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToChains property.")]
         public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Decameter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Decameter">Decameters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecameters property.")]
         public double Decameters => As(LengthUnit.Decameter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Decimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Decimeter">Decimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecimeters property.")]
         public double Decimeters => As(LengthUnit.Decimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.DtpPica"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.DtpPica">DtpPicas</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDtpPicas property.")]
         public double DtpPicas => As(LengthUnit.DtpPica);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.DtpPoint"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.DtpPoint">DtpPoints</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDtpPoints property.")]
         public double DtpPoints => As(LengthUnit.DtpPoint);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Fathom"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Fathom">Fathoms</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFathoms property.")]
         public double Fathoms => As(LengthUnit.Fathom);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Foot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Foot">Feet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFeet property.")]
         public double Feet => As(LengthUnit.Foot);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Hand"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Hand">Hands</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHands property.")]
         public double Hands => As(LengthUnit.Hand);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Hectometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Hectometer">Hectometers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToHectometers property.")]
         public double Hectometers => As(LengthUnit.Hectometer);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Inch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Inch">Inches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInches property.")]
         public double Inches => As(LengthUnit.Inch);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.KilolightYear"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.KilolightYear">KilolightYears</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilolightYears property.")]
         public double KilolightYears => As(LengthUnit.KilolightYear);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Kilometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Kilometer">Kilometers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilometers property.")]
         public double Kilometers => As(LengthUnit.Kilometer);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Kiloparsec"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Kiloparsec">Kiloparsecs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKiloparsecs property.")]
         public double Kiloparsecs => As(LengthUnit.Kiloparsec);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.LightYear"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.LightYear">LightYears</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToLightYears property.")]
         public double LightYears => As(LengthUnit.LightYear);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.MegalightYear"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.MegalightYear">MegalightYears</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegalightYears property.")]
         public double MegalightYears => As(LengthUnit.MegalightYear);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Megaparsec"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Megaparsec">Megaparsecs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegaparsecs property.")]
         public double Megaparsecs => As(LengthUnit.Megaparsec);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Meter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Meter">Meters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMeters property.")]
         public double Meters => As(LengthUnit.Meter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Microinch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Microinch">Microinches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicroinches property.")]
         public double Microinches => As(LengthUnit.Microinch);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Micrometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Micrometer">Micrometers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrometers property.")]
         public double Micrometers => As(LengthUnit.Micrometer);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Mil"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Mil">Mils</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMils property.")]
         public double Mils => As(LengthUnit.Mil);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Mile"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Mile">Miles</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMiles property.")]
         public double Miles => As(LengthUnit.Mile);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Millimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Millimeter">Millimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimeters property.")]
         public double Millimeters => As(LengthUnit.Millimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Nanometer"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Nanometer">Nanometers</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanometers property.")]
         public double Nanometers => As(LengthUnit.Nanometer);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.NauticalMile"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.NauticalMile">NauticalMiles</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNauticalMiles property.")]
         public double NauticalMiles => As(LengthUnit.NauticalMile);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Parsec"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Parsec">Parsecs</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToParsecs property.")]
         public double Parsecs => As(LengthUnit.Parsec);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.PrinterPica"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.PrinterPica">PrinterPicas</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPrinterPicas property.")]
         public double PrinterPicas => As(LengthUnit.PrinterPica);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.PrinterPoint"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.PrinterPoint">PrinterPoints</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPrinterPoints property.")]
         public double PrinterPoints => As(LengthUnit.PrinterPoint);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Shackle"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Shackle">Shackles</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToShackles property.")]
         public double Shackles => As(LengthUnit.Shackle);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.SolarRadius"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.SolarRadius">SolarRadiuses</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSolarRadiuses property.")]
         public double SolarRadiuses => As(LengthUnit.SolarRadius);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Twip"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Twip">Twips</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTwips property.")]
         public double Twips => As(LengthUnit.Twip);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.UsSurveyFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.UsSurveyFoot">UsSurveyFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsSurveyFeet property.")]
         public double UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Yard"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Yard">Yards</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToYards property.")]
         public double Yards => As(LengthUnit.Yard);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Angstrom"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Angstrom">Angstroms</see>.
         /// </summary>
         public Length ToAngstroms => ToUnit(LengthUnit.Angstrom);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.AstronomicalUnit"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.AstronomicalUnit">AstronomicalUnits</see>.
         /// </summary>
         public Length ToAstronomicalUnits => ToUnit(LengthUnit.AstronomicalUnit);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Centimeter"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Centimeter">Centimeters</see>.
         /// </summary>
         public Length ToCentimeters => ToUnit(LengthUnit.Centimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Chain"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Chain">Chains</see>.
         /// </summary>
         public Length ToChains => ToUnit(LengthUnit.Chain);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Decameter"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Decameter">Decameters</see>.
         /// </summary>
         public Length ToDecameters => ToUnit(LengthUnit.Decameter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Decimeter"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Decimeter">Decimeters</see>.
         /// </summary>
         public Length ToDecimeters => ToUnit(LengthUnit.Decimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.DtpPica"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.DtpPica">DtpPicas</see>.
         /// </summary>
         public Length ToDtpPicas => ToUnit(LengthUnit.DtpPica);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.DtpPoint"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.DtpPoint">DtpPoints</see>.
         /// </summary>
         public Length ToDtpPoints => ToUnit(LengthUnit.DtpPoint);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Fathom"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Fathom">Fathoms</see>.
         /// </summary>
         public Length ToFathoms => ToUnit(LengthUnit.Fathom);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Foot"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Foot">Feet</see>.
         /// </summary>
         public Length ToFeet => ToUnit(LengthUnit.Foot);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Hand"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Hand">Hands</see>.
         /// </summary>
         public Length ToHands => ToUnit(LengthUnit.Hand);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Hectometer"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Hectometer">Hectometers</see>.
         /// </summary>
         public Length ToHectometers => ToUnit(LengthUnit.Hectometer);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Inch"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Inch">Inches</see>.
         /// </summary>
         public Length ToInches => ToUnit(LengthUnit.Inch);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.KilolightYear"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.KilolightYear">KilolightYears</see>.
         /// </summary>
         public Length ToKilolightYears => ToUnit(LengthUnit.KilolightYear);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Kilometer"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Kilometer">Kilometers</see>.
         /// </summary>
         public Length ToKilometers => ToUnit(LengthUnit.Kilometer);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Kiloparsec"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Kiloparsec">Kiloparsecs</see>.
         /// </summary>
         public Length ToKiloparsecs => ToUnit(LengthUnit.Kiloparsec);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.LightYear"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.LightYear">LightYears</see>.
         /// </summary>
         public Length ToLightYears => ToUnit(LengthUnit.LightYear);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.MegalightYear"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.MegalightYear">MegalightYears</see>.
         /// </summary>
         public Length ToMegalightYears => ToUnit(LengthUnit.MegalightYear);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Megaparsec"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Megaparsec">Megaparsecs</see>.
         /// </summary>
         public Length ToMegaparsecs => ToUnit(LengthUnit.Megaparsec);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Meter"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Meter">Meters</see>.
         /// </summary>
         public Length ToMeters => ToUnit(LengthUnit.Meter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Microinch"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Microinch">Microinches</see>.
         /// </summary>
         public Length ToMicroinches => ToUnit(LengthUnit.Microinch);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Micrometer"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Micrometer">Micrometers</see>.
         /// </summary>
         public Length ToMicrometers => ToUnit(LengthUnit.Micrometer);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Mil"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Mil">Mils</see>.
         /// </summary>
         public Length ToMils => ToUnit(LengthUnit.Mil);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Mile"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Mile">Miles</see>.
         /// </summary>
         public Length ToMiles => ToUnit(LengthUnit.Mile);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Millimeter"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Millimeter">Millimeters</see>.
         /// </summary>
         public Length ToMillimeters => ToUnit(LengthUnit.Millimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Nanometer"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Nanometer">Nanometers</see>.
         /// </summary>
         public Length ToNanometers => ToUnit(LengthUnit.Nanometer);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.NauticalMile"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.NauticalMile">NauticalMiles</see>.
         /// </summary>
         public Length ToNauticalMiles => ToUnit(LengthUnit.NauticalMile);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Parsec"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Parsec">Parsecs</see>.
         /// </summary>
         public Length ToParsecs => ToUnit(LengthUnit.Parsec);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.PrinterPica"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.PrinterPica">PrinterPicas</see>.
         /// </summary>
         public Length ToPrinterPicas => ToUnit(LengthUnit.PrinterPica);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.PrinterPoint"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.PrinterPoint">PrinterPoints</see>.
         /// </summary>
         public Length ToPrinterPoints => ToUnit(LengthUnit.PrinterPoint);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Shackle"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Shackle">Shackles</see>.
         /// </summary>
         public Length ToShackles => ToUnit(LengthUnit.Shackle);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.SolarRadius"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.SolarRadius">SolarRadiuses</see>.
         /// </summary>
         public Length ToSolarRadiuses => ToUnit(LengthUnit.SolarRadius);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Twip"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Twip">Twips</see>.
         /// </summary>
         public Length ToTwips => ToUnit(LengthUnit.Twip);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.UsSurveyFoot"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.UsSurveyFoot">UsSurveyFeet</see>.
         /// </summary>
         public Length ToUsSurveyFeet => ToUnit(LengthUnit.UsSurveyFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Yard"/>.
+        ///     Gets this <see cref="Length"/> converted into <see cref="LengthUnit.Yard">Yards</see>.
         /// </summary>
         public Length ToYards => ToUnit(LengthUnit.Yard);
 

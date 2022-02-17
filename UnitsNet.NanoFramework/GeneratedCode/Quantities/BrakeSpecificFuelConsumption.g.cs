@@ -80,35 +80,35 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour">GramsPerKiloWattHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramsPerKiloWattHour property.")]
         public double GramsPerKiloWattHour => As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
 
         /// <summary>
-        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule">KilogramsPerJoule</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramsPerJoule property.")]
         public double KilogramsPerJoule => As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
 
         /// <summary>
-        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour">PoundsPerMechanicalHorsepowerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundsPerMechanicalHorsepowerHour property.")]
         public double PoundsPerMechanicalHorsepowerHour => As(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
 
         /// <summary>
-        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>.
+        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour">GramsPerKiloWattHour</see>.
         /// </summary>
         public BrakeSpecificFuelConsumption ToGramsPerKiloWattHour => ToUnit(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
 
         /// <summary>
-        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>.
+        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule">KilogramsPerJoule</see>.
         /// </summary>
         public BrakeSpecificFuelConsumption ToKilogramsPerJoule => ToUnit(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
 
         /// <summary>
-        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>.
+        ///     Gets this <see cref="BrakeSpecificFuelConsumption"/> converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour">PoundsPerMechanicalHorsepowerHour</see>.
         /// </summary>
         public BrakeSpecificFuelConsumption ToPoundsPerMechanicalHorsepowerHour => ToUnit(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
 

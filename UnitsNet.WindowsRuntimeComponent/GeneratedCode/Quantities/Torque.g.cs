@@ -164,277 +164,277 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceCentimeter">GramForceCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramForceCentimeters property.")]
         public double GramForceCentimeters => As(TorqueUnit.GramForceCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceMeter">GramForceMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramForceMeters property.")]
         public double GramForceMeters => As(TorqueUnit.GramForceMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceMillimeter">GramForceMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGramForceMillimeters property.")]
         public double GramForceMillimeters => As(TorqueUnit.GramForceMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceCentimeter">KilogramForceCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramForceCentimeters property.")]
         public double KilogramForceCentimeters => As(TorqueUnit.KilogramForceCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceMeter">KilogramForceMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramForceMeters property.")]
         public double KilogramForceMeters => As(TorqueUnit.KilogramForceMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceMillimeter">KilogramForceMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilogramForceMillimeters property.")]
         public double KilogramForceMillimeters => As(TorqueUnit.KilogramForceMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonCentimeter">KilonewtonCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtonCentimeters property.")]
         public double KilonewtonCentimeters => As(TorqueUnit.KilonewtonCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonMeter">KilonewtonMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtonMeters property.")]
         public double KilonewtonMeters => As(TorqueUnit.KilonewtonMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonMillimeter">KilonewtonMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilonewtonMillimeters property.")]
         public double KilonewtonMillimeters => As(TorqueUnit.KilonewtonMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilopoundForceFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilopoundForceFoot">KilopoundForceFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundForceFeet property.")]
         public double KilopoundForceFeet => As(TorqueUnit.KilopoundForceFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilopoundForceInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilopoundForceInch">KilopoundForceInches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilopoundForceInches property.")]
         public double KilopoundForceInches => As(TorqueUnit.KilopoundForceInch);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonCentimeter">MeganewtonCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMeganewtonCentimeters property.")]
         public double MeganewtonCentimeters => As(TorqueUnit.MeganewtonCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonMeter">MeganewtonMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMeganewtonMeters property.")]
         public double MeganewtonMeters => As(TorqueUnit.MeganewtonMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonMillimeter">MeganewtonMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMeganewtonMillimeters property.")]
         public double MeganewtonMillimeters => As(TorqueUnit.MeganewtonMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MegapoundForceFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MegapoundForceFoot">MegapoundForceFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapoundForceFeet property.")]
         public double MegapoundForceFeet => As(TorqueUnit.MegapoundForceFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MegapoundForceInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MegapoundForceInch">MegapoundForceInches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegapoundForceInches property.")]
         public double MegapoundForceInches => As(TorqueUnit.MegapoundForceInch);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonCentimeter">NewtonCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtonCentimeters property.")]
         public double NewtonCentimeters => As(TorqueUnit.NewtonCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonMeter">NewtonMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtonMeters property.")]
         public double NewtonMeters => As(TorqueUnit.NewtonMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonMillimeter">NewtonMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNewtonMillimeters property.")]
         public double NewtonMillimeters => As(TorqueUnit.NewtonMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundalFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundalFoot">PoundalFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundalFeet property.")]
         public double PoundalFeet => As(TorqueUnit.PoundalFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundForceFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundForceFoot">PoundForceFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundForceFeet property.")]
         public double PoundForceFeet => As(TorqueUnit.PoundForceFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundForceInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundForceInch">PoundForceInches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPoundForceInches property.")]
         public double PoundForceInches => As(TorqueUnit.PoundForceInch);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceCentimeter">TonneForceCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonneForceCentimeters property.")]
         public double TonneForceCentimeters => As(TorqueUnit.TonneForceCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceMeter">TonneForceMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonneForceMeters property.")]
         public double TonneForceMeters => As(TorqueUnit.TonneForceMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceMillimeter">TonneForceMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTonneForceMillimeters property.")]
         public double TonneForceMillimeters => As(TorqueUnit.TonneForceMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceCentimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceCentimeter">GramForceCentimeters</see>.
         /// </summary>
         public Torque ToGramForceCentimeters => ToUnit(TorqueUnit.GramForceCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceMeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceMeter">GramForceMeters</see>.
         /// </summary>
         public Torque ToGramForceMeters => ToUnit(TorqueUnit.GramForceMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceMillimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.GramForceMillimeter">GramForceMillimeters</see>.
         /// </summary>
         public Torque ToGramForceMillimeters => ToUnit(TorqueUnit.GramForceMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceCentimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceCentimeter">KilogramForceCentimeters</see>.
         /// </summary>
         public Torque ToKilogramForceCentimeters => ToUnit(TorqueUnit.KilogramForceCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceMeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceMeter">KilogramForceMeters</see>.
         /// </summary>
         public Torque ToKilogramForceMeters => ToUnit(TorqueUnit.KilogramForceMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceMillimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilogramForceMillimeter">KilogramForceMillimeters</see>.
         /// </summary>
         public Torque ToKilogramForceMillimeters => ToUnit(TorqueUnit.KilogramForceMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonCentimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonCentimeter">KilonewtonCentimeters</see>.
         /// </summary>
         public Torque ToKilonewtonCentimeters => ToUnit(TorqueUnit.KilonewtonCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonMeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonMeter">KilonewtonMeters</see>.
         /// </summary>
         public Torque ToKilonewtonMeters => ToUnit(TorqueUnit.KilonewtonMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonMillimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilonewtonMillimeter">KilonewtonMillimeters</see>.
         /// </summary>
         public Torque ToKilonewtonMillimeters => ToUnit(TorqueUnit.KilonewtonMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilopoundForceFoot"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilopoundForceFoot">KilopoundForceFeet</see>.
         /// </summary>
         public Torque ToKilopoundForceFeet => ToUnit(TorqueUnit.KilopoundForceFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilopoundForceInch"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.KilopoundForceInch">KilopoundForceInches</see>.
         /// </summary>
         public Torque ToKilopoundForceInches => ToUnit(TorqueUnit.KilopoundForceInch);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonCentimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonCentimeter">MeganewtonCentimeters</see>.
         /// </summary>
         public Torque ToMeganewtonCentimeters => ToUnit(TorqueUnit.MeganewtonCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonMeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonMeter">MeganewtonMeters</see>.
         /// </summary>
         public Torque ToMeganewtonMeters => ToUnit(TorqueUnit.MeganewtonMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonMillimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MeganewtonMillimeter">MeganewtonMillimeters</see>.
         /// </summary>
         public Torque ToMeganewtonMillimeters => ToUnit(TorqueUnit.MeganewtonMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MegapoundForceFoot"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MegapoundForceFoot">MegapoundForceFeet</see>.
         /// </summary>
         public Torque ToMegapoundForceFeet => ToUnit(TorqueUnit.MegapoundForceFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MegapoundForceInch"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.MegapoundForceInch">MegapoundForceInches</see>.
         /// </summary>
         public Torque ToMegapoundForceInches => ToUnit(TorqueUnit.MegapoundForceInch);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonCentimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonCentimeter">NewtonCentimeters</see>.
         /// </summary>
         public Torque ToNewtonCentimeters => ToUnit(TorqueUnit.NewtonCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonMeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonMeter">NewtonMeters</see>.
         /// </summary>
         public Torque ToNewtonMeters => ToUnit(TorqueUnit.NewtonMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonMillimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.NewtonMillimeter">NewtonMillimeters</see>.
         /// </summary>
         public Torque ToNewtonMillimeters => ToUnit(TorqueUnit.NewtonMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundalFoot"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundalFoot">PoundalFeet</see>.
         /// </summary>
         public Torque ToPoundalFeet => ToUnit(TorqueUnit.PoundalFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundForceFoot"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundForceFoot">PoundForceFeet</see>.
         /// </summary>
         public Torque ToPoundForceFeet => ToUnit(TorqueUnit.PoundForceFoot);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundForceInch"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.PoundForceInch">PoundForceInches</see>.
         /// </summary>
         public Torque ToPoundForceInches => ToUnit(TorqueUnit.PoundForceInch);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceCentimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceCentimeter">TonneForceCentimeters</see>.
         /// </summary>
         public Torque ToTonneForceCentimeters => ToUnit(TorqueUnit.TonneForceCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceMeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceMeter">TonneForceMeters</see>.
         /// </summary>
         public Torque ToTonneForceMeters => ToUnit(TorqueUnit.TonneForceMeter);
 
         /// <summary>
-        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceMillimeter"/>.
+        ///     Gets this <see cref="Torque"/> converted into <see cref="TorqueUnit.TonneForceMillimeter">TonneForceMillimeters</see>.
         /// </summary>
         public Torque ToTonneForceMillimeters => ToUnit(TorqueUnit.TonneForceMillimeter);
 

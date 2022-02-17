@@ -164,46 +164,46 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Microsiemens">Microsiemens</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrosiemens property.")]
         public double Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Millisiemens">Millisiemens</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillisiemens property.")]
         public double Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Nanosiemens">Nanosiemens</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanosiemens property.")]
         public double Nanosiemens => As(ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Siemens"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Siemens">Siemens</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToSiemens property.")]
         public double Siemens => As(ElectricAdmittanceUnit.Siemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
+        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Microsiemens">Microsiemens</see>.
         /// </summary>
         public ElectricAdmittance ToMicrosiemens => ToUnit(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
+        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Millisiemens">Millisiemens</see>.
         /// </summary>
         public ElectricAdmittance ToMillisiemens => ToUnit(ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
+        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Nanosiemens">Nanosiemens</see>.
         /// </summary>
         public ElectricAdmittance ToNanosiemens => ToUnit(ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Siemens"/>.
+        ///     Gets this <see cref="ElectricAdmittance"/> converted into <see cref="ElectricAdmittanceUnit.Siemens">Siemens</see>.
         /// </summary>
         public ElectricAdmittance ToSiemens => ToUnit(ElectricAdmittanceUnit.Siemens);
 

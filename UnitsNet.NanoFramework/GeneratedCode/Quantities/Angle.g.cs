@@ -80,178 +80,178 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Arcminute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Arcminute">Arcminutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToArcminutes property.")]
         public double Arcminutes => As(AngleUnit.Arcminute);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Arcsecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Arcsecond">Arcseconds</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToArcseconds property.")]
         public double Arcseconds => As(AngleUnit.Arcsecond);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Centiradian"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Centiradian">Centiradians</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentiradians property.")]
         public double Centiradians => As(AngleUnit.Centiradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Deciradian"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Deciradian">Deciradians</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDeciradians property.")]
         public double Deciradians => As(AngleUnit.Deciradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Degree"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Degree">Degrees</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDegrees property.")]
         public double Degrees => As(AngleUnit.Degree);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Gradian"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Gradian">Gradians</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToGradians property.")]
         public double Gradians => As(AngleUnit.Gradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Microdegree"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Microdegree">Microdegrees</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrodegrees property.")]
         public double Microdegrees => As(AngleUnit.Microdegree);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Microradian"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Microradian">Microradians</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicroradians property.")]
         public double Microradians => As(AngleUnit.Microradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Millidegree"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Millidegree">Millidegrees</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillidegrees property.")]
         public double Millidegrees => As(AngleUnit.Millidegree);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Milliradian"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Milliradian">Milliradians</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilliradians property.")]
         public double Milliradians => As(AngleUnit.Milliradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Nanodegree"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Nanodegree">Nanodegrees</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanodegrees property.")]
         public double Nanodegrees => As(AngleUnit.Nanodegree);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Nanoradian"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Nanoradian">Nanoradians</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanoradians property.")]
         public double Nanoradians => As(AngleUnit.Nanoradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.NatoMil"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.NatoMil">NatoMils</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNatoMils property.")]
         public double NatoMils => As(AngleUnit.NatoMil);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Radian"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Radian">Radians</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToRadians property.")]
         public double Radians => As(AngleUnit.Radian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Revolution"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Revolution">Revolutions</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToRevolutions property.")]
         public double Revolutions => As(AngleUnit.Revolution);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Tilt"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Tilt">Tilt</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToTilt property.")]
         public double Tilt => As(AngleUnit.Tilt);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Arcminute"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Arcminute">Arcminutes</see>.
         /// </summary>
         public Angle ToArcminutes => ToUnit(AngleUnit.Arcminute);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Arcsecond"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Arcsecond">Arcseconds</see>.
         /// </summary>
         public Angle ToArcseconds => ToUnit(AngleUnit.Arcsecond);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Centiradian"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Centiradian">Centiradians</see>.
         /// </summary>
         public Angle ToCentiradians => ToUnit(AngleUnit.Centiradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Deciradian"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Deciradian">Deciradians</see>.
         /// </summary>
         public Angle ToDeciradians => ToUnit(AngleUnit.Deciradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Degree"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Degree">Degrees</see>.
         /// </summary>
         public Angle ToDegrees => ToUnit(AngleUnit.Degree);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Gradian"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Gradian">Gradians</see>.
         /// </summary>
         public Angle ToGradians => ToUnit(AngleUnit.Gradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Microdegree"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Microdegree">Microdegrees</see>.
         /// </summary>
         public Angle ToMicrodegrees => ToUnit(AngleUnit.Microdegree);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Microradian"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Microradian">Microradians</see>.
         /// </summary>
         public Angle ToMicroradians => ToUnit(AngleUnit.Microradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Millidegree"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Millidegree">Millidegrees</see>.
         /// </summary>
         public Angle ToMillidegrees => ToUnit(AngleUnit.Millidegree);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Milliradian"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Milliradian">Milliradians</see>.
         /// </summary>
         public Angle ToMilliradians => ToUnit(AngleUnit.Milliradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Nanodegree"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Nanodegree">Nanodegrees</see>.
         /// </summary>
         public Angle ToNanodegrees => ToUnit(AngleUnit.Nanodegree);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Nanoradian"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Nanoradian">Nanoradians</see>.
         /// </summary>
         public Angle ToNanoradians => ToUnit(AngleUnit.Nanoradian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.NatoMil"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.NatoMil">NatoMils</see>.
         /// </summary>
         public Angle ToNatoMils => ToUnit(AngleUnit.NatoMil);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Radian"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Radian">Radians</see>.
         /// </summary>
         public Angle ToRadians => ToUnit(AngleUnit.Radian);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Revolution"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Revolution">Revolutions</see>.
         /// </summary>
         public Angle ToRevolutions => ToUnit(AngleUnit.Revolution);
 
         /// <summary>
-        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Tilt"/>.
+        ///     Gets this <see cref="Angle"/> converted into <see cref="AngleUnit.Tilt">Tilt</see>.
         /// </summary>
         public Angle ToTilt => ToUnit(AngleUnit.Tilt);
 

@@ -20,7 +20,7 @@ namespace CodeGen.Generators.Common
 
                 Writer.WL($@"
         /// <summary>
-        ///     Gets this <see cref=""{quantity.Name}""/> converted into <see cref=""{quantity.Name}Unit.{unit.SingularName}""/> as a <see cref=""double""/>.
+        ///     Gets this <see cref=""{quantity.Name}""/> converted into <see cref=""{quantity.Name}Unit.{unit.SingularName}"">{unit.PluralName}</see> as a <see cref=""double""/>.
         /// </summary>
         [Obsolete(""Use the To{unit.PluralName} property."")]");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
@@ -36,7 +36,7 @@ namespace CodeGen.Generators.Common
 
                 Writer.WL($@"
         /// <summary>
-        ///     Gets this <see cref=""{quantity.Name}""/> converted into <see cref=""{quantity.Name}Unit.{unit.SingularName}""/>.
+        ///     Gets this <see cref=""{quantity.Name}""/> converted into <see cref=""{quantity.Name}Unit.{unit.SingularName}"">{unit.PluralName}</see>.
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"

@@ -80,35 +80,35 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.JoulePerMole"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.JoulePerMole">JoulesPerMole</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToJoulesPerMole property.")]
         public double JoulesPerMole => As(MolarEnergyUnit.JoulePerMole);
 
         /// <summary>
-        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.KilojoulePerMole"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.KilojoulePerMole">KilojoulesPerMole</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilojoulesPerMole property.")]
         public double KilojoulesPerMole => As(MolarEnergyUnit.KilojoulePerMole);
 
         /// <summary>
-        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.MegajoulePerMole"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.MegajoulePerMole">MegajoulesPerMole</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegajoulesPerMole property.")]
         public double MegajoulesPerMole => As(MolarEnergyUnit.MegajoulePerMole);
 
         /// <summary>
-        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.JoulePerMole"/>.
+        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.JoulePerMole">JoulesPerMole</see>.
         /// </summary>
         public MolarEnergy ToJoulesPerMole => ToUnit(MolarEnergyUnit.JoulePerMole);
 
         /// <summary>
-        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.KilojoulePerMole"/>.
+        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.KilojoulePerMole">KilojoulesPerMole</see>.
         /// </summary>
         public MolarEnergy ToKilojoulesPerMole => ToUnit(MolarEnergyUnit.KilojoulePerMole);
 
         /// <summary>
-        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.MegajoulePerMole"/>.
+        ///     Gets this <see cref="MolarEnergy"/> converted into <see cref="MolarEnergyUnit.MegajoulePerMole">MegajoulesPerMole</see>.
         /// </summary>
         public MolarEnergy ToMegajoulesPerMole => ToUnit(MolarEnergyUnit.MegajoulePerMole);
 

@@ -193,68 +193,68 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.DecimalFraction"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.DecimalFraction">DecimalFractions</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecimalFractions property.")]
         public double DecimalFractions => As(RatioUnit.DecimalFraction);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerBillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerBillion">PartsPerBillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerBillion property.")]
         public double PartsPerBillion => As(RatioUnit.PartPerBillion);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerMillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerMillion">PartsPerMillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerMillion property.")]
         public double PartsPerMillion => As(RatioUnit.PartPerMillion);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerThousand"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerThousand">PartsPerThousand</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerThousand property.")]
         public double PartsPerThousand => As(RatioUnit.PartPerThousand);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerTrillion"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerTrillion">PartsPerTrillion</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPartsPerTrillion property.")]
         public double PartsPerTrillion => As(RatioUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.Percent"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.Percent">Percent</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPercent property.")]
         public double Percent => As(RatioUnit.Percent);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.DecimalFraction"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.DecimalFraction">DecimalFractions</see>.
         /// </summary>
         public Ratio ToDecimalFractions => ToUnit(RatioUnit.DecimalFraction);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerBillion"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerBillion">PartsPerBillion</see>.
         /// </summary>
         public Ratio ToPartsPerBillion => ToUnit(RatioUnit.PartPerBillion);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerMillion"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerMillion">PartsPerMillion</see>.
         /// </summary>
         public Ratio ToPartsPerMillion => ToUnit(RatioUnit.PartPerMillion);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerThousand"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerThousand">PartsPerThousand</see>.
         /// </summary>
         public Ratio ToPartsPerThousand => ToUnit(RatioUnit.PartPerThousand);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerTrillion"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.PartPerTrillion">PartsPerTrillion</see>.
         /// </summary>
         public Ratio ToPartsPerTrillion => ToUnit(RatioUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.Percent"/>.
+        ///     Gets this <see cref="Ratio"/> converted into <see cref="RatioUnit.Percent">Percent</see>.
         /// </summary>
         public Ratio ToPercent => ToUnit(RatioUnit.Percent);
 

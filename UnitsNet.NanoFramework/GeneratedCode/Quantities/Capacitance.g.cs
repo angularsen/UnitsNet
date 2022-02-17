@@ -83,79 +83,79 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Farad"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Farad">Farads</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFarads property.")]
         public double Farads => As(CapacitanceUnit.Farad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Kilofarad"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Kilofarad">Kilofarads</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilofarads property.")]
         public double Kilofarads => As(CapacitanceUnit.Kilofarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Megafarad"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Megafarad">Megafarads</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMegafarads property.")]
         public double Megafarads => As(CapacitanceUnit.Megafarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Microfarad"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Microfarad">Microfarads</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrofarads property.")]
         public double Microfarads => As(CapacitanceUnit.Microfarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Millifarad"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Millifarad">Millifarads</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillifarads property.")]
         public double Millifarads => As(CapacitanceUnit.Millifarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Nanofarad"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Nanofarad">Nanofarads</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanofarads property.")]
         public double Nanofarads => As(CapacitanceUnit.Nanofarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Picofarad"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Picofarad">Picofarads</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToPicofarads property.")]
         public double Picofarads => As(CapacitanceUnit.Picofarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Farad"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Farad">Farads</see>.
         /// </summary>
         public Capacitance ToFarads => ToUnit(CapacitanceUnit.Farad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Kilofarad"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Kilofarad">Kilofarads</see>.
         /// </summary>
         public Capacitance ToKilofarads => ToUnit(CapacitanceUnit.Kilofarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Megafarad"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Megafarad">Megafarads</see>.
         /// </summary>
         public Capacitance ToMegafarads => ToUnit(CapacitanceUnit.Megafarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Microfarad"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Microfarad">Microfarads</see>.
         /// </summary>
         public Capacitance ToMicrofarads => ToUnit(CapacitanceUnit.Microfarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Millifarad"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Millifarad">Millifarads</see>.
         /// </summary>
         public Capacitance ToMillifarads => ToUnit(CapacitanceUnit.Millifarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Nanofarad"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Nanofarad">Nanofarads</see>.
         /// </summary>
         public Capacitance ToNanofarads => ToUnit(CapacitanceUnit.Nanofarad);
 
         /// <summary>
-        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Picofarad"/>.
+        ///     Gets this <see cref="Capacitance"/> converted into <see cref="CapacitanceUnit.Picofarad">Picofarads</see>.
         /// </summary>
         public Capacitance ToPicofarads => ToUnit(CapacitanceUnit.Picofarad);
 

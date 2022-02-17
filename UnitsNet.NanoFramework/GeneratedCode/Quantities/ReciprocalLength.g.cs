@@ -83,112 +83,112 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseCentimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseCentimeter">InverseCentimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseCentimeters property.")]
         public double InverseCentimeters => As(ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseFoot">InverseFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseFeet property.")]
         public double InverseFeet => As(ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseInch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseInch">InverseInches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseInches property.")]
         public double InverseInches => As(ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMeter">InverseMeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseMeters property.")]
         public double InverseMeters => As(ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMicroinch"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMicroinch">InverseMicroinches</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseMicroinches property.")]
         public double InverseMicroinches => As(ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMil"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMil">InverseMils</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseMils property.")]
         public double InverseMils => As(ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMile"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMile">InverseMiles</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseMiles property.")]
         public double InverseMiles => As(ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMillimeter"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMillimeter">InverseMillimeters</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseMillimeters property.")]
         public double InverseMillimeters => As(ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot">InverseUsSurveyFeet</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseUsSurveyFeet property.")]
         public double InverseUsSurveyFeet => As(ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseYard"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseYard">InverseYards</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInverseYards property.")]
         public double InverseYards => As(ReciprocalLengthUnit.InverseYard);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseCentimeter"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseCentimeter">InverseCentimeters</see>.
         /// </summary>
         public ReciprocalLength ToInverseCentimeters => ToUnit(ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseFoot"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseFoot">InverseFeet</see>.
         /// </summary>
         public ReciprocalLength ToInverseFeet => ToUnit(ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseInch"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseInch">InverseInches</see>.
         /// </summary>
         public ReciprocalLength ToInverseInches => ToUnit(ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMeter"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMeter">InverseMeters</see>.
         /// </summary>
         public ReciprocalLength ToInverseMeters => ToUnit(ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMicroinch"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMicroinch">InverseMicroinches</see>.
         /// </summary>
         public ReciprocalLength ToInverseMicroinches => ToUnit(ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMil"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMil">InverseMils</see>.
         /// </summary>
         public ReciprocalLength ToInverseMils => ToUnit(ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMile"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMile">InverseMiles</see>.
         /// </summary>
         public ReciprocalLength ToInverseMiles => ToUnit(ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMillimeter"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseMillimeter">InverseMillimeters</see>.
         /// </summary>
         public ReciprocalLength ToInverseMillimeters => ToUnit(ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot">InverseUsSurveyFeet</see>.
         /// </summary>
         public ReciprocalLength ToInverseUsSurveyFeet => ToUnit(ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
-        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseYard"/>.
+        ///     Gets this <see cref="ReciprocalLength"/> converted into <see cref="ReciprocalLengthUnit.InverseYard">InverseYards</see>.
         /// </summary>
         public ReciprocalLength ToInverseYards => ToUnit(ReciprocalLengthUnit.InverseYard);
 

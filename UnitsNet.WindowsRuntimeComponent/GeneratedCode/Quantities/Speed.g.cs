@@ -164,354 +164,354 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerHour">CentimetersPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentimetersPerHour property.")]
         public double CentimetersPerHour => As(SpeedUnit.CentimeterPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerMinute">CentimetersPerMinutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentimetersPerMinutes property.")]
         public double CentimetersPerMinutes => As(SpeedUnit.CentimeterPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerSecond">CentimetersPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToCentimetersPerSecond property.")]
         public double CentimetersPerSecond => As(SpeedUnit.CentimeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.DecimeterPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.DecimeterPerMinute">DecimetersPerMinutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecimetersPerMinutes property.")]
         public double DecimetersPerMinutes => As(SpeedUnit.DecimeterPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.DecimeterPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.DecimeterPerSecond">DecimetersPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToDecimetersPerSecond property.")]
         public double DecimetersPerSecond => As(SpeedUnit.DecimeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerHour">FeetPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFeetPerHour property.")]
         public double FeetPerHour => As(SpeedUnit.FootPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerMinute">FeetPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFeetPerMinute property.")]
         public double FeetPerMinute => As(SpeedUnit.FootPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerSecond">FeetPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToFeetPerSecond property.")]
         public double FeetPerSecond => As(SpeedUnit.FootPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerHour">InchesPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInchesPerHour property.")]
         public double InchesPerHour => As(SpeedUnit.InchPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerMinute">InchesPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInchesPerMinute property.")]
         public double InchesPerMinute => As(SpeedUnit.InchPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerSecond">InchesPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToInchesPerSecond property.")]
         public double InchesPerSecond => As(SpeedUnit.InchPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerHour">KilometersPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilometersPerHour property.")]
         public double KilometersPerHour => As(SpeedUnit.KilometerPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerMinute">KilometersPerMinutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilometersPerMinutes property.")]
         public double KilometersPerMinutes => As(SpeedUnit.KilometerPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerSecond">KilometersPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKilometersPerSecond property.")]
         public double KilometersPerSecond => As(SpeedUnit.KilometerPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.Knot"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.Knot">Knots</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToKnots property.")]
         public double Knots => As(SpeedUnit.Knot);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerHour">MetersPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetersPerHour property.")]
         public double MetersPerHour => As(SpeedUnit.MeterPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerMinute">MetersPerMinutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetersPerMinutes property.")]
         public double MetersPerMinutes => As(SpeedUnit.MeterPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerSecond">MetersPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMetersPerSecond property.")]
         public double MetersPerSecond => As(SpeedUnit.MeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MicrometerPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MicrometerPerMinute">MicrometersPerMinutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrometersPerMinutes property.")]
         public double MicrometersPerMinutes => As(SpeedUnit.MicrometerPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MicrometerPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MicrometerPerSecond">MicrometersPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMicrometersPerSecond property.")]
         public double MicrometersPerSecond => As(SpeedUnit.MicrometerPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MilePerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MilePerHour">MilesPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMilesPerHour property.")]
         public double MilesPerHour => As(SpeedUnit.MilePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerHour">MillimetersPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimetersPerHour property.")]
         public double MillimetersPerHour => As(SpeedUnit.MillimeterPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerMinute">MillimetersPerMinutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimetersPerMinutes property.")]
         public double MillimetersPerMinutes => As(SpeedUnit.MillimeterPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerSecond">MillimetersPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToMillimetersPerSecond property.")]
         public double MillimetersPerSecond => As(SpeedUnit.MillimeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.NanometerPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.NanometerPerMinute">NanometersPerMinutes</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanometersPerMinutes property.")]
         public double NanometersPerMinutes => As(SpeedUnit.NanometerPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.NanometerPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.NanometerPerSecond">NanometersPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToNanometersPerSecond property.")]
         public double NanometersPerSecond => As(SpeedUnit.NanometerPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerHour">UsSurveyFeetPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsSurveyFeetPerHour property.")]
         public double UsSurveyFeetPerHour => As(SpeedUnit.UsSurveyFootPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerMinute">UsSurveyFeetPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsSurveyFeetPerMinute property.")]
         public double UsSurveyFeetPerMinute => As(SpeedUnit.UsSurveyFootPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerSecond">UsSurveyFeetPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToUsSurveyFeetPerSecond property.")]
         public double UsSurveyFeetPerSecond => As(SpeedUnit.UsSurveyFootPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerHour"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerHour">YardsPerHour</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToYardsPerHour property.")]
         public double YardsPerHour => As(SpeedUnit.YardPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerMinute"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerMinute">YardsPerMinute</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToYardsPerMinute property.")]
         public double YardsPerMinute => As(SpeedUnit.YardPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerSecond"/> as a <see cref="double"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerSecond">YardsPerSecond</see> as a <see cref="double"/>.
         /// </summary>
         [Obsolete("Use the ToYardsPerSecond property.")]
         public double YardsPerSecond => As(SpeedUnit.YardPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerHour">CentimetersPerHour</see>.
         /// </summary>
         public Speed ToCentimetersPerHour => ToUnit(SpeedUnit.CentimeterPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerMinute">CentimetersPerMinutes</see>.
         /// </summary>
         public Speed ToCentimetersPerMinutes => ToUnit(SpeedUnit.CentimeterPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.CentimeterPerSecond">CentimetersPerSecond</see>.
         /// </summary>
         public Speed ToCentimetersPerSecond => ToUnit(SpeedUnit.CentimeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.DecimeterPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.DecimeterPerMinute">DecimetersPerMinutes</see>.
         /// </summary>
         public Speed ToDecimetersPerMinutes => ToUnit(SpeedUnit.DecimeterPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.DecimeterPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.DecimeterPerSecond">DecimetersPerSecond</see>.
         /// </summary>
         public Speed ToDecimetersPerSecond => ToUnit(SpeedUnit.DecimeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerHour">FeetPerHour</see>.
         /// </summary>
         public Speed ToFeetPerHour => ToUnit(SpeedUnit.FootPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerMinute">FeetPerMinute</see>.
         /// </summary>
         public Speed ToFeetPerMinute => ToUnit(SpeedUnit.FootPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.FootPerSecond">FeetPerSecond</see>.
         /// </summary>
         public Speed ToFeetPerSecond => ToUnit(SpeedUnit.FootPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerHour">InchesPerHour</see>.
         /// </summary>
         public Speed ToInchesPerHour => ToUnit(SpeedUnit.InchPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerMinute">InchesPerMinute</see>.
         /// </summary>
         public Speed ToInchesPerMinute => ToUnit(SpeedUnit.InchPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.InchPerSecond">InchesPerSecond</see>.
         /// </summary>
         public Speed ToInchesPerSecond => ToUnit(SpeedUnit.InchPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerHour">KilometersPerHour</see>.
         /// </summary>
         public Speed ToKilometersPerHour => ToUnit(SpeedUnit.KilometerPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerMinute">KilometersPerMinutes</see>.
         /// </summary>
         public Speed ToKilometersPerMinutes => ToUnit(SpeedUnit.KilometerPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.KilometerPerSecond">KilometersPerSecond</see>.
         /// </summary>
         public Speed ToKilometersPerSecond => ToUnit(SpeedUnit.KilometerPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.Knot"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.Knot">Knots</see>.
         /// </summary>
         public Speed ToKnots => ToUnit(SpeedUnit.Knot);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerHour">MetersPerHour</see>.
         /// </summary>
         public Speed ToMetersPerHour => ToUnit(SpeedUnit.MeterPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerMinute">MetersPerMinutes</see>.
         /// </summary>
         public Speed ToMetersPerMinutes => ToUnit(SpeedUnit.MeterPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MeterPerSecond">MetersPerSecond</see>.
         /// </summary>
         public Speed ToMetersPerSecond => ToUnit(SpeedUnit.MeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MicrometerPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MicrometerPerMinute">MicrometersPerMinutes</see>.
         /// </summary>
         public Speed ToMicrometersPerMinutes => ToUnit(SpeedUnit.MicrometerPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MicrometerPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MicrometerPerSecond">MicrometersPerSecond</see>.
         /// </summary>
         public Speed ToMicrometersPerSecond => ToUnit(SpeedUnit.MicrometerPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MilePerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MilePerHour">MilesPerHour</see>.
         /// </summary>
         public Speed ToMilesPerHour => ToUnit(SpeedUnit.MilePerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerHour">MillimetersPerHour</see>.
         /// </summary>
         public Speed ToMillimetersPerHour => ToUnit(SpeedUnit.MillimeterPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerMinute">MillimetersPerMinutes</see>.
         /// </summary>
         public Speed ToMillimetersPerMinutes => ToUnit(SpeedUnit.MillimeterPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.MillimeterPerSecond">MillimetersPerSecond</see>.
         /// </summary>
         public Speed ToMillimetersPerSecond => ToUnit(SpeedUnit.MillimeterPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.NanometerPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.NanometerPerMinute">NanometersPerMinutes</see>.
         /// </summary>
         public Speed ToNanometersPerMinutes => ToUnit(SpeedUnit.NanometerPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.NanometerPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.NanometerPerSecond">NanometersPerSecond</see>.
         /// </summary>
         public Speed ToNanometersPerSecond => ToUnit(SpeedUnit.NanometerPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerHour">UsSurveyFeetPerHour</see>.
         /// </summary>
         public Speed ToUsSurveyFeetPerHour => ToUnit(SpeedUnit.UsSurveyFootPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerMinute">UsSurveyFeetPerMinute</see>.
         /// </summary>
         public Speed ToUsSurveyFeetPerMinute => ToUnit(SpeedUnit.UsSurveyFootPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.UsSurveyFootPerSecond">UsSurveyFeetPerSecond</see>.
         /// </summary>
         public Speed ToUsSurveyFeetPerSecond => ToUnit(SpeedUnit.UsSurveyFootPerSecond);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerHour"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerHour">YardsPerHour</see>.
         /// </summary>
         public Speed ToYardsPerHour => ToUnit(SpeedUnit.YardPerHour);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerMinute"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerMinute">YardsPerMinute</see>.
         /// </summary>
         public Speed ToYardsPerMinute => ToUnit(SpeedUnit.YardPerMinute);
 
         /// <summary>
-        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerSecond"/>.
+        ///     Gets this <see cref="Speed"/> converted into <see cref="SpeedUnit.YardPerSecond">YardsPerSecond</see>.
         /// </summary>
         public Speed ToYardsPerSecond => ToUnit(SpeedUnit.YardPerSecond);
 
