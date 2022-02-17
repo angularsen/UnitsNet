@@ -439,7 +439,7 @@ namespace UnitsNet
         {
             // Logarithmic addition
             // Formula: 10 * log10(10^(x/10) + 10^(y/10))
-            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.ToUnit(left.Unit).Value/10)), left.Unit);
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value / 10) + Math.Pow(10, right.ToUnit(left.Unit).Value / 10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic subtraction of two <see cref="PowerRatio"/>.</summary>
@@ -447,7 +447,7 @@ namespace UnitsNet
         {
             // Logarithmic subtraction
             // Formula: 10 * log10(10^(x/10) - 10^(y/10))
-            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.ToUnit(left.Unit).Value/10)), left.Unit);
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value / 10) - Math.Pow(10, right.ToUnit(left.Unit).Value / 10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
