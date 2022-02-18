@@ -3,7 +3,6 @@ $artifactsDir = "$root\Artifacts"
 $nugetOutDir = "$root\Artifacts\NuGet"
 $testReportDir = "$root\Artifacts\Logs"
 $testCoverageDir = "$root\Artifacts\Coverage"
-$nuget = "$root\Tools\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 $msbuild = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
 if ($msbuild) {
@@ -68,7 +67,7 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolea
     $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
 
     # msbuild does not auto-restore nugets for this project type
-    & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
+    & "nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
     # now build
     & "$msbuild" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
@@ -132,7 +131,7 @@ function Start-PackNugets {
     write-host -foreground yellow "Skipping WindowsRuntimeComponent nuget pack."
   } else {
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
-    & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+    & nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   }
 
   if (-not $IncludeNanoFramework) {
