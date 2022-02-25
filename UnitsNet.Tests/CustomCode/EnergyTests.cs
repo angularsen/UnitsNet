@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using UnitsNet.Units;
 using Xunit;
 
@@ -104,6 +105,20 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(2110.11170524, inSI.Value);
             Assert.Equal(EnergyUnit.Joule, inSI.Unit);
+        }
+
+        [Fact]
+        public void EnergyDividedByTimeSpanEqualsPower()
+        {
+            Power p = Energy.FromWattHours(10) / TimeSpan.FromHours(2);
+            Assert.Equal(5, p.Watts);
+        }
+
+        [Fact]
+        public void EnergyDividedByDurationEqualsPower()
+        {
+            Power p = Energy.FromWattHours(20) / Duration.FromHours(5);
+            Assert.Equal(4, p.Watts);
         }
     }
 }
