@@ -93,6 +93,11 @@ namespace UnitsNet
         public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.FemtomolePerLiter"/>
+        /// </summary>
+        public double FemtomolesPerLiter => As(MolarityUnit.FemtomolePerLiter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MicromolePerLiter"/>
         /// </summary>
         public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
@@ -137,6 +142,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromDecimolesPerLiter(double decimolesperliter) => new Molarity(decimolesperliter, MolarityUnit.DecimolePerLiter);
+
+        /// <summary>
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.FemtomolePerLiter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Molarity FromFemtomolesPerLiter(double femtomolesperliter) => new Molarity(femtomolesperliter, MolarityUnit.FemtomolePerLiter);
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MicromolePerLiter"/>.
@@ -218,6 +229,7 @@ namespace UnitsNet
                 MolarityUnit.CentimolesPerLiter => (_value / 1e-3) * 1e-2d,
                 MolarityUnit.DecimolePerLiter => (_value / 1e-3) * 1e-1d,
                 MolarityUnit.DecimolesPerLiter => (_value / 1e-3) * 1e-1d,
+                MolarityUnit.FemtomolePerLiter => (_value / 1e-3) * 1e-15d,
                 MolarityUnit.MicromolePerLiter => (_value / 1e-3) * 1e-6d,
                 MolarityUnit.MicromolesPerLiter => (_value / 1e-3) * 1e-6d,
                 MolarityUnit.MillimolePerLiter => (_value / 1e-3) * 1e-3d,
@@ -247,6 +259,7 @@ namespace UnitsNet
                 MolarityUnit.CentimolesPerLiter => (baseUnitValue * 1e-3) / 1e-2d,
                 MolarityUnit.DecimolePerLiter => (baseUnitValue * 1e-3) / 1e-1d,
                 MolarityUnit.DecimolesPerLiter => (baseUnitValue * 1e-3) / 1e-1d,
+                MolarityUnit.FemtomolePerLiter => (baseUnitValue * 1e-3) / 1e-15d,
                 MolarityUnit.MicromolePerLiter => (baseUnitValue * 1e-3) / 1e-6d,
                 MolarityUnit.MicromolesPerLiter => (baseUnitValue * 1e-3) / 1e-6d,
                 MolarityUnit.MillimolePerLiter => (baseUnitValue * 1e-3) / 1e-3d,
