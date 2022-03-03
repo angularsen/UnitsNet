@@ -74,7 +74,7 @@
       },
       "FromUnitToBaseFunc": "{x} / 1e-3",
       "FromBaseToUnitFunc": "{x} * 1e-3",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
           "Culture": "en-US",

@@ -36,6 +36,10 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
         public static Molarity DecimolesPerLiter<T>(this T value) =>
             Molarity.FromDecimolesPerLiter(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Molarity.FromFemtomolesPerLiter(UnitsNet.QuantityValue)" />
+        public static Molarity FemtomolesPerLiter<T>(this T value) =>
+            Molarity.FromFemtomolesPerLiter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MicromolesPerLiter<T>(this T value) =>
             Molarity.FromMicromolesPerLiter(Convert.ToDouble(value));

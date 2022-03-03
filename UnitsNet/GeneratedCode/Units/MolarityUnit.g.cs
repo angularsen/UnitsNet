@@ -32,6 +32,7 @@ namespace UnitsNet.Units
         DecimolePerLiter,
         [System.Obsolete("Use the singular unit instead.")]
         DecimolesPerLiter,
+        FemtomolePerLiter,
         MicromolePerLiter,
         [System.Obsolete("Use the singular unit instead.")]
         MicromolesPerLiter,

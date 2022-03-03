@@ -34,6 +34,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CentimolesPerLiterInOneMolesPerCubicMeter => 1e-1;
         protected override double DecimolesPerLiterInOneMolesPerCubicMeter => 1e-2;
+        protected override double FemtomolesPerLiterInOneMolesPerCubicMeter => 1e12;
         protected override double MolesPerLiterInOneMolesPerCubicMeter => 1e-3;
         protected override double MillimolesPerLiterInOneMolesPerCubicMeter => 1;
         protected override double MolesPerCubicMeterInOneMolesPerCubicMeter => 1;

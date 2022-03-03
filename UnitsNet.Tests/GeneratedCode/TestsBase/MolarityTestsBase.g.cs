@@ -40,6 +40,7 @@ namespace UnitsNet.Tests
     {
         protected abstract double CentimolesPerLiterInOneMolesPerCubicMeter { get; }
         protected abstract double DecimolesPerLiterInOneMolesPerCubicMeter { get; }
+        protected abstract double FemtomolesPerLiterInOneMolesPerCubicMeter { get; }
         protected abstract double MicromolesPerLiterInOneMolesPerCubicMeter { get; }
         protected abstract double MillimolesPerLiterInOneMolesPerCubicMeter { get; }
         protected abstract double MolesPerCubicMeterInOneMolesPerCubicMeter { get; }
@@ -50,6 +51,7 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentimolesPerLiterTolerance { get { return 1e-5; } }
         protected virtual double DecimolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double FemtomolesPerLiterTolerance { get { return 1e-5; } }
         protected virtual double MicromolesPerLiterTolerance { get { return 1e-5; } }
         protected virtual double MillimolesPerLiterTolerance { get { return 1e-5; } }
         protected virtual double MolesPerCubicMeterTolerance { get { return 1e-5; } }
@@ -66,6 +68,7 @@ namespace UnitsNet.Tests
                 MolarityUnit.CentimolesPerLiter => (CentimolesPerLiterInOneMolesPerCubicMeter, CentimolesPerLiterTolerance),
                 MolarityUnit.DecimolePerLiter => (DecimolesPerLiterInOneMolesPerCubicMeter, DecimolesPerLiterTolerance),
                 MolarityUnit.DecimolesPerLiter => (DecimolesPerLiterInOneMolesPerCubicMeter, DecimolesPerLiterTolerance),
+                MolarityUnit.FemtomolePerLiter => (FemtomolesPerLiterInOneMolesPerCubicMeter, FemtomolesPerLiterTolerance),
                 MolarityUnit.MicromolePerLiter => (MicromolesPerLiterInOneMolesPerCubicMeter, MicromolesPerLiterTolerance),
                 MolarityUnit.MicromolesPerLiter => (MicromolesPerLiterInOneMolesPerCubicMeter, MicromolesPerLiterTolerance),
                 MolarityUnit.MillimolePerLiter => (MillimolesPerLiterInOneMolesPerCubicMeter, MillimolesPerLiterTolerance),
@@ -88,6 +91,7 @@ namespace UnitsNet.Tests
             new object[] { MolarityUnit.CentimolesPerLiter },
             new object[] { MolarityUnit.DecimolePerLiter },
             new object[] { MolarityUnit.DecimolesPerLiter },
+            new object[] { MolarityUnit.FemtomolePerLiter },
             new object[] { MolarityUnit.MicromolePerLiter },
             new object[] { MolarityUnit.MicromolesPerLiter },
             new object[] { MolarityUnit.MillimolePerLiter },
@@ -178,6 +182,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.CentimolesPerLiter, CentimolesPerLiterTolerance);
             AssertEx.EqualTolerance(DecimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.DecimolesPerLiter, DecimolesPerLiterTolerance);
             AssertEx.EqualTolerance(DecimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.DecimolesPerLiter, DecimolesPerLiterTolerance);
+            AssertEx.EqualTolerance(FemtomolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.FemtomolesPerLiter, FemtomolesPerLiterTolerance);
             AssertEx.EqualTolerance(MicromolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.MicromolesPerLiter, MicromolesPerLiterTolerance);
             AssertEx.EqualTolerance(MicromolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.MicromolesPerLiter, MicromolesPerLiterTolerance);
             AssertEx.EqualTolerance(MillimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.MillimolesPerLiter, MillimolesPerLiterTolerance);
@@ -211,53 +216,57 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity03.DecimolesPerLiter, DecimolesPerLiterTolerance);
             Assert.Equal(MolarityUnit.DecimolesPerLiter, quantity03.Unit);
 
-            var quantity04 = Molarity.From(1, MolarityUnit.MicromolePerLiter);
-            AssertEx.EqualTolerance(1, quantity04.MicromolesPerLiter, MicromolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.MicromolePerLiter, quantity04.Unit);
+            var quantity04 = Molarity.From(1, MolarityUnit.FemtomolePerLiter);
+            AssertEx.EqualTolerance(1, quantity04.FemtomolesPerLiter, FemtomolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.FemtomolePerLiter, quantity04.Unit);
 
-            var quantity05 = Molarity.From(1, MolarityUnit.MicromolesPerLiter);
+            var quantity05 = Molarity.From(1, MolarityUnit.MicromolePerLiter);
             AssertEx.EqualTolerance(1, quantity05.MicromolesPerLiter, MicromolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.MicromolesPerLiter, quantity05.Unit);
+            Assert.Equal(MolarityUnit.MicromolePerLiter, quantity05.Unit);
 
-            var quantity06 = Molarity.From(1, MolarityUnit.MillimolePerLiter);
-            AssertEx.EqualTolerance(1, quantity06.MillimolesPerLiter, MillimolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.MillimolePerLiter, quantity06.Unit);
+            var quantity06 = Molarity.From(1, MolarityUnit.MicromolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity06.MicromolesPerLiter, MicromolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.MicromolesPerLiter, quantity06.Unit);
 
-            var quantity07 = Molarity.From(1, MolarityUnit.MillimolesPerLiter);
+            var quantity07 = Molarity.From(1, MolarityUnit.MillimolePerLiter);
             AssertEx.EqualTolerance(1, quantity07.MillimolesPerLiter, MillimolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.MillimolesPerLiter, quantity07.Unit);
+            Assert.Equal(MolarityUnit.MillimolePerLiter, quantity07.Unit);
 
-            var quantity08 = Molarity.From(1, MolarityUnit.MolePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity08.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
-            Assert.Equal(MolarityUnit.MolePerCubicMeter, quantity08.Unit);
+            var quantity08 = Molarity.From(1, MolarityUnit.MillimolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity08.MillimolesPerLiter, MillimolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.MillimolesPerLiter, quantity08.Unit);
 
-            var quantity09 = Molarity.From(1, MolarityUnit.MolePerLiter);
-            AssertEx.EqualTolerance(1, quantity09.MolesPerLiter, MolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.MolePerLiter, quantity09.Unit);
+            var quantity09 = Molarity.From(1, MolarityUnit.MolePerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity09.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
+            Assert.Equal(MolarityUnit.MolePerCubicMeter, quantity09.Unit);
 
-            var quantity10 = Molarity.From(1, MolarityUnit.MolesPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity10.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
-            Assert.Equal(MolarityUnit.MolesPerCubicMeter, quantity10.Unit);
+            var quantity10 = Molarity.From(1, MolarityUnit.MolePerLiter);
+            AssertEx.EqualTolerance(1, quantity10.MolesPerLiter, MolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.MolePerLiter, quantity10.Unit);
 
-            var quantity11 = Molarity.From(1, MolarityUnit.MolesPerLiter);
-            AssertEx.EqualTolerance(1, quantity11.MolesPerLiter, MolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.MolesPerLiter, quantity11.Unit);
+            var quantity11 = Molarity.From(1, MolarityUnit.MolesPerCubicMeter);
+            AssertEx.EqualTolerance(1, quantity11.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
+            Assert.Equal(MolarityUnit.MolesPerCubicMeter, quantity11.Unit);
 
-            var quantity12 = Molarity.From(1, MolarityUnit.NanomolePerLiter);
-            AssertEx.EqualTolerance(1, quantity12.NanomolesPerLiter, NanomolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.NanomolePerLiter, quantity12.Unit);
+            var quantity12 = Molarity.From(1, MolarityUnit.MolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity12.MolesPerLiter, MolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.MolesPerLiter, quantity12.Unit);
 
-            var quantity13 = Molarity.From(1, MolarityUnit.NanomolesPerLiter);
+            var quantity13 = Molarity.From(1, MolarityUnit.NanomolePerLiter);
             AssertEx.EqualTolerance(1, quantity13.NanomolesPerLiter, NanomolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.NanomolesPerLiter, quantity13.Unit);
+            Assert.Equal(MolarityUnit.NanomolePerLiter, quantity13.Unit);
 
-            var quantity14 = Molarity.From(1, MolarityUnit.PicomolePerLiter);
-            AssertEx.EqualTolerance(1, quantity14.PicomolesPerLiter, PicomolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.PicomolePerLiter, quantity14.Unit);
+            var quantity14 = Molarity.From(1, MolarityUnit.NanomolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity14.NanomolesPerLiter, NanomolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.NanomolesPerLiter, quantity14.Unit);
 
-            var quantity15 = Molarity.From(1, MolarityUnit.PicomolesPerLiter);
+            var quantity15 = Molarity.From(1, MolarityUnit.PicomolePerLiter);
             AssertEx.EqualTolerance(1, quantity15.PicomolesPerLiter, PicomolesPerLiterTolerance);
-            Assert.Equal(MolarityUnit.PicomolesPerLiter, quantity15.Unit);
+            Assert.Equal(MolarityUnit.PicomolePerLiter, quantity15.Unit);
+
+            var quantity16 = Molarity.From(1, MolarityUnit.PicomolesPerLiter);
+            AssertEx.EqualTolerance(1, quantity16.PicomolesPerLiter, PicomolesPerLiterTolerance);
+            Assert.Equal(MolarityUnit.PicomolesPerLiter, quantity16.Unit);
 
         }
 
@@ -282,6 +291,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.CentimolesPerLiter), CentimolesPerLiterTolerance);
             AssertEx.EqualTolerance(DecimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.DecimolePerLiter), DecimolesPerLiterTolerance);
             AssertEx.EqualTolerance(DecimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.DecimolesPerLiter), DecimolesPerLiterTolerance);
+            AssertEx.EqualTolerance(FemtomolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.FemtomolePerLiter), FemtomolesPerLiterTolerance);
             AssertEx.EqualTolerance(MicromolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.MicromolePerLiter), MicromolesPerLiterTolerance);
             AssertEx.EqualTolerance(MicromolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.MicromolesPerLiter), MicromolesPerLiterTolerance);
             AssertEx.EqualTolerance(MillimolesPerLiterInOneMolesPerCubicMeter, molespercubicmeter.As(MolarityUnit.MillimolePerLiter), MillimolesPerLiterTolerance);
@@ -358,6 +368,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Molarity.FromCentimolesPerLiter(molespercubicmeter.CentimolesPerLiter).MolesPerCubicMeter, CentimolesPerLiterTolerance);
             AssertEx.EqualTolerance(1, Molarity.FromDecimolesPerLiter(molespercubicmeter.DecimolesPerLiter).MolesPerCubicMeter, DecimolesPerLiterTolerance);
             AssertEx.EqualTolerance(1, Molarity.FromDecimolesPerLiter(molespercubicmeter.DecimolesPerLiter).MolesPerCubicMeter, DecimolesPerLiterTolerance);
+            AssertEx.EqualTolerance(1, Molarity.FromFemtomolesPerLiter(molespercubicmeter.FemtomolesPerLiter).MolesPerCubicMeter, FemtomolesPerLiterTolerance);
             AssertEx.EqualTolerance(1, Molarity.FromMicromolesPerLiter(molespercubicmeter.MicromolesPerLiter).MolesPerCubicMeter, MicromolesPerLiterTolerance);
             AssertEx.EqualTolerance(1, Molarity.FromMicromolesPerLiter(molespercubicmeter.MicromolesPerLiter).MolesPerCubicMeter, MicromolesPerLiterTolerance);
             AssertEx.EqualTolerance(1, Molarity.FromMillimolesPerLiter(molespercubicmeter.MillimolesPerLiter).MolesPerCubicMeter, MillimolesPerLiterTolerance);
@@ -532,6 +543,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 cmol/L", new Molarity(1, MolarityUnit.CentimolesPerLiter).ToString());
                 Assert.Equal("1 dmol/L", new Molarity(1, MolarityUnit.DecimolePerLiter).ToString());
                 Assert.Equal("1 dmol/L", new Molarity(1, MolarityUnit.DecimolesPerLiter).ToString());
+                Assert.Equal("1 fmol/L", new Molarity(1, MolarityUnit.FemtomolePerLiter).ToString());
                 Assert.Equal("1 µmol/L", new Molarity(1, MolarityUnit.MicromolePerLiter).ToString());
                 Assert.Equal("1 µmol/L", new Molarity(1, MolarityUnit.MicromolesPerLiter).ToString());
                 Assert.Equal("1 mmol/L", new Molarity(1, MolarityUnit.MillimolePerLiter).ToString());
@@ -561,6 +573,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 cmol/L", new Molarity(1, MolarityUnit.CentimolesPerLiter).ToString(swedishCulture));
             Assert.Equal("1 dmol/L", new Molarity(1, MolarityUnit.DecimolePerLiter).ToString(swedishCulture));
             Assert.Equal("1 dmol/L", new Molarity(1, MolarityUnit.DecimolesPerLiter).ToString(swedishCulture));
+            Assert.Equal("1 fmol/L", new Molarity(1, MolarityUnit.FemtomolePerLiter).ToString(swedishCulture));
             Assert.Equal("1 µmol/L", new Molarity(1, MolarityUnit.MicromolePerLiter).ToString(swedishCulture));
             Assert.Equal("1 µmol/L", new Molarity(1, MolarityUnit.MicromolesPerLiter).ToString(swedishCulture));
             Assert.Equal("1 mmol/L", new Molarity(1, MolarityUnit.MillimolePerLiter).ToString(swedishCulture));

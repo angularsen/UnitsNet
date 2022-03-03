@@ -69,6 +69,7 @@ namespace UnitsNet
                     new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, "CentimolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.DecimolePerLiter, "DecimolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, "DecimolesPerLiter", BaseUnits.Undefined),
+                    new UnitInfo<MolarityUnit>(MolarityUnit.FemtomolePerLiter, "FemtomolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MicromolePerLiter, "MicromolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, "MicromolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MillimolePerLiter, "MillimolesPerLiter", BaseUnits.Undefined),
@@ -216,6 +217,11 @@ namespace UnitsNet
         public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.FemtomolePerLiter"/>
+        /// </summary>
+        public double FemtomolesPerLiter => As(MolarityUnit.FemtomolePerLiter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MicromolePerLiter"/>
         /// </summary>
         public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
@@ -260,6 +266,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-2d, MolarityUnit.CentimolesPerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-1d, MolarityUnit.DecimolePerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-1d, MolarityUnit.DecimolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.FemtomolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-15d, MolarityUnit.FemtomolePerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-6d, MolarityUnit.MicromolePerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolesPerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-6d, MolarityUnit.MicromolesPerLiter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolePerLiter, quantity => new Molarity((quantity.Value * 1e-3) / 1e-3d, MolarityUnit.MillimolePerLiter));
@@ -280,6 +287,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.CentimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-2d, MolarityUnit.MolesPerCubicMeter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-1d, MolarityUnit.MolesPerCubicMeter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-1d, MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.FemtomolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-15d, MolarityUnit.MolesPerCubicMeter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-6d, MolarityUnit.MolesPerCubicMeter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-6d, MolarityUnit.MolesPerCubicMeter));
             unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MillimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => new Molarity((quantity.Value / 1e-3) * 1e-3d, MolarityUnit.MolesPerCubicMeter));
@@ -299,6 +307,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"cmol/L", "cM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"dmol/L", "dM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"dmol/L", "dM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.FemtomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"fmol/L", "fM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"µmol/L", "µM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"µmol/L", "µM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mmol/L", "mM"});
@@ -356,6 +365,16 @@ namespace UnitsNet
         {
             double value = (double) decimolesperliter;
             return new Molarity(value, MolarityUnit.DecimolePerLiter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.FemtomolePerLiter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Molarity FromFemtomolesPerLiter(QuantityValue femtomolesperliter)
+        {
+            double value = (double) femtomolesperliter;
+            return new Molarity(value, MolarityUnit.FemtomolePerLiter);
         }
 
         /// <summary>
