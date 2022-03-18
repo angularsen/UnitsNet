@@ -40,7 +40,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Btu/ft²·hr·°F" ]
+          "Abbreviations": [ "Btu/ft²·hr·°F", "Btu/ft²·°F" ]
         }
       ]
     }
