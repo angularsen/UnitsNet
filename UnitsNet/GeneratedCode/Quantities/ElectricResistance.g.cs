@@ -68,7 +68,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -94,7 +93,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricResistance(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -163,32 +162,32 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricResistance in Gigaohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Gigaohm"/>
         /// </summary>
         public double Gigaohms => As(ElectricResistanceUnit.Gigaohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Kiloohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Kiloohm"/>
         /// </summary>
         public double Kiloohms => As(ElectricResistanceUnit.Kiloohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Megaohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Megaohm"/>
         /// </summary>
         public double Megaohms => As(ElectricResistanceUnit.Megaohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Microohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Microohm"/>
         /// </summary>
         public double Microohms => As(ElectricResistanceUnit.Microohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Milliohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Milliohm"/>
         /// </summary>
         public double Milliohms => As(ElectricResistanceUnit.Milliohm);
 
         /// <summary>
-        ///     Get ElectricResistance in Ohms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Ohm"/>
         /// </summary>
         public double Ohms => As(ElectricResistanceUnit.Ohm);
 
@@ -208,6 +207,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Megaohm, quantity => new ElectricResistance((quantity.Value) / 1e6d, ElectricResistanceUnit.Megaohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Microohm, quantity => new ElectricResistance((quantity.Value) / 1e-6d, ElectricResistanceUnit.Microohm));
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Milliohm, quantity => new ElectricResistance((quantity.Value) / 1e-3d, ElectricResistanceUnit.Milliohm));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricResistance>(ElectricResistanceUnit.Ohm, ElectricResistanceUnit.Ohm, quantity => quantity);
 
@@ -221,12 +221,12 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), new string[]{"GΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Kiloohm, new CultureInfo("en-US"), new string[]{"kΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Megaohm, new CultureInfo("en-US"), new string[]{"MΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Microohm, new CultureInfo("en-US"), new string[]{"µΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Milliohm, new CultureInfo("en-US"), new string[]{"mΩ"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricResistanceUnit.Ohm, new CultureInfo("en-US"), new string[]{"Ω"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Gigaohm, new CultureInfo("en-US"), false, true, new string[]{"GΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Kiloohm, new CultureInfo("en-US"), false, true, new string[]{"kΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Megaohm, new CultureInfo("en-US"), false, true, new string[]{"MΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Microohm, new CultureInfo("en-US"), false, true, new string[]{"µΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Milliohm, new CultureInfo("en-US"), false, true, new string[]{"mΩ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistanceUnit.Ohm, new CultureInfo("en-US"), false, true, new string[]{"Ω"});
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricResistance from Gigaohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Gigaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromGigaohms(QuantityValue gigaohms)
@@ -263,8 +263,9 @@ namespace UnitsNet
             double value = (double) gigaohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
         }
+
         /// <summary>
-        ///     Get ElectricResistance from Kiloohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Kiloohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromKiloohms(QuantityValue kiloohms)
@@ -272,8 +273,9 @@ namespace UnitsNet
             double value = (double) kiloohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Kiloohm);
         }
+
         /// <summary>
-        ///     Get ElectricResistance from Megaohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Megaohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMegaohms(QuantityValue megaohms)
@@ -281,8 +283,9 @@ namespace UnitsNet
             double value = (double) megaohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Megaohm);
         }
+
         /// <summary>
-        ///     Get ElectricResistance from Microohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Microohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMicroohms(QuantityValue microohms)
@@ -290,8 +293,9 @@ namespace UnitsNet
             double value = (double) microohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Microohm);
         }
+
         /// <summary>
-        ///     Get ElectricResistance from Milliohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Milliohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromMilliohms(QuantityValue milliohms)
@@ -299,8 +303,9 @@ namespace UnitsNet
             double value = (double) milliohms;
             return new ElectricResistance(value, ElectricResistanceUnit.Milliohm);
         }
+
         /// <summary>
-        ///     Get ElectricResistance from Ohms.
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Ohm"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromOhms(QuantityValue ohms)
@@ -541,8 +546,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricResistance objElectricResistance)) throw new ArgumentException("Expected type ElectricResistance.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ElectricResistance objElectricResistance)) throw new ArgumentException("Expected type ElectricResistance.", nameof(obj));
 
             return CompareTo(objElectricResistance);
         }
@@ -595,7 +600,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ElectricResistance other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -623,7 +628,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricResistanceUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -633,13 +638,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -648,7 +653,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ElectricResistanceUnit unitAsElectricResistanceUnit))
+            if (!(unit is ElectricResistanceUnit unitAsElectricResistanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
 
             return As(unitAsElectricResistanceUnit);
@@ -672,18 +677,18 @@ namespace UnitsNet
         /// <returns>A ElectricResistance with the specified unit.</returns>
         public ElectricResistance ToUnit(ElectricResistanceUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ElectricResistance), Unit, typeof(ElectricResistance), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ElectricResistance), Unit, typeof(ElectricResistance), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ElectricResistance)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -698,31 +703,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricResistanceUnit unitAsElectricResistanceUnit))
+            if (!(unit is ElectricResistanceUnit unitAsElectricResistanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsElectricResistanceUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is ElectricResistanceUnit unitAsElectricResistanceUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsElectricResistanceUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricResistance ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -735,16 +731,13 @@ namespace UnitsNet
         IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(ElectricResistanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(ElectricResistanceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(ElectricResistanceUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -863,13 +856,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricResistance))
+            if (conversionType == typeof(ElectricResistance))
                 return this;
-            else if(conversionType == typeof(ElectricResistanceUnit))
+            else if (conversionType == typeof(ElectricResistanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ElectricResistance.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ElectricResistance.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ElectricResistance)} to {conversionType} is not supported.");

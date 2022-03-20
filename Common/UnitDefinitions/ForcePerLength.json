@@ -23,8 +23,8 @@
 	{
       "SingularName": "NewtonPerCentimeter",
       "PluralName": "NewtonsPerCentimeter",
-      "FromUnitToBaseFunc": "{x}*1e2",
-      "FromBaseToUnitFunc": "{x}/1e2",
+      "FromUnitToBaseFunc": "{x} * 1e2",
+      "FromBaseToUnitFunc": "{x} / 1e2",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -36,8 +36,8 @@
     {
       "SingularName": "NewtonPerMillimeter",
       "PluralName": "NewtonsPerMillimeter",
-      "FromUnitToBaseFunc": "{x}*1e3",
-      "FromBaseToUnitFunc": "{x}/1e3",
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
@@ -49,8 +49,8 @@
     {
       "SingularName": "KilogramForcePerMeter",
       "PluralName": "KilogramsForcePerMeter",
-      "FromUnitToBaseFunc": "{x}*9.80665002864",
-      "FromBaseToUnitFunc": "{x}/9.80665002864",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864",
       "Localization": [
         {
           "Culture": "en-US",
@@ -65,8 +65,8 @@
 	{
       "SingularName": "KilogramForcePerCentimeter",
       "PluralName": "KilogramsForcePerCentimeter",
-      "FromUnitToBaseFunc": "{x}*980.665002864",
-      "FromBaseToUnitFunc": "{x}/980.665002864",
+      "FromUnitToBaseFunc": "{x} * 980.665002864",
+      "FromBaseToUnitFunc": "{x} / 980.665002864",
       "Localization": [
         {
           "Culture": "en-US",
@@ -81,8 +81,8 @@
 	{
       "SingularName": "KilogramForcePerMillimeter",
       "PluralName": "KilogramsForcePerMillimeter",
-      "FromUnitToBaseFunc": "{x}*9.80665002864e3",
-      "FromBaseToUnitFunc": "{x}/9.80665002864e3",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -97,8 +97,8 @@
 	{
       "SingularName": "TonneForcePerMeter",
       "PluralName": "TonnesForcePerMeter",
-      "FromUnitToBaseFunc": "{x}*9.80665002864e3",
-      "FromBaseToUnitFunc": "{x}/9.80665002864e3",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e3",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -113,8 +113,8 @@
 	{
       "SingularName": "TonneForcePerCentimeter",
       "PluralName": "TonnesForcePerCentimeter",
-      "FromUnitToBaseFunc": "{x}*9.80665002864e5",
-      "FromBaseToUnitFunc": "{x}/9.80665002864e5",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e5",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -129,8 +129,8 @@
 	{
       "SingularName": "TonneForcePerMillimeter",
       "PluralName": "TonnesForcePerMillimeter",
-      "FromUnitToBaseFunc": "{x}*9.80665002864e6",
-      "FromBaseToUnitFunc": "{x}/9.80665002864e6",
+      "FromUnitToBaseFunc": "{x} * 9.80665002864e6",
+      "FromBaseToUnitFunc": "{x} / 9.80665002864e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -145,8 +145,8 @@
     {
       "SingularName": "PoundForcePerFoot",
       "PluralName": "PoundsForcePerFoot",
-      "FromUnitToBaseFunc": "{x}*14.59390292",
-      "FromBaseToUnitFunc": "{x}/14.59390292",
+      "FromUnitToBaseFunc": "{x} * 14.59390292",
+      "FromBaseToUnitFunc": "{x} / 14.59390292",
       "Localization": [
         {
           "Culture": "en-US",
@@ -157,8 +157,8 @@
     {
       "SingularName": "PoundForcePerInch",
       "PluralName": "PoundsForcePerInch",
-      "FromUnitToBaseFunc": "{x}*1.75126835e2",
-      "FromBaseToUnitFunc": "{x}/1.75126835e2",
+      "FromUnitToBaseFunc": "{x} * 1.75126835e2",
+      "FromBaseToUnitFunc": "{x} / 1.75126835e2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -169,8 +169,8 @@
     {
       "SingularName": "PoundForcePerYard",
       "PluralName": "PoundsForcePerYard",
-      "FromUnitToBaseFunc": "{x}*4.864634307",
-      "FromBaseToUnitFunc": "{x}/4.864634307",
+      "FromUnitToBaseFunc": "{x} * 4.864634307",
+      "FromBaseToUnitFunc": "{x} / 4.864634307",
       "Localization": [
         {
           "Culture": "en-US",
@@ -181,8 +181,8 @@
     {
       "SingularName": "KilopoundForcePerFoot",
       "PluralName": "KilopoundsForcePerFoot",
-      "FromUnitToBaseFunc": "{x}*14593.90292",
-      "FromBaseToUnitFunc": "{x}/14593.90292",
+      "FromUnitToBaseFunc": "{x} * 14593.90292",
+      "FromBaseToUnitFunc": "{x} / 14593.90292",
       "Localization": [
         {
           "Culture": "en-US",
@@ -193,8 +193,8 @@
 	    {
       "SingularName": "KilopoundForcePerInch",
       "PluralName": "KilopoundsForcePerInch",
-      "FromUnitToBaseFunc": "{x}*1.75126835e5",
-      "FromBaseToUnitFunc": "{x}/1.75126835e5",
+      "FromUnitToBaseFunc": "{x} * 1.75126835e5",
+      "FromBaseToUnitFunc": "{x} / 1.75126835e5",
       "Localization": [
         {
           "Culture": "en-US",

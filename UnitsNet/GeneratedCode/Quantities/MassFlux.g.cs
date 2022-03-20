@@ -74,7 +74,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -100,7 +99,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MassFlux(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -169,62 +168,62 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MassFlux in GramsPerHourPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>
         /// </summary>
         public double GramsPerHourPerSquareCentimeter => As(MassFluxUnit.GramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerHourPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>
         /// </summary>
         public double GramsPerHourPerSquareMeter => As(MassFluxUnit.GramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerHourPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>
         /// </summary>
         public double GramsPerHourPerSquareMillimeter => As(MassFluxUnit.GramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerSecondPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>
         /// </summary>
         public double GramsPerSecondPerSquareCentimeter => As(MassFluxUnit.GramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerSecondPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>
         /// </summary>
         public double GramsPerSecondPerSquareMeter => As(MassFluxUnit.GramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in GramsPerSecondPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>
         /// </summary>
         public double GramsPerSecondPerSquareMillimeter => As(MassFluxUnit.GramPerSecondPerSquareMillimeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerHourPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>
         /// </summary>
         public double KilogramsPerHourPerSquareCentimeter => As(MassFluxUnit.KilogramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerHourPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerHourPerSquareMeter => As(MassFluxUnit.KilogramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerHourPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>
         /// </summary>
         public double KilogramsPerHourPerSquareMillimeter => As(MassFluxUnit.KilogramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerSecondPerSquareCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>
         /// </summary>
         public double KilogramsPerSecondPerSquareCentimeter => As(MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerSecondPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerSecondPerSquareMeter => As(MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Get MassFlux in KilogramsPerSecondPerSquareMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>
         /// </summary>
         public double KilogramsPerSecondPerSquareMillimeter => As(MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
 
@@ -239,48 +238,49 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> MassFluxUnit
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareCentimeter, quantity => new MassFlux(quantity.Value*3.6e2, MassFluxUnit.GramPerHourPerSquareCentimeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareMeter, quantity => new MassFlux(quantity.Value*3.6e6, MassFluxUnit.GramPerHourPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareMillimeter, quantity => new MassFlux(quantity.Value*3.6e0, MassFluxUnit.GramPerHourPerSquareMillimeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareCentimeter, quantity => new MassFlux(quantity.Value*1e-1, MassFluxUnit.GramPerSecondPerSquareCentimeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value*1e3, MassFluxUnit.GramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareMillimeter, quantity => new MassFlux(quantity.Value*1e-3, MassFluxUnit.GramPerSecondPerSquareMillimeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareCentimeter, quantity => new MassFlux((quantity.Value*3.6e2) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareCentimeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareMeter, quantity => new MassFlux((quantity.Value*3.6e6) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareMillimeter, quantity => new MassFlux((quantity.Value*3.6e0) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareMillimeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareCentimeter, quantity => new MassFlux((quantity.Value*1e-1) / 1e3d, MassFluxUnit.KilogramPerSecondPerSquareCentimeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMillimeter, quantity => new MassFlux((quantity.Value*1e-3) / 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMillimeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareCentimeter, quantity => new MassFlux(quantity.Value * 3.6e2, MassFluxUnit.GramPerHourPerSquareCentimeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareMeter, quantity => new MassFlux(quantity.Value * 3.6e6, MassFluxUnit.GramPerHourPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerHourPerSquareMillimeter, quantity => new MassFlux(quantity.Value * 3.6e0, MassFluxUnit.GramPerHourPerSquareMillimeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareCentimeter, quantity => new MassFlux(quantity.Value * 1e-1, MassFluxUnit.GramPerSecondPerSquareCentimeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value * 1e3, MassFluxUnit.GramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.GramPerSecondPerSquareMillimeter, quantity => new MassFlux(quantity.Value * 1e-3, MassFluxUnit.GramPerSecondPerSquareMillimeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareCentimeter, quantity => new MassFlux((quantity.Value * 3.6e2) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareCentimeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareMeter, quantity => new MassFlux((quantity.Value * 3.6e6) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerHourPerSquareMillimeter, quantity => new MassFlux((quantity.Value * 3.6e0) / 1e3d, MassFluxUnit.KilogramPerHourPerSquareMillimeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareCentimeter, quantity => new MassFlux((quantity.Value * 1e-1) / 1e3d, MassFluxUnit.KilogramPerSecondPerSquareCentimeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMillimeter, quantity => new MassFlux((quantity.Value * 1e-3) / 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMillimeter));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => quantity);
 
             // Register in unit converter: MassFluxUnit -> BaseUnit
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerHourPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value/3.6e2, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerHourPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value/3.6e6, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerHourPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value/3.6e0, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerSecondPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value/1e-1, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value/1e3, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value/1e-3, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value/3.6e2) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerHourPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value/3.6e6) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value/3.6e0) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value/1e-1) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
-            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value/1e-3) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerHourPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value / 3.6e2, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerHourPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value / 3.6e6, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerHourPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value / 3.6e0, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerSecondPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value / 1e-1, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value / 1e3, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.GramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux(quantity.Value / 1e-3, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerHourPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value / 3.6e2) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerHourPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value / 3.6e6) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerHourPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value / 3.6e0) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value / 1e-1) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, MassFluxUnit.KilogramPerSecondPerSquareMeter, quantity => new MassFlux((quantity.Value / 1e-3) * 1e3d, MassFluxUnit.KilogramPerSecondPerSquareMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerHourPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"g·h⁻¹·cm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerHourPerSquareMeter, new CultureInfo("en-US"), new string[]{"g·h⁻¹·m⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerHourPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"g·h⁻¹·mm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"g·s⁻¹·cm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerSecondPerSquareMeter, new CultureInfo("en-US"), new string[]{"g·s⁻¹·m⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.GramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"g·s⁻¹·mm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerHourPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"kg·h⁻¹·cm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerHourPerSquareMeter, new CultureInfo("en-US"), new string[]{"kg·h⁻¹·m⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerHourPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"kg·h⁻¹·mm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), new string[]{"kg·s⁻¹·cm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerSecondPerSquareMeter, new CultureInfo("en-US"), new string[]{"kg·s⁻¹·m⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), new string[]{"kg·s⁻¹·mm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·cm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·m⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·mm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·cm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·m⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·mm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·cm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·m⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·mm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·cm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·m⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·mm⁻²"});
         }
 
         /// <summary>
@@ -309,7 +309,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MassFlux from GramsPerHourPerSquareCentimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromGramsPerHourPerSquareCentimeter(QuantityValue gramsperhourpersquarecentimeter)
@@ -317,8 +317,9 @@ namespace UnitsNet
             double value = (double) gramsperhourpersquarecentimeter;
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareCentimeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from GramsPerHourPerSquareMeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromGramsPerHourPerSquareMeter(QuantityValue gramsperhourpersquaremeter)
@@ -326,8 +327,9 @@ namespace UnitsNet
             double value = (double) gramsperhourpersquaremeter;
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from GramsPerHourPerSquareMillimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromGramsPerHourPerSquareMillimeter(QuantityValue gramsperhourpersquaremillimeter)
@@ -335,8 +337,9 @@ namespace UnitsNet
             double value = (double) gramsperhourpersquaremillimeter;
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMillimeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from GramsPerSecondPerSquareCentimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromGramsPerSecondPerSquareCentimeter(QuantityValue gramspersecondpersquarecentimeter)
@@ -344,8 +347,9 @@ namespace UnitsNet
             double value = (double) gramspersecondpersquarecentimeter;
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareCentimeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from GramsPerSecondPerSquareMeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromGramsPerSecondPerSquareMeter(QuantityValue gramspersecondpersquaremeter)
@@ -353,8 +357,9 @@ namespace UnitsNet
             double value = (double) gramspersecondpersquaremeter;
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from GramsPerSecondPerSquareMillimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromGramsPerSecondPerSquareMillimeter(QuantityValue gramspersecondpersquaremillimeter)
@@ -362,8 +367,9 @@ namespace UnitsNet
             double value = (double) gramspersecondpersquaremillimeter;
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMillimeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from KilogramsPerHourPerSquareCentimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromKilogramsPerHourPerSquareCentimeter(QuantityValue kilogramsperhourpersquarecentimeter)
@@ -371,8 +377,9 @@ namespace UnitsNet
             double value = (double) kilogramsperhourpersquarecentimeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareCentimeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from KilogramsPerHourPerSquareMeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromKilogramsPerHourPerSquareMeter(QuantityValue kilogramsperhourpersquaremeter)
@@ -380,8 +387,9 @@ namespace UnitsNet
             double value = (double) kilogramsperhourpersquaremeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from KilogramsPerHourPerSquareMillimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromKilogramsPerHourPerSquareMillimeter(QuantityValue kilogramsperhourpersquaremillimeter)
@@ -389,8 +397,9 @@ namespace UnitsNet
             double value = (double) kilogramsperhourpersquaremillimeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMillimeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from KilogramsPerSecondPerSquareCentimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromKilogramsPerSecondPerSquareCentimeter(QuantityValue kilogramspersecondpersquarecentimeter)
@@ -398,8 +407,9 @@ namespace UnitsNet
             double value = (double) kilogramspersecondpersquarecentimeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from KilogramsPerSecondPerSquareMeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromKilogramsPerSecondPerSquareMeter(QuantityValue kilogramspersecondpersquaremeter)
@@ -407,8 +417,9 @@ namespace UnitsNet
             double value = (double) kilogramspersecondpersquaremeter;
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMeter);
         }
+
         /// <summary>
-        ///     Get MassFlux from KilogramsPerSecondPerSquareMillimeter.
+        ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MassFlux FromKilogramsPerSecondPerSquareMillimeter(QuantityValue kilogramspersecondpersquaremillimeter)
@@ -649,8 +660,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MassFlux objMassFlux)) throw new ArgumentException("Expected type MassFlux.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is MassFlux objMassFlux)) throw new ArgumentException("Expected type MassFlux.", nameof(obj));
 
             return CompareTo(objMassFlux);
         }
@@ -703,7 +714,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(MassFlux other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -731,7 +742,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MassFluxUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -741,13 +752,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -756,7 +767,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is MassFluxUnit unitAsMassFluxUnit))
+            if (!(unit is MassFluxUnit unitAsMassFluxUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFluxUnit)} is supported.", nameof(unit));
 
             return As(unitAsMassFluxUnit);
@@ -780,18 +791,18 @@ namespace UnitsNet
         /// <returns>A MassFlux with the specified unit.</returns>
         public MassFlux ToUnit(MassFluxUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(MassFlux), Unit, typeof(MassFlux), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(MassFlux), Unit, typeof(MassFlux), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (MassFlux)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -806,31 +817,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is MassFluxUnit unitAsMassFluxUnit))
+            if (!(unit is MassFluxUnit unitAsMassFluxUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFluxUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsMassFluxUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is MassFluxUnit unitAsMassFluxUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFluxUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsMassFluxUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public MassFlux ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -843,16 +845,13 @@ namespace UnitsNet
         IQuantity<MassFluxUnit> IQuantity<MassFluxUnit>.ToUnit(MassFluxUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<MassFluxUnit> IQuantity<MassFluxUnit>.ToUnit(MassFluxUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<MassFluxUnit> IQuantity<MassFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(MassFluxUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -971,13 +970,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(MassFlux))
+            if (conversionType == typeof(MassFlux))
                 return this;
-            else if(conversionType == typeof(MassFluxUnit))
+            else if (conversionType == typeof(MassFluxUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return MassFlux.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return MassFlux.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(MassFlux)} to {conversionType} is not supported.");

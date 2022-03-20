@@ -32,7 +32,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException">If units -or- baseUnit -or- zero -or- baseDimensions is null.</exception>
         public QuantityInfo(string name, Type unitType, UnitInfo[] unitInfos, Enum baseUnit, IQuantity zero, BaseDimensions baseDimensions)
         {
-            if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
+            if (baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
 
             BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
@@ -90,7 +90,7 @@ namespace UnitsNet
         /// <exception cref="InvalidOperationException">More than one unit was found that is a subset of <paramref name="baseUnits"/>.</exception>
         public UnitInfo GetUnitInfoFor(BaseUnits baseUnits)
         {
-            if(baseUnits is null)
+            if (baseUnits is null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
             var matchingUnitInfos = GetUnitInfosFor(baseUnits)
@@ -115,7 +115,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentNullException"><paramref name="baseUnits"/> is null.</exception>
         public IEnumerable<UnitInfo> GetUnitInfosFor(BaseUnits baseUnits)
         {
-            if(baseUnits is null)
+            if (baseUnits is null)
                 throw new ArgumentNullException(nameof(baseUnits));
 
             return UnitInfos.Where(unitInfo => unitInfo.BaseUnits.IsSubsetOf(baseUnits));

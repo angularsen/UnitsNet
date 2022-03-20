@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricPotentialUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricPotential MinValue { get; } = new ElectricPotential(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,27 +80,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricPotential in Kilovolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Kilovolt"/>
         /// </summary>
         public double Kilovolts => As(ElectricPotentialUnit.Kilovolt);
 
         /// <summary>
-        ///     Get ElectricPotential in Megavolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Megavolt"/>
         /// </summary>
         public double Megavolts => As(ElectricPotentialUnit.Megavolt);
 
         /// <summary>
-        ///     Get ElectricPotential in Microvolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Microvolt"/>
         /// </summary>
         public double Microvolts => As(ElectricPotentialUnit.Microvolt);
 
         /// <summary>
-        ///     Get ElectricPotential in Millivolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Millivolt"/>
         /// </summary>
         public double Millivolts => As(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
-        ///     Get ElectricPotential in Volts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Volt"/>
         /// </summary>
         public double Volts => As(ElectricPotentialUnit.Volt);
 
@@ -107,35 +109,34 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricPotential from Kilovolts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Kilovolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromKilovolts(double kilovolts) => new ElectricPotential(kilovolts, ElectricPotentialUnit.Kilovolt);
 
         /// <summary>
-        ///     Get ElectricPotential from Megavolts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Megavolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromMegavolts(double megavolts) => new ElectricPotential(megavolts, ElectricPotentialUnit.Megavolt);
 
         /// <summary>
-        ///     Get ElectricPotential from Microvolts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Microvolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromMicrovolts(double microvolts) => new ElectricPotential(microvolts, ElectricPotentialUnit.Microvolt);
 
         /// <summary>
-        ///     Get ElectricPotential from Millivolts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Millivolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromMillivolts(double millivolts) => new ElectricPotential(millivolts, ElectricPotentialUnit.Millivolt);
 
         /// <summary>
-        ///     Get ElectricPotential from Volts.
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Volt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotential FromVolts(double volts) => new ElectricPotential(volts, ElectricPotentialUnit.Volt);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialUnit" /> to <see cref="ElectricPotential" />.
@@ -150,64 +151,61 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricPotentialUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricPotentialUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricPotential ToUnit(ElectricPotentialUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricPotential(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricPotential ToUnit(ElectricPotentialUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricPotential(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricPotentialUnit.Kilovolt: return (_value) * 1e3d;
-                case ElectricPotentialUnit.Megavolt: return (_value) * 1e6d;
-                case ElectricPotentialUnit.Microvolt: return (_value) * 1e-6d;
-                case ElectricPotentialUnit.Millivolt: return (_value) * 1e-3d;
-                case ElectricPotentialUnit.Volt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricPotentialUnit.Kilovolt => (_value) * 1e3d,
+                        ElectricPotentialUnit.Megavolt => (_value) * 1e6d,
+                        ElectricPotentialUnit.Microvolt => (_value) * 1e-6d,
+                        ElectricPotentialUnit.Millivolt => (_value) * 1e-3d,
+                        ElectricPotentialUnit.Volt => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricPotentialUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricPotentialUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricPotentialUnit.Kilovolt: return (baseUnitValue) / 1e3d;
-                case ElectricPotentialUnit.Megavolt: return (baseUnitValue) / 1e6d;
-                case ElectricPotentialUnit.Microvolt: return (baseUnitValue) / 1e-6d;
-                case ElectricPotentialUnit.Millivolt: return (baseUnitValue) / 1e-3d;
-                case ElectricPotentialUnit.Volt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ElectricPotentialUnit.Kilovolt => (baseUnitValue) / 1e3d,
+                        ElectricPotentialUnit.Megavolt => (baseUnitValue) / 1e6d,
+                        ElectricPotentialUnit.Microvolt => (baseUnitValue) / 1e-6d,
+                        ElectricPotentialUnit.Millivolt => (baseUnitValue) / 1e-3d,
+                        ElectricPotentialUnit.Volt => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

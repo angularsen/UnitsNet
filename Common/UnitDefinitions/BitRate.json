@@ -22,8 +22,8 @@
     {
       "SingularName": "BytePerSecond",
       "PluralName": "BytesPerSecond",
-      "FromUnitToBaseFunc": "{x}*8m",
-      "FromBaseToUnitFunc": "{x}/8m",
+      "FromUnitToBaseFunc": "{x} * 8m",
+      "FromBaseToUnitFunc": "{x} / 8m",
       "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta", "Exa", "Kibi", "Mebi", "Gibi", "Tebi", "Pebi", "Exbi" ],
       "Localization": [
         {

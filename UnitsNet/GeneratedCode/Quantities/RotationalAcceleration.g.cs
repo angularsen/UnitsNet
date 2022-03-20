@@ -66,7 +66,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -92,7 +91,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public RotationalAcceleration(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -161,22 +160,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RotationalAcceleration in DegreesPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>
         /// </summary>
         public double DegreesPerSecondSquared => As(RotationalAccelerationUnit.DegreePerSecondSquared);
 
         /// <summary>
-        ///     Get RotationalAcceleration in RadiansPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>
         /// </summary>
         public double RadiansPerSecondSquared => As(RotationalAccelerationUnit.RadianPerSecondSquared);
 
         /// <summary>
-        ///     Get RotationalAcceleration in RevolutionsPerMinutePerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>
         /// </summary>
         public double RevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
 
         /// <summary>
-        ///     Get RotationalAcceleration in RevolutionsPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>
         /// </summary>
         public double RevolutionsPerSecondSquared => As(RotationalAccelerationUnit.RevolutionPerSecondSquared);
 
@@ -191,24 +190,25 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> RotationalAccelerationUnit
-            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared, quantity => new RotationalAcceleration((180/Math.PI)*quantity.Value, RotationalAccelerationUnit.DegreePerSecondSquared));
-            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerMinutePerSecond, quantity => new RotationalAcceleration((60/(2*Math.PI))*quantity.Value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond));
-            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared, quantity => new RotationalAcceleration((1/(2*Math.PI))*quantity.Value, RotationalAccelerationUnit.RevolutionPerSecondSquared));
+            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared, quantity => new RotationalAcceleration((180 / Math.PI) * quantity.Value, RotationalAccelerationUnit.DegreePerSecondSquared));
+            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerMinutePerSecond, quantity => new RotationalAcceleration((60 / (2 * Math.PI)) * quantity.Value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond));
+            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared, quantity => new RotationalAcceleration((1 / (2 * Math.PI)) * quantity.Value, RotationalAccelerationUnit.RevolutionPerSecondSquared));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => quantity);
 
             // Register in unit converter: RotationalAccelerationUnit -> BaseUnit
-            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration((Math.PI/180)*quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
-            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration(((2*Math.PI)/60)*quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
-            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration((2*Math.PI)*quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
+            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration((Math.PI / 180) * quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
+            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration(((2 * Math.PI) / 60) * quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
+            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => new RotationalAcceleration((2 * Math.PI) * quantity.Value, RotationalAccelerationUnit.RadianPerSecondSquared));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.DegreePerSecondSquared, new CultureInfo("en-US"), new string[]{"°/s²", "deg/s²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RadianPerSecondSquared, new CultureInfo("en-US"), new string[]{"rad/s²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new CultureInfo("en-US"), new string[]{"rpm/s"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalAccelerationUnit.RevolutionPerSecondSquared, new CultureInfo("en-US"), new string[]{"r/s²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.DegreePerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"°/s²", "deg/s²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RadianPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"rad/s²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new CultureInfo("en-US"), false, true, new string[]{"rpm/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RevolutionPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"r/s²"});
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RotationalAcceleration from DegreesPerSecondSquared.
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalAcceleration FromDegreesPerSecondSquared(QuantityValue degreespersecondsquared)
@@ -245,8 +245,9 @@ namespace UnitsNet
             double value = (double) degreespersecondsquared;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.DegreePerSecondSquared);
         }
+
         /// <summary>
-        ///     Get RotationalAcceleration from RadiansPerSecondSquared.
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalAcceleration FromRadiansPerSecondSquared(QuantityValue radianspersecondsquared)
@@ -254,8 +255,9 @@ namespace UnitsNet
             double value = (double) radianspersecondsquared;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RadianPerSecondSquared);
         }
+
         /// <summary>
-        ///     Get RotationalAcceleration from RevolutionsPerMinutePerSecond.
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(QuantityValue revolutionsperminutepersecond)
@@ -263,8 +265,9 @@ namespace UnitsNet
             double value = (double) revolutionsperminutepersecond;
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
         }
+
         /// <summary>
-        ///     Get RotationalAcceleration from RevolutionsPerSecondSquared.
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalAcceleration FromRevolutionsPerSecondSquared(QuantityValue revolutionspersecondsquared)
@@ -505,8 +508,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RotationalAcceleration objRotationalAcceleration)) throw new ArgumentException("Expected type RotationalAcceleration.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is RotationalAcceleration objRotationalAcceleration)) throw new ArgumentException("Expected type RotationalAcceleration.", nameof(obj));
 
             return CompareTo(objRotationalAcceleration);
         }
@@ -559,7 +562,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(RotationalAcceleration other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -587,7 +590,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(RotationalAccelerationUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -597,13 +600,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -612,7 +615,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is RotationalAccelerationUnit unitAsRotationalAccelerationUnit))
+            if (!(unit is RotationalAccelerationUnit unitAsRotationalAccelerationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
 
             return As(unitAsRotationalAccelerationUnit);
@@ -636,18 +639,18 @@ namespace UnitsNet
         /// <returns>A RotationalAcceleration with the specified unit.</returns>
         public RotationalAcceleration ToUnit(RotationalAccelerationUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(RotationalAcceleration), Unit, typeof(RotationalAcceleration), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(RotationalAcceleration), Unit, typeof(RotationalAcceleration), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (RotationalAcceleration)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -662,31 +665,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is RotationalAccelerationUnit unitAsRotationalAccelerationUnit))
+            if (!(unit is RotationalAccelerationUnit unitAsRotationalAccelerationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsRotationalAccelerationUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is RotationalAccelerationUnit unitAsRotationalAccelerationUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalAccelerationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsRotationalAccelerationUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public RotationalAcceleration ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -699,16 +693,13 @@ namespace UnitsNet
         IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(RotationalAccelerationUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(RotationalAccelerationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(RotationalAccelerationUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -827,13 +818,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(RotationalAcceleration))
+            if (conversionType == typeof(RotationalAcceleration))
                 return this;
-            else if(conversionType == typeof(RotationalAccelerationUnit))
+            else if (conversionType == typeof(RotationalAccelerationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return RotationalAcceleration.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return RotationalAcceleration.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(RotationalAcceleration)} to {conversionType} is not supported.");

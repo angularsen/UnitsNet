@@ -90,7 +90,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -116,7 +115,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public SpecificEnergy(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -185,127 +184,127 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SpecificEnergy in BtuPerPound.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.BtuPerPound"/>
         /// </summary>
         public double BtuPerPound => As(SpecificEnergyUnit.BtuPerPound);
 
         /// <summary>
-        ///     Get SpecificEnergy in CaloriesPerGram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.CaloriePerGram"/>
         /// </summary>
         public double CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
 
         /// <summary>
-        ///     Get SpecificEnergy in GigawattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>
         /// </summary>
         public double GigawattDaysPerKilogram => As(SpecificEnergyUnit.GigawattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in GigawattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>
         /// </summary>
         public double GigawattDaysPerShortTon => As(SpecificEnergyUnit.GigawattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in GigawattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>
         /// </summary>
         public double GigawattDaysPerTonne => As(SpecificEnergyUnit.GigawattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in GigawattHoursPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>
         /// </summary>
         public double GigawattHoursPerKilogram => As(SpecificEnergyUnit.GigawattHourPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in JoulesPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.JoulePerKilogram"/>
         /// </summary>
         public double JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilocaloriesPerGram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>
         /// </summary>
         public double KilocaloriesPerGram => As(SpecificEnergyUnit.KilocaloriePerGram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilojoulesPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>
         /// </summary>
         public double KilojoulesPerKilogram => As(SpecificEnergyUnit.KilojoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>
         /// </summary>
         public double KilowattDaysPerKilogram => As(SpecificEnergyUnit.KilowattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>
         /// </summary>
         public double KilowattDaysPerShortTon => As(SpecificEnergyUnit.KilowattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>
         /// </summary>
         public double KilowattDaysPerTonne => As(SpecificEnergyUnit.KilowattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in KilowattHoursPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>
         /// </summary>
         public double KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegajoulesPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>
         /// </summary>
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>
         /// </summary>
         public double MegawattDaysPerKilogram => As(SpecificEnergyUnit.MegawattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>
         /// </summary>
         public double MegawattDaysPerShortTon => As(SpecificEnergyUnit.MegawattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>
         /// </summary>
         public double MegawattDaysPerTonne => As(SpecificEnergyUnit.MegawattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in MegawattHoursPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>
         /// </summary>
         public double MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in TerawattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>
         /// </summary>
         public double TerawattDaysPerKilogram => As(SpecificEnergyUnit.TerawattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in TerawattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>
         /// </summary>
         public double TerawattDaysPerShortTon => As(SpecificEnergyUnit.TerawattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in TerawattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>
         /// </summary>
         public double TerawattDaysPerTonne => As(SpecificEnergyUnit.TerawattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattDaysPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>
         /// </summary>
         public double WattDaysPerKilogram => As(SpecificEnergyUnit.WattDayPerKilogram);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattDaysPerShortTon.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>
         /// </summary>
         public double WattDaysPerShortTon => As(SpecificEnergyUnit.WattDayPerShortTon);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattDaysPerTonne.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerTonne"/>
         /// </summary>
         public double WattDaysPerTonne => As(SpecificEnergyUnit.WattDayPerTonne);
 
         /// <summary>
-        ///     Get SpecificEnergy in WattHoursPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>
         /// </summary>
         public double WattHoursPerKilogram => As(SpecificEnergyUnit.WattHourPerKilogram);
 
@@ -320,87 +319,88 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> SpecificEnergyUnit
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.BtuPerPound, quantity => new SpecificEnergy(quantity.Value/2326.000075362, SpecificEnergyUnit.BtuPerPound));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.CaloriePerGram, quantity => new SpecificEnergy(quantity.Value/4.184e3, SpecificEnergyUnit.CaloriePerGram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerKilogram, quantity => new SpecificEnergy((quantity.Value/(24*3.6e3)) / 1e9d, SpecificEnergyUnit.GigawattDayPerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerShortTon, quantity => new SpecificEnergy((quantity.Value/((24*3.6e3)/9.0718474e2)) / 1e9d, SpecificEnergyUnit.GigawattDayPerShortTon));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerTonne, quantity => new SpecificEnergy((quantity.Value/((24*3.6e3)/1e3)) / 1e9d, SpecificEnergyUnit.GigawattDayPerTonne));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattHourPerKilogram, quantity => new SpecificEnergy((quantity.Value/3.6e3) / 1e9d, SpecificEnergyUnit.GigawattHourPerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilocaloriePerGram, quantity => new SpecificEnergy((quantity.Value/4.184e3) / 1e3d, SpecificEnergyUnit.KilocaloriePerGram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.BtuPerPound, quantity => new SpecificEnergy(quantity.Value / 2326.000075362, SpecificEnergyUnit.BtuPerPound));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.CaloriePerGram, quantity => new SpecificEnergy(quantity.Value / 4.184e3, SpecificEnergyUnit.CaloriePerGram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerKilogram, quantity => new SpecificEnergy((quantity.Value / (24 * 3.6e3)) / 1e9d, SpecificEnergyUnit.GigawattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerShortTon, quantity => new SpecificEnergy((quantity.Value / ((24 * 3.6e3) / 9.0718474e2)) / 1e9d, SpecificEnergyUnit.GigawattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattDayPerTonne, quantity => new SpecificEnergy((quantity.Value / ((24 * 3.6e3) / 1e3)) / 1e9d, SpecificEnergyUnit.GigawattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.GigawattHourPerKilogram, quantity => new SpecificEnergy((quantity.Value / 3.6e3) / 1e9d, SpecificEnergyUnit.GigawattHourPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilocaloriePerGram, quantity => new SpecificEnergy((quantity.Value / 4.184e3) / 1e3d, SpecificEnergyUnit.KilocaloriePerGram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilojoulePerKilogram, quantity => new SpecificEnergy((quantity.Value) / 1e3d, SpecificEnergyUnit.KilojoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerKilogram, quantity => new SpecificEnergy((quantity.Value/(24*3.6e3)) / 1e3d, SpecificEnergyUnit.KilowattDayPerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerShortTon, quantity => new SpecificEnergy((quantity.Value/((24*3.6e3)/9.0718474e2)) / 1e3d, SpecificEnergyUnit.KilowattDayPerShortTon));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerTonne, quantity => new SpecificEnergy((quantity.Value/((24*3.6e3)/1e3)) / 1e3d, SpecificEnergyUnit.KilowattDayPerTonne));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattHourPerKilogram, quantity => new SpecificEnergy((quantity.Value/3.6e3) / 1e3d, SpecificEnergyUnit.KilowattHourPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerKilogram, quantity => new SpecificEnergy((quantity.Value / (24 * 3.6e3)) / 1e3d, SpecificEnergyUnit.KilowattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerShortTon, quantity => new SpecificEnergy((quantity.Value / ((24 * 3.6e3) / 9.0718474e2)) / 1e3d, SpecificEnergyUnit.KilowattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattDayPerTonne, quantity => new SpecificEnergy((quantity.Value / ((24 * 3.6e3) / 1e3)) / 1e3d, SpecificEnergyUnit.KilowattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattHourPerKilogram, quantity => new SpecificEnergy((quantity.Value / 3.6e3) / 1e3d, SpecificEnergyUnit.KilowattHourPerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegajoulePerKilogram, quantity => new SpecificEnergy((quantity.Value) / 1e6d, SpecificEnergyUnit.MegajoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerKilogram, quantity => new SpecificEnergy((quantity.Value/(24*3.6e3)) / 1e6d, SpecificEnergyUnit.MegawattDayPerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerShortTon, quantity => new SpecificEnergy((quantity.Value/((24*3.6e3)/9.0718474e2)) / 1e6d, SpecificEnergyUnit.MegawattDayPerShortTon));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerTonne, quantity => new SpecificEnergy((quantity.Value/((24*3.6e3)/1e3)) / 1e6d, SpecificEnergyUnit.MegawattDayPerTonne));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattHourPerKilogram, quantity => new SpecificEnergy((quantity.Value/3.6e3) / 1e6d, SpecificEnergyUnit.MegawattHourPerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerKilogram, quantity => new SpecificEnergy((quantity.Value/(24*3.6e3)) / 1e12d, SpecificEnergyUnit.TerawattDayPerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerShortTon, quantity => new SpecificEnergy((quantity.Value/((24*3.6e3)/9.0718474e2)) / 1e12d, SpecificEnergyUnit.TerawattDayPerShortTon));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerTonne, quantity => new SpecificEnergy((quantity.Value/((24*3.6e3)/1e3)) / 1e12d, SpecificEnergyUnit.TerawattDayPerTonne));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerKilogram, quantity => new SpecificEnergy(quantity.Value/(24*3.6e3), SpecificEnergyUnit.WattDayPerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerShortTon, quantity => new SpecificEnergy(quantity.Value/((24*3.6e3)/9.0718474e2), SpecificEnergyUnit.WattDayPerShortTon));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerTonne, quantity => new SpecificEnergy(quantity.Value/((24*3.6e3)/1e3), SpecificEnergyUnit.WattDayPerTonne));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattHourPerKilogram, quantity => new SpecificEnergy(quantity.Value/3.6e3, SpecificEnergyUnit.WattHourPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerKilogram, quantity => new SpecificEnergy((quantity.Value / (24 * 3.6e3)) / 1e6d, SpecificEnergyUnit.MegawattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerShortTon, quantity => new SpecificEnergy((quantity.Value / ((24 * 3.6e3) / 9.0718474e2)) / 1e6d, SpecificEnergyUnit.MegawattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerTonne, quantity => new SpecificEnergy((quantity.Value / ((24 * 3.6e3) / 1e3)) / 1e6d, SpecificEnergyUnit.MegawattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattHourPerKilogram, quantity => new SpecificEnergy((quantity.Value / 3.6e3) / 1e6d, SpecificEnergyUnit.MegawattHourPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerKilogram, quantity => new SpecificEnergy((quantity.Value / (24 * 3.6e3)) / 1e12d, SpecificEnergyUnit.TerawattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerShortTon, quantity => new SpecificEnergy((quantity.Value / ((24 * 3.6e3) / 9.0718474e2)) / 1e12d, SpecificEnergyUnit.TerawattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.TerawattDayPerTonne, quantity => new SpecificEnergy((quantity.Value / ((24 * 3.6e3) / 1e3)) / 1e12d, SpecificEnergyUnit.TerawattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerKilogram, quantity => new SpecificEnergy(quantity.Value / (24 * 3.6e3), SpecificEnergyUnit.WattDayPerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerShortTon, quantity => new SpecificEnergy(quantity.Value / ((24 * 3.6e3) / 9.0718474e2), SpecificEnergyUnit.WattDayPerShortTon));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattDayPerTonne, quantity => new SpecificEnergy(quantity.Value / ((24 * 3.6e3) / 1e3), SpecificEnergyUnit.WattDayPerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattHourPerKilogram, quantity => new SpecificEnergy(quantity.Value / 3.6e3, SpecificEnergyUnit.WattHourPerKilogram));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity);
 
             // Register in unit converter: SpecificEnergyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.BtuPerPound, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value*2326.000075362, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.CaloriePerGram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value*4.184e3, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*(24*3.6e3)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*((24*3.6e3)/9.0718474e2)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*((24*3.6e3)/1e3)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*3.6e3) * 1e9d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilocaloriePerGram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*4.184e3) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.BtuPerPound, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value * 2326.000075362, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.CaloriePerGram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value * 4.184e3, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * (24 * 3.6e3)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * ((24 * 3.6e3) / 9.0718474e2)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * ((24 * 3.6e3) / 1e3)) * 1e9d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.GigawattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * 3.6e3) * 1e9d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilocaloriePerGram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * 4.184e3) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilojoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*(24*3.6e3)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*((24*3.6e3)/9.0718474e2)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*((24*3.6e3)/1e3)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*3.6e3) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * (24 * 3.6e3)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * ((24 * 3.6e3) / 9.0718474e2)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * ((24 * 3.6e3) / 1e3)) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * 3.6e3) * 1e3d, SpecificEnergyUnit.JoulePerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegajoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*(24*3.6e3)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*((24*3.6e3)/9.0718474e2)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*((24*3.6e3)/1e3)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*3.6e3) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*(24*3.6e3)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*((24*3.6e3)/9.0718474e2)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value*((24*3.6e3)/1e3)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value*(24*3.6e3), SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value*((24*3.6e3)/9.0718474e2), SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value*((24*3.6e3)/1e3), SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value*3.6e3, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * (24 * 3.6e3)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * ((24 * 3.6e3) / 9.0718474e2)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * ((24 * 3.6e3) / 1e3)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * 3.6e3) * 1e6d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * (24 * 3.6e3)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * ((24 * 3.6e3) / 9.0718474e2)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.TerawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy((quantity.Value * ((24 * 3.6e3) / 1e3)) * 1e12d, SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value * (24 * 3.6e3), SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value * ((24 * 3.6e3) / 9.0718474e2), SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value * ((24 * 3.6e3) / 1e3), SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.WattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => new SpecificEnergy(quantity.Value * 3.6e3, SpecificEnergyUnit.JoulePerKilogram));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.BtuPerPound, new CultureInfo("en-US"), new string[]{"btu/lb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.CaloriePerGram, new CultureInfo("en-US"), new string[]{"cal/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.GigawattDayPerKilogram, new CultureInfo("en-US"), new string[]{"GWd/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.GigawattDayPerShortTon, new CultureInfo("en-US"), new string[]{"GWd/ST"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.GigawattDayPerTonne, new CultureInfo("en-US"), new string[]{"GWd/t"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.GigawattHourPerKilogram, new CultureInfo("en-US"), new string[]{"GWh/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.JoulePerKilogram, new CultureInfo("en-US"), new string[]{"J/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilocaloriePerGram, new CultureInfo("en-US"), new string[]{"kcal/g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilojoulePerKilogram, new CultureInfo("en-US"), new string[]{"kJ/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilowattDayPerKilogram, new CultureInfo("en-US"), new string[]{"kWd/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilowattDayPerShortTon, new CultureInfo("en-US"), new string[]{"kWd/ST"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilowattDayPerTonne, new CultureInfo("en-US"), new string[]{"kWd/t"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.KilowattHourPerKilogram, new CultureInfo("en-US"), new string[]{"kWh/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegajoulePerKilogram, new CultureInfo("en-US"), new string[]{"MJ/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegawattDayPerKilogram, new CultureInfo("en-US"), new string[]{"MWd/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegawattDayPerShortTon, new CultureInfo("en-US"), new string[]{"MWd/ST"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegawattDayPerTonne, new CultureInfo("en-US"), new string[]{"MWd/t"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.MegawattHourPerKilogram, new CultureInfo("en-US"), new string[]{"MWh/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.TerawattDayPerKilogram, new CultureInfo("en-US"), new string[]{"TWd/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.TerawattDayPerShortTon, new CultureInfo("en-US"), new string[]{"TWd/ST"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.TerawattDayPerTonne, new CultureInfo("en-US"), new string[]{"TWd/t"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.WattDayPerKilogram, new CultureInfo("en-US"), new string[]{"Wd/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.WattDayPerShortTon, new CultureInfo("en-US"), new string[]{"Wd/ST"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.WattDayPerTonne, new CultureInfo("en-US"), new string[]{"Wd/t"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificEnergyUnit.WattHourPerKilogram, new CultureInfo("en-US"), new string[]{"Wh/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.BtuPerPound, new CultureInfo("en-US"), false, true, new string[]{"btu/lb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.CaloriePerGram, new CultureInfo("en-US"), false, true, new string[]{"cal/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"GWd/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"GWd/ST"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"GWd/t"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"GWh/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.JoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"J/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilocaloriePerGram, new CultureInfo("en-US"), false, true, new string[]{"kcal/g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilojoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kWd/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"kWd/ST"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"kWd/t"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kWh/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegajoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MWd/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"MWd/ST"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"MWd/t"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MWh/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"TWd/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"TWd/ST"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"TWd/t"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"Wd/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"Wd/ST"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"Wd/t"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"Wh/kg"});
         }
 
         /// <summary>
@@ -429,7 +429,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SpecificEnergy from BtuPerPound.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.BtuPerPound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromBtuPerPound(QuantityValue btuperpound)
@@ -437,8 +437,9 @@ namespace UnitsNet
             double value = (double) btuperpound;
             return new SpecificEnergy(value, SpecificEnergyUnit.BtuPerPound);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from CaloriesPerGram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.CaloriePerGram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromCaloriesPerGram(QuantityValue caloriespergram)
@@ -446,8 +447,9 @@ namespace UnitsNet
             double value = (double) caloriespergram;
             return new SpecificEnergy(value, SpecificEnergyUnit.CaloriePerGram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from GigawattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattDaysPerKilogram(QuantityValue gigawattdaysperkilogram)
@@ -455,8 +457,9 @@ namespace UnitsNet
             double value = (double) gigawattdaysperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from GigawattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattDaysPerShortTon(QuantityValue gigawattdayspershortton)
@@ -464,8 +467,9 @@ namespace UnitsNet
             double value = (double) gigawattdayspershortton;
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerShortTon);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from GigawattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattDaysPerTonne(QuantityValue gigawattdayspertonne)
@@ -473,8 +477,9 @@ namespace UnitsNet
             double value = (double) gigawattdayspertonne;
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerTonne);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from GigawattHoursPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromGigawattHoursPerKilogram(QuantityValue gigawatthoursperkilogram)
@@ -482,8 +487,9 @@ namespace UnitsNet
             double value = (double) gigawatthoursperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattHourPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from JoulesPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.JoulePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromJoulesPerKilogram(QuantityValue joulesperkilogram)
@@ -491,8 +497,9 @@ namespace UnitsNet
             double value = (double) joulesperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.JoulePerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from KilocaloriesPerGram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilocaloriesPerGram(QuantityValue kilocaloriespergram)
@@ -500,8 +507,9 @@ namespace UnitsNet
             double value = (double) kilocaloriespergram;
             return new SpecificEnergy(value, SpecificEnergyUnit.KilocaloriePerGram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from KilojoulesPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilojoulesPerKilogram(QuantityValue kilojoulesperkilogram)
@@ -509,8 +517,9 @@ namespace UnitsNet
             double value = (double) kilojoulesperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.KilojoulePerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from KilowattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattDaysPerKilogram(QuantityValue kilowattdaysperkilogram)
@@ -518,8 +527,9 @@ namespace UnitsNet
             double value = (double) kilowattdaysperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from KilowattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattDaysPerShortTon(QuantityValue kilowattdayspershortton)
@@ -527,8 +537,9 @@ namespace UnitsNet
             double value = (double) kilowattdayspershortton;
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerShortTon);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from KilowattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattDaysPerTonne(QuantityValue kilowattdayspertonne)
@@ -536,8 +547,9 @@ namespace UnitsNet
             double value = (double) kilowattdayspertonne;
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerTonne);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from KilowattHoursPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromKilowattHoursPerKilogram(QuantityValue kilowatthoursperkilogram)
@@ -545,8 +557,9 @@ namespace UnitsNet
             double value = (double) kilowatthoursperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattHourPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from MegajoulesPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegajoulesPerKilogram(QuantityValue megajoulesperkilogram)
@@ -554,8 +567,9 @@ namespace UnitsNet
             double value = (double) megajoulesperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from MegawattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattDaysPerKilogram(QuantityValue megawattdaysperkilogram)
@@ -563,8 +577,9 @@ namespace UnitsNet
             double value = (double) megawattdaysperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from MegawattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattDaysPerShortTon(QuantityValue megawattdayspershortton)
@@ -572,8 +587,9 @@ namespace UnitsNet
             double value = (double) megawattdayspershortton;
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerShortTon);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from MegawattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattDaysPerTonne(QuantityValue megawattdayspertonne)
@@ -581,8 +597,9 @@ namespace UnitsNet
             double value = (double) megawattdayspertonne;
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerTonne);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from MegawattHoursPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromMegawattHoursPerKilogram(QuantityValue megawatthoursperkilogram)
@@ -590,8 +607,9 @@ namespace UnitsNet
             double value = (double) megawatthoursperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from TerawattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromTerawattDaysPerKilogram(QuantityValue terawattdaysperkilogram)
@@ -599,8 +617,9 @@ namespace UnitsNet
             double value = (double) terawattdaysperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from TerawattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromTerawattDaysPerShortTon(QuantityValue terawattdayspershortton)
@@ -608,8 +627,9 @@ namespace UnitsNet
             double value = (double) terawattdayspershortton;
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerShortTon);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from TerawattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromTerawattDaysPerTonne(QuantityValue terawattdayspertonne)
@@ -617,8 +637,9 @@ namespace UnitsNet
             double value = (double) terawattdayspertonne;
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerTonne);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from WattDaysPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattDaysPerKilogram(QuantityValue wattdaysperkilogram)
@@ -626,8 +647,9 @@ namespace UnitsNet
             double value = (double) wattdaysperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from WattDaysPerShortTon.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattDaysPerShortTon(QuantityValue wattdayspershortton)
@@ -635,8 +657,9 @@ namespace UnitsNet
             double value = (double) wattdayspershortton;
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerShortTon);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from WattDaysPerTonne.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerTonne"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattDaysPerTonne(QuantityValue wattdayspertonne)
@@ -644,8 +667,9 @@ namespace UnitsNet
             double value = (double) wattdayspertonne;
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerTonne);
         }
+
         /// <summary>
-        ///     Get SpecificEnergy from WattHoursPerKilogram.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificEnergy FromWattHoursPerKilogram(QuantityValue watthoursperkilogram)
@@ -886,8 +910,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is SpecificEnergy objSpecificEnergy)) throw new ArgumentException("Expected type SpecificEnergy.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is SpecificEnergy objSpecificEnergy)) throw new ArgumentException("Expected type SpecificEnergy.", nameof(obj));
 
             return CompareTo(objSpecificEnergy);
         }
@@ -940,7 +964,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(SpecificEnergy other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -968,7 +992,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(SpecificEnergyUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -978,13 +1002,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -993,7 +1017,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is SpecificEnergyUnit unitAsSpecificEnergyUnit))
+            if (!(unit is SpecificEnergyUnit unitAsSpecificEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEnergyUnit)} is supported.", nameof(unit));
 
             return As(unitAsSpecificEnergyUnit);
@@ -1017,18 +1041,18 @@ namespace UnitsNet
         /// <returns>A SpecificEnergy with the specified unit.</returns>
         public SpecificEnergy ToUnit(SpecificEnergyUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(SpecificEnergy), Unit, typeof(SpecificEnergy), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(SpecificEnergy), Unit, typeof(SpecificEnergy), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (SpecificEnergy)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1043,31 +1067,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is SpecificEnergyUnit unitAsSpecificEnergyUnit))
+            if (!(unit is SpecificEnergyUnit unitAsSpecificEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEnergyUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsSpecificEnergyUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is SpecificEnergyUnit unitAsSpecificEnergyUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificEnergyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsSpecificEnergyUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public SpecificEnergy ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1080,16 +1095,13 @@ namespace UnitsNet
         IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(SpecificEnergyUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -1208,13 +1220,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(SpecificEnergy))
+            if (conversionType == typeof(SpecificEnergy))
                 return this;
-            else if(conversionType == typeof(SpecificEnergyUnit))
+            else if (conversionType == typeof(SpecificEnergyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return SpecificEnergy.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return SpecificEnergy.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(SpecificEnergy)} to {conversionType} is not supported.");

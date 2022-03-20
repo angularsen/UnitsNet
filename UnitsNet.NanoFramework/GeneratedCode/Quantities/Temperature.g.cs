@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public TemperatureUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Temperature MinValue { get; } = new Temperature(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,52 +80,52 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Temperature in DegreesCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeCelsius"/>
         /// </summary>
         public double DegreesCelsius => As(TemperatureUnit.DegreeCelsius);
 
         /// <summary>
-        ///     Get Temperature in DegreesDelisle.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeDelisle"/>
         /// </summary>
         public double DegreesDelisle => As(TemperatureUnit.DegreeDelisle);
 
         /// <summary>
-        ///     Get Temperature in DegreesFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeFahrenheit"/>
         /// </summary>
         public double DegreesFahrenheit => As(TemperatureUnit.DegreeFahrenheit);
 
         /// <summary>
-        ///     Get Temperature in DegreesNewton.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeNewton"/>
         /// </summary>
         public double DegreesNewton => As(TemperatureUnit.DegreeNewton);
 
         /// <summary>
-        ///     Get Temperature in DegreesRankine.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeRankine"/>
         /// </summary>
         public double DegreesRankine => As(TemperatureUnit.DegreeRankine);
 
         /// <summary>
-        ///     Get Temperature in DegreesReaumur.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeReaumur"/>
         /// </summary>
         public double DegreesReaumur => As(TemperatureUnit.DegreeReaumur);
 
         /// <summary>
-        ///     Get Temperature in DegreesRoemer.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.DegreeRoemer"/>
         /// </summary>
         public double DegreesRoemer => As(TemperatureUnit.DegreeRoemer);
 
         /// <summary>
-        ///     Get Temperature in Kelvins.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.Kelvin"/>
         /// </summary>
         public double Kelvins => As(TemperatureUnit.Kelvin);
 
         /// <summary>
-        ///     Get Temperature in MillidegreesCelsius.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.MillidegreeCelsius"/>
         /// </summary>
         public double MillidegreesCelsius => As(TemperatureUnit.MillidegreeCelsius);
 
         /// <summary>
-        ///     Get Temperature in SolarTemperatures.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureUnit.SolarTemperature"/>
         /// </summary>
         public double SolarTemperatures => As(TemperatureUnit.SolarTemperature);
 
@@ -132,65 +134,64 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Temperature from DegreesCelsius.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesCelsius(double degreescelsius) => new Temperature(degreescelsius, TemperatureUnit.DegreeCelsius);
 
         /// <summary>
-        ///     Get Temperature from DegreesDelisle.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeDelisle"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesDelisle(double degreesdelisle) => new Temperature(degreesdelisle, TemperatureUnit.DegreeDelisle);
 
         /// <summary>
-        ///     Get Temperature from DegreesFahrenheit.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesFahrenheit(double degreesfahrenheit) => new Temperature(degreesfahrenheit, TemperatureUnit.DegreeFahrenheit);
 
         /// <summary>
-        ///     Get Temperature from DegreesNewton.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeNewton"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesNewton(double degreesnewton) => new Temperature(degreesnewton, TemperatureUnit.DegreeNewton);
 
         /// <summary>
-        ///     Get Temperature from DegreesRankine.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRankine"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesRankine(double degreesrankine) => new Temperature(degreesrankine, TemperatureUnit.DegreeRankine);
 
         /// <summary>
-        ///     Get Temperature from DegreesReaumur.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeReaumur"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesReaumur(double degreesreaumur) => new Temperature(degreesreaumur, TemperatureUnit.DegreeReaumur);
 
         /// <summary>
-        ///     Get Temperature from DegreesRoemer.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.DegreeRoemer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromDegreesRoemer(double degreesroemer) => new Temperature(degreesroemer, TemperatureUnit.DegreeRoemer);
 
         /// <summary>
-        ///     Get Temperature from Kelvins.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.Kelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromKelvins(double kelvins) => new Temperature(kelvins, TemperatureUnit.Kelvin);
 
         /// <summary>
-        ///     Get Temperature from MillidegreesCelsius.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.MillidegreeCelsius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromMillidegreesCelsius(double millidegreescelsius) => new Temperature(millidegreescelsius, TemperatureUnit.MillidegreeCelsius);
 
         /// <summary>
-        ///     Get Temperature from SolarTemperatures.
+        ///     Creates a <see cref="Temperature"/> from <see cref="TemperatureUnit.SolarTemperature"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Temperature FromSolarTemperatures(double solartemperatures) => new Temperature(solartemperatures, TemperatureUnit.SolarTemperature);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureUnit" /> to <see cref="Temperature" />.
@@ -205,74 +206,71 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(TemperatureUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Temperature ToUnit(TemperatureUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Temperature(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Temperature ToUnit(TemperatureUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Temperature(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case TemperatureUnit.DegreeCelsius: return _value + 273.15;
-                case TemperatureUnit.DegreeDelisle: return _value*-2/3 + 373.15;
-                case TemperatureUnit.DegreeFahrenheit: return _value*5/9 + 459.67*5/9;
-                case TemperatureUnit.DegreeNewton: return _value*100/33 + 273.15;
-                case TemperatureUnit.DegreeRankine: return _value*5/9;
-                case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
-                case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
-                case TemperatureUnit.Kelvin: return _value;
-                case TemperatureUnit.MillidegreeCelsius: return _value / 1000 + 273.15;
-                case TemperatureUnit.SolarTemperature: return _value * 5778;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        TemperatureUnit.DegreeCelsius => _value + 273.15,
+                        TemperatureUnit.DegreeDelisle => _value * -2 / 3 + 373.15,
+                        TemperatureUnit.DegreeFahrenheit => _value * 5 / 9 + 459.67 * 5 / 9,
+                        TemperatureUnit.DegreeNewton => _value * 100 / 33 + 273.15,
+                        TemperatureUnit.DegreeRankine => _value * 5 / 9,
+                        TemperatureUnit.DegreeReaumur => _value * 5 / 4 + 273.15,
+                        TemperatureUnit.DegreeRoemer => _value * 40 / 21 + 273.15 - 7.5 * 40d / 21,
+                        TemperatureUnit.Kelvin => _value,
+                        TemperatureUnit.MillidegreeCelsius => _value / 1000 + 273.15,
+                        TemperatureUnit.SolarTemperature => _value * 5778,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(TemperatureUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(TemperatureUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case TemperatureUnit.DegreeCelsius: return baseUnitValue - 273.15;
-                case TemperatureUnit.DegreeDelisle: return (baseUnitValue - 373.15)*-3/2;
-                case TemperatureUnit.DegreeFahrenheit: return (baseUnitValue - 459.67*5/9)*9/5;
-                case TemperatureUnit.DegreeNewton: return (baseUnitValue - 273.15)*33/100;
-                case TemperatureUnit.DegreeRankine: return baseUnitValue*9/5;
-                case TemperatureUnit.DegreeReaumur: return (baseUnitValue - 273.15)*4/5;
-                case TemperatureUnit.DegreeRoemer: return (baseUnitValue - (273.15 - 7.5*40d/21))*21/40;
-                case TemperatureUnit.Kelvin: return baseUnitValue;
-                case TemperatureUnit.MillidegreeCelsius: return (baseUnitValue - 273.15) * 1000;
-                case TemperatureUnit.SolarTemperature: return baseUnitValue / 5778;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        TemperatureUnit.DegreeCelsius => baseUnitValue - 273.15,
+                        TemperatureUnit.DegreeDelisle => (baseUnitValue - 373.15) * -3 / 2,
+                        TemperatureUnit.DegreeFahrenheit => (baseUnitValue - 459.67 * 5 / 9) * 9 / 5,
+                        TemperatureUnit.DegreeNewton => (baseUnitValue - 273.15) * 33 / 100,
+                        TemperatureUnit.DegreeRankine => baseUnitValue * 9 / 5,
+                        TemperatureUnit.DegreeReaumur => (baseUnitValue - 273.15) * 4 / 5,
+                        TemperatureUnit.DegreeRoemer => (baseUnitValue - (273.15 - 7.5 * 40d / 21)) * 21 / 40,
+                        TemperatureUnit.Kelvin => baseUnitValue,
+                        TemperatureUnit.MillidegreeCelsius => (baseUnitValue - 273.15) * 1000,
+                        TemperatureUnit.SolarTemperature => baseUnitValue / 5778,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

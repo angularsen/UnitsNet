@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ScalarUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Scalar MinValue { get; } = new Scalar(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,7 +80,7 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Scalar in Amount.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ScalarUnit.Amount"/>
         /// </summary>
         public double Amount => As(ScalarUnit.Amount);
 
@@ -87,11 +89,10 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Scalar from Amount.
+        ///     Creates a <see cref="Scalar"/> from <see cref="ScalarUnit.Amount"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Scalar FromAmount(double amount) => new Scalar(amount, ScalarUnit.Amount);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ScalarUnit" /> to <see cref="Scalar" />.
@@ -106,56 +107,53 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ScalarUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ScalarUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Scalar ToUnit(ScalarUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Scalar(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Scalar ToUnit(ScalarUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Scalar(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ScalarUnit.Amount: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ScalarUnit.Amount => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ScalarUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ScalarUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ScalarUnit.Amount: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ScalarUnit.Amount => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

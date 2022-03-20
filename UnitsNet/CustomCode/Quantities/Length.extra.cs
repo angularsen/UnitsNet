@@ -114,7 +114,7 @@ namespace UnitsNet
             {
                 result = feet + inches;
 
-                if(negativeSignGroup.Length > 0)
+                if (negativeSignGroup.Length > 0)
                     result = -result;
 
                 return true;

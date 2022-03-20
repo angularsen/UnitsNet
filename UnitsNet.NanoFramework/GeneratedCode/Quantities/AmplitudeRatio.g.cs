@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public AmplitudeRatioUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,22 +80,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get AmplitudeRatio in DecibelMicrovolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
         /// </summary>
         public double DecibelMicrovolts => As(AmplitudeRatioUnit.DecibelMicrovolt);
 
         /// <summary>
-        ///     Get AmplitudeRatio in DecibelMillivolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
         /// </summary>
         public double DecibelMillivolts => As(AmplitudeRatioUnit.DecibelMillivolt);
 
         /// <summary>
-        ///     Get AmplitudeRatio in DecibelsUnloaded.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
         /// </summary>
         public double DecibelsUnloaded => As(AmplitudeRatioUnit.DecibelUnloaded);
 
         /// <summary>
-        ///     Get AmplitudeRatio in DecibelVolts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>
         /// </summary>
         public double DecibelVolts => As(AmplitudeRatioUnit.DecibelVolt);
 
@@ -102,29 +104,28 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get AmplitudeRatio from DecibelMicrovolts.
+        ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelMicrovolts(double decibelmicrovolts) => new AmplitudeRatio(decibelmicrovolts, AmplitudeRatioUnit.DecibelMicrovolt);
 
         /// <summary>
-        ///     Get AmplitudeRatio from DecibelMillivolts.
+        ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelMillivolts(double decibelmillivolts) => new AmplitudeRatio(decibelmillivolts, AmplitudeRatioUnit.DecibelMillivolt);
 
         /// <summary>
-        ///     Get AmplitudeRatio from DecibelsUnloaded.
+        ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelsUnloaded(double decibelsunloaded) => new AmplitudeRatio(decibelsunloaded, AmplitudeRatioUnit.DecibelUnloaded);
 
         /// <summary>
-        ///     Get AmplitudeRatio from DecibelVolts.
+        ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AmplitudeRatio FromDecibelVolts(double decibelvolts) => new AmplitudeRatio(decibelvolts, AmplitudeRatioUnit.DecibelVolt);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.
@@ -139,62 +140,59 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(AmplitudeRatioUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(AmplitudeRatioUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new AmplitudeRatio(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new AmplitudeRatio(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return _value - 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return _value - 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return _value - 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        AmplitudeRatioUnit.DecibelMicrovolt => _value - 120,
+                        AmplitudeRatioUnit.DecibelMillivolt => _value - 60,
+                        AmplitudeRatioUnit.DecibelUnloaded => _value - 2.218487499,
+                        AmplitudeRatioUnit.DecibelVolt => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(AmplitudeRatioUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(AmplitudeRatioUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return baseUnitValue + 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return baseUnitValue + 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return baseUnitValue + 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        AmplitudeRatioUnit.DecibelMicrovolt => baseUnitValue + 120,
+                        AmplitudeRatioUnit.DecibelMillivolt => baseUnitValue + 60,
+                        AmplitudeRatioUnit.DecibelUnloaded => baseUnitValue + 2.218487499,
+                        AmplitudeRatioUnit.DecibelVolt => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

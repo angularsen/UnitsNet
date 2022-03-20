@@ -67,7 +67,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -93,7 +92,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ThermalConductivity(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -162,12 +161,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ThermalConductivity in BtusPerHourFootFahrenheit.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>
         /// </summary>
         public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
-        ///     Get ThermalConductivity in WattsPerMeterKelvin.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
         /// </summary>
         public double WattsPerMeterKelvin => As(ThermalConductivityUnit.WattPerMeterKelvin);
 
@@ -182,18 +181,19 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ThermalConductivityUnit
-            unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit, quantity => new ThermalConductivity(quantity.Value/1.73073467, ThermalConductivityUnit.BtuPerHourFootFahrenheit));
+            unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit, quantity => new ThermalConductivity(quantity.Value / 1.73073467, ThermalConductivityUnit.BtuPerHourFootFahrenheit));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.WattPerMeterKelvin, quantity => quantity);
 
             // Register in unit converter: ThermalConductivityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin, quantity => new ThermalConductivity(quantity.Value*1.73073467, ThermalConductivityUnit.WattPerMeterKelvin));
+            unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin, quantity => new ThermalConductivity(quantity.Value * 1.73073467, ThermalConductivityUnit.WattPerMeterKelvin));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), new string[]{"BTU/h·ft·°F"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ThermalConductivityUnit.WattPerMeterKelvin, new CultureInfo("en-US"), new string[]{"W/m·K"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalConductivityUnit.BtuPerHourFootFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/h·ft·°F"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalConductivityUnit.WattPerMeterKelvin, new CultureInfo("en-US"), false, true, new string[]{"W/m·K"});
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ThermalConductivity from BtusPerHourFootFahrenheit.
+        ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalConductivity FromBtusPerHourFootFahrenheit(QuantityValue btusperhourfootfahrenheit)
@@ -230,8 +230,9 @@ namespace UnitsNet
             double value = (double) btusperhourfootfahrenheit;
             return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
         }
+
         /// <summary>
-        ///     Get ThermalConductivity from WattsPerMeterKelvin.
+        ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ThermalConductivity FromWattsPerMeterKelvin(QuantityValue wattspermeterkelvin)
@@ -472,8 +473,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ThermalConductivity objThermalConductivity)) throw new ArgumentException("Expected type ThermalConductivity.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ThermalConductivity objThermalConductivity)) throw new ArgumentException("Expected type ThermalConductivity.", nameof(obj));
 
             return CompareTo(objThermalConductivity);
         }
@@ -526,7 +527,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ThermalConductivity other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -554,7 +555,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ThermalConductivityUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -564,13 +565,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -579,7 +580,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ThermalConductivityUnit unitAsThermalConductivityUnit))
+            if (!(unit is ThermalConductivityUnit unitAsThermalConductivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
 
             return As(unitAsThermalConductivityUnit);
@@ -603,18 +604,18 @@ namespace UnitsNet
         /// <returns>A ThermalConductivity with the specified unit.</returns>
         public ThermalConductivity ToUnit(ThermalConductivityUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ThermalConductivity), Unit, typeof(ThermalConductivity), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ThermalConductivity), Unit, typeof(ThermalConductivity), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ThermalConductivity)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -629,31 +630,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ThermalConductivityUnit unitAsThermalConductivityUnit))
+            if (!(unit is ThermalConductivityUnit unitAsThermalConductivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsThermalConductivityUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is ThermalConductivityUnit unitAsThermalConductivityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsThermalConductivityUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ThermalConductivity ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -666,16 +658,13 @@ namespace UnitsNet
         IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(ThermalConductivityUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -794,13 +783,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ThermalConductivity))
+            if (conversionType == typeof(ThermalConductivity))
                 return this;
-            else if(conversionType == typeof(ThermalConductivityUnit))
+            else if (conversionType == typeof(ThermalConductivityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ThermalConductivity.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ThermalConductivity.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ThermalConductivity)} to {conversionType} is not supported.");

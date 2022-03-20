@@ -57,7 +57,8 @@ namespace UnitsNet
         public {_quantity.ValueType} Value => _value;
 
         /// <inheritdoc />
-        public {_unitEnumName} Unit => _unit;");
+        public {_unitEnumName} Unit => _unit;
+");
 
             // Constructor and static properties
             Writer.WL($@"        /// <summary>
@@ -88,7 +89,8 @@ namespace UnitsNet
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, BaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, BaseUnit);
+");
 
             // Decimal MaxValue = 79228162514264337593543950335M
             Writer.WLCondition(_quantity.ValueType == "decimal", $@"
@@ -97,7 +99,8 @@ namespace UnitsNet
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, BaseUnit);");
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}(-79228162514264337593543950335M, BaseUnit);
+");
 
             Writer.WL($@"
         /// <summary>
@@ -124,10 +127,14 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
+                if (unit.SkipConversionGeneration)
+                    continue;
+
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} in {unit.PluralName}.
+        ///     Gets a <see cref=""double""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
         /// </summary>");
+                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
         public {_quantity.ValueType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
@@ -146,18 +153,21 @@ namespace UnitsNet
 ");
             foreach (var unit in _quantity.Units)
             {
+                if (unit.SkipConversionGeneration)
+                    continue;
+
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
         /// <summary>
-        ///     Get {_quantity.Name} from {unit.PluralName}.
+        ///     Creates a <see cref=""{_quantity.Name}""/> from <see cref=""{_unitEnumName}.{unit.SingularName}""/>.
         /// </summary>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
+                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
         public static {_quantity.Name} From{unit.PluralName}({_quantity.ValueType} {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
 ");
             }
 
-            Writer.WL();
             Writer.WL($@"
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref=""{_unitEnumName}"" /> to <see cref=""{_quantity.Name}"" />.
@@ -177,71 +187,82 @@ namespace UnitsNet
         private void GenerateConversionMethods()
         {
             Writer.WL($@"
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name=""unit"" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public {_quantity.ValueType} As({_unitEnumName} unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name=""unit"" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public {_quantity.ValueType} As({_unitEnumName} unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name=""unit"" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public {_quantity.Name} ToUnit({_unitEnumName} unit)
-        {{
-            var convertedValue = GetValueAs(unit);
-            return new {_quantity.Name}(convertedValue, unit);
-        }}
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name=""unit"" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public {_quantity.Name} ToUnit({_unitEnumName} unit)
+                {{
+                    var convertedValue = GetValueAs(unit);
+                    return new {_quantity.Name}(convertedValue, unit);
+                }}
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private {_quantity.ValueType} GetValueInBaseUnit()
-        {{
-            switch(Unit)
-            {{");
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private {_quantity.ValueType} GetValueInBaseUnit()
+                {{
+                    return Unit switch
+                    {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
-                case {_unitEnumName}.{unit.SingularName}: return {func};");
+                        {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL($@"
-                default:
-                    throw new NotImplementedException($""Can not convert {{Unit}} to base units."");
-            }}
-        }}
+                        _ => throw new NotImplementedException($""Can not convert {{Unit}} to base units."")
+                    }};
+                    }}
 
-        private {_quantity.ValueType} GetValueAs({_unitEnumName} unit)
-        {{
-            if(Unit == unit)
-                return _value;
+                private {_quantity.ValueType} GetValueAs({_unitEnumName} unit)
+                {{
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {{");
+                    return unit switch
+                    {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "baseUnitValue");
                 Writer.WL($@"
-                case {_unitEnumName}.{unit.SingularName}: return {func};");
+                        {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL(@"
-                default:
-                    throw new NotImplementedException($""Can not convert {Unit} to {unit}."");
-            }
+                        _ => throw new NotImplementedException($""Can not convert {Unit} to {unit}."")
+                    };
+                    }
+
+                #endregion");
         }
 
-        #endregion
-");
-        }
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        internal static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
+
+        /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
+        internal static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
+
+        /// <summary>
+        /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
+        /// It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
+        /// </summary>
+        private static string? GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
+            ? null
+            : $"[Obsolete(\"{obsoleteText}\")]";
 
     }
 }

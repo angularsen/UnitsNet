@@ -67,7 +67,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -93,7 +92,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricPotentialDc(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -162,27 +161,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricPotentialDc in KilovoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.KilovoltDc"/>
         /// </summary>
         public double KilovoltsDc => As(ElectricPotentialDcUnit.KilovoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MegavoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MegavoltDc"/>
         /// </summary>
         public double MegavoltsDc => As(ElectricPotentialDcUnit.MegavoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MicrovoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MicrovoltDc"/>
         /// </summary>
         public double MicrovoltsDc => As(ElectricPotentialDcUnit.MicrovoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MillivoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MillivoltDc"/>
         /// </summary>
         public double MillivoltsDc => As(ElectricPotentialDcUnit.MillivoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in VoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.VoltDc"/>
         /// </summary>
         public double VoltsDc => As(ElectricPotentialDcUnit.VoltDc);
 
@@ -201,6 +200,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MegavoltDc, quantity => new ElectricPotentialDc((quantity.Value) / 1e6d, ElectricPotentialDcUnit.MegavoltDc));
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MicrovoltDc, quantity => new ElectricPotentialDc((quantity.Value) / 1e-6d, ElectricPotentialDcUnit.MicrovoltDc));
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.MillivoltDc, quantity => new ElectricPotentialDc((quantity.Value) / 1e-3d, ElectricPotentialDcUnit.MillivoltDc));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricPotentialDc>(ElectricPotentialDcUnit.VoltDc, ElectricPotentialDcUnit.VoltDc, quantity => quantity);
 
@@ -213,11 +213,11 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.KilovoltDc, new CultureInfo("en-US"), new string[]{"kVdc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MegavoltDc, new CultureInfo("en-US"), new string[]{"MVdc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MicrovoltDc, new CultureInfo("en-US"), new string[]{"µVdc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.MillivoltDc, new CultureInfo("en-US"), new string[]{"mVdc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricPotentialDcUnit.VoltDc, new CultureInfo("en-US"), new string[]{"Vdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.KilovoltDc, new CultureInfo("en-US"), false, true, new string[]{"kVdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MegavoltDc, new CultureInfo("en-US"), false, true, new string[]{"MVdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MicrovoltDc, new CultureInfo("en-US"), false, true, new string[]{"µVdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.MillivoltDc, new CultureInfo("en-US"), false, true, new string[]{"mVdc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialDcUnit.VoltDc, new CultureInfo("en-US"), false, true, new string[]{"Vdc"});
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricPotentialDc from KilovoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.KilovoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromKilovoltsDc(QuantityValue kilovoltsdc)
@@ -254,8 +254,9 @@ namespace UnitsNet
             double value = (double) kilovoltsdc;
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.KilovoltDc);
         }
+
         /// <summary>
-        ///     Get ElectricPotentialDc from MegavoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MegavoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMegavoltsDc(QuantityValue megavoltsdc)
@@ -263,8 +264,9 @@ namespace UnitsNet
             double value = (double) megavoltsdc;
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MegavoltDc);
         }
+
         /// <summary>
-        ///     Get ElectricPotentialDc from MicrovoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MicrovoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMicrovoltsDc(QuantityValue microvoltsdc)
@@ -272,8 +274,9 @@ namespace UnitsNet
             double value = (double) microvoltsdc;
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MicrovoltDc);
         }
+
         /// <summary>
-        ///     Get ElectricPotentialDc from MillivoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MillivoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMillivoltsDc(QuantityValue millivoltsdc)
@@ -281,8 +284,9 @@ namespace UnitsNet
             double value = (double) millivoltsdc;
             return new ElectricPotentialDc(value, ElectricPotentialDcUnit.MillivoltDc);
         }
+
         /// <summary>
-        ///     Get ElectricPotentialDc from VoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.VoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromVoltsDc(QuantityValue voltsdc)
@@ -523,8 +527,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricPotentialDc objElectricPotentialDc)) throw new ArgumentException("Expected type ElectricPotentialDc.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ElectricPotentialDc objElectricPotentialDc)) throw new ArgumentException("Expected type ElectricPotentialDc.", nameof(obj));
 
             return CompareTo(objElectricPotentialDc);
         }
@@ -577,7 +581,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ElectricPotentialDc other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -605,7 +609,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricPotentialDcUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -615,13 +619,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -630,7 +634,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ElectricPotentialDcUnit unitAsElectricPotentialDcUnit))
+            if (!(unit is ElectricPotentialDcUnit unitAsElectricPotentialDcUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialDcUnit)} is supported.", nameof(unit));
 
             return As(unitAsElectricPotentialDcUnit);
@@ -654,18 +658,18 @@ namespace UnitsNet
         /// <returns>A ElectricPotentialDc with the specified unit.</returns>
         public ElectricPotentialDc ToUnit(ElectricPotentialDcUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ElectricPotentialDc), Unit, typeof(ElectricPotentialDc), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ElectricPotentialDc), Unit, typeof(ElectricPotentialDc), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ElectricPotentialDc)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -680,31 +684,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricPotentialDcUnit unitAsElectricPotentialDcUnit))
+            if (!(unit is ElectricPotentialDcUnit unitAsElectricPotentialDcUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialDcUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsElectricPotentialDcUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is ElectricPotentialDcUnit unitAsElectricPotentialDcUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialDcUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsElectricPotentialDcUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricPotentialDc ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -717,16 +712,13 @@ namespace UnitsNet
         IQuantity<ElectricPotentialDcUnit> IQuantity<ElectricPotentialDcUnit>.ToUnit(ElectricPotentialDcUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ElectricPotentialDcUnit> IQuantity<ElectricPotentialDcUnit>.ToUnit(ElectricPotentialDcUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<ElectricPotentialDcUnit> IQuantity<ElectricPotentialDcUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(ElectricPotentialDcUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -845,13 +837,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricPotentialDc))
+            if (conversionType == typeof(ElectricPotentialDc))
                 return this;
-            else if(conversionType == typeof(ElectricPotentialDcUnit))
+            else if (conversionType == typeof(ElectricPotentialDcUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ElectricPotentialDc.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ElectricPotentialDc.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ElectricPotentialDc)} to {conversionType} is not supported.");

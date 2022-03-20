@@ -32,6 +32,9 @@ namespace UnitsNet.Tests
 
             foreach (var unit in _units)
             {
+                if (unit.SkipConversionGeneration)
+                    continue;
+
                 Writer.WL(2, $@"
 [Fact]");
 
@@ -50,6 +53,6 @@ namespace UnitsNet.Tests
         private static string? GetObsoleteAttributeOrNull(string obsoleteText) =>
           string.IsNullOrWhiteSpace(obsoleteText) ?
           null :
-          $"[System.Obsolete({obsoleteText})]";
+          $"[Obsolete(\"{obsoleteText}\")]";
     }
 }

@@ -58,9 +58,11 @@ namespace UnitsNet
             Info = new QuantityInfo<LengthUnit>("Length",
                 new UnitInfo<LengthUnit>[]
                 {
+                    new UnitInfo<LengthUnit>(LengthUnit.Angstrom, "Angstroms", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain)),
+                    new UnitInfo<LengthUnit>(LengthUnit.Decameter, "Decameters", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Decimeter, "Decimeters", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPica, "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica)),
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPoint, "DtpPoints", new BaseUnits(length: LengthUnit.DtpPoint)),
@@ -95,7 +97,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -121,7 +122,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Length(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -190,167 +191,177 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Length in AstronomicalUnits.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Angstrom"/>
+        /// </summary>
+        public double Angstroms => As(LengthUnit.Angstrom);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
         /// </summary>
         public double AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
 
         /// <summary>
-        ///     Get Length in Centimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Centimeter"/>
         /// </summary>
         public double Centimeters => As(LengthUnit.Centimeter);
 
         /// <summary>
-        ///     Get Length in Chains.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Chain"/>
         /// </summary>
         public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
-        ///     Get Length in Decimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decameter"/>
+        /// </summary>
+        public double Decameters => As(LengthUnit.Decameter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decimeter"/>
         /// </summary>
         public double Decimeters => As(LengthUnit.Decimeter);
 
         /// <summary>
-        ///     Get Length in DtpPicas.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPica"/>
         /// </summary>
         public double DtpPicas => As(LengthUnit.DtpPica);
 
         /// <summary>
-        ///     Get Length in DtpPoints.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPoint"/>
         /// </summary>
         public double DtpPoints => As(LengthUnit.DtpPoint);
 
         /// <summary>
-        ///     Get Length in Fathoms.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Fathom"/>
         /// </summary>
         public double Fathoms => As(LengthUnit.Fathom);
 
         /// <summary>
-        ///     Get Length in Feet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Foot"/>
         /// </summary>
         public double Feet => As(LengthUnit.Foot);
 
         /// <summary>
-        ///     Get Length in Hands.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hand"/>
         /// </summary>
         public double Hands => As(LengthUnit.Hand);
 
         /// <summary>
-        ///     Get Length in Hectometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hectometer"/>
         /// </summary>
         public double Hectometers => As(LengthUnit.Hectometer);
 
         /// <summary>
-        ///     Get Length in Inches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Inch"/>
         /// </summary>
         public double Inches => As(LengthUnit.Inch);
 
         /// <summary>
-        ///     Get Length in KilolightYears.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.KilolightYear"/>
         /// </summary>
         public double KilolightYears => As(LengthUnit.KilolightYear);
 
         /// <summary>
-        ///     Get Length in Kilometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kilometer"/>
         /// </summary>
         public double Kilometers => As(LengthUnit.Kilometer);
 
         /// <summary>
-        ///     Get Length in Kiloparsecs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloparsec"/>
         /// </summary>
         public double Kiloparsecs => As(LengthUnit.Kiloparsec);
 
         /// <summary>
-        ///     Get Length in LightYears.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.LightYear"/>
         /// </summary>
         public double LightYears => As(LengthUnit.LightYear);
 
         /// <summary>
-        ///     Get Length in MegalightYears.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.MegalightYear"/>
         /// </summary>
         public double MegalightYears => As(LengthUnit.MegalightYear);
 
         /// <summary>
-        ///     Get Length in Megaparsecs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megaparsec"/>
         /// </summary>
         public double Megaparsecs => As(LengthUnit.Megaparsec);
 
         /// <summary>
-        ///     Get Length in Meters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Meter"/>
         /// </summary>
         public double Meters => As(LengthUnit.Meter);
 
         /// <summary>
-        ///     Get Length in Microinches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Microinch"/>
         /// </summary>
         public double Microinches => As(LengthUnit.Microinch);
 
         /// <summary>
-        ///     Get Length in Micrometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Micrometer"/>
         /// </summary>
         public double Micrometers => As(LengthUnit.Micrometer);
 
         /// <summary>
-        ///     Get Length in Mils.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mil"/>
         /// </summary>
         public double Mils => As(LengthUnit.Mil);
 
         /// <summary>
-        ///     Get Length in Miles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mile"/>
         /// </summary>
         public double Miles => As(LengthUnit.Mile);
 
         /// <summary>
-        ///     Get Length in Millimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Millimeter"/>
         /// </summary>
         public double Millimeters => As(LengthUnit.Millimeter);
 
         /// <summary>
-        ///     Get Length in Nanometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Nanometer"/>
         /// </summary>
         public double Nanometers => As(LengthUnit.Nanometer);
 
         /// <summary>
-        ///     Get Length in NauticalMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.NauticalMile"/>
         /// </summary>
         public double NauticalMiles => As(LengthUnit.NauticalMile);
 
         /// <summary>
-        ///     Get Length in Parsecs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Parsec"/>
         /// </summary>
         public double Parsecs => As(LengthUnit.Parsec);
 
         /// <summary>
-        ///     Get Length in PrinterPicas.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPica"/>
         /// </summary>
         public double PrinterPicas => As(LengthUnit.PrinterPica);
 
         /// <summary>
-        ///     Get Length in PrinterPoints.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPoint"/>
         /// </summary>
         public double PrinterPoints => As(LengthUnit.PrinterPoint);
 
         /// <summary>
-        ///     Get Length in Shackles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Shackle"/>
         /// </summary>
         public double Shackles => As(LengthUnit.Shackle);
 
         /// <summary>
-        ///     Get Length in SolarRadiuses.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.SolarRadius"/>
         /// </summary>
         public double SolarRadiuses => As(LengthUnit.SolarRadius);
 
         /// <summary>
-        ///     Get Length in Twips.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Twip"/>
         /// </summary>
         public double Twips => As(LengthUnit.Twip);
 
         /// <summary>
-        ///     Get Length in UsSurveyFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.UsSurveyFoot"/>
         /// </summary>
         public double UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
 
         /// <summary>
-        ///     Get Length in Yards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Yard"/>
         /// </summary>
         public double Yards => As(LengthUnit.Yard);
 
@@ -365,141 +376,150 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> LengthUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Angstrom, quantity => new Length(quantity.Value / 1e-10, LengthUnit.Angstrom));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.AstronomicalUnit, quantity => new Length(quantity.Value / 1.4959787070e11, LengthUnit.AstronomicalUnit));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Centimeter, quantity => new Length((quantity.Value) / 1e-2d, LengthUnit.Centimeter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Chain, quantity => new Length(quantity.Value/20.1168, LengthUnit.Chain));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Chain, quantity => new Length(quantity.Value / 20.1168, LengthUnit.Chain));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decameter, quantity => new Length((quantity.Value) / 1e1d, LengthUnit.Decameter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decimeter, quantity => new Length((quantity.Value) / 1e-1d, LengthUnit.Decimeter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPica, quantity => new Length(quantity.Value*236.220472441, LengthUnit.DtpPica));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPoint, quantity => new Length((quantity.Value/2.54e-2)*72, LengthUnit.DtpPoint));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Fathom, quantity => new Length(quantity.Value/1.8288, LengthUnit.Fathom));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Foot, quantity => new Length(quantity.Value/0.3048, LengthUnit.Foot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPica, quantity => new Length(quantity.Value * 236.220472441, LengthUnit.DtpPica));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPoint, quantity => new Length((quantity.Value / 2.54e-2) * 72, LengthUnit.DtpPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Fathom, quantity => new Length(quantity.Value / 1.8288, LengthUnit.Fathom));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Foot, quantity => new Length(quantity.Value / 0.3048, LengthUnit.Foot));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hand, quantity => new Length(quantity.Value / 1.016e-1, LengthUnit.Hand));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hectometer, quantity => new Length((quantity.Value) / 1e2d, LengthUnit.Hectometer));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, quantity => new Length(quantity.Value/2.54e-2, LengthUnit.Inch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, quantity => new Length(quantity.Value / 2.54e-2, LengthUnit.Inch));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.KilolightYear, quantity => new Length((quantity.Value / 9.46073047258e15) / 1e3d, LengthUnit.KilolightYear));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kilometer, quantity => new Length((quantity.Value) / 1e3d, LengthUnit.Kilometer));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kiloparsec, quantity => new Length((quantity.Value / 3.08567758128e16) / 1e3d, LengthUnit.Kiloparsec));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.LightYear, quantity => new Length(quantity.Value / 9.46073047258e15, LengthUnit.LightYear));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.MegalightYear, quantity => new Length((quantity.Value / 9.46073047258e15) / 1e6d, LengthUnit.MegalightYear));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Megaparsec, quantity => new Length((quantity.Value / 3.08567758128e16) / 1e6d, LengthUnit.Megaparsec));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Microinch, quantity => new Length(quantity.Value/2.54e-8, LengthUnit.Microinch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Microinch, quantity => new Length(quantity.Value / 2.54e-8, LengthUnit.Microinch));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Micrometer, quantity => new Length((quantity.Value) / 1e-6d, LengthUnit.Micrometer));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mil, quantity => new Length(quantity.Value/2.54e-5, LengthUnit.Mil));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mile, quantity => new Length(quantity.Value/1609.34, LengthUnit.Mile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mil, quantity => new Length(quantity.Value / 2.54e-5, LengthUnit.Mil));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mile, quantity => new Length(quantity.Value / 1609.34, LengthUnit.Mile));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Millimeter, quantity => new Length((quantity.Value) / 1e-3d, LengthUnit.Millimeter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Nanometer, quantity => new Length((quantity.Value) / 1e-9d, LengthUnit.Nanometer));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.NauticalMile, quantity => new Length(quantity.Value/1852, LengthUnit.NauticalMile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.NauticalMile, quantity => new Length(quantity.Value / 1852, LengthUnit.NauticalMile));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Parsec, quantity => new Length(quantity.Value / 3.08567758128e16, LengthUnit.Parsec));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPica, quantity => new Length(quantity.Value*237.106301584, LengthUnit.PrinterPica));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPoint, quantity => new Length((quantity.Value/2.54e-2)*72.27, LengthUnit.PrinterPoint));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Shackle, quantity => new Length(quantity.Value/27.432, LengthUnit.Shackle));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPica, quantity => new Length(quantity.Value * 237.106301584, LengthUnit.PrinterPica));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPoint, quantity => new Length((quantity.Value / 2.54e-2) * 72.27, LengthUnit.PrinterPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Shackle, quantity => new Length(quantity.Value / 27.432, LengthUnit.Shackle));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.SolarRadius, quantity => new Length(quantity.Value / 6.95510000E+08, LengthUnit.SolarRadius));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Twip, quantity => new Length(quantity.Value*56692.913385826, LengthUnit.Twip));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => new Length(quantity.Value*3937/1200, LengthUnit.UsSurveyFoot));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => new Length(quantity.Value/0.9144, LengthUnit.Yard));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Twip, quantity => new Length(quantity.Value * 56692.913385826, LengthUnit.Twip));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => new Length(quantity.Value * 3937 / 1200, LengthUnit.UsSurveyFoot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => new Length(quantity.Value / 0.9144, LengthUnit.Yard));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Meter, quantity => quantity);
 
             // Register in unit converter: LengthUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Angstrom, LengthUnit.Meter, quantity => new Length(quantity.Value * 1e-10, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.AstronomicalUnit, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.4959787070e11, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Centimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-2d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, LengthUnit.Meter, quantity => new Length(quantity.Value*20.1168, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, LengthUnit.Meter, quantity => new Length(quantity.Value * 20.1168, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Decameter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e1d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Decimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-1d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPica, LengthUnit.Meter, quantity => new Length(quantity.Value/236.220472441, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPoint, LengthUnit.Meter, quantity => new Length((quantity.Value/72)*2.54e-2, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Fathom, LengthUnit.Meter, quantity => new Length(quantity.Value*1.8288, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Foot, LengthUnit.Meter, quantity => new Length(quantity.Value*0.3048, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPica, LengthUnit.Meter, quantity => new Length(quantity.Value / 236.220472441, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPoint, LengthUnit.Meter, quantity => new Length((quantity.Value / 72) * 2.54e-2, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Fathom, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.8288, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Foot, LengthUnit.Meter, quantity => new Length(quantity.Value * 0.3048, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Hand, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.016e-1, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Hectometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e2d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Inch, LengthUnit.Meter, quantity => new Length(quantity.Value*2.54e-2, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Inch, LengthUnit.Meter, quantity => new Length(quantity.Value * 2.54e-2, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.KilolightYear, LengthUnit.Meter, quantity => new Length((quantity.Value * 9.46073047258e15) * 1e3d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Kilometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e3d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Kiloparsec, LengthUnit.Meter, quantity => new Length((quantity.Value * 3.08567758128e16) * 1e3d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.LightYear, LengthUnit.Meter, quantity => new Length(quantity.Value * 9.46073047258e15, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.MegalightYear, LengthUnit.Meter, quantity => new Length((quantity.Value * 9.46073047258e15) * 1e6d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Megaparsec, LengthUnit.Meter, quantity => new Length((quantity.Value * 3.08567758128e16) * 1e6d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Microinch, LengthUnit.Meter, quantity => new Length(quantity.Value*2.54e-8, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Microinch, LengthUnit.Meter, quantity => new Length(quantity.Value * 2.54e-8, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Micrometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-6d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Mil, LengthUnit.Meter, quantity => new Length(quantity.Value*2.54e-5, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Mile, LengthUnit.Meter, quantity => new Length(quantity.Value*1609.34, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Mil, LengthUnit.Meter, quantity => new Length(quantity.Value * 2.54e-5, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Mile, LengthUnit.Meter, quantity => new Length(quantity.Value * 1609.34, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Millimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-3d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Nanometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-9d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.NauticalMile, LengthUnit.Meter, quantity => new Length(quantity.Value*1852, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.NauticalMile, LengthUnit.Meter, quantity => new Length(quantity.Value * 1852, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Parsec, LengthUnit.Meter, quantity => new Length(quantity.Value * 3.08567758128e16, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPica, LengthUnit.Meter, quantity => new Length(quantity.Value/237.106301584, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, LengthUnit.Meter, quantity => new Length((quantity.Value/72.27)*2.54e-2, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, LengthUnit.Meter, quantity => new Length(quantity.Value*27.432, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPica, LengthUnit.Meter, quantity => new Length(quantity.Value / 237.106301584, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, LengthUnit.Meter, quantity => new Length((quantity.Value / 72.27) * 2.54e-2, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, LengthUnit.Meter, quantity => new Length(quantity.Value * 27.432, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.SolarRadius, LengthUnit.Meter, quantity => new Length(quantity.Value * 6.95510000E+08, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, LengthUnit.Meter, quantity => new Length(quantity.Value/56692.913385826, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.UsSurveyFoot, LengthUnit.Meter, quantity => new Length(quantity.Value*1200/3937, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Yard, LengthUnit.Meter, quantity => new Length(quantity.Value*0.9144, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, LengthUnit.Meter, quantity => new Length(quantity.Value / 56692.913385826, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.UsSurveyFoot, LengthUnit.Meter, quantity => new Length(quantity.Value * 1200 / 3937, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Yard, LengthUnit.Meter, quantity => new Length(quantity.Value * 0.9144, LengthUnit.Meter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.AstronomicalUnit, new CultureInfo("en-US"), new string[]{"au", "ua"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Centimeter, new CultureInfo("en-US"), new string[]{"cm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Centimeter, new CultureInfo("ru-RU"), new string[]{"см"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Centimeter, new CultureInfo("zh-CN"), new string[]{"厘米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Chain, new CultureInfo("en-US"), new string[]{"ch"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Decimeter, new CultureInfo("en-US"), new string[]{"dm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Decimeter, new CultureInfo("ru-RU"), new string[]{"дм"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Decimeter, new CultureInfo("zh-CN"), new string[]{"分米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.DtpPica, new CultureInfo("en-US"), new string[]{"pica"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.DtpPoint, new CultureInfo("en-US"), new string[]{"pt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Fathom, new CultureInfo("en-US"), new string[]{"fathom"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Foot, new CultureInfo("en-US"), new string[]{"ft", "'", "′"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Foot, new CultureInfo("ru-RU"), new string[]{"фут"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Foot, new CultureInfo("zh-CN"), new string[]{"英尺"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Hand, new CultureInfo("en-US"), new string[]{"h", "hh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Hectometer, new CultureInfo("en-US"), new string[]{"hm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Hectometer, new CultureInfo("ru-RU"), new string[]{"гм"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Hectometer, new CultureInfo("zh-CN"), new string[]{"百米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Inch, new CultureInfo("en-US"), new string[]{"in", "\"", "″"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Inch, new CultureInfo("ru-RU"), new string[]{"дюйм"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Inch, new CultureInfo("zh-CN"), new string[]{"英寸"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.KilolightYear, new CultureInfo("en-US"), new string[]{"kly"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Kilometer, new CultureInfo("en-US"), new string[]{"km"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Kilometer, new CultureInfo("ru-RU"), new string[]{"км"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Kilometer, new CultureInfo("zh-CN"), new string[]{"千米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Kiloparsec, new CultureInfo("en-US"), new string[]{"kpc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.LightYear, new CultureInfo("en-US"), new string[]{"ly"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.MegalightYear, new CultureInfo("en-US"), new string[]{"Mly"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Megaparsec, new CultureInfo("en-US"), new string[]{"Mpc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, new CultureInfo("en-US"), new string[]{"m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, new CultureInfo("ru-RU"), new string[]{"м"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, new CultureInfo("zh-CN"), new string[]{"米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Microinch, new CultureInfo("en-US"), new string[]{"µin"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Microinch, new CultureInfo("ru-RU"), new string[]{"микродюйм"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Microinch, new CultureInfo("zh-CN"), new string[]{"微英寸"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Micrometer, new CultureInfo("en-US"), new string[]{"µm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Micrometer, new CultureInfo("ru-RU"), new string[]{"мкм"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Micrometer, new CultureInfo("zh-CN"), new string[]{"微米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Mil, new CultureInfo("en-US"), new string[]{"mil"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Mil, new CultureInfo("ru-RU"), new string[]{"мил"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Mil, new CultureInfo("zh-CN"), new string[]{"密耳"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Mile, new CultureInfo("en-US"), new string[]{"mi"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Mile, new CultureInfo("ru-RU"), new string[]{"миля"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Mile, new CultureInfo("zh-CN"), new string[]{"英里"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Millimeter, new CultureInfo("en-US"), new string[]{"mm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Millimeter, new CultureInfo("ru-RU"), new string[]{"мм"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Millimeter, new CultureInfo("zh-CN"), new string[]{"毫米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Nanometer, new CultureInfo("en-US"), new string[]{"nm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Nanometer, new CultureInfo("ru-RU"), new string[]{"нм"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Nanometer, new CultureInfo("zh-CN"), new string[]{"纳米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.NauticalMile, new CultureInfo("en-US"), new string[]{"NM"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.NauticalMile, new CultureInfo("ru-RU"), new string[]{"мил"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.NauticalMile, new CultureInfo("zh-CN"), new string[]{"纳米"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Parsec, new CultureInfo("en-US"), new string[]{"pc"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.PrinterPica, new CultureInfo("en-US"), new string[]{"pica"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.PrinterPoint, new CultureInfo("en-US"), new string[]{"pt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Shackle, new CultureInfo("en-US"), new string[]{"shackle"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.SolarRadius, new CultureInfo("en-US"), new string[]{"R⊙"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Twip, new CultureInfo("en-US"), new string[]{"twip"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.UsSurveyFoot, new CultureInfo("en-US"), new string[]{"ftUS"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Yard, new CultureInfo("en-US"), new string[]{"yd"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Yard, new CultureInfo("ru-RU"), new string[]{"ярд"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Yard, new CultureInfo("zh-CN"), new string[]{"码"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"Å", "A"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.AstronomicalUnit, new CultureInfo("en-US"), false, true, new string[]{"au", "ua"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("en-US"), false, true, new string[]{"cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("zh-CN"), false, true, new string[]{"厘米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Chain, new CultureInfo("en-US"), false, true, new string[]{"ch"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("en-US"), false, true, new string[]{"dam"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("ru-RU"), false, true, new string[]{"дам"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("zh-CN"), false, true, new string[]{"十米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("en-US"), false, true, new string[]{"dm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("ru-RU"), false, true, new string[]{"дм"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("zh-CN"), false, true, new string[]{"分米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DtpPica, new CultureInfo("en-US"), false, true, new string[]{"pica"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DtpPoint, new CultureInfo("en-US"), false, true, new string[]{"pt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Fathom, new CultureInfo("en-US"), false, true, new string[]{"fathom"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("en-US"), false, true, new string[]{"ft", "'", "′"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("ru-RU"), false, true, new string[]{"фут"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("zh-CN"), false, true, new string[]{"英尺"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hand, new CultureInfo("en-US"), false, true, new string[]{"h", "hh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("en-US"), false, true, new string[]{"hm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("ru-RU"), false, true, new string[]{"гм"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("zh-CN"), false, true, new string[]{"百米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("en-US"), false, true, new string[]{"in", "\"", "″"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("zh-CN"), false, true, new string[]{"英寸"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.KilolightYear, new CultureInfo("en-US"), false, true, new string[]{"kly"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("en-US"), false, true, new string[]{"km"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("ru-RU"), false, true, new string[]{"км"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("zh-CN"), false, true, new string[]{"千米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kiloparsec, new CultureInfo("en-US"), false, true, new string[]{"kpc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.LightYear, new CultureInfo("en-US"), false, true, new string[]{"ly"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.MegalightYear, new CultureInfo("en-US"), false, true, new string[]{"Mly"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megaparsec, new CultureInfo("en-US"), false, true, new string[]{"Mpc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("en-US"), false, true, new string[]{"m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("ru-RU"), false, true, new string[]{"м"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("zh-CN"), false, true, new string[]{"米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("en-US"), false, true, new string[]{"µin"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("ru-RU"), false, true, new string[]{"микродюйм"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("zh-CN"), false, true, new string[]{"微英寸"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("en-US"), false, true, new string[]{"µm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("ru-RU"), false, true, new string[]{"мкм"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("zh-CN"), false, true, new string[]{"微米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("en-US"), false, true, new string[]{"mil"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("ru-RU"), false, true, new string[]{"мил"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("zh-CN"), false, true, new string[]{"密耳"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("en-US"), false, true, new string[]{"mi"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("ru-RU"), false, true, new string[]{"миля"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("zh-CN"), false, true, new string[]{"英里"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("en-US"), false, true, new string[]{"mm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("ru-RU"), false, true, new string[]{"мм"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("zh-CN"), false, true, new string[]{"毫米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("en-US"), false, true, new string[]{"nm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("ru-RU"), false, true, new string[]{"нм"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("zh-CN"), false, true, new string[]{"纳米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("en-US"), false, true, new string[]{"NM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("ru-RU"), false, true, new string[]{"мил"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("zh-CN"), false, true, new string[]{"纳米"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Parsec, new CultureInfo("en-US"), false, true, new string[]{"pc"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.PrinterPica, new CultureInfo("en-US"), false, true, new string[]{"pica"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.PrinterPoint, new CultureInfo("en-US"), false, true, new string[]{"pt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Shackle, new CultureInfo("en-US"), false, true, new string[]{"shackle"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.SolarRadius, new CultureInfo("en-US"), false, true, new string[]{"R⊙"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Twip, new CultureInfo("en-US"), false, true, new string[]{"twip"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.UsSurveyFoot, new CultureInfo("en-US"), false, true, new string[]{"ftUS"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("en-US"), false, true, new string[]{"yd"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("ru-RU"), false, true, new string[]{"ярд"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("zh-CN"), false, true, new string[]{"码"});
         }
 
         /// <summary>
@@ -528,7 +548,17 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Length from AstronomicalUnits.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Angstrom"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromAngstroms(QuantityValue angstroms)
+        {
+            double value = (double) angstroms;
+            return new Length(value, LengthUnit.Angstrom);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.AstronomicalUnit"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromAstronomicalUnits(QuantityValue astronomicalunits)
@@ -536,8 +566,9 @@ namespace UnitsNet
             double value = (double) astronomicalunits;
             return new Length(value, LengthUnit.AstronomicalUnit);
         }
+
         /// <summary>
-        ///     Get Length from Centimeters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Centimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromCentimeters(QuantityValue centimeters)
@@ -545,8 +576,9 @@ namespace UnitsNet
             double value = (double) centimeters;
             return new Length(value, LengthUnit.Centimeter);
         }
+
         /// <summary>
-        ///     Get Length from Chains.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Chain"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromChains(QuantityValue chains)
@@ -554,8 +586,19 @@ namespace UnitsNet
             double value = (double) chains;
             return new Length(value, LengthUnit.Chain);
         }
+
         /// <summary>
-        ///     Get Length from Decimeters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decameter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromDecameters(QuantityValue decameters)
+        {
+            double value = (double) decameters;
+            return new Length(value, LengthUnit.Decameter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromDecimeters(QuantityValue decimeters)
@@ -563,8 +606,9 @@ namespace UnitsNet
             double value = (double) decimeters;
             return new Length(value, LengthUnit.Decimeter);
         }
+
         /// <summary>
-        ///     Get Length from DtpPicas.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPica"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromDtpPicas(QuantityValue dtppicas)
@@ -572,8 +616,9 @@ namespace UnitsNet
             double value = (double) dtppicas;
             return new Length(value, LengthUnit.DtpPica);
         }
+
         /// <summary>
-        ///     Get Length from DtpPoints.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPoint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromDtpPoints(QuantityValue dtppoints)
@@ -581,8 +626,9 @@ namespace UnitsNet
             double value = (double) dtppoints;
             return new Length(value, LengthUnit.DtpPoint);
         }
+
         /// <summary>
-        ///     Get Length from Fathoms.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Fathom"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromFathoms(QuantityValue fathoms)
@@ -590,8 +636,9 @@ namespace UnitsNet
             double value = (double) fathoms;
             return new Length(value, LengthUnit.Fathom);
         }
+
         /// <summary>
-        ///     Get Length from Feet.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Foot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromFeet(QuantityValue feet)
@@ -599,8 +646,9 @@ namespace UnitsNet
             double value = (double) feet;
             return new Length(value, LengthUnit.Foot);
         }
+
         /// <summary>
-        ///     Get Length from Hands.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hand"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromHands(QuantityValue hands)
@@ -608,8 +656,9 @@ namespace UnitsNet
             double value = (double) hands;
             return new Length(value, LengthUnit.Hand);
         }
+
         /// <summary>
-        ///     Get Length from Hectometers.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hectometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromHectometers(QuantityValue hectometers)
@@ -617,8 +666,9 @@ namespace UnitsNet
             double value = (double) hectometers;
             return new Length(value, LengthUnit.Hectometer);
         }
+
         /// <summary>
-        ///     Get Length from Inches.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Inch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromInches(QuantityValue inches)
@@ -626,8 +676,9 @@ namespace UnitsNet
             double value = (double) inches;
             return new Length(value, LengthUnit.Inch);
         }
+
         /// <summary>
-        ///     Get Length from KilolightYears.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.KilolightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromKilolightYears(QuantityValue kilolightyears)
@@ -635,8 +686,9 @@ namespace UnitsNet
             double value = (double) kilolightyears;
             return new Length(value, LengthUnit.KilolightYear);
         }
+
         /// <summary>
-        ///     Get Length from Kilometers.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromKilometers(QuantityValue kilometers)
@@ -644,8 +696,9 @@ namespace UnitsNet
             double value = (double) kilometers;
             return new Length(value, LengthUnit.Kilometer);
         }
+
         /// <summary>
-        ///     Get Length from Kiloparsecs.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloparsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromKiloparsecs(QuantityValue kiloparsecs)
@@ -653,8 +706,9 @@ namespace UnitsNet
             double value = (double) kiloparsecs;
             return new Length(value, LengthUnit.Kiloparsec);
         }
+
         /// <summary>
-        ///     Get Length from LightYears.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.LightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromLightYears(QuantityValue lightyears)
@@ -662,8 +716,9 @@ namespace UnitsNet
             double value = (double) lightyears;
             return new Length(value, LengthUnit.LightYear);
         }
+
         /// <summary>
-        ///     Get Length from MegalightYears.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.MegalightYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMegalightYears(QuantityValue megalightyears)
@@ -671,8 +726,9 @@ namespace UnitsNet
             double value = (double) megalightyears;
             return new Length(value, LengthUnit.MegalightYear);
         }
+
         /// <summary>
-        ///     Get Length from Megaparsecs.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megaparsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMegaparsecs(QuantityValue megaparsecs)
@@ -680,8 +736,9 @@ namespace UnitsNet
             double value = (double) megaparsecs;
             return new Length(value, LengthUnit.Megaparsec);
         }
+
         /// <summary>
-        ///     Get Length from Meters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Meter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMeters(QuantityValue meters)
@@ -689,8 +746,9 @@ namespace UnitsNet
             double value = (double) meters;
             return new Length(value, LengthUnit.Meter);
         }
+
         /// <summary>
-        ///     Get Length from Microinches.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Microinch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMicroinches(QuantityValue microinches)
@@ -698,8 +756,9 @@ namespace UnitsNet
             double value = (double) microinches;
             return new Length(value, LengthUnit.Microinch);
         }
+
         /// <summary>
-        ///     Get Length from Micrometers.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Micrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMicrometers(QuantityValue micrometers)
@@ -707,8 +766,9 @@ namespace UnitsNet
             double value = (double) micrometers;
             return new Length(value, LengthUnit.Micrometer);
         }
+
         /// <summary>
-        ///     Get Length from Mils.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMils(QuantityValue mils)
@@ -716,8 +776,9 @@ namespace UnitsNet
             double value = (double) mils;
             return new Length(value, LengthUnit.Mil);
         }
+
         /// <summary>
-        ///     Get Length from Miles.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMiles(QuantityValue miles)
@@ -725,8 +786,9 @@ namespace UnitsNet
             double value = (double) miles;
             return new Length(value, LengthUnit.Mile);
         }
+
         /// <summary>
-        ///     Get Length from Millimeters.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Millimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMillimeters(QuantityValue millimeters)
@@ -734,8 +796,9 @@ namespace UnitsNet
             double value = (double) millimeters;
             return new Length(value, LengthUnit.Millimeter);
         }
+
         /// <summary>
-        ///     Get Length from Nanometers.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Nanometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromNanometers(QuantityValue nanometers)
@@ -743,8 +806,9 @@ namespace UnitsNet
             double value = (double) nanometers;
             return new Length(value, LengthUnit.Nanometer);
         }
+
         /// <summary>
-        ///     Get Length from NauticalMiles.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.NauticalMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromNauticalMiles(QuantityValue nauticalmiles)
@@ -752,8 +816,9 @@ namespace UnitsNet
             double value = (double) nauticalmiles;
             return new Length(value, LengthUnit.NauticalMile);
         }
+
         /// <summary>
-        ///     Get Length from Parsecs.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Parsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromParsecs(QuantityValue parsecs)
@@ -761,8 +826,9 @@ namespace UnitsNet
             double value = (double) parsecs;
             return new Length(value, LengthUnit.Parsec);
         }
+
         /// <summary>
-        ///     Get Length from PrinterPicas.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPica"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromPrinterPicas(QuantityValue printerpicas)
@@ -770,8 +836,9 @@ namespace UnitsNet
             double value = (double) printerpicas;
             return new Length(value, LengthUnit.PrinterPica);
         }
+
         /// <summary>
-        ///     Get Length from PrinterPoints.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPoint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromPrinterPoints(QuantityValue printerpoints)
@@ -779,8 +846,9 @@ namespace UnitsNet
             double value = (double) printerpoints;
             return new Length(value, LengthUnit.PrinterPoint);
         }
+
         /// <summary>
-        ///     Get Length from Shackles.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Shackle"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromShackles(QuantityValue shackles)
@@ -788,8 +856,9 @@ namespace UnitsNet
             double value = (double) shackles;
             return new Length(value, LengthUnit.Shackle);
         }
+
         /// <summary>
-        ///     Get Length from SolarRadiuses.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.SolarRadius"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromSolarRadiuses(QuantityValue solarradiuses)
@@ -797,8 +866,9 @@ namespace UnitsNet
             double value = (double) solarradiuses;
             return new Length(value, LengthUnit.SolarRadius);
         }
+
         /// <summary>
-        ///     Get Length from Twips.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Twip"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromTwips(QuantityValue twips)
@@ -806,8 +876,9 @@ namespace UnitsNet
             double value = (double) twips;
             return new Length(value, LengthUnit.Twip);
         }
+
         /// <summary>
-        ///     Get Length from UsSurveyFeet.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.UsSurveyFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromUsSurveyFeet(QuantityValue ussurveyfeet)
@@ -815,8 +886,9 @@ namespace UnitsNet
             double value = (double) ussurveyfeet;
             return new Length(value, LengthUnit.UsSurveyFoot);
         }
+
         /// <summary>
-        ///     Get Length from Yards.
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Yard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromYards(QuantityValue yards)
@@ -1057,8 +1129,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Length objLength)) throw new ArgumentException("Expected type Length.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Length objLength)) throw new ArgumentException("Expected type Length.", nameof(obj));
 
             return CompareTo(objLength);
         }
@@ -1111,7 +1183,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Length other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -1139,7 +1211,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(LengthUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -1149,13 +1221,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -1164,7 +1236,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is LengthUnit unitAsLengthUnit))
+            if (!(unit is LengthUnit unitAsLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
 
             return As(unitAsLengthUnit);
@@ -1188,18 +1260,18 @@ namespace UnitsNet
         /// <returns>A Length with the specified unit.</returns>
         public Length ToUnit(LengthUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Length), Unit, typeof(Length), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Length), Unit, typeof(Length), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Length)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1214,31 +1286,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is LengthUnit unitAsLengthUnit))
+            if (!(unit is LengthUnit unitAsLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsLengthUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is LengthUnit unitAsLengthUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsLengthUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Length ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1251,16 +1314,13 @@ namespace UnitsNet
         IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(LengthUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -1379,13 +1439,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Length))
+            if (conversionType == typeof(Length))
                 return this;
-            else if(conversionType == typeof(LengthUnit))
+            else if (conversionType == typeof(LengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Length.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Length.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Length)} to {conversionType} is not supported.");

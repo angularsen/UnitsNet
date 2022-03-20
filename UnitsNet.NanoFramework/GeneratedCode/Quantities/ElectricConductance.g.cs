@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricConductanceUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricConductance MinValue { get; } = new ElectricConductance(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -81,17 +83,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricConductance in Microsiemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Microsiemens"/>
         /// </summary>
         public double Microsiemens => As(ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Get ElectricConductance in Millisiemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millisiemens"/>
         /// </summary>
         public double Millisiemens => As(ElectricConductanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Get ElectricConductance in Siemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Siemens"/>
         /// </summary>
         public double Siemens => As(ElectricConductanceUnit.Siemens);
 
@@ -100,23 +102,22 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricConductance from Microsiemens.
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Microsiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromMicrosiemens(double microsiemens) => new ElectricConductance(microsiemens, ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Get ElectricConductance from Millisiemens.
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromMillisiemens(double millisiemens) => new ElectricConductance(millisiemens, ElectricConductanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Get ElectricConductance from Siemens.
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Siemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromSiemens(double siemens) => new ElectricConductance(siemens, ElectricConductanceUnit.Siemens);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricConductanceUnit" /> to <see cref="ElectricConductance" />.
@@ -131,60 +132,57 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricConductanceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricConductanceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricConductance ToUnit(ElectricConductanceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricConductance(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricConductance ToUnit(ElectricConductanceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricConductance(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricConductanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricConductanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricConductanceUnit.Siemens: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricConductanceUnit.Microsiemens => (_value) * 1e-6d,
+                        ElectricConductanceUnit.Millisiemens => (_value) * 1e-3d,
+                        ElectricConductanceUnit.Siemens => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricConductanceUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricConductanceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricConductanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
-                case ElectricConductanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
-                case ElectricConductanceUnit.Siemens: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ElectricConductanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
+                        ElectricConductanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
+                        ElectricConductanceUnit.Siemens => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

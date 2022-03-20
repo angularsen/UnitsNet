@@ -85,7 +85,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -111,7 +110,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public VolumeConcentration(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -180,102 +179,102 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get VolumeConcentration in CentilitersPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.CentilitersPerLiter"/>
         /// </summary>
         public double CentilitersPerLiter => As(VolumeConcentrationUnit.CentilitersPerLiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in CentilitersPerMililiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.CentilitersPerMililiter"/>
         /// </summary>
         public double CentilitersPerMililiter => As(VolumeConcentrationUnit.CentilitersPerMililiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in DecilitersPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DecilitersPerLiter"/>
         /// </summary>
         public double DecilitersPerLiter => As(VolumeConcentrationUnit.DecilitersPerLiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in DecilitersPerMililiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DecilitersPerMililiter"/>
         /// </summary>
         public double DecilitersPerMililiter => As(VolumeConcentrationUnit.DecilitersPerMililiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in DecimalFractions.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DecimalFraction"/>
         /// </summary>
         public double DecimalFractions => As(VolumeConcentrationUnit.DecimalFraction);
 
         /// <summary>
-        ///     Get VolumeConcentration in LitersPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.LitersPerLiter"/>
         /// </summary>
         public double LitersPerLiter => As(VolumeConcentrationUnit.LitersPerLiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in LitersPerMililiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.LitersPerMililiter"/>
         /// </summary>
         public double LitersPerMililiter => As(VolumeConcentrationUnit.LitersPerMililiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in MicrolitersPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MicrolitersPerLiter"/>
         /// </summary>
         public double MicrolitersPerLiter => As(VolumeConcentrationUnit.MicrolitersPerLiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in MicrolitersPerMililiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter"/>
         /// </summary>
         public double MicrolitersPerMililiter => As(VolumeConcentrationUnit.MicrolitersPerMililiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in MillilitersPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MillilitersPerLiter"/>
         /// </summary>
         public double MillilitersPerLiter => As(VolumeConcentrationUnit.MillilitersPerLiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in MillilitersPerMililiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MillilitersPerMililiter"/>
         /// </summary>
         public double MillilitersPerMililiter => As(VolumeConcentrationUnit.MillilitersPerMililiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in NanolitersPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.NanolitersPerLiter"/>
         /// </summary>
         public double NanolitersPerLiter => As(VolumeConcentrationUnit.NanolitersPerLiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in NanolitersPerMililiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.NanolitersPerMililiter"/>
         /// </summary>
         public double NanolitersPerMililiter => As(VolumeConcentrationUnit.NanolitersPerMililiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in PartsPerBillion.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerBillion"/>
         /// </summary>
         public double PartsPerBillion => As(VolumeConcentrationUnit.PartPerBillion);
 
         /// <summary>
-        ///     Get VolumeConcentration in PartsPerMillion.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerMillion"/>
         /// </summary>
         public double PartsPerMillion => As(VolumeConcentrationUnit.PartPerMillion);
 
         /// <summary>
-        ///     Get VolumeConcentration in PartsPerThousand.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerThousand"/>
         /// </summary>
         public double PartsPerThousand => As(VolumeConcentrationUnit.PartPerThousand);
 
         /// <summary>
-        ///     Get VolumeConcentration in PartsPerTrillion.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerTrillion"/>
         /// </summary>
         public double PartsPerTrillion => As(VolumeConcentrationUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Get VolumeConcentration in Percent.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.Percent"/>
         /// </summary>
         public double Percent => As(VolumeConcentrationUnit.Percent);
 
         /// <summary>
-        ///     Get VolumeConcentration in PicolitersPerLiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PicolitersPerLiter"/>
         /// </summary>
         public double PicolitersPerLiter => As(VolumeConcentrationUnit.PicolitersPerLiter);
 
         /// <summary>
-        ///     Get VolumeConcentration in PicolitersPerMililiter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PicolitersPerMililiter"/>
         /// </summary>
         public double PicolitersPerMililiter => As(VolumeConcentrationUnit.PicolitersPerMililiter);
 
@@ -291,71 +290,72 @@ namespace UnitsNet
         {
             // Register in unit converter: BaseUnit -> VolumeConcentrationUnit
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerLiter, quantity => new VolumeConcentration((quantity.Value) / 1e-2d, VolumeConcentrationUnit.CentilitersPerLiter));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerMililiter, quantity => new VolumeConcentration((quantity.Value*1e-3) / 1e-2d, VolumeConcentrationUnit.CentilitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.CentilitersPerMililiter, quantity => new VolumeConcentration((quantity.Value * 1e-3) / 1e-2d, VolumeConcentrationUnit.CentilitersPerMililiter));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerLiter, quantity => new VolumeConcentration((quantity.Value) / 1e-1d, VolumeConcentrationUnit.DecilitersPerLiter));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerMililiter, quantity => new VolumeConcentration((quantity.Value*1e-3) / 1e-1d, VolumeConcentrationUnit.DecilitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecilitersPerMililiter, quantity => new VolumeConcentration((quantity.Value * 1e-3) / 1e-1d, VolumeConcentrationUnit.DecilitersPerMililiter));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerLiter, quantity => new VolumeConcentration(quantity.Value, VolumeConcentrationUnit.LitersPerLiter));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerMililiter, quantity => new VolumeConcentration(quantity.Value*1e-3, VolumeConcentrationUnit.LitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.LitersPerMililiter, quantity => new VolumeConcentration(quantity.Value * 1e-3, VolumeConcentrationUnit.LitersPerMililiter));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerLiter, quantity => new VolumeConcentration((quantity.Value) / 1e-6d, VolumeConcentrationUnit.MicrolitersPerLiter));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerMililiter, quantity => new VolumeConcentration((quantity.Value*1e-3) / 1e-6d, VolumeConcentrationUnit.MicrolitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MicrolitersPerMililiter, quantity => new VolumeConcentration((quantity.Value * 1e-3) / 1e-6d, VolumeConcentrationUnit.MicrolitersPerMililiter));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerLiter, quantity => new VolumeConcentration((quantity.Value) / 1e-3d, VolumeConcentrationUnit.MillilitersPerLiter));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerMililiter, quantity => new VolumeConcentration((quantity.Value*1e-3) / 1e-3d, VolumeConcentrationUnit.MillilitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.MillilitersPerMililiter, quantity => new VolumeConcentration((quantity.Value * 1e-3) / 1e-3d, VolumeConcentrationUnit.MillilitersPerMililiter));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerLiter, quantity => new VolumeConcentration((quantity.Value) / 1e-9d, VolumeConcentrationUnit.NanolitersPerLiter));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerMililiter, quantity => new VolumeConcentration((quantity.Value*1e-3) / 1e-9d, VolumeConcentrationUnit.NanolitersPerMililiter));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerBillion, quantity => new VolumeConcentration(quantity.Value*1e9, VolumeConcentrationUnit.PartPerBillion));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerMillion, quantity => new VolumeConcentration(quantity.Value*1e6, VolumeConcentrationUnit.PartPerMillion));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerThousand, quantity => new VolumeConcentration(quantity.Value*1e3, VolumeConcentrationUnit.PartPerThousand));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerTrillion, quantity => new VolumeConcentration(quantity.Value*1e12, VolumeConcentrationUnit.PartPerTrillion));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.Percent, quantity => new VolumeConcentration(quantity.Value*1e2, VolumeConcentrationUnit.Percent));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.NanolitersPerMililiter, quantity => new VolumeConcentration((quantity.Value * 1e-3) / 1e-9d, VolumeConcentrationUnit.NanolitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerBillion, quantity => new VolumeConcentration(quantity.Value * 1e9, VolumeConcentrationUnit.PartPerBillion));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerMillion, quantity => new VolumeConcentration(quantity.Value * 1e6, VolumeConcentrationUnit.PartPerMillion));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerThousand, quantity => new VolumeConcentration(quantity.Value * 1e3, VolumeConcentrationUnit.PartPerThousand));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PartPerTrillion, quantity => new VolumeConcentration(quantity.Value * 1e12, VolumeConcentrationUnit.PartPerTrillion));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.Percent, quantity => new VolumeConcentration(quantity.Value * 1e2, VolumeConcentrationUnit.Percent));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerLiter, quantity => new VolumeConcentration((quantity.Value) / 1e-12d, VolumeConcentrationUnit.PicolitersPerLiter));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerMililiter, quantity => new VolumeConcentration((quantity.Value*1e-3) / 1e-12d, VolumeConcentrationUnit.PicolitersPerMililiter));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerMililiter, quantity => new VolumeConcentration((quantity.Value * 1e-3) / 1e-12d, VolumeConcentrationUnit.PicolitersPerMililiter));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.DecimalFraction, quantity => quantity);
 
             // Register in unit converter: VolumeConcentrationUnit -> BaseUnit
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.CentilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value) * 1e-2d, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.CentilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value/1e-3) * 1e-2d, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.CentilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value / 1e-3) * 1e-2d, VolumeConcentrationUnit.DecimalFraction));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value) * 1e-1d, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value/1e-3) * 1e-1d, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value / 1e-3) * 1e-1d, VolumeConcentrationUnit.DecimalFraction));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.LitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.LitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value/1e-3, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.LitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value / 1e-3, VolumeConcentrationUnit.DecimalFraction));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MicrolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value) * 1e-6d, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MicrolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value/1e-3) * 1e-6d, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MicrolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value / 1e-3) * 1e-6d, VolumeConcentrationUnit.DecimalFraction));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MillilitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value) * 1e-3d, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MillilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value/1e-3) * 1e-3d, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.MillilitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value / 1e-3) * 1e-3d, VolumeConcentrationUnit.DecimalFraction));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.NanolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value) * 1e-9d, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.NanolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value/1e-3) * 1e-9d, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerBillion, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value/1e9, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerMillion, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value/1e6, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerThousand, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value/1e3, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerTrillion, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value/1e12, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.Percent, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value/1e2, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.NanolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value / 1e-3) * 1e-9d, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerBillion, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value / 1e9, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerMillion, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value / 1e6, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerThousand, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value / 1e3, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PartPerTrillion, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value / 1e12, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.Percent, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration(quantity.Value / 1e2, VolumeConcentrationUnit.DecimalFraction));
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerLiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value) * 1e-12d, VolumeConcentrationUnit.DecimalFraction));
-            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value/1e-3) * 1e-12d, VolumeConcentrationUnit.DecimalFraction));
+            unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.PicolitersPerMililiter, VolumeConcentrationUnit.DecimalFraction, quantity => new VolumeConcentration((quantity.Value / 1e-3) * 1e-12d, VolumeConcentrationUnit.DecimalFraction));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.CentilitersPerLiter, new CultureInfo("en-US"), new string[]{"cL/L"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.CentilitersPerMililiter, new CultureInfo("en-US"), new string[]{"cL/mL"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.DecilitersPerLiter, new CultureInfo("en-US"), new string[]{"dL/L"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.DecilitersPerMililiter, new CultureInfo("en-US"), new string[]{"dL/mL"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.DecimalFraction, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.LitersPerLiter, new CultureInfo("en-US"), new string[]{"L/L"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.LitersPerMililiter, new CultureInfo("en-US"), new string[]{"L/mL"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.MicrolitersPerLiter, new CultureInfo("en-US"), new string[]{"µL/L"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.MicrolitersPerMililiter, new CultureInfo("en-US"), new string[]{"µL/mL"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.MillilitersPerLiter, new CultureInfo("en-US"), new string[]{"mL/L"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.MillilitersPerMililiter, new CultureInfo("en-US"), new string[]{"mL/mL"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.NanolitersPerLiter, new CultureInfo("en-US"), new string[]{"nL/L"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.NanolitersPerMililiter, new CultureInfo("en-US"), new string[]{"nL/mL"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PartPerBillion, new CultureInfo("en-US"), new string[]{"ppb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PartPerMillion, new CultureInfo("en-US"), new string[]{"ppm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PartPerThousand, new CultureInfo("en-US"), new string[]{"‰"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PartPerTrillion, new CultureInfo("en-US"), new string[]{"ppt"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.Percent, new CultureInfo("en-US"), new string[]{"%", "% (v/v)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PicolitersPerLiter, new CultureInfo("en-US"), new string[]{"pL/L"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeConcentrationUnit.PicolitersPerMililiter, new CultureInfo("en-US"), new string[]{"pL/mL"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.CentilitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"cL/L"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.CentilitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"cL/mL"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.DecilitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"dL/L"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.DecilitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"dL/mL"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.DecimalFraction, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.LitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"L/L"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.LitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"L/mL"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.MicrolitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"µL/L"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.MicrolitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"µL/mL"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.MillilitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"mL/L"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.MillilitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"mL/mL"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.NanolitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"nL/L"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.NanolitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"nL/mL"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PartPerBillion, new CultureInfo("en-US"), false, true, new string[]{"ppb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PartPerMillion, new CultureInfo("en-US"), false, true, new string[]{"ppm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PartPerThousand, new CultureInfo("en-US"), false, true, new string[]{"‰"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PartPerTrillion, new CultureInfo("en-US"), false, true, new string[]{"ppt"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%", "% (v/v)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PicolitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"pL/L"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PicolitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"pL/mL"});
         }
 
         /// <summary>
@@ -384,7 +384,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get VolumeConcentration from CentilitersPerLiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.CentilitersPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromCentilitersPerLiter(QuantityValue centilitersperliter)
@@ -392,8 +392,9 @@ namespace UnitsNet
             double value = (double) centilitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.CentilitersPerLiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from CentilitersPerMililiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.CentilitersPerMililiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromCentilitersPerMililiter(QuantityValue centiliterspermililiter)
@@ -401,8 +402,9 @@ namespace UnitsNet
             double value = (double) centiliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.CentilitersPerMililiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from DecilitersPerLiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecilitersPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromDecilitersPerLiter(QuantityValue decilitersperliter)
@@ -410,8 +412,9 @@ namespace UnitsNet
             double value = (double) decilitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecilitersPerLiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from DecilitersPerMililiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecilitersPerMililiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromDecilitersPerMililiter(QuantityValue deciliterspermililiter)
@@ -419,8 +422,9 @@ namespace UnitsNet
             double value = (double) deciliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecilitersPerMililiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from DecimalFractions.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecimalFraction"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromDecimalFractions(QuantityValue decimalfractions)
@@ -428,8 +432,9 @@ namespace UnitsNet
             double value = (double) decimalfractions;
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecimalFraction);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from LitersPerLiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.LitersPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromLitersPerLiter(QuantityValue litersperliter)
@@ -437,8 +442,9 @@ namespace UnitsNet
             double value = (double) litersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.LitersPerLiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from LitersPerMililiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.LitersPerMililiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromLitersPerMililiter(QuantityValue literspermililiter)
@@ -446,8 +452,9 @@ namespace UnitsNet
             double value = (double) literspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.LitersPerMililiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from MicrolitersPerLiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MicrolitersPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromMicrolitersPerLiter(QuantityValue microlitersperliter)
@@ -455,8 +462,9 @@ namespace UnitsNet
             double value = (double) microlitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.MicrolitersPerLiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from MicrolitersPerMililiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MicrolitersPerMililiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromMicrolitersPerMililiter(QuantityValue microliterspermililiter)
@@ -464,8 +472,9 @@ namespace UnitsNet
             double value = (double) microliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.MicrolitersPerMililiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from MillilitersPerLiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MillilitersPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromMillilitersPerLiter(QuantityValue millilitersperliter)
@@ -473,8 +482,9 @@ namespace UnitsNet
             double value = (double) millilitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.MillilitersPerLiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from MillilitersPerMililiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MillilitersPerMililiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromMillilitersPerMililiter(QuantityValue milliliterspermililiter)
@@ -482,8 +492,9 @@ namespace UnitsNet
             double value = (double) milliliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.MillilitersPerMililiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from NanolitersPerLiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.NanolitersPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromNanolitersPerLiter(QuantityValue nanolitersperliter)
@@ -491,8 +502,9 @@ namespace UnitsNet
             double value = (double) nanolitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.NanolitersPerLiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from NanolitersPerMililiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.NanolitersPerMililiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromNanolitersPerMililiter(QuantityValue nanoliterspermililiter)
@@ -500,8 +512,9 @@ namespace UnitsNet
             double value = (double) nanoliterspermililiter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.NanolitersPerMililiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from PartsPerBillion.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerBillion"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPartsPerBillion(QuantityValue partsperbillion)
@@ -509,8 +522,9 @@ namespace UnitsNet
             double value = (double) partsperbillion;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerBillion);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from PartsPerMillion.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerMillion"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPartsPerMillion(QuantityValue partspermillion)
@@ -518,8 +532,9 @@ namespace UnitsNet
             double value = (double) partspermillion;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerMillion);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from PartsPerThousand.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerThousand"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPartsPerThousand(QuantityValue partsperthousand)
@@ -527,8 +542,9 @@ namespace UnitsNet
             double value = (double) partsperthousand;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerThousand);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from PartsPerTrillion.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerTrillion"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPartsPerTrillion(QuantityValue partspertrillion)
@@ -536,8 +552,9 @@ namespace UnitsNet
             double value = (double) partspertrillion;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerTrillion);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from Percent.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.Percent"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPercent(QuantityValue percent)
@@ -545,8 +562,9 @@ namespace UnitsNet
             double value = (double) percent;
             return new VolumeConcentration(value, VolumeConcentrationUnit.Percent);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from PicolitersPerLiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PicolitersPerLiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPicolitersPerLiter(QuantityValue picolitersperliter)
@@ -554,8 +572,9 @@ namespace UnitsNet
             double value = (double) picolitersperliter;
             return new VolumeConcentration(value, VolumeConcentrationUnit.PicolitersPerLiter);
         }
+
         /// <summary>
-        ///     Get VolumeConcentration from PicolitersPerMililiter.
+        ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PicolitersPerMililiter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static VolumeConcentration FromPicolitersPerMililiter(QuantityValue picoliterspermililiter)
@@ -796,8 +815,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is VolumeConcentration objVolumeConcentration)) throw new ArgumentException("Expected type VolumeConcentration.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is VolumeConcentration objVolumeConcentration)) throw new ArgumentException("Expected type VolumeConcentration.", nameof(obj));
 
             return CompareTo(objVolumeConcentration);
         }
@@ -850,7 +869,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(VolumeConcentration other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -878,7 +897,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(VolumeConcentrationUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -888,13 +907,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -903,7 +922,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
+            if (!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
 
             return As(unitAsVolumeConcentrationUnit);
@@ -927,18 +946,18 @@ namespace UnitsNet
         /// <returns>A VolumeConcentration with the specified unit.</returns>
         public VolumeConcentration ToUnit(VolumeConcentrationUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(VolumeConcentration), Unit, typeof(VolumeConcentration), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(VolumeConcentration), Unit, typeof(VolumeConcentration), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (VolumeConcentration)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -953,31 +972,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
+            if (!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsVolumeConcentrationUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsVolumeConcentrationUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public VolumeConcentration ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -990,16 +1000,13 @@ namespace UnitsNet
         IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(VolumeConcentrationUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(VolumeConcentrationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(VolumeConcentrationUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -1118,13 +1125,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(VolumeConcentration))
+            if (conversionType == typeof(VolumeConcentration))
                 return this;
-            else if(conversionType == typeof(VolumeConcentrationUnit))
+            else if (conversionType == typeof(VolumeConcentrationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return VolumeConcentration.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return VolumeConcentration.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(VolumeConcentration)} to {conversionType} is not supported.");

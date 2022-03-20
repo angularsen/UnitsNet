@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricInductanceUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricInductance MinValue { get; } = new ElectricInductance(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -81,22 +83,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricInductance in Henries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Henry"/>
         /// </summary>
         public double Henries => As(ElectricInductanceUnit.Henry);
 
         /// <summary>
-        ///     Get ElectricInductance in Microhenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Microhenry"/>
         /// </summary>
         public double Microhenries => As(ElectricInductanceUnit.Microhenry);
 
         /// <summary>
-        ///     Get ElectricInductance in Millihenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Millihenry"/>
         /// </summary>
         public double Millihenries => As(ElectricInductanceUnit.Millihenry);
 
         /// <summary>
-        ///     Get ElectricInductance in Nanohenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Nanohenry"/>
         /// </summary>
         public double Nanohenries => As(ElectricInductanceUnit.Nanohenry);
 
@@ -105,29 +107,28 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricInductance from Henries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Henry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromHenries(double henries) => new ElectricInductance(henries, ElectricInductanceUnit.Henry);
 
         /// <summary>
-        ///     Get ElectricInductance from Microhenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMicrohenries(double microhenries) => new ElectricInductance(microhenries, ElectricInductanceUnit.Microhenry);
 
         /// <summary>
-        ///     Get ElectricInductance from Millihenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMillihenries(double millihenries) => new ElectricInductance(millihenries, ElectricInductanceUnit.Millihenry);
 
         /// <summary>
-        ///     Get ElectricInductance from Nanohenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromNanohenries(double nanohenries) => new ElectricInductance(nanohenries, ElectricInductanceUnit.Nanohenry);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricInductanceUnit" /> to <see cref="ElectricInductance" />.
@@ -142,62 +143,59 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricInductanceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricInductanceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricInductance ToUnit(ElectricInductanceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricInductance(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricInductance ToUnit(ElectricInductanceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricInductance(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricInductanceUnit.Henry: return _value;
-                case ElectricInductanceUnit.Microhenry: return (_value) * 1e-6d;
-                case ElectricInductanceUnit.Millihenry: return (_value) * 1e-3d;
-                case ElectricInductanceUnit.Nanohenry: return (_value) * 1e-9d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricInductanceUnit.Henry => _value,
+                        ElectricInductanceUnit.Microhenry => (_value) * 1e-6d,
+                        ElectricInductanceUnit.Millihenry => (_value) * 1e-3d,
+                        ElectricInductanceUnit.Nanohenry => (_value) * 1e-9d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricInductanceUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricInductanceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricInductanceUnit.Henry: return baseUnitValue;
-                case ElectricInductanceUnit.Microhenry: return (baseUnitValue) / 1e-6d;
-                case ElectricInductanceUnit.Millihenry: return (baseUnitValue) / 1e-3d;
-                case ElectricInductanceUnit.Nanohenry: return (baseUnitValue) / 1e-9d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ElectricInductanceUnit.Henry => baseUnitValue,
+                        ElectricInductanceUnit.Microhenry => (baseUnitValue) / 1e-6d,
+                        ElectricInductanceUnit.Millihenry => (baseUnitValue) / 1e-3d,
+                        ElectricInductanceUnit.Nanohenry => (baseUnitValue) / 1e-9d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

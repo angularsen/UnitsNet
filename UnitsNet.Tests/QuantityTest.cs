@@ -21,6 +21,7 @@ namespace UnitsNet.Tests
         [InlineData(double.NegativeInfinity)]
         public void From_GivenNaNOrInfinity_ThrowsArgumentException(double value)
         {
+            Quantity.Infos.Select(qi=>qi.ValueType);
             Assert.Throws<ArgumentException>(() => Quantity.From(value, LengthUnit.Centimeter));
         }
 

@@ -68,7 +68,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -94,7 +93,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricCurrentDensity(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -163,17 +162,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>
         /// </summary>
         public double AmperesPerSquareFoot => As(ElectricCurrentDensityUnit.AmperePerSquareFoot);
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>
         /// </summary>
         public double AmperesPerSquareInch => As(ElectricCurrentDensityUnit.AmperePerSquareInch);
 
         /// <summary>
-        ///     Get ElectricCurrentDensity in AmperesPerSquareMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>
         /// </summary>
         public double AmperesPerSquareMeter => As(ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
@@ -190,6 +189,7 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ElectricCurrentDensityUnit
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot, quantity => new ElectricCurrentDensity(quantity.Value / 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareFoot));
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch, quantity => new ElectricCurrentDensity(quantity.Value / 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareInch));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => quantity);
 
@@ -200,9 +200,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), new string[]{"A/ft²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareInch, new CultureInfo("en-US"), new string[]{"A/in²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricCurrentDensityUnit.AmperePerSquareMeter, new CultureInfo("en-US"), new string[]{"A/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"A/ft²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"A/in²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentDensityUnit.AmperePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"A/m²"});
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareFoot.
+        ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareFoot(QuantityValue amperespersquarefoot)
@@ -239,8 +239,9 @@ namespace UnitsNet
             double value = (double) amperespersquarefoot;
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareFoot);
         }
+
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareInch.
+        ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareInch(QuantityValue amperespersquareinch)
@@ -248,8 +249,9 @@ namespace UnitsNet
             double value = (double) amperespersquareinch;
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareInch);
         }
+
         /// <summary>
-        ///     Get ElectricCurrentDensity from AmperesPerSquareMeter.
+        ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareMeter(QuantityValue amperespersquaremeter)
@@ -490,8 +492,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricCurrentDensity objElectricCurrentDensity)) throw new ArgumentException("Expected type ElectricCurrentDensity.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ElectricCurrentDensity objElectricCurrentDensity)) throw new ArgumentException("Expected type ElectricCurrentDensity.", nameof(obj));
 
             return CompareTo(objElectricCurrentDensity);
         }
@@ -544,7 +546,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ElectricCurrentDensity other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -572,7 +574,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricCurrentDensityUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -582,13 +584,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -597,7 +599,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ElectricCurrentDensityUnit unitAsElectricCurrentDensityUnit))
+            if (!(unit is ElectricCurrentDensityUnit unitAsElectricCurrentDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
 
             return As(unitAsElectricCurrentDensityUnit);
@@ -621,18 +623,18 @@ namespace UnitsNet
         /// <returns>A ElectricCurrentDensity with the specified unit.</returns>
         public ElectricCurrentDensity ToUnit(ElectricCurrentDensityUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ElectricCurrentDensity), Unit, typeof(ElectricCurrentDensity), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ElectricCurrentDensity), Unit, typeof(ElectricCurrentDensity), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ElectricCurrentDensity)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -647,31 +649,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricCurrentDensityUnit unitAsElectricCurrentDensityUnit))
+            if (!(unit is ElectricCurrentDensityUnit unitAsElectricCurrentDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsElectricCurrentDensityUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is ElectricCurrentDensityUnit unitAsElectricCurrentDensityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsElectricCurrentDensityUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricCurrentDensity ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -684,16 +677,13 @@ namespace UnitsNet
         IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(ElectricCurrentDensityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(ElectricCurrentDensityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(ElectricCurrentDensityUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -812,13 +802,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricCurrentDensity))
+            if (conversionType == typeof(ElectricCurrentDensity))
                 return this;
-            else if(conversionType == typeof(ElectricCurrentDensityUnit))
+            else if (conversionType == typeof(ElectricCurrentDensityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ElectricCurrentDensity.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ElectricCurrentDensity.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity)} to {conversionType} is not supported.");

@@ -68,7 +68,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -94,7 +93,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricConductivity(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -163,17 +162,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/>
         /// </summary>
         public double SiemensPerFoot => As(ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerInch"/>
         /// </summary>
         public double SiemensPerInch => As(ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerMeter"/>
         /// </summary>
         public double SiemensPerMeter => As(ElectricConductivityUnit.SiemensPerMeter);
 
@@ -190,6 +189,7 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> ElectricConductivityUnit
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerFoot, quantity => new ElectricConductivity(quantity.Value / 3.2808398950131234, ElectricConductivityUnit.SiemensPerFoot));
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerInch, quantity => new ElectricConductivity(quantity.Value / 3.937007874015748e1, ElectricConductivityUnit.SiemensPerInch));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductivity>(ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerMeter, quantity => quantity);
 
@@ -200,9 +200,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), new string[]{"S/ft"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerInch, new CultureInfo("en-US"), new string[]{"S/in"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricConductivityUnit.SiemensPerMeter, new CultureInfo("en-US"), new string[]{"S/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), false, true, new string[]{"S/ft"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerInch, new CultureInfo("en-US"), false, true, new string[]{"S/in"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerMeter, new CultureInfo("en-US"), false, true, new string[]{"S/m"});
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerFoot.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerFoot(QuantityValue siemensperfoot)
@@ -239,8 +239,9 @@ namespace UnitsNet
             double value = (double) siemensperfoot;
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerFoot);
         }
+
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerInch.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerInch(QuantityValue siemensperinch)
@@ -248,8 +249,9 @@ namespace UnitsNet
             double value = (double) siemensperinch;
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerInch);
         }
+
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerMeter.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerMeter(QuantityValue siemenspermeter)
@@ -490,8 +492,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricConductivity objElectricConductivity)) throw new ArgumentException("Expected type ElectricConductivity.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ElectricConductivity objElectricConductivity)) throw new ArgumentException("Expected type ElectricConductivity.", nameof(obj));
 
             return CompareTo(objElectricConductivity);
         }
@@ -544,7 +546,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ElectricConductivity other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -572,7 +574,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricConductivityUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -582,13 +584,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -597,7 +599,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ElectricConductivityUnit unitAsElectricConductivityUnit))
+            if (!(unit is ElectricConductivityUnit unitAsElectricConductivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductivityUnit)} is supported.", nameof(unit));
 
             return As(unitAsElectricConductivityUnit);
@@ -621,18 +623,18 @@ namespace UnitsNet
         /// <returns>A ElectricConductivity with the specified unit.</returns>
         public ElectricConductivity ToUnit(ElectricConductivityUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ElectricConductivity), Unit, typeof(ElectricConductivity), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ElectricConductivity), Unit, typeof(ElectricConductivity), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ElectricConductivity)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -647,31 +649,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricConductivityUnit unitAsElectricConductivityUnit))
+            if (!(unit is ElectricConductivityUnit unitAsElectricConductivityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductivityUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsElectricConductivityUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is ElectricConductivityUnit unitAsElectricConductivityUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductivityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsElectricConductivityUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricConductivity ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -684,16 +677,13 @@ namespace UnitsNet
         IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(ElectricConductivityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(ElectricConductivityUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(ElectricConductivityUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -812,13 +802,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricConductivity))
+            if (conversionType == typeof(ElectricConductivity))
                 return this;
-            else if(conversionType == typeof(ElectricConductivityUnit))
+            else if (conversionType == typeof(ElectricConductivityUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ElectricConductivity.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ElectricConductivity.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ElectricConductivity)} to {conversionType} is not supported.");

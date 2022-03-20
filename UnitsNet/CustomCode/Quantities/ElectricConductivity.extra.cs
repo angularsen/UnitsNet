@@ -13,7 +13,7 @@ namespace UnitsNet
         /// <returns>The inverse or <see cref="ElectricResistivity"/> of this unit.</returns>
         public ElectricResistivity Inverse()
         {
-            if( SiemensPerMeter == 0.0 )
+            if (SiemensPerMeter == 0.0)
                 return new ElectricResistivity( 0.0, ElectricResistivityUnit.OhmMeter );
 
             return new ElectricResistivity( 1 / SiemensPerMeter, ElectricResistivityUnit.OhmMeter );

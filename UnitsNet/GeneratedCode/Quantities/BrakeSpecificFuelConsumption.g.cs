@@ -65,7 +65,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -91,7 +90,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public BrakeSpecificFuelConsumption(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -160,17 +159,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in GramsPerKiloWattHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>
         /// </summary>
         public double GramsPerKiloWattHour => As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in KilogramsPerJoule.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>
         /// </summary>
         public double KilogramsPerJoule => As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption in PoundsPerMechanicalHorsepowerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>
         /// </summary>
         public double PoundsPerMechanicalHorsepowerHour => As(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
 
@@ -185,21 +184,22 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> BrakeSpecificFuelConsumptionUnit
-            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, quantity => new BrakeSpecificFuelConsumption(quantity.Value*3.6e9, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour));
-            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, quantity => new BrakeSpecificFuelConsumption(quantity.Value/1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
+            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, quantity => new BrakeSpecificFuelConsumption(quantity.Value * 3.6e9, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour));
+            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, quantity => new BrakeSpecificFuelConsumption(quantity.Value / 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => quantity);
 
             // Register in unit converter: BrakeSpecificFuelConsumptionUnit -> BaseUnit
-            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => new BrakeSpecificFuelConsumption(quantity.Value/3.6e9, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
-            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => new BrakeSpecificFuelConsumption(quantity.Value*1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
+            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => new BrakeSpecificFuelConsumption(quantity.Value / 3.6e9, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
+            unitConverter.SetConversionFunction<BrakeSpecificFuelConsumption>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, quantity => new BrakeSpecificFuelConsumption(quantity.Value * 1.689659410672e-7, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, new CultureInfo("en-US"), new string[]{"g/kWh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, new CultureInfo("en-US"), new string[]{"kg/J"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, new CultureInfo("en-US"), new string[]{"lb/hph"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, new CultureInfo("en-US"), false, true, new string[]{"g/kWh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, new CultureInfo("en-US"), false, true, new string[]{"kg/J"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, new CultureInfo("en-US"), false, true, new string[]{"lb/hph"});
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(QuantityValue gramsperkilowatthour)
@@ -236,8 +236,9 @@ namespace UnitsNet
             double value = (double) gramsperkilowatthour;
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
         }
+
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from KilogramsPerJoule.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(QuantityValue kilogramsperjoule)
@@ -245,8 +246,9 @@ namespace UnitsNet
             double value = (double) kilogramsperjoule;
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
         }
+
         /// <summary>
-        ///     Get BrakeSpecificFuelConsumption from PoundsPerMechanicalHorsepowerHour.
+        ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(QuantityValue poundspermechanicalhorsepowerhour)
@@ -487,8 +489,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is BrakeSpecificFuelConsumption objBrakeSpecificFuelConsumption)) throw new ArgumentException("Expected type BrakeSpecificFuelConsumption.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is BrakeSpecificFuelConsumption objBrakeSpecificFuelConsumption)) throw new ArgumentException("Expected type BrakeSpecificFuelConsumption.", nameof(obj));
 
             return CompareTo(objBrakeSpecificFuelConsumption);
         }
@@ -541,7 +543,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(BrakeSpecificFuelConsumption other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -569,7 +571,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(BrakeSpecificFuelConsumptionUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -579,13 +581,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -594,7 +596,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is BrakeSpecificFuelConsumptionUnit unitAsBrakeSpecificFuelConsumptionUnit))
+            if (!(unit is BrakeSpecificFuelConsumptionUnit unitAsBrakeSpecificFuelConsumptionUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BrakeSpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
             return As(unitAsBrakeSpecificFuelConsumptionUnit);
@@ -618,18 +620,18 @@ namespace UnitsNet
         /// <returns>A BrakeSpecificFuelConsumption with the specified unit.</returns>
         public BrakeSpecificFuelConsumption ToUnit(BrakeSpecificFuelConsumptionUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(BrakeSpecificFuelConsumption), Unit, typeof(BrakeSpecificFuelConsumption), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(BrakeSpecificFuelConsumption), Unit, typeof(BrakeSpecificFuelConsumption), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (BrakeSpecificFuelConsumption)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -644,31 +646,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is BrakeSpecificFuelConsumptionUnit unitAsBrakeSpecificFuelConsumptionUnit))
+            if (!(unit is BrakeSpecificFuelConsumptionUnit unitAsBrakeSpecificFuelConsumptionUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BrakeSpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsBrakeSpecificFuelConsumptionUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is BrakeSpecificFuelConsumptionUnit unitAsBrakeSpecificFuelConsumptionUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BrakeSpecificFuelConsumptionUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsBrakeSpecificFuelConsumptionUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public BrakeSpecificFuelConsumption ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -681,16 +674,13 @@ namespace UnitsNet
         IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(BrakeSpecificFuelConsumptionUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(BrakeSpecificFuelConsumptionUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(BrakeSpecificFuelConsumptionUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -809,13 +799,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(BrakeSpecificFuelConsumption))
+            if (conversionType == typeof(BrakeSpecificFuelConsumption))
                 return this;
-            else if(conversionType == typeof(BrakeSpecificFuelConsumptionUnit))
+            else if (conversionType == typeof(BrakeSpecificFuelConsumptionUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return BrakeSpecificFuelConsumption.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return BrakeSpecificFuelConsumption.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(BrakeSpecificFuelConsumption)} to {conversionType} is not supported.");

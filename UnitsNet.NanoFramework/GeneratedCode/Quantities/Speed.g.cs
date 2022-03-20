@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public SpeedUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Speed MinValue { get; } = new Speed(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,162 +80,162 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Speed in CentimetersPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerHour"/>
         /// </summary>
         public double CentimetersPerHour => As(SpeedUnit.CentimeterPerHour);
 
         /// <summary>
-        ///     Get Speed in CentimetersPerMinutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerMinute"/>
         /// </summary>
         public double CentimetersPerMinutes => As(SpeedUnit.CentimeterPerMinute);
 
         /// <summary>
-        ///     Get Speed in CentimetersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerSecond"/>
         /// </summary>
         public double CentimetersPerSecond => As(SpeedUnit.CentimeterPerSecond);
 
         /// <summary>
-        ///     Get Speed in DecimetersPerMinutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.DecimeterPerMinute"/>
         /// </summary>
         public double DecimetersPerMinutes => As(SpeedUnit.DecimeterPerMinute);
 
         /// <summary>
-        ///     Get Speed in DecimetersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.DecimeterPerSecond"/>
         /// </summary>
         public double DecimetersPerSecond => As(SpeedUnit.DecimeterPerSecond);
 
         /// <summary>
-        ///     Get Speed in FeetPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerHour"/>
         /// </summary>
         public double FeetPerHour => As(SpeedUnit.FootPerHour);
 
         /// <summary>
-        ///     Get Speed in FeetPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerMinute"/>
         /// </summary>
         public double FeetPerMinute => As(SpeedUnit.FootPerMinute);
 
         /// <summary>
-        ///     Get Speed in FeetPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerSecond"/>
         /// </summary>
         public double FeetPerSecond => As(SpeedUnit.FootPerSecond);
 
         /// <summary>
-        ///     Get Speed in InchesPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerHour"/>
         /// </summary>
         public double InchesPerHour => As(SpeedUnit.InchPerHour);
 
         /// <summary>
-        ///     Get Speed in InchesPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerMinute"/>
         /// </summary>
         public double InchesPerMinute => As(SpeedUnit.InchPerMinute);
 
         /// <summary>
-        ///     Get Speed in InchesPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerSecond"/>
         /// </summary>
         public double InchesPerSecond => As(SpeedUnit.InchPerSecond);
 
         /// <summary>
-        ///     Get Speed in KilometersPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerHour"/>
         /// </summary>
         public double KilometersPerHour => As(SpeedUnit.KilometerPerHour);
 
         /// <summary>
-        ///     Get Speed in KilometersPerMinutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerMinute"/>
         /// </summary>
         public double KilometersPerMinutes => As(SpeedUnit.KilometerPerMinute);
 
         /// <summary>
-        ///     Get Speed in KilometersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerSecond"/>
         /// </summary>
         public double KilometersPerSecond => As(SpeedUnit.KilometerPerSecond);
 
         /// <summary>
-        ///     Get Speed in Knots.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.Knot"/>
         /// </summary>
         public double Knots => As(SpeedUnit.Knot);
 
         /// <summary>
-        ///     Get Speed in MetersPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerHour"/>
         /// </summary>
         public double MetersPerHour => As(SpeedUnit.MeterPerHour);
 
         /// <summary>
-        ///     Get Speed in MetersPerMinutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerMinute"/>
         /// </summary>
         public double MetersPerMinutes => As(SpeedUnit.MeterPerMinute);
 
         /// <summary>
-        ///     Get Speed in MetersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerSecond"/>
         /// </summary>
         public double MetersPerSecond => As(SpeedUnit.MeterPerSecond);
 
         /// <summary>
-        ///     Get Speed in MicrometersPerMinutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MicrometerPerMinute"/>
         /// </summary>
         public double MicrometersPerMinutes => As(SpeedUnit.MicrometerPerMinute);
 
         /// <summary>
-        ///     Get Speed in MicrometersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MicrometerPerSecond"/>
         /// </summary>
         public double MicrometersPerSecond => As(SpeedUnit.MicrometerPerSecond);
 
         /// <summary>
-        ///     Get Speed in MilesPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MilePerHour"/>
         /// </summary>
         public double MilesPerHour => As(SpeedUnit.MilePerHour);
 
         /// <summary>
-        ///     Get Speed in MillimetersPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerHour"/>
         /// </summary>
         public double MillimetersPerHour => As(SpeedUnit.MillimeterPerHour);
 
         /// <summary>
-        ///     Get Speed in MillimetersPerMinutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerMinute"/>
         /// </summary>
         public double MillimetersPerMinutes => As(SpeedUnit.MillimeterPerMinute);
 
         /// <summary>
-        ///     Get Speed in MillimetersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerSecond"/>
         /// </summary>
         public double MillimetersPerSecond => As(SpeedUnit.MillimeterPerSecond);
 
         /// <summary>
-        ///     Get Speed in NanometersPerMinutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.NanometerPerMinute"/>
         /// </summary>
         public double NanometersPerMinutes => As(SpeedUnit.NanometerPerMinute);
 
         /// <summary>
-        ///     Get Speed in NanometersPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.NanometerPerSecond"/>
         /// </summary>
         public double NanometersPerSecond => As(SpeedUnit.NanometerPerSecond);
 
         /// <summary>
-        ///     Get Speed in UsSurveyFeetPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerHour"/>
         /// </summary>
         public double UsSurveyFeetPerHour => As(SpeedUnit.UsSurveyFootPerHour);
 
         /// <summary>
-        ///     Get Speed in UsSurveyFeetPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerMinute"/>
         /// </summary>
         public double UsSurveyFeetPerMinute => As(SpeedUnit.UsSurveyFootPerMinute);
 
         /// <summary>
-        ///     Get Speed in UsSurveyFeetPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerSecond"/>
         /// </summary>
         public double UsSurveyFeetPerSecond => As(SpeedUnit.UsSurveyFootPerSecond);
 
         /// <summary>
-        ///     Get Speed in YardsPerHour.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerHour"/>
         /// </summary>
         public double YardsPerHour => As(SpeedUnit.YardPerHour);
 
         /// <summary>
-        ///     Get Speed in YardsPerMinute.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerMinute"/>
         /// </summary>
         public double YardsPerMinute => As(SpeedUnit.YardPerMinute);
 
         /// <summary>
-        ///     Get Speed in YardsPerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerSecond"/>
         /// </summary>
         public double YardsPerSecond => As(SpeedUnit.YardPerSecond);
 
@@ -242,197 +244,196 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Speed from CentimetersPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerHour(double centimetersperhour) => new Speed(centimetersperhour, SpeedUnit.CentimeterPerHour);
 
         /// <summary>
-        ///     Get Speed from CentimetersPerMinutes.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerMinutes(double centimetersperminutes) => new Speed(centimetersperminutes, SpeedUnit.CentimeterPerMinute);
 
         /// <summary>
-        ///     Get Speed from CentimetersPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.CentimeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerSecond(double centimeterspersecond) => new Speed(centimeterspersecond, SpeedUnit.CentimeterPerSecond);
 
         /// <summary>
-        ///     Get Speed from DecimetersPerMinutes.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromDecimetersPerMinutes(double decimetersperminutes) => new Speed(decimetersperminutes, SpeedUnit.DecimeterPerMinute);
 
         /// <summary>
-        ///     Get Speed from DecimetersPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.DecimeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromDecimetersPerSecond(double decimeterspersecond) => new Speed(decimeterspersecond, SpeedUnit.DecimeterPerSecond);
 
         /// <summary>
-        ///     Get Speed from FeetPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerHour(double feetperhour) => new Speed(feetperhour, SpeedUnit.FootPerHour);
 
         /// <summary>
-        ///     Get Speed from FeetPerMinute.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerMinute(double feetperminute) => new Speed(feetperminute, SpeedUnit.FootPerMinute);
 
         /// <summary>
-        ///     Get Speed from FeetPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.FootPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerSecond(double feetpersecond) => new Speed(feetpersecond, SpeedUnit.FootPerSecond);
 
         /// <summary>
-        ///     Get Speed from InchesPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerHour(double inchesperhour) => new Speed(inchesperhour, SpeedUnit.InchPerHour);
 
         /// <summary>
-        ///     Get Speed from InchesPerMinute.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerMinute(double inchesperminute) => new Speed(inchesperminute, SpeedUnit.InchPerMinute);
 
         /// <summary>
-        ///     Get Speed from InchesPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.InchPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerSecond(double inchespersecond) => new Speed(inchespersecond, SpeedUnit.InchPerSecond);
 
         /// <summary>
-        ///     Get Speed from KilometersPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerHour(double kilometersperhour) => new Speed(kilometersperhour, SpeedUnit.KilometerPerHour);
 
         /// <summary>
-        ///     Get Speed from KilometersPerMinutes.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerMinutes(double kilometersperminutes) => new Speed(kilometersperminutes, SpeedUnit.KilometerPerMinute);
 
         /// <summary>
-        ///     Get Speed from KilometersPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.KilometerPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerSecond(double kilometerspersecond) => new Speed(kilometerspersecond, SpeedUnit.KilometerPerSecond);
 
         /// <summary>
-        ///     Get Speed from Knots.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Knot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKnots(double knots) => new Speed(knots, SpeedUnit.Knot);
 
         /// <summary>
-        ///     Get Speed from MetersPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerHour(double metersperhour) => new Speed(metersperhour, SpeedUnit.MeterPerHour);
 
         /// <summary>
-        ///     Get Speed from MetersPerMinutes.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerMinutes(double metersperminutes) => new Speed(metersperminutes, SpeedUnit.MeterPerMinute);
 
         /// <summary>
-        ///     Get Speed from MetersPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerSecond(double meterspersecond) => new Speed(meterspersecond, SpeedUnit.MeterPerSecond);
 
         /// <summary>
-        ///     Get Speed from MicrometersPerMinutes.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMicrometersPerMinutes(double micrometersperminutes) => new Speed(micrometersperminutes, SpeedUnit.MicrometerPerMinute);
 
         /// <summary>
-        ///     Get Speed from MicrometersPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MicrometerPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMicrometersPerSecond(double micrometerspersecond) => new Speed(micrometerspersecond, SpeedUnit.MicrometerPerSecond);
 
         /// <summary>
-        ///     Get Speed from MilesPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MilePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMilesPerHour(double milesperhour) => new Speed(milesperhour, SpeedUnit.MilePerHour);
 
         /// <summary>
-        ///     Get Speed from MillimetersPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerHour(double millimetersperhour) => new Speed(millimetersperhour, SpeedUnit.MillimeterPerHour);
 
         /// <summary>
-        ///     Get Speed from MillimetersPerMinutes.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerMinutes(double millimetersperminutes) => new Speed(millimetersperminutes, SpeedUnit.MillimeterPerMinute);
 
         /// <summary>
-        ///     Get Speed from MillimetersPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MillimeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerSecond(double millimeterspersecond) => new Speed(millimeterspersecond, SpeedUnit.MillimeterPerSecond);
 
         /// <summary>
-        ///     Get Speed from NanometersPerMinutes.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromNanometersPerMinutes(double nanometersperminutes) => new Speed(nanometersperminutes, SpeedUnit.NanometerPerMinute);
 
         /// <summary>
-        ///     Get Speed from NanometersPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.NanometerPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromNanometersPerSecond(double nanometerspersecond) => new Speed(nanometerspersecond, SpeedUnit.NanometerPerSecond);
 
         /// <summary>
-        ///     Get Speed from UsSurveyFeetPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerHour(double ussurveyfeetperhour) => new Speed(ussurveyfeetperhour, SpeedUnit.UsSurveyFootPerHour);
 
         /// <summary>
-        ///     Get Speed from UsSurveyFeetPerMinute.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerMinute(double ussurveyfeetperminute) => new Speed(ussurveyfeetperminute, SpeedUnit.UsSurveyFootPerMinute);
 
         /// <summary>
-        ///     Get Speed from UsSurveyFeetPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.UsSurveyFootPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerSecond(double ussurveyfeetpersecond) => new Speed(ussurveyfeetpersecond, SpeedUnit.UsSurveyFootPerSecond);
 
         /// <summary>
-        ///     Get Speed from YardsPerHour.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerHour(double yardsperhour) => new Speed(yardsperhour, SpeedUnit.YardPerHour);
 
         /// <summary>
-        ///     Get Speed from YardsPerMinute.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerMinute(double yardsperminute) => new Speed(yardsperminute, SpeedUnit.YardPerMinute);
 
         /// <summary>
-        ///     Get Speed from YardsPerSecond.
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.YardPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerSecond(double yardspersecond) => new Speed(yardspersecond, SpeedUnit.YardPerSecond);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
@@ -447,118 +448,115 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(SpeedUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(SpeedUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Speed ToUnit(SpeedUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Speed(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Speed ToUnit(SpeedUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Speed(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case SpeedUnit.CentimeterPerHour: return (_value/3600) * 1e-2d;
-                case SpeedUnit.CentimeterPerMinute: return (_value/60) * 1e-2d;
-                case SpeedUnit.CentimeterPerSecond: return (_value) * 1e-2d;
-                case SpeedUnit.DecimeterPerMinute: return (_value/60) * 1e-1d;
-                case SpeedUnit.DecimeterPerSecond: return (_value) * 1e-1d;
-                case SpeedUnit.FootPerHour: return _value*0.3048/3600;
-                case SpeedUnit.FootPerMinute: return _value*0.3048/60;
-                case SpeedUnit.FootPerSecond: return _value*0.3048;
-                case SpeedUnit.InchPerHour: return (_value/3600)*2.54e-2;
-                case SpeedUnit.InchPerMinute: return (_value/60)*2.54e-2;
-                case SpeedUnit.InchPerSecond: return _value*2.54e-2;
-                case SpeedUnit.KilometerPerHour: return (_value/3600) * 1e3d;
-                case SpeedUnit.KilometerPerMinute: return (_value/60) * 1e3d;
-                case SpeedUnit.KilometerPerSecond: return (_value) * 1e3d;
-                case SpeedUnit.Knot: return _value*0.514444;
-                case SpeedUnit.MeterPerHour: return _value/3600;
-                case SpeedUnit.MeterPerMinute: return _value/60;
-                case SpeedUnit.MeterPerSecond: return _value;
-                case SpeedUnit.MicrometerPerMinute: return (_value/60) * 1e-6d;
-                case SpeedUnit.MicrometerPerSecond: return (_value) * 1e-6d;
-                case SpeedUnit.MilePerHour: return _value*0.44704;
-                case SpeedUnit.MillimeterPerHour: return (_value/3600) * 1e-3d;
-                case SpeedUnit.MillimeterPerMinute: return (_value/60) * 1e-3d;
-                case SpeedUnit.MillimeterPerSecond: return (_value) * 1e-3d;
-                case SpeedUnit.NanometerPerMinute: return (_value/60) * 1e-9d;
-                case SpeedUnit.NanometerPerSecond: return (_value) * 1e-9d;
-                case SpeedUnit.UsSurveyFootPerHour: return (_value*1200/3937)/3600;
-                case SpeedUnit.UsSurveyFootPerMinute: return (_value*1200/3937)/60;
-                case SpeedUnit.UsSurveyFootPerSecond: return _value*1200/3937;
-                case SpeedUnit.YardPerHour: return _value*0.9144/3600;
-                case SpeedUnit.YardPerMinute: return _value*0.9144/60;
-                case SpeedUnit.YardPerSecond: return _value*0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        SpeedUnit.CentimeterPerHour => (_value / 3600) * 1e-2d,
+                        SpeedUnit.CentimeterPerMinute => (_value / 60) * 1e-2d,
+                        SpeedUnit.CentimeterPerSecond => (_value) * 1e-2d,
+                        SpeedUnit.DecimeterPerMinute => (_value / 60) * 1e-1d,
+                        SpeedUnit.DecimeterPerSecond => (_value) * 1e-1d,
+                        SpeedUnit.FootPerHour => _value * 0.3048 / 3600,
+                        SpeedUnit.FootPerMinute => _value * 0.3048 / 60,
+                        SpeedUnit.FootPerSecond => _value * 0.3048,
+                        SpeedUnit.InchPerHour => (_value / 3600) * 2.54e-2,
+                        SpeedUnit.InchPerMinute => (_value / 60) * 2.54e-2,
+                        SpeedUnit.InchPerSecond => _value * 2.54e-2,
+                        SpeedUnit.KilometerPerHour => (_value / 3600) * 1e3d,
+                        SpeedUnit.KilometerPerMinute => (_value / 60) * 1e3d,
+                        SpeedUnit.KilometerPerSecond => (_value) * 1e3d,
+                        SpeedUnit.Knot => _value * 0.514444,
+                        SpeedUnit.MeterPerHour => _value / 3600,
+                        SpeedUnit.MeterPerMinute => _value / 60,
+                        SpeedUnit.MeterPerSecond => _value,
+                        SpeedUnit.MicrometerPerMinute => (_value / 60) * 1e-6d,
+                        SpeedUnit.MicrometerPerSecond => (_value) * 1e-6d,
+                        SpeedUnit.MilePerHour => _value * 0.44704,
+                        SpeedUnit.MillimeterPerHour => (_value / 3600) * 1e-3d,
+                        SpeedUnit.MillimeterPerMinute => (_value / 60) * 1e-3d,
+                        SpeedUnit.MillimeterPerSecond => (_value) * 1e-3d,
+                        SpeedUnit.NanometerPerMinute => (_value / 60) * 1e-9d,
+                        SpeedUnit.NanometerPerSecond => (_value) * 1e-9d,
+                        SpeedUnit.UsSurveyFootPerHour => (_value * 1200 / 3937) / 3600,
+                        SpeedUnit.UsSurveyFootPerMinute => (_value * 1200 / 3937) / 60,
+                        SpeedUnit.UsSurveyFootPerSecond => _value * 1200 / 3937,
+                        SpeedUnit.YardPerHour => _value * 0.9144 / 3600,
+                        SpeedUnit.YardPerMinute => _value * 0.9144 / 60,
+                        SpeedUnit.YardPerSecond => _value * 0.9144,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(SpeedUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(SpeedUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case SpeedUnit.CentimeterPerHour: return (baseUnitValue*3600) / 1e-2d;
-                case SpeedUnit.CentimeterPerMinute: return (baseUnitValue*60) / 1e-2d;
-                case SpeedUnit.CentimeterPerSecond: return (baseUnitValue) / 1e-2d;
-                case SpeedUnit.DecimeterPerMinute: return (baseUnitValue*60) / 1e-1d;
-                case SpeedUnit.DecimeterPerSecond: return (baseUnitValue) / 1e-1d;
-                case SpeedUnit.FootPerHour: return baseUnitValue/0.3048*3600;
-                case SpeedUnit.FootPerMinute: return baseUnitValue/0.3048*60;
-                case SpeedUnit.FootPerSecond: return baseUnitValue/0.3048;
-                case SpeedUnit.InchPerHour: return (baseUnitValue/2.54e-2)*3600;
-                case SpeedUnit.InchPerMinute: return (baseUnitValue/2.54e-2)*60;
-                case SpeedUnit.InchPerSecond: return baseUnitValue/2.54e-2;
-                case SpeedUnit.KilometerPerHour: return (baseUnitValue*3600) / 1e3d;
-                case SpeedUnit.KilometerPerMinute: return (baseUnitValue*60) / 1e3d;
-                case SpeedUnit.KilometerPerSecond: return (baseUnitValue) / 1e3d;
-                case SpeedUnit.Knot: return baseUnitValue/0.514444;
-                case SpeedUnit.MeterPerHour: return baseUnitValue*3600;
-                case SpeedUnit.MeterPerMinute: return baseUnitValue*60;
-                case SpeedUnit.MeterPerSecond: return baseUnitValue;
-                case SpeedUnit.MicrometerPerMinute: return (baseUnitValue*60) / 1e-6d;
-                case SpeedUnit.MicrometerPerSecond: return (baseUnitValue) / 1e-6d;
-                case SpeedUnit.MilePerHour: return baseUnitValue/0.44704;
-                case SpeedUnit.MillimeterPerHour: return (baseUnitValue*3600) / 1e-3d;
-                case SpeedUnit.MillimeterPerMinute: return (baseUnitValue*60) / 1e-3d;
-                case SpeedUnit.MillimeterPerSecond: return (baseUnitValue) / 1e-3d;
-                case SpeedUnit.NanometerPerMinute: return (baseUnitValue*60) / 1e-9d;
-                case SpeedUnit.NanometerPerSecond: return (baseUnitValue) / 1e-9d;
-                case SpeedUnit.UsSurveyFootPerHour: return (baseUnitValue*3937/1200)*3600;
-                case SpeedUnit.UsSurveyFootPerMinute: return (baseUnitValue*3937/1200)*60;
-                case SpeedUnit.UsSurveyFootPerSecond: return baseUnitValue*3937/1200;
-                case SpeedUnit.YardPerHour: return baseUnitValue/0.9144*3600;
-                case SpeedUnit.YardPerMinute: return baseUnitValue/0.9144*60;
-                case SpeedUnit.YardPerSecond: return baseUnitValue/0.9144;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        SpeedUnit.CentimeterPerHour => (baseUnitValue * 3600) / 1e-2d,
+                        SpeedUnit.CentimeterPerMinute => (baseUnitValue * 60) / 1e-2d,
+                        SpeedUnit.CentimeterPerSecond => (baseUnitValue) / 1e-2d,
+                        SpeedUnit.DecimeterPerMinute => (baseUnitValue * 60) / 1e-1d,
+                        SpeedUnit.DecimeterPerSecond => (baseUnitValue) / 1e-1d,
+                        SpeedUnit.FootPerHour => baseUnitValue / 0.3048 * 3600,
+                        SpeedUnit.FootPerMinute => baseUnitValue / 0.3048 * 60,
+                        SpeedUnit.FootPerSecond => baseUnitValue / 0.3048,
+                        SpeedUnit.InchPerHour => (baseUnitValue / 2.54e-2) * 3600,
+                        SpeedUnit.InchPerMinute => (baseUnitValue / 2.54e-2) * 60,
+                        SpeedUnit.InchPerSecond => baseUnitValue / 2.54e-2,
+                        SpeedUnit.KilometerPerHour => (baseUnitValue * 3600) / 1e3d,
+                        SpeedUnit.KilometerPerMinute => (baseUnitValue * 60) / 1e3d,
+                        SpeedUnit.KilometerPerSecond => (baseUnitValue) / 1e3d,
+                        SpeedUnit.Knot => baseUnitValue / 0.514444,
+                        SpeedUnit.MeterPerHour => baseUnitValue * 3600,
+                        SpeedUnit.MeterPerMinute => baseUnitValue * 60,
+                        SpeedUnit.MeterPerSecond => baseUnitValue,
+                        SpeedUnit.MicrometerPerMinute => (baseUnitValue * 60) / 1e-6d,
+                        SpeedUnit.MicrometerPerSecond => (baseUnitValue) / 1e-6d,
+                        SpeedUnit.MilePerHour => baseUnitValue / 0.44704,
+                        SpeedUnit.MillimeterPerHour => (baseUnitValue * 3600) / 1e-3d,
+                        SpeedUnit.MillimeterPerMinute => (baseUnitValue * 60) / 1e-3d,
+                        SpeedUnit.MillimeterPerSecond => (baseUnitValue) / 1e-3d,
+                        SpeedUnit.NanometerPerMinute => (baseUnitValue * 60) / 1e-9d,
+                        SpeedUnit.NanometerPerSecond => (baseUnitValue) / 1e-9d,
+                        SpeedUnit.UsSurveyFootPerHour => (baseUnitValue * 3937 / 1200) * 3600,
+                        SpeedUnit.UsSurveyFootPerMinute => (baseUnitValue * 3937 / 1200) * 60,
+                        SpeedUnit.UsSurveyFootPerSecond => baseUnitValue * 3937 / 1200,
+                        SpeedUnit.YardPerHour => baseUnitValue / 0.9144 * 3600,
+                        SpeedUnit.YardPerMinute => baseUnitValue / 0.9144 * 60,
+                        SpeedUnit.YardPerSecond => baseUnitValue / 0.9144,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

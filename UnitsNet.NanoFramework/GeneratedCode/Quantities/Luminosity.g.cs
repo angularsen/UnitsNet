@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public LuminosityUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Luminosity MinValue { get; } = new Luminosity(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -81,72 +83,72 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Luminosity in Decawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Decawatt"/>
         /// </summary>
         public double Decawatts => As(LuminosityUnit.Decawatt);
 
         /// <summary>
-        ///     Get Luminosity in Deciwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Deciwatt"/>
         /// </summary>
         public double Deciwatts => As(LuminosityUnit.Deciwatt);
 
         /// <summary>
-        ///     Get Luminosity in Femtowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Femtowatt"/>
         /// </summary>
         public double Femtowatts => As(LuminosityUnit.Femtowatt);
 
         /// <summary>
-        ///     Get Luminosity in Gigawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Gigawatt"/>
         /// </summary>
         public double Gigawatts => As(LuminosityUnit.Gigawatt);
 
         /// <summary>
-        ///     Get Luminosity in Kilowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Kilowatt"/>
         /// </summary>
         public double Kilowatts => As(LuminosityUnit.Kilowatt);
 
         /// <summary>
-        ///     Get Luminosity in Megawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Megawatt"/>
         /// </summary>
         public double Megawatts => As(LuminosityUnit.Megawatt);
 
         /// <summary>
-        ///     Get Luminosity in Microwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Microwatt"/>
         /// </summary>
         public double Microwatts => As(LuminosityUnit.Microwatt);
 
         /// <summary>
-        ///     Get Luminosity in Milliwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Milliwatt"/>
         /// </summary>
         public double Milliwatts => As(LuminosityUnit.Milliwatt);
 
         /// <summary>
-        ///     Get Luminosity in Nanowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Nanowatt"/>
         /// </summary>
         public double Nanowatts => As(LuminosityUnit.Nanowatt);
 
         /// <summary>
-        ///     Get Luminosity in Petawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Petawatt"/>
         /// </summary>
         public double Petawatts => As(LuminosityUnit.Petawatt);
 
         /// <summary>
-        ///     Get Luminosity in Picowatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Picowatt"/>
         /// </summary>
         public double Picowatts => As(LuminosityUnit.Picowatt);
 
         /// <summary>
-        ///     Get Luminosity in SolarLuminosities.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.SolarLuminosity"/>
         /// </summary>
         public double SolarLuminosities => As(LuminosityUnit.SolarLuminosity);
 
         /// <summary>
-        ///     Get Luminosity in Terawatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Terawatt"/>
         /// </summary>
         public double Terawatts => As(LuminosityUnit.Terawatt);
 
         /// <summary>
-        ///     Get Luminosity in Watts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminosityUnit.Watt"/>
         /// </summary>
         public double Watts => As(LuminosityUnit.Watt);
 
@@ -155,89 +157,88 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Luminosity from Decawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Decawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromDecawatts(double decawatts) => new Luminosity(decawatts, LuminosityUnit.Decawatt);
 
         /// <summary>
-        ///     Get Luminosity from Deciwatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Deciwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromDeciwatts(double deciwatts) => new Luminosity(deciwatts, LuminosityUnit.Deciwatt);
 
         /// <summary>
-        ///     Get Luminosity from Femtowatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Femtowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromFemtowatts(double femtowatts) => new Luminosity(femtowatts, LuminosityUnit.Femtowatt);
 
         /// <summary>
-        ///     Get Luminosity from Gigawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Gigawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromGigawatts(double gigawatts) => new Luminosity(gigawatts, LuminosityUnit.Gigawatt);
 
         /// <summary>
-        ///     Get Luminosity from Kilowatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Kilowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromKilowatts(double kilowatts) => new Luminosity(kilowatts, LuminosityUnit.Kilowatt);
 
         /// <summary>
-        ///     Get Luminosity from Megawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Megawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromMegawatts(double megawatts) => new Luminosity(megawatts, LuminosityUnit.Megawatt);
 
         /// <summary>
-        ///     Get Luminosity from Microwatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Microwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromMicrowatts(double microwatts) => new Luminosity(microwatts, LuminosityUnit.Microwatt);
 
         /// <summary>
-        ///     Get Luminosity from Milliwatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Milliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromMilliwatts(double milliwatts) => new Luminosity(milliwatts, LuminosityUnit.Milliwatt);
 
         /// <summary>
-        ///     Get Luminosity from Nanowatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Nanowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromNanowatts(double nanowatts) => new Luminosity(nanowatts, LuminosityUnit.Nanowatt);
 
         /// <summary>
-        ///     Get Luminosity from Petawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Petawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromPetawatts(double petawatts) => new Luminosity(petawatts, LuminosityUnit.Petawatt);
 
         /// <summary>
-        ///     Get Luminosity from Picowatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Picowatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromPicowatts(double picowatts) => new Luminosity(picowatts, LuminosityUnit.Picowatt);
 
         /// <summary>
-        ///     Get Luminosity from SolarLuminosities.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.SolarLuminosity"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromSolarLuminosities(double solarluminosities) => new Luminosity(solarluminosities, LuminosityUnit.SolarLuminosity);
 
         /// <summary>
-        ///     Get Luminosity from Terawatts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Terawatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromTerawatts(double terawatts) => new Luminosity(terawatts, LuminosityUnit.Terawatt);
 
         /// <summary>
-        ///     Get Luminosity from Watts.
+        ///     Creates a <see cref="Luminosity"/> from <see cref="LuminosityUnit.Watt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Luminosity FromWatts(double watts) => new Luminosity(watts, LuminosityUnit.Watt);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminosityUnit" /> to <see cref="Luminosity" />.
@@ -252,82 +253,79 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LuminosityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(LuminosityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Luminosity ToUnit(LuminosityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Luminosity(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Luminosity ToUnit(LuminosityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Luminosity(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case LuminosityUnit.Decawatt: return (_value) * 1e1d;
-                case LuminosityUnit.Deciwatt: return (_value) * 1e-1d;
-                case LuminosityUnit.Femtowatt: return (_value) * 1e-15d;
-                case LuminosityUnit.Gigawatt: return (_value) * 1e9d;
-                case LuminosityUnit.Kilowatt: return (_value) * 1e3d;
-                case LuminosityUnit.Megawatt: return (_value) * 1e6d;
-                case LuminosityUnit.Microwatt: return (_value) * 1e-6d;
-                case LuminosityUnit.Milliwatt: return (_value) * 1e-3d;
-                case LuminosityUnit.Nanowatt: return (_value) * 1e-9d;
-                case LuminosityUnit.Petawatt: return (_value) * 1e15d;
-                case LuminosityUnit.Picowatt: return (_value) * 1e-12d;
-                case LuminosityUnit.SolarLuminosity: return _value * 3.846e26;
-                case LuminosityUnit.Terawatt: return (_value) * 1e12d;
-                case LuminosityUnit.Watt: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        LuminosityUnit.Decawatt => (_value) * 1e1d,
+                        LuminosityUnit.Deciwatt => (_value) * 1e-1d,
+                        LuminosityUnit.Femtowatt => (_value) * 1e-15d,
+                        LuminosityUnit.Gigawatt => (_value) * 1e9d,
+                        LuminosityUnit.Kilowatt => (_value) * 1e3d,
+                        LuminosityUnit.Megawatt => (_value) * 1e6d,
+                        LuminosityUnit.Microwatt => (_value) * 1e-6d,
+                        LuminosityUnit.Milliwatt => (_value) * 1e-3d,
+                        LuminosityUnit.Nanowatt => (_value) * 1e-9d,
+                        LuminosityUnit.Petawatt => (_value) * 1e15d,
+                        LuminosityUnit.Picowatt => (_value) * 1e-12d,
+                        LuminosityUnit.SolarLuminosity => _value * 3.846e26,
+                        LuminosityUnit.Terawatt => (_value) * 1e12d,
+                        LuminosityUnit.Watt => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(LuminosityUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(LuminosityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case LuminosityUnit.Decawatt: return (baseUnitValue) / 1e1d;
-                case LuminosityUnit.Deciwatt: return (baseUnitValue) / 1e-1d;
-                case LuminosityUnit.Femtowatt: return (baseUnitValue) / 1e-15d;
-                case LuminosityUnit.Gigawatt: return (baseUnitValue) / 1e9d;
-                case LuminosityUnit.Kilowatt: return (baseUnitValue) / 1e3d;
-                case LuminosityUnit.Megawatt: return (baseUnitValue) / 1e6d;
-                case LuminosityUnit.Microwatt: return (baseUnitValue) / 1e-6d;
-                case LuminosityUnit.Milliwatt: return (baseUnitValue) / 1e-3d;
-                case LuminosityUnit.Nanowatt: return (baseUnitValue) / 1e-9d;
-                case LuminosityUnit.Petawatt: return (baseUnitValue) / 1e15d;
-                case LuminosityUnit.Picowatt: return (baseUnitValue) / 1e-12d;
-                case LuminosityUnit.SolarLuminosity: return baseUnitValue / 3.846e26;
-                case LuminosityUnit.Terawatt: return (baseUnitValue) / 1e12d;
-                case LuminosityUnit.Watt: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        LuminosityUnit.Decawatt => (baseUnitValue) / 1e1d,
+                        LuminosityUnit.Deciwatt => (baseUnitValue) / 1e-1d,
+                        LuminosityUnit.Femtowatt => (baseUnitValue) / 1e-15d,
+                        LuminosityUnit.Gigawatt => (baseUnitValue) / 1e9d,
+                        LuminosityUnit.Kilowatt => (baseUnitValue) / 1e3d,
+                        LuminosityUnit.Megawatt => (baseUnitValue) / 1e6d,
+                        LuminosityUnit.Microwatt => (baseUnitValue) / 1e-6d,
+                        LuminosityUnit.Milliwatt => (baseUnitValue) / 1e-3d,
+                        LuminosityUnit.Nanowatt => (baseUnitValue) / 1e-9d,
+                        LuminosityUnit.Petawatt => (baseUnitValue) / 1e15d,
+                        LuminosityUnit.Picowatt => (baseUnitValue) / 1e-12d,
+                        LuminosityUnit.SolarLuminosity => baseUnitValue / 3.846e26,
+                        LuminosityUnit.Terawatt => (baseUnitValue) / 1e12d,
+                        LuminosityUnit.Watt => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

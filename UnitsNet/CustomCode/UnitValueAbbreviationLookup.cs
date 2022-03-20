@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -46,31 +46,34 @@ namespace UnitsNet
             return units.Distinct().ToList();
         }
 
-        internal void Add(int unit, string abbreviation, bool setAsDefault = false)
+        internal void Add(int unit, string abbreviation, bool setAsDefault = false, bool allowAbbreviationLookup = true)
         {
             var lowerCaseAbbreviation = abbreviation.ToLower();
 
             if (!_unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
                 abbreviationsForUnit = _unitToAbbreviationMap[unit] = new List<string>();
 
-            if (!_abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
-                _abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
+            if (allowAbbreviationLookup)
+            {
+                if (!_abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
+                    _abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
 
-            if (!_lowerCaseAbbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForLowerCaseAbbreviation))
-                _lowerCaseAbbreviationToUnitMap[lowerCaseAbbreviation] = unitsForLowerCaseAbbreviation = new List<int>();
+                if (!_lowerCaseAbbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForLowerCaseAbbreviation))
+                    _lowerCaseAbbreviationToUnitMap[lowerCaseAbbreviation] = unitsForLowerCaseAbbreviation = new List<int>();
 
-            unitsForLowerCaseAbbreviation.Remove(unit);
-            unitsForLowerCaseAbbreviation.Add(unit);
+                unitsForLowerCaseAbbreviation.Remove(unit);
+                unitsForLowerCaseAbbreviation.Add(unit);
 
-            unitsForAbbreviation.Remove(unit);
-            unitsForAbbreviation.Add(unit);
+                unitsForAbbreviation.Remove(unit);
+                unitsForAbbreviation.Add(unit);
+            }
 
             abbreviationsForUnit.Remove(abbreviation);
+
             if (setAsDefault)
                 abbreviationsForUnit.Insert(0, abbreviation);
             else
                 abbreviationsForUnit.Add(abbreviation);
-
         }
     }
 }

@@ -40,6 +40,7 @@ namespace UnitsNet.Units
         CubicMile,
         CubicMillimeter,
         CubicYard,
+        Decaliter,
         DecausGallon,
         Deciliter,
         DeciusGallon,

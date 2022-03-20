@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public IlluminanceUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Illuminance MinValue { get; } = new Illuminance(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -81,22 +83,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Illuminance in Kilolux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
         /// </summary>
         public double Kilolux => As(IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Get Illuminance in Lux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
         /// </summary>
         public double Lux => As(IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Get Illuminance in Megalux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
         /// </summary>
         public double Megalux => As(IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Get Illuminance in Millilux.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
         /// </summary>
         public double Millilux => As(IlluminanceUnit.Millilux);
 
@@ -105,29 +107,28 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Illuminance from Kilolux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Kilolux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromKilolux(double kilolux) => new Illuminance(kilolux, IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Get Illuminance from Lux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Lux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromLux(double lux) => new Illuminance(lux, IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Get Illuminance from Megalux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Megalux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromMegalux(double megalux) => new Illuminance(megalux, IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Get Illuminance from Millilux.
+        ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Millilux"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromMillilux(double millilux) => new Illuminance(millilux, IlluminanceUnit.Millilux);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="IlluminanceUnit" /> to <see cref="Illuminance" />.
@@ -142,62 +143,59 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(IlluminanceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(IlluminanceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Illuminance ToUnit(IlluminanceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Illuminance(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Illuminance ToUnit(IlluminanceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Illuminance(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case IlluminanceUnit.Kilolux: return (_value) * 1e3d;
-                case IlluminanceUnit.Lux: return _value;
-                case IlluminanceUnit.Megalux: return (_value) * 1e6d;
-                case IlluminanceUnit.Millilux: return (_value) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        IlluminanceUnit.Kilolux => (_value) * 1e3d,
+                        IlluminanceUnit.Lux => _value,
+                        IlluminanceUnit.Megalux => (_value) * 1e6d,
+                        IlluminanceUnit.Millilux => (_value) * 1e-3d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(IlluminanceUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(IlluminanceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case IlluminanceUnit.Kilolux: return (baseUnitValue) / 1e3d;
-                case IlluminanceUnit.Lux: return baseUnitValue;
-                case IlluminanceUnit.Megalux: return (baseUnitValue) / 1e6d;
-                case IlluminanceUnit.Millilux: return (baseUnitValue) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        IlluminanceUnit.Kilolux => (baseUnitValue) / 1e3d,
+                        IlluminanceUnit.Lux => baseUnitValue,
+                        IlluminanceUnit.Megalux => (baseUnitValue) / 1e6d,
+                        IlluminanceUnit.Millilux => (baseUnitValue) / 1e-3d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

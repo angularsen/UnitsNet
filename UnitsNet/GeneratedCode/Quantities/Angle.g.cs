@@ -78,7 +78,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -104,7 +103,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Angle(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -173,82 +172,82 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Angle in Arcminutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Arcminute"/>
         /// </summary>
         public double Arcminutes => As(AngleUnit.Arcminute);
 
         /// <summary>
-        ///     Get Angle in Arcseconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Arcsecond"/>
         /// </summary>
         public double Arcseconds => As(AngleUnit.Arcsecond);
 
         /// <summary>
-        ///     Get Angle in Centiradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Centiradian"/>
         /// </summary>
         public double Centiradians => As(AngleUnit.Centiradian);
 
         /// <summary>
-        ///     Get Angle in Deciradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Deciradian"/>
         /// </summary>
         public double Deciradians => As(AngleUnit.Deciradian);
 
         /// <summary>
-        ///     Get Angle in Degrees.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Degree"/>
         /// </summary>
         public double Degrees => As(AngleUnit.Degree);
 
         /// <summary>
-        ///     Get Angle in Gradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Gradian"/>
         /// </summary>
         public double Gradians => As(AngleUnit.Gradian);
 
         /// <summary>
-        ///     Get Angle in Microdegrees.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Microdegree"/>
         /// </summary>
         public double Microdegrees => As(AngleUnit.Microdegree);
 
         /// <summary>
-        ///     Get Angle in Microradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Microradian"/>
         /// </summary>
         public double Microradians => As(AngleUnit.Microradian);
 
         /// <summary>
-        ///     Get Angle in Millidegrees.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Millidegree"/>
         /// </summary>
         public double Millidegrees => As(AngleUnit.Millidegree);
 
         /// <summary>
-        ///     Get Angle in Milliradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Milliradian"/>
         /// </summary>
         public double Milliradians => As(AngleUnit.Milliradian);
 
         /// <summary>
-        ///     Get Angle in Nanodegrees.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Nanodegree"/>
         /// </summary>
         public double Nanodegrees => As(AngleUnit.Nanodegree);
 
         /// <summary>
-        ///     Get Angle in Nanoradians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Nanoradian"/>
         /// </summary>
         public double Nanoradians => As(AngleUnit.Nanoradian);
 
         /// <summary>
-        ///     Get Angle in NatoMils.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.NatoMil"/>
         /// </summary>
         public double NatoMils => As(AngleUnit.NatoMil);
 
         /// <summary>
-        ///     Get Angle in Radians.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Radian"/>
         /// </summary>
         public double Radians => As(AngleUnit.Radian);
 
         /// <summary>
-        ///     Get Angle in Revolutions.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Revolution"/>
         /// </summary>
         public double Revolutions => As(AngleUnit.Revolution);
 
         /// <summary>
-        ///     Get Angle in Tilt.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AngleUnit.Tilt"/>
         /// </summary>
         public double Tilt => As(AngleUnit.Tilt);
 
@@ -263,72 +262,73 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> AngleUnit
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Arcminute, quantity => new Angle(quantity.Value*60, AngleUnit.Arcminute));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Arcsecond, quantity => new Angle(quantity.Value*3600, AngleUnit.Arcsecond));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Centiradian, quantity => new Angle((quantity.Value/180*Math.PI) / 1e-2d, AngleUnit.Centiradian));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Deciradian, quantity => new Angle((quantity.Value/180*Math.PI) / 1e-1d, AngleUnit.Deciradian));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Gradian, quantity => new Angle(quantity.Value/0.9, AngleUnit.Gradian));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Arcminute, quantity => new Angle(quantity.Value * 60, AngleUnit.Arcminute));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Arcsecond, quantity => new Angle(quantity.Value * 3600, AngleUnit.Arcsecond));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Centiradian, quantity => new Angle((quantity.Value / 180 * Math.PI) / 1e-2d, AngleUnit.Centiradian));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Deciradian, quantity => new Angle((quantity.Value / 180 * Math.PI) / 1e-1d, AngleUnit.Deciradian));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Gradian, quantity => new Angle(quantity.Value / 0.9, AngleUnit.Gradian));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Microdegree, quantity => new Angle((quantity.Value) / 1e-6d, AngleUnit.Microdegree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Microradian, quantity => new Angle((quantity.Value/180*Math.PI) / 1e-6d, AngleUnit.Microradian));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Microradian, quantity => new Angle((quantity.Value / 180 * Math.PI) / 1e-6d, AngleUnit.Microradian));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Millidegree, quantity => new Angle((quantity.Value) / 1e-3d, AngleUnit.Millidegree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Milliradian, quantity => new Angle((quantity.Value/180*Math.PI) / 1e-3d, AngleUnit.Milliradian));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Milliradian, quantity => new Angle((quantity.Value / 180 * Math.PI) / 1e-3d, AngleUnit.Milliradian));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Nanodegree, quantity => new Angle((quantity.Value) / 1e-9d, AngleUnit.Nanodegree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Nanoradian, quantity => new Angle((quantity.Value/180*Math.PI) / 1e-9d, AngleUnit.Nanoradian));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.NatoMil, quantity => new Angle(quantity.Value*160/9, AngleUnit.NatoMil));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Radian, quantity => new Angle(quantity.Value/180*Math.PI, AngleUnit.Radian));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Revolution, quantity => new Angle(quantity.Value/360, AngleUnit.Revolution));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Tilt, quantity => new Angle(Math.Sin(quantity.Value/180*Math.PI), AngleUnit.Tilt));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Nanoradian, quantity => new Angle((quantity.Value / 180 * Math.PI) / 1e-9d, AngleUnit.Nanoradian));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.NatoMil, quantity => new Angle(quantity.Value * 160 / 9, AngleUnit.NatoMil));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Radian, quantity => new Angle(quantity.Value / 180 * Math.PI, AngleUnit.Radian));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Revolution, quantity => new Angle(quantity.Value / 360, AngleUnit.Revolution));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Tilt, quantity => new Angle(Math.Sin(quantity.Value / 180 * Math.PI), AngleUnit.Tilt));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Degree, AngleUnit.Degree, quantity => quantity);
 
             // Register in unit converter: AngleUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Arcminute, AngleUnit.Degree, quantity => new Angle(quantity.Value/60, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Arcsecond, AngleUnit.Degree, quantity => new Angle(quantity.Value/3600, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Centiradian, AngleUnit.Degree, quantity => new Angle((quantity.Value*180/Math.PI) * 1e-2d, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Deciradian, AngleUnit.Degree, quantity => new Angle((quantity.Value*180/Math.PI) * 1e-1d, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Gradian, AngleUnit.Degree, quantity => new Angle(quantity.Value*0.9, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Arcminute, AngleUnit.Degree, quantity => new Angle(quantity.Value / 60, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Arcsecond, AngleUnit.Degree, quantity => new Angle(quantity.Value / 3600, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Centiradian, AngleUnit.Degree, quantity => new Angle((quantity.Value * 180 / Math.PI) * 1e-2d, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Deciradian, AngleUnit.Degree, quantity => new Angle((quantity.Value * 180 / Math.PI) * 1e-1d, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Gradian, AngleUnit.Degree, quantity => new Angle(quantity.Value * 0.9, AngleUnit.Degree));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Microdegree, AngleUnit.Degree, quantity => new Angle((quantity.Value) * 1e-6d, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Microradian, AngleUnit.Degree, quantity => new Angle((quantity.Value*180/Math.PI) * 1e-6d, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Microradian, AngleUnit.Degree, quantity => new Angle((quantity.Value * 180 / Math.PI) * 1e-6d, AngleUnit.Degree));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Millidegree, AngleUnit.Degree, quantity => new Angle((quantity.Value) * 1e-3d, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Milliradian, AngleUnit.Degree, quantity => new Angle((quantity.Value*180/Math.PI) * 1e-3d, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Milliradian, AngleUnit.Degree, quantity => new Angle((quantity.Value * 180 / Math.PI) * 1e-3d, AngleUnit.Degree));
             unitConverter.SetConversionFunction<Angle>(AngleUnit.Nanodegree, AngleUnit.Degree, quantity => new Angle((quantity.Value) * 1e-9d, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Nanoradian, AngleUnit.Degree, quantity => new Angle((quantity.Value*180/Math.PI) * 1e-9d, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.NatoMil, AngleUnit.Degree, quantity => new Angle(quantity.Value*9/160, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Radian, AngleUnit.Degree, quantity => new Angle(quantity.Value*180/Math.PI, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Revolution, AngleUnit.Degree, quantity => new Angle(quantity.Value*360, AngleUnit.Degree));
-            unitConverter.SetConversionFunction<Angle>(AngleUnit.Tilt, AngleUnit.Degree, quantity => new Angle(Math.Asin(quantity.Value)*180/Math.PI, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Nanoradian, AngleUnit.Degree, quantity => new Angle((quantity.Value * 180 / Math.PI) * 1e-9d, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.NatoMil, AngleUnit.Degree, quantity => new Angle(quantity.Value * 9 / 160, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Radian, AngleUnit.Degree, quantity => new Angle(quantity.Value * 180 / Math.PI, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Revolution, AngleUnit.Degree, quantity => new Angle(quantity.Value * 360, AngleUnit.Degree));
+            unitConverter.SetConversionFunction<Angle>(AngleUnit.Tilt, AngleUnit.Degree, quantity => new Angle(Math.Asin(quantity.Value) * 180 / Math.PI, AngleUnit.Degree));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Arcminute, new CultureInfo("en-US"), new string[]{"'", "arcmin", "amin", "min"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Arcsecond, new CultureInfo("en-US"), new string[]{"″", "arcsec", "asec", "sec"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Centiradian, new CultureInfo("en-US"), new string[]{"crad"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Centiradian, new CultureInfo("ru-RU"), new string[]{"срад"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Deciradian, new CultureInfo("en-US"), new string[]{"drad"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Deciradian, new CultureInfo("ru-RU"), new string[]{"драд"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Degree, new CultureInfo("en-US"), new string[]{"°", "deg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Degree, new CultureInfo("ru-RU"), new string[]{"°"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Gradian, new CultureInfo("en-US"), new string[]{"g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Gradian, new CultureInfo("ru-RU"), new string[]{"g"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Microdegree, new CultureInfo("en-US"), new string[]{"µ°", "µdeg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Microdegree, new CultureInfo("ru-RU"), new string[]{"мк°"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Microradian, new CultureInfo("en-US"), new string[]{"µrad"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Microradian, new CultureInfo("ru-RU"), new string[]{"мкрад"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Millidegree, new CultureInfo("en-US"), new string[]{"m°", "mdeg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Millidegree, new CultureInfo("ru-RU"), new string[]{"м°"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Milliradian, new CultureInfo("en-US"), new string[]{"mrad"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Milliradian, new CultureInfo("ru-RU"), new string[]{"мрад"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Nanodegree, new CultureInfo("en-US"), new string[]{"n°", "ndeg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Nanodegree, new CultureInfo("ru-RU"), new string[]{"н°"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Nanoradian, new CultureInfo("en-US"), new string[]{"nrad"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Nanoradian, new CultureInfo("ru-RU"), new string[]{"нрад"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.NatoMil, new CultureInfo("en-US"), new string[]{"mil"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Radian, new CultureInfo("en-US"), new string[]{"rad"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Radian, new CultureInfo("ru-RU"), new string[]{"рад"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Revolution, new CultureInfo("en-US"), new string[]{"r"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Revolution, new CultureInfo("ru-RU"), new string[]{"r"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(AngleUnit.Tilt, new CultureInfo("en-US"), new string[]{"sin(θ)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Arcminute, new CultureInfo("en-US"), false, true, new string[]{"'", "arcmin", "amin", "min"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Arcsecond, new CultureInfo("en-US"), false, true, new string[]{"″", "arcsec", "asec", "sec"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Centiradian, new CultureInfo("en-US"), false, true, new string[]{"crad"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Centiradian, new CultureInfo("ru-RU"), false, true, new string[]{"срад"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Deciradian, new CultureInfo("en-US"), false, true, new string[]{"drad"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Deciradian, new CultureInfo("ru-RU"), false, true, new string[]{"драд"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Degree, new CultureInfo("en-US"), false, true, new string[]{"°", "deg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Degree, new CultureInfo("ru-RU"), false, true, new string[]{"°"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Gradian, new CultureInfo("en-US"), false, true, new string[]{"g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Gradian, new CultureInfo("ru-RU"), false, true, new string[]{"g"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Microdegree, new CultureInfo("en-US"), false, true, new string[]{"µ°", "µdeg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Microdegree, new CultureInfo("ru-RU"), false, true, new string[]{"мк°"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Microradian, new CultureInfo("en-US"), false, true, new string[]{"µrad"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Microradian, new CultureInfo("ru-RU"), false, true, new string[]{"мкрад"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Millidegree, new CultureInfo("en-US"), false, true, new string[]{"m°", "mdeg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Millidegree, new CultureInfo("ru-RU"), false, true, new string[]{"м°"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Milliradian, new CultureInfo("en-US"), false, true, new string[]{"mrad"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Milliradian, new CultureInfo("ru-RU"), false, true, new string[]{"мрад"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Nanodegree, new CultureInfo("en-US"), false, true, new string[]{"n°", "ndeg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Nanodegree, new CultureInfo("ru-RU"), false, true, new string[]{"н°"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Nanoradian, new CultureInfo("en-US"), false, true, new string[]{"nrad"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Nanoradian, new CultureInfo("ru-RU"), false, true, new string[]{"нрад"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.NatoMil, new CultureInfo("en-US"), false, true, new string[]{"mil"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Radian, new CultureInfo("en-US"), false, true, new string[]{"rad"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Radian, new CultureInfo("ru-RU"), false, true, new string[]{"рад"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Revolution, new CultureInfo("en-US"), false, true, new string[]{"r"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Revolution, new CultureInfo("ru-RU"), false, true, new string[]{"r"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AngleUnit.Tilt, new CultureInfo("en-US"), false, true, new string[]{"sin(θ)"});
         }
 
         /// <summary>
@@ -357,7 +357,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Angle from Arcminutes.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcminute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromArcminutes(QuantityValue arcminutes)
@@ -365,8 +365,9 @@ namespace UnitsNet
             double value = (double) arcminutes;
             return new Angle(value, AngleUnit.Arcminute);
         }
+
         /// <summary>
-        ///     Get Angle from Arcseconds.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Arcsecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromArcseconds(QuantityValue arcseconds)
@@ -374,8 +375,9 @@ namespace UnitsNet
             double value = (double) arcseconds;
             return new Angle(value, AngleUnit.Arcsecond);
         }
+
         /// <summary>
-        ///     Get Angle from Centiradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Centiradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromCentiradians(QuantityValue centiradians)
@@ -383,8 +385,9 @@ namespace UnitsNet
             double value = (double) centiradians;
             return new Angle(value, AngleUnit.Centiradian);
         }
+
         /// <summary>
-        ///     Get Angle from Deciradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Deciradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromDeciradians(QuantityValue deciradians)
@@ -392,8 +395,9 @@ namespace UnitsNet
             double value = (double) deciradians;
             return new Angle(value, AngleUnit.Deciradian);
         }
+
         /// <summary>
-        ///     Get Angle from Degrees.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Degree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromDegrees(QuantityValue degrees)
@@ -401,8 +405,9 @@ namespace UnitsNet
             double value = (double) degrees;
             return new Angle(value, AngleUnit.Degree);
         }
+
         /// <summary>
-        ///     Get Angle from Gradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Gradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromGradians(QuantityValue gradians)
@@ -410,8 +415,9 @@ namespace UnitsNet
             double value = (double) gradians;
             return new Angle(value, AngleUnit.Gradian);
         }
+
         /// <summary>
-        ///     Get Angle from Microdegrees.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microdegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromMicrodegrees(QuantityValue microdegrees)
@@ -419,8 +425,9 @@ namespace UnitsNet
             double value = (double) microdegrees;
             return new Angle(value, AngleUnit.Microdegree);
         }
+
         /// <summary>
-        ///     Get Angle from Microradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Microradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromMicroradians(QuantityValue microradians)
@@ -428,8 +435,9 @@ namespace UnitsNet
             double value = (double) microradians;
             return new Angle(value, AngleUnit.Microradian);
         }
+
         /// <summary>
-        ///     Get Angle from Millidegrees.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Millidegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromMillidegrees(QuantityValue millidegrees)
@@ -437,8 +445,9 @@ namespace UnitsNet
             double value = (double) millidegrees;
             return new Angle(value, AngleUnit.Millidegree);
         }
+
         /// <summary>
-        ///     Get Angle from Milliradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Milliradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromMilliradians(QuantityValue milliradians)
@@ -446,8 +455,9 @@ namespace UnitsNet
             double value = (double) milliradians;
             return new Angle(value, AngleUnit.Milliradian);
         }
+
         /// <summary>
-        ///     Get Angle from Nanodegrees.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanodegree"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromNanodegrees(QuantityValue nanodegrees)
@@ -455,8 +465,9 @@ namespace UnitsNet
             double value = (double) nanodegrees;
             return new Angle(value, AngleUnit.Nanodegree);
         }
+
         /// <summary>
-        ///     Get Angle from Nanoradians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Nanoradian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromNanoradians(QuantityValue nanoradians)
@@ -464,8 +475,9 @@ namespace UnitsNet
             double value = (double) nanoradians;
             return new Angle(value, AngleUnit.Nanoradian);
         }
+
         /// <summary>
-        ///     Get Angle from NatoMils.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.NatoMil"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromNatoMils(QuantityValue natomils)
@@ -473,8 +485,9 @@ namespace UnitsNet
             double value = (double) natomils;
             return new Angle(value, AngleUnit.NatoMil);
         }
+
         /// <summary>
-        ///     Get Angle from Radians.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Radian"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromRadians(QuantityValue radians)
@@ -482,8 +495,9 @@ namespace UnitsNet
             double value = (double) radians;
             return new Angle(value, AngleUnit.Radian);
         }
+
         /// <summary>
-        ///     Get Angle from Revolutions.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Revolution"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromRevolutions(QuantityValue revolutions)
@@ -491,8 +505,9 @@ namespace UnitsNet
             double value = (double) revolutions;
             return new Angle(value, AngleUnit.Revolution);
         }
+
         /// <summary>
-        ///     Get Angle from Tilt.
+        ///     Creates a <see cref="Angle"/> from <see cref="AngleUnit.Tilt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Angle FromTilt(QuantityValue tilt)
@@ -733,8 +748,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Angle objAngle)) throw new ArgumentException("Expected type Angle.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Angle objAngle)) throw new ArgumentException("Expected type Angle.", nameof(obj));
 
             return CompareTo(objAngle);
         }
@@ -787,7 +802,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Angle other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -815,7 +830,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(AngleUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -825,13 +840,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -840,7 +855,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is AngleUnit unitAsAngleUnit))
+            if (!(unit is AngleUnit unitAsAngleUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
             return As(unitAsAngleUnit);
@@ -864,18 +879,18 @@ namespace UnitsNet
         /// <returns>A Angle with the specified unit.</returns>
         public Angle ToUnit(AngleUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Angle), Unit, typeof(Angle), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Angle), Unit, typeof(Angle), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Angle)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -890,31 +905,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is AngleUnit unitAsAngleUnit))
+            if (!(unit is AngleUnit unitAsAngleUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsAngleUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is AngleUnit unitAsAngleUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsAngleUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Angle ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -927,16 +933,13 @@ namespace UnitsNet
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(AngleUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(AngleUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(AngleUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -1055,13 +1058,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Angle))
+            if (conversionType == typeof(Angle))
                 return this;
-            else if(conversionType == typeof(AngleUnit))
+            else if (conversionType == typeof(AngleUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Angle.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Angle.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Angle)} to {conversionType} is not supported.");

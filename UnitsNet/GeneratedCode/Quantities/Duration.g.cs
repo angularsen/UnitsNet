@@ -73,7 +73,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -99,7 +98,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Duration(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -168,57 +167,57 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Duration in Days.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Day"/>
         /// </summary>
         public double Days => As(DurationUnit.Day);
 
         /// <summary>
-        ///     Get Duration in Hours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Hour"/>
         /// </summary>
         public double Hours => As(DurationUnit.Hour);
 
         /// <summary>
-        ///     Get Duration in JulianYears.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
         /// </summary>
         public double JulianYears => As(DurationUnit.JulianYear);
 
         /// <summary>
-        ///     Get Duration in Microseconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
         /// </summary>
         public double Microseconds => As(DurationUnit.Microsecond);
 
         /// <summary>
-        ///     Get Duration in Milliseconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
         /// </summary>
         public double Milliseconds => As(DurationUnit.Millisecond);
 
         /// <summary>
-        ///     Get Duration in Minutes.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Minute"/>
         /// </summary>
         public double Minutes => As(DurationUnit.Minute);
 
         /// <summary>
-        ///     Get Duration in Months30.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Month30"/>
         /// </summary>
         public double Months30 => As(DurationUnit.Month30);
 
         /// <summary>
-        ///     Get Duration in Nanoseconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
         /// </summary>
         public double Nanoseconds => As(DurationUnit.Nanosecond);
 
         /// <summary>
-        ///     Get Duration in Seconds.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
         public double Seconds => As(DurationUnit.Second);
 
         /// <summary>
-        ///     Get Duration in Weeks.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
         /// </summary>
         public double Weeks => As(DurationUnit.Week);
 
         /// <summary>
-        ///     Get Duration in Years365.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Year365"/>
         /// </summary>
         public double Years365 => As(DurationUnit.Year365);
 
@@ -233,55 +232,56 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> DurationUnit
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Day, quantity => new Duration(quantity.Value/(24*3600), DurationUnit.Day));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Hour, quantity => new Duration(quantity.Value/3600, DurationUnit.Hour));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.JulianYear, quantity => new Duration(quantity.Value/(365.25*24*3600), DurationUnit.JulianYear));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Day, quantity => new Duration(quantity.Value / (24 * 3600), DurationUnit.Day));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Hour, quantity => new Duration(quantity.Value / 3600, DurationUnit.Hour));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.JulianYear, quantity => new Duration(quantity.Value / (365.25 * 24 * 3600), DurationUnit.JulianYear));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Microsecond, quantity => new Duration((quantity.Value) / 1e-6d, DurationUnit.Microsecond));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Millisecond, quantity => new Duration((quantity.Value) / 1e-3d, DurationUnit.Millisecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Minute, quantity => new Duration(quantity.Value/60, DurationUnit.Minute));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Month30, quantity => new Duration(quantity.Value/(30*24*3600), DurationUnit.Month30));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Minute, quantity => new Duration(quantity.Value / 60, DurationUnit.Minute));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Month30, quantity => new Duration(quantity.Value / (30 * 24 * 3600), DurationUnit.Month30));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Nanosecond, quantity => new Duration((quantity.Value) / 1e-9d, DurationUnit.Nanosecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => new Duration(quantity.Value/(7*24*3600), DurationUnit.Week));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => new Duration(quantity.Value/(365*24*3600), DurationUnit.Year365));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => new Duration(quantity.Value / (7 * 24 * 3600), DurationUnit.Week));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => new Duration(quantity.Value / (365 * 24 * 3600), DurationUnit.Year365));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Second, quantity => quantity);
 
             // Register in unit converter: DurationUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Day, DurationUnit.Second, quantity => new Duration(quantity.Value*24*3600, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Hour, DurationUnit.Second, quantity => new Duration(quantity.Value*3600, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.JulianYear, DurationUnit.Second, quantity => new Duration(quantity.Value*365.25*24*3600, DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Day, DurationUnit.Second, quantity => new Duration(quantity.Value * 24 * 3600, DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Hour, DurationUnit.Second, quantity => new Duration(quantity.Value * 3600, DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.JulianYear, DurationUnit.Second, quantity => new Duration(quantity.Value * 365.25 * 24 * 3600, DurationUnit.Second));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Microsecond, DurationUnit.Second, quantity => new Duration((quantity.Value) * 1e-6d, DurationUnit.Second));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Millisecond, DurationUnit.Second, quantity => new Duration((quantity.Value) * 1e-3d, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Minute, DurationUnit.Second, quantity => new Duration(quantity.Value*60, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Month30, DurationUnit.Second, quantity => new Duration(quantity.Value*30*24*3600, DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Minute, DurationUnit.Second, quantity => new Duration(quantity.Value * 60, DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Month30, DurationUnit.Second, quantity => new Duration(quantity.Value * 30 * 24 * 3600, DurationUnit.Second));
             unitConverter.SetConversionFunction<Duration>(DurationUnit.Nanosecond, DurationUnit.Second, quantity => new Duration((quantity.Value) * 1e-9d, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Week, DurationUnit.Second, quantity => new Duration(quantity.Value*7*24*3600, DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Year365, DurationUnit.Second, quantity => new Duration(quantity.Value*365*24*3600, DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Week, DurationUnit.Second, quantity => new Duration(quantity.Value * 7 * 24 * 3600, DurationUnit.Second));
+            unitConverter.SetConversionFunction<Duration>(DurationUnit.Year365, DurationUnit.Second, quantity => new Duration(quantity.Value * 365 * 24 * 3600, DurationUnit.Second));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Day, new CultureInfo("en-US"), new string[]{"d", "day", "days"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Day, new CultureInfo("ru-RU"), new string[]{"сут", "д"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Hour, new CultureInfo("en-US"), new string[]{"h", "hr", "hrs", "hour", "hours"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Hour, new CultureInfo("ru-RU"), new string[]{"ч", "час"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.JulianYear, new CultureInfo("en-US"), new string[]{"jyr", "jyear", "jyears"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Microsecond, new CultureInfo("en-US"), new string[]{"µs", "µsec", "µsecs", "µsecond", "µseconds"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Microsecond, new CultureInfo("ru-RU"), new string[]{"мксек", "мкс"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Millisecond, new CultureInfo("en-US"), new string[]{"ms", "msec", "msecs", "msecond", "mseconds"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Millisecond, new CultureInfo("ru-RU"), new string[]{"мсек", "мс"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Minute, new CultureInfo("en-US"), new string[]{"m", "min", "minute", "minutes"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Minute, new CultureInfo("ru-RU"), new string[]{"мин"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Month30, new CultureInfo("en-US"), new string[]{"mo", "month", "months"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Month30, new CultureInfo("ru-RU"), new string[]{"месяц"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Nanosecond, new CultureInfo("en-US"), new string[]{"ns", "nsec", "nsecs", "nsecond", "nseconds"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Nanosecond, new CultureInfo("ru-RU"), new string[]{"нсек", "нс"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Second, new CultureInfo("en-US"), new string[]{"s", "sec", "secs", "second", "seconds"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Second, new CultureInfo("ru-RU"), new string[]{"сек", "с"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Week, new CultureInfo("en-US"), new string[]{"wk", "week", "weeks"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Week, new CultureInfo("ru-RU"), new string[]{"нед"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Year365, new CultureInfo("en-US"), new string[]{"yr", "year", "years"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(DurationUnit.Year365, new CultureInfo("ru-RU"), new string[]{"год"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Day, new CultureInfo("en-US"), false, true, new string[]{"d", "day", "days"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Day, new CultureInfo("ru-RU"), false, true, new string[]{"сут", "д"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Hour, new CultureInfo("en-US"), false, true, new string[]{"h", "hr", "hrs", "hour", "hours"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Hour, new CultureInfo("ru-RU"), false, true, new string[]{"ч", "час"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.JulianYear, new CultureInfo("en-US"), false, true, new string[]{"jyr", "jyear", "jyears"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Microsecond, new CultureInfo("en-US"), false, true, new string[]{"µs", "µsec", "µsecs", "µsecond", "µseconds"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Microsecond, new CultureInfo("ru-RU"), false, true, new string[]{"мксек", "мкс"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Millisecond, new CultureInfo("en-US"), false, true, new string[]{"ms", "msec", "msecs", "msecond", "mseconds"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Millisecond, new CultureInfo("ru-RU"), false, true, new string[]{"мсек", "мс"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Minute, new CultureInfo("en-US"), false, true, new string[]{"m", "min", "minute", "minutes"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Minute, new CultureInfo("ru-RU"), false, true, new string[]{"мин"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Month30, new CultureInfo("en-US"), false, true, new string[]{"mo", "month", "months"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Month30, new CultureInfo("ru-RU"), false, true, new string[]{"месяц"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Nanosecond, new CultureInfo("en-US"), false, true, new string[]{"ns", "nsec", "nsecs", "nsecond", "nseconds"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Nanosecond, new CultureInfo("ru-RU"), false, true, new string[]{"нсек", "нс"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Second, new CultureInfo("en-US"), false, true, new string[]{"s", "sec", "secs", "second", "seconds"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Second, new CultureInfo("ru-RU"), false, true, new string[]{"сек", "с"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Week, new CultureInfo("en-US"), false, true, new string[]{"wk", "week", "weeks"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Week, new CultureInfo("ru-RU"), false, true, new string[]{"нед"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Year365, new CultureInfo("en-US"), false, true, new string[]{"yr", "year", "years"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(DurationUnit.Year365, new CultureInfo("ru-RU"), false, true, new string[]{"год"});
         }
 
         /// <summary>
@@ -310,7 +310,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Duration from Days.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Day"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromDays(QuantityValue days)
@@ -318,8 +318,9 @@ namespace UnitsNet
             double value = (double) days;
             return new Duration(value, DurationUnit.Day);
         }
+
         /// <summary>
-        ///     Get Duration from Hours.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromHours(QuantityValue hours)
@@ -327,8 +328,9 @@ namespace UnitsNet
             double value = (double) hours;
             return new Duration(value, DurationUnit.Hour);
         }
+
         /// <summary>
-        ///     Get Duration from JulianYears.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromJulianYears(QuantityValue julianyears)
@@ -336,8 +338,9 @@ namespace UnitsNet
             double value = (double) julianyears;
             return new Duration(value, DurationUnit.JulianYear);
         }
+
         /// <summary>
-        ///     Get Duration from Microseconds.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMicroseconds(QuantityValue microseconds)
@@ -345,8 +348,9 @@ namespace UnitsNet
             double value = (double) microseconds;
             return new Duration(value, DurationUnit.Microsecond);
         }
+
         /// <summary>
-        ///     Get Duration from Milliseconds.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMilliseconds(QuantityValue milliseconds)
@@ -354,8 +358,9 @@ namespace UnitsNet
             double value = (double) milliseconds;
             return new Duration(value, DurationUnit.Millisecond);
         }
+
         /// <summary>
-        ///     Get Duration from Minutes.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMinutes(QuantityValue minutes)
@@ -363,8 +368,9 @@ namespace UnitsNet
             double value = (double) minutes;
             return new Duration(value, DurationUnit.Minute);
         }
+
         /// <summary>
-        ///     Get Duration from Months30.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMonths30(QuantityValue months30)
@@ -372,8 +378,9 @@ namespace UnitsNet
             double value = (double) months30;
             return new Duration(value, DurationUnit.Month30);
         }
+
         /// <summary>
-        ///     Get Duration from Nanoseconds.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromNanoseconds(QuantityValue nanoseconds)
@@ -381,8 +388,9 @@ namespace UnitsNet
             double value = (double) nanoseconds;
             return new Duration(value, DurationUnit.Nanosecond);
         }
+
         /// <summary>
-        ///     Get Duration from Seconds.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromSeconds(QuantityValue seconds)
@@ -390,8 +398,9 @@ namespace UnitsNet
             double value = (double) seconds;
             return new Duration(value, DurationUnit.Second);
         }
+
         /// <summary>
-        ///     Get Duration from Weeks.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromWeeks(QuantityValue weeks)
@@ -399,8 +408,9 @@ namespace UnitsNet
             double value = (double) weeks;
             return new Duration(value, DurationUnit.Week);
         }
+
         /// <summary>
-        ///     Get Duration from Years365.
+        ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromYears365(QuantityValue years365)
@@ -641,8 +651,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Duration objDuration)) throw new ArgumentException("Expected type Duration.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Duration objDuration)) throw new ArgumentException("Expected type Duration.", nameof(obj));
 
             return CompareTo(objDuration);
         }
@@ -695,7 +705,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Duration other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -723,7 +733,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(DurationUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -733,13 +743,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -748,7 +758,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is DurationUnit unitAsDurationUnit))
+            if (!(unit is DurationUnit unitAsDurationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
 
             return As(unitAsDurationUnit);
@@ -772,18 +782,18 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public Duration ToUnit(DurationUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Duration), Unit, typeof(Duration), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Duration), Unit, typeof(Duration), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Duration)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -798,31 +808,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is DurationUnit unitAsDurationUnit))
+            if (!(unit is DurationUnit unitAsDurationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsDurationUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is DurationUnit unitAsDurationUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsDurationUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Duration ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -835,16 +836,13 @@ namespace UnitsNet
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(DurationUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -963,13 +961,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Duration))
+            if (conversionType == typeof(Duration))
                 return this;
-            else if(conversionType == typeof(DurationUnit))
+            else if (conversionType == typeof(DurationUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Duration.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Duration.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Duration)} to {conversionType} is not supported.");

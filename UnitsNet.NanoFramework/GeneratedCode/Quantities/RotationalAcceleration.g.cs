@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public RotationalAccelerationUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static RotationalAcceleration MinValue { get; } = new RotationalAcceleration(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,22 +80,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RotationalAcceleration in DegreesPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>
         /// </summary>
         public double DegreesPerSecondSquared => As(RotationalAccelerationUnit.DegreePerSecondSquared);
 
         /// <summary>
-        ///     Get RotationalAcceleration in RadiansPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>
         /// </summary>
         public double RadiansPerSecondSquared => As(RotationalAccelerationUnit.RadianPerSecondSquared);
 
         /// <summary>
-        ///     Get RotationalAcceleration in RevolutionsPerMinutePerSecond.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>
         /// </summary>
         public double RevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
 
         /// <summary>
-        ///     Get RotationalAcceleration in RevolutionsPerSecondSquared.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>
         /// </summary>
         public double RevolutionsPerSecondSquared => As(RotationalAccelerationUnit.RevolutionPerSecondSquared);
 
@@ -102,29 +104,28 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RotationalAcceleration from DegreesPerSecondSquared.
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalAcceleration FromDegreesPerSecondSquared(double degreespersecondsquared) => new RotationalAcceleration(degreespersecondsquared, RotationalAccelerationUnit.DegreePerSecondSquared);
 
         /// <summary>
-        ///     Get RotationalAcceleration from RadiansPerSecondSquared.
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalAcceleration FromRadiansPerSecondSquared(double radianspersecondsquared) => new RotationalAcceleration(radianspersecondsquared, RotationalAccelerationUnit.RadianPerSecondSquared);
 
         /// <summary>
-        ///     Get RotationalAcceleration from RevolutionsPerMinutePerSecond.
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalAcceleration FromRevolutionsPerMinutePerSecond(double revolutionsperminutepersecond) => new RotationalAcceleration(revolutionsperminutepersecond, RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
 
         /// <summary>
-        ///     Get RotationalAcceleration from RevolutionsPerSecondSquared.
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RevolutionPerSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalAcceleration FromRevolutionsPerSecondSquared(double revolutionspersecondsquared) => new RotationalAcceleration(revolutionspersecondsquared, RotationalAccelerationUnit.RevolutionPerSecondSquared);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalAccelerationUnit" /> to <see cref="RotationalAcceleration" />.
@@ -139,62 +140,59 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(RotationalAccelerationUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(RotationalAccelerationUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public RotationalAcceleration ToUnit(RotationalAccelerationUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new RotationalAcceleration(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public RotationalAcceleration ToUnit(RotationalAccelerationUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new RotationalAcceleration(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case RotationalAccelerationUnit.DegreePerSecondSquared: return (3.1415926535897931/180)*_value;
-                case RotationalAccelerationUnit.RadianPerSecondSquared: return _value;
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2*3.1415926535897931)/60)*_value;
-                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (2*3.1415926535897931)*_value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        RotationalAccelerationUnit.DegreePerSecondSquared => (3.1415926535897931 / 180) * _value,
+                        RotationalAccelerationUnit.RadianPerSecondSquared => _value,
+                        RotationalAccelerationUnit.RevolutionPerMinutePerSecond => ((2 * 3.1415926535897931) / 60) * _value,
+                        RotationalAccelerationUnit.RevolutionPerSecondSquared => (2 * 3.1415926535897931) * _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(RotationalAccelerationUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(RotationalAccelerationUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case RotationalAccelerationUnit.DegreePerSecondSquared: return (180/3.1415926535897931)*baseUnitValue;
-                case RotationalAccelerationUnit.RadianPerSecondSquared: return baseUnitValue;
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return (60/(2*3.1415926535897931))*baseUnitValue;
-                case RotationalAccelerationUnit.RevolutionPerSecondSquared: return (1/(2*3.1415926535897931))*baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        RotationalAccelerationUnit.DegreePerSecondSquared => (180 / 3.1415926535897931) * baseUnitValue,
+                        RotationalAccelerationUnit.RadianPerSecondSquared => baseUnitValue,
+                        RotationalAccelerationUnit.RevolutionPerMinutePerSecond => (60 / (2 * 3.1415926535897931)) * baseUnitValue,
+                        RotationalAccelerationUnit.RevolutionPerSecondSquared => (1 / (2 * 3.1415926535897931)) * baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

@@ -13,7 +13,7 @@ namespace UnitsNet
         /// <returns>The inverse or <see cref="ElectricConductivity"/> of this unit.</returns>
         public ElectricConductivity Inverse()
         {
-            if( OhmMeters == 0.0 )
+            if (OhmMeters == 0.0)
                 return new ElectricConductivity( 0, ElectricConductivityUnit.SiemensPerMeter );
 
             return new ElectricConductivity( 1 / OhmMeters, ElectricConductivityUnit.SiemensPerMeter );

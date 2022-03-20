@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricResistivityUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -81,72 +83,72 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricResistivity in KiloohmsCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.KiloohmCentimeter"/>
         /// </summary>
         public double KiloohmsCentimeter => As(ElectricResistivityUnit.KiloohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in KiloohmMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.KiloohmMeter"/>
         /// </summary>
         public double KiloohmMeters => As(ElectricResistivityUnit.KiloohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MegaohmsCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MegaohmCentimeter"/>
         /// </summary>
         public double MegaohmsCentimeter => As(ElectricResistivityUnit.MegaohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MegaohmMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MegaohmMeter"/>
         /// </summary>
         public double MegaohmMeters => As(ElectricResistivityUnit.MegaohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MicroohmsCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MicroohmCentimeter"/>
         /// </summary>
         public double MicroohmsCentimeter => As(ElectricResistivityUnit.MicroohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MicroohmMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MicroohmMeter"/>
         /// </summary>
         public double MicroohmMeters => As(ElectricResistivityUnit.MicroohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MilliohmsCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MilliohmCentimeter"/>
         /// </summary>
         public double MilliohmsCentimeter => As(ElectricResistivityUnit.MilliohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in MilliohmMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MilliohmMeter"/>
         /// </summary>
         public double MilliohmMeters => As(ElectricResistivityUnit.MilliohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in NanoohmsCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.NanoohmCentimeter"/>
         /// </summary>
         public double NanoohmsCentimeter => As(ElectricResistivityUnit.NanoohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in NanoohmMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.NanoohmMeter"/>
         /// </summary>
         public double NanoohmMeters => As(ElectricResistivityUnit.NanoohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in OhmsCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.OhmCentimeter"/>
         /// </summary>
         public double OhmsCentimeter => As(ElectricResistivityUnit.OhmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in OhmMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.OhmMeter"/>
         /// </summary>
         public double OhmMeters => As(ElectricResistivityUnit.OhmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in PicoohmsCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.PicoohmCentimeter"/>
         /// </summary>
         public double PicoohmsCentimeter => As(ElectricResistivityUnit.PicoohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity in PicoohmMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.PicoohmMeter"/>
         /// </summary>
         public double PicoohmMeters => As(ElectricResistivityUnit.PicoohmMeter);
 
@@ -155,89 +157,88 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricResistivity from KiloohmsCentimeter.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.KiloohmCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromKiloohmsCentimeter(double kiloohmscentimeter) => new ElectricResistivity(kiloohmscentimeter, ElectricResistivityUnit.KiloohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from KiloohmMeters.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.KiloohmMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromKiloohmMeters(double kiloohmmeters) => new ElectricResistivity(kiloohmmeters, ElectricResistivityUnit.KiloohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from MegaohmsCentimeter.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MegaohmCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromMegaohmsCentimeter(double megaohmscentimeter) => new ElectricResistivity(megaohmscentimeter, ElectricResistivityUnit.MegaohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from MegaohmMeters.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MegaohmMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromMegaohmMeters(double megaohmmeters) => new ElectricResistivity(megaohmmeters, ElectricResistivityUnit.MegaohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from MicroohmsCentimeter.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MicroohmCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromMicroohmsCentimeter(double microohmscentimeter) => new ElectricResistivity(microohmscentimeter, ElectricResistivityUnit.MicroohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from MicroohmMeters.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MicroohmMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromMicroohmMeters(double microohmmeters) => new ElectricResistivity(microohmmeters, ElectricResistivityUnit.MicroohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from MilliohmsCentimeter.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MilliohmCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromMilliohmsCentimeter(double milliohmscentimeter) => new ElectricResistivity(milliohmscentimeter, ElectricResistivityUnit.MilliohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from MilliohmMeters.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MilliohmMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromMilliohmMeters(double milliohmmeters) => new ElectricResistivity(milliohmmeters, ElectricResistivityUnit.MilliohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from NanoohmsCentimeter.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.NanoohmCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromNanoohmsCentimeter(double nanoohmscentimeter) => new ElectricResistivity(nanoohmscentimeter, ElectricResistivityUnit.NanoohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from NanoohmMeters.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.NanoohmMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromNanoohmMeters(double nanoohmmeters) => new ElectricResistivity(nanoohmmeters, ElectricResistivityUnit.NanoohmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from OhmsCentimeter.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.OhmCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromOhmsCentimeter(double ohmscentimeter) => new ElectricResistivity(ohmscentimeter, ElectricResistivityUnit.OhmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from OhmMeters.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.OhmMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromOhmMeters(double ohmmeters) => new ElectricResistivity(ohmmeters, ElectricResistivityUnit.OhmMeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from PicoohmsCentimeter.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.PicoohmCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromPicoohmsCentimeter(double picoohmscentimeter) => new ElectricResistivity(picoohmscentimeter, ElectricResistivityUnit.PicoohmCentimeter);
 
         /// <summary>
-        ///     Get ElectricResistivity from PicoohmMeters.
+        ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.PicoohmMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistivity FromPicoohmMeters(double picoohmmeters) => new ElectricResistivity(picoohmmeters, ElectricResistivityUnit.PicoohmMeter);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistivityUnit" /> to <see cref="ElectricResistivity" />.
@@ -252,82 +253,79 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricResistivityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricResistivityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricResistivity ToUnit(ElectricResistivityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricResistivity(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricResistivity ToUnit(ElectricResistivityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricResistivity(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricResistivityUnit.KiloohmCentimeter: return (_value/100) * 1e3d;
-                case ElectricResistivityUnit.KiloohmMeter: return (_value) * 1e3d;
-                case ElectricResistivityUnit.MegaohmCentimeter: return (_value/100) * 1e6d;
-                case ElectricResistivityUnit.MegaohmMeter: return (_value) * 1e6d;
-                case ElectricResistivityUnit.MicroohmCentimeter: return (_value/100) * 1e-6d;
-                case ElectricResistivityUnit.MicroohmMeter: return (_value) * 1e-6d;
-                case ElectricResistivityUnit.MilliohmCentimeter: return (_value/100) * 1e-3d;
-                case ElectricResistivityUnit.MilliohmMeter: return (_value) * 1e-3d;
-                case ElectricResistivityUnit.NanoohmCentimeter: return (_value/100) * 1e-9d;
-                case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
-                case ElectricResistivityUnit.OhmCentimeter: return _value/100;
-                case ElectricResistivityUnit.OhmMeter: return _value;
-                case ElectricResistivityUnit.PicoohmCentimeter: return (_value/100) * 1e-12d;
-                case ElectricResistivityUnit.PicoohmMeter: return (_value) * 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricResistivityUnit.KiloohmCentimeter => (_value / 100) * 1e3d,
+                        ElectricResistivityUnit.KiloohmMeter => (_value) * 1e3d,
+                        ElectricResistivityUnit.MegaohmCentimeter => (_value / 100) * 1e6d,
+                        ElectricResistivityUnit.MegaohmMeter => (_value) * 1e6d,
+                        ElectricResistivityUnit.MicroohmCentimeter => (_value / 100) * 1e-6d,
+                        ElectricResistivityUnit.MicroohmMeter => (_value) * 1e-6d,
+                        ElectricResistivityUnit.MilliohmCentimeter => (_value / 100) * 1e-3d,
+                        ElectricResistivityUnit.MilliohmMeter => (_value) * 1e-3d,
+                        ElectricResistivityUnit.NanoohmCentimeter => (_value / 100) * 1e-9d,
+                        ElectricResistivityUnit.NanoohmMeter => (_value) * 1e-9d,
+                        ElectricResistivityUnit.OhmCentimeter => _value / 100,
+                        ElectricResistivityUnit.OhmMeter => _value,
+                        ElectricResistivityUnit.PicoohmCentimeter => (_value / 100) * 1e-12d,
+                        ElectricResistivityUnit.PicoohmMeter => (_value) * 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricResistivityUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricResistivityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricResistivityUnit.KiloohmCentimeter: return (baseUnitValue*100) / 1e3d;
-                case ElectricResistivityUnit.KiloohmMeter: return (baseUnitValue) / 1e3d;
-                case ElectricResistivityUnit.MegaohmCentimeter: return (baseUnitValue*100) / 1e6d;
-                case ElectricResistivityUnit.MegaohmMeter: return (baseUnitValue) / 1e6d;
-                case ElectricResistivityUnit.MicroohmCentimeter: return (baseUnitValue*100) / 1e-6d;
-                case ElectricResistivityUnit.MicroohmMeter: return (baseUnitValue) / 1e-6d;
-                case ElectricResistivityUnit.MilliohmCentimeter: return (baseUnitValue*100) / 1e-3d;
-                case ElectricResistivityUnit.MilliohmMeter: return (baseUnitValue) / 1e-3d;
-                case ElectricResistivityUnit.NanoohmCentimeter: return (baseUnitValue*100) / 1e-9d;
-                case ElectricResistivityUnit.NanoohmMeter: return (baseUnitValue) / 1e-9d;
-                case ElectricResistivityUnit.OhmCentimeter: return baseUnitValue*100;
-                case ElectricResistivityUnit.OhmMeter: return baseUnitValue;
-                case ElectricResistivityUnit.PicoohmCentimeter: return (baseUnitValue*100) / 1e-12d;
-                case ElectricResistivityUnit.PicoohmMeter: return (baseUnitValue) / 1e-12d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ElectricResistivityUnit.KiloohmCentimeter => (baseUnitValue * 100) / 1e3d,
+                        ElectricResistivityUnit.KiloohmMeter => (baseUnitValue) / 1e3d,
+                        ElectricResistivityUnit.MegaohmCentimeter => (baseUnitValue * 100) / 1e6d,
+                        ElectricResistivityUnit.MegaohmMeter => (baseUnitValue) / 1e6d,
+                        ElectricResistivityUnit.MicroohmCentimeter => (baseUnitValue * 100) / 1e-6d,
+                        ElectricResistivityUnit.MicroohmMeter => (baseUnitValue) / 1e-6d,
+                        ElectricResistivityUnit.MilliohmCentimeter => (baseUnitValue * 100) / 1e-3d,
+                        ElectricResistivityUnit.MilliohmMeter => (baseUnitValue) / 1e-3d,
+                        ElectricResistivityUnit.NanoohmCentimeter => (baseUnitValue * 100) / 1e-9d,
+                        ElectricResistivityUnit.NanoohmMeter => (baseUnitValue) / 1e-9d,
+                        ElectricResistivityUnit.OhmCentimeter => baseUnitValue * 100,
+                        ElectricResistivityUnit.OhmMeter => baseUnitValue,
+                        ElectricResistivityUnit.PicoohmCentimeter => (baseUnitValue * 100) / 1e-12d,
+                        ElectricResistivityUnit.PicoohmMeter => (baseUnitValue) / 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

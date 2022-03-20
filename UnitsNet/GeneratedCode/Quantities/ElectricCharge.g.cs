@@ -70,7 +70,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -96,7 +95,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricCharge(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -165,27 +164,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCharge in AmpereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.AmpereHour"/>
         /// </summary>
         public double AmpereHours => As(ElectricChargeUnit.AmpereHour);
 
         /// <summary>
-        ///     Get ElectricCharge in Coulombs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Coulomb"/>
         /// </summary>
         public double Coulombs => As(ElectricChargeUnit.Coulomb);
 
         /// <summary>
-        ///     Get ElectricCharge in KiloampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.KiloampereHour"/>
         /// </summary>
         public double KiloampereHours => As(ElectricChargeUnit.KiloampereHour);
 
         /// <summary>
-        ///     Get ElectricCharge in MegaampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.MegaampereHour"/>
         /// </summary>
         public double MegaampereHours => As(ElectricChargeUnit.MegaampereHour);
 
         /// <summary>
-        ///     Get ElectricCharge in MilliampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.MilliampereHour"/>
         /// </summary>
         public double MilliampereHours => As(ElectricChargeUnit.MilliampereHour);
 
@@ -200,27 +199,28 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ElectricChargeUnit
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour, quantity => new ElectricCharge(quantity.Value*2.77777777777e-4, ElectricChargeUnit.AmpereHour));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour, quantity => new ElectricCharge((quantity.Value*2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour, quantity => new ElectricCharge((quantity.Value*2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour, quantity => new ElectricCharge((quantity.Value*2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.AmpereHour, quantity => new ElectricCharge(quantity.Value * 2.77777777777e-4, ElectricChargeUnit.AmpereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.KiloampereHour, quantity => new ElectricCharge((quantity.Value * 2.77777777777e-4) / 1e3d, ElectricChargeUnit.KiloampereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MegaampereHour, quantity => new ElectricCharge((quantity.Value * 2.77777777777e-4) / 1e6d, ElectricChargeUnit.MegaampereHour));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.MilliampereHour, quantity => new ElectricCharge((quantity.Value * 2.77777777777e-4) / 1e-3d, ElectricChargeUnit.MilliampereHour));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.Coulomb, quantity => quantity);
 
             // Register in unit converter: ElectricChargeUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge(quantity.Value/2.77777777777e-4, ElectricChargeUnit.Coulomb));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value/2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value/2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb));
-            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value/2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.AmpereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge(quantity.Value / 2.77777777777e-4, ElectricChargeUnit.Coulomb));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.KiloampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value / 2.77777777777e-4) * 1e3d, ElectricChargeUnit.Coulomb));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MegaampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value / 2.77777777777e-4) * 1e6d, ElectricChargeUnit.Coulomb));
+            unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.MilliampereHour, ElectricChargeUnit.Coulomb, quantity => new ElectricCharge((quantity.Value / 2.77777777777e-4) * 1e-3d, ElectricChargeUnit.Coulomb));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), new string[]{"A-h", "Ah"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.Coulomb, new CultureInfo("en-US"), new string[]{"C"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.KiloampereHour, new CultureInfo("en-US"), new string[]{"kA-h", "kAh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.MegaampereHour, new CultureInfo("en-US"), new string[]{"MA-h", "MAh"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricChargeUnit.MilliampereHour, new CultureInfo("en-US"), new string[]{"mA-h", "mAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), false, true, new string[]{"A-h", "Ah"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Coulomb, new CultureInfo("en-US"), false, true, new string[]{"C"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.KiloampereHour, new CultureInfo("en-US"), false, true, new string[]{"kA-h", "kAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.MegaampereHour, new CultureInfo("en-US"), false, true, new string[]{"MA-h", "MAh"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.MilliampereHour, new CultureInfo("en-US"), false, true, new string[]{"mA-h", "mAh"});
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCharge from AmpereHours.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.AmpereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromAmpereHours(QuantityValue amperehours)
@@ -257,8 +257,9 @@ namespace UnitsNet
             double value = (double) amperehours;
             return new ElectricCharge(value, ElectricChargeUnit.AmpereHour);
         }
+
         /// <summary>
-        ///     Get ElectricCharge from Coulombs.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Coulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromCoulombs(QuantityValue coulombs)
@@ -266,8 +267,9 @@ namespace UnitsNet
             double value = (double) coulombs;
             return new ElectricCharge(value, ElectricChargeUnit.Coulomb);
         }
+
         /// <summary>
-        ///     Get ElectricCharge from KiloampereHours.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.KiloampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromKiloampereHours(QuantityValue kiloamperehours)
@@ -275,8 +277,9 @@ namespace UnitsNet
             double value = (double) kiloamperehours;
             return new ElectricCharge(value, ElectricChargeUnit.KiloampereHour);
         }
+
         /// <summary>
-        ///     Get ElectricCharge from MegaampereHours.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MegaampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromMegaampereHours(QuantityValue megaamperehours)
@@ -284,8 +287,9 @@ namespace UnitsNet
             double value = (double) megaamperehours;
             return new ElectricCharge(value, ElectricChargeUnit.MegaampereHour);
         }
+
         /// <summary>
-        ///     Get ElectricCharge from MilliampereHours.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MilliampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromMilliampereHours(QuantityValue milliamperehours)
@@ -526,8 +530,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricCharge objElectricCharge)) throw new ArgumentException("Expected type ElectricCharge.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ElectricCharge objElectricCharge)) throw new ArgumentException("Expected type ElectricCharge.", nameof(obj));
 
             return CompareTo(objElectricCharge);
         }
@@ -580,7 +584,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ElectricCharge other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -608,7 +612,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricChargeUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -618,13 +622,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -633,7 +637,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ElectricChargeUnit unitAsElectricChargeUnit))
+            if (!(unit is ElectricChargeUnit unitAsElectricChargeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
 
             return As(unitAsElectricChargeUnit);
@@ -657,18 +661,18 @@ namespace UnitsNet
         /// <returns>A ElectricCharge with the specified unit.</returns>
         public ElectricCharge ToUnit(ElectricChargeUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ElectricCharge), Unit, typeof(ElectricCharge), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ElectricCharge), Unit, typeof(ElectricCharge), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ElectricCharge)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -683,31 +687,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricChargeUnit unitAsElectricChargeUnit))
+            if (!(unit is ElectricChargeUnit unitAsElectricChargeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsElectricChargeUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is ElectricChargeUnit unitAsElectricChargeUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsElectricChargeUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricCharge ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -720,16 +715,13 @@ namespace UnitsNet
         IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(ElectricChargeUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(ElectricChargeUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(ElectricChargeUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -848,13 +840,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricCharge))
+            if (conversionType == typeof(ElectricCharge))
                 return this;
-            else if(conversionType == typeof(ElectricChargeUnit))
+            else if (conversionType == typeof(ElectricChargeUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ElectricCharge.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ElectricCharge.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ElectricCharge)} to {conversionType} is not supported.");

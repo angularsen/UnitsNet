@@ -12,8 +12,8 @@
       "BaseUnits": {
         "T": "Year365"
       },
-      "FromUnitToBaseFunc": "{x}*365*24*3600",
-      "FromBaseToUnitFunc": "{x}/(365*24*3600)",
+      "FromUnitToBaseFunc": "{x} * 365 * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (365 * 24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -31,8 +31,8 @@
       "BaseUnits": {
         "T": "Month30"
       },
-      "FromUnitToBaseFunc": "{x}*30*24*3600",
-      "FromBaseToUnitFunc": "{x}/(30*24*3600)",
+      "FromUnitToBaseFunc": "{x} * 30 * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (30 * 24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -50,8 +50,8 @@
       "BaseUnits": {
         "T": "Week"
       },
-      "FromUnitToBaseFunc": "{x}*7*24*3600",
-      "FromBaseToUnitFunc": "{x}/(7*24*3600)",
+      "FromUnitToBaseFunc": "{x} * 7 * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (7 * 24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -69,8 +69,8 @@
       "BaseUnits": {
         "T": "Day"
       },
-      "FromUnitToBaseFunc": "{x}*24*3600",
-      "FromBaseToUnitFunc": "{x}/(24*3600)",
+      "FromUnitToBaseFunc": "{x} * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -88,8 +88,8 @@
       "BaseUnits": {
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "{x}*3600",
-      "FromBaseToUnitFunc": "{x}/3600",
+      "FromUnitToBaseFunc": "{x} * 3600",
+      "FromBaseToUnitFunc": "{x} / 3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -107,8 +107,8 @@
       "BaseUnits": {
         "T": "Minute"
       },
-      "FromUnitToBaseFunc": "{x}*60",
-      "FromBaseToUnitFunc": "{x}/60",
+      "FromUnitToBaseFunc": "{x} * 60",
+      "FromBaseToUnitFunc": "{x} / 60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -146,8 +146,8 @@
       "BaseUnits": {
         "T": "JulianYear"
       },
-      "FromUnitToBaseFunc": "{x}*365.25*24*3600",
-      "FromBaseToUnitFunc": "{x}/(365.25*24*3600)",
+      "FromUnitToBaseFunc": "{x} * 365.25 * 24 * 3600",
+      "FromBaseToUnitFunc": "{x} / (365.25 * 24 * 3600)",
       "Localization": [
         {
           "Culture": "en-US",

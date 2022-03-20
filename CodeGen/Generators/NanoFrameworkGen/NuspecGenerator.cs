@@ -42,7 +42,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <dependencies>
       <dependency id=""nanoFramework.CoreLibrary"" version=""{_mscorlibNuGetVersion}"" />");
 
-    if(NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
+    if (NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
     {
                 Writer.WL($@"
       <dependency id=""nanoFramework.System.Math"" version=""{_mathNuGetVersion}"" />");

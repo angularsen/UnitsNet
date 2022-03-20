@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricPotentialDcUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricPotentialDc MinValue { get; } = new ElectricPotentialDc(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,27 +80,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricPotentialDc in KilovoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.KilovoltDc"/>
         /// </summary>
         public double KilovoltsDc => As(ElectricPotentialDcUnit.KilovoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MegavoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MegavoltDc"/>
         /// </summary>
         public double MegavoltsDc => As(ElectricPotentialDcUnit.MegavoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MicrovoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MicrovoltDc"/>
         /// </summary>
         public double MicrovoltsDc => As(ElectricPotentialDcUnit.MicrovoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in MillivoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.MillivoltDc"/>
         /// </summary>
         public double MillivoltsDc => As(ElectricPotentialDcUnit.MillivoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc in VoltsDc.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialDcUnit.VoltDc"/>
         /// </summary>
         public double VoltsDc => As(ElectricPotentialDcUnit.VoltDc);
 
@@ -107,35 +109,34 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricPotentialDc from KilovoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.KilovoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromKilovoltsDc(double kilovoltsdc) => new ElectricPotentialDc(kilovoltsdc, ElectricPotentialDcUnit.KilovoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc from MegavoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MegavoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMegavoltsDc(double megavoltsdc) => new ElectricPotentialDc(megavoltsdc, ElectricPotentialDcUnit.MegavoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc from MicrovoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MicrovoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMicrovoltsDc(double microvoltsdc) => new ElectricPotentialDc(microvoltsdc, ElectricPotentialDcUnit.MicrovoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc from MillivoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.MillivoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromMillivoltsDc(double millivoltsdc) => new ElectricPotentialDc(millivoltsdc, ElectricPotentialDcUnit.MillivoltDc);
 
         /// <summary>
-        ///     Get ElectricPotentialDc from VoltsDc.
+        ///     Creates a <see cref="ElectricPotentialDc"/> from <see cref="ElectricPotentialDcUnit.VoltDc"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricPotentialDc FromVoltsDc(double voltsdc) => new ElectricPotentialDc(voltsdc, ElectricPotentialDcUnit.VoltDc);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialDcUnit" /> to <see cref="ElectricPotentialDc" />.
@@ -150,64 +151,61 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricPotentialDcUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricPotentialDcUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricPotentialDc ToUnit(ElectricPotentialDcUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricPotentialDc(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricPotentialDc ToUnit(ElectricPotentialDcUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricPotentialDc(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricPotentialDcUnit.KilovoltDc: return (_value) * 1e3d;
-                case ElectricPotentialDcUnit.MegavoltDc: return (_value) * 1e6d;
-                case ElectricPotentialDcUnit.MicrovoltDc: return (_value) * 1e-6d;
-                case ElectricPotentialDcUnit.MillivoltDc: return (_value) * 1e-3d;
-                case ElectricPotentialDcUnit.VoltDc: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricPotentialDcUnit.KilovoltDc => (_value) * 1e3d,
+                        ElectricPotentialDcUnit.MegavoltDc => (_value) * 1e6d,
+                        ElectricPotentialDcUnit.MicrovoltDc => (_value) * 1e-6d,
+                        ElectricPotentialDcUnit.MillivoltDc => (_value) * 1e-3d,
+                        ElectricPotentialDcUnit.VoltDc => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricPotentialDcUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricPotentialDcUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricPotentialDcUnit.KilovoltDc: return (baseUnitValue) / 1e3d;
-                case ElectricPotentialDcUnit.MegavoltDc: return (baseUnitValue) / 1e6d;
-                case ElectricPotentialDcUnit.MicrovoltDc: return (baseUnitValue) / 1e-6d;
-                case ElectricPotentialDcUnit.MillivoltDc: return (baseUnitValue) / 1e-3d;
-                case ElectricPotentialDcUnit.VoltDc: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ElectricPotentialDcUnit.KilovoltDc => (baseUnitValue) / 1e3d,
+                        ElectricPotentialDcUnit.MegavoltDc => (baseUnitValue) / 1e6d,
+                        ElectricPotentialDcUnit.MicrovoltDc => (baseUnitValue) / 1e-6d,
+                        ElectricPotentialDcUnit.MillivoltDc => (baseUnitValue) / 1e-3d,
+                        ElectricPotentialDcUnit.VoltDc => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

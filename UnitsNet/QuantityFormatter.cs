@@ -118,12 +118,12 @@ namespace UnitsNet
         {
             formatProvider ??= CultureInfo.CurrentCulture;
 
-            if(string.IsNullOrWhiteSpace(format))
+            if (string.IsNullOrWhiteSpace(format))
                 format = "g";
 
             char formatSpecifier = format[0];
 
-            if(UnitsNetFormatSpecifiers.Any(unitsNetFormatSpecifier => unitsNetFormatSpecifier == formatSpecifier))
+            if (UnitsNetFormatSpecifiers.Any(unitsNetFormatSpecifier => unitsNetFormatSpecifier == formatSpecifier))
             {
                 // UnitsNet custom format string
 
@@ -135,7 +135,7 @@ namespace UnitsNet
                     case 'a':
                     case 'S':
                     case 's':
-                        if(format.Length > 1 && !int.TryParse(format.Substring(1), out precisionSpecifier))
+                        if (format.Length > 1 && !int.TryParse(format.Substring(1), out precisionSpecifier))
                             throw new FormatException($"The {format} format string is not supported.");
                         break;
                 }
@@ -149,7 +149,7 @@ namespace UnitsNet
                     case 'a':
                         var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
 
-                        if(precisionSpecifier >= abbreviations.Length)
+                        if (precisionSpecifier >= abbreviations.Length)
                             throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
 
                         return abbreviations[precisionSpecifier];

@@ -76,7 +76,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -102,7 +101,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ReciprocalArea(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -171,57 +170,57 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>
         /// </summary>
         public double InverseSquareCentimeters => As(ReciprocalAreaUnit.InverseSquareCentimeter);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>
         /// </summary>
         public double InverseSquareDecimeters => As(ReciprocalAreaUnit.InverseSquareDecimeter);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>
         /// </summary>
         public double InverseSquareFeet => As(ReciprocalAreaUnit.InverseSquareFoot);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareInch"/>
         /// </summary>
         public double InverseSquareInches => As(ReciprocalAreaUnit.InverseSquareInch);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareKilometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>
         /// </summary>
         public double InverseSquareKilometers => As(ReciprocalAreaUnit.InverseSquareKilometer);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>
         /// </summary>
         public double InverseSquareMeters => As(ReciprocalAreaUnit.InverseSquareMeter);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareMicrometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>
         /// </summary>
         public double InverseSquareMicrometers => As(ReciprocalAreaUnit.InverseSquareMicrometer);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMile"/>
         /// </summary>
         public double InverseSquareMiles => As(ReciprocalAreaUnit.InverseSquareMile);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>
         /// </summary>
         public double InverseSquareMillimeters => As(ReciprocalAreaUnit.InverseSquareMillimeter);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseSquareYards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareYard"/>
         /// </summary>
         public double InverseSquareYards => As(ReciprocalAreaUnit.InverseSquareYard);
 
         /// <summary>
-        ///     Get ReciprocalArea in InverseUsSurveySquareFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>
         /// </summary>
         public double InverseUsSurveySquareFeet => As(ReciprocalAreaUnit.InverseUsSurveySquareFoot);
 
@@ -236,45 +235,46 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> ReciprocalAreaUnit
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareCentimeter, quantity => new ReciprocalArea(quantity.Value*1e-4, ReciprocalAreaUnit.InverseSquareCentimeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareDecimeter, quantity => new ReciprocalArea(quantity.Value*1e-2, ReciprocalAreaUnit.InverseSquareDecimeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareFoot, quantity => new ReciprocalArea(quantity.Value*0.092903, ReciprocalAreaUnit.InverseSquareFoot));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareInch, quantity => new ReciprocalArea(quantity.Value*0.00064516, ReciprocalAreaUnit.InverseSquareInch));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareKilometer, quantity => new ReciprocalArea(quantity.Value*1e6, ReciprocalAreaUnit.InverseSquareKilometer));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMicrometer, quantity => new ReciprocalArea(quantity.Value*1e-12, ReciprocalAreaUnit.InverseSquareMicrometer));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMile, quantity => new ReciprocalArea(quantity.Value*2.59e6, ReciprocalAreaUnit.InverseSquareMile));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMillimeter, quantity => new ReciprocalArea(quantity.Value*1e-6, ReciprocalAreaUnit.InverseSquareMillimeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareYard, quantity => new ReciprocalArea(quantity.Value*0.836127, ReciprocalAreaUnit.InverseSquareYard));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseUsSurveySquareFoot, quantity => new ReciprocalArea(quantity.Value*0.09290341161, ReciprocalAreaUnit.InverseUsSurveySquareFoot));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareCentimeter, quantity => new ReciprocalArea(quantity.Value * 1e-4, ReciprocalAreaUnit.InverseSquareCentimeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareDecimeter, quantity => new ReciprocalArea(quantity.Value * 1e-2, ReciprocalAreaUnit.InverseSquareDecimeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareFoot, quantity => new ReciprocalArea(quantity.Value * 0.092903, ReciprocalAreaUnit.InverseSquareFoot));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareInch, quantity => new ReciprocalArea(quantity.Value * 0.00064516, ReciprocalAreaUnit.InverseSquareInch));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareKilometer, quantity => new ReciprocalArea(quantity.Value * 1e6, ReciprocalAreaUnit.InverseSquareKilometer));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMicrometer, quantity => new ReciprocalArea(quantity.Value * 1e-12, ReciprocalAreaUnit.InverseSquareMicrometer));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMile, quantity => new ReciprocalArea(quantity.Value * 2.59e6, ReciprocalAreaUnit.InverseSquareMile));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMillimeter, quantity => new ReciprocalArea(quantity.Value * 1e-6, ReciprocalAreaUnit.InverseSquareMillimeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareYard, quantity => new ReciprocalArea(quantity.Value * 0.836127, ReciprocalAreaUnit.InverseSquareYard));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseUsSurveySquareFoot, quantity => new ReciprocalArea(quantity.Value * 0.09290341161, ReciprocalAreaUnit.InverseUsSurveySquareFoot));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => quantity);
 
             // Register in unit converter: ReciprocalAreaUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareCentimeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/1e-4, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareDecimeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/1e-2, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareFoot, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/0.092903, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareInch, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/0.00064516, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareKilometer, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/1e6, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMicrometer, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/1e-12, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMile, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/2.59e6, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMillimeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/1e-6, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareYard, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/0.836127, ReciprocalAreaUnit.InverseSquareMeter));
-            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value/0.09290341161, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareCentimeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 1e-4, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareDecimeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 1e-2, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareFoot, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 0.092903, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareInch, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 0.00064516, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareKilometer, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 1e6, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMicrometer, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 1e-12, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMile, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 2.59e6, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareMillimeter, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 1e-6, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseSquareYard, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 0.836127, ReciprocalAreaUnit.InverseSquareMeter));
+            unitConverter.SetConversionFunction<ReciprocalArea>(ReciprocalAreaUnit.InverseUsSurveySquareFoot, ReciprocalAreaUnit.InverseSquareMeter, quantity => new ReciprocalArea(quantity.Value / 0.09290341161, ReciprocalAreaUnit.InverseSquareMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareCentimeter, new CultureInfo("en-US"), new string[]{"cm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareDecimeter, new CultureInfo("en-US"), new string[]{"dm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareFoot, new CultureInfo("en-US"), new string[]{"ft⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareInch, new CultureInfo("en-US"), new string[]{"in⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareKilometer, new CultureInfo("en-US"), new string[]{"km⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMeter, new CultureInfo("en-US"), new string[]{"m⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMicrometer, new CultureInfo("en-US"), new string[]{"µm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMile, new CultureInfo("en-US"), new string[]{"mi⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareMillimeter, new CultureInfo("en-US"), new string[]{"mm⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseSquareYard, new CultureInfo("en-US"), new string[]{"yd⁻²"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ReciprocalAreaUnit.InverseUsSurveySquareFoot, new CultureInfo("en-US"), new string[]{"ft⁻² (US)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"dm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"ft⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareInch, new CultureInfo("en-US"), false, true, new string[]{"in⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareKilometer, new CultureInfo("en-US"), false, true, new string[]{"km⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"m⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareMicrometer, new CultureInfo("en-US"), false, true, new string[]{"µm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareMile, new CultureInfo("en-US"), false, true, new string[]{"mi⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mm⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseSquareYard, new CultureInfo("en-US"), false, true, new string[]{"yd⁻²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalAreaUnit.InverseUsSurveySquareFoot, new CultureInfo("en-US"), false, true, new string[]{"ft⁻² (US)"});
         }
 
         /// <summary>
@@ -303,7 +303,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareCentimeters.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareCentimeters(QuantityValue inversesquarecentimeters)
@@ -311,8 +311,9 @@ namespace UnitsNet
             double value = (double) inversesquarecentimeters;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareCentimeter);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareDecimeters.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareDecimeters(QuantityValue inversesquaredecimeters)
@@ -320,8 +321,9 @@ namespace UnitsNet
             double value = (double) inversesquaredecimeters;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareDecimeter);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareFeet.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareFeet(QuantityValue inversesquarefeet)
@@ -329,8 +331,9 @@ namespace UnitsNet
             double value = (double) inversesquarefeet;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareFoot);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareInches.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareInches(QuantityValue inversesquareinches)
@@ -338,8 +341,9 @@ namespace UnitsNet
             double value = (double) inversesquareinches;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareInch);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareKilometers.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareKilometers(QuantityValue inversesquarekilometers)
@@ -347,8 +351,9 @@ namespace UnitsNet
             double value = (double) inversesquarekilometers;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareKilometer);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareMeters.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareMeters(QuantityValue inversesquaremeters)
@@ -356,8 +361,9 @@ namespace UnitsNet
             double value = (double) inversesquaremeters;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMeter);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareMicrometers.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareMicrometers(QuantityValue inversesquaremicrometers)
@@ -365,8 +371,9 @@ namespace UnitsNet
             double value = (double) inversesquaremicrometers;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMicrometer);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareMiles.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareMiles(QuantityValue inversesquaremiles)
@@ -374,8 +381,9 @@ namespace UnitsNet
             double value = (double) inversesquaremiles;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMile);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareMillimeters.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareMillimeters(QuantityValue inversesquaremillimeters)
@@ -383,8 +391,9 @@ namespace UnitsNet
             double value = (double) inversesquaremillimeters;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMillimeter);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseSquareYards.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseSquareYards(QuantityValue inversesquareyards)
@@ -392,8 +401,9 @@ namespace UnitsNet
             double value = (double) inversesquareyards;
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareYard);
         }
+
         /// <summary>
-        ///     Get ReciprocalArea from InverseUsSurveySquareFeet.
+        ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalArea FromInverseUsSurveySquareFeet(QuantityValue inverseussurveysquarefeet)
@@ -634,8 +644,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ReciprocalArea objReciprocalArea)) throw new ArgumentException("Expected type ReciprocalArea.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ReciprocalArea objReciprocalArea)) throw new ArgumentException("Expected type ReciprocalArea.", nameof(obj));
 
             return CompareTo(objReciprocalArea);
         }
@@ -688,7 +698,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ReciprocalArea other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -716,7 +726,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ReciprocalAreaUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -726,13 +736,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -741,7 +751,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ReciprocalAreaUnit unitAsReciprocalAreaUnit))
+            if (!(unit is ReciprocalAreaUnit unitAsReciprocalAreaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalAreaUnit)} is supported.", nameof(unit));
 
             return As(unitAsReciprocalAreaUnit);
@@ -765,18 +775,18 @@ namespace UnitsNet
         /// <returns>A ReciprocalArea with the specified unit.</returns>
         public ReciprocalArea ToUnit(ReciprocalAreaUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ReciprocalArea), Unit, typeof(ReciprocalArea), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ReciprocalArea), Unit, typeof(ReciprocalArea), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ReciprocalArea)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -791,31 +801,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ReciprocalAreaUnit unitAsReciprocalAreaUnit))
+            if (!(unit is ReciprocalAreaUnit unitAsReciprocalAreaUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalAreaUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsReciprocalAreaUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is ReciprocalAreaUnit unitAsReciprocalAreaUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalAreaUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsReciprocalAreaUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ReciprocalArea ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -828,16 +829,13 @@ namespace UnitsNet
         IQuantity<ReciprocalAreaUnit> IQuantity<ReciprocalAreaUnit>.ToUnit(ReciprocalAreaUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ReciprocalAreaUnit> IQuantity<ReciprocalAreaUnit>.ToUnit(ReciprocalAreaUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<ReciprocalAreaUnit> IQuantity<ReciprocalAreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(ReciprocalAreaUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -956,13 +954,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ReciprocalArea))
+            if (conversionType == typeof(ReciprocalArea))
                 return this;
-            else if(conversionType == typeof(ReciprocalAreaUnit))
+            else if (conversionType == typeof(ReciprocalAreaUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ReciprocalArea.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ReciprocalArea.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ReciprocalArea)} to {conversionType} is not supported.");

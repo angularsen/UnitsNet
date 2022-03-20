@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricAdmittanceUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,22 +80,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricAdmittance in Microsiemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/>
         /// </summary>
         public double Microsiemens => As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Millisiemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/>
         /// </summary>
         public double Millisiemens => As(ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Nanosiemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/>
         /// </summary>
         public double Nanosiemens => As(ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance in Siemens.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Siemens"/>
         /// </summary>
         public double Siemens => As(ElectricAdmittanceUnit.Siemens);
 
@@ -102,29 +104,28 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricAdmittance from Microsiemens.
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMicrosiemens(double microsiemens) => new ElectricAdmittance(microsiemens, ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance from Millisiemens.
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromMillisiemens(double millisiemens) => new ElectricAdmittance(millisiemens, ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance from Nanosiemens.
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromNanosiemens(double nanosiemens) => new ElectricAdmittance(nanosiemens, ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Get ElectricAdmittance from Siemens.
+        ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Siemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricAdmittance FromSiemens(double siemens) => new ElectricAdmittance(siemens, ElectricAdmittanceUnit.Siemens);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
@@ -139,62 +140,59 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricAdmittanceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricAdmittanceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricAdmittance ToUnit(ElectricAdmittanceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricAdmittance(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricAdmittance ToUnit(ElectricAdmittanceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricAdmittance(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricAdmittanceUnit.Microsiemens => (_value) * 1e-6d,
+                        ElectricAdmittanceUnit.Millisiemens => (_value) * 1e-3d,
+                        ElectricAdmittanceUnit.Nanosiemens => (_value) * 1e-9d,
+                        ElectricAdmittanceUnit.Siemens => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricAdmittanceUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricAdmittanceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricAdmittanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (baseUnitValue) / 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ElectricAdmittanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
+                        ElectricAdmittanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
+                        ElectricAdmittanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
+                        ElectricAdmittanceUnit.Siemens => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ApparentEnergyUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ApparentEnergy MinValue { get; } = new ApparentEnergy(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,17 +80,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ApparentEnergy in KilovoltampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.KilovoltampereHour"/>
         /// </summary>
         public double KilovoltampereHours => As(ApparentEnergyUnit.KilovoltampereHour);
 
         /// <summary>
-        ///     Get ApparentEnergy in MegavoltampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.MegavoltampereHour"/>
         /// </summary>
         public double MegavoltampereHours => As(ApparentEnergyUnit.MegavoltampereHour);
 
         /// <summary>
-        ///     Get ApparentEnergy in VoltampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.VoltampereHour"/>
         /// </summary>
         public double VoltampereHours => As(ApparentEnergyUnit.VoltampereHour);
 
@@ -97,23 +99,22 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ApparentEnergy from KilovoltampereHours.
+        ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.KilovoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromKilovoltampereHours(double kilovoltamperehours) => new ApparentEnergy(kilovoltamperehours, ApparentEnergyUnit.KilovoltampereHour);
 
         /// <summary>
-        ///     Get ApparentEnergy from MegavoltampereHours.
+        ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.MegavoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromMegavoltampereHours(double megavoltamperehours) => new ApparentEnergy(megavoltamperehours, ApparentEnergyUnit.MegavoltampereHour);
 
         /// <summary>
-        ///     Get ApparentEnergy from VoltampereHours.
+        ///     Creates a <see cref="ApparentEnergy"/> from <see cref="ApparentEnergyUnit.VoltampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromVoltampereHours(double voltamperehours) => new ApparentEnergy(voltamperehours, ApparentEnergyUnit.VoltampereHour);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ApparentEnergyUnit" /> to <see cref="ApparentEnergy" />.
@@ -128,60 +129,57 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ApparentEnergyUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ApparentEnergyUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ApparentEnergy ToUnit(ApparentEnergyUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ApparentEnergy(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ApparentEnergy ToUnit(ApparentEnergyUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ApparentEnergy(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ApparentEnergyUnit.KilovoltampereHour: return (_value) * 1e3d;
-                case ApparentEnergyUnit.MegavoltampereHour: return (_value) * 1e6d;
-                case ApparentEnergyUnit.VoltampereHour: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ApparentEnergyUnit.KilovoltampereHour => (_value) * 1e3d,
+                        ApparentEnergyUnit.MegavoltampereHour => (_value) * 1e6d,
+                        ApparentEnergyUnit.VoltampereHour => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ApparentEnergyUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ApparentEnergyUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ApparentEnergyUnit.KilovoltampereHour: return (baseUnitValue) / 1e3d;
-                case ApparentEnergyUnit.MegavoltampereHour: return (baseUnitValue) / 1e6d;
-                case ApparentEnergyUnit.VoltampereHour: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ApparentEnergyUnit.KilovoltampereHour => (baseUnitValue) / 1e3d,
+                        ApparentEnergyUnit.MegavoltampereHour => (baseUnitValue) / 1e6d,
+                        ApparentEnergyUnit.VoltampereHour => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

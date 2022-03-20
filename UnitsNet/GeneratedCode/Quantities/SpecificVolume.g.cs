@@ -65,7 +65,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -91,7 +90,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public SpecificVolume(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -160,17 +159,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get SpecificVolume in CubicFeetPerPound.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/>
         /// </summary>
         public double CubicFeetPerPound => As(SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
-        ///     Get SpecificVolume in CubicMetersPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>
         /// </summary>
         public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
-        ///     Get SpecificVolume in MillicubicMetersPerKilogram.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
         /// </summary>
         public double MillicubicMetersPerKilogram => As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
 
@@ -185,21 +184,22 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> SpecificVolumeUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => new SpecificVolume(quantity.Value*16.01846353, SpecificVolumeUnit.CubicFootPerPound));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => new SpecificVolume(quantity.Value * 16.01846353, SpecificVolumeUnit.CubicFootPerPound));
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => new SpecificVolume((quantity.Value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity);
 
             // Register in unit converter: SpecificVolumeUnit -> BaseUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume(quantity.Value/16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume(quantity.Value / 16.01846353, SpecificVolumeUnit.CubicMeterPerKilogram));
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => new SpecificVolume((quantity.Value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), new string[]{"ft³/lb"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.CubicMeterPerKilogram, new CultureInfo("en-US"), new string[]{"m³/kg"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(SpecificVolumeUnit.MillicubicMeterPerKilogram, new CultureInfo("en-US"), new string[]{"mm³/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), false, true, new string[]{"ft³/lb"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicMeterPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"m³/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.MillicubicMeterPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"mm³/kg"});
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get SpecificVolume from CubicFeetPerPound.
+        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicFootPerPound"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromCubicFeetPerPound(QuantityValue cubicfeetperpound)
@@ -236,8 +236,9 @@ namespace UnitsNet
             double value = (double) cubicfeetperpound;
             return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
+
         /// <summary>
-        ///     Get SpecificVolume from CubicMetersPerKilogram.
+        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromCubicMetersPerKilogram(QuantityValue cubicmetersperkilogram)
@@ -245,8 +246,9 @@ namespace UnitsNet
             double value = (double) cubicmetersperkilogram;
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
+
         /// <summary>
-        ///     Get SpecificVolume from MillicubicMetersPerKilogram.
+        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static SpecificVolume FromMillicubicMetersPerKilogram(QuantityValue millicubicmetersperkilogram)
@@ -487,8 +489,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is SpecificVolume objSpecificVolume)) throw new ArgumentException("Expected type SpecificVolume.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is SpecificVolume objSpecificVolume)) throw new ArgumentException("Expected type SpecificVolume.", nameof(obj));
 
             return CompareTo(objSpecificVolume);
         }
@@ -541,7 +543,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(SpecificVolume other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -569,7 +571,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(SpecificVolumeUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -579,13 +581,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -594,7 +596,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is SpecificVolumeUnit unitAsSpecificVolumeUnit))
+            if (!(unit is SpecificVolumeUnit unitAsSpecificVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
 
             return As(unitAsSpecificVolumeUnit);
@@ -618,18 +620,18 @@ namespace UnitsNet
         /// <returns>A SpecificVolume with the specified unit.</returns>
         public SpecificVolume ToUnit(SpecificVolumeUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(SpecificVolume), Unit, typeof(SpecificVolume), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(SpecificVolume), Unit, typeof(SpecificVolume), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (SpecificVolume)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -644,31 +646,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is SpecificVolumeUnit unitAsSpecificVolumeUnit))
+            if (!(unit is SpecificVolumeUnit unitAsSpecificVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsSpecificVolumeUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is SpecificVolumeUnit unitAsSpecificVolumeUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsSpecificVolumeUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public SpecificVolume ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -681,16 +674,13 @@ namespace UnitsNet
         IQuantity<SpecificVolumeUnit> IQuantity<SpecificVolumeUnit>.ToUnit(SpecificVolumeUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<SpecificVolumeUnit> IQuantity<SpecificVolumeUnit>.ToUnit(SpecificVolumeUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<SpecificVolumeUnit> IQuantity<SpecificVolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(SpecificVolumeUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -809,13 +799,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(SpecificVolume))
+            if (conversionType == typeof(SpecificVolume))
                 return this;
-            else if(conversionType == typeof(SpecificVolumeUnit))
+            else if (conversionType == typeof(SpecificVolumeUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return SpecificVolume.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return SpecificVolume.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(SpecificVolume)} to {conversionType} is not supported.");

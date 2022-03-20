@@ -64,7 +64,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -90,7 +89,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public PowerRatio(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -159,12 +158,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get PowerRatio in DecibelMilliwatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>
         /// </summary>
         public double DecibelMilliwatts => As(PowerRatioUnit.DecibelMilliwatt);
 
         /// <summary>
-        ///     Get PowerRatio in DecibelWatts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelWatt"/>
         /// </summary>
         public double DecibelWatts => As(PowerRatioUnit.DecibelWatt);
 
@@ -180,6 +179,7 @@ namespace UnitsNet
         {
             // Register in unit converter: BaseUnit -> PowerRatioUnit
             unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelMilliwatt, quantity => new PowerRatio(quantity.Value + 30, PowerRatioUnit.DecibelMilliwatt));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<PowerRatio>(PowerRatioUnit.DecibelWatt, PowerRatioUnit.DecibelWatt, quantity => quantity);
 
@@ -189,8 +189,8 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), new string[]{"dBmW", "dBm"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(PowerRatioUnit.DecibelWatt, new CultureInfo("en-US"), new string[]{"dBW"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerRatioUnit.DecibelMilliwatt, new CultureInfo("en-US"), false, true, new string[]{"dBmW", "dBm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerRatioUnit.DecibelWatt, new CultureInfo("en-US"), false, true, new string[]{"dBW"});
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get PowerRatio from DecibelMilliwatts.
+        ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelMilliwatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelMilliwatts(QuantityValue decibelmilliwatts)
@@ -227,8 +227,9 @@ namespace UnitsNet
             double value = (double) decibelmilliwatts;
             return new PowerRatio(value, PowerRatioUnit.DecibelMilliwatt);
         }
+
         /// <summary>
-        ///     Get PowerRatio from DecibelWatts.
+        ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelWatt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelWatts(QuantityValue decibelwatts)
@@ -406,16 +407,16 @@ namespace UnitsNet
         public static PowerRatio operator +(PowerRatio left, PowerRatio right)
         {
             // Logarithmic addition
-            // Formula: 10*log10(10^(x/10) + 10^(y/10))
-            return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
+            // Formula: 10 * log10(10^(x/10) + 10^(y/10))
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic subtraction of two <see cref="PowerRatio"/>.</summary>
         public static PowerRatio operator -(PowerRatio left, PowerRatio right)
         {
             // Logarithmic subtraction
-            // Formula: 10*log10(10^(x/10) - 10^(y/10))
-            return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
+            // Formula: 10 * log10(10^(x/10) - 10^(y/10))
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
@@ -477,8 +478,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is PowerRatio objPowerRatio)) throw new ArgumentException("Expected type PowerRatio.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is PowerRatio objPowerRatio)) throw new ArgumentException("Expected type PowerRatio.", nameof(obj));
 
             return CompareTo(objPowerRatio);
         }
@@ -531,7 +532,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(PowerRatio other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -559,7 +560,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(PowerRatioUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -569,13 +570,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -584,7 +585,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is PowerRatioUnit unitAsPowerRatioUnit))
+            if (!(unit is PowerRatioUnit unitAsPowerRatioUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
 
             return As(unitAsPowerRatioUnit);
@@ -608,18 +609,18 @@ namespace UnitsNet
         /// <returns>A PowerRatio with the specified unit.</returns>
         public PowerRatio ToUnit(PowerRatioUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(PowerRatio), Unit, typeof(PowerRatio), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(PowerRatio), Unit, typeof(PowerRatio), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (PowerRatio)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -634,31 +635,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is PowerRatioUnit unitAsPowerRatioUnit))
+            if (!(unit is PowerRatioUnit unitAsPowerRatioUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsPowerRatioUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is PowerRatioUnit unitAsPowerRatioUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsPowerRatioUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public PowerRatio ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -671,16 +663,13 @@ namespace UnitsNet
         IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(PowerRatioUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -799,13 +788,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(PowerRatio))
+            if (conversionType == typeof(PowerRatio))
                 return this;
-            else if(conversionType == typeof(PowerRatioUnit))
+            else if (conversionType == typeof(PowerRatioUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return PowerRatio.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return PowerRatio.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(PowerRatio)} to {conversionType} is not supported.");

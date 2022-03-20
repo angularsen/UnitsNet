@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricConductivityUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricConductivity MinValue { get; } = new ElectricConductivity(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -81,17 +83,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/>
         /// </summary>
         public double SiemensPerFoot => As(ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerInch"/>
         /// </summary>
         public double SiemensPerInch => As(ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Get ElectricConductivity in SiemensPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerMeter"/>
         /// </summary>
         public double SiemensPerMeter => As(ElectricConductivityUnit.SiemensPerMeter);
 
@@ -100,23 +102,22 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerFoot.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerFoot(double siemensperfoot) => new ElectricConductivity(siemensperfoot, ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerInch.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerInch(double siemensperinch) => new ElectricConductivity(siemensperinch, ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Get ElectricConductivity from SiemensPerMeter.
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductivity FromSiemensPerMeter(double siemenspermeter) => new ElectricConductivity(siemenspermeter, ElectricConductivityUnit.SiemensPerMeter);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricConductivityUnit" /> to <see cref="ElectricConductivity" />.
@@ -131,60 +132,57 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricConductivityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricConductivityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricConductivity ToUnit(ElectricConductivityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricConductivity(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricConductivity ToUnit(ElectricConductivityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricConductivity(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricConductivityUnit.SiemensPerFoot: return _value * 3.2808398950131234;
-                case ElectricConductivityUnit.SiemensPerInch: return _value * 3.937007874015748e1;
-                case ElectricConductivityUnit.SiemensPerMeter: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricConductivityUnit.SiemensPerFoot => _value * 3.2808398950131234,
+                        ElectricConductivityUnit.SiemensPerInch => _value * 3.937007874015748e1,
+                        ElectricConductivityUnit.SiemensPerMeter => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricConductivityUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricConductivityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricConductivityUnit.SiemensPerFoot: return baseUnitValue / 3.2808398950131234;
-                case ElectricConductivityUnit.SiemensPerInch: return baseUnitValue / 3.937007874015748e1;
-                case ElectricConductivityUnit.SiemensPerMeter: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ElectricConductivityUnit.SiemensPerFoot => baseUnitValue / 3.2808398950131234,
+                        ElectricConductivityUnit.SiemensPerInch => baseUnitValue / 3.937007874015748e1,
+                        ElectricConductivityUnit.SiemensPerMeter => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

@@ -73,6 +73,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMile, "CubicMiles", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicMillimeter, "CubicMillimeters", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.CubicYard, "CubicYards", BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Decaliter, "Decaliters", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.DecausGallon, "DecausGallons", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Deciliter, "Deciliters", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.DeciusGallon, "DeciusGallons", BaseUnits.Undefined),
@@ -113,7 +114,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Volume(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -208,257 +208,262 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Volume in AcreFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.AcreFoot"/>
         /// </summary>
         public double AcreFeet => As(VolumeUnit.AcreFoot);
 
         /// <summary>
-        ///     Get Volume in AuTablespoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.AuTablespoon"/>
         /// </summary>
         public double AuTablespoons => As(VolumeUnit.AuTablespoon);
 
         /// <summary>
-        ///     Get Volume in BoardFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.BoardFoot"/>
         /// </summary>
         public double BoardFeet => As(VolumeUnit.BoardFoot);
 
         /// <summary>
-        ///     Get Volume in Centiliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Centiliter"/>
         /// </summary>
         public double Centiliters => As(VolumeUnit.Centiliter);
 
         /// <summary>
-        ///     Get Volume in CubicCentimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicCentimeter"/>
         /// </summary>
         public double CubicCentimeters => As(VolumeUnit.CubicCentimeter);
 
         /// <summary>
-        ///     Get Volume in CubicDecimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicDecimeter"/>
         /// </summary>
         public double CubicDecimeters => As(VolumeUnit.CubicDecimeter);
 
         /// <summary>
-        ///     Get Volume in CubicFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicFoot"/>
         /// </summary>
         public double CubicFeet => As(VolumeUnit.CubicFoot);
 
         /// <summary>
-        ///     Get Volume in CubicHectometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicHectometer"/>
         /// </summary>
         public double CubicHectometers => As(VolumeUnit.CubicHectometer);
 
         /// <summary>
-        ///     Get Volume in CubicInches.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicInch"/>
         /// </summary>
         public double CubicInches => As(VolumeUnit.CubicInch);
 
         /// <summary>
-        ///     Get Volume in CubicKilometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicKilometer"/>
         /// </summary>
         public double CubicKilometers => As(VolumeUnit.CubicKilometer);
 
         /// <summary>
-        ///     Get Volume in CubicMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMeter"/>
         /// </summary>
         public double CubicMeters => As(VolumeUnit.CubicMeter);
 
         /// <summary>
-        ///     Get Volume in CubicMicrometers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMicrometer"/>
         /// </summary>
         public double CubicMicrometers => As(VolumeUnit.CubicMicrometer);
 
         /// <summary>
-        ///     Get Volume in CubicMiles.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMile"/>
         /// </summary>
         public double CubicMiles => As(VolumeUnit.CubicMile);
 
         /// <summary>
-        ///     Get Volume in CubicMillimeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMillimeter"/>
         /// </summary>
         public double CubicMillimeters => As(VolumeUnit.CubicMillimeter);
 
         /// <summary>
-        ///     Get Volume in CubicYards.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicYard"/>
         /// </summary>
         public double CubicYards => As(VolumeUnit.CubicYard);
 
         /// <summary>
-        ///     Get Volume in DecausGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Decaliter"/>
+        /// </summary>
+        public double Decaliters => As(VolumeUnit.Decaliter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.DecausGallon"/>
         /// </summary>
         public double DecausGallons => As(VolumeUnit.DecausGallon);
 
         /// <summary>
-        ///     Get Volume in Deciliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Deciliter"/>
         /// </summary>
         public double Deciliters => As(VolumeUnit.Deciliter);
 
         /// <summary>
-        ///     Get Volume in DeciusGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.DeciusGallon"/>
         /// </summary>
         public double DeciusGallons => As(VolumeUnit.DeciusGallon);
 
         /// <summary>
-        ///     Get Volume in HectocubicFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicFoot"/>
         /// </summary>
         public double HectocubicFeet => As(VolumeUnit.HectocubicFoot);
 
         /// <summary>
-        ///     Get Volume in HectocubicMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicMeter"/>
         /// </summary>
         public double HectocubicMeters => As(VolumeUnit.HectocubicMeter);
 
         /// <summary>
-        ///     Get Volume in Hectoliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Hectoliter"/>
         /// </summary>
         public double Hectoliters => As(VolumeUnit.Hectoliter);
 
         /// <summary>
-        ///     Get Volume in HectousGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectousGallon"/>
         /// </summary>
         public double HectousGallons => As(VolumeUnit.HectousGallon);
 
         /// <summary>
-        ///     Get Volume in ImperialBeerBarrels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>
         /// </summary>
         public double ImperialBeerBarrels => As(VolumeUnit.ImperialBeerBarrel);
 
         /// <summary>
-        ///     Get Volume in ImperialGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialGallon"/>
         /// </summary>
         public double ImperialGallons => As(VolumeUnit.ImperialGallon);
 
         /// <summary>
-        ///     Get Volume in ImperialOunces.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialOunce"/>
         /// </summary>
         public double ImperialOunces => As(VolumeUnit.ImperialOunce);
 
         /// <summary>
-        ///     Get Volume in ImperialPints.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialPint"/>
         /// </summary>
         public double ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
-        ///     Get Volume in KilocubicFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
         /// </summary>
         public double KilocubicFeet => As(VolumeUnit.KilocubicFoot);
 
         /// <summary>
-        ///     Get Volume in KilocubicMeters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicMeter"/>
         /// </summary>
         public double KilocubicMeters => As(VolumeUnit.KilocubicMeter);
 
         /// <summary>
-        ///     Get Volume in KiloimperialGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KiloimperialGallon"/>
         /// </summary>
         public double KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
-        ///     Get Volume in Kiloliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Kiloliter"/>
         /// </summary>
         public double Kiloliters => As(VolumeUnit.Kiloliter);
 
         /// <summary>
-        ///     Get Volume in KilousGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilousGallon"/>
         /// </summary>
         public double KilousGallons => As(VolumeUnit.KilousGallon);
 
         /// <summary>
-        ///     Get Volume in Liters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Liter"/>
         /// </summary>
         public double Liters => As(VolumeUnit.Liter);
 
         /// <summary>
-        ///     Get Volume in MegacubicFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegacubicFoot"/>
         /// </summary>
         public double MegacubicFeet => As(VolumeUnit.MegacubicFoot);
 
         /// <summary>
-        ///     Get Volume in MegaimperialGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegaimperialGallon"/>
         /// </summary>
         public double MegaimperialGallons => As(VolumeUnit.MegaimperialGallon);
 
         /// <summary>
-        ///     Get Volume in Megaliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Megaliter"/>
         /// </summary>
         public double Megaliters => As(VolumeUnit.Megaliter);
 
         /// <summary>
-        ///     Get Volume in MegausGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegausGallon"/>
         /// </summary>
         public double MegausGallons => As(VolumeUnit.MegausGallon);
 
         /// <summary>
-        ///     Get Volume in MetricCups.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricCup"/>
         /// </summary>
         public double MetricCups => As(VolumeUnit.MetricCup);
 
         /// <summary>
-        ///     Get Volume in MetricTeaspoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricTeaspoon"/>
         /// </summary>
         public double MetricTeaspoons => As(VolumeUnit.MetricTeaspoon);
 
         /// <summary>
-        ///     Get Volume in Microliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Microliter"/>
         /// </summary>
         public double Microliters => As(VolumeUnit.Microliter);
 
         /// <summary>
-        ///     Get Volume in Milliliters.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Milliliter"/>
         /// </summary>
         public double Milliliters => As(VolumeUnit.Milliliter);
 
         /// <summary>
-        ///     Get Volume in OilBarrels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
         /// </summary>
         public double OilBarrels => As(VolumeUnit.OilBarrel);
 
         /// <summary>
-        ///     Get Volume in UkTablespoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UkTablespoon"/>
         /// </summary>
         public double UkTablespoons => As(VolumeUnit.UkTablespoon);
 
         /// <summary>
-        ///     Get Volume in UsBeerBarrels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsBeerBarrel"/>
         /// </summary>
         public double UsBeerBarrels => As(VolumeUnit.UsBeerBarrel);
 
         /// <summary>
-        ///     Get Volume in UsCustomaryCups.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsCustomaryCup"/>
         /// </summary>
         public double UsCustomaryCups => As(VolumeUnit.UsCustomaryCup);
 
         /// <summary>
-        ///     Get Volume in UsGallons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsGallon"/>
         /// </summary>
         public double UsGallons => As(VolumeUnit.UsGallon);
 
         /// <summary>
-        ///     Get Volume in UsLegalCups.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsLegalCup"/>
         /// </summary>
         public double UsLegalCups => As(VolumeUnit.UsLegalCup);
 
         /// <summary>
-        ///     Get Volume in UsOunces.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsOunce"/>
         /// </summary>
         public double UsOunces => As(VolumeUnit.UsOunce);
 
         /// <summary>
-        ///     Get Volume in UsPints.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsPint"/>
         /// </summary>
         public double UsPints => As(VolumeUnit.UsPint);
 
         /// <summary>
-        ///     Get Volume in UsQuarts.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsQuart"/>
         /// </summary>
         public double UsQuarts => As(VolumeUnit.UsQuart);
 
         /// <summary>
-        ///     Get Volume in UsTablespoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsTablespoon"/>
         /// </summary>
         public double UsTablespoons => As(VolumeUnit.UsTablespoon);
 
         /// <summary>
-        ///     Get Volume in UsTeaspoons.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsTeaspoon"/>
         /// </summary>
         public double UsTeaspoons => As(VolumeUnit.UsTeaspoon);
 
@@ -473,211 +478,216 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> VolumeUnit
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AcreFoot, quantity => new Volume(quantity.Value*0.000810714, VolumeUnit.AcreFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AuTablespoon, quantity => new Volume(quantity.Value/2e-5, VolumeUnit.AuTablespoon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.BoardFoot, quantity => new Volume(quantity.Value/2.3597372158e-3, VolumeUnit.BoardFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Centiliter, quantity => new Volume((quantity.Value*1e3) / 1e-2d, VolumeUnit.Centiliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicCentimeter, quantity => new Volume(quantity.Value*1e6, VolumeUnit.CubicCentimeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicDecimeter, quantity => new Volume(quantity.Value*1e3, VolumeUnit.CubicDecimeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AcreFoot, quantity => new Volume(quantity.Value * 0.000810714, VolumeUnit.AcreFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AuTablespoon, quantity => new Volume(quantity.Value / 2e-5, VolumeUnit.AuTablespoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.BoardFoot, quantity => new Volume(quantity.Value / 2.3597372158e-3, VolumeUnit.BoardFoot));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Centiliter, quantity => new Volume((quantity.Value * 1e3) / 1e-2d, VolumeUnit.Centiliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicCentimeter, quantity => new Volume(quantity.Value * 1e6, VolumeUnit.CubicCentimeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicDecimeter, quantity => new Volume(quantity.Value * 1e3, VolumeUnit.CubicDecimeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicFoot, quantity => new Volume(quantity.Value / 2.8316846592e-2, VolumeUnit.CubicFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicHectometer, quantity => new Volume(quantity.Value/1e6, VolumeUnit.CubicHectometer));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicInch, quantity => new Volume(quantity.Value/(1.6387*1e-5), VolumeUnit.CubicInch));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicKilometer, quantity => new Volume(quantity.Value/1e9, VolumeUnit.CubicKilometer));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMicrometer, quantity => new Volume(quantity.Value*1e18, VolumeUnit.CubicMicrometer));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMile, quantity => new Volume(quantity.Value/4.16818182544058e9, VolumeUnit.CubicMile));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMillimeter, quantity => new Volume(quantity.Value*1e9, VolumeUnit.CubicMillimeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicYard, quantity => new Volume(quantity.Value/0.764554858, VolumeUnit.CubicYard));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.DecausGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e1d, VolumeUnit.DecausGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Deciliter, quantity => new Volume((quantity.Value*1e3) / 1e-1d, VolumeUnit.Deciliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.DeciusGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e-1d, VolumeUnit.DeciusGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicHectometer, quantity => new Volume(quantity.Value / 1e6, VolumeUnit.CubicHectometer));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicInch, quantity => new Volume(quantity.Value / (1.6387 * 1e-5), VolumeUnit.CubicInch));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicKilometer, quantity => new Volume(quantity.Value / 1e9, VolumeUnit.CubicKilometer));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMicrometer, quantity => new Volume(quantity.Value * 1e18, VolumeUnit.CubicMicrometer));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMile, quantity => new Volume(quantity.Value / 4.16818182544058e9, VolumeUnit.CubicMile));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMillimeter, quantity => new Volume(quantity.Value * 1e9, VolumeUnit.CubicMillimeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicYard, quantity => new Volume(quantity.Value / 0.764554858, VolumeUnit.CubicYard));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Decaliter, quantity => new Volume((quantity.Value * 1e3) / 1e1d, VolumeUnit.Decaliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.DecausGallon, quantity => new Volume((quantity.Value / 0.00378541) / 1e1d, VolumeUnit.DecausGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Deciliter, quantity => new Volume((quantity.Value * 1e3) / 1e-1d, VolumeUnit.Deciliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.DeciusGallon, quantity => new Volume((quantity.Value / 0.00378541) / 1e-1d, VolumeUnit.DeciusGallon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectocubicFoot, quantity => new Volume((quantity.Value / 2.8316846592e-2) / 1e2d, VolumeUnit.HectocubicFoot));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectocubicMeter, quantity => new Volume((quantity.Value) / 1e2d, VolumeUnit.HectocubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Hectoliter, quantity => new Volume((quantity.Value*1e3) / 1e2d, VolumeUnit.Hectoliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectousGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e2d, VolumeUnit.HectousGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialBeerBarrel, quantity => new Volume(quantity.Value/0.16365924, VolumeUnit.ImperialBeerBarrel));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon, quantity => new Volume(quantity.Value/0.00454609000000181429905810072407, VolumeUnit.ImperialGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce, quantity => new Volume(quantity.Value/2.8413062499962901241875439064617e-5, VolumeUnit.ImperialOunce));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Hectoliter, quantity => new Volume((quantity.Value * 1e3) / 1e2d, VolumeUnit.Hectoliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectousGallon, quantity => new Volume((quantity.Value / 0.00378541) / 1e2d, VolumeUnit.HectousGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialBeerBarrel, quantity => new Volume(quantity.Value / 0.16365924, VolumeUnit.ImperialBeerBarrel));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon, quantity => new Volume(quantity.Value / 0.00454609000000181429905810072407, VolumeUnit.ImperialGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce, quantity => new Volume(quantity.Value / 2.8413062499962901241875439064617e-5, VolumeUnit.ImperialOunce));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialPint, quantity => new Volume(quantity.Value / 5.6826125e-4, VolumeUnit.ImperialPint));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicFoot, quantity => new Volume((quantity.Value / 2.8316846592e-2) / 1e3d, VolumeUnit.KilocubicFoot));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilocubicMeter, quantity => new Volume((quantity.Value) / 1e3d, VolumeUnit.KilocubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KiloimperialGallon, quantity => new Volume((quantity.Value/0.00454609000000181429905810072407) / 1e3d, VolumeUnit.KiloimperialGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Kiloliter, quantity => new Volume((quantity.Value*1e3) / 1e3d, VolumeUnit.Kiloliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilousGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e3d, VolumeUnit.KilousGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Liter, quantity => new Volume(quantity.Value*1e3, VolumeUnit.Liter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KiloimperialGallon, quantity => new Volume((quantity.Value / 0.00454609000000181429905810072407) / 1e3d, VolumeUnit.KiloimperialGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Kiloliter, quantity => new Volume((quantity.Value * 1e3) / 1e3d, VolumeUnit.Kiloliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.KilousGallon, quantity => new Volume((quantity.Value / 0.00378541) / 1e3d, VolumeUnit.KilousGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Liter, quantity => new Volume(quantity.Value * 1e3, VolumeUnit.Liter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegacubicFoot, quantity => new Volume((quantity.Value / 2.8316846592e-2) / 1e6d, VolumeUnit.MegacubicFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegaimperialGallon, quantity => new Volume((quantity.Value/0.00454609000000181429905810072407) / 1e6d, VolumeUnit.MegaimperialGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Megaliter, quantity => new Volume((quantity.Value*1e3) / 1e6d, VolumeUnit.Megaliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegausGallon, quantity => new Volume((quantity.Value/0.00378541) / 1e6d, VolumeUnit.MegausGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricCup, quantity => new Volume(quantity.Value/0.00025, VolumeUnit.MetricCup));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricTeaspoon, quantity => new Volume(quantity.Value/0.5e-5, VolumeUnit.MetricTeaspoon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Microliter, quantity => new Volume((quantity.Value*1e3) / 1e-6d, VolumeUnit.Microliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Milliliter, quantity => new Volume((quantity.Value*1e3) / 1e-3d, VolumeUnit.Milliliter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.OilBarrel, quantity => new Volume(quantity.Value/0.158987294928, VolumeUnit.OilBarrel));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UkTablespoon, quantity => new Volume(quantity.Value/1.5e-5, VolumeUnit.UkTablespoon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsBeerBarrel, quantity => new Volume(quantity.Value/0.1173477658, VolumeUnit.UsBeerBarrel));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsCustomaryCup, quantity => new Volume(quantity.Value/0.0002365882365, VolumeUnit.UsCustomaryCup));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsGallon, quantity => new Volume(quantity.Value/0.00378541, VolumeUnit.UsGallon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsLegalCup, quantity => new Volume(quantity.Value/0.00024, VolumeUnit.UsLegalCup));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsOunce, quantity => new Volume(quantity.Value/2.957352956253760505068307980135e-5, VolumeUnit.UsOunce));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsPint, quantity => new Volume(quantity.Value/4.73176473e-4, VolumeUnit.UsPint));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsQuart, quantity => new Volume(quantity.Value/9.46352946e-4, VolumeUnit.UsQuart));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsTablespoon, quantity => new Volume(quantity.Value/1.478676478125e-5, VolumeUnit.UsTablespoon));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsTeaspoon, quantity => new Volume(quantity.Value/4.92892159375e-6, VolumeUnit.UsTeaspoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegaimperialGallon, quantity => new Volume((quantity.Value / 0.00454609000000181429905810072407) / 1e6d, VolumeUnit.MegaimperialGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Megaliter, quantity => new Volume((quantity.Value * 1e3) / 1e6d, VolumeUnit.Megaliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MegausGallon, quantity => new Volume((quantity.Value / 0.00378541) / 1e6d, VolumeUnit.MegausGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricCup, quantity => new Volume(quantity.Value / 0.00025, VolumeUnit.MetricCup));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricTeaspoon, quantity => new Volume(quantity.Value / 0.5e-5, VolumeUnit.MetricTeaspoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Microliter, quantity => new Volume((quantity.Value * 1e3) / 1e-6d, VolumeUnit.Microliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Milliliter, quantity => new Volume((quantity.Value * 1e3) / 1e-3d, VolumeUnit.Milliliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.OilBarrel, quantity => new Volume(quantity.Value / 0.158987294928, VolumeUnit.OilBarrel));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UkTablespoon, quantity => new Volume(quantity.Value / 1.5e-5, VolumeUnit.UkTablespoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsBeerBarrel, quantity => new Volume(quantity.Value / 0.1173477658, VolumeUnit.UsBeerBarrel));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsCustomaryCup, quantity => new Volume(quantity.Value / 0.0002365882365, VolumeUnit.UsCustomaryCup));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsGallon, quantity => new Volume(quantity.Value / 0.00378541, VolumeUnit.UsGallon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsLegalCup, quantity => new Volume(quantity.Value / 0.00024, VolumeUnit.UsLegalCup));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsOunce, quantity => new Volume(quantity.Value / 2.957352956253760505068307980135e-5, VolumeUnit.UsOunce));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsPint, quantity => new Volume(quantity.Value / 4.73176473e-4, VolumeUnit.UsPint));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsQuart, quantity => new Volume(quantity.Value / 9.46352946e-4, VolumeUnit.UsQuart));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsTablespoon, quantity => new Volume(quantity.Value / 1.478676478125e-5, VolumeUnit.UsTablespoon));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsTeaspoon, quantity => new Volume(quantity.Value / 4.92892159375e-6, VolumeUnit.UsTeaspoon));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicMeter, quantity => quantity);
 
             // Register in unit converter: VolumeUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.AcreFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/0.000810714, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.AuTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*2e-5, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.BoardFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*2.3597372158e-3, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Centiliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e-2d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicCentimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e6, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicDecimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e3, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.AcreFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value / 0.000810714, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.AuTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 2e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.BoardFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 2.3597372158e-3, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Centiliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value / 1e3) * 1e-2d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicCentimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value / 1e6, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicDecimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value / 1e3, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicFoot, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 2.8316846592e-2, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicHectometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1e6, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicInch, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1.6387*1e-5, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicKilometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1e9, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMicrometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e18, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMile, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*4.16818182544058e9, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMillimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e9, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicYard, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.764554858, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.DecausGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e1d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Deciliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e-1d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.DeciusGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e-1d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicHectometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1e6, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicInch, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1.6387 * 1e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicKilometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1e9, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMicrometer, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value / 1e18, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMile, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 4.16818182544058e9, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMillimeter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value / 1e9, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicYard, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.764554858, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Decaliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value / 1e3) * 1e1d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.DecausGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 0.00378541) * 1e1d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Deciliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value / 1e3) * 1e-1d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.DeciusGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 0.00378541) * 1e-1d, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectocubicFoot, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 2.8316846592e-2) * 1e2d, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectocubicMeter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value) * 1e2d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Hectoliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e2d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectousGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e2d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialBeerBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.16365924, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.00454609000000181429905810072407, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*2.8413062499962901241875439064617e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Hectoliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value / 1e3) * 1e2d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectousGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 0.00378541) * 1e2d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialBeerBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.16365924, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.00454609000000181429905810072407, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 2.8413062499962901241875439064617e-5, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialPint, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 5.6826125e-4, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicFoot, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 2.8316846592e-2) * 1e3d, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilocubicMeter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value) * 1e3d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KiloimperialGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00454609000000181429905810072407) * 1e3d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Kiloliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e3d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilousGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e3d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Liter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value/1e3, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KiloimperialGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 0.00454609000000181429905810072407) * 1e3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Kiloliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value / 1e3) * 1e3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.KilousGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 0.00378541) * 1e3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Liter, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value / 1e3, VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegacubicFoot, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 2.8316846592e-2) * 1e6d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegaimperialGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00454609000000181429905810072407) * 1e6d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Megaliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e6d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegausGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value*0.00378541) * 1e6d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.00025, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricTeaspoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.5e-5, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Microliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e-6d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Milliliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value/1e3) * 1e-3d, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.158987294928, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UkTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1.5e-5, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsBeerBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.1173477658, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsCustomaryCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.0002365882365, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsGallon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.00378541, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsLegalCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*0.00024, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsOunce, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*2.957352956253760505068307980135e-5, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsPint, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*4.73176473e-4, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsQuart, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*9.46352946e-4, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*1.478676478125e-5, VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTeaspoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value*4.92892159375e-6, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegaimperialGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 0.00454609000000181429905810072407) * 1e6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Megaliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value / 1e3) * 1e6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MegausGallon, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value * 0.00378541) * 1e6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.00025, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricTeaspoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.5e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Microliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value / 1e3) * 1e-6d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Milliliter, VolumeUnit.CubicMeter, quantity => new Volume((quantity.Value / 1e3) * 1e-3d, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.158987294928, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UkTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1.5e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsBeerBarrel, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.1173477658, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsCustomaryCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.0002365882365, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsGallon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.00378541, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsLegalCup, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 0.00024, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsOunce, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 2.957352956253760505068307980135e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsPint, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 4.73176473e-4, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsQuart, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 9.46352946e-4, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTablespoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 1.478676478125e-5, VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsTeaspoon, VolumeUnit.CubicMeter, quantity => new Volume(quantity.Value * 4.92892159375e-6, VolumeUnit.CubicMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AcreFoot, new CultureInfo("en-US"), new string[]{"ac-ft", "acre-foot", "acre-feet"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("ru-RU"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.AuTablespoon, new CultureInfo("nb-NO"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.BoardFoot, new CultureInfo("en-US"), new string[]{"bf", "board foot", "board feet"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.BoardFoot, new CultureInfo("fr-CA"), new string[]{"pmp", "pied-planche", "pied de planche"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Centiliter, new CultureInfo("en-US"), new string[]{"cl"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Centiliter, new CultureInfo("ru-RU"), new string[]{"сл"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicCentimeter, new CultureInfo("en-US"), new string[]{"cm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicCentimeter, new CultureInfo("ru-RU"), new string[]{"см³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicDecimeter, new CultureInfo("en-US"), new string[]{"dm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicDecimeter, new CultureInfo("ru-RU"), new string[]{"дм³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicFoot, new CultureInfo("en-US"), new string[]{"ft³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicFoot, new CultureInfo("ru-RU"), new string[]{"фут³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicHectometer, new CultureInfo("en-US"), new string[]{"hm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicHectometer, new CultureInfo("ru-RU"), new string[]{"гм³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicInch, new CultureInfo("en-US"), new string[]{"in³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicInch, new CultureInfo("ru-RU"), new string[]{"дюйм³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicKilometer, new CultureInfo("en-US"), new string[]{"km³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicKilometer, new CultureInfo("ru-RU"), new string[]{"км³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMeter, new CultureInfo("en-US"), new string[]{"m³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMeter, new CultureInfo("ru-RU"), new string[]{"м³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMicrometer, new CultureInfo("en-US"), new string[]{"µm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMicrometer, new CultureInfo("ru-RU"), new string[]{"мкм³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMile, new CultureInfo("en-US"), new string[]{"mi³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMile, new CultureInfo("ru-RU"), new string[]{"миля³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMillimeter, new CultureInfo("en-US"), new string[]{"mm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicMillimeter, new CultureInfo("ru-RU"), new string[]{"мм³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicYard, new CultureInfo("en-US"), new string[]{"yd³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.CubicYard, new CultureInfo("ru-RU"), new string[]{"ярд³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DecausGallon, new CultureInfo("en-US"), new string[]{"dagal (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DecausGallon, new CultureInfo("ru-RU"), new string[]{"даАмериканский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Deciliter, new CultureInfo("en-US"), new string[]{"dl"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Deciliter, new CultureInfo("ru-RU"), new string[]{"дл"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DeciusGallon, new CultureInfo("en-US"), new string[]{"dgal (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.DeciusGallon, new CultureInfo("ru-RU"), new string[]{"дАмериканский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicFoot, new CultureInfo("en-US"), new string[]{"hft³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicFoot, new CultureInfo("ru-RU"), new string[]{"гфут³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicMeter, new CultureInfo("en-US"), new string[]{"hm³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectocubicMeter, new CultureInfo("ru-RU"), new string[]{"гм³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Hectoliter, new CultureInfo("en-US"), new string[]{"hl"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Hectoliter, new CultureInfo("ru-RU"), new string[]{"гл"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectousGallon, new CultureInfo("en-US"), new string[]{"hgal (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.HectousGallon, new CultureInfo("ru-RU"), new string[]{"гАмериканский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialBeerBarrel, new CultureInfo("en-US"), new string[]{"bl (imp.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialGallon, new CultureInfo("en-US"), new string[]{"gal (imp.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialGallon, new CultureInfo("ru-RU"), new string[]{"Английский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialOunce, new CultureInfo("en-US"), new string[]{"oz (imp.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialOunce, new CultureInfo("ru-RU"), new string[]{"Английская унция"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.ImperialPint, new CultureInfo("en-US"), new string[]{"pt (imp.)", "UK pt", "pt", "p"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicFoot, new CultureInfo("en-US"), new string[]{"kft³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicFoot, new CultureInfo("ru-RU"), new string[]{"кфут³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicMeter, new CultureInfo("en-US"), new string[]{"km³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilocubicMeter, new CultureInfo("ru-RU"), new string[]{"км³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KiloimperialGallon, new CultureInfo("en-US"), new string[]{"kgal (imp.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KiloimperialGallon, new CultureInfo("ru-RU"), new string[]{"кАнглийский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Kiloliter, new CultureInfo("en-US"), new string[]{"kl"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Kiloliter, new CultureInfo("ru-RU"), new string[]{"кл"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilousGallon, new CultureInfo("en-US"), new string[]{"kgal (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.KilousGallon, new CultureInfo("ru-RU"), new string[]{"кАмериканский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Liter, new CultureInfo("en-US"), new string[]{"l"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Liter, new CultureInfo("ru-RU"), new string[]{"л"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegacubicFoot, new CultureInfo("en-US"), new string[]{"Mft³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegacubicFoot, new CultureInfo("ru-RU"), new string[]{"Мфут³"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegaimperialGallon, new CultureInfo("en-US"), new string[]{"Mgal (imp.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegaimperialGallon, new CultureInfo("ru-RU"), new string[]{"МАнглийский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Megaliter, new CultureInfo("en-US"), new string[]{"Ml"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Megaliter, new CultureInfo("ru-RU"), new string[]{"Мл"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegausGallon, new CultureInfo("en-US"), new string[]{"Mgal (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MegausGallon, new CultureInfo("ru-RU"), new string[]{"МАмериканский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricCup, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("en-US"), new string[]{"tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("ru-RU"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.MetricTeaspoon, new CultureInfo("nb-NO"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Microliter, new CultureInfo("en-US"), new string[]{"µl"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Microliter, new CultureInfo("ru-RU"), new string[]{"мкл"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Milliliter, new CultureInfo("en-US"), new string[]{"ml"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.Milliliter, new CultureInfo("ru-RU"), new string[]{"мл"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.OilBarrel, new CultureInfo("en-US"), new string[]{"bbl"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("ru-RU"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UkTablespoon, new CultureInfo("nb-NO"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsBeerBarrel, new CultureInfo("en-US"), new string[]{"bl (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsCustomaryCup, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsGallon, new CultureInfo("en-US"), new string[]{"gal (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsGallon, new CultureInfo("ru-RU"), new string[]{"Американский галлон"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsLegalCup, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsOunce, new CultureInfo("en-US"), new string[]{"oz (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsOunce, new CultureInfo("ru-RU"), new string[]{"Американская унция"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsPint, new CultureInfo("en-US"), new string[]{"pt (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsQuart, new CultureInfo("en-US"), new string[]{"qt (U.S.)"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("ru-RU"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTablespoon, new CultureInfo("nb-NO"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("en-US"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("ru-RU"), new string[]{""});
-            unitAbbreviationsCache.MapUnitToAbbreviation(VolumeUnit.UsTeaspoon, new CultureInfo("nb-NO"), new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.AcreFoot, new CultureInfo("en-US"), false, true, new string[]{"ac-ft", "acre-foot", "acre-feet"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.AuTablespoon, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.AuTablespoon, new CultureInfo("ru-RU"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.AuTablespoon, new CultureInfo("nb-NO"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.BoardFoot, new CultureInfo("en-US"), false, true, new string[]{"bf", "board foot", "board feet"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.BoardFoot, new CultureInfo("fr-CA"), false, true, new string[]{"pmp", "pied-planche", "pied de planche"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Centiliter, new CultureInfo("en-US"), false, true, new string[]{"cl"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Centiliter, new CultureInfo("ru-RU"), false, true, new string[]{"сл"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicCentimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicDecimeter, new CultureInfo("en-US"), false, true, new string[]{"dm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicDecimeter, new CultureInfo("ru-RU"), false, true, new string[]{"дм³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicFoot, new CultureInfo("en-US"), false, true, new string[]{"ft³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicFoot, new CultureInfo("ru-RU"), false, true, new string[]{"фут³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicHectometer, new CultureInfo("en-US"), false, true, new string[]{"hm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicHectometer, new CultureInfo("ru-RU"), false, true, new string[]{"гм³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicInch, new CultureInfo("en-US"), false, true, new string[]{"in³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicInch, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicKilometer, new CultureInfo("en-US"), false, true, new string[]{"km³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicKilometer, new CultureInfo("ru-RU"), false, true, new string[]{"км³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMeter, new CultureInfo("en-US"), false, true, new string[]{"m³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"м³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMicrometer, new CultureInfo("en-US"), false, true, new string[]{"µm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMicrometer, new CultureInfo("ru-RU"), false, true, new string[]{"мкм³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMile, new CultureInfo("en-US"), false, true, new string[]{"mi³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMile, new CultureInfo("ru-RU"), false, true, new string[]{"миля³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"мм³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicYard, new CultureInfo("en-US"), false, true, new string[]{"yd³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.CubicYard, new CultureInfo("ru-RU"), false, true, new string[]{"ярд³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Decaliter, new CultureInfo("en-US"), false, true, new string[]{"dal"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Decaliter, new CultureInfo("ru-RU"), false, true, new string[]{"дал"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.DecausGallon, new CultureInfo("en-US"), false, true, new string[]{"dagal (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.DecausGallon, new CultureInfo("ru-RU"), false, true, new string[]{"даАмериканский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Deciliter, new CultureInfo("en-US"), false, true, new string[]{"dl"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Deciliter, new CultureInfo("ru-RU"), false, true, new string[]{"дл"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.DeciusGallon, new CultureInfo("en-US"), false, true, new string[]{"dgal (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.DeciusGallon, new CultureInfo("ru-RU"), false, true, new string[]{"дАмериканский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.HectocubicFoot, new CultureInfo("en-US"), false, true, new string[]{"hft³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.HectocubicFoot, new CultureInfo("ru-RU"), false, true, new string[]{"гфут³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.HectocubicMeter, new CultureInfo("en-US"), false, true, new string[]{"hm³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.HectocubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"гм³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Hectoliter, new CultureInfo("en-US"), false, true, new string[]{"hl"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Hectoliter, new CultureInfo("ru-RU"), false, true, new string[]{"гл"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.HectousGallon, new CultureInfo("en-US"), false, true, new string[]{"hgal (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.HectousGallon, new CultureInfo("ru-RU"), false, true, new string[]{"гАмериканский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialBeerBarrel, new CultureInfo("en-US"), false, true, new string[]{"bl (imp.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialGallon, new CultureInfo("en-US"), false, true, new string[]{"gal (imp.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialGallon, new CultureInfo("ru-RU"), false, true, new string[]{"Английский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialOunce, new CultureInfo("en-US"), false, true, new string[]{"oz (imp.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialOunce, new CultureInfo("ru-RU"), false, true, new string[]{"Английская унция"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.ImperialPint, new CultureInfo("en-US"), false, true, new string[]{"pt (imp.)", "UK pt", "pt", "p"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilocubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kft³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilocubicFoot, new CultureInfo("ru-RU"), false, true, new string[]{"кфут³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilocubicMeter, new CultureInfo("en-US"), false, true, new string[]{"km³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilocubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"км³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KiloimperialGallon, new CultureInfo("en-US"), false, true, new string[]{"kgal (imp.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KiloimperialGallon, new CultureInfo("ru-RU"), false, true, new string[]{"кАнглийский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Kiloliter, new CultureInfo("en-US"), false, true, new string[]{"kl"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Kiloliter, new CultureInfo("ru-RU"), false, true, new string[]{"кл"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilousGallon, new CultureInfo("en-US"), false, true, new string[]{"kgal (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.KilousGallon, new CultureInfo("ru-RU"), false, true, new string[]{"кАмериканский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Liter, new CultureInfo("en-US"), false, true, new string[]{"l"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Liter, new CultureInfo("ru-RU"), false, true, new string[]{"л"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MegacubicFoot, new CultureInfo("en-US"), false, true, new string[]{"Mft³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MegacubicFoot, new CultureInfo("ru-RU"), false, true, new string[]{"Мфут³"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MegaimperialGallon, new CultureInfo("en-US"), false, true, new string[]{"Mgal (imp.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MegaimperialGallon, new CultureInfo("ru-RU"), false, true, new string[]{"МАнглийский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Megaliter, new CultureInfo("en-US"), false, true, new string[]{"Ml"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Megaliter, new CultureInfo("ru-RU"), false, true, new string[]{"Мл"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MegausGallon, new CultureInfo("en-US"), false, true, new string[]{"Mgal (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MegausGallon, new CultureInfo("ru-RU"), false, true, new string[]{"МАмериканский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MetricCup, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MetricTeaspoon, new CultureInfo("en-US"), false, true, new string[]{"tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MetricTeaspoon, new CultureInfo("ru-RU"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.MetricTeaspoon, new CultureInfo("nb-NO"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Microliter, new CultureInfo("en-US"), false, true, new string[]{"µl"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Microliter, new CultureInfo("ru-RU"), false, true, new string[]{"мкл"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Milliliter, new CultureInfo("en-US"), false, true, new string[]{"ml"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Milliliter, new CultureInfo("ru-RU"), false, true, new string[]{"мл"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.OilBarrel, new CultureInfo("en-US"), false, true, new string[]{"bbl"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UkTablespoon, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UkTablespoon, new CultureInfo("ru-RU"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UkTablespoon, new CultureInfo("nb-NO"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsBeerBarrel, new CultureInfo("en-US"), false, true, new string[]{"bl (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsCustomaryCup, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsGallon, new CultureInfo("en-US"), false, true, new string[]{"gal (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsGallon, new CultureInfo("ru-RU"), false, true, new string[]{"Американский галлон"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsLegalCup, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsOunce, new CultureInfo("en-US"), false, true, new string[]{"oz (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsOunce, new CultureInfo("ru-RU"), false, true, new string[]{"Американская унция"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsPint, new CultureInfo("en-US"), false, true, new string[]{"pt (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsQuart, new CultureInfo("en-US"), false, true, new string[]{"qt (U.S.)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsTablespoon, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsTablespoon, new CultureInfo("ru-RU"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsTablespoon, new CultureInfo("nb-NO"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsTeaspoon, new CultureInfo("en-US"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsTeaspoon, new CultureInfo("ru-RU"), false, true, new string[]{""});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UsTeaspoon, new CultureInfo("nb-NO"), false, true, new string[]{""});
         }
 
         /// <summary>
@@ -706,7 +716,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Volume from AcreFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AcreFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromAcreFeet(QuantityValue acrefeet)
@@ -714,8 +724,9 @@ namespace UnitsNet
             double value = (double) acrefeet;
             return new Volume(value, VolumeUnit.AcreFoot);
         }
+
         /// <summary>
-        ///     Get Volume from AuTablespoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AuTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromAuTablespoons(QuantityValue autablespoons)
@@ -723,8 +734,9 @@ namespace UnitsNet
             double value = (double) autablespoons;
             return new Volume(value, VolumeUnit.AuTablespoon);
         }
+
         /// <summary>
-        ///     Get Volume from BoardFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.BoardFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromBoardFeet(QuantityValue boardfeet)
@@ -732,8 +744,9 @@ namespace UnitsNet
             double value = (double) boardfeet;
             return new Volume(value, VolumeUnit.BoardFoot);
         }
+
         /// <summary>
-        ///     Get Volume from Centiliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Centiliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCentiliters(QuantityValue centiliters)
@@ -741,8 +754,9 @@ namespace UnitsNet
             double value = (double) centiliters;
             return new Volume(value, VolumeUnit.Centiliter);
         }
+
         /// <summary>
-        ///     Get Volume from CubicCentimeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicCentimeters(QuantityValue cubiccentimeters)
@@ -750,8 +764,9 @@ namespace UnitsNet
             double value = (double) cubiccentimeters;
             return new Volume(value, VolumeUnit.CubicCentimeter);
         }
+
         /// <summary>
-        ///     Get Volume from CubicDecimeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicDecimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicDecimeters(QuantityValue cubicdecimeters)
@@ -759,8 +774,9 @@ namespace UnitsNet
             double value = (double) cubicdecimeters;
             return new Volume(value, VolumeUnit.CubicDecimeter);
         }
+
         /// <summary>
-        ///     Get Volume from CubicFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicFeet(QuantityValue cubicfeet)
@@ -768,8 +784,9 @@ namespace UnitsNet
             double value = (double) cubicfeet;
             return new Volume(value, VolumeUnit.CubicFoot);
         }
+
         /// <summary>
-        ///     Get Volume from CubicHectometers.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicHectometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicHectometers(QuantityValue cubichectometers)
@@ -777,8 +794,9 @@ namespace UnitsNet
             double value = (double) cubichectometers;
             return new Volume(value, VolumeUnit.CubicHectometer);
         }
+
         /// <summary>
-        ///     Get Volume from CubicInches.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicInches(QuantityValue cubicinches)
@@ -786,8 +804,9 @@ namespace UnitsNet
             double value = (double) cubicinches;
             return new Volume(value, VolumeUnit.CubicInch);
         }
+
         /// <summary>
-        ///     Get Volume from CubicKilometers.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicKilometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicKilometers(QuantityValue cubickilometers)
@@ -795,8 +814,9 @@ namespace UnitsNet
             double value = (double) cubickilometers;
             return new Volume(value, VolumeUnit.CubicKilometer);
         }
+
         /// <summary>
-        ///     Get Volume from CubicMeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicMeters(QuantityValue cubicmeters)
@@ -804,8 +824,9 @@ namespace UnitsNet
             double value = (double) cubicmeters;
             return new Volume(value, VolumeUnit.CubicMeter);
         }
+
         /// <summary>
-        ///     Get Volume from CubicMicrometers.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMicrometer"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicMicrometers(QuantityValue cubicmicrometers)
@@ -813,8 +834,9 @@ namespace UnitsNet
             double value = (double) cubicmicrometers;
             return new Volume(value, VolumeUnit.CubicMicrometer);
         }
+
         /// <summary>
-        ///     Get Volume from CubicMiles.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMile"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicMiles(QuantityValue cubicmiles)
@@ -822,8 +844,9 @@ namespace UnitsNet
             double value = (double) cubicmiles;
             return new Volume(value, VolumeUnit.CubicMile);
         }
+
         /// <summary>
-        ///     Get Volume from CubicMillimeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicMillimeters(QuantityValue cubicmillimeters)
@@ -831,8 +854,9 @@ namespace UnitsNet
             double value = (double) cubicmillimeters;
             return new Volume(value, VolumeUnit.CubicMillimeter);
         }
+
         /// <summary>
-        ///     Get Volume from CubicYards.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicYard"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicYards(QuantityValue cubicyards)
@@ -840,8 +864,19 @@ namespace UnitsNet
             double value = (double) cubicyards;
             return new Volume(value, VolumeUnit.CubicYard);
         }
+
         /// <summary>
-        ///     Get Volume from DecausGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Decaliter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromDecaliters(QuantityValue decaliters)
+        {
+            double value = (double) decaliters;
+            return new Volume(value, VolumeUnit.Decaliter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DecausGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromDecausGallons(QuantityValue decausgallons)
@@ -849,8 +884,9 @@ namespace UnitsNet
             double value = (double) decausgallons;
             return new Volume(value, VolumeUnit.DecausGallon);
         }
+
         /// <summary>
-        ///     Get Volume from Deciliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Deciliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromDeciliters(QuantityValue deciliters)
@@ -858,8 +894,9 @@ namespace UnitsNet
             double value = (double) deciliters;
             return new Volume(value, VolumeUnit.Deciliter);
         }
+
         /// <summary>
-        ///     Get Volume from DeciusGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DeciusGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromDeciusGallons(QuantityValue deciusgallons)
@@ -867,8 +904,9 @@ namespace UnitsNet
             double value = (double) deciusgallons;
             return new Volume(value, VolumeUnit.DeciusGallon);
         }
+
         /// <summary>
-        ///     Get Volume from HectocubicFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromHectocubicFeet(QuantityValue hectocubicfeet)
@@ -876,8 +914,9 @@ namespace UnitsNet
             double value = (double) hectocubicfeet;
             return new Volume(value, VolumeUnit.HectocubicFoot);
         }
+
         /// <summary>
-        ///     Get Volume from HectocubicMeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromHectocubicMeters(QuantityValue hectocubicmeters)
@@ -885,8 +924,9 @@ namespace UnitsNet
             double value = (double) hectocubicmeters;
             return new Volume(value, VolumeUnit.HectocubicMeter);
         }
+
         /// <summary>
-        ///     Get Volume from Hectoliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Hectoliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromHectoliters(QuantityValue hectoliters)
@@ -894,8 +934,9 @@ namespace UnitsNet
             double value = (double) hectoliters;
             return new Volume(value, VolumeUnit.Hectoliter);
         }
+
         /// <summary>
-        ///     Get Volume from HectousGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectousGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromHectousGallons(QuantityValue hectousgallons)
@@ -903,8 +944,9 @@ namespace UnitsNet
             double value = (double) hectousgallons;
             return new Volume(value, VolumeUnit.HectousGallon);
         }
+
         /// <summary>
-        ///     Get Volume from ImperialBeerBarrels.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialBeerBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromImperialBeerBarrels(QuantityValue imperialbeerbarrels)
@@ -912,8 +954,9 @@ namespace UnitsNet
             double value = (double) imperialbeerbarrels;
             return new Volume(value, VolumeUnit.ImperialBeerBarrel);
         }
+
         /// <summary>
-        ///     Get Volume from ImperialGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromImperialGallons(QuantityValue imperialgallons)
@@ -921,8 +964,9 @@ namespace UnitsNet
             double value = (double) imperialgallons;
             return new Volume(value, VolumeUnit.ImperialGallon);
         }
+
         /// <summary>
-        ///     Get Volume from ImperialOunces.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialOunce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromImperialOunces(QuantityValue imperialounces)
@@ -930,8 +974,9 @@ namespace UnitsNet
             double value = (double) imperialounces;
             return new Volume(value, VolumeUnit.ImperialOunce);
         }
+
         /// <summary>
-        ///     Get Volume from ImperialPints.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialPint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromImperialPints(QuantityValue imperialpints)
@@ -939,8 +984,9 @@ namespace UnitsNet
             double value = (double) imperialpints;
             return new Volume(value, VolumeUnit.ImperialPint);
         }
+
         /// <summary>
-        ///     Get Volume from KilocubicFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKilocubicFeet(QuantityValue kilocubicfeet)
@@ -948,8 +994,9 @@ namespace UnitsNet
             double value = (double) kilocubicfeet;
             return new Volume(value, VolumeUnit.KilocubicFoot);
         }
+
         /// <summary>
-        ///     Get Volume from KilocubicMeters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKilocubicMeters(QuantityValue kilocubicmeters)
@@ -957,8 +1004,9 @@ namespace UnitsNet
             double value = (double) kilocubicmeters;
             return new Volume(value, VolumeUnit.KilocubicMeter);
         }
+
         /// <summary>
-        ///     Get Volume from KiloimperialGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KiloimperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKiloimperialGallons(QuantityValue kiloimperialgallons)
@@ -966,8 +1014,9 @@ namespace UnitsNet
             double value = (double) kiloimperialgallons;
             return new Volume(value, VolumeUnit.KiloimperialGallon);
         }
+
         /// <summary>
-        ///     Get Volume from Kiloliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Kiloliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKiloliters(QuantityValue kiloliters)
@@ -975,8 +1024,9 @@ namespace UnitsNet
             double value = (double) kiloliters;
             return new Volume(value, VolumeUnit.Kiloliter);
         }
+
         /// <summary>
-        ///     Get Volume from KilousGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilousGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKilousGallons(QuantityValue kilousgallons)
@@ -984,8 +1034,9 @@ namespace UnitsNet
             double value = (double) kilousgallons;
             return new Volume(value, VolumeUnit.KilousGallon);
         }
+
         /// <summary>
-        ///     Get Volume from Liters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Liter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromLiters(QuantityValue liters)
@@ -993,8 +1044,9 @@ namespace UnitsNet
             double value = (double) liters;
             return new Volume(value, VolumeUnit.Liter);
         }
+
         /// <summary>
-        ///     Get Volume from MegacubicFeet.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegacubicFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMegacubicFeet(QuantityValue megacubicfeet)
@@ -1002,8 +1054,9 @@ namespace UnitsNet
             double value = (double) megacubicfeet;
             return new Volume(value, VolumeUnit.MegacubicFoot);
         }
+
         /// <summary>
-        ///     Get Volume from MegaimperialGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegaimperialGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMegaimperialGallons(QuantityValue megaimperialgallons)
@@ -1011,8 +1064,9 @@ namespace UnitsNet
             double value = (double) megaimperialgallons;
             return new Volume(value, VolumeUnit.MegaimperialGallon);
         }
+
         /// <summary>
-        ///     Get Volume from Megaliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Megaliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMegaliters(QuantityValue megaliters)
@@ -1020,8 +1074,9 @@ namespace UnitsNet
             double value = (double) megaliters;
             return new Volume(value, VolumeUnit.Megaliter);
         }
+
         /// <summary>
-        ///     Get Volume from MegausGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegausGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMegausGallons(QuantityValue megausgallons)
@@ -1029,8 +1084,9 @@ namespace UnitsNet
             double value = (double) megausgallons;
             return new Volume(value, VolumeUnit.MegausGallon);
         }
+
         /// <summary>
-        ///     Get Volume from MetricCups.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMetricCups(QuantityValue metriccups)
@@ -1038,8 +1094,9 @@ namespace UnitsNet
             double value = (double) metriccups;
             return new Volume(value, VolumeUnit.MetricCup);
         }
+
         /// <summary>
-        ///     Get Volume from MetricTeaspoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTeaspoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMetricTeaspoons(QuantityValue metricteaspoons)
@@ -1047,8 +1104,9 @@ namespace UnitsNet
             double value = (double) metricteaspoons;
             return new Volume(value, VolumeUnit.MetricTeaspoon);
         }
+
         /// <summary>
-        ///     Get Volume from Microliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Microliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMicroliters(QuantityValue microliters)
@@ -1056,8 +1114,9 @@ namespace UnitsNet
             double value = (double) microliters;
             return new Volume(value, VolumeUnit.Microliter);
         }
+
         /// <summary>
-        ///     Get Volume from Milliliters.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Milliliter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMilliliters(QuantityValue milliliters)
@@ -1065,8 +1124,9 @@ namespace UnitsNet
             double value = (double) milliliters;
             return new Volume(value, VolumeUnit.Milliliter);
         }
+
         /// <summary>
-        ///     Get Volume from OilBarrels.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.OilBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromOilBarrels(QuantityValue oilbarrels)
@@ -1074,8 +1134,9 @@ namespace UnitsNet
             double value = (double) oilbarrels;
             return new Volume(value, VolumeUnit.OilBarrel);
         }
+
         /// <summary>
-        ///     Get Volume from UkTablespoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UkTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUkTablespoons(QuantityValue uktablespoons)
@@ -1083,8 +1144,9 @@ namespace UnitsNet
             double value = (double) uktablespoons;
             return new Volume(value, VolumeUnit.UkTablespoon);
         }
+
         /// <summary>
-        ///     Get Volume from UsBeerBarrels.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsBeerBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsBeerBarrels(QuantityValue usbeerbarrels)
@@ -1092,8 +1154,9 @@ namespace UnitsNet
             double value = (double) usbeerbarrels;
             return new Volume(value, VolumeUnit.UsBeerBarrel);
         }
+
         /// <summary>
-        ///     Get Volume from UsCustomaryCups.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsCustomaryCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsCustomaryCups(QuantityValue uscustomarycups)
@@ -1101,8 +1164,9 @@ namespace UnitsNet
             double value = (double) uscustomarycups;
             return new Volume(value, VolumeUnit.UsCustomaryCup);
         }
+
         /// <summary>
-        ///     Get Volume from UsGallons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsGallon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsGallons(QuantityValue usgallons)
@@ -1110,8 +1174,9 @@ namespace UnitsNet
             double value = (double) usgallons;
             return new Volume(value, VolumeUnit.UsGallon);
         }
+
         /// <summary>
-        ///     Get Volume from UsLegalCups.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsLegalCup"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsLegalCups(QuantityValue uslegalcups)
@@ -1119,8 +1184,9 @@ namespace UnitsNet
             double value = (double) uslegalcups;
             return new Volume(value, VolumeUnit.UsLegalCup);
         }
+
         /// <summary>
-        ///     Get Volume from UsOunces.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsOunce"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsOunces(QuantityValue usounces)
@@ -1128,8 +1194,9 @@ namespace UnitsNet
             double value = (double) usounces;
             return new Volume(value, VolumeUnit.UsOunce);
         }
+
         /// <summary>
-        ///     Get Volume from UsPints.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsPint"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsPints(QuantityValue uspints)
@@ -1137,8 +1204,9 @@ namespace UnitsNet
             double value = (double) uspints;
             return new Volume(value, VolumeUnit.UsPint);
         }
+
         /// <summary>
-        ///     Get Volume from UsQuarts.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsQuart"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsQuarts(QuantityValue usquarts)
@@ -1146,8 +1214,9 @@ namespace UnitsNet
             double value = (double) usquarts;
             return new Volume(value, VolumeUnit.UsQuart);
         }
+
         /// <summary>
-        ///     Get Volume from UsTablespoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTablespoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsTablespoons(QuantityValue ustablespoons)
@@ -1155,8 +1224,9 @@ namespace UnitsNet
             double value = (double) ustablespoons;
             return new Volume(value, VolumeUnit.UsTablespoon);
         }
+
         /// <summary>
-        ///     Get Volume from UsTeaspoons.
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTeaspoon"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsTeaspoons(QuantityValue usteaspoons)
@@ -1397,8 +1467,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Volume objVolume)) throw new ArgumentException("Expected type Volume.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Volume objVolume)) throw new ArgumentException("Expected type Volume.", nameof(obj));
 
             return CompareTo(objVolume);
         }
@@ -1451,7 +1521,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Volume other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -1479,7 +1549,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(VolumeUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -1489,13 +1559,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -1504,7 +1574,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is VolumeUnit unitAsVolumeUnit))
+            if (!(unit is VolumeUnit unitAsVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
             return As(unitAsVolumeUnit);
@@ -1528,18 +1598,18 @@ namespace UnitsNet
         /// <returns>A Volume with the specified unit.</returns>
         public Volume ToUnit(VolumeUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Volume), Unit, typeof(Volume), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Volume), Unit, typeof(Volume), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Volume)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1554,31 +1624,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is VolumeUnit unitAsVolumeUnit))
+            if (!(unit is VolumeUnit unitAsVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsVolumeUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is VolumeUnit unitAsVolumeUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsVolumeUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Volume ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -1591,16 +1652,13 @@ namespace UnitsNet
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(VolumeUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -1719,13 +1777,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Volume))
+            if (conversionType == typeof(Volume))
                 return this;
-            else if(conversionType == typeof(VolumeUnit))
+            else if (conversionType == typeof(VolumeUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Volume.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Volume.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Volume)} to {conversionType} is not supported.");

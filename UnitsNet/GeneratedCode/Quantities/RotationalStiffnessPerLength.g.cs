@@ -67,7 +67,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -93,7 +92,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public RotationalStiffnessPerLength(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -162,27 +161,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get RotationalStiffnessPerLength in KilonewtonMetersPerRadianPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter"/>
         /// </summary>
         public double KilonewtonMetersPerRadianPerMeter => As(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
 
         /// <summary>
-        ///     Get RotationalStiffnessPerLength in KilopoundForceFeetPerDegreesPerFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/>
         /// </summary>
         public double KilopoundForceFeetPerDegreesPerFeet => As(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
 
         /// <summary>
-        ///     Get RotationalStiffnessPerLength in MeganewtonMetersPerRadianPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/>
         /// </summary>
         public double MeganewtonMetersPerRadianPerMeter => As(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
 
         /// <summary>
-        ///     Get RotationalStiffnessPerLength in NewtonMetersPerRadianPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/>
         /// </summary>
         public double NewtonMetersPerRadianPerMeter => As(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
 
         /// <summary>
-        ///     Get RotationalStiffnessPerLength in PoundForceFeetPerDegreesPerFeet.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/>
         /// </summary>
         public double PoundForceFeetPerDegreesPerFeet => As(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot);
 
@@ -198,26 +197,27 @@ namespace UnitsNet
         {
             // Register in unit converter: BaseUnit -> RotationalStiffnessPerLengthUnit
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength((quantity.Value) / 1e3d, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter));
-            unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, quantity => new RotationalStiffnessPerLength(quantity.Value/254864.324570, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot));
+            unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, quantity => new RotationalStiffnessPerLength(quantity.Value / 254864.324570, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot));
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength((quantity.Value) / 1e6d, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter));
-            unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, quantity => new RotationalStiffnessPerLength(quantity.Value/254.864324570, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot));
+            unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, quantity => new RotationalStiffnessPerLength(quantity.Value / 254.864324570, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity => quantity);
 
             // Register in unit converter: RotationalStiffnessPerLengthUnit -> BaseUnit
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength((quantity.Value) * 1e3d, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
-            unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength(quantity.Value*254864.324570, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
+            unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength(quantity.Value * 254864.324570, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
             unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength((quantity.Value) * 1e6d, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
-            unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength(quantity.Value*254.864324570, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
+            unitConverter.SetConversionFunction<RotationalStiffnessPerLength>(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, quantity => new RotationalStiffnessPerLength(quantity.Value * 254.864324570, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, new CultureInfo("en-US"), new string[]{"kN·m/rad/m", "kNm/rad/m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, new CultureInfo("en-US"), new string[]{"kipf·ft/°/ft", "kip·ft/°/ft", "k·ft/°/ft", "kipf·ft/deg/ft", "kip·ft/deg/ft", "k·ft/deg/ft"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, new CultureInfo("en-US"), new string[]{"MN·m/rad/m", "MNm/rad/m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, new CultureInfo("en-US"), new string[]{"N·m/rad/m", "Nm/rad/m"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, new CultureInfo("en-US"), new string[]{"lbf·ft/deg/ft"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kN·m/rad/m", "kNm/rad/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf·ft/°/ft", "kip·ft/°/ft", "k·ft/°/ft", "kipf·ft/deg/ft", "kip·ft/deg/ft", "k·ft/deg/ft"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, new CultureInfo("en-US"), false, true, new string[]{"MN·m/rad/m", "MNm/rad/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, new CultureInfo("en-US"), false, true, new string[]{"N·m/rad/m", "Nm/rad/m"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf·ft/deg/ft"});
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get RotationalStiffnessPerLength from KilonewtonMetersPerRadianPerMeter.
+        ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromKilonewtonMetersPerRadianPerMeter(QuantityValue kilonewtonmetersperradianpermeter)
@@ -254,8 +254,9 @@ namespace UnitsNet
             double value = (double) kilonewtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
         }
+
         /// <summary>
-        ///     Get RotationalStiffnessPerLength from KilopoundForceFeetPerDegreesPerFeet.
+        ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromKilopoundForceFeetPerDegreesPerFeet(QuantityValue kilopoundforcefeetperdegreesperfeet)
@@ -263,8 +264,9 @@ namespace UnitsNet
             double value = (double) kilopoundforcefeetperdegreesperfeet;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot);
         }
+
         /// <summary>
-        ///     Get RotationalStiffnessPerLength from MeganewtonMetersPerRadianPerMeter.
+        ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromMeganewtonMetersPerRadianPerMeter(QuantityValue meganewtonmetersperradianpermeter)
@@ -272,8 +274,9 @@ namespace UnitsNet
             double value = (double) meganewtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
         }
+
         /// <summary>
-        ///     Get RotationalStiffnessPerLength from NewtonMetersPerRadianPerMeter.
+        ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromNewtonMetersPerRadianPerMeter(QuantityValue newtonmetersperradianpermeter)
@@ -281,8 +284,9 @@ namespace UnitsNet
             double value = (double) newtonmetersperradianpermeter;
             return new RotationalStiffnessPerLength(value, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
         }
+
         /// <summary>
-        ///     Get RotationalStiffnessPerLength from PoundForceFeetPerDegreesPerFeet.
+        ///     Creates a <see cref="RotationalStiffnessPerLength"/> from <see cref="RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RotationalStiffnessPerLength FromPoundForceFeetPerDegreesPerFeet(QuantityValue poundforcefeetperdegreesperfeet)
@@ -523,8 +527,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RotationalStiffnessPerLength objRotationalStiffnessPerLength)) throw new ArgumentException("Expected type RotationalStiffnessPerLength.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is RotationalStiffnessPerLength objRotationalStiffnessPerLength)) throw new ArgumentException("Expected type RotationalStiffnessPerLength.", nameof(obj));
 
             return CompareTo(objRotationalStiffnessPerLength);
         }
@@ -577,7 +581,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(RotationalStiffnessPerLength other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -605,7 +609,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(RotationalStiffnessPerLengthUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -615,13 +619,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -630,7 +634,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
+            if (!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
 
             return As(unitAsRotationalStiffnessPerLengthUnit);
@@ -654,18 +658,18 @@ namespace UnitsNet
         /// <returns>A RotationalStiffnessPerLength with the specified unit.</returns>
         public RotationalStiffnessPerLength ToUnit(RotationalStiffnessPerLengthUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(RotationalStiffnessPerLength), Unit, typeof(RotationalStiffnessPerLength), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(RotationalStiffnessPerLength), Unit, typeof(RotationalStiffnessPerLength), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (RotationalStiffnessPerLength)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -680,31 +684,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
+            if (!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsRotationalStiffnessPerLengthUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is RotationalStiffnessPerLengthUnit unitAsRotationalStiffnessPerLengthUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessPerLengthUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsRotationalStiffnessPerLengthUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public RotationalStiffnessPerLength ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -717,16 +712,13 @@ namespace UnitsNet
         IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(RotationalStiffnessPerLengthUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(RotationalStiffnessPerLengthUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(RotationalStiffnessPerLengthUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -845,13 +837,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(RotationalStiffnessPerLength))
+            if (conversionType == typeof(RotationalStiffnessPerLength))
                 return this;
-            else if(conversionType == typeof(RotationalStiffnessPerLengthUnit))
+            else if (conversionType == typeof(RotationalStiffnessPerLengthUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return RotationalStiffnessPerLength.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return RotationalStiffnessPerLength.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(RotationalStiffnessPerLength)} to {conversionType} is not supported.");

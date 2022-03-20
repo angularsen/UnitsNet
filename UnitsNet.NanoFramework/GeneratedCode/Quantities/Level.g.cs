@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public LevelUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Level MinValue { get; } = new Level(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,12 +80,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Level in Decibels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
         /// </summary>
         public double Decibels => As(LevelUnit.Decibel);
 
         /// <summary>
-        ///     Get Level in Nepers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
         /// </summary>
         public double Nepers => As(LevelUnit.Neper);
 
@@ -92,17 +94,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Level from Decibels.
+        ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Level FromDecibels(double decibels) => new Level(decibels, LevelUnit.Decibel);
 
         /// <summary>
-        ///     Get Level from Nepers.
+        ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Level FromNepers(double nepers) => new Level(nepers, LevelUnit.Neper);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LevelUnit" /> to <see cref="Level" />.
@@ -117,58 +118,55 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LevelUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(LevelUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Level ToUnit(LevelUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Level(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Level ToUnit(LevelUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Level(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case LevelUnit.Decibel: return _value;
-                case LevelUnit.Neper: return (1/0.115129254)*_value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        LevelUnit.Decibel => _value,
+                        LevelUnit.Neper => (1 / 0.115129254) * _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(LevelUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(LevelUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case LevelUnit.Decibel: return baseUnitValue;
-                case LevelUnit.Neper: return 0.115129254*baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        LevelUnit.Decibel => baseUnitValue,
+                        LevelUnit.Neper => 0.115129254 * baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

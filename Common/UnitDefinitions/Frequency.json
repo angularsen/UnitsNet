@@ -26,8 +26,8 @@
     {
       "SingularName": "RadianPerSecond",
       "PluralName": "RadiansPerSecond",
-      "FromUnitToBaseFunc": "{x}/6.2831853072",
-      "FromBaseToUnitFunc": "{x}*6.2831853072",
+      "FromUnitToBaseFunc": "{x} / 6.2831853072",
+      "FromBaseToUnitFunc": "{x} * 6.2831853072",
       "OmitExtensionMethod": true,
       "Localization": [
         {
@@ -43,8 +43,8 @@
     {
       "SingularName": "CyclePerMinute",
       "PluralName": "CyclesPerMinute",
-      "FromUnitToBaseFunc": "{x}/60",
-      "FromBaseToUnitFunc": "{x}*60",
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -55,8 +55,8 @@
     {
       "SingularName": "CyclePerHour",
       "PluralName": "CyclesPerHour",
-      "FromUnitToBaseFunc": "{x}/3600",
-      "FromBaseToUnitFunc": "{x}*3600",
+      "FromUnitToBaseFunc": "{x} / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -67,8 +67,8 @@
     {
       "SingularName": "BeatPerMinute",
       "PluralName": "BeatsPerMinute",
-      "FromUnitToBaseFunc": "{x}/60",
-      "FromBaseToUnitFunc": "{x}*60",
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
         {
           "Culture": "en-US",

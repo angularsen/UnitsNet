@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ElectricChargeUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -81,27 +83,27 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricCharge in AmpereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.AmpereHour"/>
         /// </summary>
         public double AmpereHours => As(ElectricChargeUnit.AmpereHour);
 
         /// <summary>
-        ///     Get ElectricCharge in Coulombs.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Coulomb"/>
         /// </summary>
         public double Coulombs => As(ElectricChargeUnit.Coulomb);
 
         /// <summary>
-        ///     Get ElectricCharge in KiloampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.KiloampereHour"/>
         /// </summary>
         public double KiloampereHours => As(ElectricChargeUnit.KiloampereHour);
 
         /// <summary>
-        ///     Get ElectricCharge in MegaampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.MegaampereHour"/>
         /// </summary>
         public double MegaampereHours => As(ElectricChargeUnit.MegaampereHour);
 
         /// <summary>
-        ///     Get ElectricCharge in MilliampereHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.MilliampereHour"/>
         /// </summary>
         public double MilliampereHours => As(ElectricChargeUnit.MilliampereHour);
 
@@ -110,35 +112,34 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricCharge from AmpereHours.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.AmpereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromAmpereHours(double amperehours) => new ElectricCharge(amperehours, ElectricChargeUnit.AmpereHour);
 
         /// <summary>
-        ///     Get ElectricCharge from Coulombs.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Coulomb"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromCoulombs(double coulombs) => new ElectricCharge(coulombs, ElectricChargeUnit.Coulomb);
 
         /// <summary>
-        ///     Get ElectricCharge from KiloampereHours.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.KiloampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromKiloampereHours(double kiloamperehours) => new ElectricCharge(kiloamperehours, ElectricChargeUnit.KiloampereHour);
 
         /// <summary>
-        ///     Get ElectricCharge from MegaampereHours.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MegaampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromMegaampereHours(double megaamperehours) => new ElectricCharge(megaamperehours, ElectricChargeUnit.MegaampereHour);
 
         /// <summary>
-        ///     Get ElectricCharge from MilliampereHours.
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MilliampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromMilliampereHours(double milliamperehours) => new ElectricCharge(milliamperehours, ElectricChargeUnit.MilliampereHour);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricChargeUnit" /> to <see cref="ElectricCharge" />.
@@ -153,64 +154,61 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricChargeUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricChargeUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricCharge ToUnit(ElectricChargeUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricCharge(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricCharge ToUnit(ElectricChargeUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricCharge(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ElectricChargeUnit.AmpereHour: return _value/2.77777777777e-4;
-                case ElectricChargeUnit.Coulomb: return _value;
-                case ElectricChargeUnit.KiloampereHour: return (_value/2.77777777777e-4) * 1e3d;
-                case ElectricChargeUnit.MegaampereHour: return (_value/2.77777777777e-4) * 1e6d;
-                case ElectricChargeUnit.MilliampereHour: return (_value/2.77777777777e-4) * 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricChargeUnit.AmpereHour => _value / 2.77777777777e-4,
+                        ElectricChargeUnit.Coulomb => _value,
+                        ElectricChargeUnit.KiloampereHour => (_value / 2.77777777777e-4) * 1e3d,
+                        ElectricChargeUnit.MegaampereHour => (_value / 2.77777777777e-4) * 1e6d,
+                        ElectricChargeUnit.MilliampereHour => (_value / 2.77777777777e-4) * 1e-3d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricChargeUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricChargeUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ElectricChargeUnit.AmpereHour: return baseUnitValue*2.77777777777e-4;
-                case ElectricChargeUnit.Coulomb: return baseUnitValue;
-                case ElectricChargeUnit.KiloampereHour: return (baseUnitValue*2.77777777777e-4) / 1e3d;
-                case ElectricChargeUnit.MegaampereHour: return (baseUnitValue*2.77777777777e-4) / 1e6d;
-                case ElectricChargeUnit.MilliampereHour: return (baseUnitValue*2.77777777777e-4) / 1e-3d;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ElectricChargeUnit.AmpereHour => baseUnitValue * 2.77777777777e-4,
+                        ElectricChargeUnit.Coulomb => baseUnitValue,
+                        ElectricChargeUnit.KiloampereHour => (baseUnitValue * 2.77777777777e-4) / 1e3d,
+                        ElectricChargeUnit.MegaampereHour => (baseUnitValue * 2.77777777777e-4) / 1e6d,
+                        ElectricChargeUnit.MilliampereHour => (baseUnitValue * 2.77777777777e-4) / 1e-3d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

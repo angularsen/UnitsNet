@@ -72,7 +72,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -98,7 +97,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Capacitance(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -167,37 +166,37 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Capacitance in Farads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Farad"/>
         /// </summary>
         public double Farads => As(CapacitanceUnit.Farad);
 
         /// <summary>
-        ///     Get Capacitance in Kilofarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Kilofarad"/>
         /// </summary>
         public double Kilofarads => As(CapacitanceUnit.Kilofarad);
 
         /// <summary>
-        ///     Get Capacitance in Megafarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Megafarad"/>
         /// </summary>
         public double Megafarads => As(CapacitanceUnit.Megafarad);
 
         /// <summary>
-        ///     Get Capacitance in Microfarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Microfarad"/>
         /// </summary>
         public double Microfarads => As(CapacitanceUnit.Microfarad);
 
         /// <summary>
-        ///     Get Capacitance in Millifarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Millifarad"/>
         /// </summary>
         public double Millifarads => As(CapacitanceUnit.Millifarad);
 
         /// <summary>
-        ///     Get Capacitance in Nanofarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Nanofarad"/>
         /// </summary>
         public double Nanofarads => As(CapacitanceUnit.Nanofarad);
 
         /// <summary>
-        ///     Get Capacitance in Picofarads.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CapacitanceUnit.Picofarad"/>
         /// </summary>
         public double Picofarads => As(CapacitanceUnit.Picofarad);
 
@@ -218,6 +217,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Millifarad, quantity => new Capacitance((quantity.Value) / 1e-3d, CapacitanceUnit.Millifarad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Nanofarad, quantity => new Capacitance((quantity.Value) / 1e-9d, CapacitanceUnit.Nanofarad));
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Picofarad, quantity => new Capacitance((quantity.Value) / 1e-12d, CapacitanceUnit.Picofarad));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Farad, quantity => quantity);
 
@@ -232,13 +232,13 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Farad, new CultureInfo("en-US"), new string[]{"F"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Kilofarad, new CultureInfo("en-US"), new string[]{"kF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Megafarad, new CultureInfo("en-US"), new string[]{"MF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Microfarad, new CultureInfo("en-US"), new string[]{"µF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Millifarad, new CultureInfo("en-US"), new string[]{"mF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Nanofarad, new CultureInfo("en-US"), new string[]{"nF"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(CapacitanceUnit.Picofarad, new CultureInfo("en-US"), new string[]{"pF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Farad, new CultureInfo("en-US"), false, true, new string[]{"F"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Kilofarad, new CultureInfo("en-US"), false, true, new string[]{"kF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Megafarad, new CultureInfo("en-US"), false, true, new string[]{"MF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Microfarad, new CultureInfo("en-US"), false, true, new string[]{"µF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Millifarad, new CultureInfo("en-US"), false, true, new string[]{"mF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Nanofarad, new CultureInfo("en-US"), false, true, new string[]{"nF"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Picofarad, new CultureInfo("en-US"), false, true, new string[]{"pF"});
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Capacitance from Farads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Farad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromFarads(QuantityValue farads)
@@ -275,8 +275,9 @@ namespace UnitsNet
             double value = (double) farads;
             return new Capacitance(value, CapacitanceUnit.Farad);
         }
+
         /// <summary>
-        ///     Get Capacitance from Kilofarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Kilofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromKilofarads(QuantityValue kilofarads)
@@ -284,8 +285,9 @@ namespace UnitsNet
             double value = (double) kilofarads;
             return new Capacitance(value, CapacitanceUnit.Kilofarad);
         }
+
         /// <summary>
-        ///     Get Capacitance from Megafarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Megafarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromMegafarads(QuantityValue megafarads)
@@ -293,8 +295,9 @@ namespace UnitsNet
             double value = (double) megafarads;
             return new Capacitance(value, CapacitanceUnit.Megafarad);
         }
+
         /// <summary>
-        ///     Get Capacitance from Microfarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Microfarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromMicrofarads(QuantityValue microfarads)
@@ -302,8 +305,9 @@ namespace UnitsNet
             double value = (double) microfarads;
             return new Capacitance(value, CapacitanceUnit.Microfarad);
         }
+
         /// <summary>
-        ///     Get Capacitance from Millifarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Millifarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromMillifarads(QuantityValue millifarads)
@@ -311,8 +315,9 @@ namespace UnitsNet
             double value = (double) millifarads;
             return new Capacitance(value, CapacitanceUnit.Millifarad);
         }
+
         /// <summary>
-        ///     Get Capacitance from Nanofarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Nanofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromNanofarads(QuantityValue nanofarads)
@@ -320,8 +325,9 @@ namespace UnitsNet
             double value = (double) nanofarads;
             return new Capacitance(value, CapacitanceUnit.Nanofarad);
         }
+
         /// <summary>
-        ///     Get Capacitance from Picofarads.
+        ///     Creates a <see cref="Capacitance"/> from <see cref="CapacitanceUnit.Picofarad"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Capacitance FromPicofarads(QuantityValue picofarads)
@@ -562,8 +568,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Capacitance objCapacitance)) throw new ArgumentException("Expected type Capacitance.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Capacitance objCapacitance)) throw new ArgumentException("Expected type Capacitance.", nameof(obj));
 
             return CompareTo(objCapacitance);
         }
@@ -616,7 +622,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Capacitance other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -644,7 +650,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(CapacitanceUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -654,13 +660,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -669,7 +675,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is CapacitanceUnit unitAsCapacitanceUnit))
+            if (!(unit is CapacitanceUnit unitAsCapacitanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));
 
             return As(unitAsCapacitanceUnit);
@@ -693,18 +699,18 @@ namespace UnitsNet
         /// <returns>A Capacitance with the specified unit.</returns>
         public Capacitance ToUnit(CapacitanceUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Capacitance), Unit, typeof(Capacitance), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Capacitance), Unit, typeof(Capacitance), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Capacitance)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -719,31 +725,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is CapacitanceUnit unitAsCapacitanceUnit))
+            if (!(unit is CapacitanceUnit unitAsCapacitanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsCapacitanceUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is CapacitanceUnit unitAsCapacitanceUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsCapacitanceUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Capacitance ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -756,16 +753,13 @@ namespace UnitsNet
         IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(CapacitanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(CapacitanceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(CapacitanceUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -884,13 +878,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Capacitance))
+            if (conversionType == typeof(Capacitance))
                 return this;
-            else if(conversionType == typeof(CapacitanceUnit))
+            else if (conversionType == typeof(CapacitanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Capacitance.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Capacitance.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Capacitance)} to {conversionType} is not supported.");

@@ -48,6 +48,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public LinearPowerDensityUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -74,6 +75,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static LinearPowerDensity MinValue { get; } = new LinearPowerDensity(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -81,127 +83,127 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerCentimeter"/>
         /// </summary>
         public double GigawattsPerCentimeter => As(LinearPowerDensityUnit.GigawattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerFoot"/>
         /// </summary>
         public double GigawattsPerFoot => As(LinearPowerDensityUnit.GigawattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerInch"/>
         /// </summary>
         public double GigawattsPerInch => As(LinearPowerDensityUnit.GigawattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerMeter"/>
         /// </summary>
         public double GigawattsPerMeter => As(LinearPowerDensityUnit.GigawattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in GigawattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.GigawattPerMillimeter"/>
         /// </summary>
         public double GigawattsPerMillimeter => As(LinearPowerDensityUnit.GigawattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerCentimeter"/>
         /// </summary>
         public double KilowattsPerCentimeter => As(LinearPowerDensityUnit.KilowattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerFoot"/>
         /// </summary>
         public double KilowattsPerFoot => As(LinearPowerDensityUnit.KilowattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerInch"/>
         /// </summary>
         public double KilowattsPerInch => As(LinearPowerDensityUnit.KilowattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerMeter"/>
         /// </summary>
         public double KilowattsPerMeter => As(LinearPowerDensityUnit.KilowattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in KilowattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.KilowattPerMillimeter"/>
         /// </summary>
         public double KilowattsPerMillimeter => As(LinearPowerDensityUnit.KilowattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerCentimeter"/>
         /// </summary>
         public double MegawattsPerCentimeter => As(LinearPowerDensityUnit.MegawattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerFoot"/>
         /// </summary>
         public double MegawattsPerFoot => As(LinearPowerDensityUnit.MegawattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerInch"/>
         /// </summary>
         public double MegawattsPerInch => As(LinearPowerDensityUnit.MegawattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerMeter"/>
         /// </summary>
         public double MegawattsPerMeter => As(LinearPowerDensityUnit.MegawattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MegawattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MegawattPerMillimeter"/>
         /// </summary>
         public double MegawattsPerMillimeter => As(LinearPowerDensityUnit.MegawattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter"/>
         /// </summary>
         public double MilliwattsPerCentimeter => As(LinearPowerDensityUnit.MilliwattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerFoot"/>
         /// </summary>
         public double MilliwattsPerFoot => As(LinearPowerDensityUnit.MilliwattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerInch"/>
         /// </summary>
         public double MilliwattsPerInch => As(LinearPowerDensityUnit.MilliwattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerMeter"/>
         /// </summary>
         public double MilliwattsPerMeter => As(LinearPowerDensityUnit.MilliwattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in MilliwattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter"/>
         /// </summary>
         public double MilliwattsPerMillimeter => As(LinearPowerDensityUnit.MilliwattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerCentimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerCentimeter"/>
         /// </summary>
         public double WattsPerCentimeter => As(LinearPowerDensityUnit.WattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerFoot.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerFoot"/>
         /// </summary>
         public double WattsPerFoot => As(LinearPowerDensityUnit.WattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerInch.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerInch"/>
         /// </summary>
         public double WattsPerInch => As(LinearPowerDensityUnit.WattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerMeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerMeter"/>
         /// </summary>
         public double WattsPerMeter => As(LinearPowerDensityUnit.WattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity in WattsPerMillimeter.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LinearPowerDensityUnit.WattPerMillimeter"/>
         /// </summary>
         public double WattsPerMillimeter => As(LinearPowerDensityUnit.WattPerMillimeter);
 
@@ -210,155 +212,154 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromGigawattsPerCentimeter(double gigawattspercentimeter) => new LinearPowerDensity(gigawattspercentimeter, LinearPowerDensityUnit.GigawattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromGigawattsPerFoot(double gigawattsperfoot) => new LinearPowerDensity(gigawattsperfoot, LinearPowerDensityUnit.GigawattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromGigawattsPerInch(double gigawattsperinch) => new LinearPowerDensity(gigawattsperinch, LinearPowerDensityUnit.GigawattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromGigawattsPerMeter(double gigawattspermeter) => new LinearPowerDensity(gigawattspermeter, LinearPowerDensityUnit.GigawattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from GigawattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.GigawattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromGigawattsPerMillimeter(double gigawattspermillimeter) => new LinearPowerDensity(gigawattspermillimeter, LinearPowerDensityUnit.GigawattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromKilowattsPerCentimeter(double kilowattspercentimeter) => new LinearPowerDensity(kilowattspercentimeter, LinearPowerDensityUnit.KilowattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromKilowattsPerFoot(double kilowattsperfoot) => new LinearPowerDensity(kilowattsperfoot, LinearPowerDensityUnit.KilowattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromKilowattsPerInch(double kilowattsperinch) => new LinearPowerDensity(kilowattsperinch, LinearPowerDensityUnit.KilowattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromKilowattsPerMeter(double kilowattspermeter) => new LinearPowerDensity(kilowattspermeter, LinearPowerDensityUnit.KilowattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from KilowattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.KilowattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromKilowattsPerMillimeter(double kilowattspermillimeter) => new LinearPowerDensity(kilowattspermillimeter, LinearPowerDensityUnit.KilowattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMegawattsPerCentimeter(double megawattspercentimeter) => new LinearPowerDensity(megawattspercentimeter, LinearPowerDensityUnit.MegawattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMegawattsPerFoot(double megawattsperfoot) => new LinearPowerDensity(megawattsperfoot, LinearPowerDensityUnit.MegawattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMegawattsPerInch(double megawattsperinch) => new LinearPowerDensity(megawattsperinch, LinearPowerDensityUnit.MegawattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMegawattsPerMeter(double megawattspermeter) => new LinearPowerDensity(megawattspermeter, LinearPowerDensityUnit.MegawattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MegawattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MegawattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMegawattsPerMillimeter(double megawattspermillimeter) => new LinearPowerDensity(megawattspermillimeter, LinearPowerDensityUnit.MegawattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMilliwattsPerCentimeter(double milliwattspercentimeter) => new LinearPowerDensity(milliwattspercentimeter, LinearPowerDensityUnit.MilliwattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMilliwattsPerFoot(double milliwattsperfoot) => new LinearPowerDensity(milliwattsperfoot, LinearPowerDensityUnit.MilliwattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMilliwattsPerInch(double milliwattsperinch) => new LinearPowerDensity(milliwattsperinch, LinearPowerDensityUnit.MilliwattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMilliwattsPerMeter(double milliwattspermeter) => new LinearPowerDensity(milliwattspermeter, LinearPowerDensityUnit.MilliwattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from MilliwattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.MilliwattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromMilliwattsPerMillimeter(double milliwattspermillimeter) => new LinearPowerDensity(milliwattspermillimeter, LinearPowerDensityUnit.MilliwattPerMillimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerCentimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerCentimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromWattsPerCentimeter(double wattspercentimeter) => new LinearPowerDensity(wattspercentimeter, LinearPowerDensityUnit.WattPerCentimeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerFoot.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerFoot"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromWattsPerFoot(double wattsperfoot) => new LinearPowerDensity(wattsperfoot, LinearPowerDensityUnit.WattPerFoot);
 
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerInch.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerInch"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromWattsPerInch(double wattsperinch) => new LinearPowerDensity(wattsperinch, LinearPowerDensityUnit.WattPerInch);
 
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerMeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromWattsPerMeter(double wattspermeter) => new LinearPowerDensity(wattspermeter, LinearPowerDensityUnit.WattPerMeter);
 
         /// <summary>
-        ///     Get LinearPowerDensity from WattsPerMillimeter.
+        ///     Creates a <see cref="LinearPowerDensity"/> from <see cref="LinearPowerDensityUnit.WattPerMillimeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LinearPowerDensity FromWattsPerMillimeter(double wattspermillimeter) => new LinearPowerDensity(wattspermillimeter, LinearPowerDensityUnit.WattPerMillimeter);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LinearPowerDensityUnit" /> to <see cref="LinearPowerDensity" />.
@@ -373,104 +374,101 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LinearPowerDensityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(LinearPowerDensityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public LinearPowerDensity ToUnit(LinearPowerDensityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new LinearPowerDensity(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public LinearPowerDensity ToUnit(LinearPowerDensityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new LinearPowerDensity(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case LinearPowerDensityUnit.GigawattPerCentimeter: return (_value*1e2) * 1e9d;
-                case LinearPowerDensityUnit.GigawattPerFoot: return (_value*3.280839895) * 1e9d;
-                case LinearPowerDensityUnit.GigawattPerInch: return (_value*39.37007874) * 1e9d;
-                case LinearPowerDensityUnit.GigawattPerMeter: return (_value) * 1e9d;
-                case LinearPowerDensityUnit.GigawattPerMillimeter: return (_value*1e3) * 1e9d;
-                case LinearPowerDensityUnit.KilowattPerCentimeter: return (_value*1e2) * 1e3d;
-                case LinearPowerDensityUnit.KilowattPerFoot: return (_value*3.280839895) * 1e3d;
-                case LinearPowerDensityUnit.KilowattPerInch: return (_value*39.37007874) * 1e3d;
-                case LinearPowerDensityUnit.KilowattPerMeter: return (_value) * 1e3d;
-                case LinearPowerDensityUnit.KilowattPerMillimeter: return (_value*1e3) * 1e3d;
-                case LinearPowerDensityUnit.MegawattPerCentimeter: return (_value*1e2) * 1e6d;
-                case LinearPowerDensityUnit.MegawattPerFoot: return (_value*3.280839895) * 1e6d;
-                case LinearPowerDensityUnit.MegawattPerInch: return (_value*39.37007874) * 1e6d;
-                case LinearPowerDensityUnit.MegawattPerMeter: return (_value) * 1e6d;
-                case LinearPowerDensityUnit.MegawattPerMillimeter: return (_value*1e3) * 1e6d;
-                case LinearPowerDensityUnit.MilliwattPerCentimeter: return (_value*1e2) * 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerFoot: return (_value*3.280839895) * 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerInch: return (_value*39.37007874) * 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerMeter: return (_value) * 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerMillimeter: return (_value*1e3) * 1e-3d;
-                case LinearPowerDensityUnit.WattPerCentimeter: return _value*1e2;
-                case LinearPowerDensityUnit.WattPerFoot: return _value*3.280839895;
-                case LinearPowerDensityUnit.WattPerInch: return _value*39.37007874;
-                case LinearPowerDensityUnit.WattPerMeter: return _value;
-                case LinearPowerDensityUnit.WattPerMillimeter: return _value*1e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        LinearPowerDensityUnit.GigawattPerCentimeter => (_value * 1e2) * 1e9d,
+                        LinearPowerDensityUnit.GigawattPerFoot => (_value * 3.280839895) * 1e9d,
+                        LinearPowerDensityUnit.GigawattPerInch => (_value * 39.37007874) * 1e9d,
+                        LinearPowerDensityUnit.GigawattPerMeter => (_value) * 1e9d,
+                        LinearPowerDensityUnit.GigawattPerMillimeter => (_value * 1e3) * 1e9d,
+                        LinearPowerDensityUnit.KilowattPerCentimeter => (_value * 1e2) * 1e3d,
+                        LinearPowerDensityUnit.KilowattPerFoot => (_value * 3.280839895) * 1e3d,
+                        LinearPowerDensityUnit.KilowattPerInch => (_value * 39.37007874) * 1e3d,
+                        LinearPowerDensityUnit.KilowattPerMeter => (_value) * 1e3d,
+                        LinearPowerDensityUnit.KilowattPerMillimeter => (_value * 1e3) * 1e3d,
+                        LinearPowerDensityUnit.MegawattPerCentimeter => (_value * 1e2) * 1e6d,
+                        LinearPowerDensityUnit.MegawattPerFoot => (_value * 3.280839895) * 1e6d,
+                        LinearPowerDensityUnit.MegawattPerInch => (_value * 39.37007874) * 1e6d,
+                        LinearPowerDensityUnit.MegawattPerMeter => (_value) * 1e6d,
+                        LinearPowerDensityUnit.MegawattPerMillimeter => (_value * 1e3) * 1e6d,
+                        LinearPowerDensityUnit.MilliwattPerCentimeter => (_value * 1e2) * 1e-3d,
+                        LinearPowerDensityUnit.MilliwattPerFoot => (_value * 3.280839895) * 1e-3d,
+                        LinearPowerDensityUnit.MilliwattPerInch => (_value * 39.37007874) * 1e-3d,
+                        LinearPowerDensityUnit.MilliwattPerMeter => (_value) * 1e-3d,
+                        LinearPowerDensityUnit.MilliwattPerMillimeter => (_value * 1e3) * 1e-3d,
+                        LinearPowerDensityUnit.WattPerCentimeter => _value * 1e2,
+                        LinearPowerDensityUnit.WattPerFoot => _value * 3.280839895,
+                        LinearPowerDensityUnit.WattPerInch => _value * 39.37007874,
+                        LinearPowerDensityUnit.WattPerMeter => _value,
+                        LinearPowerDensityUnit.WattPerMillimeter => _value * 1e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(LinearPowerDensityUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(LinearPowerDensityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case LinearPowerDensityUnit.GigawattPerCentimeter: return (baseUnitValue/1e2) / 1e9d;
-                case LinearPowerDensityUnit.GigawattPerFoot: return (baseUnitValue/3.280839895) / 1e9d;
-                case LinearPowerDensityUnit.GigawattPerInch: return (baseUnitValue/39.37007874) / 1e9d;
-                case LinearPowerDensityUnit.GigawattPerMeter: return (baseUnitValue) / 1e9d;
-                case LinearPowerDensityUnit.GigawattPerMillimeter: return (baseUnitValue/1e3) / 1e9d;
-                case LinearPowerDensityUnit.KilowattPerCentimeter: return (baseUnitValue/1e2) / 1e3d;
-                case LinearPowerDensityUnit.KilowattPerFoot: return (baseUnitValue/3.280839895) / 1e3d;
-                case LinearPowerDensityUnit.KilowattPerInch: return (baseUnitValue/39.37007874) / 1e3d;
-                case LinearPowerDensityUnit.KilowattPerMeter: return (baseUnitValue) / 1e3d;
-                case LinearPowerDensityUnit.KilowattPerMillimeter: return (baseUnitValue/1e3) / 1e3d;
-                case LinearPowerDensityUnit.MegawattPerCentimeter: return (baseUnitValue/1e2) / 1e6d;
-                case LinearPowerDensityUnit.MegawattPerFoot: return (baseUnitValue/3.280839895) / 1e6d;
-                case LinearPowerDensityUnit.MegawattPerInch: return (baseUnitValue/39.37007874) / 1e6d;
-                case LinearPowerDensityUnit.MegawattPerMeter: return (baseUnitValue) / 1e6d;
-                case LinearPowerDensityUnit.MegawattPerMillimeter: return (baseUnitValue/1e3) / 1e6d;
-                case LinearPowerDensityUnit.MilliwattPerCentimeter: return (baseUnitValue/1e2) / 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerFoot: return (baseUnitValue/3.280839895) / 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerInch: return (baseUnitValue/39.37007874) / 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerMeter: return (baseUnitValue) / 1e-3d;
-                case LinearPowerDensityUnit.MilliwattPerMillimeter: return (baseUnitValue/1e3) / 1e-3d;
-                case LinearPowerDensityUnit.WattPerCentimeter: return baseUnitValue/1e2;
-                case LinearPowerDensityUnit.WattPerFoot: return baseUnitValue/3.280839895;
-                case LinearPowerDensityUnit.WattPerInch: return baseUnitValue/39.37007874;
-                case LinearPowerDensityUnit.WattPerMeter: return baseUnitValue;
-                case LinearPowerDensityUnit.WattPerMillimeter: return baseUnitValue/1e3;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        LinearPowerDensityUnit.GigawattPerCentimeter => (baseUnitValue / 1e2) / 1e9d,
+                        LinearPowerDensityUnit.GigawattPerFoot => (baseUnitValue / 3.280839895) / 1e9d,
+                        LinearPowerDensityUnit.GigawattPerInch => (baseUnitValue / 39.37007874) / 1e9d,
+                        LinearPowerDensityUnit.GigawattPerMeter => (baseUnitValue) / 1e9d,
+                        LinearPowerDensityUnit.GigawattPerMillimeter => (baseUnitValue / 1e3) / 1e9d,
+                        LinearPowerDensityUnit.KilowattPerCentimeter => (baseUnitValue / 1e2) / 1e3d,
+                        LinearPowerDensityUnit.KilowattPerFoot => (baseUnitValue / 3.280839895) / 1e3d,
+                        LinearPowerDensityUnit.KilowattPerInch => (baseUnitValue / 39.37007874) / 1e3d,
+                        LinearPowerDensityUnit.KilowattPerMeter => (baseUnitValue) / 1e3d,
+                        LinearPowerDensityUnit.KilowattPerMillimeter => (baseUnitValue / 1e3) / 1e3d,
+                        LinearPowerDensityUnit.MegawattPerCentimeter => (baseUnitValue / 1e2) / 1e6d,
+                        LinearPowerDensityUnit.MegawattPerFoot => (baseUnitValue / 3.280839895) / 1e6d,
+                        LinearPowerDensityUnit.MegawattPerInch => (baseUnitValue / 39.37007874) / 1e6d,
+                        LinearPowerDensityUnit.MegawattPerMeter => (baseUnitValue) / 1e6d,
+                        LinearPowerDensityUnit.MegawattPerMillimeter => (baseUnitValue / 1e3) / 1e6d,
+                        LinearPowerDensityUnit.MilliwattPerCentimeter => (baseUnitValue / 1e2) / 1e-3d,
+                        LinearPowerDensityUnit.MilliwattPerFoot => (baseUnitValue / 3.280839895) / 1e-3d,
+                        LinearPowerDensityUnit.MilliwattPerInch => (baseUnitValue / 39.37007874) / 1e-3d,
+                        LinearPowerDensityUnit.MilliwattPerMeter => (baseUnitValue) / 1e-3d,
+                        LinearPowerDensityUnit.MilliwattPerMillimeter => (baseUnitValue / 1e3) / 1e-3d,
+                        LinearPowerDensityUnit.WattPerCentimeter => baseUnitValue / 1e2,
+                        LinearPowerDensityUnit.WattPerFoot => baseUnitValue / 3.280839895,
+                        LinearPowerDensityUnit.WattPerInch => baseUnitValue / 39.37007874,
+                        LinearPowerDensityUnit.WattPerMeter => baseUnitValue,
+                        LinearPowerDensityUnit.WattPerMillimeter => baseUnitValue / 1e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

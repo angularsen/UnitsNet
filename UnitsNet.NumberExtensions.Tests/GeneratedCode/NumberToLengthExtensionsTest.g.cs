@@ -25,6 +25,10 @@ namespace UnitsNet.Tests
     public class NumberToLengthExtensionsTests
     {
         [Fact]
+        public void NumberToAngstromsTest() =>
+            Assert.Equal(Length.FromAngstroms(2), 2.Angstroms());
+
+        [Fact]
         public void NumberToAstronomicalUnitsTest() =>
             Assert.Equal(Length.FromAstronomicalUnits(2), 2.AstronomicalUnits());
 
@@ -35,6 +39,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToChainsTest() =>
             Assert.Equal(Length.FromChains(2), 2.Chains());
+
+        [Fact]
+        public void NumberToDecametersTest() =>
+            Assert.Equal(Length.FromDecameters(2), 2.Decameters());
 
         [Fact]
         public void NumberToDecimetersTest() =>

@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ReactivePowerUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ReactivePower MinValue { get; } = new ReactivePower(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,22 +80,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReactivePower in GigavoltamperesReactive.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.GigavoltampereReactive"/>
         /// </summary>
         public double GigavoltamperesReactive => As(ReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in KilovoltamperesReactive.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.KilovoltampereReactive"/>
         /// </summary>
         public double KilovoltamperesReactive => As(ReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in MegavoltamperesReactive.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.MegavoltampereReactive"/>
         /// </summary>
         public double MegavoltamperesReactive => As(ReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower in VoltamperesReactive.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactivePowerUnit.VoltampereReactive"/>
         /// </summary>
         public double VoltamperesReactive => As(ReactivePowerUnit.VoltampereReactive);
 
@@ -102,29 +104,28 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReactivePower from GigavoltamperesReactive.
+        ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromGigavoltamperesReactive(double gigavoltamperesreactive) => new ReactivePower(gigavoltamperesreactive, ReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower from KilovoltamperesReactive.
+        ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromKilovoltamperesReactive(double kilovoltamperesreactive) => new ReactivePower(kilovoltamperesreactive, ReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower from MegavoltamperesReactive.
+        ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromMegavoltamperesReactive(double megavoltamperesreactive) => new ReactivePower(megavoltamperesreactive, ReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
-        ///     Get ReactivePower from VoltamperesReactive.
+        ///     Creates a <see cref="ReactivePower"/> from <see cref="ReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactivePower FromVoltamperesReactive(double voltamperesreactive) => new ReactivePower(voltamperesreactive, ReactivePowerUnit.VoltampereReactive);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ReactivePowerUnit" /> to <see cref="ReactivePower" />.
@@ -139,62 +140,59 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ReactivePowerUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ReactivePowerUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ReactivePower ToUnit(ReactivePowerUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ReactivePower(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ReactivePower ToUnit(ReactivePowerUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ReactivePower(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ReactivePowerUnit.GigavoltampereReactive: return (_value) * 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return (_value) * 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return (_value) * 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ReactivePowerUnit.GigavoltampereReactive => (_value) * 1e9d,
+                        ReactivePowerUnit.KilovoltampereReactive => (_value) * 1e3d,
+                        ReactivePowerUnit.MegavoltampereReactive => (_value) * 1e6d,
+                        ReactivePowerUnit.VoltampereReactive => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ReactivePowerUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ReactivePowerUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ReactivePowerUnit.GigavoltampereReactive: return (baseUnitValue) / 1e9d;
-                case ReactivePowerUnit.KilovoltampereReactive: return (baseUnitValue) / 1e3d;
-                case ReactivePowerUnit.MegavoltampereReactive: return (baseUnitValue) / 1e6d;
-                case ReactivePowerUnit.VoltampereReactive: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ReactivePowerUnit.GigavoltampereReactive => (baseUnitValue) / 1e9d,
+                        ReactivePowerUnit.KilovoltampereReactive => (baseUnitValue) / 1e3d,
+                        ReactivePowerUnit.MegavoltampereReactive => (baseUnitValue) / 1e6d,
+                        ReactivePowerUnit.VoltampereReactive => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

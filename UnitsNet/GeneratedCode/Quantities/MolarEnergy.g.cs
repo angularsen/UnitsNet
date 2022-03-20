@@ -65,7 +65,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -91,7 +90,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public MolarEnergy(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -160,17 +159,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get MolarEnergy in JoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.JoulePerMole"/>
         /// </summary>
         public double JoulesPerMole => As(MolarEnergyUnit.JoulePerMole);
 
         /// <summary>
-        ///     Get MolarEnergy in KilojoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.KilojoulePerMole"/>
         /// </summary>
         public double KilojoulesPerMole => As(MolarEnergyUnit.KilojoulePerMole);
 
         /// <summary>
-        ///     Get MolarEnergy in MegajoulesPerMole.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.MegajoulePerMole"/>
         /// </summary>
         public double MegajoulesPerMole => As(MolarEnergyUnit.MegajoulePerMole);
 
@@ -187,6 +186,7 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> MolarEnergyUnit
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.KilojoulePerMole, quantity => new MolarEnergy((quantity.Value) / 1e3d, MolarEnergyUnit.KilojoulePerMole));
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.MegajoulePerMole, quantity => new MolarEnergy((quantity.Value) / 1e6d, MolarEnergyUnit.MegajoulePerMole));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.JoulePerMole, quantity => quantity);
 
@@ -197,9 +197,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), new string[]{"J/mol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.KilojoulePerMole, new CultureInfo("en-US"), new string[]{"kJ/mol"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(MolarEnergyUnit.MegajoulePerMole, new CultureInfo("en-US"), new string[]{"MJ/mol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"J/mol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.KilojoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"kJ/mol"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.MegajoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"MJ/mol"});
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get MolarEnergy from JoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.JoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarEnergy FromJoulesPerMole(QuantityValue joulespermole)
@@ -236,8 +236,9 @@ namespace UnitsNet
             double value = (double) joulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.JoulePerMole);
         }
+
         /// <summary>
-        ///     Get MolarEnergy from KilojoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.KilojoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarEnergy FromKilojoulesPerMole(QuantityValue kilojoulespermole)
@@ -245,8 +246,9 @@ namespace UnitsNet
             double value = (double) kilojoulespermole;
             return new MolarEnergy(value, MolarEnergyUnit.KilojoulePerMole);
         }
+
         /// <summary>
-        ///     Get MolarEnergy from MegajoulesPerMole.
+        ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.MegajoulePerMole"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static MolarEnergy FromMegajoulesPerMole(QuantityValue megajoulespermole)
@@ -487,8 +489,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MolarEnergy objMolarEnergy)) throw new ArgumentException("Expected type MolarEnergy.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is MolarEnergy objMolarEnergy)) throw new ArgumentException("Expected type MolarEnergy.", nameof(obj));
 
             return CompareTo(objMolarEnergy);
         }
@@ -541,7 +543,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(MolarEnergy other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -569,7 +571,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MolarEnergyUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -579,13 +581,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -594,7 +596,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is MolarEnergyUnit unitAsMolarEnergyUnit))
+            if (!(unit is MolarEnergyUnit unitAsMolarEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
 
             return As(unitAsMolarEnergyUnit);
@@ -618,18 +620,18 @@ namespace UnitsNet
         /// <returns>A MolarEnergy with the specified unit.</returns>
         public MolarEnergy ToUnit(MolarEnergyUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(MolarEnergy), Unit, typeof(MolarEnergy), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(MolarEnergy), Unit, typeof(MolarEnergy), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (MolarEnergy)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -644,31 +646,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is MolarEnergyUnit unitAsMolarEnergyUnit))
+            if (!(unit is MolarEnergyUnit unitAsMolarEnergyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsMolarEnergyUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is MolarEnergyUnit unitAsMolarEnergyUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsMolarEnergyUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public MolarEnergy ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -681,16 +674,13 @@ namespace UnitsNet
         IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(MolarEnergyUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -809,13 +799,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(MolarEnergy))
+            if (conversionType == typeof(MolarEnergy))
                 return this;
-            else if(conversionType == typeof(MolarEnergyUnit))
+            else if (conversionType == typeof(MolarEnergyUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return MolarEnergy.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return MolarEnergy.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(MolarEnergy)} to {conversionType} is not supported.");

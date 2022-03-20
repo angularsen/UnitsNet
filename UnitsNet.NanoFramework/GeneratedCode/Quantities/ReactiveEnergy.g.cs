@@ -45,6 +45,7 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public ReactiveEnergyUnit Unit => _unit;
+
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
@@ -71,6 +72,7 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static ReactiveEnergy MinValue { get; } = new ReactiveEnergy(double.MinValue, BaseUnit);
+
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
         /// </summary>
@@ -78,17 +80,17 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ReactiveEnergy in KilovoltampereReactiveHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/>
         /// </summary>
         public double KilovoltampereReactiveHours => As(ReactiveEnergyUnit.KilovoltampereReactiveHour);
 
         /// <summary>
-        ///     Get ReactiveEnergy in MegavoltampereReactiveHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>
         /// </summary>
         public double MegavoltampereReactiveHours => As(ReactiveEnergyUnit.MegavoltampereReactiveHour);
 
         /// <summary>
-        ///     Get ReactiveEnergy in VoltampereReactiveHours.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>
         /// </summary>
         public double VoltampereReactiveHours => As(ReactiveEnergyUnit.VoltampereReactiveHour);
 
@@ -97,23 +99,22 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ReactiveEnergy from KilovoltampereReactiveHours.
+        ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.KilovoltampereReactiveHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactiveEnergy FromKilovoltampereReactiveHours(double kilovoltamperereactivehours) => new ReactiveEnergy(kilovoltamperereactivehours, ReactiveEnergyUnit.KilovoltampereReactiveHour);
 
         /// <summary>
-        ///     Get ReactiveEnergy from MegavoltampereReactiveHours.
+        ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.MegavoltampereReactiveHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactiveEnergy FromMegavoltampereReactiveHours(double megavoltamperereactivehours) => new ReactiveEnergy(megavoltamperereactivehours, ReactiveEnergyUnit.MegavoltampereReactiveHour);
 
         /// <summary>
-        ///     Get ReactiveEnergy from VoltampereReactiveHours.
+        ///     Creates a <see cref="ReactiveEnergy"/> from <see cref="ReactiveEnergyUnit.VoltampereReactiveHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReactiveEnergy FromVoltampereReactiveHours(double voltamperereactivehours) => new ReactiveEnergy(voltamperereactivehours, ReactiveEnergyUnit.VoltampereReactiveHour);
-
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.
@@ -128,60 +129,57 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ReactiveEnergyUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ReactiveEnergyUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ReactiveEnergy ToUnit(ReactiveEnergyUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ReactiveEnergy(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ReactiveEnergy ToUnit(ReactiveEnergyUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ReactiveEnergy(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            switch(Unit)
-            {
-                case ReactiveEnergyUnit.KilovoltampereReactiveHour: return (_value) * 1e3d;
-                case ReactiveEnergyUnit.MegavoltampereReactiveHour: return (_value) * 1e6d;
-                case ReactiveEnergyUnit.VoltampereReactiveHour: return _value;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
-            }
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ReactiveEnergyUnit.KilovoltampereReactiveHour => (_value) * 1e3d,
+                        ReactiveEnergyUnit.MegavoltampereReactiveHour => (_value) * 1e6d,
+                        ReactiveEnergyUnit.VoltampereReactiveHour => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ReactiveEnergyUnit unit)
-        {
-            if(Unit == unit)
-                return _value;
+                private double GetValueAs(ReactiveEnergyUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            switch(unit)
-            {
-                case ReactiveEnergyUnit.KilovoltampereReactiveHour: return (baseUnitValue) / 1e3d;
-                case ReactiveEnergyUnit.MegavoltampereReactiveHour: return (baseUnitValue) / 1e6d;
-                case ReactiveEnergyUnit.VoltampereReactiveHour: return baseUnitValue;
-                default:
-                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
-            }
-        }
+                    return unit switch
+                    {
+                        ReactiveEnergyUnit.KilovoltampereReactiveHour => (baseUnitValue) / 1e3d,
+                        ReactiveEnergyUnit.MegavoltampereReactiveHour => (baseUnitValue) / 1e6d,
+                        ReactiveEnergyUnit.VoltampereReactiveHour => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
-
+                #endregion
     }
 }
 

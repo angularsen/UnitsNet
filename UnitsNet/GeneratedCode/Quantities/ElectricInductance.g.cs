@@ -69,7 +69,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -95,7 +94,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public ElectricInductance(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -164,22 +163,22 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get ElectricInductance in Henries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Henry"/>
         /// </summary>
         public double Henries => As(ElectricInductanceUnit.Henry);
 
         /// <summary>
-        ///     Get ElectricInductance in Microhenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Microhenry"/>
         /// </summary>
         public double Microhenries => As(ElectricInductanceUnit.Microhenry);
 
         /// <summary>
-        ///     Get ElectricInductance in Millihenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Millihenry"/>
         /// </summary>
         public double Millihenries => As(ElectricInductanceUnit.Millihenry);
 
         /// <summary>
-        ///     Get ElectricInductance in Nanohenries.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Nanohenry"/>
         /// </summary>
         public double Nanohenries => As(ElectricInductanceUnit.Nanohenry);
 
@@ -197,6 +196,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Microhenry, quantity => new ElectricInductance((quantity.Value) / 1e-6d, ElectricInductanceUnit.Microhenry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Millihenry, quantity => new ElectricInductance((quantity.Value) / 1e-3d, ElectricInductanceUnit.Millihenry));
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Nanohenry, quantity => new ElectricInductance((quantity.Value) / 1e-9d, ElectricInductanceUnit.Nanohenry));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Henry, quantity => quantity);
 
@@ -208,10 +208,10 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), new string[]{"H"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), new string[]{"µH"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), new string[]{"mH"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), new string[]{"nH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), false, true, new string[]{"H"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), false, true, new string[]{"µH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), false, true, new string[]{"mH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), false, true, new string[]{"nH"});
         }
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get ElectricInductance from Henries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Henry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromHenries(QuantityValue henries)
@@ -248,8 +248,9 @@ namespace UnitsNet
             double value = (double) henries;
             return new ElectricInductance(value, ElectricInductanceUnit.Henry);
         }
+
         /// <summary>
-        ///     Get ElectricInductance from Microhenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMicrohenries(QuantityValue microhenries)
@@ -257,8 +258,9 @@ namespace UnitsNet
             double value = (double) microhenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Microhenry);
         }
+
         /// <summary>
-        ///     Get ElectricInductance from Millihenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromMillihenries(QuantityValue millihenries)
@@ -266,8 +268,9 @@ namespace UnitsNet
             double value = (double) millihenries;
             return new ElectricInductance(value, ElectricInductanceUnit.Millihenry);
         }
+
         /// <summary>
-        ///     Get ElectricInductance from Nanohenries.
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromNanohenries(QuantityValue nanohenries)
@@ -508,8 +511,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricInductance objElectricInductance)) throw new ArgumentException("Expected type ElectricInductance.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ElectricInductance objElectricInductance)) throw new ArgumentException("Expected type ElectricInductance.", nameof(obj));
 
             return CompareTo(objElectricInductance);
         }
@@ -562,7 +565,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ElectricInductance other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -590,7 +593,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricInductanceUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -600,13 +603,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -615,7 +618,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
+            if (!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
 
             return As(unitAsElectricInductanceUnit);
@@ -639,18 +642,18 @@ namespace UnitsNet
         /// <returns>A ElectricInductance with the specified unit.</returns>
         public ElectricInductance ToUnit(ElectricInductanceUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(ElectricInductance), Unit, typeof(ElectricInductance), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(ElectricInductance), Unit, typeof(ElectricInductance), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (ElectricInductance)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -665,31 +668,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
+            if (!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsElectricInductanceUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is ElectricInductanceUnit unitAsElectricInductanceUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsElectricInductanceUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public ElectricInductance ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -702,16 +696,13 @@ namespace UnitsNet
         IQuantity<ElectricInductanceUnit> IQuantity<ElectricInductanceUnit>.ToUnit(ElectricInductanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ElectricInductanceUnit> IQuantity<ElectricInductanceUnit>.ToUnit(ElectricInductanceUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<ElectricInductanceUnit> IQuantity<ElectricInductanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(ElectricInductanceUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -830,13 +821,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(ElectricInductance))
+            if (conversionType == typeof(ElectricInductance))
                 return this;
-            else if(conversionType == typeof(ElectricInductanceUnit))
+            else if (conversionType == typeof(ElectricInductanceUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return ElectricInductance.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return ElectricInductance.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(ElectricInductance)} to {conversionType} is not supported.");

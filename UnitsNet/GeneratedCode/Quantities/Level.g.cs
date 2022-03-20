@@ -64,7 +64,6 @@ namespace UnitsNet
                 BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
-
             RegisterDefaultConversions(DefaultConversionFunctions);
         }
 
@@ -90,7 +89,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
         public Level(double value, UnitSystem unitSystem)
         {
-            if(unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
+            if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
@@ -159,12 +158,12 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Get Level in Decibels.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
         /// </summary>
         public double Decibels => As(LevelUnit.Decibel);
 
         /// <summary>
-        ///     Get Level in Nepers.
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
         /// </summary>
         public double Nepers => As(LevelUnit.Neper);
 
@@ -179,18 +178,19 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> LevelUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => new Level(0.115129254*quantity.Value, LevelUnit.Neper));
+            unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => new Level(0.115129254 * quantity.Value, LevelUnit.Neper));
+
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Decibel, quantity => quantity);
 
             // Register in unit converter: LevelUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => new Level((1/0.115129254)*quantity.Value, LevelUnit.Decibel));
+            unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => new Level((1 / 0.115129254) * quantity.Value, LevelUnit.Decibel));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Decibel, new CultureInfo("en-US"), new string[]{"dB"});
-            unitAbbreviationsCache.MapUnitToAbbreviation(LevelUnit.Neper, new CultureInfo("en-US"), new string[]{"Np"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LevelUnit.Decibel, new CultureInfo("en-US"), false, true, new string[]{"dB"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LevelUnit.Neper, new CultureInfo("en-US"), false, true, new string[]{"Np"});
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
-        ///     Get Level from Decibels.
+        ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Level FromDecibels(QuantityValue decibels)
@@ -227,8 +227,9 @@ namespace UnitsNet
             double value = (double) decibels;
             return new Level(value, LevelUnit.Decibel);
         }
+
         /// <summary>
-        ///     Get Level from Nepers.
+        ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Level FromNepers(QuantityValue nepers)
@@ -406,16 +407,16 @@ namespace UnitsNet
         public static Level operator +(Level left, Level right)
         {
             // Logarithmic addition
-            // Formula: 10*log10(10^(x/10) + 10^(y/10))
-            return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
+            // Formula: 10 * log10(10^(x/10) + 10^(y/10))
+            return new Level(10 * Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic subtraction of two <see cref="Level"/>.</summary>
         public static Level operator -(Level left, Level right)
         {
             // Logarithmic subtraction
-            // Formula: 10*log10(10^(x/10) - 10^(y/10))
-            return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
+            // Formula: 10 * log10(10^(x/10) - 10^(y/10))
+            return new Level(10 * Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
@@ -477,8 +478,8 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Level objLevel)) throw new ArgumentException("Expected type Level.", nameof(obj));
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Level objLevel)) throw new ArgumentException("Expected type Level.", nameof(obj));
 
             return CompareTo(objLevel);
         }
@@ -531,7 +532,7 @@ namespace UnitsNet
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(Level other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance < 0)
+            if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
@@ -559,7 +560,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(LevelUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
@@ -569,13 +570,13 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
@@ -584,7 +585,7 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if(!(unit is LevelUnit unitAsLevelUnit))
+            if (!(unit is LevelUnit unitAsLevelUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
 
             return As(unitAsLevelUnit);
@@ -608,18 +609,18 @@ namespace UnitsNet
         /// <returns>A Level with the specified unit.</returns>
         public Level ToUnit(LevelUnit unit, UnitConverter unitConverter)
         {
-            if(Unit == unit)
+            if (Unit == unit)
             {
                 // Already in requested units.
                 return this;
             }
-            else if(unitConverter.TryGetConversionFunction((typeof(Level), Unit, typeof(Level), unit), out var conversionFunction))
+            else if (unitConverter.TryGetConversionFunction((typeof(Level), Unit, typeof(Level), unit), out var conversionFunction))
             {
                 // Direct conversion to requested unit found. Return the converted quantity.
                 var converted = conversionFunction(this);
                 return (Level)converted;
             }
-            else if(Unit != BaseUnit)
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -634,31 +635,22 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if(!(unit is LevelUnit unitAsLevelUnit))
+            if (!(unit is LevelUnit unitAsLevelUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
 
             return ToUnit(unitAsLevelUnit, DefaultConversionFunctions);
         }
 
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit, UnitConverter unitConverter)
-        {
-            if(!(unit is LevelUnit unitAsLevelUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
-
-            return ToUnit(unitAsLevelUnit, unitConverter);
-        }
-
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
         public Level ToUnit(UnitSystem unitSystem)
         {
-            if(unitSystem is null)
+            if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
 
             var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
+            if (firstUnitInfo == null)
                 throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
 
             return ToUnit(firstUnitInfo.Value);
@@ -671,16 +663,13 @@ namespace UnitsNet
         IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit, UnitConverter unitConverter) => ToUnit(unit, unitConverter);
-
-        /// <inheritdoc />
         IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         private double GetValueAs(LevelUnit unit)
         {
             var converted = ToUnit(unit);
             return (double)converted.Value;
-            }
+        }
 
         #endregion
 
@@ -799,13 +788,13 @@ namespace UnitsNet
 
         object IConvertible.ToType(Type conversionType, IFormatProvider provider)
         {
-            if(conversionType == typeof(Level))
+            if (conversionType == typeof(Level))
                 return this;
-            else if(conversionType == typeof(LevelUnit))
+            else if (conversionType == typeof(LevelUnit))
                 return Unit;
-            else if(conversionType == typeof(QuantityInfo))
+            else if (conversionType == typeof(QuantityInfo))
                 return Level.Info;
-            else if(conversionType == typeof(BaseDimensions))
+            else if (conversionType == typeof(BaseDimensions))
                 return Level.BaseDimensions;
             else
                 throw new InvalidCastException($"Converting {typeof(Level)} to {conversionType} is not supported.");
