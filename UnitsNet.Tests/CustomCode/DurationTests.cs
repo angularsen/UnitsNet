@@ -63,31 +63,15 @@ namespace UnitsNet.Tests.CustomCode
             AssertEx.EqualTolerance(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
         }
 
-        [Fact]
-        public static void ToTimeSpanShouldNotDiscardOneTickDuration()
+        [Theory]
+        [InlineData(100, Units.DurationUnit.Nanosecond)]
+        [InlineData(1, Units.DurationUnit.Microsecond)]
+        [InlineData(1.234, Units.DurationUnit.Millisecond)]
+        public static void ToTimeSpanShouldNotRoundToMillisecond(double value, Units.DurationUnit unit)
         {
-            const long ticksPerMicrosecond = TimeSpan.TicksPerMillisecond / 1000;
-            Duration duration = Duration.FromNanoseconds(100);
+            Duration duration = Duration.From(value, unit);
             TimeSpan timeSpan = duration.ToTimeSpan();
-            AssertEx.EqualTolerance(duration.Microseconds, (double)timeSpan.Ticks / ticksPerMicrosecond, 1e-10);
-        }
-
-        [Fact]
-        public static void ToTimeSpanShouldNotDiscardOneMicrosecondDuration()
-        {
-            const long ticksPerMicrosecond = TimeSpan.TicksPerMillisecond / 1000;
-            Duration duration = Duration.FromMicroseconds(1);
-            TimeSpan timeSpan = duration.ToTimeSpan();
-            AssertEx.EqualTolerance(duration.Microseconds, (double)timeSpan.Ticks / ticksPerMicrosecond, 1e-10);
-        }
-
-        [Fact]
-        public static void ToTimeSpanShouldNotTruncateFractionalMillisecondsDuration()
-        {
-            const long ticksPerMicrosecond = TimeSpan.TicksPerMillisecond / 1000;
-            Duration duration = Duration.FromMilliseconds(1.234);
-            TimeSpan timeSpan = duration.ToTimeSpan();
-            AssertEx.EqualTolerance(duration.Microseconds, (double)timeSpan.Ticks / ticksPerMicrosecond, 1e-10);
+            AssertEx.EqualTolerance(duration.Milliseconds, timeSpan.TotalMilliseconds, 1e-10);
         }
 
         [Fact]
