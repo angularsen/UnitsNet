@@ -64,6 +64,33 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public static void ToTimeSpanShouldNotDiscardOneTickDuration()
+        {
+            const long ticksPerMicrosecond = TimeSpan.TicksPerMillisecond / 1000;
+            Duration duration = Duration.FromNanoseconds(100);
+            TimeSpan timeSpan = duration.ToTimeSpan();
+            AssertEx.EqualTolerance(duration.Microseconds, (double)timeSpan.Ticks / ticksPerMicrosecond, 1e-10);
+        }
+
+        [Fact]
+        public static void ToTimeSpanShouldNotDiscardOneMicrosecondDuration()
+        {
+            const long ticksPerMicrosecond = TimeSpan.TicksPerMillisecond / 1000;
+            Duration duration = Duration.FromMicroseconds(1);
+            TimeSpan timeSpan = duration.ToTimeSpan();
+            AssertEx.EqualTolerance(duration.Microseconds, (double)timeSpan.Ticks / ticksPerMicrosecond, 1e-10);
+        }
+
+        [Fact]
+        public static void ToTimeSpanShouldNotTruncateFractionalMillisecondsDuration()
+        {
+            const long ticksPerMicrosecond = TimeSpan.TicksPerMillisecond / 1000;
+            Duration duration = Duration.FromMilliseconds(1.234);
+            TimeSpan timeSpan = duration.ToTimeSpan();
+            AssertEx.EqualTolerance(duration.Microseconds, (double)timeSpan.Ticks / ticksPerMicrosecond, 1e-10);
+        }
+
+        [Fact]
         public static void ExplicitCastToTimeSpanShouldReturnSameValue()
         {
             Duration duration = Duration.FromSeconds(60);
