@@ -63,6 +63,17 @@ namespace UnitsNet.Tests.CustomCode
             AssertEx.EqualTolerance(duration.Seconds, timeSpan.TotalSeconds, 1e-3);
         }
 
+        [Theory]
+        [InlineData(100, Units.DurationUnit.Nanosecond)]
+        [InlineData(1, Units.DurationUnit.Microsecond)]
+        [InlineData(1.234, Units.DurationUnit.Millisecond)]
+        public static void ToTimeSpanShouldNotRoundToMillisecond(double value, Units.DurationUnit unit)
+        {
+            Duration duration = Duration.From(value, unit);
+            TimeSpan timeSpan = duration.ToTimeSpan();
+            AssertEx.EqualTolerance(duration.Milliseconds, timeSpan.TotalMilliseconds, 1e-10);
+        }
+
         [Fact]
         public static void ExplicitCastToTimeSpanShouldReturnSameValue()
         {
