@@ -262,11 +262,10 @@ namespace UnitsNet
         public {_valueType} Value => _value;
 ");
 
-            // Need to provide explicit interface implementation for decimal quantities like Information
-            if (_quantity.ValueType != "double")
-                Writer.WL(@"
-        double IQuantity.Value => (double) _value;
+            Writer.WL(@"
+        QuantityValue IQuantity.Value => _value;
 ");
+            // Need to provide explicit interface implementation for decimal quantities like Information
             if (_quantity.ValueType == "decimal")
                 Writer.WL(@"
         /// <inheritdoc cref=""IDecimalQuantity.Value""/>
