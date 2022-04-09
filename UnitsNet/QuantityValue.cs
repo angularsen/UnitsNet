@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 
+using System;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -20,7 +21,7 @@ namespace UnitsNet
     ///     From 8 (int, long, double, decimal + each nullable) down to 2 (QuantityValue and QuantityValue?).
     ///     This also adds more numeric types with no extra overhead, such as float, short and byte.
     /// </remarks>
-    public struct QuantityValue
+    public struct QuantityValue : IFormattable, IEquatable<QuantityValue>
     {
         /// <summary>
         ///     Value assigned when implicitly casting from all numeric types except <see cref="decimal" />, since
@@ -45,6 +46,17 @@ namespace UnitsNet
         {
             _valueDecimal = val;
             _value = null;
+        }
+
+        /// <summary>
+        /// Returns true if the underlying value is stored as a decimal
+        /// </summary>
+        public bool IsDecimal
+        {
+            get
+            {
+                return _valueDecimal.HasValue;
+            }
         }
 
         #region To QuantityValue
@@ -90,10 +102,96 @@ namespace UnitsNet
 
         #endregion
 
+        #region Operators and Comparators
+
+        /// <inheritdoc />
+        public override bool Equals(object other)
+        {
+            if (other is QuantityValue qv)
+            {
+                return Equals(qv);
+            }
+
+            return false;
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            if (IsDecimal)
+            {
+                return _valueDecimal.GetHashCode();
+            }
+            else
+            {
+                return _value.GetHashCode();
+            }
+        }
+
+        /// <summary>
+        /// Performs an equality comparison on two instances of <see cref="QuantityValue"/>.
+        /// Note that rounding might occur if the two values don't use the same base type.
+        /// </summary>
+        /// <param name="other">The value to compare to</param>
+        /// <returns>True on exact equality, false otherwise</returns>
+        public bool Equals(QuantityValue other)
+        {
+            if (IsDecimal && other.IsDecimal)
+            {
+                return _valueDecimal == other._valueDecimal;
+            }
+            else if (IsDecimal)
+            {
+                return _valueDecimal == (decimal)other._value.GetValueOrDefault(0); // other._value cannot be null here
+            }
+            else if (other.IsDecimal)
+            {
+                return (decimal)_value.GetValueOrDefault(0) == other._valueDecimal;
+            }
+            else
+            {
+                return _value == other._value;
+            }
+        }
+
+        /// <summary>Equality comparator</summary>
+        public static bool operator ==(QuantityValue a, QuantityValue b)
+        {
+            return a.Equals(b);
+        }
+
+        /// <summary>Inequality comparator</summary>
+        public static bool operator !=(QuantityValue a, QuantityValue b)
+        {
+            return !a.Equals(b);
+        }
+
+        #endregion
+
         /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()
         {
             return _value.HasValue ? _value.ToString() : _valueDecimal.ToString();
+        }
+
+        /// <summary>
+        /// Returns the string representation of the underlying value
+        /// </summary>
+        /// <param name="format">Standard format specifiers. Because the underlying value can be double or decimal, the meaning can vary</param>
+        /// <param name="formatProvider">Culture specific settings</param>
+        /// <returns>A string representation of the number</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (_value.HasValue)
+            {
+                return _value.Value.ToString(format, formatProvider);
+            }
+            else if (_valueDecimal.HasValue)
+            {
+                return _valueDecimal.Value.ToString(format, formatProvider);
+            }
+
+            return 0.ToString(format, formatProvider);
         }
     }
 }
