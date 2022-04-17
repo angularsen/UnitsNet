@@ -17,7 +17,7 @@ namespace UnitsNet
         /// <returns>A quantity with a value, such that 0 ≤ value ≤ <see cref="F:System.Double.MaxValue" />.</returns>
         public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : IQuantity
         {
-            return value.Value >= 0 ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
+            return value.Value >= QuantityValue.Zero ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
         }
 
         /// <summary>Computes the sum of a sequence of <typeparamref name="TQuantity" /> values.</summary>

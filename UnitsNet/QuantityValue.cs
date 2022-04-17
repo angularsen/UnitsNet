@@ -24,6 +24,11 @@ namespace UnitsNet
     public struct QuantityValue : IFormattable, IEquatable<QuantityValue>
     {
         /// <summary>
+        /// The value 0
+        /// </summary>
+        public static readonly QuantityValue Zero = new QuantityValue(0, 0);
+
+        /// <summary>
         ///     Value assigned when implicitly casting from all numeric types except <see cref="decimal" />, since
         ///     <see cref="double" /> has the greatest range and is 64 bits versus 128 bits for <see cref="decimal"/>.
         /// </summary>
@@ -46,6 +51,12 @@ namespace UnitsNet
         {
             _valueDecimal = val;
             _value = null;
+        }
+
+        private QuantityValue(double value, decimal valueDecimal)
+        {
+            _value = value;
+            _valueDecimal = valueDecimal;
         }
 
         /// <summary>
@@ -164,6 +175,115 @@ namespace UnitsNet
         public static bool operator !=(QuantityValue a, QuantityValue b)
         {
             return !a.Equals(b);
+        }
+
+        /// <summary>
+        /// Greater-than operator
+        /// </summary>
+        public static bool operator >(QuantityValue a, QuantityValue b)
+        {
+            if (a.IsDecimal && b.IsDecimal)
+            {
+                return a._valueDecimal.GetValueOrDefault() > b._valueDecimal.GetValueOrDefault();
+            }
+            else if (a.IsDecimal)
+            {
+                return a._valueDecimal.GetValueOrDefault() > (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+            }
+            else if (b.IsDecimal)
+            {
+                return (decimal)a._value.GetValueOrDefault(0) > b._valueDecimal.GetValueOrDefault();
+            }
+            else
+            {
+                return a._value > b._value;
+            }
+        }
+
+        /// <summary>
+        /// Less-than operator
+        /// </summary>
+        public static bool operator <(QuantityValue a, QuantityValue b)
+        {
+            if (a.IsDecimal && b.IsDecimal)
+            {
+                return a._valueDecimal.GetValueOrDefault() < b._valueDecimal.GetValueOrDefault();
+            }
+            else if (a.IsDecimal)
+            {
+                return a._valueDecimal.GetValueOrDefault() < (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+            }
+            else if (b.IsDecimal)
+            {
+                return (decimal)a._value.GetValueOrDefault(0) < b._valueDecimal.GetValueOrDefault();
+            }
+            else
+            {
+                return a._value < b._value;
+            }
+        }
+
+        /// <summary>
+        /// Greater-than-or-equal operator
+        /// </summary>
+        public static bool operator >=(QuantityValue a, QuantityValue b)
+        {
+            if (a.IsDecimal && b.IsDecimal)
+            {
+                return a._valueDecimal.GetValueOrDefault() >= b._valueDecimal.GetValueOrDefault();
+            }
+            else if (a.IsDecimal)
+            {
+                return a._valueDecimal.GetValueOrDefault() >= (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+            }
+            else if (b.IsDecimal)
+            {
+                return (decimal)a._value.GetValueOrDefault(0) >= b._valueDecimal.GetValueOrDefault();
+            }
+            else
+            {
+                return a._value >= b._value;
+            }
+        }
+
+        /// <summary>
+        /// Less-than-or-equal operator
+        /// </summary>
+        public static bool operator <=(QuantityValue a, QuantityValue b)
+        {
+            if (a.IsDecimal && b.IsDecimal)
+            {
+                return a._valueDecimal.GetValueOrDefault() <= b._valueDecimal.GetValueOrDefault();
+            }
+            else if (a.IsDecimal)
+            {
+                return a._valueDecimal.GetValueOrDefault() <= (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+            }
+            else if (b.IsDecimal)
+            {
+                return (decimal)a._value.GetValueOrDefault(0) <= b._valueDecimal.GetValueOrDefault();
+            }
+            else
+            {
+                return a._value <= b._value;
+            }
+        }
+
+        /// <summary>
+        /// Returns the negated value of the operand
+        /// </summary>
+        /// <param name="v">Value to negate</param>
+        /// <returns>-v</returns>
+        public static QuantityValue operator -(QuantityValue v)
+        {
+            if (v._valueDecimal.HasValue)
+            {
+                return new QuantityValue(-v._valueDecimal.Value);
+            }
+            else
+            {
+                return new QuantityValue(-v._value.GetValueOrDefault());
+            }
         }
 
         #endregion
