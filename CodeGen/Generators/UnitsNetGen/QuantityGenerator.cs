@@ -309,7 +309,7 @@ namespace UnitsNet
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public double {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
+        public {_quantity.ValueType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -650,7 +650,7 @@ namespace UnitsNet
         }}
 
         /// <summary>Get ratio value from dividing <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static double operator /({_quantity.Name} left, {_quantity.Name} right)
+        public static {_quantity.ValueType} operator /({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.{_baseUnit.PluralName} / right.{_baseUnit.PluralName};
         }}
@@ -805,13 +805,13 @@ namespace UnitsNet
         /// <param name=""tolerance"">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name=""comparisonType"">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals({_quantity.Name} other, double tolerance, ComparisonType comparisonType)
+        public bool Equals({_quantity.Name} other, {_quantity.ValueType} tolerance, ComparisonType comparisonType)
         {{
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException(""tolerance"", ""Tolerance must be greater than or equal to 0."");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            {_quantity.ValueType} thisValue = this.Value;
+            {_quantity.ValueType} otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }}
@@ -838,17 +838,33 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name=""unit"" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As({_unitEnumName} unit)
+        public {_quantity.ValueType} As({_unitEnumName} unit)
+        {{
+            if(Unit == unit)
+                return Value;
+
+            var converted = GetValueAs(unit);
+            return converted;
+        }}");
+
+            if (_quantity.ValueType == "decimal")
+            {
+                Writer.WL($@"
+
+        double IQuantity<{_unitEnumName}>.As({_unitEnumName} unit)
         {{
             if (Unit == unit)
                 return Convert.ToDouble(Value);
 
             var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
-        }}
+        }}");
+            }
+
+            Writer.WL($@"
 
         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
-        public double As(UnitSystem unitSystem)
+        public {_quantity.ValueType} As(UnitSystem unitSystem)
         {{
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -860,15 +876,35 @@ namespace UnitsNet
                 throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
-        }}
+        }}");
 
+            if (_quantity.ValueType == "decimal")
+            {
+                Writer.WL($@"
+         /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
+        double IQuantity.As(UnitSystem unitSystem)
+        {{
+            if(unitSystem is null)
+                throw new ArgumentNullException(nameof(unitSystem));
+
+            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
+
+            var firstUnitInfo = unitInfos.FirstOrDefault();
+            if(firstUnitInfo == null)
+                throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
+
+            return ((IQuantity<{_unitEnumName}>)this).As(firstUnitInfo.Value);
+        }}");
+
+            }
+            Writer.WL($@"
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {{
             if (!(unit is {_unitEnumName} unitAs{_unitEnumName}))
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
-            return As(unitAs{_unitEnumName});
+            return ((IQuantity<{_unitEnumName}>)this).As(unitAs{_unitEnumName});
         }}
 
         /// <summary>
