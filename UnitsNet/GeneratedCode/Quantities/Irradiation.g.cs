@@ -627,7 +627,7 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
+            double thisValue = this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
@@ -652,13 +652,12 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(IrradiationUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
             var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return converted;
         }
-
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
@@ -673,14 +672,13 @@ namespace UnitsNet
 
             return As(firstUnitInfo.Value);
         }
-
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
             if (!(unit is IrradiationUnit unitAsIrradiationUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
 
-            return As(unitAsIrradiationUnit);
+            return ((IQuantity<IrradiationUnit>)this).As(unitAsIrradiationUnit);
         }
 
         /// <summary>
