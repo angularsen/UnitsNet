@@ -604,6 +604,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this PowerRatio to another PowerRatio with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A PowerRatio with the specified unit.</returns>
+        public QuantityValue ToQuantity(PowerRatioUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this PowerRatio to another PowerRatio using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

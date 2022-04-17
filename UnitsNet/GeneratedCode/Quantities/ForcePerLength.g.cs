@@ -1286,6 +1286,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ForcePerLength to another ForcePerLength with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A ForcePerLength with the specified unit.</returns>
+        public QuantityValue ToQuantity(ForcePerLengthUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this ForcePerLength to another ForcePerLength using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

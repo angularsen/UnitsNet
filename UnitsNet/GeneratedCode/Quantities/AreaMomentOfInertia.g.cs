@@ -672,6 +672,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A AreaMomentOfInertia with the specified unit.</returns>
+        public QuantityValue ToQuantity(AreaMomentOfInertiaUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

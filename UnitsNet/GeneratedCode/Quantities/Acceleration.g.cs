@@ -838,6 +838,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A Acceleration with the specified unit.</returns>
+        public QuantityValue ToQuantity(AccelerationUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this Acceleration to another Acceleration using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

@@ -729,6 +729,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this StandardVolumeFlow to another StandardVolumeFlow with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A StandardVolumeFlow with the specified unit.</returns>
+        public QuantityValue ToQuantity(StandardVolumeFlowUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this StandardVolumeFlow to another StandardVolumeFlow using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

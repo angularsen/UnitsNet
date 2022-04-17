@@ -580,6 +580,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Magnetization to another Magnetization with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A Magnetization with the specified unit.</returns>
+        public QuantityValue ToQuantity(MagnetizationUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this Magnetization to another Magnetization using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

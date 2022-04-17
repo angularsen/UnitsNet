@@ -642,6 +642,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this AmplitudeRatio to another AmplitudeRatio with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A AmplitudeRatio with the specified unit.</returns>
+        public QuantityValue ToQuantity(AmplitudeRatioUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this AmplitudeRatio to another AmplitudeRatio using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

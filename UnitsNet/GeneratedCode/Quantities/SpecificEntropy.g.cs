@@ -729,6 +729,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this SpecificEntropy to another SpecificEntropy with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A SpecificEntropy with the specified unit.</returns>
+        public QuantityValue ToQuantity(SpecificEntropyUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this SpecificEntropy to another SpecificEntropy using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

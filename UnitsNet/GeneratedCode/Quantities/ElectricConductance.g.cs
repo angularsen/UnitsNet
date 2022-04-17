@@ -618,6 +618,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ElectricConductance to another ElectricConductance with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A ElectricConductance with the specified unit.</returns>
+        public QuantityValue ToQuantity(ElectricConductanceUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this ElectricConductance to another ElectricConductance using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

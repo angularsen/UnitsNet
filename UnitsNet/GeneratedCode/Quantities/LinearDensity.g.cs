@@ -827,6 +827,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this LinearDensity to another LinearDensity with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <returns>A LinearDensity with the specified unit.</returns>
+        public QuantityValue ToQuantity(LinearDensityUnit unit)
+        {
+            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
+        }
+
+        /// <summary>
         ///     Converts this LinearDensity to another LinearDensity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

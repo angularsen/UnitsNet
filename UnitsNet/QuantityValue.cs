@@ -286,6 +286,36 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        /// Multiplication operator. Note that this performs an operation on a raw value, as no unit is associate the the value at this point.
+        /// </summary>
+        public static QuantityValue operator *(QuantityValue a, QuantityValue b)
+        {
+            if (a._valueDecimal.HasValue && b._valueDecimal.HasValue)
+            {
+                return new QuantityValue(a._valueDecimal.Value * b._valueDecimal.Value);
+            }
+            else
+            {
+                return new QuantityValue(a._value.GetValueOrDefault() * b._value.GetValueOrDefault());
+            }
+        }
+
+        /// <summary>
+        /// Division operator. Note that this performs an operation on a raw value, as no unit is associate the the value at this point.
+        /// </summary>
+        public static QuantityValue operator /(QuantityValue a, QuantityValue b)
+        {
+            if (a._valueDecimal.HasValue && b._valueDecimal.HasValue)
+            {
+                return new QuantityValue(a._valueDecimal.Value / b._valueDecimal.Value);
+            }
+            else
+            {
+                return new QuantityValue(a._value.GetValueOrDefault() / b._value.GetValueOrDefault());
+            }
+        }
+
         #endregion
 
         /// <summary>Returns the string representation of the numeric value.</summary>
