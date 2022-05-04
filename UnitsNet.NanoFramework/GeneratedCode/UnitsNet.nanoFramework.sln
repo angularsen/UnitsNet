@@ -28,6 +28,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Capacitance", "Capacitance\
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "CoefficientOfThermalExpansion", "CoefficientOfThermalExpansion\CoefficientOfThermalExpansion.nfproj", "{a9514ce6-d4e7-88ca-051e-e9e53610c519}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Compressibility", "Compressibility\Compressibility.nfproj", "{daf647be-be87-88b9-ee92-dece21fe0dff}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Density", "Density\Density.nfproj", "{d683a277-5892-aec2-985d-c2343725d0af}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Duration", "Duration\Duration.nfproj", "{3c2ac54f-554c-518b-7c46-3b22d86d0e3b}"
@@ -310,6 +312,12 @@ Global
 {a9514ce6-d4e7-88ca-051e-e9e53610c519}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {a9514ce6-d4e7-88ca-051e-e9e53610c519}.Release|Any CPU.Build.0 = Release|Any CPU
 {a9514ce6-d4e7-88ca-051e-e9e53610c519}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{daf647be-be87-88b9-ee92-dece21fe0dff}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{daf647be-be87-88b9-ee92-dece21fe0dff}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{daf647be-be87-88b9-ee92-dece21fe0dff}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{daf647be-be87-88b9-ee92-dece21fe0dff}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{daf647be-be87-88b9-ee92-dece21fe0dff}.Release|Any CPU.Build.0 = Release|Any CPU
+{daf647be-be87-88b9-ee92-dece21fe0dff}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {d683a277-5892-aec2-985d-c2343725d0af}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {d683a277-5892-aec2-985d-c2343725d0af}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {d683a277-5892-aec2-985d-c2343725d0af}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

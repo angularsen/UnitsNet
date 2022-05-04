@@ -48,6 +48,7 @@ namespace UnitsNet
         BrakeSpecificFuelConsumption,
         Capacitance,
         CoefficientOfThermalExpansion,
+        Compressibility,
         Density,
         Duration,
         DynamicViscosity,

@@ -51,6 +51,7 @@ namespace UnitsNet
             { "BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.Info },
             { "Capacitance", Capacitance.Info },
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
+            { "Compressibility", Compressibility.Info },
             { "Density", Density.Info },
             { "Duration", Duration.Info },
             { "DynamicViscosity", DynamicViscosity.Info },
@@ -176,6 +177,7 @@ namespace UnitsNet
                 QuantityType.BrakeSpecificFuelConsumption => BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit),
                 QuantityType.Capacitance => Capacitance.From(value, Capacitance.BaseUnit),
                 QuantityType.CoefficientOfThermalExpansion => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
+                QuantityType.Compressibility => Compressibility.From(value, Compressibility.BaseUnit),
                 QuantityType.Density => Density.From(value, Density.BaseUnit),
                 QuantityType.Duration => Duration.From(value, Duration.BaseUnit),
                 QuantityType.DynamicViscosity => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
@@ -302,6 +304,7 @@ namespace UnitsNet
                 "BrakeSpecificFuelConsumption" => BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit),
                 "Capacitance" => Capacitance.From(value, Capacitance.BaseUnit),
                 "CoefficientOfThermalExpansion" => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
+                "Compressibility" => Compressibility.From(value, Compressibility.BaseUnit),
                 "Density" => Density.From(value, Density.BaseUnit),
                 "Duration" => Duration.From(value, Duration.BaseUnit),
                 "DynamicViscosity" => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
@@ -454,6 +457,9 @@ namespace UnitsNet
                     return true;
                 case CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit:
                     quantity = CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit);
+                    return true;
+                case CompressibilityUnit compressibilityUnit:
+                    quantity = Compressibility.From(value, compressibilityUnit);
                     return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
@@ -792,6 +798,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(BrakeSpecificFuelConsumption) => parser.TryParse<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>(quantityString, formatProvider, BrakeSpecificFuelConsumption.From, out quantity),
                 Type _ when quantityType == typeof(Capacitance) => parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity),
                 Type _ when quantityType == typeof(CoefficientOfThermalExpansion) => parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity),
+                Type _ when quantityType == typeof(Compressibility) => parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity),
                 Type _ when quantityType == typeof(Density) => parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity),
                 Type _ when quantityType == typeof(Duration) => parser.TryParse<Duration, DurationUnit>(quantityString, formatProvider, Duration.From, out quantity),
                 Type _ when quantityType == typeof(DynamicViscosity) => parser.TryParse<DynamicViscosity, DynamicViscosityUnit>(quantityString, formatProvider, DynamicViscosity.From, out quantity),
@@ -910,6 +917,7 @@ namespace UnitsNet
             yield return typeof(BrakeSpecificFuelConsumption);
             yield return typeof(Capacitance);
             yield return typeof(CoefficientOfThermalExpansion);
+            yield return typeof(Compressibility);
             yield return typeof(Density);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);

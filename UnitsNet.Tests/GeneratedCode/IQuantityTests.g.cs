@@ -47,6 +47,7 @@ namespace UnitsNet.Tests
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CapacitanceUnit.Picofarad, Quantity.From(3, CapacitanceUnit.Picofarad));
             Assertion(3, CoefficientOfThermalExpansionUnit.InverseKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.InverseKelvin));
+            Assertion(3, CompressibilityUnit.InversePoundForcePerSquareInch, Quantity.From(3, CompressibilityUnit.InversePoundForcePerSquareInch));
             Assertion(3, DensityUnit.TonnePerCubicMillimeter, Quantity.From(3, DensityUnit.TonnePerCubicMillimeter));
             Assertion(3, DurationUnit.Year365, Quantity.From(3, DurationUnit.Year365));
             Assertion(3, DynamicViscosityUnit.Reyn, Quantity.From(3, DynamicViscosityUnit.Reyn));
@@ -166,6 +167,7 @@ namespace UnitsNet.Tests
             Assertion(BrakeSpecificFuelConsumption.Info, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.Info, Capacitance.Zero);
             Assertion(CoefficientOfThermalExpansion.Info, CoefficientOfThermalExpansion.Zero);
+            Assertion(Compressibility.Info, Compressibility.Zero);
             Assertion(Density.Info, Density.Zero);
             Assertion(Duration.Info, Duration.Zero);
             Assertion(DynamicViscosity.Info, DynamicViscosity.Zero);
@@ -285,6 +287,7 @@ namespace UnitsNet.Tests
             Assertion(BrakeSpecificFuelConsumption.QuantityType, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.QuantityType, Capacitance.Zero);
             Assertion(CoefficientOfThermalExpansion.QuantityType, CoefficientOfThermalExpansion.Zero);
+            Assertion(Compressibility.QuantityType, Compressibility.Zero);
             Assertion(Density.QuantityType, Density.Zero);
             Assertion(Duration.QuantityType, Duration.Zero);
             Assertion(DynamicViscosity.QuantityType, DynamicViscosity.Zero);
@@ -404,6 +407,7 @@ namespace UnitsNet.Tests
             Assertion(BrakeSpecificFuelConsumption.BaseDimensions, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.BaseDimensions, Capacitance.Zero);
             Assertion(CoefficientOfThermalExpansion.BaseDimensions, CoefficientOfThermalExpansion.Zero);
+            Assertion(Compressibility.BaseDimensions, Compressibility.Zero);
             Assertion(Density.BaseDimensions, Density.Zero);
             Assertion(Duration.BaseDimensions, Duration.Zero);
             Assertion(DynamicViscosity.BaseDimensions, DynamicViscosity.Zero);
