@@ -49,15 +49,15 @@ namespace UnitsNet.Tests
         protected abstract double MegajoulesPerCubicMeterKelvinInOneJoulePerCubicMeterKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BtusPerCubicFootDegreeFahrenheitTolerance { get { return 1e-5; } }
-        protected virtual double CaloriesPerCubicCentimeterDegreeCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double JoulesPerCubicMeterDegreeCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double JoulesPerCubicMeterKelvinTolerance { get { return 1e-5; } }
-        protected virtual double KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double KilojoulesPerCubicMeterDegreeCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double KilojoulesPerCubicMeterKelvinTolerance { get { return 1e-5; } }
-        protected virtual double MegajoulesPerCubicMeterDegreeCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double MegajoulesPerCubicMeterKelvinTolerance { get { return 1e-5; } }
+        protected virtual double BtusPerCubicFootDegreeFahrenheitTolerance { get { return 1E-5; } }
+        protected virtual double CaloriesPerCubicCentimeterDegreeCelsiusTolerance { get { return 1E-5; } }
+        protected virtual double JoulesPerCubicMeterDegreeCelsiusTolerance { get { return 1E-5; } }
+        protected virtual double JoulesPerCubicMeterKelvinTolerance { get { return 1E-5; } }
+        protected virtual double KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance { get { return 1E-5; } }
+        protected virtual double KilojoulesPerCubicMeterDegreeCelsiusTolerance { get { return 1E-5; } }
+        protected virtual double KilojoulesPerCubicMeterKelvinTolerance { get { return 1E-5; } }
+        protected virtual double MegajoulesPerCubicMeterDegreeCelsiusTolerance { get { return 1E-5; } }
+        protected virtual double MegajoulesPerCubicMeterKelvinTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumetricHeatCapacityUnit unit)
@@ -255,7 +255,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

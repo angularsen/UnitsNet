@@ -50,16 +50,16 @@ namespace UnitsNet.Tests
         protected abstract double ReynsInOneNewtonSecondPerMeterSquared { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentipoiseTolerance { get { return 1e-5; } }
-        protected virtual double MicropascalSecondsTolerance { get { return 1e-5; } }
-        protected virtual double MillipascalSecondsTolerance { get { return 1e-5; } }
-        protected virtual double NewtonSecondsPerMeterSquaredTolerance { get { return 1e-5; } }
-        protected virtual double PascalSecondsTolerance { get { return 1e-5; } }
-        protected virtual double PoiseTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForceSecondPerSquareFootTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForceSecondPerSquareInchTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerFootSecondTolerance { get { return 1e-5; } }
-        protected virtual double ReynsTolerance { get { return 1e-5; } }
+        protected virtual double CentipoiseTolerance { get { return 1E-5; } }
+        protected virtual double MicropascalSecondsTolerance { get { return 1E-5; } }
+        protected virtual double MillipascalSecondsTolerance { get { return 1E-5; } }
+        protected virtual double NewtonSecondsPerMeterSquaredTolerance { get { return 1E-5; } }
+        protected virtual double PascalSecondsTolerance { get { return 1E-5; } }
+        protected virtual double PoiseTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForceSecondPerSquareFootTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForceSecondPerSquareInchTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerFootSecondTolerance { get { return 1E-5; } }
+        protected virtual double ReynsTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(DynamicViscosityUnit unit)
@@ -265,7 +265,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

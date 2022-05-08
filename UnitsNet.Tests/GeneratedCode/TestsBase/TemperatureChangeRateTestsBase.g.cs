@@ -50,16 +50,16 @@ namespace UnitsNet.Tests
         protected abstract double NanodegreesCelsiusPerSecondInOneDegreeCelsiusPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double DecadegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double DecidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double DegreesCelsiusPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double DegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double HectodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MicrodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MillidegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double NanodegreesCelsiusPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double CentidegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DecadegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DecidegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DegreesCelsiusPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double DegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double HectodegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double KilodegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MicrodegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MillidegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double NanodegreesCelsiusPerSecondTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TemperatureChangeRateUnit unit)
@@ -265,7 +265,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

@@ -49,15 +49,15 @@ namespace UnitsNet.Tests
         protected abstract double PicomolesPerLiterInOneMolesPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentimolesPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double DecimolesPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double FemtomolesPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double MicromolesPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double MillimolesPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double MolesPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double MolesPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double NanomolesPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double PicomolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double CentimolesPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double DecimolesPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double FemtomolesPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double MicromolesPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double MillimolesPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double MolesPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double MolesPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double NanomolesPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double PicomolesPerLiterTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarityUnit unit)
@@ -319,7 +319,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

@@ -53,19 +53,19 @@ namespace UnitsNet.Tests
         protected abstract double RevolutionsPerSecondInOneRadianPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentiradiansPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double DeciradiansPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double DegreesPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double DegreesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MicrodegreesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MicroradiansPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MillidegreesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MilliradiansPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double NanodegreesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double NanoradiansPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double RevolutionsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double RevolutionsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double CentiradiansPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DeciradiansPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DegreesPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double DegreesPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MicrodegreesPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MicroradiansPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MillidegreesPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MilliradiansPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double NanodegreesPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double NanoradiansPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double RadiansPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double RevolutionsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double RevolutionsPerSecondTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalSpeedUnit unit)
@@ -295,7 +295,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

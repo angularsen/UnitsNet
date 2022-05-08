@@ -65,31 +65,31 @@ namespace UnitsNet.Tests
         protected abstract double WattHoursPerKilogramInOneJoulePerKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BtuPerPoundTolerance { get { return 1e-5; } }
-        protected virtual double CaloriesPerGramTolerance { get { return 1e-5; } }
-        protected virtual double GigawattDaysPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double GigawattDaysPerShortTonTolerance { get { return 1e-5; } }
-        protected virtual double GigawattDaysPerTonneTolerance { get { return 1e-5; } }
-        protected virtual double GigawattHoursPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double JoulesPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double KilocaloriesPerGramTolerance { get { return 1e-5; } }
-        protected virtual double KilojoulesPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double KilowattDaysPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double KilowattDaysPerShortTonTolerance { get { return 1e-5; } }
-        protected virtual double KilowattDaysPerTonneTolerance { get { return 1e-5; } }
-        protected virtual double KilowattHoursPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double MegajoulesPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double MegawattDaysPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double MegawattDaysPerShortTonTolerance { get { return 1e-5; } }
-        protected virtual double MegawattDaysPerTonneTolerance { get { return 1e-5; } }
-        protected virtual double MegawattHoursPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double TerawattDaysPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double TerawattDaysPerShortTonTolerance { get { return 1e-5; } }
-        protected virtual double TerawattDaysPerTonneTolerance { get { return 1e-5; } }
-        protected virtual double WattDaysPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double WattDaysPerShortTonTolerance { get { return 1e-5; } }
-        protected virtual double WattDaysPerTonneTolerance { get { return 1e-5; } }
-        protected virtual double WattHoursPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double BtuPerPoundTolerance { get { return 1E-5; } }
+        protected virtual double CaloriesPerGramTolerance { get { return 1E-5; } }
+        protected virtual double GigawattDaysPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double GigawattDaysPerShortTonTolerance { get { return 1E-5; } }
+        protected virtual double GigawattDaysPerTonneTolerance { get { return 1E-5; } }
+        protected virtual double GigawattHoursPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double JoulesPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double KilocaloriesPerGramTolerance { get { return 1E-5; } }
+        protected virtual double KilojoulesPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double KilowattDaysPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double KilowattDaysPerShortTonTolerance { get { return 1E-5; } }
+        protected virtual double KilowattDaysPerTonneTolerance { get { return 1E-5; } }
+        protected virtual double KilowattHoursPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double MegajoulesPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double MegawattDaysPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double MegawattDaysPerShortTonTolerance { get { return 1E-5; } }
+        protected virtual double MegawattDaysPerTonneTolerance { get { return 1E-5; } }
+        protected virtual double MegawattHoursPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double TerawattDaysPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double TerawattDaysPerShortTonTolerance { get { return 1E-5; } }
+        protected virtual double TerawattDaysPerTonneTolerance { get { return 1E-5; } }
+        protected virtual double WattDaysPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double WattDaysPerShortTonTolerance { get { return 1E-5; } }
+        protected virtual double WattDaysPerTonneTolerance { get { return 1E-5; } }
+        protected virtual double WattHoursPerKilogramTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificEnergyUnit unit)
@@ -415,7 +415,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

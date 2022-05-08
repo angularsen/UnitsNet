@@ -43,9 +43,9 @@ namespace UnitsNet.Tests
         protected abstract double AmperesPerSquareMeterInOneAmperePerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double AmperesPerSquareFootTolerance { get { return 1e-5; } }
-        protected virtual double AmperesPerSquareInchTolerance { get { return 1e-5; } }
-        protected virtual double AmperesPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double AmperesPerSquareFootTolerance { get { return 1E-5; } }
+        protected virtual double AmperesPerSquareInchTolerance { get { return 1E-5; } }
+        protected virtual double AmperesPerSquareMeterTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricCurrentDensityUnit unit)
@@ -195,7 +195,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

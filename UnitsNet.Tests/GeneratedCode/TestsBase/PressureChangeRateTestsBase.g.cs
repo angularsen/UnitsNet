@@ -54,20 +54,20 @@ namespace UnitsNet.Tests
         protected abstract double PoundsForcePerSquareInchPerSecondInOnePascalPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double AtmospheresPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilopascalsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double KilopascalsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundsForcePerSquareInchPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundsForcePerSquareInchPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MegapascalsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double MegapascalsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MegapoundsForcePerSquareInchPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double MegapoundsForcePerSquareInchPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MillimetersOfMercuryPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double PascalsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double PascalsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForcePerSquareInchPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForcePerSquareInchPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double AtmospheresPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double KilopascalsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double KilopascalsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundsForcePerSquareInchPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundsForcePerSquareInchPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MegapascalsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double MegapascalsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MegapoundsForcePerSquareInchPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double MegapoundsForcePerSquareInchPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MillimetersOfMercuryPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double PascalsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double PascalsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForcePerSquareInchPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForcePerSquareInchPerSecondTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PressureChangeRateUnit unit)
@@ -305,7 +305,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

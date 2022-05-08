@@ -49,15 +49,15 @@ namespace UnitsNet.Tests
         protected abstract double MillidegreesCelsiusInOneKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DegreesCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double DegreesDelisleTolerance { get { return 1e-5; } }
-        protected virtual double DegreesFahrenheitTolerance { get { return 1e-5; } }
-        protected virtual double DegreesNewtonTolerance { get { return 1e-5; } }
-        protected virtual double DegreesRankineTolerance { get { return 1e-5; } }
-        protected virtual double DegreesReaumurTolerance { get { return 1e-5; } }
-        protected virtual double DegreesRoemerTolerance { get { return 1e-5; } }
-        protected virtual double KelvinsTolerance { get { return 1e-5; } }
-        protected virtual double MillidegreesCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double DegreesCelsiusTolerance { get { return 1E-5; } }
+        protected virtual double DegreesDelisleTolerance { get { return 1E-5; } }
+        protected virtual double DegreesFahrenheitTolerance { get { return 1E-5; } }
+        protected virtual double DegreesNewtonTolerance { get { return 1E-5; } }
+        protected virtual double DegreesRankineTolerance { get { return 1E-5; } }
+        protected virtual double DegreesReaumurTolerance { get { return 1E-5; } }
+        protected virtual double DegreesRoemerTolerance { get { return 1E-5; } }
+        protected virtual double KelvinsTolerance { get { return 1E-5; } }
+        protected virtual double MillidegreesCelsiusTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TemperatureDeltaUnit unit)
@@ -255,7 +255,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
