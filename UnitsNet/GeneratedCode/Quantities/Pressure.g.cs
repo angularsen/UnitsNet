@@ -180,6 +180,7 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;

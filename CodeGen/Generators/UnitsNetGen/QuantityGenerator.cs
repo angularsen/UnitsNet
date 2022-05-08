@@ -263,6 +263,7 @@ namespace UnitsNet
 ");
 
             Writer.WL(@"
+        /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
 ");
             // Need to provide explicit interface implementation for decimal quantities like Information

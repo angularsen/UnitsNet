@@ -161,6 +161,7 @@ namespace UnitsNet
         /// </summary>
         public decimal Value => _value;
 
+        /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
 
         /// <inheritdoc cref="IDecimalQuantity.Value"/>
