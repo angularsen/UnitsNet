@@ -155,7 +155,7 @@ namespace UnitsNet
                         return abbreviations[precisionSpecifier];
                     case 'V':
                     case 'v':
-                        return quantity.Value.ToString("G", formatProvider);
+                        return quantity.Value.ToString(formatProvider);
                     case 'U':
                     case 'u':
                         return quantity.Unit.ToString();

@@ -3,6 +3,7 @@
 
 
 using System;
+using System.Globalization;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -62,13 +63,7 @@ namespace UnitsNet
         /// <summary>
         /// Returns true if the underlying value is stored as a decimal
         /// </summary>
-        public bool IsDecimal
-        {
-            get
-            {
-                return _valueDecimal.HasValue;
-            }
-        }
+        public bool IsDecimal =>  _valueDecimal.HasValue;
 
         #region To QuantityValue
 
@@ -184,19 +179,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault() > b._valueDecimal.GetValueOrDefault();
+                return a._valueDecimal.GetValueOrDefault(0) > b._valueDecimal.GetValueOrDefault(0);
             }
             else if (a.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault() > (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+                return a._valueDecimal.GetValueOrDefault(0) > (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
             }
             else if (b.IsDecimal)
             {
-                return (decimal)a._value.GetValueOrDefault(0) > b._valueDecimal.GetValueOrDefault();
+                return (decimal)a._value.GetValueOrDefault(0) > b._valueDecimal.GetValueOrDefault(0);
             }
             else
             {
-                return a._value > b._value;
+                // Both are double
+                return a._value.GetValueOrDefault(0) > b._value.GetValueOrDefault(0);
             }
         }
 
@@ -207,19 +203,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault() < b._valueDecimal.GetValueOrDefault();
+                return a._valueDecimal.GetValueOrDefault(0) < b._valueDecimal.GetValueOrDefault(0);
             }
             else if (a.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault() < (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+                return a._valueDecimal.GetValueOrDefault(0) < (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
             }
             else if (b.IsDecimal)
             {
-                return (decimal)a._value.GetValueOrDefault(0) < b._valueDecimal.GetValueOrDefault();
+                return (decimal)a._value.GetValueOrDefault(0) < b._valueDecimal.GetValueOrDefault(0);
             }
             else
             {
-                return a._value < b._value;
+                // Both are double
+                return a._value.GetValueOrDefault(0) < b._value.GetValueOrDefault(0);
             }
         }
 
@@ -230,18 +227,19 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault() >= b._valueDecimal.GetValueOrDefault();
+                return a._valueDecimal.GetValueOrDefault(0) >= b._valueDecimal.GetValueOrDefault(0);
             }
             else if (a.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault() >= (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+                return a._valueDecimal.GetValueOrDefault(0) >= (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
             }
             else if (b.IsDecimal)
             {
-                return (decimal)a._value.GetValueOrDefault(0) >= b._valueDecimal.GetValueOrDefault();
+                return (decimal)a._value.GetValueOrDefault(0) >= b._valueDecimal.GetValueOrDefault(0);
             }
             else
             {
+                // Both are double
                 return a._value >= b._value;
             }
         }
@@ -253,19 +251,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault() <= b._valueDecimal.GetValueOrDefault();
+                return a._valueDecimal.GetValueOrDefault(0) <= b._valueDecimal.GetValueOrDefault(0);
             }
             else if (a.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault() <= (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+                return a._valueDecimal.GetValueOrDefault(0) <= (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
             }
             else if (b.IsDecimal)
             {
-                return (decimal)a._value.GetValueOrDefault(0) <= b._valueDecimal.GetValueOrDefault();
+                return (decimal)a._value.GetValueOrDefault(0) <= b._valueDecimal.GetValueOrDefault(0);
             }
             else
             {
-                return a._value <= b._value;
+                // Both are double
+                return a._value.GetValueOrDefault(0) <= b._value.GetValueOrDefault(0);
             }
         }
 
@@ -287,32 +286,56 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Multiplication operator. Note that this performs an operation on a raw value, as no unit is associate the the value at this point.
+        /// Multiplication operator.
         /// </summary>
+        /// <remarks>
+        /// This performs an operation on the numeric value of a quantity, there is no unit or conversions involved.
+        /// </remarks>
         public static QuantityValue operator *(QuantityValue a, QuantityValue b)
         {
-            if (a._valueDecimal.HasValue && b._valueDecimal.HasValue)
+            if (a.IsDecimal && b.IsDecimal)
             {
-                return new QuantityValue(a._valueDecimal.Value * b._valueDecimal.Value);
+                return new QuantityValue(a._valueDecimal.GetValueOrDefault(0) * b._valueDecimal.GetValueOrDefault(0));
+            }
+            else if (a.IsDecimal)
+            {
+                return new QuantityValue(a._valueDecimal.GetValueOrDefault(0) * (decimal)b._value.GetValueOrDefault(0)); // other._value cannot be null here
+            }
+            else if (b.IsDecimal)
+            {
+                return new QuantityValue((decimal)a._value.GetValueOrDefault(0) * b._valueDecimal.GetValueOrDefault(0));
             }
             else
             {
-                return new QuantityValue(a._value.GetValueOrDefault() * b._value.GetValueOrDefault());
+                // Both are double
+                return new QuantityValue(a._value.GetValueOrDefault(0) * b._value.GetValueOrDefault(0));
             }
         }
 
         /// <summary>
-        /// Division operator. Note that this performs an operation on a raw value, as no unit is associate the the value at this point.
+        /// Division operator.
         /// </summary>
+        /// <remarks>
+        /// This performs an operation on the numeric value of a quantity, there is no unit or conversions involved.
+        /// </remarks>
         public static QuantityValue operator /(QuantityValue a, QuantityValue b)
         {
-            if (a._valueDecimal.HasValue && b._valueDecimal.HasValue)
+            if (a.IsDecimal && b.IsDecimal)
             {
-                return new QuantityValue(a._valueDecimal.Value / b._valueDecimal.Value);
+                return new QuantityValue(a._valueDecimal.GetValueOrDefault(0) / b._valueDecimal.GetValueOrDefault(0));
+            }
+            else if (a.IsDecimal)
+            {
+                return new QuantityValue(a._valueDecimal.GetValueOrDefault(0) / (decimal)b._value.GetValueOrDefault(0)); // other._value cannot be null here
+            }
+            else if (b.IsDecimal)
+            {
+                return new QuantityValue((decimal)a._value.GetValueOrDefault(0) / b._valueDecimal.GetValueOrDefault(0));
             }
             else
             {
-                return new QuantityValue(a._value.GetValueOrDefault() / b._value.GetValueOrDefault());
+                // Both are double
+                return new QuantityValue(a._value.GetValueOrDefault(0) / b._value.GetValueOrDefault(0));
             }
         }
 
@@ -321,7 +344,27 @@ namespace UnitsNet
         /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()
         {
-            return _value.HasValue ? _value.ToString() : _valueDecimal.ToString();
+            return ToString(string.Empty, CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// Returns the string representation of the numeric value, formatted using the given standard numeric format string
+        /// </summary>
+        /// <param name="format">A standard numeric format string (must be valid for either double or decimal, depending on the base type)</param>
+        /// <returns>The string representation</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// Returns the string representation of the numeric value, formatted using the given standard numeric format string
+        /// </summary>
+        /// <param name="formatProvider">The culture to use</param>
+        /// <returns>The string representation</returns>
+        public string ToString(IFormatProvider formatProvider)
+        {
+            return ToString(string.Empty, formatProvider);
         }
 
         /// <summary>
