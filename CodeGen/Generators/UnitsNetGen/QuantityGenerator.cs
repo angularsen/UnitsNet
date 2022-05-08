@@ -306,7 +306,7 @@ namespace UnitsNet
 
                 Writer.WL($@"
         /// <summary>
-        ///     Gets a <see cref=""double""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
+        ///     Gets a <see cref=""{_quantity.ValueType}""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
@@ -885,16 +885,7 @@ namespace UnitsNet
          /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
         double IQuantity.As(UnitSystem unitSystem)
         {{
-            if(unitSystem is null)
-                throw new ArgumentNullException(nameof(unitSystem));
-
-            var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
-
-            var firstUnitInfo = unitInfos.FirstOrDefault();
-            if(firstUnitInfo == null)
-                throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
-
-            return ((IQuantity<{_unitEnumName}>)this).As(firstUnitInfo.Value);
+            return (double)As(unitSystem);
         }}");
 
             }
