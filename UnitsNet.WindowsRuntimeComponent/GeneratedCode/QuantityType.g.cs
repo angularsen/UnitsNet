@@ -104,6 +104,7 @@ namespace UnitsNet
         MolarMass,
         Permeability,
         Permittivity,
+        PorousMediumPermeability,
         Power,
         PowerDensity,
         PowerRatio,

@@ -144,6 +144,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permeability", "Permeabilit
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permittivity", "Permittivity\Permittivity.nfproj", "{9b381685-8129-acba-66f0-7068fe43a6c3}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PorousMediumPermeability", "PorousMediumPermeability\PorousMediumPermeability.nfproj", "{493d1e8e-51c6-da82-9289-25bd26fab4a4}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Power", "Power\Power.nfproj", "{56968e84-6b7d-d548-4c0b-53017bd6123c}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "PowerDensity", "PowerDensity\PowerDensity.nfproj", "{5e741dd9-690a-de16-e7a1-85e6239aa70d}"
@@ -660,6 +662,12 @@ Global
 {9b381685-8129-acba-66f0-7068fe43a6c3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {9b381685-8129-acba-66f0-7068fe43a6c3}.Release|Any CPU.Build.0 = Release|Any CPU
 {9b381685-8129-acba-66f0-7068fe43a6c3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{493d1e8e-51c6-da82-9289-25bd26fab4a4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{493d1e8e-51c6-da82-9289-25bd26fab4a4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{493d1e8e-51c6-da82-9289-25bd26fab4a4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{493d1e8e-51c6-da82-9289-25bd26fab4a4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{493d1e8e-51c6-da82-9289-25bd26fab4a4}.Release|Any CPU.Build.0 = Release|Any CPU
+{493d1e8e-51c6-da82-9289-25bd26fab4a4}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {56968e84-6b7d-d548-4c0b-53017bd6123c}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {56968e84-6b7d-d548-4c0b-53017bd6123c}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {56968e84-6b7d-d548-4c0b-53017bd6123c}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

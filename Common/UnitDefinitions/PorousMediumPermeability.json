@@ -1,0 +1,54 @@
+﻿{
+  "Name": "PorousMediumPermeability",
+  "BaseUnit": "SquareMeter",
+  "XmlDoc": "In fluid mechanics, permeability is the measure of the ability of a porous material to allow fluids to pass through it.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Permeability_(Earth_sciences)",
+  "BaseDimensions": {
+    "L": 2
+  },
+  "Units": [
+    {
+      "SingularName": "Darcy",
+      "PluralName": "Darcys",
+      "FromUnitToBaseFunc": "{x} * 9.869233e-13",
+      "FromBaseToUnitFunc": "{x} / 9.869233e-13",
+      "Prefixes": [ "Micro", "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "D" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareMeter",
+      "PluralName": "SquareMeters",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareCentimeter",
+      "PluralName": "SquareCentimeters",
+      "BaseUnits": {
+        "L": "Centimeter"
+      },
+      "FromUnitToBaseFunc": "{x} * 1e-4",
+      "FromBaseToUnitFunc": "{x} / 1e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm²" ]
+        }
+      ]
+    }
+  ]
+}
