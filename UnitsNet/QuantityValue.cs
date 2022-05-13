@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 
+using System.Runtime.InteropServices;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -20,31 +21,41 @@ namespace UnitsNet
     ///     From 8 (int, long, double, decimal + each nullable) down to 2 (QuantityValue and QuantityValue?).
     ///     This also adds more numeric types with no extra overhead, such as float, short and byte.
     /// </remarks>
-    public struct QuantityValue
+    [StructLayout(LayoutKind.Explicit)]
+    public readonly struct QuantityValue
     {
         /// <summary>
         ///     Value assigned when implicitly casting from all numeric types except <see cref="decimal" />, since
-        ///     <see cref="double" /> has the greatest range and is 64 bits versus 128 bits for <see cref="decimal"/>.
+        ///     <see cref="double" /> has the greatest range.
         /// </summary>
-        private readonly double? _value;
+        [FieldOffset(8)] // so that it does not interfere with the Type field
+        private readonly double _doubleValue;
 
         /// <summary>
         ///     Value assigned when implicitly casting from <see cref="decimal" /> type, since it has a greater precision than
         ///     <see cref="double"/> and we want to preserve that when constructing quantities that use <see cref="decimal"/>
         ///     as their value type.
         /// </summary>
-        private readonly decimal? _valueDecimal;
+        [FieldOffset(0)]
+        // bytes layout: 0-1 unused, 2 exponent, 3 sign (only first bit), 4-15 number
+        private readonly decimal _decimalValue;
 
-        private QuantityValue(double val)
+        /// <summary>
+        ///     Determines the underlying type of this <see cref="QuantityValue"/>.
+        /// </summary>
+        [FieldOffset(0)] // using unused byte for storing type
+        public readonly UnderlyingDataType Type;
+
+        private QuantityValue(double val) : this()
         {
-            _value = Guard.EnsureValidNumber(val, nameof(val));
-            _valueDecimal = null;
+            _doubleValue = Guard.EnsureValidNumber(val, nameof(val));
+            Type = UnderlyingDataType.Double;
         }
 
-        private QuantityValue(decimal val)
+        private QuantityValue(decimal val) : this()
         {
-            _valueDecimal = val;
-            _value = null;
+            _decimalValue = val;
+            Type = UnderlyingDataType.Decimal;
         }
 
         #region To QuantityValue
@@ -72,10 +83,12 @@ namespace UnitsNet
 
         /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="double"/>.</summary>
         public static explicit operator double(QuantityValue number)
-        {
-            // double -> decimal -> zero (since we can't implement the default struct ctor)
-            return number._value ?? (double) number._valueDecimal.GetValueOrDefault();
-        }
+            => number.Type switch
+            {
+                UnderlyingDataType.Decimal => (double)number._decimalValue,
+                UnderlyingDataType.Double => number._doubleValue,
+                _ => throw new System.NotImplementedException()
+            };
 
         #endregion
 
@@ -83,17 +96,71 @@ namespace UnitsNet
 
         /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="decimal"/>.</summary>
         public static explicit operator decimal(QuantityValue number)
-        {
-            // decimal -> double -> zero (since we can't implement the default struct ctor)
-            return number._valueDecimal ?? (decimal) number._value.GetValueOrDefault();
-        }
+            => number.Type switch
+            {
+                UnderlyingDataType.Decimal => number._decimalValue,
+                UnderlyingDataType.Double => (decimal)number._doubleValue,
+                _ => throw new System.NotImplementedException()
+            };
 
         #endregion
 
         /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()
+            => Type switch
+            {
+                UnderlyingDataType.Decimal => _decimalValue.ToString(),
+                UnderlyingDataType.Double => _doubleValue.ToString(),
+                _ => throw new System.NotImplementedException()
+            };
+
+        /// <summary>
+        ///     Describes the underlying type of a <see cref="QuantityValue"/>.
+        /// </summary>
+        public enum UnderlyingDataType : byte
         {
-            return _value.HasValue ? _value.ToString() : _valueDecimal.ToString();
+            /// <inheritdoc cref="decimal"/>
+            /// <remarks>Has to be 0 due to the bit structure of <see cref="decimal"/>.</remarks>
+            Decimal = 0,
+            /// <inheritdoc cref="double"/>
+            Double = 1
         }
+
+        #region just for debugging
+#if DEBUG
+        [FieldOffset(0)]
+        private readonly byte byte0;
+        [FieldOffset(1)]
+        private readonly byte byte1;
+        [FieldOffset(2)]
+        private readonly byte byte2;
+        [FieldOffset(3)]
+        private readonly byte byte3;
+        [FieldOffset(4)]
+        private readonly byte byte4;
+        [FieldOffset(5)]
+        private readonly byte byte5;
+        [FieldOffset(6)]
+        private readonly byte byte6;
+        [FieldOffset(7)]
+        private readonly byte byte7;
+        [FieldOffset(8)]
+        private readonly byte byte8;
+        [FieldOffset(9)]
+        private readonly byte byte9;
+        [FieldOffset(10)]
+        private readonly byte byte10;
+        [FieldOffset(11)]
+        private readonly byte byte11;
+        [FieldOffset(12)]
+        private readonly byte byte12;
+        [FieldOffset(13)]
+        private readonly byte byte13;
+        [FieldOffset(14)]
+        private readonly byte byte14;
+        [FieldOffset(15)]
+        private readonly byte byte15;
+#endif
+        #endregion
     }
 }
