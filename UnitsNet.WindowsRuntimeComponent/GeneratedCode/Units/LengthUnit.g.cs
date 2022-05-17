@@ -40,6 +40,8 @@ namespace UnitsNet.Units
         AstronomicalUnit,
         Centimeter,
         Chain,
+        /// <remarks>https://en.wikipedia.org/wiki/Data_mile</remarks>
+        DataMile,
         Decameter,
         Decimeter,
         DtpPica,

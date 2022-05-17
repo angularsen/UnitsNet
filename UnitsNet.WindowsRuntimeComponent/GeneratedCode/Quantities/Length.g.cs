@@ -184,6 +184,11 @@ namespace UnitsNet
         public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DataMile"/>
+        /// </summary>
+        public double DataMiles => As(LengthUnit.DataMile);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decameter"/>
         /// </summary>
         public double Decameters => As(LengthUnit.Decameter);
@@ -350,6 +355,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("zh-CN"), false, true, new string[]{"厘米"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Chain, new CultureInfo("en-US"), false, true, new string[]{"ch"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DataMile, new CultureInfo("en-US"), false, true, new string[]{"DM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("en-US"), false, true, new string[]{"dam"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("ru-RU"), false, true, new string[]{"дам"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("zh-CN"), false, true, new string[]{"十米"});
@@ -481,6 +487,17 @@ namespace UnitsNet
         {
             double value = (double) chains;
             return new Length(value, LengthUnit.Chain);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DataMile"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Length FromDataMiles(double datamiles)
+        {
+            double value = (double) datamiles;
+            return new Length(value, LengthUnit.DataMile);
         }
 
         /// <summary>
@@ -1118,6 +1135,7 @@ namespace UnitsNet
                 case LengthUnit.AstronomicalUnit: return _value * 1.4959787070e11;
                 case LengthUnit.Centimeter: return (_value) * 1e-2d;
                 case LengthUnit.Chain: return _value * 20.1168;
+                case LengthUnit.DataMile: return _value * 1828.8;
                 case LengthUnit.Decameter: return (_value) * 1e1d;
                 case LengthUnit.Decimeter: return (_value) * 1e-1d;
                 case LengthUnit.DtpPica: return _value / 236.220472441;
@@ -1167,6 +1185,7 @@ namespace UnitsNet
                 case LengthUnit.AstronomicalUnit: return baseUnitValue / 1.4959787070e11;
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
                 case LengthUnit.Chain: return baseUnitValue / 20.1168;
+                case LengthUnit.DataMile: return baseUnitValue / 1828.8;
                 case LengthUnit.Decameter: return (baseUnitValue) / 1e1d;
                 case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
                 case LengthUnit.DtpPica: return baseUnitValue * 236.220472441;

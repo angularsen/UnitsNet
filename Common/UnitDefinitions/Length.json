@@ -412,6 +412,20 @@
           "Abbreviations": [ "Å", "A" ]
         }
       ]
+    },
+    {
+      "SingularName": "DataMile",
+      "PluralName": "DataMiles",
+      "FromUnitToBaseFunc": "{x} * 1828.8",
+      "FromBaseToUnitFunc": "{x} / 1828.8",
+      "XmlDocSummary": "",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Data_mile",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "DM" ]
+        }
+      ]
     }
   ]
 }

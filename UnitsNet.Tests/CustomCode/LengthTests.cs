@@ -80,6 +80,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double AngstromsInOneMeter => 1e10;
 
+        protected override double DataMilesInOneMeter => 0.000546807;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
