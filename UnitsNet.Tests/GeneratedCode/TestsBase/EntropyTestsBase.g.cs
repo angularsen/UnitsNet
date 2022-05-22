@@ -247,103 +247,96 @@ namespace UnitsNet.Tests
                 var parsed = Entropy.Parse("1 cal/K", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CaloriesPerKelvin, CaloriesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.CaloriePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Entropy.Parse("1 J/C", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
                 Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Entropy.Parse("1 J/K", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.JoulesPerKelvin, JoulesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.JoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Entropy.Parse("1 kcal/K", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilocaloriesPerKelvin, KilocaloriesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.KilocaloriePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Entropy.Parse("1 kJ/C", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
                 Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Entropy.Parse("1 kJ/K", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerKelvin, KilojoulesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.KilojoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Entropy.Parse("1 MJ/K", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegajoulesPerKelvin, MegajoulesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.MegajoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Entropy.TryParse("1 cal/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CaloriesPerKelvin, CaloriesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.CaloriePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParse("1 J/C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
                 Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParse("1 J/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.JoulesPerKelvin, JoulesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.JoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParse("1 kcal/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilocaloriesPerKelvin, KilocaloriesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.KilocaloriePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParse("1 kJ/C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
                 Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParse("1 kJ/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilojoulesPerKelvin, KilojoulesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.KilojoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParse("1 MJ/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegajoulesPerKelvin, MegajoulesPerKelvinTolerance);
                 Assert.Equal(EntropyUnit.MegajoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -354,90 +347,83 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Entropy.ParseUnit("cal/K", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.CaloriePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Entropy.ParseUnit("J/C", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Entropy.ParseUnit("J/K", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.JoulePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Entropy.ParseUnit("kcal/K", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.KilocaloriePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Entropy.ParseUnit("kJ/C", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Entropy.ParseUnit("kJ/K", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.KilojoulePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Entropy.ParseUnit("MJ/K", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(EntropyUnit.MegajoulePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Entropy.TryParseUnit("cal/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.CaloriePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParseUnit("J/C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParseUnit("J/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.JoulePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParseUnit("kcal/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.KilocaloriePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParseUnit("kJ/C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParseUnit("kJ/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.KilojoulePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Entropy.TryParseUnit("MJ/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(EntropyUnit.MegajoulePerKelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

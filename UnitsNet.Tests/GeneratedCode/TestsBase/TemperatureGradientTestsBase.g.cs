@@ -217,61 +217,57 @@ namespace UnitsNet.Tests
                 var parsed = TemperatureGradient.Parse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = TemperatureGradient.Parse("1 ∆°C/m", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = TemperatureGradient.Parse("1 ∆°F/ft", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = TemperatureGradient.Parse("1 ∆°K/m", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KelvinsPerMeter, KelvinsPerMeterTolerance);
                 Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(TemperatureGradient.TryParse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(TemperatureGradient.TryParse("1 ∆°C/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(TemperatureGradient.TryParse("1 ∆°F/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
                 Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(TemperatureGradient.TryParse("1 ∆°K/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KelvinsPerMeter, KelvinsPerMeterTolerance);
                 Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -282,54 +278,50 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = TemperatureGradient.ParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = TemperatureGradient.ParseUnit("∆°C/m", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = TemperatureGradient.ParseUnit("∆°F/ft", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = TemperatureGradient.ParseUnit("∆°K/m", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(TemperatureGradient.TryParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(TemperatureGradient.TryParseUnit("∆°C/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(TemperatureGradient.TryParseUnit("∆°F/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(TemperatureGradient.TryParseUnit("∆°K/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

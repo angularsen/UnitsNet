@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = SolidAngle.Parse("1 sr", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Steradians, SteradiansTolerance);
                 Assert.Equal(SolidAngleUnit.Steradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(SolidAngle.TryParse("1 sr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Steradians, SteradiansTolerance);
                 Assert.Equal(SolidAngleUnit.Steradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = SolidAngle.ParseUnit("sr", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SolidAngleUnit.Steradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(SolidAngle.TryParseUnit("sr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SolidAngleUnit.Steradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

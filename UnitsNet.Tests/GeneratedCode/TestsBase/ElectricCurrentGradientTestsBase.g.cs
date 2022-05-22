@@ -217,61 +217,57 @@ namespace UnitsNet.Tests
                 var parsed = ElectricCurrentGradient.Parse("1 A/μs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerMicrosecond, AmperesPerMicrosecondTolerance);
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ElectricCurrentGradient.Parse("1 A/ms", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerMillisecond, AmperesPerMillisecondTolerance);
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ElectricCurrentGradient.Parse("1 A/ns", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerNanosecond, AmperesPerNanosecondTolerance);
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ElectricCurrentGradient.Parse("1 A/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerSecond, AmperesPerSecondTolerance);
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(ElectricCurrentGradient.TryParse("1 A/μs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerMicrosecond, AmperesPerMicrosecondTolerance);
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricCurrentGradient.TryParse("1 A/ms", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerMillisecond, AmperesPerMillisecondTolerance);
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricCurrentGradient.TryParse("1 A/ns", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerNanosecond, AmperesPerNanosecondTolerance);
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricCurrentGradient.TryParse("1 A/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerSecond, AmperesPerSecondTolerance);
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -282,54 +278,50 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = ElectricCurrentGradient.ParseUnit("A/μs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ElectricCurrentGradient.ParseUnit("A/ms", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ElectricCurrentGradient.ParseUnit("A/ns", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ElectricCurrentGradient.ParseUnit("A/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(ElectricCurrentGradient.TryParseUnit("A/μs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricCurrentGradient.TryParseUnit("A/ms", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricCurrentGradient.TryParseUnit("A/ns", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricCurrentGradient.TryParseUnit("A/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

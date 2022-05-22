@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = RelativeHumidity.Parse("1 %RH", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
                 Assert.Equal(RelativeHumidityUnit.Percent, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(RelativeHumidity.TryParse("1 %RH", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
                 Assert.Equal(RelativeHumidityUnit.Percent, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = RelativeHumidity.ParseUnit("%RH", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(RelativeHumidityUnit.Percent, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(RelativeHumidity.TryParseUnit("%RH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(RelativeHumidityUnit.Percent, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

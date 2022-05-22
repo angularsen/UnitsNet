@@ -237,89 +237,83 @@ namespace UnitsNet.Tests
                 var parsed = MagneticField.Parse("1 G", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Gausses, GaussesTolerance);
                 Assert.Equal(MagneticFieldUnit.Gauss, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MagneticField.Parse("1 µT", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microteslas, MicroteslasTolerance);
                 Assert.Equal(MagneticFieldUnit.Microtesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MagneticField.Parse("1 mG", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milligausses, MilligaussesTolerance);
                 Assert.Equal(MagneticFieldUnit.Milligauss, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MagneticField.Parse("1 mT", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milliteslas, MilliteslasTolerance);
                 Assert.Equal(MagneticFieldUnit.Millitesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MagneticField.Parse("1 nT", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanoteslas, NanoteslasTolerance);
                 Assert.Equal(MagneticFieldUnit.Nanotesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MagneticField.Parse("1 T", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Teslas, TeslasTolerance);
                 Assert.Equal(MagneticFieldUnit.Tesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(MagneticField.TryParse("1 G", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Gausses, GaussesTolerance);
                 Assert.Equal(MagneticFieldUnit.Gauss, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParse("1 µT", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microteslas, MicroteslasTolerance);
                 Assert.Equal(MagneticFieldUnit.Microtesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParse("1 mG", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milligausses, MilligaussesTolerance);
                 Assert.Equal(MagneticFieldUnit.Milligauss, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParse("1 mT", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliteslas, MilliteslasTolerance);
                 Assert.Equal(MagneticFieldUnit.Millitesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParse("1 nT", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoteslas, NanoteslasTolerance);
                 Assert.Equal(MagneticFieldUnit.Nanotesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParse("1 T", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Teslas, TeslasTolerance);
                 Assert.Equal(MagneticFieldUnit.Tesla, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -330,78 +324,72 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = MagneticField.ParseUnit("G", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MagneticFieldUnit.Gauss, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MagneticField.ParseUnit("µT", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MagneticFieldUnit.Microtesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MagneticField.ParseUnit("mG", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MagneticFieldUnit.Milligauss, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MagneticField.ParseUnit("mT", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MagneticFieldUnit.Millitesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MagneticField.ParseUnit("nT", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MagneticFieldUnit.Nanotesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MagneticField.ParseUnit("T", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MagneticFieldUnit.Tesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(MagneticField.TryParseUnit("G", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MagneticFieldUnit.Gauss, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParseUnit("µT", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MagneticFieldUnit.Microtesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParseUnit("mG", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MagneticFieldUnit.Milligauss, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParseUnit("mT", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MagneticFieldUnit.Millitesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParseUnit("nT", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MagneticFieldUnit.Nanotesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MagneticField.TryParseUnit("T", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MagneticFieldUnit.Tesla, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

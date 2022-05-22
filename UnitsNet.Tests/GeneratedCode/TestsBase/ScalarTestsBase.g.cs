@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = Scalar.Parse("1 ", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Amount, AmountTolerance);
                 Assert.Equal(ScalarUnit.Amount, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Scalar.TryParse("1 ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Amount, AmountTolerance);
                 Assert.Equal(ScalarUnit.Amount, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Scalar.ParseUnit("", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ScalarUnit.Amount, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Scalar.TryParseUnit("", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ScalarUnit.Amount, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

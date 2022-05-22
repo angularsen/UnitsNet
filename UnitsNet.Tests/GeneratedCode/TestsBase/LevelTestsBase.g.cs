@@ -197,33 +197,31 @@ namespace UnitsNet.Tests
                 var parsed = Level.Parse("1 dB", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Decibels, DecibelsTolerance);
                 Assert.Equal(LevelUnit.Decibel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Level.Parse("1 Np", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nepers, NepersTolerance);
                 Assert.Equal(LevelUnit.Neper, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Level.TryParse("1 dB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decibels, DecibelsTolerance);
                 Assert.Equal(LevelUnit.Decibel, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Level.TryParse("1 Np", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nepers, NepersTolerance);
                 Assert.Equal(LevelUnit.Neper, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -234,30 +232,28 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Level.ParseUnit("dB", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(LevelUnit.Decibel, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Level.ParseUnit("Np", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(LevelUnit.Neper, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Level.TryParseUnit("dB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(LevelUnit.Decibel, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Level.TryParseUnit("Np", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(LevelUnit.Neper, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

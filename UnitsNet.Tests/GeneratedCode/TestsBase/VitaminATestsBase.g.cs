@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = VitaminA.Parse("1 IU", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InternationalUnits, InternationalUnitsTolerance);
                 Assert.Equal(VitaminAUnit.InternationalUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(VitaminA.TryParse("1 IU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InternationalUnits, InternationalUnitsTolerance);
                 Assert.Equal(VitaminAUnit.InternationalUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = VitaminA.ParseUnit("IU", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(VitaminA.TryParseUnit("IU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

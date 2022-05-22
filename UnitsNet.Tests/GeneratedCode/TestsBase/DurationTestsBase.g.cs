@@ -287,845 +287,785 @@ namespace UnitsNet.Tests
                 var parsed = Duration.Parse("1 d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 day", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 days", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 сут", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 д", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 hr", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 hrs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 hour", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 hours", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 ч", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 час", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 jyr", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.JulianYears, JulianYearsTolerance);
                 Assert.Equal(DurationUnit.JulianYear, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 jyear", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.JulianYears, JulianYearsTolerance);
                 Assert.Equal(DurationUnit.JulianYear, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 jyears", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.JulianYears, JulianYearsTolerance);
                 Assert.Equal(DurationUnit.JulianYear, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 µs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 µsec", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 µsecs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 µsecond", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 µseconds", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 мксек", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 мкс", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 ms", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 msec", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 msecs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 msecond", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 mseconds", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 мсек", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 мс", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 m", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 minute", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 minutes", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 мин", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 mo", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Months30, Months30Tolerance);
                 Assert.Equal(DurationUnit.Month30, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 month", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Months30, Months30Tolerance);
                 Assert.Equal(DurationUnit.Month30, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 months", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Months30, Months30Tolerance);
                 Assert.Equal(DurationUnit.Month30, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 месяц", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Months30, Months30Tolerance);
                 Assert.Equal(DurationUnit.Month30, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 ns", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 nsec", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 nsecs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 nsecond", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 nseconds", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 нсек", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 нс", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 sec", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 secs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 second", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 seconds", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 сек", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 с", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 wk", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 week", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 weeks", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 нед", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 yr", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Years365, Years365Tolerance);
                 Assert.Equal(DurationUnit.Year365, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 year", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Years365, Years365Tolerance);
                 Assert.Equal(DurationUnit.Year365, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 years", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Years365, Years365Tolerance);
                 Assert.Equal(DurationUnit.Year365, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Duration.Parse("1 год", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Years365, Years365Tolerance);
                 Assert.Equal(DurationUnit.Year365, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Duration.TryParse("1 d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 day", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 days", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 сут", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 д", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Days, DaysTolerance);
                 Assert.Equal(DurationUnit.Day, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 hr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 hrs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 hour", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 hours", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 час", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hours, HoursTolerance);
                 Assert.Equal(DurationUnit.Hour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 jyr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.JulianYears, JulianYearsTolerance);
                 Assert.Equal(DurationUnit.JulianYear, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 jyear", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.JulianYears, JulianYearsTolerance);
                 Assert.Equal(DurationUnit.JulianYear, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 jyears", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.JulianYears, JulianYearsTolerance);
                 Assert.Equal(DurationUnit.JulianYear, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 µs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 µsec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 µsecs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 µsecond", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 µseconds", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 мксек", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 мкс", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microseconds, MicrosecondsTolerance);
                 Assert.Equal(DurationUnit.Microsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 ms", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 msec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 msecs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 msecond", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 mseconds", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 мсек", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 мс", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliseconds, MillisecondsTolerance);
                 Assert.Equal(DurationUnit.Millisecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 minute", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 minutes", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Minutes, MinutesTolerance);
                 Assert.Equal(DurationUnit.Minute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 mo", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Months30, Months30Tolerance);
                 Assert.Equal(DurationUnit.Month30, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 month", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Months30, Months30Tolerance);
                 Assert.Equal(DurationUnit.Month30, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 months", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Months30, Months30Tolerance);
                 Assert.Equal(DurationUnit.Month30, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 месяц", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Months30, Months30Tolerance);
                 Assert.Equal(DurationUnit.Month30, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 ns", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 nsec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 nsecs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 nsecond", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 nseconds", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 нсек", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 нс", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoseconds, NanosecondsTolerance);
                 Assert.Equal(DurationUnit.Nanosecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 sec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 secs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 second", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 seconds", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 сек", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Seconds, SecondsTolerance);
                 Assert.Equal(DurationUnit.Second, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 wk", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 week", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 weeks", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 нед", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Weeks, WeeksTolerance);
                 Assert.Equal(DurationUnit.Week, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 yr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Years365, Years365Tolerance);
                 Assert.Equal(DurationUnit.Year365, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 year", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Years365, Years365Tolerance);
                 Assert.Equal(DurationUnit.Year365, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 years", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Years365, Years365Tolerance);
                 Assert.Equal(DurationUnit.Year365, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParse("1 год", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Years365, Years365Tolerance);
                 Assert.Equal(DurationUnit.Year365, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -1136,726 +1076,666 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Duration.ParseUnit("d", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("day", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("days", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("сут", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("д", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("h", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("hr", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("hrs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("hour", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("hours", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("ч", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("час", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("jyr", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.JulianYear, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("jyear", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.JulianYear, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("jyears", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.JulianYear, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("µs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("µsec", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("µsecs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("µsecond", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("µseconds", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("мксек", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("мкс", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("ms", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("msec", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("msecs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("msecond", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("mseconds", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("мсек", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("мс", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("minute", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("minutes", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("мин", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("mo", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Month30, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("month", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Month30, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("months", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Month30, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("месяц", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Month30, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("ns", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("nsec", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("nsecs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("nsecond", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("nseconds", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("нсек", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("нс", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("sec", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("secs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("second", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("seconds", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("сек", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("с", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("wk", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("week", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("weeks", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("нед", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("yr", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Year365, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("year", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Year365, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("years", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(DurationUnit.Year365, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Duration.ParseUnit("год", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(DurationUnit.Year365, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Duration.TryParseUnit("d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("day", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("days", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("сут", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("д", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Day, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("hr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("hrs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("hour", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("hours", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("час", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Hour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("jyr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.JulianYear, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("jyear", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.JulianYear, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("jyears", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.JulianYear, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("µs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("µsec", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("µsecs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("µsecond", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("µseconds", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("мксек", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("мкс", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Microsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("ms", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("msec", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("msecs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("msecond", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("mseconds", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("мсек", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("мс", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Millisecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("minute", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("minutes", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Minute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("mo", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Month30, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("month", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Month30, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("months", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Month30, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("месяц", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Month30, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("ns", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("nsec", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("nsecs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("nsecond", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("nseconds", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("нсек", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("нс", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Nanosecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("sec", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("secs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("second", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("seconds", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("сек", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Second, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("wk", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("week", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("weeks", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("нед", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Week, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("yr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Year365, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("year", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Year365, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("years", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Year365, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Duration.TryParseUnit("год", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(DurationUnit.Year365, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

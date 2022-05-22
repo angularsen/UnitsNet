@@ -227,75 +227,70 @@ namespace UnitsNet.Tests
                 var parsed = PorousMediumPermeability.Parse("1 D", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Darcys, DarcysTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.Darcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = PorousMediumPermeability.Parse("1 µD", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microdarcys, MicrodarcysTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = PorousMediumPermeability.Parse("1 mD", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Millidarcys, MillidarcysTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = PorousMediumPermeability.Parse("1 cm²", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = PorousMediumPermeability.Parse("1 m²", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParse("1 D", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Darcys, DarcysTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.Darcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParse("1 µD", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microdarcys, MicrodarcysTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParse("1 mD", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Millidarcys, MillidarcysTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParse("1 cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParse("1 m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
                 Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -306,66 +301,61 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = PorousMediumPermeability.ParseUnit("D", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(PorousMediumPermeabilityUnit.Darcy, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = PorousMediumPermeability.ParseUnit("µD", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = PorousMediumPermeability.ParseUnit("mD", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = PorousMediumPermeability.ParseUnit("cm²", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = PorousMediumPermeability.ParseUnit("m²", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParseUnit("D", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(PorousMediumPermeabilityUnit.Darcy, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParseUnit("µD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParseUnit("mD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParseUnit("cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(PorousMediumPermeability.TryParseUnit("m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

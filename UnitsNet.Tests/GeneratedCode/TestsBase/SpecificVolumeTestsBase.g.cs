@@ -207,47 +207,44 @@ namespace UnitsNet.Tests
                 var parsed = SpecificVolume.Parse("1 ft³/lb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CubicFeetPerPound, CubicFeetPerPoundTolerance);
                 Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = SpecificVolume.Parse("1 m³/kg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
                 Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = SpecificVolume.Parse("1 mm³/kg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
                 Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(SpecificVolume.TryParse("1 ft³/lb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CubicFeetPerPound, CubicFeetPerPoundTolerance);
                 Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(SpecificVolume.TryParse("1 m³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
                 Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(SpecificVolume.TryParse("1 mm³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
                 Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -258,42 +255,39 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = SpecificVolume.ParseUnit("ft³/lb", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = SpecificVolume.ParseUnit("m³/kg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = SpecificVolume.ParseUnit("mm³/kg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(SpecificVolume.TryParseUnit("ft³/lb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(SpecificVolume.TryParseUnit("m³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(SpecificVolume.TryParseUnit("mm³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

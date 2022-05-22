@@ -427,957 +427,865 @@ namespace UnitsNet.Tests
                 var parsed = Mass.Parse("1 cg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
                 Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 сг", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
                 Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 厘克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
                 Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 dag", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
                 Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 даг", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
                 Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 十克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
                 Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 dg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
                 Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 дг", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
                 Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 分克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
                 Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 em", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.EarthMasses, EarthMassesTolerance);
                 Assert.Equal(MassUnit.EarthMass, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 gr", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Grains, GrainsTolerance);
                 Assert.Equal(MassUnit.Grain, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 g", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
                 Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 г", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
                 Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
                 Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 hg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
                 Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 гг", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
                 Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 百克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
                 Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 kg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
                 Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 кг", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
                 Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 千克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
                 Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 klb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 klbs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 klbm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 кфунт", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 千磅", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 kt", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
                 Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 кт", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
                 Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 千吨", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
                 Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 cwt", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.LongHundredweight, LongHundredweightTolerance);
                 Assert.Equal(MassUnit.LongHundredweight, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 long tn", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
                 Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 тонна большая", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
                 Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 长吨", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
                 Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 Mlb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 Mlbs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 Mlbm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 Мфунт", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 兆磅", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 Mt", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
                 Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 Мт", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
                 Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 兆吨", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
                 Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 µg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
                 Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 мкг", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
                 Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 微克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
                 Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 mg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
                 Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 мг", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
                 Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 毫克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
                 Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 ng", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
                 Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 нг", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
                 Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 纳克", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
                 Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 oz", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Ounces, OuncesTolerance);
                 Assert.Equal(MassUnit.Ounce, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 盎司", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Ounces, OuncesTolerance);
                 Assert.Equal(MassUnit.Ounce, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 lb", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 lbs", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 lbm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 фунт", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 磅", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 cwt", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ShortHundredweight, ShortHundredweightTolerance);
                 Assert.Equal(MassUnit.ShortHundredweight, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 t (short)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 short tn", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 ST", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 тонна малая", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 短吨", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 slug", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Slugs, SlugsTolerance);
                 Assert.Equal(MassUnit.Slug, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 M⊙", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
                 Assert.Equal(MassUnit.SolarMass, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 st", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Stone, StoneTolerance);
                 Assert.Equal(MassUnit.Stone, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 t", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
                 Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 т", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
                 Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Mass.Parse("1 吨", CultureInfo.GetCultureInfo("zh-CN"));
                 AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
                 Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Mass.TryParse("1 cg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
                 Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 сг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
                 Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 厘克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Centigrams, CentigramsTolerance);
                 Assert.Equal(MassUnit.Centigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 dag", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
                 Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 даг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
                 Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 十克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decagrams, DecagramsTolerance);
                 Assert.Equal(MassUnit.Decagram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 dg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
                 Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 дг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
                 Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 分克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decigrams, DecigramsTolerance);
                 Assert.Equal(MassUnit.Decigram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 em", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.EarthMasses, EarthMassesTolerance);
                 Assert.Equal(MassUnit.EarthMass, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 gr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Grains, GrainsTolerance);
                 Assert.Equal(MassUnit.Grain, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
                 Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 г", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
                 Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Grams, GramsTolerance);
                 Assert.Equal(MassUnit.Gram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 hg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
                 Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 гг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
                 Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 百克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Hectograms, HectogramsTolerance);
                 Assert.Equal(MassUnit.Hectogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
                 Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 кг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
                 Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 千克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilograms, KilogramsTolerance);
                 Assert.Equal(MassUnit.Kilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 klb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 klbs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 klbm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 кфунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 千磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilopounds, KilopoundsTolerance);
                 Assert.Equal(MassUnit.Kilopound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 kt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
                 Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 кт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
                 Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 千吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kilotonnes, KilotonnesTolerance);
                 Assert.Equal(MassUnit.Kilotonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Mass.TryParse("1 cwt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.LongHundredweight, LongHundredweightTolerance);
-                Assert.Equal(MassUnit.LongHundredweight, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Mass.TryParse("1 long tn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
                 Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 тонна большая", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
                 Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 长吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LongTons, LongTonsTolerance);
                 Assert.Equal(MassUnit.LongTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 Mlb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 Mlbs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 Mlbm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 Мфунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 兆磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megapounds, MegapoundsTolerance);
                 Assert.Equal(MassUnit.Megapound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 Mt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
                 Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 Мт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
                 Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 兆吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megatonnes, MegatonnesTolerance);
                 Assert.Equal(MassUnit.Megatonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 µg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
                 Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 мкг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
                 Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 微克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Micrograms, MicrogramsTolerance);
                 Assert.Equal(MassUnit.Microgram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 mg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
                 Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 мг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
                 Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 毫克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milligrams, MilligramsTolerance);
                 Assert.Equal(MassUnit.Milligram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 ng", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
                 Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 нг", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
                 Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 纳克", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanograms, NanogramsTolerance);
                 Assert.Equal(MassUnit.Nanogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 oz", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Ounces, OuncesTolerance);
                 Assert.Equal(MassUnit.Ounce, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 盎司", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Ounces, OuncesTolerance);
                 Assert.Equal(MassUnit.Ounce, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 lb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 lbs", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 lbm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 фунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Pounds, PoundsTolerance);
                 Assert.Equal(MassUnit.Pound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Mass.TryParse("1 cwt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ShortHundredweight, ShortHundredweightTolerance);
-                Assert.Equal(MassUnit.ShortHundredweight, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Mass.TryParse("1 t (short)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 short tn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Mass.TryParse("1 ST", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
-                Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Mass.TryParse("1 тонна малая", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 短吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ShortTons, ShortTonsTolerance);
                 Assert.Equal(MassUnit.ShortTon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 slug", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Slugs, SlugsTolerance);
                 Assert.Equal(MassUnit.Slug, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 M⊙", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
                 Assert.Equal(MassUnit.SolarMass, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Mass.TryParse("1 st", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Stone, StoneTolerance);
-                Assert.Equal(MassUnit.Stone, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Mass.TryParse("1 t", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
                 Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 т", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
                 Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParse("1 吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Tonnes, TonnesTolerance);
                 Assert.Equal(MassUnit.Tonne, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -1388,822 +1296,734 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Mass.ParseUnit("cg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Centigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("сг", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Centigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("厘克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Centigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("dag", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Decagram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("даг", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Decagram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("十克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Decagram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("dg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Decigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("дг", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Decigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("分克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Decigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("em", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.EarthMass, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("gr", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Grain, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("g", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Gram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("г", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Gram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Gram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("hg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Hectogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("гг", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Hectogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("百克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Hectogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("kg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Kilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("кг", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Kilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("千克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Kilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("klb", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("klbs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("klbm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("кфунт", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("千磅", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("kt", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Kilotonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("кт", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Kilotonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("千吨", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Kilotonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("cwt", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.LongHundredweight, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("long tn", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.LongTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("тонна большая", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.LongTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("长吨", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.LongTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("Mlb", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("Mlbs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("Mlbm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("Мфунт", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("兆磅", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("Mt", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Megatonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("Мт", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Megatonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("兆吨", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Megatonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("µg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Microgram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("мкг", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Microgram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("微克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Microgram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("mg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Milligram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("мг", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Milligram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("毫克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Milligram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("ng", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Nanogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("нг", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Nanogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("纳克", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Nanogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("oz", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Ounce, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("盎司", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Ounce, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("lb", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("lbs", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("lbm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("фунт", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("磅", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("cwt", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.ShortHundredweight, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("t (short)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("short tn", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("ST", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("тонна малая", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("短吨", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("slug", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Slug, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("M⊙", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.SolarMass, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("st", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Stone, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("t", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.Tonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("т", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MassUnit.Tonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Mass.ParseUnit("吨", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(MassUnit.Tonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Mass.TryParseUnit("cg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Centigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("сг", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Centigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("厘克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Centigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("dag", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Decagram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("даг", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Decagram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("十克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Decagram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("dg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Decigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("дг", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Decigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("分克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Decigram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("em", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.EarthMass, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("gr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Grain, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("g", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Gram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("г", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Gram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Gram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("hg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Hectogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("гг", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Hectogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("百克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Hectogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("кг", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("千克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("klb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("klbs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("klbm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("кфунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("千磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilopound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("kt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilotonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("кт", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilotonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("千吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Kilotonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Mass.TryParseUnit("cwt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassUnit.LongHundredweight, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Mass.TryParseUnit("long tn", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.LongTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("тонна большая", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.LongTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("长吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.LongTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("Mlb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("Mlbs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("Mlbm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("Мфунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("兆磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Megapound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("Mt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Megatonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("Мт", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Megatonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("兆吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Megatonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("µg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Microgram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("мкг", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Microgram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("微克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Microgram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("mg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Milligram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("мг", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Milligram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("毫克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Milligram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("ng", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Nanogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("нг", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Nanogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("纳克", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Nanogram, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("oz", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Ounce, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("盎司", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Ounce, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("lb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("lbs", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("lbm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("фунт", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("磅", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Pound, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Mass.TryParseUnit("cwt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassUnit.ShortHundredweight, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Mass.TryParseUnit("t (short)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("short tn", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Mass.TryParseUnit("ST", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Mass.TryParseUnit("тонна малая", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("短吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.ShortTon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("slug", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Slug, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("M⊙", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.SolarMass, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Mass.TryParseUnit("st", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(MassUnit.Stone, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Mass.TryParseUnit("t", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.Tonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("т", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MassUnit.Tonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Mass.TryParseUnit("吨", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(MassUnit.Tonne, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

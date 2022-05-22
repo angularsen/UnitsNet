@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = LuminousIntensity.Parse("1 cd", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Candela, CandelaTolerance);
                 Assert.Equal(LuminousIntensityUnit.Candela, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(LuminousIntensity.TryParse("1 cd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Candela, CandelaTolerance);
                 Assert.Equal(LuminousIntensityUnit.Candela, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = LuminousIntensity.ParseUnit("cd", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(LuminousIntensityUnit.Candela, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(LuminousIntensity.TryParseUnit("cd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(LuminousIntensityUnit.Candela, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

@@ -327,271 +327,252 @@ namespace UnitsNet.Tests
                 var parsed = ForceChangeRate.Parse("1 cN/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentinewtonsPerSecond, CentinewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.CentinewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 daN/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecanewtonsPerMinute, DecanewtonsPerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.DecanewtonPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 daN/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecanewtonsPerSecond, DecanewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.DecanewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 dN/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecinewtonsPerSecond, DecinewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 kN/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilonewtonsPerMinute, KilonewtonsPerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilonewtonPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 kN/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSecond, KilonewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 kipf/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerMinute, KilopoundsForcePerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 kip/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerMinute, KilopoundsForcePerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 k/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerMinute, KilopoundsForcePerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 kipf/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSecond, KilopoundsForcePerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 kip/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSecond, KilopoundsForcePerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 k/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSecond, KilopoundsForcePerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 µN/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicronewtonsPerSecond, MicronewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 mN/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillinewtonsPerSecond, MillinewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.MillinewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 nN/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanonewtonsPerSecond, NanonewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.NanonewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 N/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NewtonsPerMinute, NewtonsPerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.NewtonPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 N/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NewtonsPerSecond, NewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 lbf/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsForcePerMinute, PoundsForcePerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.PoundForcePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ForceChangeRate.Parse("1 lbf/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsForcePerSecond, PoundsForcePerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 cN/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentinewtonsPerSecond, CentinewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.CentinewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 daN/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecanewtonsPerMinute, DecanewtonsPerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.DecanewtonPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 daN/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecanewtonsPerSecond, DecanewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.DecanewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 dN/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecinewtonsPerSecond, DecinewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 kN/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilonewtonsPerMinute, KilonewtonsPerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilonewtonPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 kN/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSecond, KilonewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 kipf/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerMinute, KilopoundsForcePerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 kip/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerMinute, KilopoundsForcePerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 k/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerMinute, KilopoundsForcePerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 kipf/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSecond, KilopoundsForcePerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 kip/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSecond, KilopoundsForcePerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 k/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSecond, KilopoundsForcePerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 µN/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicronewtonsPerSecond, MicronewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 mN/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MillinewtonsPerSecond, MillinewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.MillinewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 nN/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanonewtonsPerSecond, NanonewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.NanonewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 N/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NewtonsPerMinute, NewtonsPerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.NewtonPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 N/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NewtonsPerSecond, NewtonsPerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 lbf/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsForcePerMinute, PoundsForcePerMinuteTolerance);
                 Assert.Equal(ForceChangeRateUnit.PoundForcePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParse("1 lbf/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsForcePerSecond, PoundsForcePerSecondTolerance);
                 Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -602,234 +583,215 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("cN/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.CentinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("daN/min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.DecanewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("daN/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.DecanewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("dN/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("kN/min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.KilonewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("kN/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("kipf/min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("kip/min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("k/min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("kipf/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("kip/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("k/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("µN/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("mN/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.MillinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("nN/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.NanonewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("N/min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.NewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("N/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("lbf/min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.PoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ForceChangeRate.ParseUnit("lbf/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("cN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.CentinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("daN/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.DecanewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("daN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.DecanewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("dN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.DecinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("kN/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.KilonewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("kN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.KilonewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("kipf/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("kip/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("k/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("kipf/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("kip/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("k/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.KilopoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("µN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("mN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.MillinewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("nN/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.NanonewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("N/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.NewtonPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("N/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.NewtonPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("lbf/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.PoundForcePerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ForceChangeRate.TryParseUnit("lbf/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ForceChangeRateUnit.PoundForcePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

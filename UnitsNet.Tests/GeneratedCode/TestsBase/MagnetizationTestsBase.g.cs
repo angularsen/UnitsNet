@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = Magnetization.Parse("1 A/m", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerMeter, AmperesPerMeterTolerance);
                 Assert.Equal(MagnetizationUnit.AmperePerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Magnetization.TryParse("1 A/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.AmperesPerMeter, AmperesPerMeterTolerance);
                 Assert.Equal(MagnetizationUnit.AmperePerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Magnetization.ParseUnit("A/m", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MagnetizationUnit.AmperePerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Magnetization.TryParseUnit("A/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MagnetizationUnit.AmperePerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

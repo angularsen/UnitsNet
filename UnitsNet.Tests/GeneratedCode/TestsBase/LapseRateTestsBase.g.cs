@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = LapseRate.Parse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
                 Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(LapseRate.TryParse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
                 Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = LapseRate.ParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(LapseRate.TryParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

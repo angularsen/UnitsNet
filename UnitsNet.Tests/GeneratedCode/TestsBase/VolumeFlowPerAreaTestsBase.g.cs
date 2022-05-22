@@ -197,33 +197,31 @@ namespace UnitsNet.Tests
                 var parsed = VolumeFlowPerArea.Parse("1 CFM/ft²", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CubicFeetPerMinutePerSquareFoot, CubicFeetPerMinutePerSquareFootTolerance);
                 Assert.Equal(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = VolumeFlowPerArea.Parse("1 m³/(s·m²)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CubicMetersPerSecondPerSquareMeter, CubicMetersPerSecondPerSquareMeterTolerance);
                 Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(VolumeFlowPerArea.TryParse("1 CFM/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CubicFeetPerMinutePerSquareFoot, CubicFeetPerMinutePerSquareFootTolerance);
                 Assert.Equal(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(VolumeFlowPerArea.TryParse("1 m³/(s·m²)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CubicMetersPerSecondPerSquareMeter, CubicMetersPerSecondPerSquareMeterTolerance);
                 Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -234,30 +232,28 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = VolumeFlowPerArea.ParseUnit("CFM/ft²", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = VolumeFlowPerArea.ParseUnit("m³/(s·m²)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(VolumeFlowPerArea.TryParseUnit("CFM/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(VolumeFlowPerArea.TryParseUnit("m³/(s·m²)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

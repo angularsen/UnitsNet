@@ -277,285 +277,265 @@ namespace UnitsNet.Tests
                 var parsed = ReciprocalLength.Parse("1 cm⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseCentimeters, InverseCentimetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/cm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseCentimeters, InverseCentimetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 ft⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseFeet, InverseFeetTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/ft", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseFeet, InverseFeetTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 in⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseInches, InverseInchesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/in", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseInches, InverseInchesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 m⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMeters, InverseMetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/m", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMeters, InverseMetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 µin⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMicroinches, InverseMicroinchesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/µin", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMicroinches, InverseMicroinchesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 mil⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMils, InverseMilsTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMil, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/mil", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMils, InverseMilsTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMil, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 mi⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMiles, InverseMilesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMile, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/mi", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMiles, InverseMilesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMile, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 mm⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMillimeters, InverseMillimetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/mm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMillimeters, InverseMillimetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 ftUS⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseUsSurveyFeet, InverseUsSurveyFeetTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/ftUS", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseUsSurveyFeet, InverseUsSurveyFeetTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 yd⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseYards, InverseYardsTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ReciprocalLength.Parse("1 1/yd", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseYards, InverseYardsTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 cm⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseCentimeters, InverseCentimetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseCentimeters, InverseCentimetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 ft⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseFeet, InverseFeetTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseFeet, InverseFeetTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 in⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseInches, InverseInchesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseInches, InverseInchesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 m⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMeters, InverseMetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMeters, InverseMetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 µin⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMicroinches, InverseMicroinchesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/µin", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMicroinches, InverseMicroinchesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 mil⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMils, InverseMilsTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMil, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/mil", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMils, InverseMilsTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMil, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 mi⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMiles, InverseMilesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMile, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/mi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMiles, InverseMilesTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMile, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 mm⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMillimeters, InverseMillimetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMillimeters, InverseMillimetersTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 ftUS⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseUsSurveyFeet, InverseUsSurveyFeetTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/ftUS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseUsSurveyFeet, InverseUsSurveyFeetTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 yd⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseYards, InverseYardsTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParse("1 1/yd", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseYards, InverseYardsTolerance);
                 Assert.Equal(ReciprocalLengthUnit.InverseYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -566,246 +546,226 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("cm⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/cm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("ft⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/ft", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("in⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/in", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("m⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/m", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("µin⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/µin", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("mil⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMil, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/mil", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMil, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("mi⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMile, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/mi", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMile, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("mm⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/mm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("ftUS⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/ftUS", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("yd⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseYard, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ReciprocalLength.ParseUnit("1/yd", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ReciprocalLengthUnit.InverseYard, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("cm⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseCentimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("ft⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("in⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("m⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("µin⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/µin", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMicroinch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("mil⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMil, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/mil", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMil, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("mi⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMile, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/mi", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMile, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("mm⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseMillimeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("ftUS⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/ftUS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseUsSurveyFoot, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("yd⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseYard, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ReciprocalLength.TryParseUnit("1/yd", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ReciprocalLengthUnit.InverseYard, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

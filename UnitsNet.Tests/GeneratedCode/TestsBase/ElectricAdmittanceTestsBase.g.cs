@@ -217,61 +217,57 @@ namespace UnitsNet.Tests
                 var parsed = ElectricAdmittance.Parse("1 µS", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
                 Assert.Equal(ElectricAdmittanceUnit.Microsiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ElectricAdmittance.Parse("1 mS", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Millisiemens, MillisiemensTolerance);
                 Assert.Equal(ElectricAdmittanceUnit.Millisiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ElectricAdmittance.Parse("1 nS", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanosiemens, NanosiemensTolerance);
                 Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ElectricAdmittance.Parse("1 S", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
                 Assert.Equal(ElectricAdmittanceUnit.Siemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(ElectricAdmittance.TryParse("1 µS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
                 Assert.Equal(ElectricAdmittanceUnit.Microsiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricAdmittance.TryParse("1 mS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Millisiemens, MillisiemensTolerance);
                 Assert.Equal(ElectricAdmittanceUnit.Millisiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricAdmittance.TryParse("1 nS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanosiemens, NanosiemensTolerance);
                 Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricAdmittance.TryParse("1 S", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
                 Assert.Equal(ElectricAdmittanceUnit.Siemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -282,54 +278,50 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = ElectricAdmittance.ParseUnit("µS", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricAdmittanceUnit.Microsiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ElectricAdmittance.ParseUnit("mS", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricAdmittanceUnit.Millisiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ElectricAdmittance.ParseUnit("nS", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ElectricAdmittance.ParseUnit("S", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricAdmittanceUnit.Siemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(ElectricAdmittance.TryParseUnit("µS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricAdmittanceUnit.Microsiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricAdmittance.TryParseUnit("mS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricAdmittanceUnit.Millisiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricAdmittance.TryParseUnit("nS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ElectricAdmittance.TryParseUnit("S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricAdmittanceUnit.Siemens, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

@@ -217,61 +217,57 @@ namespace UnitsNet.Tests
                 var parsed = FuelEfficiency.Parse("1 km/L", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilometersPerLiters, KilometersPerLitersTolerance);
                 Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = FuelEfficiency.Parse("1 L/100km", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.LitersPer100Kilometers, LitersPer100KilometersTolerance);
                 Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = FuelEfficiency.Parse("1 mpg (imp.)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilesPerUkGallon, MilesPerUkGallonTolerance);
                 Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = FuelEfficiency.Parse("1 mpg (U.S.)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilesPerUsGallon, MilesPerUsGallonTolerance);
                 Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(FuelEfficiency.TryParse("1 km/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilometersPerLiters, KilometersPerLitersTolerance);
                 Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(FuelEfficiency.TryParse("1 L/100km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.LitersPer100Kilometers, LitersPer100KilometersTolerance);
                 Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(FuelEfficiency.TryParse("1 mpg (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilesPerUkGallon, MilesPerUkGallonTolerance);
                 Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(FuelEfficiency.TryParse("1 mpg (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilesPerUsGallon, MilesPerUsGallonTolerance);
                 Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -282,54 +278,50 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = FuelEfficiency.ParseUnit("km/L", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = FuelEfficiency.ParseUnit("L/100km", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = FuelEfficiency.ParseUnit("mpg (imp.)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = FuelEfficiency.ParseUnit("mpg (U.S.)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(FuelEfficiency.TryParseUnit("km/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(FuelEfficiencyUnit.KilometerPerLiter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(FuelEfficiency.TryParseUnit("L/100km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(FuelEfficiencyUnit.LiterPer100Kilometers, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(FuelEfficiency.TryParseUnit("mpg (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(FuelEfficiencyUnit.MilePerUkGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(FuelEfficiency.TryParseUnit("mpg (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(FuelEfficiencyUnit.MilePerUsGallon, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

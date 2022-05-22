@@ -267,131 +267,122 @@ namespace UnitsNet.Tests
                 var parsed = StandardVolumeFlow.Parse("1 sccm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicCentimetersPerMinute, StandardCubicCentimetersPerMinuteTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = StandardVolumeFlow.Parse("1 scfh", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerHour, StandardCubicFeetPerHourTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = StandardVolumeFlow.Parse("1 scfm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerMinute, StandardCubicFeetPerMinuteTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = StandardVolumeFlow.Parse("1 Sft³/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerSecond, StandardCubicFeetPerSecondTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = StandardVolumeFlow.Parse("1 Sm³/d", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerDay, StandardCubicMetersPerDayTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = StandardVolumeFlow.Parse("1 Sm³/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerHour, StandardCubicMetersPerHourTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = StandardVolumeFlow.Parse("1 Sm³/min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerMinute, StandardCubicMetersPerMinuteTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = StandardVolumeFlow.Parse("1 Sm³/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = StandardVolumeFlow.Parse("1 slm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.StandardLitersPerMinute, StandardLitersPerMinuteTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 sccm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicCentimetersPerMinute, StandardCubicCentimetersPerMinuteTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 scfh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerHour, StandardCubicFeetPerHourTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 scfm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerMinute, StandardCubicFeetPerMinuteTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 Sft³/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicFeetPerSecond, StandardCubicFeetPerSecondTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 Sm³/d", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerDay, StandardCubicMetersPerDayTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 Sm³/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerHour, StandardCubicMetersPerHourTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 Sm³/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerMinute, StandardCubicMetersPerMinuteTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 Sm³/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParse("1 slm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.StandardLitersPerMinute, StandardLitersPerMinuteTolerance);
                 Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -402,114 +393,105 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("sccm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("scfh", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("scfm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("Sft³/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("Sm³/d", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("Sm³/h", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("Sm³/min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("Sm³/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = StandardVolumeFlow.ParseUnit("slm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("sccm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("scfh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("scfm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("Sft³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("Sm³/d", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("Sm³/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("Sm³/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("Sm³/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(StandardVolumeFlow.TryParseUnit("slm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

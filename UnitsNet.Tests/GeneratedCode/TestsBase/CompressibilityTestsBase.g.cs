@@ -247,201 +247,163 @@ namespace UnitsNet.Tests
                 var parsed = Compressibility.Parse("1 atm⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseAtmospheres, InverseAtmospheresTolerance);
                 Assert.Equal(CompressibilityUnit.InverseAtmosphere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 1/atm", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseAtmospheres, InverseAtmospheresTolerance);
                 Assert.Equal(CompressibilityUnit.InverseAtmosphere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 bar⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseBars, InverseBarsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseBar, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 1/bar", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseBars, InverseBarsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseBar, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 kPa⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseKilopascals, InverseKilopascalsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseKilopascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 1/kPa", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseKilopascals, InverseKilopascalsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseKilopascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 kPa⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMegapascals, InverseMegapascalsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseMegapascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 1/kPa", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMegapascals, InverseMegapascalsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseMegapascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 mbar⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMillibars, InverseMillibarsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseMillibar, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 1/mbar", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InverseMillibars, InverseMillibarsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseMillibar, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 Pa⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InversePascals, InversePascalsTolerance);
                 Assert.Equal(CompressibilityUnit.InversePascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 1/Pa", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InversePascals, InversePascalsTolerance);
                 Assert.Equal(CompressibilityUnit.InversePascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 psi⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InversePoundsForcePerSquareInch, InversePoundsForcePerSquareInchTolerance);
                 Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Compressibility.Parse("1 1/psi", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.InversePoundsForcePerSquareInch, InversePoundsForcePerSquareInchTolerance);
                 Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Compressibility.TryParse("1 atm⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseAtmospheres, InverseAtmospheresTolerance);
                 Assert.Equal(CompressibilityUnit.InverseAtmosphere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParse("1 1/atm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseAtmospheres, InverseAtmospheresTolerance);
                 Assert.Equal(CompressibilityUnit.InverseAtmosphere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParse("1 bar⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseBars, InverseBarsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseBar, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParse("1 1/bar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseBars, InverseBarsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseBar, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Compressibility.TryParse("1 kPa⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseKilopascals, InverseKilopascalsTolerance);
-                Assert.Equal(CompressibilityUnit.InverseKilopascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
-            {
-                Assert.True(Compressibility.TryParse("1 1/kPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseKilopascals, InverseKilopascalsTolerance);
-                Assert.Equal(CompressibilityUnit.InverseKilopascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
-            {
-                Assert.True(Compressibility.TryParse("1 kPa⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseMegapascals, InverseMegapascalsTolerance);
-                Assert.Equal(CompressibilityUnit.InverseMegapascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
-            {
-                Assert.True(Compressibility.TryParse("1 1/kPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseMegapascals, InverseMegapascalsTolerance);
-                Assert.Equal(CompressibilityUnit.InverseMegapascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Compressibility.TryParse("1 mbar⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMillibars, InverseMillibarsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseMillibar, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParse("1 1/mbar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InverseMillibars, InverseMillibarsTolerance);
                 Assert.Equal(CompressibilityUnit.InverseMillibar, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParse("1 Pa⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InversePascals, InversePascalsTolerance);
                 Assert.Equal(CompressibilityUnit.InversePascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParse("1 1/Pa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InversePascals, InversePascalsTolerance);
                 Assert.Equal(CompressibilityUnit.InversePascal, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParse("1 psi⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InversePoundsForcePerSquareInch, InversePoundsForcePerSquareInchTolerance);
                 Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParse("1 1/psi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.InversePoundsForcePerSquareInch, InversePoundsForcePerSquareInchTolerance);
                 Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -452,174 +414,140 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Compressibility.ParseUnit("atm⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseAtmosphere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("1/atm", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseAtmosphere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("bar⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseBar, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("1/bar", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseBar, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("kPa⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseKilopascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("1/kPa", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseKilopascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("kPa⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseMegapascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("1/kPa", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseMegapascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("mbar⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseMillibar, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("1/mbar", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InverseMillibar, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("Pa⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InversePascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("1/Pa", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InversePascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("psi⁻¹", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Compressibility.ParseUnit("1/psi", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("atm⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InverseAtmosphere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("1/atm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InverseAtmosphere, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("bar⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InverseBar, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("1/bar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InverseBar, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
-            {
-                Assert.True(Compressibility.TryParseUnit("kPa⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CompressibilityUnit.InverseKilopascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
-            {
-                Assert.True(Compressibility.TryParseUnit("1/kPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CompressibilityUnit.InverseKilopascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
-            {
-                Assert.True(Compressibility.TryParseUnit("kPa⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CompressibilityUnit.InverseMegapascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
-            {
-                Assert.True(Compressibility.TryParseUnit("1/kPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(CompressibilityUnit.InverseMegapascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
-
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("mbar⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InverseMillibar, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("1/mbar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InverseMillibar, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("Pa⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InversePascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("1/Pa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InversePascal, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("psi⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Compressibility.TryParseUnit("1/psi", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

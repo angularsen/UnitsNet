@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = ElectricChargeDensity.Parse("1 C/m³", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
                 Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(ElectricChargeDensity.TryParse("1 C/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
                 Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = ElectricChargeDensity.ParseUnit("C/m³", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(ElectricChargeDensity.TryParseUnit("C/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

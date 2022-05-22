@@ -207,47 +207,44 @@ namespace UnitsNet.Tests
                 var parsed = ApparentEnergy.Parse("1 kVAh", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilovoltampereHours, KilovoltampereHoursTolerance);
                 Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ApparentEnergy.Parse("1 MVAh", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegavoltampereHours, MegavoltampereHoursTolerance);
                 Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = ApparentEnergy.Parse("1 VAh", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.VoltampereHours, VoltampereHoursTolerance);
                 Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(ApparentEnergy.TryParse("1 kVAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilovoltampereHours, KilovoltampereHoursTolerance);
                 Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ApparentEnergy.TryParse("1 MVAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegavoltampereHours, MegavoltampereHoursTolerance);
                 Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ApparentEnergy.TryParse("1 VAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.VoltampereHours, VoltampereHoursTolerance);
                 Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -258,42 +255,39 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = ApparentEnergy.ParseUnit("kVAh", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ApparentEnergy.ParseUnit("MVAh", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = ApparentEnergy.ParseUnit("VAh", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(ApparentEnergy.TryParseUnit("kVAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ApparentEnergy.TryParseUnit("MVAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(ApparentEnergy.TryParseUnit("VAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

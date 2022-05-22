@@ -207,47 +207,44 @@ namespace UnitsNet.Tests
                 var parsed = BrakeSpecificFuelConsumption.Parse("1 g/kWh", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerKiloWattHour, GramsPerKiloWattHourTolerance);
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BrakeSpecificFuelConsumption.Parse("1 kg/J", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerJoule, KilogramsPerJouleTolerance);
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BrakeSpecificFuelConsumption.Parse("1 lb/hph", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerMechanicalHorsepowerHour, PoundsPerMechanicalHorsepowerHourTolerance);
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(BrakeSpecificFuelConsumption.TryParse("1 g/kWh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerKiloWattHour, GramsPerKiloWattHourTolerance);
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BrakeSpecificFuelConsumption.TryParse("1 kg/J", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerJoule, KilogramsPerJouleTolerance);
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BrakeSpecificFuelConsumption.TryParse("1 lb/hph", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerMechanicalHorsepowerHour, PoundsPerMechanicalHorsepowerHourTolerance);
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -258,42 +255,39 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = BrakeSpecificFuelConsumption.ParseUnit("g/kWh", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BrakeSpecificFuelConsumption.ParseUnit("kg/J", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BrakeSpecificFuelConsumption.ParseUnit("lb/hph", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(BrakeSpecificFuelConsumption.TryParseUnit("g/kWh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BrakeSpecificFuelConsumption.TryParseUnit("kg/J", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BrakeSpecificFuelConsumption.TryParseUnit("lb/hph", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

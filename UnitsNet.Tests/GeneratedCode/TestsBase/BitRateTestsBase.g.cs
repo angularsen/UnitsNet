@@ -412,551 +412,512 @@ namespace UnitsNet.Tests
                 var parsed = BitRate.Parse("1 bit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.BitsPerSecond, BitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.BitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 bps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.BitsPerSecond, BitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.BitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 B/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.BytesPerSecond, BytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.BytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Ebit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ExabitsPerSecond, ExabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Ebps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ExabitsPerSecond, ExabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 EB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ExabytesPerSecond, ExabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Eibit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ExbibitsPerSecond, ExbibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExbibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Eibps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ExbibitsPerSecond, ExbibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExbibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 EiB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.ExbibytesPerSecond, ExbibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExbibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Gibit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GibibitsPerSecond, GibibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GibibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Gibps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GibibitsPerSecond, GibibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GibibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 GiB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GibibytesPerSecond, GibibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GibibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Gbit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GigabitsPerSecond, GigabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GigabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Gbps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GigabitsPerSecond, GigabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GigabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 GB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GigabytesPerSecond, GigabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GigabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Kibit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KibibitsPerSecond, KibibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KibibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Kibps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KibibitsPerSecond, KibibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KibibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 KiB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KibibytesPerSecond, KibibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KibibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 kbit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilobitsPerSecond, KilobitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KilobitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 kbps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilobitsPerSecond, KilobitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KilobitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 kB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilobytesPerSecond, KilobytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KilobytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Mibit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MebibitsPerSecond, MebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Mibps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MebibitsPerSecond, MebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 MiB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MebibytesPerSecond, MebibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MebibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Mbit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegabitsPerSecond, MegabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MegabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Mbps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegabitsPerSecond, MegabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MegabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 MB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegabytesPerSecond, MegabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MegabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Pibit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PebibitsPerSecond, PebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Pibps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PebibitsPerSecond, PebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 PiB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PebibytesPerSecond, PebibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PebibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Pbit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PetabitsPerSecond, PetabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PetabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Pbps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PetabitsPerSecond, PetabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PetabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 PB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PetabytesPerSecond, PetabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PetabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Tibit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.TebibitsPerSecond, TebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Tibps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.TebibitsPerSecond, TebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 TiB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.TebibytesPerSecond, TebibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TebibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Tbit/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.TerabitsPerSecond, TerabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TerabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 Tbps", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.TerabitsPerSecond, TerabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TerabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = BitRate.Parse("1 TB/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.TerabytesPerSecond, TerabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TerabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(BitRate.TryParse("1 bit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.BitsPerSecond, BitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.BitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 bps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.BitsPerSecond, BitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.BitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 B/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.BytesPerSecond, BytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.BytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Ebit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ExabitsPerSecond, ExabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Ebps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ExabitsPerSecond, ExabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 EB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ExabytesPerSecond, ExabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Eibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ExbibitsPerSecond, ExbibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExbibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Eibps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ExbibitsPerSecond, ExbibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExbibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 EiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.ExbibytesPerSecond, ExbibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.ExbibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Gibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GibibitsPerSecond, GibibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GibibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Gibps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GibibitsPerSecond, GibibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GibibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 GiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GibibytesPerSecond, GibibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GibibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Gbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GigabitsPerSecond, GigabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GigabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Gbps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GigabitsPerSecond, GigabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GigabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 GB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GigabytesPerSecond, GigabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.GigabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Kibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KibibitsPerSecond, KibibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KibibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Kibps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KibibitsPerSecond, KibibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KibibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 KiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KibibytesPerSecond, KibibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KibibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 kbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilobitsPerSecond, KilobitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KilobitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 kbps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilobitsPerSecond, KilobitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KilobitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 kB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilobytesPerSecond, KilobytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.KilobytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Mibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MebibitsPerSecond, MebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Mibps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MebibitsPerSecond, MebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 MiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MebibytesPerSecond, MebibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MebibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Mbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegabitsPerSecond, MegabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MegabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Mbps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegabitsPerSecond, MegabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MegabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 MB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegabytesPerSecond, MegabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.MegabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Pibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PebibitsPerSecond, PebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Pibps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PebibitsPerSecond, PebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 PiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PebibytesPerSecond, PebibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PebibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Pbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PetabitsPerSecond, PetabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PetabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Pbps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PetabitsPerSecond, PetabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PetabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 PB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PetabytesPerSecond, PetabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.PetabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Tibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.TebibitsPerSecond, TebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Tibps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.TebibitsPerSecond, TebibitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TebibitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 TiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.TebibytesPerSecond, TebibytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TebibytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Tbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.TerabitsPerSecond, TerabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TerabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 Tbps", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.TerabitsPerSecond, TerabitsPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TerabitPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParse("1 TB/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.TerabytesPerSecond, TerabytesPerSecondTolerance);
                 Assert.Equal(BitRateUnit.TerabytePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -967,474 +928,435 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = BitRate.ParseUnit("bit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.BitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("bps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.BitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("B/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.BytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Ebit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.ExabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Ebps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.ExabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("EB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.ExabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Eibit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.ExbibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Eibps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.ExbibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("EiB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.ExbibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Gibit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.GibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Gibps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.GibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("GiB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.GibibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Gbit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.GigabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Gbps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.GigabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("GB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.GigabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Kibit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.KibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Kibps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.KibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("KiB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.KibibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("kbit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.KilobitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("kbps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.KilobitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("kB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.KilobytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Mibit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.MebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Mibps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.MebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("MiB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.MebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Mbit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.MegabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Mbps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.MegabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("MB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.MegabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Pibit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.PebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Pibps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.PebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("PiB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.PebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Pbit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.PetabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Pbps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.PetabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("PB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.PetabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Tibit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.TebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Tibps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.TebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("TiB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.TebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Tbit/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.TerabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("Tbps", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.TerabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = BitRate.ParseUnit("TB/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(BitRateUnit.TerabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(BitRate.TryParseUnit("bit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.BitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("bps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.BitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("B/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.BytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Ebit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.ExabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Ebps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.ExabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("EB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.ExabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Eibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.ExbibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Eibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.ExbibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("EiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.ExbibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Gibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.GibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Gibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.GibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("GiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.GibibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Gbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.GigabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Gbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.GigabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("GB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.GigabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Kibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.KibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Kibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.KibibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("KiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.KibibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("kbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.KilobitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("kbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.KilobitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("kB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.KilobytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Mibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.MebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Mibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.MebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("MiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.MebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Mbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.MegabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Mbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.MegabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("MB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.MegabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Pibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.PebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Pibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.PebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("PiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.PebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Pbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.PetabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Pbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.PetabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("PB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.PetabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Tibit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.TebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Tibps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.TebibitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("TiB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.TebibytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Tbit/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.TerabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("Tbps", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.TerabitPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(BitRate.TryParseUnit("TB/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(BitRateUnit.TerabytePerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

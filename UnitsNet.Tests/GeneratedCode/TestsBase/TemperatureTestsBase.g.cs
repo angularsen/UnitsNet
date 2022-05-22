@@ -277,145 +277,135 @@ namespace UnitsNet.Tests
                 var parsed = Temperature.Parse("1 °C", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelsius, DegreesCelsiusTolerance);
                 Assert.Equal(TemperatureUnit.DegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 °De", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesDelisle, DegreesDelisleTolerance);
                 Assert.Equal(TemperatureUnit.DegreeDelisle, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 °F", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesFahrenheit, DegreesFahrenheitTolerance);
                 Assert.Equal(TemperatureUnit.DegreeFahrenheit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 °N", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesNewton, DegreesNewtonTolerance);
                 Assert.Equal(TemperatureUnit.DegreeNewton, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 °R", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesRankine, DegreesRankineTolerance);
                 Assert.Equal(TemperatureUnit.DegreeRankine, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 °Ré", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesReaumur, DegreesReaumurTolerance);
                 Assert.Equal(TemperatureUnit.DegreeReaumur, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 °Rø", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DegreesRoemer, DegreesRoemerTolerance);
                 Assert.Equal(TemperatureUnit.DegreeRoemer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 K", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Kelvins, KelvinsTolerance);
                 Assert.Equal(TemperatureUnit.Kelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 m°C", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillidegreesCelsius, MillidegreesCelsiusTolerance);
                 Assert.Equal(TemperatureUnit.MillidegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Temperature.Parse("1 T⊙", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.SolarTemperatures, SolarTemperaturesTolerance);
                 Assert.Equal(TemperatureUnit.SolarTemperature, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Temperature.TryParse("1 °C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesCelsius, DegreesCelsiusTolerance);
                 Assert.Equal(TemperatureUnit.DegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 °De", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesDelisle, DegreesDelisleTolerance);
                 Assert.Equal(TemperatureUnit.DegreeDelisle, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 °F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesFahrenheit, DegreesFahrenheitTolerance);
                 Assert.Equal(TemperatureUnit.DegreeFahrenheit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 °N", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesNewton, DegreesNewtonTolerance);
                 Assert.Equal(TemperatureUnit.DegreeNewton, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 °R", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesRankine, DegreesRankineTolerance);
                 Assert.Equal(TemperatureUnit.DegreeRankine, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 °Ré", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesReaumur, DegreesReaumurTolerance);
                 Assert.Equal(TemperatureUnit.DegreeReaumur, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 °Rø", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DegreesRoemer, DegreesRoemerTolerance);
                 Assert.Equal(TemperatureUnit.DegreeRoemer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Kelvins, KelvinsTolerance);
                 Assert.Equal(TemperatureUnit.Kelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 m°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MillidegreesCelsius, MillidegreesCelsiusTolerance);
                 Assert.Equal(TemperatureUnit.MillidegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParse("1 T⊙", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.SolarTemperatures, SolarTemperaturesTolerance);
                 Assert.Equal(TemperatureUnit.SolarTemperature, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -426,126 +416,116 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Temperature.ParseUnit("°C", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.DegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("°De", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.DegreeDelisle, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("°F", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.DegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("°N", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.DegreeNewton, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("°R", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.DegreeRankine, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("°Ré", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.DegreeReaumur, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("°Rø", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.DegreeRoemer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("K", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.Kelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("m°C", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.MillidegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Temperature.ParseUnit("T⊙", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(TemperatureUnit.SolarTemperature, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Temperature.TryParseUnit("°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.DegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("°De", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.DegreeDelisle, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("°F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.DegreeFahrenheit, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("°N", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.DegreeNewton, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("°R", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.DegreeRankine, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("°Ré", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.DegreeReaumur, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("°Rø", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.DegreeRoemer, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.Kelvin, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("m°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.MillidegreeCelsius, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Temperature.TryParseUnit("T⊙", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(TemperatureUnit.SolarTemperature, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

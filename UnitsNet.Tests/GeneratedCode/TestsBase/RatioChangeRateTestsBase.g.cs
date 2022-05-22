@@ -197,33 +197,31 @@ namespace UnitsNet.Tests
                 var parsed = RatioChangeRate.Parse("1 /s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
                 Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = RatioChangeRate.Parse("1 %/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PercentsPerSecond, PercentsPerSecondTolerance);
                 Assert.Equal(RatioChangeRateUnit.PercentPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(RatioChangeRate.TryParse("1 /s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
                 Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(RatioChangeRate.TryParse("1 %/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PercentsPerSecond, PercentsPerSecondTolerance);
                 Assert.Equal(RatioChangeRateUnit.PercentPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -234,30 +232,28 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = RatioChangeRate.ParseUnit("/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = RatioChangeRate.ParseUnit("%/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(RatioChangeRateUnit.PercentPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(RatioChangeRate.TryParseUnit("/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(RatioChangeRate.TryParseUnit("%/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(RatioChangeRateUnit.PercentPerSecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

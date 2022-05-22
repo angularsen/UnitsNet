@@ -187,19 +187,18 @@ namespace UnitsNet.Tests
                 var parsed = Permeability.Parse("1 H/m", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.HenriesPerMeter, HenriesPerMeterTolerance);
                 Assert.Equal(PermeabilityUnit.HenryPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Permeability.TryParse("1 H/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.HenriesPerMeter, HenriesPerMeterTolerance);
                 Assert.Equal(PermeabilityUnit.HenryPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -210,18 +209,17 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Permeability.ParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Permeability.TryParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

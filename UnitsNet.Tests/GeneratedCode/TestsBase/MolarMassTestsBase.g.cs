@@ -297,341 +297,317 @@ namespace UnitsNet.Tests
                 var parsed = MolarMass.Parse("1 cg/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerMole, CentigramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.CentigramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 сг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerMole, CentigramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.CentigramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 dag/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecagramsPerMole, DecagramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.DecagramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 даг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.DecagramsPerMole, DecagramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.DecagramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 dg/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerMole, DecigramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.DecigramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 дг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerMole, DecigramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.DecigramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 g/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerMole, GramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.GramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 г/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.GramsPerMole, GramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.GramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 hg/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.HectogramsPerMole, HectogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.HectogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 гг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.HectogramsPerMole, HectogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.HectogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 kg/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerMole, KilogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.KilogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 кг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerMole, KilogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.KilogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 klb/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsPerMole, KilopoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.KilopoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 кфунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsPerMole, KilopoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.KilopoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 Mlb/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegapoundsPerMole, MegapoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MegapoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 Мфунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.MegapoundsPerMole, MegapoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MegapoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 µg/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerMole, MicrogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MicrogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 мкг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerMole, MicrogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MicrogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 mg/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerMole, MilligramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MilligramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 мг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerMole, MilligramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MilligramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 ng/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerMole, NanogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.NanogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 нг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerMole, NanogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.NanogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 lb/mol", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerMole, PoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.PoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = MolarMass.Parse("1 фунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerMole, PoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.PoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(MolarMass.TryParse("1 cg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerMole, CentigramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.CentigramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 сг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CentigramsPerMole, CentigramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.CentigramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 dag/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecagramsPerMole, DecagramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.DecagramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 даг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecagramsPerMole, DecagramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.DecagramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 dg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerMole, DecigramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.DecigramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 дг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.DecigramsPerMole, DecigramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.DecigramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 g/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerMole, GramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.GramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 г/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.GramsPerMole, GramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.GramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 hg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.HectogramsPerMole, HectogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.HectogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 гг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.HectogramsPerMole, HectogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.HectogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 kg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerMole, KilogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.KilogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 кг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilogramsPerMole, KilogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.KilogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 klb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsPerMole, KilopoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.KilopoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 кфунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilopoundsPerMole, KilopoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.KilopoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 Mlb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegapoundsPerMole, MegapoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MegapoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 Мфунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MegapoundsPerMole, MegapoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MegapoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 µg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerMole, MicrogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MicrogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 мкг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MicrogramsPerMole, MicrogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MicrogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 mg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerMole, MilligramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MilligramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 мг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MilligramsPerMole, MilligramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.MilligramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 ng/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerMole, NanogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.NanogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 нг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NanogramsPerMole, NanogramsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.NanogramPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 lb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerMole, PoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.PoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParse("1 фунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundsPerMole, PoundsPerMoleTolerance);
                 Assert.Equal(MolarMassUnit.PoundPerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -642,294 +618,270 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = MolarMass.ParseUnit("cg/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.CentigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("сг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.CentigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("dag/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.DecagramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("даг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.DecagramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("dg/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.DecigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("дг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.DecigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("g/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.GramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("г/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.GramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("hg/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.HectogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("гг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.HectogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("kg/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.KilogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("кг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.KilogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("klb/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.KilopoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("кфунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.KilopoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("Mlb/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.MegapoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("Мфунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.MegapoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("µg/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.MicrogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("мкг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.MicrogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("mg/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.MilligramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("мг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.MilligramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("ng/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.NanogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("нг/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.NanogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("lb/mol", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarMassUnit.PoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = MolarMass.ParseUnit("фунт/моль", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(MolarMassUnit.PoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("cg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.CentigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("сг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.CentigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("dag/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.DecagramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("даг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.DecagramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("dg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.DecigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("дг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.DecigramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("g/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.GramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("г/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.GramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("hg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.HectogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("гг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.HectogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("kg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.KilogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("кг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.KilogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("klb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.KilopoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("кфунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.KilopoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("Mlb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.MegapoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("Мфунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.MegapoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("µg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.MicrogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("мкг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.MicrogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("mg/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.MilligramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("мг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.MilligramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("ng/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.NanogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("нг/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.NanogramPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("lb/mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.PoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(MolarMass.TryParseUnit("фунт/моль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(MolarMassUnit.PoundPerMole, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 

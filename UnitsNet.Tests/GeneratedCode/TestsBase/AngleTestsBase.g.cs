@@ -337,537 +337,499 @@ namespace UnitsNet.Tests
                 var parsed = Angle.Parse("1 '", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
                 Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 arcmin", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
                 Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 amin", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
                 Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 min", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
                 Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 ″", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
                 Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 arcsec", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
                 Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 asec", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
                 Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 sec", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
                 Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 crad", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Centiradians, CentiradiansTolerance);
                 Assert.Equal(AngleUnit.Centiradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 срад", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Centiradians, CentiradiansTolerance);
                 Assert.Equal(AngleUnit.Centiradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 drad", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Deciradians, DeciradiansTolerance);
                 Assert.Equal(AngleUnit.Deciradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 драд", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Deciradians, DeciradiansTolerance);
                 Assert.Equal(AngleUnit.Deciradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 °", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
                 Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 deg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
                 Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 °", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
                 Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 g", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Gradians, GradiansTolerance);
                 Assert.Equal(AngleUnit.Gradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 g", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Gradians, GradiansTolerance);
                 Assert.Equal(AngleUnit.Gradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 µ°", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
                 Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 µdeg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
                 Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 мк°", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
                 Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 µrad", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Microradians, MicroradiansTolerance);
                 Assert.Equal(AngleUnit.Microradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 мкрад", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Microradians, MicroradiansTolerance);
                 Assert.Equal(AngleUnit.Microradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 m°", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
                 Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 mdeg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
                 Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 м°", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
                 Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 mrad", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Milliradians, MilliradiansTolerance);
                 Assert.Equal(AngleUnit.Milliradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 мрад", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Milliradians, MilliradiansTolerance);
                 Assert.Equal(AngleUnit.Milliradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 n°", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
                 Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 ndeg", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
                 Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 н°", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
                 Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 nrad", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Nanoradians, NanoradiansTolerance);
                 Assert.Equal(AngleUnit.Nanoradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 нрад", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Nanoradians, NanoradiansTolerance);
                 Assert.Equal(AngleUnit.Nanoradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 mil", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.NatoMils, NatoMilsTolerance);
                 Assert.Equal(AngleUnit.NatoMil, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 rad", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Radians, RadiansTolerance);
                 Assert.Equal(AngleUnit.Radian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 рад", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Radians, RadiansTolerance);
                 Assert.Equal(AngleUnit.Radian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 r", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Revolutions, RevolutionsTolerance);
                 Assert.Equal(AngleUnit.Revolution, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 r", CultureInfo.GetCultureInfo("ru-RU"));
                 AssertEx.EqualTolerance(1, parsed.Revolutions, RevolutionsTolerance);
                 Assert.Equal(AngleUnit.Revolution, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsed = Angle.Parse("1 sin(θ)", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Tilt, TiltTolerance);
                 Assert.Equal(AngleUnit.Tilt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParse()
         {
-            try
             {
                 Assert.True(Angle.TryParse("1 '", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
                 Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 arcmin", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
                 Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 amin", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
                 Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
                 Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 ″", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
                 Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 arcsec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
                 Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 asec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
                 Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 sec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
                 Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 crad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Centiradians, CentiradiansTolerance);
                 Assert.Equal(AngleUnit.Centiradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 срад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Centiradians, CentiradiansTolerance);
                 Assert.Equal(AngleUnit.Centiradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 drad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Deciradians, DeciradiansTolerance);
                 Assert.Equal(AngleUnit.Deciradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 драд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Deciradians, DeciradiansTolerance);
                 Assert.Equal(AngleUnit.Deciradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 °", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
                 Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 deg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
                 Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 °", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
                 Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Gradians, GradiansTolerance);
                 Assert.Equal(AngleUnit.Gradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 g", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Gradians, GradiansTolerance);
                 Assert.Equal(AngleUnit.Gradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 µ°", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
                 Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 µdeg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
                 Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 мк°", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
                 Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 µrad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microradians, MicroradiansTolerance);
                 Assert.Equal(AngleUnit.Microradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 мкрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Microradians, MicroradiansTolerance);
                 Assert.Equal(AngleUnit.Microradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 m°", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
                 Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 mdeg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
                 Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 м°", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
                 Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 mrad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliradians, MilliradiansTolerance);
                 Assert.Equal(AngleUnit.Milliradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 мрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Milliradians, MilliradiansTolerance);
                 Assert.Equal(AngleUnit.Milliradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 n°", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
                 Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 ndeg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
                 Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 н°", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
                 Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 nrad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoradians, NanoradiansTolerance);
                 Assert.Equal(AngleUnit.Nanoradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 нрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanoradians, NanoradiansTolerance);
                 Assert.Equal(AngleUnit.Nanoradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 mil", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.NatoMils, NatoMilsTolerance);
                 Assert.Equal(AngleUnit.NatoMil, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 rad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Radians, RadiansTolerance);
                 Assert.Equal(AngleUnit.Radian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 рад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Radians, RadiansTolerance);
                 Assert.Equal(AngleUnit.Radian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 r", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Revolutions, RevolutionsTolerance);
                 Assert.Equal(AngleUnit.Revolution, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 r", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Revolutions, RevolutionsTolerance);
                 Assert.Equal(AngleUnit.Revolution, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParse("1 sin(θ)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Tilt, TiltTolerance);
                 Assert.Equal(AngleUnit.Tilt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
@@ -878,462 +840,424 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Angle.ParseUnit("'", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Arcminute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("arcmin", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Arcminute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("amin", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Arcminute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("min", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Arcminute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("″", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Arcsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("arcsec", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Arcsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("asec", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Arcsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("sec", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Arcsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("crad", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Centiradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("срад", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Centiradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("drad", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Deciradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("драд", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Deciradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("°", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Degree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("deg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Degree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("°", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Degree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("g", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Gradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("g", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Gradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("µ°", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Microdegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("µdeg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Microdegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("мк°", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Microdegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("µrad", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Microradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("мкрад", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Microradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("m°", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Millidegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("mdeg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Millidegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("м°", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Millidegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("mrad", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Milliradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("мрад", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Milliradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("n°", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Nanodegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("ndeg", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Nanodegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("н°", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Nanodegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("nrad", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Nanoradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("нрад", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Nanoradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("mil", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.NatoMil, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("rad", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Radian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("рад", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Radian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("r", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Revolution, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("r", CultureInfo.GetCultureInfo("ru-RU"));
                 Assert.Equal(AngleUnit.Revolution, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
             {
                 var parsedUnit = Angle.ParseUnit("sin(θ)", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(AngleUnit.Tilt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
 
         [Fact]
         public void TryParseUnit()
         {
-            try
             {
                 Assert.True(Angle.TryParseUnit("'", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Arcminute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("arcmin", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Arcminute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("amin", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Arcminute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Arcminute, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("″", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Arcsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("arcsec", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Arcsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("asec", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Arcsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("sec", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Arcsecond, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("crad", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Centiradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("срад", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Centiradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("drad", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Deciradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("драд", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Deciradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("°", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Degree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("deg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Degree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("°", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Degree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("g", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Gradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("g", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Gradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("µ°", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Microdegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("µdeg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Microdegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("мк°", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Microdegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("µrad", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Microradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("мкрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Microradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("m°", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Millidegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("mdeg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Millidegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("м°", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Millidegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("mrad", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Milliradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("мрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Milliradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("n°", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Nanodegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("ndeg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Nanodegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("н°", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Nanodegree, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("nrad", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Nanoradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("нрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Nanoradian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("mil", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.NatoMil, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("rad", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Radian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("рад", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Radian, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("r", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Revolution, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("r", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Revolution, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
-            try
             {
                 Assert.True(Angle.TryParseUnit("sin(θ)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(AngleUnit.Tilt, parsedUnit);
-            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+            }
 
         }
 
