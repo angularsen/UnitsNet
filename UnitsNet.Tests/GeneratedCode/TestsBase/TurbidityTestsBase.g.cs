@@ -179,6 +179,52 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Turbidity.Parse("1 NTU", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NTU, NTUTolerance);
+                Assert.Equal(TurbidityUnit.NTU, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Turbidity.TryParse("1 NTU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NTU, NTUTolerance);
+                Assert.Equal(TurbidityUnit.NTU, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Turbidity.ParseUnit("NTU", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TurbidityUnit.NTU, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Turbidity.TryParseUnit("NTU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TurbidityUnit.NTU, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(TurbidityUnit unit)

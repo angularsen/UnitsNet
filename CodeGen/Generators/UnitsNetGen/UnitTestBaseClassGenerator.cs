@@ -281,6 +281,80 @@ namespace UnitsNet.Tests
             }}
         }}
 
+        [Fact]
+        public void Parse()
+        {{");
+            foreach(var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
+            foreach(var localization in unit.Localization)
+            foreach(var abbreviation in localization.Abbreviations)
+            {
+                Writer.WL($@"
+            try
+            {{
+                var parsed = {_quantity.Name}.Parse(""1 {abbreviation}"", CultureInfo.GetCultureInfo(""{localization.Culture}""));
+                AssertEx.EqualTolerance(1, parsed.{unit.PluralName}, {unit.PluralName}Tolerance);
+                Assert.Equal({GetUnitFullName(unit)}, parsed.Unit);
+            }} catch (AmbiguousUnitParseException) {{ /* ignore, currently no info in JSON about ambiguity */ }}
+");
+            }
+            Writer.WL($@"
+        }}
+
+        [Fact]
+        public void TryParse()
+        {{");
+            foreach(var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
+            foreach(var localization in unit.Localization)
+            foreach(var abbreviation in localization.Abbreviations)
+            {
+                Writer.WL($@"
+            try
+            {{
+                Assert.True({_quantity.Name}.TryParse(""1 {abbreviation}"", CultureInfo.GetCultureInfo(""{localization.Culture}""), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.{unit.PluralName}, {unit.PluralName}Tolerance);
+                Assert.Equal({GetUnitFullName(unit)}, parsed.Unit);
+            }} catch (AmbiguousUnitParseException) {{ /* ignore, currently no info in JSON about ambiguity */ }}
+");
+            }
+            Writer.WL($@"
+        }}
+
+        [Fact]
+        public void ParseUnit()
+        {{");
+            foreach(var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
+            foreach(var localization in unit.Localization)
+            foreach(var abbreviation in localization.Abbreviations)
+            {
+                Writer.WL($@"
+            try
+            {{
+                var parsedUnit = {_quantity.Name}.ParseUnit(""{abbreviation}"", CultureInfo.GetCultureInfo(""{localization.Culture}""));
+                Assert.Equal({GetUnitFullName(unit)}, parsedUnit);
+            }} catch (AmbiguousUnitParseException) {{ /* ignore, currently no info in JSON about ambiguity */ }}
+");
+            }
+            Writer.WL($@"
+        }}
+
+        [Fact]
+        public void TryParseUnit()
+        {{");
+            foreach(var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
+            foreach(var localization in unit.Localization)
+            foreach(var abbreviation in localization.Abbreviations)
+            {
+                Writer.WL($@"
+            try
+            {{
+                Assert.True({_quantity.Name}.TryParseUnit(""{abbreviation}"", CultureInfo.GetCultureInfo(""{localization.Culture}""), out var parsedUnit));
+                Assert.Equal({GetUnitFullName(unit)}, parsedUnit);
+            }} catch (AmbiguousUnitParseException) {{ /* ignore, currently no info in JSON about ambiguity */ }}
+");
+            }
+            Writer.WL($@"
+        }}
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit({_unitEnumName} unit)

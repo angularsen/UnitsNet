@@ -394,6 +394,728 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Power.Parse("1 hp(S)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BoilerHorsepower, BoilerHorsepowerTolerance);
+                Assert.Equal(PowerUnit.BoilerHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 Btu/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
+                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 Btu/hr", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
+                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 daW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decawatts, DecawattsTolerance);
+                Assert.Equal(PowerUnit.Decawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 dW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Deciwatts, DeciwattsTolerance);
+                Assert.Equal(PowerUnit.Deciwatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 hp(E)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.ElectricalHorsepower, ElectricalHorsepowerTolerance);
+                Assert.Equal(PowerUnit.ElectricalHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 fW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Femtowatts, FemtowattsTolerance);
+                Assert.Equal(PowerUnit.Femtowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 GJ/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigajoulesPerHour, GigajoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.GigajoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 GW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gigawatts, GigawattsTolerance);
+                Assert.Equal(PowerUnit.Gigawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 hp(H)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.HydraulicHorsepower, HydraulicHorsepowerTolerance);
+                Assert.Equal(PowerUnit.HydraulicHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 J/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerHour, JoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.JoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 kBtu/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
+                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 kBtu/hr", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
+                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 kJ/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerHour, KilojoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.KilojoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 kW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilowatts, KilowattsTolerance);
+                Assert.Equal(PowerUnit.Kilowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 hp(I)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MechanicalHorsepower, MechanicalHorsepowerTolerance);
+                Assert.Equal(PowerUnit.MechanicalHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 MJ/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerHour, MegajoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.MegajoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 MW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megawatts, MegawattsTolerance);
+                Assert.Equal(PowerUnit.Megawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 hp(M)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MetricHorsepower, MetricHorsepowerTolerance);
+                Assert.Equal(PowerUnit.MetricHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 µW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microwatts, MicrowattsTolerance);
+                Assert.Equal(PowerUnit.Microwatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 mJ/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillijoulesPerHour, MillijoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.MillijoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 mW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Milliwatts, MilliwattsTolerance);
+                Assert.Equal(PowerUnit.Milliwatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 nW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanowatts, NanowattsTolerance);
+                Assert.Equal(PowerUnit.Nanowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 PW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Petawatts, PetawattsTolerance);
+                Assert.Equal(PowerUnit.Petawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 pW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picowatts, PicowattsTolerance);
+                Assert.Equal(PowerUnit.Picowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 TW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Terawatts, TerawattsTolerance);
+                Assert.Equal(PowerUnit.Terawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Power.Parse("1 W", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Watts, WattsTolerance);
+                Assert.Equal(PowerUnit.Watt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Power.TryParse("1 hp(S)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BoilerHorsepower, BoilerHorsepowerTolerance);
+                Assert.Equal(PowerUnit.BoilerHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 Btu/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
+                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 Btu/hr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
+                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 daW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decawatts, DecawattsTolerance);
+                Assert.Equal(PowerUnit.Decawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 dW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Deciwatts, DeciwattsTolerance);
+                Assert.Equal(PowerUnit.Deciwatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 hp(E)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.ElectricalHorsepower, ElectricalHorsepowerTolerance);
+                Assert.Equal(PowerUnit.ElectricalHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 fW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Femtowatts, FemtowattsTolerance);
+                Assert.Equal(PowerUnit.Femtowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 GJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigajoulesPerHour, GigajoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.GigajoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 GW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gigawatts, GigawattsTolerance);
+                Assert.Equal(PowerUnit.Gigawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 hp(H)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.HydraulicHorsepower, HydraulicHorsepowerTolerance);
+                Assert.Equal(PowerUnit.HydraulicHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 J/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerHour, JoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.JoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 kBtu/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
+                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 kBtu/hr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
+                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 kJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerHour, KilojoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.KilojoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 kW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilowatts, KilowattsTolerance);
+                Assert.Equal(PowerUnit.Kilowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 hp(I)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MechanicalHorsepower, MechanicalHorsepowerTolerance);
+                Assert.Equal(PowerUnit.MechanicalHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 MJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerHour, MegajoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.MegajoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 MW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megawatts, MegawattsTolerance);
+                Assert.Equal(PowerUnit.Megawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 hp(M)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetricHorsepower, MetricHorsepowerTolerance);
+                Assert.Equal(PowerUnit.MetricHorsepower, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 µW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microwatts, MicrowattsTolerance);
+                Assert.Equal(PowerUnit.Microwatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 mJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillijoulesPerHour, MillijoulesPerHourTolerance);
+                Assert.Equal(PowerUnit.MillijoulePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 mW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Milliwatts, MilliwattsTolerance);
+                Assert.Equal(PowerUnit.Milliwatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 nW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanowatts, NanowattsTolerance);
+                Assert.Equal(PowerUnit.Nanowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 PW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Petawatts, PetawattsTolerance);
+                Assert.Equal(PowerUnit.Petawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 pW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picowatts, PicowattsTolerance);
+                Assert.Equal(PowerUnit.Picowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 TW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Terawatts, TerawattsTolerance);
+                Assert.Equal(PowerUnit.Terawatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParse("1 W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Watts, WattsTolerance);
+                Assert.Equal(PowerUnit.Watt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Power.ParseUnit("hp(S)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.BoilerHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("Btu/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("Btu/hr", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("daW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Decawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("dW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Deciwatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("hp(E)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.ElectricalHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("fW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Femtowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("GJ/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.GigajoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("GW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Gigawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("hp(H)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.HydraulicHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("J/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.JoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("kBtu/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("kBtu/hr", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("kJ/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.KilojoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("kW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Kilowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("hp(I)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.MechanicalHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("MJ/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.MegajoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("MW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Megawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("hp(M)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.MetricHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("µW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Microwatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("mJ/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.MillijoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("mW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Milliwatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("nW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Nanowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("PW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Petawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("pW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Picowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("TW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Terawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Power.ParseUnit("W", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerUnit.Watt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Power.TryParseUnit("hp(S)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.BoilerHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("Btu/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("Btu/hr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("daW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Decawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("dW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Deciwatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("hp(E)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.ElectricalHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("fW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Femtowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("GJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.GigajoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("GW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Gigawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("hp(H)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.HydraulicHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("J/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.JoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("kBtu/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("kBtu/hr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("kJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.KilojoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("kW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Kilowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("hp(I)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.MechanicalHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("MJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.MegajoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("MW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Megawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("hp(M)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.MetricHorsepower, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("µW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Microwatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("mJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.MillijoulePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("mW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Milliwatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("nW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Nanowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("PW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Petawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("pW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Picowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("TW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Terawatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Power.TryParseUnit("W", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerUnit.Watt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(PowerUnit unit)

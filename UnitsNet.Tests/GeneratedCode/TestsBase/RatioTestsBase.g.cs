@@ -229,6 +229,182 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Ratio.Parse("1 ", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecimalFractions, DecimalFractionsTolerance);
+                Assert.Equal(RatioUnit.DecimalFraction, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Ratio.Parse("1 ppb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PartsPerBillion, PartsPerBillionTolerance);
+                Assert.Equal(RatioUnit.PartPerBillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Ratio.Parse("1 ppm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PartsPerMillion, PartsPerMillionTolerance);
+                Assert.Equal(RatioUnit.PartPerMillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Ratio.Parse("1 ‰", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PartsPerThousand, PartsPerThousandTolerance);
+                Assert.Equal(RatioUnit.PartPerThousand, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Ratio.Parse("1 ppt", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PartsPerTrillion, PartsPerTrillionTolerance);
+                Assert.Equal(RatioUnit.PartPerTrillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Ratio.Parse("1 %", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
+                Assert.Equal(RatioUnit.Percent, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Ratio.TryParse("1 ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecimalFractions, DecimalFractionsTolerance);
+                Assert.Equal(RatioUnit.DecimalFraction, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParse("1 ppb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PartsPerBillion, PartsPerBillionTolerance);
+                Assert.Equal(RatioUnit.PartPerBillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParse("1 ppm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PartsPerMillion, PartsPerMillionTolerance);
+                Assert.Equal(RatioUnit.PartPerMillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParse("1 ‰", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PartsPerThousand, PartsPerThousandTolerance);
+                Assert.Equal(RatioUnit.PartPerThousand, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParse("1 ppt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PartsPerTrillion, PartsPerTrillionTolerance);
+                Assert.Equal(RatioUnit.PartPerTrillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParse("1 %", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
+                Assert.Equal(RatioUnit.Percent, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Ratio.ParseUnit("", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RatioUnit.DecimalFraction, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Ratio.ParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RatioUnit.PartPerBillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Ratio.ParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RatioUnit.PartPerMillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Ratio.ParseUnit("‰", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RatioUnit.PartPerThousand, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Ratio.ParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RatioUnit.PartPerTrillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Ratio.ParseUnit("%", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RatioUnit.Percent, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Ratio.TryParseUnit("", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RatioUnit.DecimalFraction, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RatioUnit.PartPerBillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RatioUnit.PartPerMillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParseUnit("‰", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RatioUnit.PartPerThousand, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RatioUnit.PartPerTrillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Ratio.TryParseUnit("%", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RatioUnit.Percent, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(RatioUnit unit)

@@ -179,6 +179,52 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = LuminousFlux.Parse("1 lm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Lumens, LumensTolerance);
+                Assert.Equal(LuminousFluxUnit.Lumen, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(LuminousFlux.TryParse("1 lm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Lumens, LumensTolerance);
+                Assert.Equal(LuminousFluxUnit.Lumen, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = LuminousFlux.ParseUnit("lm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousFluxUnit.Lumen, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(LuminousFlux.TryParseUnit("lm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousFluxUnit.Lumen, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(LuminousFluxUnit unit)

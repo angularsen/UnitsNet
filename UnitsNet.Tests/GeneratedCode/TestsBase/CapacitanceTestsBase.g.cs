@@ -239,6 +239,208 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Capacitance.Parse("1 F", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Farads, FaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Farad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 kF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilofarads, KilofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Kilofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 MF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megafarads, MegafaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Megafarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 µF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microfarads, MicrofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Microfarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 mF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millifarads, MillifaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Millifarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 nF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanofarads, NanofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Nanofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 pF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picofarads, PicofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Picofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Capacitance.TryParse("1 F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Farads, FaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Farad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParse("1 kF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilofarads, KilofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Kilofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParse("1 MF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megafarads, MegafaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Megafarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParse("1 µF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microfarads, MicrofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Microfarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParse("1 mF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millifarads, MillifaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Millifarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParse("1 nF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanofarads, NanofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Nanofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParse("1 pF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picofarads, PicofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Picofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("F", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Farad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("kF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Kilofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("MF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Megafarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("µF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Microfarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("mF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Millifarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("nF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Nanofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("pF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Picofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Capacitance.TryParseUnit("F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Farad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParseUnit("kF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Kilofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParseUnit("MF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Megafarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParseUnit("µF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Microfarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParseUnit("mF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Millifarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParseUnit("nF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Nanofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Capacitance.TryParseUnit("pF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Picofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(CapacitanceUnit unit)

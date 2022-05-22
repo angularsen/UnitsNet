@@ -209,6 +209,130 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = SpecificFuelConsumption.Parse("1 g/(kN·s)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+                Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificFuelConsumption.Parse("1 kg/(kgf·h)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
+                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificFuelConsumption.Parse("1 kg/(kN·s)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerKiloNewtonSecond, KilogramsPerKiloNewtonSecondTolerance);
+                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificFuelConsumption.Parse("1 lb/(lbf·h)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
+                Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(SpecificFuelConsumption.TryParse("1 g/(kN·s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerKiloNewtonSecond, GramsPerKiloNewtonSecondTolerance);
+                Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificFuelConsumption.TryParse("1 kg/(kgf·h)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
+                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificFuelConsumption.TryParse("1 kg/(kN·s)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerKiloNewtonSecond, KilogramsPerKiloNewtonSecondTolerance);
+                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificFuelConsumption.TryParse("1 lb/(lbf·h)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
+                Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = SpecificFuelConsumption.ParseUnit("g/(kN·s)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificFuelConsumption.ParseUnit("kg/(kgf·h)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificFuelConsumption.ParseUnit("kg/(kN·s)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificFuelConsumption.ParseUnit("lb/(lbf·h)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(SpecificFuelConsumption.TryParseUnit("g/(kN·s)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificFuelConsumption.TryParseUnit("kg/(kgf·h)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificFuelConsumption.TryParseUnit("kg/(kN·s)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKiloNewtonSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificFuelConsumption.TryParseUnit("lb/(lbf·h)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(SpecificFuelConsumptionUnit unit)

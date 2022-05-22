@@ -323,6 +323,468 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Molarity.Parse("1 cmol/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentimolesPerLiter, CentimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.CentimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 cM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentimolesPerLiter, CentimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.CentimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 dmol/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecimolesPerLiter, DecimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.DecimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 dM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecimolesPerLiter, DecimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.DecimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 fmol/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.FemtomolesPerLiter, FemtomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.FemtomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 fM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.FemtomolesPerLiter, FemtomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.FemtomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 µmol/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicromolesPerLiter, MicromolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MicromolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 µM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicromolesPerLiter, MicromolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MicromolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 mmol/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillimolesPerLiter, MillimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MillimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 mM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillimolesPerLiter, MillimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MillimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 mol/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
+                Assert.Equal(MolarityUnit.MolePerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 mol/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MolesPerLiter, MolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 M", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MolesPerLiter, MolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 nmol/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanomolesPerLiter, NanomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.NanomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 nM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanomolesPerLiter, NanomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.NanomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 pmol/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PicomolesPerLiter, PicomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.PicomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Molarity.Parse("1 pM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PicomolesPerLiter, PicomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.PicomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Molarity.TryParse("1 cmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentimolesPerLiter, CentimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.CentimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 cM", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentimolesPerLiter, CentimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.CentimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 dmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecimolesPerLiter, DecimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.DecimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 dM", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecimolesPerLiter, DecimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.DecimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 fmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FemtomolesPerLiter, FemtomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.FemtomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 fM", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FemtomolesPerLiter, FemtomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.FemtomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 µmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicromolesPerLiter, MicromolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MicromolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 µM", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicromolesPerLiter, MicromolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MicromolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 mmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimolesPerLiter, MillimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MillimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 mM", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimolesPerLiter, MillimolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MillimolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 mol/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MolesPerCubicMeter, MolesPerCubicMeterTolerance);
+                Assert.Equal(MolarityUnit.MolePerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 mol/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MolesPerLiter, MolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 M", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MolesPerLiter, MolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.MolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 nmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanomolesPerLiter, NanomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.NanomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 nM", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanomolesPerLiter, NanomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.NanomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 pmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PicomolesPerLiter, PicomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.PicomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParse("1 pM", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PicomolesPerLiter, PicomolesPerLiterTolerance);
+                Assert.Equal(MolarityUnit.PicomolePerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("cmol/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.CentimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("cM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.CentimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("dmol/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.DecimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("dM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.DecimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("fmol/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.FemtomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("fM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.FemtomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("µmol/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.MicromolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("µM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.MicromolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("mmol/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.MillimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("mM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.MillimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("mol/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.MolePerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("mol/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.MolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("M", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.MolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("nmol/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.NanomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("nM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.NanomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("pmol/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.PicomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Molarity.ParseUnit("pM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MolarityUnit.PicomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("cmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.CentimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("cM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.CentimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("dmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.DecimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("dM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.DecimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("fmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.FemtomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("fM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.FemtomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("µmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.MicromolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("µM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.MicromolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("mmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.MillimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("mM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.MillimolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("mol/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.MolePerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("mol/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.MolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("M", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.MolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("nmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.NanomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("nM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.NanomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("pmol/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.PicomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Molarity.TryParseUnit("pM", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MolarityUnit.PicomolePerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(MolarityUnit unit)

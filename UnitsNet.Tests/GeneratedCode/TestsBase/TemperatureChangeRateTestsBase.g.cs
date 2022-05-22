@@ -269,6 +269,286 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 c°C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentidegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 da°C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecadegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 d°C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 °C/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 °C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 h°C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 k°C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 µ°C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrodegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 m°C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillidegreesCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = TemperatureChangeRate.Parse("1 n°C/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanodegreesCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 c°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentidegreesCelsiusPerSecond, CentidegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 da°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecadegreesCelsiusPerSecond, DecadegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 d°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecidegreesCelsiusPerSecond, DecidegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 °C/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerMinute, DegreesCelsiusPerMinuteTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 °C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerSecond, DegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 h°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.HectodegreesCelsiusPerSecond, HectodegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 k°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilodegreesCelsiusPerSecond, KilodegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 µ°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrodegreesCelsiusPerSecond, MicrodegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 m°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillidegreesCelsiusPerSecond, MillidegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParse("1 n°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanodegreesCelsiusPerSecond, NanodegreesCelsiusPerSecondTolerance);
+                Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("c°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("da°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("d°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("°C/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("h°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("k°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("µ°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("m°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = TemperatureChangeRate.ParseUnit("n°C/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("c°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("da°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("d°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("°C/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("h°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("k°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("µ°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("m°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(TemperatureChangeRate.TryParseUnit("n°C/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(TemperatureChangeRateUnit unit)

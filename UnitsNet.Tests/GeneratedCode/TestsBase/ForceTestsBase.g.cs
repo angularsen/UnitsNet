@@ -319,6 +319,936 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Force.Parse("1 daN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decanewtons, DecanewtonsTolerance);
+                Assert.Equal(ForceUnit.Decanewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 даН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Decanewtons, DecanewtonsTolerance);
+                Assert.Equal(ForceUnit.Decanewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 dyn", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Dyne, DyneTolerance);
+                Assert.Equal(ForceUnit.Dyn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 дин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Dyne, DyneTolerance);
+                Assert.Equal(ForceUnit.Dyn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kgf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForce, KilogramsForceTolerance);
+                Assert.Equal(ForceUnit.KilogramForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 кгс", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForce, KilogramsForceTolerance);
+                Assert.Equal(ForceUnit.KilogramForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilonewtons, KilonewtonsTolerance);
+                Assert.Equal(ForceUnit.Kilonewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 кН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Kilonewtons, KilonewtonsTolerance);
+                Assert.Equal(ForceUnit.Kilonewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kp", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KiloPonds, KiloPondsTolerance);
+                Assert.Equal(ForceUnit.KiloPond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 кгс", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KiloPonds, KiloPondsTolerance);
+                Assert.Equal(ForceUnit.KiloPond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kipf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 kip", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 k", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 кипф", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 койка", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 К", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 MN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Meganewtons, MeganewtonsTolerance);
+                Assert.Equal(ForceUnit.Meganewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 МН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Meganewtons, MeganewtonsTolerance);
+                Assert.Equal(ForceUnit.Meganewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 µN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Micronewtons, MicronewtonsTolerance);
+                Assert.Equal(ForceUnit.Micronewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 мкН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Micronewtons, MicronewtonsTolerance);
+                Assert.Equal(ForceUnit.Micronewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 mN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millinewtons, MillinewtonsTolerance);
+                Assert.Equal(ForceUnit.Millinewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 мН", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Millinewtons, MillinewtonsTolerance);
+                Assert.Equal(ForceUnit.Millinewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 N", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Newtons, NewtonsTolerance);
+                Assert.Equal(ForceUnit.Newton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 Н", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Newtons, NewtonsTolerance);
+                Assert.Equal(ForceUnit.Newton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 ozf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.OunceForce, OunceForceTolerance);
+                Assert.Equal(ForceUnit.OunceForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 pdl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Poundals, PoundalsTolerance);
+                Assert.Equal(ForceUnit.Poundal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 паундаль", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Poundals, PoundalsTolerance);
+                Assert.Equal(ForceUnit.Poundal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 lbf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForce, PoundsForceTolerance);
+                Assert.Equal(ForceUnit.PoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 фунт-сила", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForce, PoundsForceTolerance);
+                Assert.Equal(ForceUnit.PoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 tf (short)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 t (US)f", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 short tons-force", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 tf", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 Ton", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Force.Parse("1 тс", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Force.TryParse("1 daN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decanewtons, DecanewtonsTolerance);
+                Assert.Equal(ForceUnit.Decanewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 даН", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decanewtons, DecanewtonsTolerance);
+                Assert.Equal(ForceUnit.Decanewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 dyn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Dyne, DyneTolerance);
+                Assert.Equal(ForceUnit.Dyn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 дин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Dyne, DyneTolerance);
+                Assert.Equal(ForceUnit.Dyn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 kgf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForce, KilogramsForceTolerance);
+                Assert.Equal(ForceUnit.KilogramForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 кгс", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForce, KilogramsForceTolerance);
+                Assert.Equal(ForceUnit.KilogramForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 kN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilonewtons, KilonewtonsTolerance);
+                Assert.Equal(ForceUnit.Kilonewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 кН", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilonewtons, KilonewtonsTolerance);
+                Assert.Equal(ForceUnit.Kilonewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 kp", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KiloPonds, KiloPondsTolerance);
+                Assert.Equal(ForceUnit.KiloPond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 кгс", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KiloPonds, KiloPondsTolerance);
+                Assert.Equal(ForceUnit.KiloPond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 kipf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 kip", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 k", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 кипф", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 койка", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 К", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForce, KilopoundsForceTolerance);
+                Assert.Equal(ForceUnit.KilopoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 MN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Meganewtons, MeganewtonsTolerance);
+                Assert.Equal(ForceUnit.Meganewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 МН", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Meganewtons, MeganewtonsTolerance);
+                Assert.Equal(ForceUnit.Meganewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 µN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micronewtons, MicronewtonsTolerance);
+                Assert.Equal(ForceUnit.Micronewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 мкН", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micronewtons, MicronewtonsTolerance);
+                Assert.Equal(ForceUnit.Micronewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 mN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millinewtons, MillinewtonsTolerance);
+                Assert.Equal(ForceUnit.Millinewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 мН", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millinewtons, MillinewtonsTolerance);
+                Assert.Equal(ForceUnit.Millinewton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 N", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Newtons, NewtonsTolerance);
+                Assert.Equal(ForceUnit.Newton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 Н", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Newtons, NewtonsTolerance);
+                Assert.Equal(ForceUnit.Newton, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 ozf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.OunceForce, OunceForceTolerance);
+                Assert.Equal(ForceUnit.OunceForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 pdl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Poundals, PoundalsTolerance);
+                Assert.Equal(ForceUnit.Poundal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 паундаль", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Poundals, PoundalsTolerance);
+                Assert.Equal(ForceUnit.Poundal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 lbf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForce, PoundsForceTolerance);
+                Assert.Equal(ForceUnit.PoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 фунт-сила", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForce, PoundsForceTolerance);
+                Assert.Equal(ForceUnit.PoundForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 tf (short)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 t (US)f", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 short tons-force", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.ShortTonsForce, ShortTonsForceTolerance);
+                Assert.Equal(ForceUnit.ShortTonForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 tf", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 Ton", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParse("1 тс", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForce, TonnesForceTolerance);
+                Assert.Equal(ForceUnit.TonneForce, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Force.ParseUnit("daN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Decanewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("даН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Decanewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("dyn", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Dyn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("дин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Dyn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kgf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KilogramForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("кгс", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KilogramForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Kilonewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("кН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Kilonewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kp", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KiloPond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("кгс", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KiloPond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kipf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("kip", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("k", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("кипф", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("койка", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("К", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("MN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Meganewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("МН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Meganewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("µN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Micronewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("мкН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Micronewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("mN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Millinewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("мН", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Millinewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("N", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Newton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("Н", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Newton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("ozf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.OunceForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("pdl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.Poundal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("паундаль", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.Poundal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("lbf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.PoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("фунт-сила", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.PoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("tf (short)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("t (US)f", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("short tons-force", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("tf", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("Ton", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Force.ParseUnit("тс", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Force.TryParseUnit("daN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Decanewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("даН", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Decanewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("dyn", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Dyn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("дин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Dyn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("kgf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilogramForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("кгс", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilogramForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("kN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Kilonewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("кН", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Kilonewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("kp", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KiloPond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("кгс", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KiloPond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("kipf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("kip", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("k", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("кипф", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("койка", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("К", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.KilopoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("MN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Meganewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("МН", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Meganewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("µN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Micronewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("мкН", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Micronewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("mN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Millinewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("мН", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Millinewton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("N", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Newton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("Н", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Newton, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("ozf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.OunceForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("pdl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Poundal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("паундаль", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.Poundal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("lbf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.PoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("фунт-сила", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.PoundForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("tf (short)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("t (US)f", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("short tons-force", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.ShortTonForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("tf", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("Ton", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Force.TryParseUnit("тс", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ForceUnit.TonneForce, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ForceUnit unit)

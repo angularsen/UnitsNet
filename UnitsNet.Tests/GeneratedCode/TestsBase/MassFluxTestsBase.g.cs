@@ -289,6 +289,338 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = MassFlux.Parse("1 g·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerHourPerSquareCentimeter, GramsPerHourPerSquareCentimeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 g·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerHourPerSquareMeter, GramsPerHourPerSquareMeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 g·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerHourPerSquareMillimeter, GramsPerHourPerSquareMillimeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 g·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerSecondPerSquareCentimeter, GramsPerSecondPerSquareCentimeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 g·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerSecondPerSquareMeter, GramsPerSecondPerSquareMeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 g·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerSecondPerSquareMillimeter, GramsPerSecondPerSquareMillimeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 kg·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerHourPerSquareCentimeter, KilogramsPerHourPerSquareCentimeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 kg·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerHourPerSquareMeter, KilogramsPerHourPerSquareMeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 kg·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerHourPerSquareMillimeter, KilogramsPerHourPerSquareMillimeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 kg·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSecondPerSquareCentimeter, KilogramsPerSecondPerSquareCentimeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 kg·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSecondPerSquareMeter, KilogramsPerSecondPerSquareMeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = MassFlux.Parse("1 kg·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSecondPerSquareMillimeter, KilogramsPerSecondPerSquareMillimeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 g·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerHourPerSquareCentimeter, GramsPerHourPerSquareCentimeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 g·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerHourPerSquareMeter, GramsPerHourPerSquareMeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 g·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerHourPerSquareMillimeter, GramsPerHourPerSquareMillimeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 g·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerSecondPerSquareCentimeter, GramsPerSecondPerSquareCentimeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 g·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerSecondPerSquareMeter, GramsPerSecondPerSquareMeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 g·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerSecondPerSquareMillimeter, GramsPerSecondPerSquareMillimeterTolerance);
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 kg·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerHourPerSquareCentimeter, KilogramsPerHourPerSquareCentimeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 kg·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerHourPerSquareMeter, KilogramsPerHourPerSquareMeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 kg·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerHourPerSquareMillimeter, KilogramsPerHourPerSquareMillimeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 kg·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSecondPerSquareCentimeter, KilogramsPerSecondPerSquareCentimeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 kg·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSecondPerSquareMeter, KilogramsPerSecondPerSquareMeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParse("1 kg·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSecondPerSquareMillimeter, KilogramsPerSecondPerSquareMillimeterTolerance);
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("g·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("g·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("g·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("g·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("g·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("g·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("kg·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("kg·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("kg·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("kg·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("kg·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = MassFlux.ParseUnit("kg·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("g·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("g·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("g·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.GramPerHourPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("g·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("g·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("g·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("kg·h⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("kg·h⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("kg·h⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.KilogramPerHourPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("kg·s⁻¹·cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("kg·s⁻¹·m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(MassFlux.TryParseUnit("kg·s⁻¹·mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(MassFluxUnit unit)

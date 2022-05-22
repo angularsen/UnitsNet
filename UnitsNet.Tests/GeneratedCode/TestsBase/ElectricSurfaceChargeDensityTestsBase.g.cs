@@ -199,6 +199,104 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/cm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareCentimeter, CoulombsPerSquareCentimeterTolerance);
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/in²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareInch, CoulombsPerSquareInchTolerance);
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = ElectricSurfaceChargeDensity.Parse("1 C/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareCentimeter, CoulombsPerSquareCentimeterTolerance);
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareInch, CoulombsPerSquareInchTolerance);
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ElectricSurfaceChargeDensity.TryParse("1 C/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CoulombsPerSquareMeter, CoulombsPerSquareMeterTolerance);
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricSurfaceChargeDensity.ParseUnit("C/cm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = ElectricSurfaceChargeDensity.ParseUnit("C/in²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = ElectricSurfaceChargeDensity.ParseUnit("C/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(ElectricSurfaceChargeDensity.TryParseUnit("C/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ElectricSurfaceChargeDensity.TryParseUnit("C/in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ElectricSurfaceChargeDensity.TryParseUnit("C/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricSurfaceChargeDensityUnit unit)

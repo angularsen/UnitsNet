@@ -419,6 +419,676 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 btu/lb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BtuPerPound, BtuPerPoundTolerance);
+                Assert.Equal(SpecificEnergyUnit.BtuPerPound, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 cal/g", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CaloriesPerGram, CaloriesPerGramTolerance);
+                Assert.Equal(SpecificEnergyUnit.CaloriePerGram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 GWd/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattDaysPerKilogram, GigawattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 GWd/ST", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattDaysPerShortTon, GigawattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 GWd/t", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattDaysPerTonne, GigawattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 GWh/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattHoursPerKilogram, GigawattHoursPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.GigawattHourPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 J/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerKilogram, JoulesPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 kcal/g", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerGram, KilocaloriesPerGramTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 kJ/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerKilogram, KilojoulesPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 kWd/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattDaysPerKilogram, KilowattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 kWd/ST", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattDaysPerShortTon, KilowattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 kWd/t", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattDaysPerTonne, KilowattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 kWh/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattHoursPerKilogram, KilowattHoursPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 MJ/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogram, MegajoulesPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 MWd/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattDaysPerKilogram, MegawattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 MWd/ST", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattDaysPerShortTon, MegawattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 MWd/t", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattDaysPerTonne, MegawattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 MWh/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattHoursPerKilogram, MegawattHoursPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 TWd/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TerawattDaysPerKilogram, TerawattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 TWd/ST", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TerawattDaysPerShortTon, TerawattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 TWd/t", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TerawattDaysPerTonne, TerawattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 Wd/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattDaysPerKilogram, WattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.WattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 Wd/ST", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattDaysPerShortTon, WattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.WattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 Wd/t", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattDaysPerTonne, WattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.WattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificEnergy.Parse("1 Wh/kg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattHoursPerKilogram, WattHoursPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 btu/lb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BtuPerPound, BtuPerPoundTolerance);
+                Assert.Equal(SpecificEnergyUnit.BtuPerPound, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 cal/g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CaloriesPerGram, CaloriesPerGramTolerance);
+                Assert.Equal(SpecificEnergyUnit.CaloriePerGram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 GWd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattDaysPerKilogram, GigawattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 GWd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattDaysPerShortTon, GigawattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 GWd/t", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattDaysPerTonne, GigawattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 GWh/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattHoursPerKilogram, GigawattHoursPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.GigawattHourPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 J/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerKilogram, JoulesPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 kcal/g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerGram, KilocaloriesPerGramTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 kJ/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerKilogram, KilojoulesPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 kWd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattDaysPerKilogram, KilowattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 kWd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattDaysPerShortTon, KilowattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 kWd/t", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattDaysPerTonne, KilowattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 kWh/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattHoursPerKilogram, KilowattHoursPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 MJ/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerKilogram, MegajoulesPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 MWd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattDaysPerKilogram, MegawattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 MWd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattDaysPerShortTon, MegawattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 MWd/t", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattDaysPerTonne, MegawattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 MWh/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattHoursPerKilogram, MegawattHoursPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 TWd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TerawattDaysPerKilogram, TerawattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 TWd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TerawattDaysPerShortTon, TerawattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 TWd/t", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TerawattDaysPerTonne, TerawattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 Wd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattDaysPerKilogram, WattDaysPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.WattDayPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 Wd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattDaysPerShortTon, WattDaysPerShortTonTolerance);
+                Assert.Equal(SpecificEnergyUnit.WattDayPerShortTon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 Wd/t", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattDaysPerTonne, WattDaysPerTonneTolerance);
+                Assert.Equal(SpecificEnergyUnit.WattDayPerTonne, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParse("1 Wh/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattHoursPerKilogram, WattHoursPerKilogramTolerance);
+                Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("btu/lb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.BtuPerPound, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("cal/g", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.CaloriePerGram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("GWd/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("GWd/ST", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("GWd/t", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("GWh/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.GigawattHourPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("J/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("kcal/g", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("kJ/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("kWd/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("kWd/ST", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("kWd/t", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("kWh/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("MJ/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("MWd/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("MWd/ST", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("MWd/t", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("MWh/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("TWd/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("TWd/ST", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("TWd/t", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("Wd/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.WattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("Wd/ST", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.WattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("Wd/t", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.WattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificEnergy.ParseUnit("Wh/kg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("btu/lb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.BtuPerPound, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("cal/g", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.CaloriePerGram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("GWd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("GWd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("GWd/t", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.GigawattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("GWh/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.GigawattHourPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("J/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("kcal/g", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("kJ/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("kWd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("kWd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("kWd/t", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.KilowattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("kWh/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("MJ/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("MWd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("MWd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("MWd/t", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.MegawattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("MWh/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("TWd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("TWd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("TWd/t", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.TerawattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("Wd/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.WattDayPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("Wd/ST", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.WattDayPerShortTon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("Wd/t", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.WattDayPerTonne, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificEnergy.TryParseUnit("Wh/kg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(SpecificEnergyUnit unit)

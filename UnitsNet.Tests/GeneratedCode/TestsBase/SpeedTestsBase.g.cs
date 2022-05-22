@@ -489,6 +489,1534 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Speed.Parse("1 cm/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerHour, CentimetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 см/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerHour, CentimetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 cm/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerMinutes, CentimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 см/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerMinutes, CentimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 cm/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerSecond, CentimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 см/с", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerSecond, CentimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 dm/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecimetersPerMinutes, DecimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.DecimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 дм/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.DecimetersPerMinutes, DecimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.DecimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 dm/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecimetersPerSecond, DecimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.DecimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 дм/с", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.DecimetersPerSecond, DecimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.DecimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 ft/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.FeetPerHour, FeetPerHourTolerance);
+                Assert.Equal(SpeedUnit.FootPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 фут/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.FeetPerHour, FeetPerHourTolerance);
+                Assert.Equal(SpeedUnit.FootPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 ft/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.FeetPerMinute, FeetPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.FootPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 фут/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.FeetPerMinute, FeetPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.FootPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 ft/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.FeetPerSecond, FeetPerSecondTolerance);
+                Assert.Equal(SpeedUnit.FootPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 фут/с", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.FeetPerSecond, FeetPerSecondTolerance);
+                Assert.Equal(SpeedUnit.FootPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 in/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InchesPerHour, InchesPerHourTolerance);
+                Assert.Equal(SpeedUnit.InchPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 in/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InchesPerMinute, InchesPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.InchPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 in/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InchesPerSecond, InchesPerSecondTolerance);
+                Assert.Equal(SpeedUnit.InchPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 km/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerHour, KilometersPerHourTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 км/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerHour, KilometersPerHourTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 km/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerMinutes, KilometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 км/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerMinutes, KilometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 km/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerSecond, KilometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 км/с", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerSecond, KilometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 kn", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 kt", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 knot", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 knots", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 уз.", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 m/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MetersPerHour, MetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.MeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 м/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MetersPerHour, MetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.MeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 m/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MetersPerMinutes, MetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 м/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MetersPerMinutes, MetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 m/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MetersPerSecond, MetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 м/с", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MetersPerSecond, MetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 µm/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrometersPerMinutes, MicrometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MicrometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 мкм/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MicrometersPerMinutes, MicrometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MicrometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 µm/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrometersPerSecond, MicrometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MicrometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 мкм/с", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MicrometersPerSecond, MicrometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MicrometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 mph", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilesPerHour, MilesPerHourTolerance);
+                Assert.Equal(SpeedUnit.MilePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 миль/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MilesPerHour, MilesPerHourTolerance);
+                Assert.Equal(SpeedUnit.MilePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 mm/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerHour, MillimetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 мм/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerHour, MillimetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 mm/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerMinutes, MillimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 мм/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerMinutes, MillimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 mm/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerSecond, MillimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 мм/с", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerSecond, MillimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 nm/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanometersPerMinutes, NanometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.NanometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 нм/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.NanometersPerMinutes, NanometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.NanometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 nm/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanometersPerSecond, NanometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.NanometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 нм/с", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.NanometersPerSecond, NanometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.NanometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 ftUS/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsSurveyFeetPerHour, UsSurveyFeetPerHourTolerance);
+                Assert.Equal(SpeedUnit.UsSurveyFootPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 ftUS/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsSurveyFeetPerMinute, UsSurveyFeetPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.UsSurveyFootPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 ftUS/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsSurveyFeetPerSecond, UsSurveyFeetPerSecondTolerance);
+                Assert.Equal(SpeedUnit.UsSurveyFootPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 yd/h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.YardsPerHour, YardsPerHourTolerance);
+                Assert.Equal(SpeedUnit.YardPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 yd/min", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.YardsPerMinute, YardsPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.YardPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 yd/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.YardsPerSecond, YardsPerSecondTolerance);
+                Assert.Equal(SpeedUnit.YardPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Speed.TryParse("1 cm/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerHour, CentimetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 см/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerHour, CentimetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 cm/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerMinutes, CentimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 см/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerMinutes, CentimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 cm/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerSecond, CentimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 см/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentimetersPerSecond, CentimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.CentimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 dm/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecimetersPerMinutes, DecimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.DecimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 дм/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecimetersPerMinutes, DecimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.DecimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 dm/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecimetersPerSecond, DecimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.DecimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 дм/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecimetersPerSecond, DecimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.DecimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 ft/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FeetPerHour, FeetPerHourTolerance);
+                Assert.Equal(SpeedUnit.FootPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 фут/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FeetPerHour, FeetPerHourTolerance);
+                Assert.Equal(SpeedUnit.FootPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 ft/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FeetPerMinute, FeetPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.FootPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 фут/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FeetPerMinute, FeetPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.FootPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 ft/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FeetPerSecond, FeetPerSecondTolerance);
+                Assert.Equal(SpeedUnit.FootPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 фут/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FeetPerSecond, FeetPerSecondTolerance);
+                Assert.Equal(SpeedUnit.FootPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 in/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InchesPerHour, InchesPerHourTolerance);
+                Assert.Equal(SpeedUnit.InchPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 in/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InchesPerMinute, InchesPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.InchPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 in/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InchesPerSecond, InchesPerSecondTolerance);
+                Assert.Equal(SpeedUnit.InchPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 km/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerHour, KilometersPerHourTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 км/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerHour, KilometersPerHourTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 km/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerMinutes, KilometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 км/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerMinutes, KilometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 km/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerSecond, KilometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 км/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilometersPerSecond, KilometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.KilometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 kn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 kt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 knot", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 knots", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 уз.", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Knots, KnotsTolerance);
+                Assert.Equal(SpeedUnit.Knot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 m/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetersPerHour, MetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.MeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 м/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetersPerHour, MetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.MeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 m/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetersPerMinutes, MetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 м/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetersPerMinutes, MetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 m/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetersPerSecond, MetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 м/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetersPerSecond, MetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 µm/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrometersPerMinutes, MicrometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MicrometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 мкм/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrometersPerMinutes, MicrometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MicrometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 µm/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrometersPerSecond, MicrometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MicrometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 мкм/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrometersPerSecond, MicrometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MicrometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 mph", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilesPerHour, MilesPerHourTolerance);
+                Assert.Equal(SpeedUnit.MilePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 миль/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilesPerHour, MilesPerHourTolerance);
+                Assert.Equal(SpeedUnit.MilePerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 mm/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerHour, MillimetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 мм/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerHour, MillimetersPerHourTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 mm/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerMinutes, MillimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 мм/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerMinutes, MillimetersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 mm/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerSecond, MillimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 мм/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimetersPerSecond, MillimetersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.MillimeterPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 nm/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanometersPerMinutes, NanometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.NanometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 нм/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanometersPerMinutes, NanometersPerMinutesTolerance);
+                Assert.Equal(SpeedUnit.NanometerPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 nm/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanometersPerSecond, NanometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.NanometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 нм/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanometersPerSecond, NanometersPerSecondTolerance);
+                Assert.Equal(SpeedUnit.NanometerPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 ftUS/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsSurveyFeetPerHour, UsSurveyFeetPerHourTolerance);
+                Assert.Equal(SpeedUnit.UsSurveyFootPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 ftUS/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsSurveyFeetPerMinute, UsSurveyFeetPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.UsSurveyFootPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 ftUS/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsSurveyFeetPerSecond, UsSurveyFeetPerSecondTolerance);
+                Assert.Equal(SpeedUnit.UsSurveyFootPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 yd/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.YardsPerHour, YardsPerHourTolerance);
+                Assert.Equal(SpeedUnit.YardPerHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 yd/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.YardsPerMinute, YardsPerMinuteTolerance);
+                Assert.Equal(SpeedUnit.YardPerMinute, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParse("1 yd/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.YardsPerSecond, YardsPerSecondTolerance);
+                Assert.Equal(SpeedUnit.YardPerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("cm/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.CentimeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("см/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.CentimeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("cm/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.CentimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("см/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.CentimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("cm/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.CentimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("см/с", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.CentimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("dm/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.DecimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("дм/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.DecimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("dm/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.DecimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("дм/с", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.DecimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("ft/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.FootPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("фут/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.FootPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("ft/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.FootPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("фут/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.FootPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("ft/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.FootPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("фут/с", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.FootPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("in/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.InchPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("in/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.InchPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("in/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.InchPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("km/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.KilometerPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("км/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.KilometerPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("km/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.KilometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("км/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.KilometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("km/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.KilometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("км/с", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.KilometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("kn", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("kt", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("knot", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("knots", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("уз.", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("m/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("м/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("m/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("м/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("m/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("м/с", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("µm/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MicrometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("мкм/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MicrometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("µm/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MicrometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("мкм/с", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MicrometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("mph", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MilePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("миль/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MilePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("mm/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MillimeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("мм/ч", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MillimeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("mm/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MillimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("мм/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MillimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("mm/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.MillimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("мм/с", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.MillimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("nm/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.NanometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("нм/мин", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.NanometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("nm/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.NanometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("нм/с", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(SpeedUnit.NanometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("ftUS/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.UsSurveyFootPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("ftUS/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.UsSurveyFootPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("ftUS/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.UsSurveyFootPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("yd/h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.YardPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("yd/min", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.YardPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("yd/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.YardPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Speed.TryParseUnit("cm/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.CentimeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("см/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.CentimeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("cm/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.CentimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("см/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.CentimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("cm/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.CentimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("см/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.CentimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("dm/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.DecimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("дм/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.DecimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("dm/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.DecimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("дм/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.DecimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("ft/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.FootPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("фут/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.FootPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("ft/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.FootPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("фут/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.FootPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("ft/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.FootPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("фут/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.FootPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("in/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.InchPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("in/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.InchPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("in/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.InchPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("km/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.KilometerPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("км/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.KilometerPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("km/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.KilometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("км/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.KilometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("km/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.KilometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("км/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.KilometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("kn", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("kt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("knot", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("knots", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("уз.", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.Knot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("m/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("м/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("m/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("м/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("m/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("м/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("µm/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MicrometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("мкм/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MicrometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("µm/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MicrometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("мкм/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MicrometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("mph", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MilePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("миль/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MilePerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("mm/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MillimeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("мм/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MillimeterPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("mm/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MillimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("мм/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MillimeterPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("mm/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MillimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("мм/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.MillimeterPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("nm/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.NanometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("нм/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.NanometerPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("nm/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.NanometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("нм/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.NanometerPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("ftUS/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.UsSurveyFootPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("ftUS/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.UsSurveyFootPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("ftUS/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.UsSurveyFootPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("yd/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.YardPerHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("yd/min", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.YardPerMinute, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Speed.TryParseUnit("yd/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.YardPerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(SpeedUnit unit)

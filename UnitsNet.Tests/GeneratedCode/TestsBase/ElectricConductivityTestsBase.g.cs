@@ -199,6 +199,104 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricConductivity.Parse("1 S/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SiemensPerFoot, SiemensPerFootTolerance);
+                Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = ElectricConductivity.Parse("1 S/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SiemensPerInch, SiemensPerInchTolerance);
+                Assert.Equal(ElectricConductivityUnit.SiemensPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = ElectricConductivity.Parse("1 S/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SiemensPerMeter, SiemensPerMeterTolerance);
+                Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(ElectricConductivity.TryParse("1 S/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SiemensPerFoot, SiemensPerFootTolerance);
+                Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ElectricConductivity.TryParse("1 S/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SiemensPerInch, SiemensPerInchTolerance);
+                Assert.Equal(ElectricConductivityUnit.SiemensPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ElectricConductivity.TryParse("1 S/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SiemensPerMeter, SiemensPerMeterTolerance);
+                Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricConductivity.ParseUnit("S/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = ElectricConductivity.ParseUnit("S/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricConductivityUnit.SiemensPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = ElectricConductivity.ParseUnit("S/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(ElectricConductivity.TryParseUnit("S/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ElectricConductivity.TryParseUnit("S/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricConductivityUnit.SiemensPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ElectricConductivity.TryParseUnit("S/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricConductivityUnit unit)

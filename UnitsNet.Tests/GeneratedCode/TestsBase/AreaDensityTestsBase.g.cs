@@ -179,6 +179,52 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = AreaDensity.Parse("1 kg/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(AreaDensity.TryParse("1 kg/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = AreaDensity.ParseUnit("kg/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(AreaDensity.TryParseUnit("kg/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(AreaDensityUnit unit)

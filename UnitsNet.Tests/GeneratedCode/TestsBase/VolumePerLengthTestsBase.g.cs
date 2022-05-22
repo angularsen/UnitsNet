@@ -239,6 +239,208 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = VolumePerLength.Parse("1 m³/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CubicMetersPerMeter, CubicMetersPerMeterTolerance);
+                Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumePerLength.Parse("1 yd³/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CubicYardsPerFoot, CubicYardsPerFootTolerance);
+                Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumePerLength.Parse("1 yd³/ftUS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CubicYardsPerUsSurveyFoot, CubicYardsPerUsSurveyFootTolerance);
+                Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumePerLength.Parse("1 l/km", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.LitersPerKilometer, LitersPerKilometerTolerance);
+                Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumePerLength.Parse("1 l/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.LitersPerMeter, LitersPerMeterTolerance);
+                Assert.Equal(VolumePerLengthUnit.LiterPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumePerLength.Parse("1 l/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.LitersPerMillimeter, LitersPerMillimeterTolerance);
+                Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumePerLength.Parse("1 bbl/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
+                Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(VolumePerLength.TryParse("1 m³/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CubicMetersPerMeter, CubicMetersPerMeterTolerance);
+                Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParse("1 yd³/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CubicYardsPerFoot, CubicYardsPerFootTolerance);
+                Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParse("1 yd³/ftUS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CubicYardsPerUsSurveyFoot, CubicYardsPerUsSurveyFootTolerance);
+                Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParse("1 l/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.LitersPerKilometer, LitersPerKilometerTolerance);
+                Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParse("1 l/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.LitersPerMeter, LitersPerMeterTolerance);
+                Assert.Equal(VolumePerLengthUnit.LiterPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParse("1 l/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.LitersPerMillimeter, LitersPerMillimeterTolerance);
+                Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParse("1 bbl/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
+                Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = VolumePerLength.ParseUnit("m³/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumePerLength.ParseUnit("yd³/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumePerLength.ParseUnit("yd³/ftUS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumePerLength.ParseUnit("l/km", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumePerLength.ParseUnit("l/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumePerLengthUnit.LiterPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumePerLength.ParseUnit("l/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumePerLength.ParseUnit("bbl/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(VolumePerLength.TryParseUnit("m³/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParseUnit("yd³/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParseUnit("yd³/ftUS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParseUnit("l/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParseUnit("l/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumePerLengthUnit.LiterPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParseUnit("l/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumePerLength.TryParseUnit("bbl/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(VolumePerLengthUnit unit)

@@ -679,6 +679,1456 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Density.Parse("1 cg/dl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciLiter, CentigramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.CentigramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 cg/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentigramsPerLiter, CentigramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.CentigramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 cg/ml", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.CentigramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 dg/dl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciLiter, DecigramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.DecigramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 dg/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecigramsPerLiter, DecigramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.DecigramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 dg/ml", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.DecigramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 g/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 g/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicFoot, GramsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 g/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicInch, GramsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 g/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 г/м³", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 g/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 g/dl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerDeciLiter, GramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.GramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 g/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerLiter, GramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.GramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 g/ml", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramsPerMilliliter, GramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.GramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 kg/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 kg/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 кг/м³", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 kg/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMillimeter, KilogramsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 kg/l", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerLiter, KilogramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 kip/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicFoot, KilopoundsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.KilopoundPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 kip/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicInch, KilopoundsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.KilopoundPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 µg/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 мкг/м³", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 µg/dl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciLiter, MicrogramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 µg/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 µg/ml", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 mg/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 мг/м³", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 mg/dl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciLiter, MilligramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 mg/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerLiter, MilligramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 mg/ml", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 ng/dl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciLiter, NanogramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.NanogramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 ng/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanogramsPerLiter, NanogramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.NanogramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 ng/ml", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.NanogramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 pg/dl", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciLiter, PicogramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.PicogramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 pg/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PicogramsPerLiter, PicogramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.PicogramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 pg/ml", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.PicogramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lb/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lb/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lb/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lb/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 lb/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 ppg (imp.)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerImperialGallon, PoundsPerImperialGallonTolerance);
+                Assert.Equal(DensityUnit.PoundPerImperialGallon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 ppg (U.S.)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerUSGallon, PoundsPerUSGallonTolerance);
+                Assert.Equal(DensityUnit.PoundPerUSGallon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 slug/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicCentimeter, SlugsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 slug/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 slug/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicInch, SlugsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 slug/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicMeter, SlugsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 slug/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicMillimeter, SlugsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 t/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 t/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicFoot, TonnesPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 t/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicInch, TonnesPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 t/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Density.Parse("1 t/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicMillimeter, TonnesPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Density.TryParse("1 cg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentigramsPerDeciLiter, CentigramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.CentigramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 cg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentigramsPerLiter, CentigramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.CentigramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 cg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentigramsPerMilliliter, CentigramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.CentigramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 dg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecigramsPerDeciLiter, DecigramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.DecigramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 dg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecigramsPerLiter, DecigramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.DecigramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 dg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecigramsPerMilliliter, DecigramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.DecigramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 g/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicCentimeter, GramsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 g/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicFoot, GramsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 g/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicInch, GramsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 g/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 г/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMeter, GramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 g/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerCubicMillimeter, GramsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.GramPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 g/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerDeciLiter, GramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.GramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 g/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerLiter, GramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.GramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 g/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramsPerMilliliter, GramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.GramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 kg/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicCentimeter, KilogramsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 kg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 кг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMeter, KilogramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 kg/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerCubicMillimeter, KilogramsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 kg/l", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerLiter, KilogramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.KilogramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 kip/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicFoot, KilopoundsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.KilopoundPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 kip/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsPerCubicInch, KilopoundsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.KilopoundPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 µg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 мкг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerCubicMeter, MicrogramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 µg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerDeciLiter, MicrogramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 µg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerLiter, MicrogramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 µg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrogramsPerMilliliter, MicrogramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.MicrogramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 mg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 мг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerCubicMeter, MilligramsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 mg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerDeciLiter, MilligramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 mg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerLiter, MilligramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 mg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilligramsPerMilliliter, MilligramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.MilligramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 ng/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanogramsPerDeciLiter, NanogramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.NanogramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 ng/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanogramsPerLiter, NanogramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.NanogramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 ng/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanogramsPerMilliliter, NanogramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.NanogramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 pg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PicogramsPerDeciLiter, PicogramsPerDeciLiterTolerance);
+                Assert.Equal(DensityUnit.PicogramPerDeciliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 pg/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PicogramsPerLiter, PicogramsPerLiterTolerance);
+                Assert.Equal(DensityUnit.PicogramPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 pg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PicogramsPerMilliliter, PicogramsPerMilliliterTolerance);
+                Assert.Equal(DensityUnit.PicogramPerMilliliter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 lb/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicCentimeter, PoundsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 lb/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicFoot, PoundsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 lb/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicInch, PoundsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 lb/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMeter, PoundsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 lb/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerCubicMillimeter, PoundsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 ppg (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerImperialGallon, PoundsPerImperialGallonTolerance);
+                Assert.Equal(DensityUnit.PoundPerImperialGallon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 ppg (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerUSGallon, PoundsPerUSGallonTolerance);
+                Assert.Equal(DensityUnit.PoundPerUSGallon, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 slug/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicCentimeter, SlugsPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 slug/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicFoot, SlugsPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 slug/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicInch, SlugsPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 slug/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicMeter, SlugsPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 slug/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SlugsPerCubicMillimeter, SlugsPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.SlugPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 t/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 t/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicFoot, TonnesPerCubicFootTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 t/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicInch, TonnesPerCubicInchTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 t/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParse("1 t/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesPerCubicMillimeter, TonnesPerCubicMillimeterTolerance);
+                Assert.Equal(DensityUnit.TonnePerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Density.ParseUnit("cg/dl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.CentigramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("cg/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.CentigramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("cg/ml", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.CentigramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("dg/dl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.DecigramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("dg/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.DecigramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("dg/ml", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.DecigramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("g/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.GramPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("g/ft³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.GramPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("g/in³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.GramPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("g/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.GramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("г/м³", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(DensityUnit.GramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("g/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.GramPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("g/dl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.GramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("g/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.GramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("g/ml", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.GramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("kg/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.KilogramPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("kg/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("кг/м³", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("kg/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.KilogramPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("kg/l", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.KilogramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("kip/ft³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.KilopoundPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("kip/in³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.KilopoundPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("µg/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("мкг/м³", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("µg/dl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.MicrogramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("µg/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.MicrogramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("µg/ml", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.MicrogramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("mg/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("мг/м³", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("mg/dl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.MilligramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("mg/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.MilligramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("mg/ml", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.MilligramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("ng/dl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.NanogramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("ng/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.NanogramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("ng/ml", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.NanogramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("pg/dl", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PicogramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("pg/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PicogramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("pg/ml", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PicogramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("lb/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("lb/ft³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("lb/in³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("lb/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("lb/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("ppg (imp.)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerImperialGallon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("ppg (U.S.)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.PoundPerUSGallon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("slug/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.SlugPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("slug/ft³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.SlugPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("slug/in³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.SlugPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("slug/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.SlugPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("slug/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.SlugPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("t/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.TonnePerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("t/ft³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.TonnePerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("t/in³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.TonnePerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("t/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.TonnePerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Density.ParseUnit("t/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DensityUnit.TonnePerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Density.TryParseUnit("cg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.CentigramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("cg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.CentigramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("cg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.CentigramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("dg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.DecigramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("dg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.DecigramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("dg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.DecigramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("g/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("g/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("g/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("g/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("г/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("g/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("g/dl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("g/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("g/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.GramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("kg/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.KilogramPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("kg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("кг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(DensityUnit.KilogramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("kg/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.KilogramPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("kg/l", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.KilogramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("kip/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.KilopoundPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("kip/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.KilopoundPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("µg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("мкг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MicrogramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("µg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MicrogramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("µg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MicrogramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("µg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MicrogramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("mg/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("мг/м³", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MilligramPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("mg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MilligramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("mg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MilligramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("mg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.MilligramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("ng/dl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.NanogramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("ng/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.NanogramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("ng/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.NanogramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("pg/dl", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PicogramPerDeciliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("pg/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PicogramPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("pg/ml", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PicogramPerMilliliter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("lb/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("lb/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("lb/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("lb/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("lb/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("ppg (imp.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerImperialGallon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("ppg (U.S.)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.PoundPerUSGallon, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("slug/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.SlugPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("slug/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.SlugPerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("slug/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.SlugPerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("slug/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.SlugPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("slug/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.SlugPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("t/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.TonnePerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("t/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.TonnePerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("t/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.TonnePerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("t/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.TonnePerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Density.TryParseUnit("t/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DensityUnit.TonnePerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(DensityUnit unit)

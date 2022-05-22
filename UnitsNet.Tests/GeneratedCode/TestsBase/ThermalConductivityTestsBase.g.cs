@@ -189,6 +189,78 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ThermalConductivity.Parse("1 BTU/h·ft·°F", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
+                Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = ThermalConductivity.Parse("1 W/m·K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+                Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(ThermalConductivity.TryParse("1 BTU/h·ft·°F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
+                Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ThermalConductivity.TryParse("1 W/m·K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+                Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ThermalConductivity.ParseUnit("BTU/h·ft·°F", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = ThermalConductivity.ParseUnit("W/m·K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(ThermalConductivity.TryParseUnit("BTU/h·ft·°F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ThermalConductivityUnit.BtuPerHourFootFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ThermalConductivity.TryParseUnit("W/m·K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ThermalConductivityUnit.WattPerMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ThermalConductivityUnit unit)

@@ -419,6 +419,754 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Torque.Parse("1 gf·cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramForceCentimeters, GramForceCentimetersTolerance);
+                Assert.Equal(TorqueUnit.GramForceCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 gf·m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramForceMeters, GramForceMetersTolerance);
+                Assert.Equal(TorqueUnit.GramForceMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 gf·mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GramForceMillimeters, GramForceMillimetersTolerance);
+                Assert.Equal(TorqueUnit.GramForceMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 kgf·cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramForceCentimeters, KilogramForceCentimetersTolerance);
+                Assert.Equal(TorqueUnit.KilogramForceCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 kgf·m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramForceMeters, KilogramForceMetersTolerance);
+                Assert.Equal(TorqueUnit.KilogramForceMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 kgf·mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramForceMillimeters, KilogramForceMillimetersTolerance);
+                Assert.Equal(TorqueUnit.KilogramForceMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 kN·cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonCentimeters, KilonewtonCentimetersTolerance);
+                Assert.Equal(TorqueUnit.KilonewtonCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 kN·m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonMeters, KilonewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.KilonewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 кН·м", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonMeters, KilonewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.KilonewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 kN·mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonMillimeters, KilonewtonMillimetersTolerance);
+                Assert.Equal(TorqueUnit.KilonewtonMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 kipf·ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundForceFeet, KilopoundForceFeetTolerance);
+                Assert.Equal(TorqueUnit.KilopoundForceFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 kipf·in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundForceInches, KilopoundForceInchesTolerance);
+                Assert.Equal(TorqueUnit.KilopoundForceInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 MN·cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonCentimeters, MeganewtonCentimetersTolerance);
+                Assert.Equal(TorqueUnit.MeganewtonCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 MN·m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonMeters, MeganewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.MeganewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 МН·м", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonMeters, MeganewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.MeganewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 MN·mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonMillimeters, MeganewtonMillimetersTolerance);
+                Assert.Equal(TorqueUnit.MeganewtonMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 Mlbf·ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegapoundForceFeet, MegapoundForceFeetTolerance);
+                Assert.Equal(TorqueUnit.MegapoundForceFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 Mlbf·in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegapoundForceInches, MegapoundForceInchesTolerance);
+                Assert.Equal(TorqueUnit.MegapoundForceInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 N·cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonCentimeters, NewtonCentimetersTolerance);
+                Assert.Equal(TorqueUnit.NewtonCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 N·m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonMeters, NewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.NewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 Н·м", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.NewtonMeters, NewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.NewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 N·mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonMillimeters, NewtonMillimetersTolerance);
+                Assert.Equal(TorqueUnit.NewtonMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 pdl·ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundalFeet, PoundalFeetTolerance);
+                Assert.Equal(TorqueUnit.PoundalFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 lbf·ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundForceFeet, PoundForceFeetTolerance);
+                Assert.Equal(TorqueUnit.PoundForceFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 lbf·in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundForceInches, PoundForceInchesTolerance);
+                Assert.Equal(TorqueUnit.PoundForceInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 tf·cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonneForceCentimeters, TonneForceCentimetersTolerance);
+                Assert.Equal(TorqueUnit.TonneForceCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 tf·m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonneForceMeters, TonneForceMetersTolerance);
+                Assert.Equal(TorqueUnit.TonneForceMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Torque.Parse("1 tf·mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonneForceMillimeters, TonneForceMillimetersTolerance);
+                Assert.Equal(TorqueUnit.TonneForceMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Torque.TryParse("1 gf·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramForceCentimeters, GramForceCentimetersTolerance);
+                Assert.Equal(TorqueUnit.GramForceCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 gf·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramForceMeters, GramForceMetersTolerance);
+                Assert.Equal(TorqueUnit.GramForceMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 gf·mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GramForceMillimeters, GramForceMillimetersTolerance);
+                Assert.Equal(TorqueUnit.GramForceMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 kgf·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramForceCentimeters, KilogramForceCentimetersTolerance);
+                Assert.Equal(TorqueUnit.KilogramForceCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 kgf·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramForceMeters, KilogramForceMetersTolerance);
+                Assert.Equal(TorqueUnit.KilogramForceMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 kgf·mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramForceMillimeters, KilogramForceMillimetersTolerance);
+                Assert.Equal(TorqueUnit.KilogramForceMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 kN·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonCentimeters, KilonewtonCentimetersTolerance);
+                Assert.Equal(TorqueUnit.KilonewtonCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 kN·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonMeters, KilonewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.KilonewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 кН·м", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonMeters, KilonewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.KilonewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 kN·mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonMillimeters, KilonewtonMillimetersTolerance);
+                Assert.Equal(TorqueUnit.KilonewtonMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 kipf·ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundForceFeet, KilopoundForceFeetTolerance);
+                Assert.Equal(TorqueUnit.KilopoundForceFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 kipf·in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundForceInches, KilopoundForceInchesTolerance);
+                Assert.Equal(TorqueUnit.KilopoundForceInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 MN·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonCentimeters, MeganewtonCentimetersTolerance);
+                Assert.Equal(TorqueUnit.MeganewtonCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 MN·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonMeters, MeganewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.MeganewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 МН·м", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonMeters, MeganewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.MeganewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 MN·mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonMillimeters, MeganewtonMillimetersTolerance);
+                Assert.Equal(TorqueUnit.MeganewtonMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 Mlbf·ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegapoundForceFeet, MegapoundForceFeetTolerance);
+                Assert.Equal(TorqueUnit.MegapoundForceFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 Mlbf·in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegapoundForceInches, MegapoundForceInchesTolerance);
+                Assert.Equal(TorqueUnit.MegapoundForceInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 N·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonCentimeters, NewtonCentimetersTolerance);
+                Assert.Equal(TorqueUnit.NewtonCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 N·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonMeters, NewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.NewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 Н·м", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonMeters, NewtonMetersTolerance);
+                Assert.Equal(TorqueUnit.NewtonMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 N·mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonMillimeters, NewtonMillimetersTolerance);
+                Assert.Equal(TorqueUnit.NewtonMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 pdl·ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundalFeet, PoundalFeetTolerance);
+                Assert.Equal(TorqueUnit.PoundalFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 lbf·ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundForceFeet, PoundForceFeetTolerance);
+                Assert.Equal(TorqueUnit.PoundForceFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 lbf·in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundForceInches, PoundForceInchesTolerance);
+                Assert.Equal(TorqueUnit.PoundForceInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 tf·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonneForceCentimeters, TonneForceCentimetersTolerance);
+                Assert.Equal(TorqueUnit.TonneForceCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 tf·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonneForceMeters, TonneForceMetersTolerance);
+                Assert.Equal(TorqueUnit.TonneForceMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParse("1 tf·mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonneForceMillimeters, TonneForceMillimetersTolerance);
+                Assert.Equal(TorqueUnit.TonneForceMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("gf·cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.GramForceCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("gf·m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.GramForceMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("gf·mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.GramForceMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("kgf·cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.KilogramForceCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("kgf·m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.KilogramForceMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("kgf·mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.KilogramForceMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("kN·cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.KilonewtonCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("kN·m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.KilonewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("кН·м", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(TorqueUnit.KilonewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("kN·mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.KilonewtonMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("kipf·ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.KilopoundForceFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("kipf·in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.KilopoundForceInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("MN·cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.MeganewtonCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("MN·m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.MeganewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("МН·м", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(TorqueUnit.MeganewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("MN·mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.MeganewtonMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("Mlbf·ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.MegapoundForceFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("Mlbf·in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.MegapoundForceInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("N·cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.NewtonCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("N·m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.NewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("Н·м", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(TorqueUnit.NewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("N·mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.NewtonMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("pdl·ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.PoundalFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("lbf·ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.PoundForceFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("lbf·in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.PoundForceInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("tf·cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.TonneForceCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("tf·m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.TonneForceMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Torque.ParseUnit("tf·mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TorqueUnit.TonneForceMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Torque.TryParseUnit("gf·cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.GramForceCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("gf·m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.GramForceMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("gf·mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.GramForceMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("kgf·cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilogramForceCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("kgf·m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilogramForceMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("kgf·mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilogramForceMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("kN·cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilonewtonCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("kN·m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilonewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("кН·м", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilonewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("kN·mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilonewtonMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("kipf·ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilopoundForceFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("kipf·in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.KilopoundForceInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("MN·cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.MeganewtonCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("MN·m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.MeganewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("МН·м", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.MeganewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("MN·mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.MeganewtonMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("Mlbf·ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.MegapoundForceFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("Mlbf·in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.MegapoundForceInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("N·cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.NewtonCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("N·m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.NewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("Н·м", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.NewtonMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("N·mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.NewtonMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("pdl·ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.PoundalFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("lbf·ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.PoundForceFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("lbf·in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.PoundForceInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("tf·cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.TonneForceCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("tf·m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.TonneForceMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Torque.TryParseUnit("tf·mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TorqueUnit.TonneForceMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(TorqueUnit unit)

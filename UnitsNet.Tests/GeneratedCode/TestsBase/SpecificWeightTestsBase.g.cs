@@ -339,6 +339,468 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 kgf/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCubicCentimeter, KilogramsForcePerCubicCentimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 kgf/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCubicMeter, KilogramsForcePerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 kgf/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCubicMillimeter, KilogramsForcePerCubicMillimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 kN/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerCubicCentimeter, KilonewtonsPerCubicCentimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 kN/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerCubicMeter, KilonewtonsPerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 kN/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerCubicMillimeter, KilonewtonsPerCubicMillimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 kipf/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerCubicFoot, KilopoundsForcePerCubicFootTolerance);
+                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 kipf/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerCubicInch, KilopoundsForcePerCubicInchTolerance);
+                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 MN/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerCubicMeter, MeganewtonsPerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.MeganewtonPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 N/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerCubicCentimeter, NewtonsPerCubicCentimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 N/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 N/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerCubicMillimeter, NewtonsPerCubicMillimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 lbf/ft³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerCubicFoot, PoundsForcePerCubicFootTolerance);
+                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 lbf/in³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerCubicInch, PoundsForcePerCubicInchTolerance);
+                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 tf/cm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCubicCentimeter, TonnesForcePerCubicCentimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 tf/m³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCubicMeter, TonnesForcePerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = SpecificWeight.Parse("1 tf/mm³", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCubicMillimeter, TonnesForcePerCubicMillimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 kgf/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCubicCentimeter, KilogramsForcePerCubicCentimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 kgf/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCubicMeter, KilogramsForcePerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 kgf/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerCubicMillimeter, KilogramsForcePerCubicMillimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 kN/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerCubicCentimeter, KilonewtonsPerCubicCentimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 kN/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerCubicMeter, KilonewtonsPerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 kN/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerCubicMillimeter, KilonewtonsPerCubicMillimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 kipf/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerCubicFoot, KilopoundsForcePerCubicFootTolerance);
+                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 kipf/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerCubicInch, KilopoundsForcePerCubicInchTolerance);
+                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 MN/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerCubicMeter, MeganewtonsPerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.MeganewtonPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 N/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerCubicCentimeter, NewtonsPerCubicCentimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 N/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 N/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerCubicMillimeter, NewtonsPerCubicMillimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 lbf/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerCubicFoot, PoundsForcePerCubicFootTolerance);
+                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 lbf/in³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerCubicInch, PoundsForcePerCubicInchTolerance);
+                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 tf/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCubicCentimeter, TonnesForcePerCubicCentimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 tf/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCubicMeter, TonnesForcePerCubicMeterTolerance);
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParse("1 tf/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerCubicMillimeter, TonnesForcePerCubicMillimeterTolerance);
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("kgf/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("kgf/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("kgf/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("kN/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("kN/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("kN/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("kipf/ft³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("kipf/in³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("MN/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.MeganewtonPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("N/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("N/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("N/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("lbf/ft³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("lbf/in³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("tf/cm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("tf/m³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = SpecificWeight.ParseUnit("tf/mm³", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("kgf/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("kgf/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("kgf/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.KilogramForcePerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("kN/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("kN/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("kN/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.KilonewtonPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("kipf/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("kipf/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.KilopoundForcePerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("MN/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.MeganewtonPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("N/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("N/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("N/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.NewtonPerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("lbf/ft³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("lbf/in³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.PoundForcePerCubicInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("tf/cm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("tf/m³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(SpecificWeight.TryParseUnit("tf/mm³", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpecificWeightUnit.TonneForcePerCubicMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(SpecificWeightUnit unit)

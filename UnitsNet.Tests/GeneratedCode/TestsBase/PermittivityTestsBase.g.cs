@@ -179,6 +179,52 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Permittivity.Parse("1 F/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.FaradsPerMeter, FaradsPerMeterTolerance);
+                Assert.Equal(PermittivityUnit.FaradPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Permittivity.TryParse("1 F/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FaradsPerMeter, FaradsPerMeterTolerance);
+                Assert.Equal(PermittivityUnit.FaradPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Permittivity.ParseUnit("F/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PermittivityUnit.FaradPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Permittivity.TryParseUnit("F/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PermittivityUnit.FaradPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(PermittivityUnit unit)

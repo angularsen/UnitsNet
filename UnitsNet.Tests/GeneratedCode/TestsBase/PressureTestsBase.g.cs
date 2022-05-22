@@ -619,6 +619,2210 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Pressure.Parse("1 atm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Atmospheres, AtmospheresTolerance);
+                Assert.Equal(PressureUnit.Atmosphere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 атм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Atmospheres, AtmospheresTolerance);
+                Assert.Equal(PressureUnit.Atmosphere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 bar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Bars, BarsTolerance);
+                Assert.Equal(PressureUnit.Bar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 бар", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Bars, BarsTolerance);
+                Assert.Equal(PressureUnit.Bar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 cbar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Centibars, CentibarsTolerance);
+                Assert.Equal(PressureUnit.Centibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 сбар", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Centibars, CentibarsTolerance);
+                Assert.Equal(PressureUnit.Centibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 daPa", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decapascals, DecapascalsTolerance);
+                Assert.Equal(PressureUnit.Decapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 даПа", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Decapascals, DecapascalsTolerance);
+                Assert.Equal(PressureUnit.Decapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 dbar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decibars, DecibarsTolerance);
+                Assert.Equal(PressureUnit.Decibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 дбар", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Decibars, DecibarsTolerance);
+                Assert.Equal(PressureUnit.Decibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 dyn/cm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DynesPerSquareCentimeter, DynesPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.DynePerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 ft of elevation", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.FeetOfElevation, FeetOfElevationTolerance);
+                Assert.Equal(PressureUnit.FootOfElevation, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 ft of head", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.FeetOfHead, FeetOfHeadTolerance);
+                Assert.Equal(PressureUnit.FootOfHead, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 GPa", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gigapascals, GigapascalsTolerance);
+                Assert.Equal(PressureUnit.Gigapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 ГПа", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Gigapascals, GigapascalsTolerance);
+                Assert.Equal(PressureUnit.Gigapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 hPa", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Hectopascals, HectopascalsTolerance);
+                Assert.Equal(PressureUnit.Hectopascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 гПа", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Hectopascals, HectopascalsTolerance);
+                Assert.Equal(PressureUnit.Hectopascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 inHg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InchesOfMercury, InchesOfMercuryTolerance);
+                Assert.Equal(PressureUnit.InchOfMercury, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 inH2O", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 inch wc", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 wc", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kbar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilobars, KilobarsTolerance);
+                Assert.Equal(PressureUnit.Kilobar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 кбар", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Kilobars, KilobarsTolerance);
+                Assert.Equal(PressureUnit.Kilobar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kgf/cm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 кгс/см²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kgf/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 кгс/м²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kgf/mm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 кгс/мм²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kN/cm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 кН/см²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kN/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 кН/м²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kN/mm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 кН/мм²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kPa", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilopascals, KilopascalsTolerance);
+                Assert.Equal(PressureUnit.Kilopascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 кПа", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Kilopascals, KilopascalsTolerance);
+                Assert.Equal(PressureUnit.Kilopascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kipf/ft²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 ksi", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kipf/in²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 ksi", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 kipf/in²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 Mbar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megabars, MegabarsTolerance);
+                Assert.Equal(PressureUnit.Megabar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 Мбар", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Megabars, MegabarsTolerance);
+                Assert.Equal(PressureUnit.Megabar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 MN/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 МН/м²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 MPa", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megapascals, MegapascalsTolerance);
+                Assert.Equal(PressureUnit.Megapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 МПа", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Megapascals, MegapascalsTolerance);
+                Assert.Equal(PressureUnit.Megapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 m of elevation", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MetersOfElevation, MetersOfElevationTolerance);
+                Assert.Equal(PressureUnit.MeterOfElevation, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 m of head", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MetersOfHead, MetersOfHeadTolerance);
+                Assert.Equal(PressureUnit.MeterOfHead, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 µbar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microbars, MicrobarsTolerance);
+                Assert.Equal(PressureUnit.Microbar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 мкбар", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Microbars, MicrobarsTolerance);
+                Assert.Equal(PressureUnit.Microbar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 µPa", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Micropascals, MicropascalsTolerance);
+                Assert.Equal(PressureUnit.Micropascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 мкПа", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Micropascals, MicropascalsTolerance);
+                Assert.Equal(PressureUnit.Micropascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 mbar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millibars, MillibarsTolerance);
+                Assert.Equal(PressureUnit.Millibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 мбар", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Millibars, MillibarsTolerance);
+                Assert.Equal(PressureUnit.Millibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 mmHg", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillimetersOfMercury, MillimetersOfMercuryTolerance);
+                Assert.Equal(PressureUnit.MillimeterOfMercury, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 мм рт.ст.", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.MillimetersOfMercury, MillimetersOfMercuryTolerance);
+                Assert.Equal(PressureUnit.MillimeterOfMercury, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 mmH2O", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillimeterOfWaterColumn, MillimeterOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.MillimeterOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 mm wc", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillimeterOfWaterColumn, MillimeterOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.MillimeterOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 mPa", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millipascals, MillipascalsTolerance);
+                Assert.Equal(PressureUnit.Millipascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 мПа", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Millipascals, MillipascalsTolerance);
+                Assert.Equal(PressureUnit.Millipascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 N/cm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 Н/см²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 N/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 Н/м²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 N/mm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 Н/мм²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 Pa", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Pascals, PascalsTolerance);
+                Assert.Equal(PressureUnit.Pascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 Па", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Pascals, PascalsTolerance);
+                Assert.Equal(PressureUnit.Pascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 lb/ft²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 psi", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 lb/in²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 psi", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 lb/in²", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 lbm/(in·s²)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerInchSecondSquared, PoundsPerInchSecondSquaredTolerance);
+                Assert.Equal(PressureUnit.PoundPerInchSecondSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 lb/(in·s²)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerInchSecondSquared, PoundsPerInchSecondSquaredTolerance);
+                Assert.Equal(PressureUnit.PoundPerInchSecondSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 at", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
+                Assert.Equal(PressureUnit.TechnicalAtmosphere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 ат", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
+                Assert.Equal(PressureUnit.TechnicalAtmosphere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 tf/cm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.TonneForcePerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 tf/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.TonneForcePerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 tf/mm²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.TonneForcePerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 torr", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Torrs, TorrsTolerance);
+                Assert.Equal(PressureUnit.Torr, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Pressure.Parse("1 торр", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Torrs, TorrsTolerance);
+                Assert.Equal(PressureUnit.Torr, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Pressure.TryParse("1 atm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Atmospheres, AtmospheresTolerance);
+                Assert.Equal(PressureUnit.Atmosphere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 атм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Atmospheres, AtmospheresTolerance);
+                Assert.Equal(PressureUnit.Atmosphere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 bar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Bars, BarsTolerance);
+                Assert.Equal(PressureUnit.Bar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 бар", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Bars, BarsTolerance);
+                Assert.Equal(PressureUnit.Bar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 cbar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centibars, CentibarsTolerance);
+                Assert.Equal(PressureUnit.Centibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 сбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centibars, CentibarsTolerance);
+                Assert.Equal(PressureUnit.Centibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 daPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decapascals, DecapascalsTolerance);
+                Assert.Equal(PressureUnit.Decapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 даПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decapascals, DecapascalsTolerance);
+                Assert.Equal(PressureUnit.Decapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 dbar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decibars, DecibarsTolerance);
+                Assert.Equal(PressureUnit.Decibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 дбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decibars, DecibarsTolerance);
+                Assert.Equal(PressureUnit.Decibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 dyn/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DynesPerSquareCentimeter, DynesPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.DynePerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 ft of elevation", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FeetOfElevation, FeetOfElevationTolerance);
+                Assert.Equal(PressureUnit.FootOfElevation, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 ft of head", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.FeetOfHead, FeetOfHeadTolerance);
+                Assert.Equal(PressureUnit.FootOfHead, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 GPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gigapascals, GigapascalsTolerance);
+                Assert.Equal(PressureUnit.Gigapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 ГПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gigapascals, GigapascalsTolerance);
+                Assert.Equal(PressureUnit.Gigapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 hPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectopascals, HectopascalsTolerance);
+                Assert.Equal(PressureUnit.Hectopascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 гПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Hectopascals, HectopascalsTolerance);
+                Assert.Equal(PressureUnit.Hectopascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 inHg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InchesOfMercury, InchesOfMercuryTolerance);
+                Assert.Equal(PressureUnit.InchOfMercury, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 inH2O", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 inch wc", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 wc", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kbar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilobars, KilobarsTolerance);
+                Assert.Equal(PressureUnit.Kilobar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 кбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilobars, KilobarsTolerance);
+                Assert.Equal(PressureUnit.Kilobar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kgf/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 кгс/см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kgf/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 кгс/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareMeter, KilogramsForcePerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kgf/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 кгс/мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsForcePerSquareMillimeter, KilogramsForcePerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kN/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 кН/см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareCentimeter, KilonewtonsPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kN/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 кН/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareMeter, KilonewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kN/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 кН/мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilonewtonsPerSquareMillimeter, KilonewtonsPerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilopascals, KilopascalsTolerance);
+                Assert.Equal(PressureUnit.Kilopascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 кПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilopascals, KilopascalsTolerance);
+                Assert.Equal(PressureUnit.Kilopascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kipf/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 ksi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kipf/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 ksi", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 kipf/in²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 Mbar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megabars, MegabarsTolerance);
+                Assert.Equal(PressureUnit.Megabar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 Мбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megabars, MegabarsTolerance);
+                Assert.Equal(PressureUnit.Megabar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 MN/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 МН/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 MPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megapascals, MegapascalsTolerance);
+                Assert.Equal(PressureUnit.Megapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 МПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megapascals, MegapascalsTolerance);
+                Assert.Equal(PressureUnit.Megapascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 m of elevation", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetersOfElevation, MetersOfElevationTolerance);
+                Assert.Equal(PressureUnit.MeterOfElevation, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 m of head", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MetersOfHead, MetersOfHeadTolerance);
+                Assert.Equal(PressureUnit.MeterOfHead, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 µbar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microbars, MicrobarsTolerance);
+                Assert.Equal(PressureUnit.Microbar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 мкбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microbars, MicrobarsTolerance);
+                Assert.Equal(PressureUnit.Microbar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 µPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micropascals, MicropascalsTolerance);
+                Assert.Equal(PressureUnit.Micropascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 мкПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micropascals, MicropascalsTolerance);
+                Assert.Equal(PressureUnit.Micropascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 mbar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millibars, MillibarsTolerance);
+                Assert.Equal(PressureUnit.Millibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 мбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millibars, MillibarsTolerance);
+                Assert.Equal(PressureUnit.Millibar, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 mmHg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimetersOfMercury, MillimetersOfMercuryTolerance);
+                Assert.Equal(PressureUnit.MillimeterOfMercury, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 мм рт.ст.", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimetersOfMercury, MillimetersOfMercuryTolerance);
+                Assert.Equal(PressureUnit.MillimeterOfMercury, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 mmH2O", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimeterOfWaterColumn, MillimeterOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.MillimeterOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 mm wc", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillimeterOfWaterColumn, MillimeterOfWaterColumnTolerance);
+                Assert.Equal(PressureUnit.MillimeterOfWaterColumn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 mPa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millipascals, MillipascalsTolerance);
+                Assert.Equal(PressureUnit.Millipascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 мПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millipascals, MillipascalsTolerance);
+                Assert.Equal(PressureUnit.Millipascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 N/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 Н/см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 N/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 Н/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 N/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 Н/мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 Pa", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Pascals, PascalsTolerance);
+                Assert.Equal(PressureUnit.Pascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 Па", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Pascals, PascalsTolerance);
+                Assert.Equal(PressureUnit.Pascal, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 lb/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 psi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 lb/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 psi", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 lb/in²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 lbm/(in·s²)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerInchSecondSquared, PoundsPerInchSecondSquaredTolerance);
+                Assert.Equal(PressureUnit.PoundPerInchSecondSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 lb/(in·s²)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerInchSecondSquared, PoundsPerInchSecondSquaredTolerance);
+                Assert.Equal(PressureUnit.PoundPerInchSecondSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 at", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
+                Assert.Equal(PressureUnit.TechnicalAtmosphere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 ат", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
+                Assert.Equal(PressureUnit.TechnicalAtmosphere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 tf/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
+                Assert.Equal(PressureUnit.TonneForcePerSquareCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 tf/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
+                Assert.Equal(PressureUnit.TonneForcePerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 tf/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
+                Assert.Equal(PressureUnit.TonneForcePerSquareMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 torr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Torrs, TorrsTolerance);
+                Assert.Equal(PressureUnit.Torr, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParse("1 торр", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Torrs, TorrsTolerance);
+                Assert.Equal(PressureUnit.Torr, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("atm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Atmosphere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("атм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Atmosphere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("bar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Bar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("бар", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Bar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("cbar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Centibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("сбар", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Centibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("daPa", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Decapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("даПа", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Decapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("dbar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Decibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("дбар", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Decibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("dyn/cm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.DynePerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("ft of elevation", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.FootOfElevation, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("ft of head", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.FootOfHead, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("GPa", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Gigapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("ГПа", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Gigapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("hPa", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Hectopascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("гПа", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Hectopascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("inHg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.InchOfMercury, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("inH2O", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("inch wc", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("wc", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kbar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Kilobar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("кбар", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Kilobar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kgf/cm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("кгс/см²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kgf/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("кгс/м²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kgf/mm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("кгс/мм²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kN/cm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("кН/см²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kN/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("кН/м²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kN/mm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("кН/мм²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kPa", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Kilopascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("кПа", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Kilopascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kipf/ft²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("ksi", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kipf/in²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("ksi", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("kipf/in²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("Mbar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Megabar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("Мбар", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Megabar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("MN/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("МН/м²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("MPa", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Megapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("МПа", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Megapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("m of elevation", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.MeterOfElevation, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("m of head", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.MeterOfHead, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("µbar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Microbar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("мкбар", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Microbar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("µPa", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Micropascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("мкПа", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Micropascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("mbar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Millibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("мбар", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Millibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("mmHg", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.MillimeterOfMercury, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("мм рт.ст.", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.MillimeterOfMercury, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("mmH2O", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.MillimeterOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("mm wc", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.MillimeterOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("mPa", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Millipascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("мПа", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Millipascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("N/cm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("Н/см²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("N/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.NewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("Н/м²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.NewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("N/mm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("Н/мм²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("Pa", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Pascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("Па", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Pascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("lb/ft²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.PoundForcePerSquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("psi", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("lb/in²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("psi", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("lb/in²", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("lbm/(in·s²)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.PoundPerInchSecondSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("lb/(in·s²)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.PoundPerInchSecondSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("at", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.TechnicalAtmosphere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("ат", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.TechnicalAtmosphere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("tf/cm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.TonneForcePerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("tf/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.TonneForcePerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("tf/mm²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.TonneForcePerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("torr", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PressureUnit.Torr, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Pressure.ParseUnit("торр", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(PressureUnit.Torr, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("atm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Atmosphere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("атм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Atmosphere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("bar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Bar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("бар", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Bar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("cbar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Centibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("сбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Centibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("daPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Decapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("даПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Decapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("dbar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Decibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("дбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Decibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("dyn/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.DynePerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("ft of elevation", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.FootOfElevation, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("ft of head", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.FootOfHead, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("GPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Gigapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("ГПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Gigapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("hPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Hectopascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("гПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Hectopascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("inHg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.InchOfMercury, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("inH2O", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("inch wc", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("wc", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.InchOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kbar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Kilobar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("кбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Kilobar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kgf/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("кгс/см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kgf/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("кгс/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kgf/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("кгс/мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilogramForcePerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kN/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("кН/см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kN/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("кН/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kN/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("кН/мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilonewtonPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Kilopascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("кПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Kilopascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kipf/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("ksi", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kipf/in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("ksi", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("kipf/in²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.KilopoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("Mbar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Megabar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("Мбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Megabar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("MN/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("МН/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.MeganewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("MPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Megapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("МПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Megapascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("m of elevation", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.MeterOfElevation, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("m of head", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.MeterOfHead, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("µbar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Microbar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("мкбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Microbar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("µPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Micropascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("мкПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Micropascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("mbar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Millibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("мбар", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Millibar, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("mmHg", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.MillimeterOfMercury, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("мм рт.ст.", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.MillimeterOfMercury, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("mmH2O", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.MillimeterOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("mm wc", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.MillimeterOfWaterColumn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("mPa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Millipascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("мПа", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Millipascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("N/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("Н/см²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("N/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.NewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("Н/м²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.NewtonPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("N/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("Н/мм²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.NewtonPerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("Pa", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Pascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("Па", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Pascal, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("lb/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.PoundForcePerSquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("psi", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("lb/in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("psi", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("lb/in²", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.PoundForcePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("lbm/(in·s²)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.PoundPerInchSecondSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("lb/(in·s²)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.PoundPerInchSecondSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("at", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.TechnicalAtmosphere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("ат", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.TechnicalAtmosphere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("tf/cm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.TonneForcePerSquareCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("tf/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.TonneForcePerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("tf/mm²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.TonneForcePerSquareMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("torr", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Torr, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Pressure.TryParseUnit("торр", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(PressureUnit.Torr, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(PressureUnit unit)

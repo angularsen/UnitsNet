@@ -404,6 +404,702 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Information.Parse("1 b", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Bits, BitsTolerance);
+                Assert.Equal(InformationUnit.Bit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 B", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Bytes, BytesTolerance);
+                Assert.Equal(InformationUnit.Byte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Eb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Exabits, ExabitsTolerance);
+                Assert.Equal(InformationUnit.Exabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 EB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Exabytes, ExabytesTolerance);
+                Assert.Equal(InformationUnit.Exabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Eib", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Exbibits, ExbibitsTolerance);
+                Assert.Equal(InformationUnit.Exbibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 EiB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Exbibytes, ExbibytesTolerance);
+                Assert.Equal(InformationUnit.Exbibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Gib", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gibibits, GibibitsTolerance);
+                Assert.Equal(InformationUnit.Gibibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 GiB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gibibytes, GibibytesTolerance);
+                Assert.Equal(InformationUnit.Gibibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Gb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gigabits, GigabitsTolerance);
+                Assert.Equal(InformationUnit.Gigabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 GB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gigabytes, GigabytesTolerance);
+                Assert.Equal(InformationUnit.Gigabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Kib", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kibibits, KibibitsTolerance);
+                Assert.Equal(InformationUnit.Kibibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 KiB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kibibytes, KibibytesTolerance);
+                Assert.Equal(InformationUnit.Kibibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 kb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilobits, KilobitsTolerance);
+                Assert.Equal(InformationUnit.Kilobit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 kB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilobytes, KilobytesTolerance);
+                Assert.Equal(InformationUnit.Kilobyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Mib", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Mebibits, MebibitsTolerance);
+                Assert.Equal(InformationUnit.Mebibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 MiB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Mebibytes, MebibytesTolerance);
+                Assert.Equal(InformationUnit.Mebibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Mb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megabits, MegabitsTolerance);
+                Assert.Equal(InformationUnit.Megabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 MB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megabytes, MegabytesTolerance);
+                Assert.Equal(InformationUnit.Megabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Pib", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Pebibits, PebibitsTolerance);
+                Assert.Equal(InformationUnit.Pebibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 PiB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Pebibytes, PebibytesTolerance);
+                Assert.Equal(InformationUnit.Pebibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Pb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Petabits, PetabitsTolerance);
+                Assert.Equal(InformationUnit.Petabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 PB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Petabytes, PetabytesTolerance);
+                Assert.Equal(InformationUnit.Petabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Tib", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Tebibits, TebibitsTolerance);
+                Assert.Equal(InformationUnit.Tebibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 TiB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Tebibytes, TebibytesTolerance);
+                Assert.Equal(InformationUnit.Tebibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 Tb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Terabits, TerabitsTolerance);
+                Assert.Equal(InformationUnit.Terabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Information.Parse("1 TB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Terabytes, TerabytesTolerance);
+                Assert.Equal(InformationUnit.Terabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Information.TryParse("1 b", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Bits, BitsTolerance);
+                Assert.Equal(InformationUnit.Bit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 B", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Bytes, BytesTolerance);
+                Assert.Equal(InformationUnit.Byte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Eb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Exabits, ExabitsTolerance);
+                Assert.Equal(InformationUnit.Exabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 EB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Exabytes, ExabytesTolerance);
+                Assert.Equal(InformationUnit.Exabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Eib", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Exbibits, ExbibitsTolerance);
+                Assert.Equal(InformationUnit.Exbibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 EiB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Exbibytes, ExbibytesTolerance);
+                Assert.Equal(InformationUnit.Exbibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Gib", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gibibits, GibibitsTolerance);
+                Assert.Equal(InformationUnit.Gibibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 GiB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gibibytes, GibibytesTolerance);
+                Assert.Equal(InformationUnit.Gibibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Gb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gigabits, GigabitsTolerance);
+                Assert.Equal(InformationUnit.Gigabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 GB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gigabytes, GigabytesTolerance);
+                Assert.Equal(InformationUnit.Gigabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Kib", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kibibits, KibibitsTolerance);
+                Assert.Equal(InformationUnit.Kibibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 KiB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kibibytes, KibibytesTolerance);
+                Assert.Equal(InformationUnit.Kibibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 kb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilobits, KilobitsTolerance);
+                Assert.Equal(InformationUnit.Kilobit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 kB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilobytes, KilobytesTolerance);
+                Assert.Equal(InformationUnit.Kilobyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Mib", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Mebibits, MebibitsTolerance);
+                Assert.Equal(InformationUnit.Mebibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 MiB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Mebibytes, MebibytesTolerance);
+                Assert.Equal(InformationUnit.Mebibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Mb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megabits, MegabitsTolerance);
+                Assert.Equal(InformationUnit.Megabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 MB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megabytes, MegabytesTolerance);
+                Assert.Equal(InformationUnit.Megabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Pib", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Pebibits, PebibitsTolerance);
+                Assert.Equal(InformationUnit.Pebibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 PiB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Pebibytes, PebibytesTolerance);
+                Assert.Equal(InformationUnit.Pebibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Pb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Petabits, PetabitsTolerance);
+                Assert.Equal(InformationUnit.Petabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 PB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Petabytes, PetabytesTolerance);
+                Assert.Equal(InformationUnit.Petabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Tib", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Tebibits, TebibitsTolerance);
+                Assert.Equal(InformationUnit.Tebibit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 TiB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Tebibytes, TebibytesTolerance);
+                Assert.Equal(InformationUnit.Tebibyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 Tb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Terabits, TerabitsTolerance);
+                Assert.Equal(InformationUnit.Terabit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParse("1 TB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Terabytes, TerabytesTolerance);
+                Assert.Equal(InformationUnit.Terabyte, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Information.ParseUnit("b", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Bit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("B", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Byte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Eb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Exabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("EB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Exabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Eib", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Exbibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("EiB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Exbibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Gib", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Gibibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("GiB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Gibibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Gb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Gigabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("GB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Gigabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Kib", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Kibibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("KiB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Kibibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("kb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Kilobit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("kB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Kilobyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Mib", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Mebibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("MiB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Mebibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Mb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Megabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("MB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Megabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Pib", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Pebibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("PiB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Pebibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Pb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Petabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("PB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Petabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Tib", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Tebibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("TiB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Tebibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("Tb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Terabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Information.ParseUnit("TB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(InformationUnit.Terabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Information.TryParseUnit("b", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Bit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("B", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Byte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Eb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Exabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("EB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Exabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Eib", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Exbibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("EiB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Exbibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Gib", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Gibibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("GiB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Gibibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Gb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Gigabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("GB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Gigabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Kib", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Kibibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("KiB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Kibibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("kb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Kilobit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("kB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Kilobyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Mib", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Mebibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("MiB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Mebibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Mb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Megabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("MB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Megabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Pib", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Pebibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("PiB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Pebibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Pb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Petabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("PB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Petabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Tib", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Tebibit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("TiB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Tebibyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("Tb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Terabit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Information.TryParseUnit("TB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(InformationUnit.Terabyte, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(InformationUnit unit)

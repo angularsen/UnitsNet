@@ -419,6 +419,676 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerCentimeter, GigawattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerFoot, GigawattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerInch, GigawattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerMeter, GigawattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 GW/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerMillimeter, GigawattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerCentimeter, KilowattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerFoot, KilowattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerInch, KilowattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerMeter, KilowattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 kW/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerMillimeter, KilowattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerCentimeter, MegawattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerFoot, MegawattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerInch, MegawattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerMeter, MegawattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 MW/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerMillimeter, MegawattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerCentimeter, MilliwattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerFoot, MilliwattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerInch, MilliwattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerMeter, MilliwattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 mW/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerMillimeter, MilliwattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/cm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerCentimeter, WattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerFoot, WattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/in", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerInch, WattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMeter, WattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = LinearPowerDensity.Parse("1 W/mm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMillimeter, WattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerCentimeter, GigawattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerFoot, GigawattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerInch, GigawattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerMeter, GigawattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 GW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigawattsPerMillimeter, GigawattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerCentimeter, KilowattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerFoot, KilowattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerInch, KilowattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerMeter, KilowattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 kW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilowattsPerMillimeter, KilowattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 MW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerCentimeter, MegawattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 MW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerFoot, MegawattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 MW/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerInch, MegawattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 MW/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerMeter, MegawattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 MW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegawattsPerMillimeter, MegawattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 mW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerCentimeter, MilliwattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 mW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerFoot, MilliwattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 mW/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerInch, MilliwattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 mW/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerMeter, MilliwattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 mW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MilliwattsPerMillimeter, MilliwattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerCentimeter, WattsPerCentimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerFoot, WattsPerFootTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerInch, WattsPerInchTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMeter, WattsPerMeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParse("1 W/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerMillimeter, WattsPerMillimeterTolerance);
+                Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("GW/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("kW/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("MW/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("mW/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/cm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/in", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = LinearPowerDensity.ParseUnit("W/mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("GW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.GigawattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("kW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.KilowattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("MW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("MW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("MW/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("MW/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("MW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MegawattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("mW/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("mW/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("mW/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("mW/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("mW/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.MilliwattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/cm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerCentimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/in", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(LinearPowerDensity.TryParseUnit("W/mm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LinearPowerDensityUnit.WattPerMillimeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(LinearPowerDensityUnit unit)

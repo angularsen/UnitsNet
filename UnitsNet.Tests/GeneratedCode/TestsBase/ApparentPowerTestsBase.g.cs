@@ -209,6 +209,130 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ApparentPower.Parse("1 GVA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gigavoltamperes, GigavoltamperesTolerance);
+                Assert.Equal(ApparentPowerUnit.Gigavoltampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = ApparentPower.Parse("1 kVA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilovoltamperes, KilovoltamperesTolerance);
+                Assert.Equal(ApparentPowerUnit.Kilovoltampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = ApparentPower.Parse("1 MVA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megavoltamperes, MegavoltamperesTolerance);
+                Assert.Equal(ApparentPowerUnit.Megavoltampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = ApparentPower.Parse("1 VA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Voltamperes, VoltamperesTolerance);
+                Assert.Equal(ApparentPowerUnit.Voltampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(ApparentPower.TryParse("1 GVA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gigavoltamperes, GigavoltamperesTolerance);
+                Assert.Equal(ApparentPowerUnit.Gigavoltampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ApparentPower.TryParse("1 kVA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilovoltamperes, KilovoltamperesTolerance);
+                Assert.Equal(ApparentPowerUnit.Kilovoltampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ApparentPower.TryParse("1 MVA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megavoltamperes, MegavoltamperesTolerance);
+                Assert.Equal(ApparentPowerUnit.Megavoltampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ApparentPower.TryParse("1 VA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Voltamperes, VoltamperesTolerance);
+                Assert.Equal(ApparentPowerUnit.Voltampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ApparentPower.ParseUnit("GVA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ApparentPowerUnit.Gigavoltampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = ApparentPower.ParseUnit("kVA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ApparentPowerUnit.Kilovoltampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = ApparentPower.ParseUnit("MVA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ApparentPowerUnit.Megavoltampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = ApparentPower.ParseUnit("VA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ApparentPowerUnit.Voltampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(ApparentPower.TryParseUnit("GVA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ApparentPowerUnit.Gigavoltampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ApparentPower.TryParseUnit("kVA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ApparentPowerUnit.Kilovoltampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ApparentPower.TryParseUnit("MVA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ApparentPowerUnit.Megavoltampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(ApparentPower.TryParseUnit("VA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ApparentPowerUnit.Voltampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ApparentPowerUnit unit)

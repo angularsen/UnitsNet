@@ -269,6 +269,364 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 cP", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Centipoise, CentipoiseTolerance);
+                Assert.Equal(DynamicViscosityUnit.Centipoise, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 µPa·s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicropascalSeconds, MicropascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 µPaS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicropascalSeconds, MicropascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 mPa·s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillipascalSeconds, MillipascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 mPaS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillipascalSeconds, MillipascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 Ns/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
+                Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 Pa·s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PascalSeconds, PascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 PaS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PascalSeconds, PascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 P", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Poise, PoiseTolerance);
+                Assert.Equal(DynamicViscosityUnit.Poise, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 lbf·s/ft²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForceSecondPerSquareFoot, PoundsForceSecondPerSquareFootTolerance);
+                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 lbf·s/in²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsForceSecondPerSquareInch, PoundsForceSecondPerSquareInchTolerance);
+                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 lb/ft·s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
+                Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = DynamicViscosity.Parse("1 reyn", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Reyns, ReynsTolerance);
+                Assert.Equal(DynamicViscosityUnit.Reyn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 cP", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centipoise, CentipoiseTolerance);
+                Assert.Equal(DynamicViscosityUnit.Centipoise, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 µPa·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicropascalSeconds, MicropascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 µPaS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicropascalSeconds, MicropascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 mPa·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillipascalSeconds, MillipascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 mPaS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillipascalSeconds, MillipascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 Ns/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NewtonSecondsPerMeterSquared, NewtonSecondsPerMeterSquaredTolerance);
+                Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 Pa·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PascalSeconds, PascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 PaS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PascalSeconds, PascalSecondsTolerance);
+                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 P", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Poise, PoiseTolerance);
+                Assert.Equal(DynamicViscosityUnit.Poise, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 lbf·s/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForceSecondPerSquareFoot, PoundsForceSecondPerSquareFootTolerance);
+                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 lbf·s/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsForceSecondPerSquareInch, PoundsForceSecondPerSquareInchTolerance);
+                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 lb/ft·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundsPerFootSecond, PoundsPerFootSecondTolerance);
+                Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParse("1 reyn", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Reyns, ReynsTolerance);
+                Assert.Equal(DynamicViscosityUnit.Reyn, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("cP", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.Centipoise, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("µPa·s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("µPaS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("mPa·s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("mPaS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("Ns/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("Pa·s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("PaS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("P", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.Poise, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("lbf·s/ft²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("lbf·s/in²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("lb/ft·s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = DynamicViscosity.ParseUnit("reyn", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(DynamicViscosityUnit.Reyn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("cP", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.Centipoise, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("µPa·s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("µPaS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.MicropascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("mPa·s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("mPaS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.MillipascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("Ns/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("Pa·s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("PaS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.PascalSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("P", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.Poise, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("lbf·s/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("lbf·s/in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.PoundForceSecondPerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("lb/ft·s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.PoundPerFootSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(DynamicViscosity.TryParseUnit("reyn", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(DynamicViscosityUnit.Reyn, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(DynamicViscosityUnit unit)

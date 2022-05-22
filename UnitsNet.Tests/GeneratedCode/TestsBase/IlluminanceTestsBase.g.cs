@@ -209,6 +209,130 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Illuminance.Parse("1 klx", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilolux, KiloluxTolerance);
+                Assert.Equal(IlluminanceUnit.Kilolux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Illuminance.Parse("1 lx", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Lux, LuxTolerance);
+                Assert.Equal(IlluminanceUnit.Lux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Illuminance.Parse("1 Mlx", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megalux, MegaluxTolerance);
+                Assert.Equal(IlluminanceUnit.Megalux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = Illuminance.Parse("1 mlx", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millilux, MilliluxTolerance);
+                Assert.Equal(IlluminanceUnit.Millilux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(Illuminance.TryParse("1 klx", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilolux, KiloluxTolerance);
+                Assert.Equal(IlluminanceUnit.Kilolux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Illuminance.TryParse("1 lx", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Lux, LuxTolerance);
+                Assert.Equal(IlluminanceUnit.Lux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Illuminance.TryParse("1 Mlx", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megalux, MegaluxTolerance);
+                Assert.Equal(IlluminanceUnit.Megalux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Illuminance.TryParse("1 mlx", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millilux, MilliluxTolerance);
+                Assert.Equal(IlluminanceUnit.Millilux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Illuminance.ParseUnit("klx", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(IlluminanceUnit.Kilolux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Illuminance.ParseUnit("lx", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(IlluminanceUnit.Lux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Illuminance.ParseUnit("Mlx", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(IlluminanceUnit.Megalux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = Illuminance.ParseUnit("mlx", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(IlluminanceUnit.Millilux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(Illuminance.TryParseUnit("klx", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(IlluminanceUnit.Kilolux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Illuminance.TryParseUnit("lx", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(IlluminanceUnit.Lux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Illuminance.TryParseUnit("Mlx", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(IlluminanceUnit.Megalux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(Illuminance.TryParseUnit("mlx", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(IlluminanceUnit.Millilux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(IlluminanceUnit unit)

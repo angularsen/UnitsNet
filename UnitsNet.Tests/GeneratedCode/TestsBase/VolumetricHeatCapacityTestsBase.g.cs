@@ -259,6 +259,260 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 BTU/ft³·°F", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BtusPerCubicFootDegreeFahrenheit, BtusPerCubicFootDegreeFahrenheitTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 cal/cm³·°C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CaloriesPerCubicCentimeterDegreeCelsius, CaloriesPerCubicCentimeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 J/m³·°C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerCubicMeterDegreeCelsius, JoulesPerCubicMeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 J/m³·K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 kcal/cm³·°C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerCubicCentimeterDegreeCelsius, KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 kJ/m³·°C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerCubicMeterDegreeCelsius, KilojoulesPerCubicMeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 kJ/m³·K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerCubicMeterKelvin, KilojoulesPerCubicMeterKelvinTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 MJ/m³·°C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerCubicMeterDegreeCelsius, MegajoulesPerCubicMeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsed = VolumetricHeatCapacity.Parse("1 MJ/m³·K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerCubicMeterKelvin, MegajoulesPerCubicMeterKelvinTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 BTU/ft³·°F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BtusPerCubicFootDegreeFahrenheit, BtusPerCubicFootDegreeFahrenheitTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 cal/cm³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CaloriesPerCubicCentimeterDegreeCelsius, CaloriesPerCubicCentimeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 J/m³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerCubicMeterDegreeCelsius, JoulesPerCubicMeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 J/m³·K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 kcal/cm³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerCubicCentimeterDegreeCelsius, KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 kJ/m³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerCubicMeterDegreeCelsius, KilojoulesPerCubicMeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 kJ/m³·K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilojoulesPerCubicMeterKelvin, KilojoulesPerCubicMeterKelvinTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 MJ/m³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerCubicMeterDegreeCelsius, MegajoulesPerCubicMeterDegreeCelsiusTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParse("1 MJ/m³·K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegajoulesPerCubicMeterKelvin, MegajoulesPerCubicMeterKelvinTolerance);
+                Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("BTU/ft³·°F", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("cal/cm³·°C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("J/m³·°C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("J/m³·K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("kcal/cm³·°C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("kJ/m³·°C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("kJ/m³·K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("MJ/m³·°C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                var parsedUnit = VolumetricHeatCapacity.ParseUnit("MJ/m³·K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("BTU/ft³·°F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("cal/cm³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("J/m³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("J/m³·K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("kcal/cm³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("kJ/m³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("kJ/m³·K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("MJ/m³·°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+            try
+            {
+                Assert.True(VolumetricHeatCapacity.TryParseUnit("MJ/m³·K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* ignore, currently no info in JSON about ambiguity */ }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(VolumetricHeatCapacityUnit unit)
