@@ -540,9 +540,9 @@ namespace UnitsNet
             if(Unit == unit)
                 return Value;
 
-            var converted = GetValueAs(unit);
-            return converted;
+            return GetValueAs(unit);
         }
+
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
@@ -557,13 +557,14 @@ namespace UnitsNet
 
             return As(firstUnitInfo.Value);
         }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is LapseRateUnit unitAsLapseRateUnit))
+            if (!(unit is LapseRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LapseRateUnit)} is supported.", nameof(unit));
 
-            return ((IQuantity<LapseRateUnit>)this).As(unitAsLapseRateUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -620,10 +621,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is LapseRateUnit unitAsLapseRateUnit))
+            if (!(unit is LapseRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LapseRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLapseRateUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>

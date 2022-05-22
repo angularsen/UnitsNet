@@ -710,9 +710,9 @@ namespace UnitsNet
             if(Unit == unit)
                 return Value;
 
-            var converted = GetValueAs(unit);
-            return converted;
+            return GetValueAs(unit);
         }
+
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
@@ -727,13 +727,14 @@ namespace UnitsNet
 
             return As(firstUnitInfo.Value);
         }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is TemperatureChangeRateUnit unitAsTemperatureChangeRateUnit))
+            if (!(unit is TemperatureChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
 
-            return ((IQuantity<TemperatureChangeRateUnit>)this).As(unitAsTemperatureChangeRateUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -790,10 +791,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is TemperatureChangeRateUnit unitAsTemperatureChangeRateUnit))
+            if (!(unit is TemperatureChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureChangeRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsTemperatureChangeRateUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>

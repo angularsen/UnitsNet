@@ -577,9 +577,9 @@ namespace UnitsNet
             if(Unit == unit)
                 return Value;
 
-            var converted = GetValueAs(unit);
-            return converted;
+            return GetValueAs(unit);
         }
+
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
@@ -594,13 +594,14 @@ namespace UnitsNet
 
             return As(firstUnitInfo.Value);
         }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is MolarEnergyUnit unitAsMolarEnergyUnit))
+            if (!(unit is MolarEnergyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
 
-            return ((IQuantity<MolarEnergyUnit>)this).As(unitAsMolarEnergyUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -657,10 +658,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is MolarEnergyUnit unitAsMolarEnergyUnit))
+            if (!(unit is MolarEnergyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsMolarEnergyUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>

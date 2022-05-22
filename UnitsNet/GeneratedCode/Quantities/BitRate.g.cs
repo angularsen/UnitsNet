@@ -1020,17 +1020,14 @@ namespace UnitsNet
             if(Unit == unit)
                 return Value;
 
-            var converted = GetValueAs(unit);
-            return converted;
+            return GetValueAs(unit);
         }
+
         double IQuantity<BitRateUnit>.As(BitRateUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
-
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return (double)As(unit);
         }
+
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public decimal As(UnitSystem unitSystem)
         {
@@ -1045,18 +1042,20 @@ namespace UnitsNet
 
             return As(firstUnitInfo.Value);
         }
+
          /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         double IQuantity.As(UnitSystem unitSystem)
         {
             return (double)As(unitSystem);
         }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is BitRateUnit unitAsBitRateUnit))
+            if (!(unit is BitRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
 
-            return ((IQuantity<BitRateUnit>)this).As(unitAsBitRateUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -1113,10 +1112,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is BitRateUnit unitAsBitRateUnit))
+            if (!(unit is BitRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsBitRateUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>

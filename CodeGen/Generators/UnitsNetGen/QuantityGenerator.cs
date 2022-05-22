@@ -844,9 +844,9 @@ namespace UnitsNet
             if(Unit == unit)
                 return Value;
 
-            var converted = GetValueAs(unit);
-            return converted;
-        }}");
+            return GetValueAs(unit);
+        }}
+");
 
             if (_quantity.ValueType == "decimal")
             {
@@ -854,12 +854,9 @@ namespace UnitsNet
 
         double IQuantity<{_unitEnumName}>.As({_unitEnumName} unit)
         {{
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
-
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
-        }}");
+            return (double)As(unit);
+        }}
+");
             }
 
             Writer.WL($@"
@@ -877,7 +874,8 @@ namespace UnitsNet
                 throw new ArgumentException(""No units were found for the given UnitSystem."", nameof(unitSystem));
 
             return As(firstUnitInfo.Value);
-        }}");
+        }}
+");
 
             if (_quantity.ValueType == "decimal")
             {
@@ -886,17 +884,18 @@ namespace UnitsNet
         double IQuantity.As(UnitSystem unitSystem)
         {{
             return (double)As(unitSystem);
-        }}");
-
+        }}
+");
             }
+
             Writer.WL($@"
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {{
-            if (!(unit is {_unitEnumName} unitAs{_unitEnumName}))
+            if (!(unit is {_unitEnumName} typedUnit))
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
-            return ((IQuantity<{_unitEnumName}>)this).As(unitAs{_unitEnumName});
+            return (double)As(typedUnit);
         }}
 
         /// <summary>
@@ -953,10 +952,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {{
-            if (!(unit is {_unitEnumName} unitAs{_unitEnumName}))
+            if (!(unit is {_unitEnumName} typedUnit))
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
-            return ToUnit(unitAs{_unitEnumName}, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }}
 
         /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>

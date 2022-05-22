@@ -846,9 +846,9 @@ namespace UnitsNet
             if(Unit == unit)
                 return Value;
 
-            var converted = GetValueAs(unit);
-            return converted;
+            return GetValueAs(unit);
         }
+
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
@@ -863,13 +863,14 @@ namespace UnitsNet
 
             return As(firstUnitInfo.Value);
         }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is SpecificWeightUnit unitAsSpecificWeightUnit))
+            if (!(unit is SpecificWeightUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificWeightUnit)} is supported.", nameof(unit));
 
-            return ((IQuantity<SpecificWeightUnit>)this).As(unitAsSpecificWeightUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -926,10 +927,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is SpecificWeightUnit unitAsSpecificWeightUnit))
+            if (!(unit is SpecificWeightUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificWeightUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsSpecificWeightUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>

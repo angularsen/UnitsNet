@@ -694,9 +694,9 @@ namespace UnitsNet
             if(Unit == unit)
                 return Value;
 
-            var converted = GetValueAs(unit);
-            return converted;
+            return GetValueAs(unit);
         }
+
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
         public double As(UnitSystem unitSystem)
         {
@@ -711,13 +711,14 @@ namespace UnitsNet
 
             return As(firstUnitInfo.Value);
         }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is VolumetricHeatCapacityUnit unitAsVolumetricHeatCapacityUnit))
+            if (!(unit is VolumetricHeatCapacityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumetricHeatCapacityUnit)} is supported.", nameof(unit));
 
-            return ((IQuantity<VolumetricHeatCapacityUnit>)this).As(unitAsVolumetricHeatCapacityUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -774,10 +775,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is VolumetricHeatCapacityUnit unitAsVolumetricHeatCapacityUnit))
+            if (!(unit is VolumetricHeatCapacityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumetricHeatCapacityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVolumetricHeatCapacityUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
