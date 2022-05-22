@@ -209,6 +209,146 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = RotationalAcceleration.Parse("1 °/s²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesPerSecondSquared, DegreesPerSecondSquaredTolerance);
+                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = RotationalAcceleration.Parse("1 deg/s²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesPerSecondSquared, DegreesPerSecondSquaredTolerance);
+                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = RotationalAcceleration.Parse("1 rad/s²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
+                Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = RotationalAcceleration.Parse("1 rpm/s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.RevolutionsPerMinutePerSecond, RevolutionsPerMinutePerSecondTolerance);
+                Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = RotationalAcceleration.Parse("1 r/s²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.RevolutionsPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
+                Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(RotationalAcceleration.TryParse("1 °/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesPerSecondSquared, DegreesPerSecondSquaredTolerance);
+                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsed.Unit);
+            }
+
+            {
+                Assert.True(RotationalAcceleration.TryParse("1 deg/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesPerSecondSquared, DegreesPerSecondSquaredTolerance);
+                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsed.Unit);
+            }
+
+            {
+                Assert.True(RotationalAcceleration.TryParse("1 rad/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
+                Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, parsed.Unit);
+            }
+
+            {
+                Assert.True(RotationalAcceleration.TryParse("1 rpm/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.RevolutionsPerMinutePerSecond, RevolutionsPerMinutePerSecondTolerance);
+                Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(RotationalAcceleration.TryParse("1 r/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.RevolutionsPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
+                Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = RotationalAcceleration.ParseUnit("°/s²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = RotationalAcceleration.ParseUnit("deg/s²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = RotationalAcceleration.ParseUnit("rad/s²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = RotationalAcceleration.ParseUnit("rpm/s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = RotationalAcceleration.ParseUnit("r/s²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(RotationalAcceleration.TryParseUnit("°/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
+            }
+
+            {
+                Assert.True(RotationalAcceleration.TryParseUnit("deg/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, parsedUnit);
+            }
+
+            {
+                Assert.True(RotationalAcceleration.TryParseUnit("rad/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, parsedUnit);
+            }
+
+            {
+                Assert.True(RotationalAcceleration.TryParseUnit("rpm/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, parsedUnit);
+            }
+
+            {
+                Assert.True(RotationalAcceleration.TryParseUnit("r/s²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(RotationalAccelerationUnit.RevolutionPerSecondSquared, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(RotationalAccelerationUnit unit)

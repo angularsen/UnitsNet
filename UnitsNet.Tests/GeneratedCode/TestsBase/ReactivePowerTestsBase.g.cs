@@ -209,6 +209,122 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ReactivePower.Parse("1 Gvar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
+                Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ReactivePower.Parse("1 kvar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
+                Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ReactivePower.Parse("1 Mvar", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
+                Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ReactivePower.Parse("1 var", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.VoltamperesReactive, VoltamperesReactiveTolerance);
+                Assert.Equal(ReactivePowerUnit.VoltampereReactive, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ReactivePower.TryParse("1 Gvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
+                Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, parsed.Unit);
+            }
+
+            {
+                Assert.True(ReactivePower.TryParse("1 kvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
+                Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, parsed.Unit);
+            }
+
+            {
+                Assert.True(ReactivePower.TryParse("1 Mvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
+                Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, parsed.Unit);
+            }
+
+            {
+                Assert.True(ReactivePower.TryParse("1 var", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.VoltamperesReactive, VoltamperesReactiveTolerance);
+                Assert.Equal(ReactivePowerUnit.VoltampereReactive, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ReactivePower.ParseUnit("Gvar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ReactivePower.ParseUnit("kvar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ReactivePower.ParseUnit("Mvar", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ReactivePower.ParseUnit("var", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ReactivePowerUnit.VoltampereReactive, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ReactivePower.TryParseUnit("Gvar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ReactivePowerUnit.GigavoltampereReactive, parsedUnit);
+            }
+
+            {
+                Assert.True(ReactivePower.TryParseUnit("kvar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ReactivePowerUnit.KilovoltampereReactive, parsedUnit);
+            }
+
+            {
+                Assert.True(ReactivePower.TryParseUnit("Mvar", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ReactivePowerUnit.MegavoltampereReactive, parsedUnit);
+            }
+
+            {
+                Assert.True(ReactivePower.TryParseUnit("var", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ReactivePowerUnit.VoltampereReactive, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ReactivePowerUnit unit)

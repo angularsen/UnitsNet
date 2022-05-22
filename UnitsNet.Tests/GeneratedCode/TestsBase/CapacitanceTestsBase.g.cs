@@ -239,6 +239,172 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Capacitance.Parse("1 F", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Farads, FaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Farad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 kF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilofarads, KilofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Kilofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 MF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megafarads, MegafaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Megafarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 µF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microfarads, MicrofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Microfarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 mF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millifarads, MillifaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Millifarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 nF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanofarads, NanofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Nanofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Capacitance.Parse("1 pF", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picofarads, PicofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Picofarad, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(Capacitance.TryParse("1 F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Farads, FaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Farad, parsed.Unit);
+            }
+
+            {
+                Assert.True(Capacitance.TryParse("1 kF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilofarads, KilofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Kilofarad, parsed.Unit);
+            }
+
+            {
+                Assert.True(Capacitance.TryParse("1 µF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microfarads, MicrofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Microfarad, parsed.Unit);
+            }
+
+            {
+                Assert.True(Capacitance.TryParse("1 nF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanofarads, NanofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Nanofarad, parsed.Unit);
+            }
+
+            {
+                Assert.True(Capacitance.TryParse("1 pF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picofarads, PicofaradsTolerance);
+                Assert.Equal(CapacitanceUnit.Picofarad, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("F", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Farad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("kF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Kilofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("MF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Megafarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("µF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Microfarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("mF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Millifarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("nF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Nanofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Capacitance.ParseUnit("pF", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CapacitanceUnit.Picofarad, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(Capacitance.TryParseUnit("F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Farad, parsedUnit);
+            }
+
+            {
+                Assert.True(Capacitance.TryParseUnit("kF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Kilofarad, parsedUnit);
+            }
+
+            {
+                Assert.True(Capacitance.TryParseUnit("µF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Microfarad, parsedUnit);
+            }
+
+            {
+                Assert.True(Capacitance.TryParseUnit("nF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Nanofarad, parsedUnit);
+            }
+
+            {
+                Assert.True(Capacitance.TryParseUnit("pF", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CapacitanceUnit.Picofarad, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(CapacitanceUnit unit)

@@ -199,6 +199,170 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = CoefficientOfThermalExpansion.Parse("1 °C⁻¹", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = CoefficientOfThermalExpansion.Parse("1 1/°C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = CoefficientOfThermalExpansion.Parse("1 °F⁻¹", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = CoefficientOfThermalExpansion.Parse("1 1/°F", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = CoefficientOfThermalExpansion.Parse("1 K⁻¹", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InverseKelvin, InverseKelvinTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = CoefficientOfThermalExpansion.Parse("1 1/K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InverseKelvin, InverseKelvinTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParse("1 °C⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, parsed.Unit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParse("1 1/°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, parsed.Unit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParse("1 °F⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, parsed.Unit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParse("1 1/°F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, parsed.Unit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParse("1 K⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InverseKelvin, InverseKelvinTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, parsed.Unit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParse("1 1/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InverseKelvin, InverseKelvinTolerance);
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("°C⁻¹", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("1/°C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("°F⁻¹", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("1/°F", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("K⁻¹", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = CoefficientOfThermalExpansion.ParseUnit("1/K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("°C⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, parsedUnit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("1/°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, parsedUnit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("°F⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, parsedUnit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("1/°F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, parsedUnit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("K⁻¹", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, parsedUnit);
+            }
+
+            {
+                Assert.True(CoefficientOfThermalExpansion.TryParseUnit("1/K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(CoefficientOfThermalExpansionUnit.InverseKelvin, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(CoefficientOfThermalExpansionUnit unit)

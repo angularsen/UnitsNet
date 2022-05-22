@@ -199,6 +199,98 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ApparentEnergy.Parse("1 kVAh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilovoltampereHours, KilovoltampereHoursTolerance);
+                Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ApparentEnergy.Parse("1 MVAh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegavoltampereHours, MegavoltampereHoursTolerance);
+                Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ApparentEnergy.Parse("1 VAh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.VoltampereHours, VoltampereHoursTolerance);
+                Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ApparentEnergy.TryParse("1 kVAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilovoltampereHours, KilovoltampereHoursTolerance);
+                Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(ApparentEnergy.TryParse("1 MVAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegavoltampereHours, MegavoltampereHoursTolerance);
+                Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(ApparentEnergy.TryParse("1 VAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.VoltampereHours, VoltampereHoursTolerance);
+                Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ApparentEnergy.ParseUnit("kVAh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ApparentEnergy.ParseUnit("MVAh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ApparentEnergy.ParseUnit("VAh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ApparentEnergy.TryParseUnit("kVAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, parsedUnit);
+            }
+
+            {
+                Assert.True(ApparentEnergy.TryParseUnit("MVAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, parsedUnit);
+            }
+
+            {
+                Assert.True(ApparentEnergy.TryParseUnit("VAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ApparentEnergyUnit.VoltampereHour, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ApparentEnergyUnit unit)

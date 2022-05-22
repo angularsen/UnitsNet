@@ -189,6 +189,74 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Level.Parse("1 dB", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decibels, DecibelsTolerance);
+                Assert.Equal(LevelUnit.Decibel, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Level.Parse("1 Np", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nepers, NepersTolerance);
+                Assert.Equal(LevelUnit.Neper, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(Level.TryParse("1 dB", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decibels, DecibelsTolerance);
+                Assert.Equal(LevelUnit.Decibel, parsed.Unit);
+            }
+
+            {
+                Assert.True(Level.TryParse("1 Np", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nepers, NepersTolerance);
+                Assert.Equal(LevelUnit.Neper, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Level.ParseUnit("dB", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LevelUnit.Decibel, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Level.ParseUnit("Np", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LevelUnit.Neper, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(Level.TryParseUnit("dB", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LevelUnit.Decibel, parsedUnit);
+            }
+
+            {
+                Assert.True(Level.TryParseUnit("Np", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LevelUnit.Neper, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(LevelUnit unit)

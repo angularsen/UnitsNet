@@ -219,6 +219,222 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 kV", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilovolts, KilovoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Kilovolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 кВ", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Kilovolts, KilovoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Kilovolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 MV", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megavolts, MegavoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Megavolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 МВ", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Megavolts, MegavoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Megavolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 µV", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microvolts, MicrovoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Microvolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 мкВ", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Microvolts, MicrovoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Microvolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 mV", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millivolts, MillivoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Millivolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 мВ", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Millivolts, MillivoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Millivolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 V", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Volts, VoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Volt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricPotential.Parse("1 В", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Volts, VoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Volt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricPotential.TryParse("1 kV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilovolts, KilovoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Kilovolt, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParse("1 кВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilovolts, KilovoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Kilovolt, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParse("1 µV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microvolts, MicrovoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Microvolt, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParse("1 мкВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microvolts, MicrovoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Microvolt, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParse("1 V", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Volts, VoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Volt, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParse("1 В", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Volts, VoltsTolerance);
+                Assert.Equal(ElectricPotentialUnit.Volt, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("kV", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricPotentialUnit.Kilovolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("кВ", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ElectricPotentialUnit.Kilovolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("MV", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricPotentialUnit.Megavolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("МВ", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ElectricPotentialUnit.Megavolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("µV", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricPotentialUnit.Microvolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("мкВ", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ElectricPotentialUnit.Microvolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("mV", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricPotentialUnit.Millivolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("мВ", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ElectricPotentialUnit.Millivolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("V", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricPotentialUnit.Volt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricPotential.ParseUnit("В", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(ElectricPotentialUnit.Volt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricPotential.TryParseUnit("kV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricPotentialUnit.Kilovolt, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParseUnit("кВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ElectricPotentialUnit.Kilovolt, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParseUnit("µV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricPotentialUnit.Microvolt, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParseUnit("мкВ", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ElectricPotentialUnit.Microvolt, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParseUnit("V", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricPotentialUnit.Volt, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricPotential.TryParseUnit("В", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
+                Assert.Equal(ElectricPotentialUnit.Volt, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricPotentialUnit unit)

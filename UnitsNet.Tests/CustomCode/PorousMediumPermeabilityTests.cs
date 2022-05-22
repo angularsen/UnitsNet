@@ -37,50 +37,5 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SquareCentimetersInOneSquareMeter => 10000;
 
         protected override double SquareMetersInOneSquareMeter => 1;
-
-        [Theory]
-        [InlineData("2 D", 2, PorousMediumPermeabilityUnit.Darcy)]
-        [InlineData("2 mD", 2, PorousMediumPermeabilityUnit.Millidarcy)]
-        [InlineData("2 µD", 2, PorousMediumPermeabilityUnit.Microdarcy)]
-        [InlineData("2 m²", 2, PorousMediumPermeabilityUnit.SquareMeter)]
-        [InlineData("2 cm²", 2, PorousMediumPermeabilityUnit.SquareCentimeter)]
-        public void Parse(string input, double value, PorousMediumPermeabilityUnit unit)
-        {
-            var result = PorousMediumPermeability.Parse(input);
-            Assert.Equal(value, result.Value);
-            Assert.Equal(unit, result.Unit);
-        }
-
-        [Theory]
-        [InlineData("2 D", true)]
-        [InlineData("2 kD", false)]
-        public void TryParse(string input, bool successful)
-        {
-            PorousMediumPermeability unit;
-            var result = PorousMediumPermeability.TryParse(input, out unit);
-            Assert.Equal(successful, result);
-        }
-
-        [Theory]
-        [InlineData("D", PorousMediumPermeabilityUnit.Darcy)]
-        [InlineData("mD", PorousMediumPermeabilityUnit.Millidarcy)]
-        [InlineData("µD", PorousMediumPermeabilityUnit.Microdarcy)]
-        [InlineData("m²", PorousMediumPermeabilityUnit.SquareMeter)]
-        [InlineData("cm²", PorousMediumPermeabilityUnit.SquareCentimeter)]
-        public void ParseUnit(string input, PorousMediumPermeabilityUnit unit)
-        {
-            var result = PorousMediumPermeability.ParseUnit(input);
-            Assert.Equal(unit, result);
-        }
-
-        [Theory]
-        [InlineData("mD", true)]
-        [InlineData("kD", false)]
-        public void TryParseUnit(string input, bool successful)
-        {
-            PorousMediumPermeabilityUnit unit;
-            var result = PorousMediumPermeability.TryParseUnit(input, out unit);
-            Assert.Equal(successful, result);
-        }
     }
 }

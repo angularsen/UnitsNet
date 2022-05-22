@@ -319,6 +319,364 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 cmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Centimoles, CentimolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Centimole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 clbmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentipoundMoles, CentipoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.CentipoundMole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 dmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Decimoles, DecimolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Decimole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 dlbmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecipoundMoles, DecipoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.DecipoundMole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 kmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilomoles, KilomolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Kilomole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 klbmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilopoundMoles, KilopoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.KilopoundMole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 Mmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megamoles, MegamolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Megamole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 µmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Micromoles, MicromolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Micromole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 µlbmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicropoundMoles, MicropoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.MicropoundMole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 mmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millimoles, MillimolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Millimole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 mlbmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillipoundMoles, MillipoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.MillipoundMole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 mol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Moles, MolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Mole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 nmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanomoles, NanomolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Nanomole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 nlbmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanopoundMoles, NanopoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.NanopoundMole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmountOfSubstance.Parse("1 lbmol", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundMoles, PoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.PoundMole, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 cmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centimoles, CentimolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Centimole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 clbmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentipoundMoles, CentipoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.CentipoundMole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 dmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Decimoles, DecimolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Decimole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 dlbmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecipoundMoles, DecipoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.DecipoundMole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 kmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilomoles, KilomolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Kilomole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 klbmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilopoundMoles, KilopoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.KilopoundMole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 µmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Micromoles, MicromolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Micromole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 µlbmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicropoundMoles, MicropoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.MicropoundMole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 mlbmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillipoundMoles, MillipoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.MillipoundMole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Moles, MolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Mole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 nmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanomoles, NanomolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.Nanomole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 nlbmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanopoundMoles, NanopoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.NanopoundMole, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParse("1 lbmol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundMoles, PoundMolesTolerance);
+                Assert.Equal(AmountOfSubstanceUnit.PoundMole, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("cmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.Centimole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("clbmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.CentipoundMole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("dmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.Decimole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("dlbmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.DecipoundMole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("kmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.Kilomole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("klbmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.KilopoundMole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("Mmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.Megamole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("µmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.Micromole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("µlbmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.MicropoundMole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("mmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.Millimole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("mlbmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.MillipoundMole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("mol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.Mole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("nmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.Nanomole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("nlbmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.NanopoundMole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmountOfSubstance.ParseUnit("lbmol", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmountOfSubstanceUnit.PoundMole, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("cmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.Centimole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("clbmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.CentipoundMole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("dmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.Decimole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("dlbmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.DecipoundMole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("kmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.Kilomole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("klbmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.KilopoundMole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("µmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.Micromole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("µlbmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.MicropoundMole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("mlbmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.MillipoundMole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("mol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.Mole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("nmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.Nanomole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("nlbmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.NanopoundMole, parsedUnit);
+            }
+
+            {
+                Assert.True(AmountOfSubstance.TryParseUnit("lbmol", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmountOfSubstanceUnit.PoundMole, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(AmountOfSubstanceUnit unit)

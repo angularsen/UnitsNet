@@ -369,6 +369,530 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 cL/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentilitersPerLiter, CentilitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.CentilitersPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 cL/mL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.CentilitersPerMililiter, CentilitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.CentilitersPerMililiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 dL/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecilitersPerLiter, DecilitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.DecilitersPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 dL/mL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecilitersPerMililiter, DecilitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.DecilitersPerMililiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 ", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecimalFractions, DecimalFractionsTolerance);
+                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 L/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.LitersPerLiter, LitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.LitersPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 L/mL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.LitersPerMililiter, LitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.LitersPerMililiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 µL/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrolitersPerLiter, MicrolitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 µL/mL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MicrolitersPerMililiter, MicrolitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerMililiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 mL/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillilitersPerLiter, MillilitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.MillilitersPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 mL/mL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MillilitersPerMililiter, MillilitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.MillilitersPerMililiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 nL/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanolitersPerLiter, NanolitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.NanolitersPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 nL/mL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NanolitersPerMililiter, NanolitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.NanolitersPerMililiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 ppb", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PartsPerBillion, PartsPerBillionTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PartPerBillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 ppm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PartsPerMillion, PartsPerMillionTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PartPerMillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 ‰", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PartsPerThousand, PartsPerThousandTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PartPerThousand, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 ppt", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PartsPerTrillion, PartsPerTrillionTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PartPerTrillion, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 %", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
+                Assert.Equal(VolumeConcentrationUnit.Percent, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 % (v/v)", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
+                Assert.Equal(VolumeConcentrationUnit.Percent, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 pL/L", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PicolitersPerLiter, PicolitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PicolitersPerLiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = VolumeConcentration.Parse("1 pL/mL", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PicolitersPerMililiter, PicolitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PicolitersPerMililiter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(VolumeConcentration.TryParse("1 cL/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentilitersPerLiter, CentilitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.CentilitersPerLiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 cL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.CentilitersPerMililiter, CentilitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.CentilitersPerMililiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 dL/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecilitersPerLiter, DecilitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.DecilitersPerLiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 dL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecilitersPerMililiter, DecilitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.DecilitersPerMililiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecimalFractions, DecimalFractionsTolerance);
+                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 L/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.LitersPerLiter, LitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.LitersPerLiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 L/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.LitersPerMililiter, LitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.LitersPerMililiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 µL/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrolitersPerLiter, MicrolitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerLiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 µL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MicrolitersPerMililiter, MicrolitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerMililiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 mL/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillilitersPerLiter, MillilitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.MillilitersPerLiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 mL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MillilitersPerMililiter, MillilitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.MillilitersPerMililiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 nL/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanolitersPerLiter, NanolitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.NanolitersPerLiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 nL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NanolitersPerMililiter, NanolitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.NanolitersPerMililiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 ppb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PartsPerBillion, PartsPerBillionTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PartPerBillion, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 ppm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PartsPerMillion, PartsPerMillionTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PartPerMillion, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 ‰", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PartsPerThousand, PartsPerThousandTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PartPerThousand, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 ppt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PartsPerTrillion, PartsPerTrillionTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PartPerTrillion, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 %", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
+                Assert.Equal(VolumeConcentrationUnit.Percent, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 % (v/v)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Percent, PercentTolerance);
+                Assert.Equal(VolumeConcentrationUnit.Percent, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 pL/L", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PicolitersPerLiter, PicolitersPerLiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PicolitersPerLiter, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParse("1 pL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PicolitersPerMililiter, PicolitersPerMililiterTolerance);
+                Assert.Equal(VolumeConcentrationUnit.PicolitersPerMililiter, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("cL/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.CentilitersPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("cL/mL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.CentilitersPerMililiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("dL/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.DecilitersPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("dL/mL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.DecilitersPerMililiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("L/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.LitersPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("L/mL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.LitersPerMililiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("µL/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("µL/mL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerMililiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("mL/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.MillilitersPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("mL/mL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.MillilitersPerMililiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("nL/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.NanolitersPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("nL/mL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.NanolitersPerMililiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.PartPerBillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.PartPerMillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("‰", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.PartPerThousand, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.PartPerTrillion, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("%", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.Percent, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("% (v/v)", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.Percent, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("pL/L", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.PicolitersPerLiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = VolumeConcentration.ParseUnit("pL/mL", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumeConcentrationUnit.PicolitersPerMililiter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("cL/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.CentilitersPerLiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("cL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.CentilitersPerMililiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("dL/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.DecilitersPerLiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("dL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.DecilitersPerMililiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("L/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.LitersPerLiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("L/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.LitersPerMililiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("µL/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerLiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("µL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.MicrolitersPerMililiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("mL/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.MillilitersPerLiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("mL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.MillilitersPerMililiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("nL/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.NanolitersPerLiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("nL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.NanolitersPerMililiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("ppb", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.PartPerBillion, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("ppm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.PartPerMillion, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("‰", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.PartPerThousand, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("ppt", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.PartPerTrillion, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("%", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.Percent, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("% (v/v)", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.Percent, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("pL/L", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.PicolitersPerLiter, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumeConcentration.TryParseUnit("pL/mL", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumeConcentrationUnit.PicolitersPerMililiter, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(VolumeConcentrationUnit unit)
