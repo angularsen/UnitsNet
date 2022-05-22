@@ -105,6 +105,7 @@ namespace UnitsNet.Tests
             Assertion(3, MolarMassUnit.PoundPerMole, Quantity.From(3, MolarMassUnit.PoundPerMole));
             Assertion(3, PermeabilityUnit.HenryPerMeter, Quantity.From(3, PermeabilityUnit.HenryPerMeter));
             Assertion(3, PermittivityUnit.FaradPerMeter, Quantity.From(3, PermittivityUnit.FaradPerMeter));
+            Assertion(3, PorousMediumPermeabilityUnit.SquareMeter, Quantity.From(3, PorousMediumPermeabilityUnit.SquareMeter));
             Assertion(3, PowerUnit.Watt, Quantity.From(3, PowerUnit.Watt));
             Assertion(3, PowerDensityUnit.WattPerLiter, Quantity.From(3, PowerDensityUnit.WattPerLiter));
             Assertion(3, PowerRatioUnit.DecibelWatt, Quantity.From(3, PowerRatioUnit.DecibelWatt));
@@ -225,6 +226,7 @@ namespace UnitsNet.Tests
             Assertion(MolarMass.Info, MolarMass.Zero);
             Assertion(Permeability.Info, Permeability.Zero);
             Assertion(Permittivity.Info, Permittivity.Zero);
+            Assertion(PorousMediumPermeability.Info, PorousMediumPermeability.Zero);
             Assertion(Power.Info, Power.Zero);
             Assertion(PowerDensity.Info, PowerDensity.Zero);
             Assertion(PowerRatio.Info, PowerRatio.Zero);
@@ -345,6 +347,7 @@ namespace UnitsNet.Tests
             Assertion(MolarMass.QuantityType, MolarMass.Zero);
             Assertion(Permeability.QuantityType, Permeability.Zero);
             Assertion(Permittivity.QuantityType, Permittivity.Zero);
+            Assertion(PorousMediumPermeability.QuantityType, PorousMediumPermeability.Zero);
             Assertion(Power.QuantityType, Power.Zero);
             Assertion(PowerDensity.QuantityType, PowerDensity.Zero);
             Assertion(PowerRatio.QuantityType, PowerRatio.Zero);
@@ -465,6 +468,7 @@ namespace UnitsNet.Tests
             Assertion(MolarMass.BaseDimensions, MolarMass.Zero);
             Assertion(Permeability.BaseDimensions, Permeability.Zero);
             Assertion(Permittivity.BaseDimensions, Permittivity.Zero);
+            Assertion(PorousMediumPermeability.BaseDimensions, PorousMediumPermeability.Zero);
             Assertion(Power.BaseDimensions, Power.Zero);
             Assertion(PowerDensity.BaseDimensions, PowerDensity.Zero);
             Assertion(PowerRatio.BaseDimensions, PowerRatio.Zero);

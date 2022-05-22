@@ -109,6 +109,7 @@ namespace UnitsNet
             { "MolarMass", MolarMass.Info },
             { "Permeability", Permeability.Info },
             { "Permittivity", Permittivity.Info },
+            { "PorousMediumPermeability", PorousMediumPermeability.Info },
             { "Power", Power.Info },
             { "PowerDensity", PowerDensity.Info },
             { "PowerRatio", PowerRatio.Info },
@@ -235,6 +236,7 @@ namespace UnitsNet
                 QuantityType.MolarMass => MolarMass.From(value, MolarMass.BaseUnit),
                 QuantityType.Permeability => Permeability.From(value, Permeability.BaseUnit),
                 QuantityType.Permittivity => Permittivity.From(value, Permittivity.BaseUnit),
+                QuantityType.PorousMediumPermeability => PorousMediumPermeability.From(value, PorousMediumPermeability.BaseUnit),
                 QuantityType.Power => Power.From(value, Power.BaseUnit),
                 QuantityType.PowerDensity => PowerDensity.From(value, PowerDensity.BaseUnit),
                 QuantityType.PowerRatio => PowerRatio.From(value, PowerRatio.BaseUnit),
@@ -362,6 +364,7 @@ namespace UnitsNet
                 "MolarMass" => MolarMass.From(value, MolarMass.BaseUnit),
                 "Permeability" => Permeability.From(value, Permeability.BaseUnit),
                 "Permittivity" => Permittivity.From(value, Permittivity.BaseUnit),
+                "PorousMediumPermeability" => PorousMediumPermeability.From(value, PorousMediumPermeability.BaseUnit),
                 "Power" => Power.From(value, Power.BaseUnit),
                 "PowerDensity" => PowerDensity.From(value, PowerDensity.BaseUnit),
                 "PowerRatio" => PowerRatio.From(value, PowerRatio.BaseUnit),
@@ -632,6 +635,9 @@ namespace UnitsNet
                 case PermittivityUnit permittivityUnit:
                     quantity = Permittivity.From(value, permittivityUnit);
                     return true;
+                case PorousMediumPermeabilityUnit porousMediumPermeabilityUnit:
+                    quantity = PorousMediumPermeability.From(value, porousMediumPermeabilityUnit);
+                    return true;
                 case PowerUnit powerUnit:
                     quantity = Power.From(value, powerUnit);
                     return true;
@@ -856,6 +862,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(MolarMass) => parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity),
                 Type _ when quantityType == typeof(Permeability) => parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity),
                 Type _ when quantityType == typeof(Permittivity) => parser.TryParse<Permittivity, PermittivityUnit>(quantityString, formatProvider, Permittivity.From, out quantity),
+                Type _ when quantityType == typeof(PorousMediumPermeability) => parser.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(quantityString, formatProvider, PorousMediumPermeability.From, out quantity),
                 Type _ when quantityType == typeof(Power) => parser.TryParse<Power, PowerUnit>(quantityString, formatProvider, Power.From, out quantity),
                 Type _ when quantityType == typeof(PowerDensity) => parser.TryParse<PowerDensity, PowerDensityUnit>(quantityString, formatProvider, PowerDensity.From, out quantity),
                 Type _ when quantityType == typeof(PowerRatio) => parser.TryParse<PowerRatio, PowerRatioUnit>(quantityString, formatProvider, PowerRatio.From, out quantity),
@@ -975,6 +982,7 @@ namespace UnitsNet
             yield return typeof(MolarMass);
             yield return typeof(Permeability);
             yield return typeof(Permittivity);
+            yield return typeof(PorousMediumPermeability);
             yield return typeof(Power);
             yield return typeof(PowerDensity);
             yield return typeof(PowerRatio);
