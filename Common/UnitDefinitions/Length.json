@@ -412,6 +412,20 @@
           "Abbreviations": [ "Å", "A" ]
         }
       ]
+    },
+    {
+      "SingularName": "DataMile",
+      "PluralName": "DataMiles",
+      "FromUnitToBaseFunc": "{x} * 1828.8",
+      "FromBaseToUnitFunc": "{x} / 1828.8",
+      "XmlDocSummary": "In radar-related subjects and in JTIDS, a data mile is a unit of distance equal to 6000 feet (1.8288 kilometres or 0.987 nautical miles).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Data_mile",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "DM" ]
+        }
+      ]
     }
   ]
 }

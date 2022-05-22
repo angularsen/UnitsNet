@@ -66,6 +66,7 @@ namespace UnitsNet
                     new UnitInfo<LengthUnit>(LengthUnit.AstronomicalUnit, "AstronomicalUnits", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Centimeter, "Centimeters", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Chain, "Chains", new BaseUnits(length: LengthUnit.Chain)),
+                    new UnitInfo<LengthUnit>(LengthUnit.DataMile, "DataMiles", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Decameter, "Decameters", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.Decimeter, "Decimeters", BaseUnits.Undefined),
                     new UnitInfo<LengthUnit>(LengthUnit.DtpPica, "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica)),
@@ -242,6 +243,11 @@ namespace UnitsNet
         public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DataMile"/>
+        /// </summary>
+        public double DataMiles => As(LengthUnit.DataMile);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decameter"/>
         /// </summary>
         public double Decameters => As(LengthUnit.Decameter);
@@ -411,6 +417,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.AstronomicalUnit, quantity => new Length(quantity.Value / 1.4959787070e11, LengthUnit.AstronomicalUnit));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Centimeter, quantity => new Length((quantity.Value) / 1e-2d, LengthUnit.Centimeter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Chain, quantity => new Length(quantity.Value / 20.1168, LengthUnit.Chain));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DataMile, quantity => new Length(quantity.Value / 1828.8, LengthUnit.DataMile));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decameter, quantity => new Length((quantity.Value) / 1e1d, LengthUnit.Decameter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decimeter, quantity => new Length((quantity.Value) / 1e-1d, LengthUnit.Decimeter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPica, quantity => new Length(quantity.Value * 236.220472441, LengthUnit.DtpPica));
@@ -450,6 +457,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.AstronomicalUnit, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.4959787070e11, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Centimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-2d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, LengthUnit.Meter, quantity => new Length(quantity.Value * 20.1168, LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DataMile, LengthUnit.Meter, quantity => new Length(quantity.Value * 1828.8, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Decameter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e1d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.Decimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-1d, LengthUnit.Meter));
             unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPica, LengthUnit.Meter, quantity => new Length(quantity.Value / 236.220472441, LengthUnit.Meter));
@@ -490,6 +498,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("zh-CN"), false, true, new string[]{"厘米"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Chain, new CultureInfo("en-US"), false, true, new string[]{"ch"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DataMile, new CultureInfo("en-US"), false, true, new string[]{"DM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("en-US"), false, true, new string[]{"dam"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("ru-RU"), false, true, new string[]{"дам"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("zh-CN"), false, true, new string[]{"十米"});
@@ -616,6 +625,16 @@ namespace UnitsNet
         {
             double value = (double) chains;
             return new Length(value, LengthUnit.Chain);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DataMile"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromDataMiles(QuantityValue datamiles)
+        {
+            double value = (double) datamiles;
+            return new Length(value, LengthUnit.DataMile);
         }
 
         /// <summary>
