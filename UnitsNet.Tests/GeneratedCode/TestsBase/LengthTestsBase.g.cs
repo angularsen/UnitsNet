@@ -590,6 +590,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Length.Parse("1 DM", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DataMiles, DataMilesTolerance);
+                Assert.Equal(LengthUnit.DataMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Length.Parse("1 dam", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Decameters, DecametersTolerance);
                 Assert.Equal(LengthUnit.Decameter, parsed.Unit);
@@ -1122,12 +1129,6 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Length.TryParse("1 dm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decimeters, DecimetersTolerance);
-                Assert.Equal(LengthUnit.Decimeter, parsed.Unit);
-            }
-
-            {
                 Assert.True(Length.TryParse("1 дм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Decimeters, DecimetersTolerance);
                 Assert.Equal(LengthUnit.Decimeter, parsed.Unit);
@@ -1490,6 +1491,12 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = Length.ParseUnit("ch", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(LengthUnit.Chain, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("DM", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.DataMile, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -1946,11 +1953,6 @@ namespace UnitsNet.Tests
             {
                 Assert.True(Length.TryParseUnit("十米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(LengthUnit.Decameter, parsedUnit);
-            }
-
-            {
-                Assert.True(Length.TryParseUnit("dm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(LengthUnit.Decimeter, parsedUnit);
             }
 
             {

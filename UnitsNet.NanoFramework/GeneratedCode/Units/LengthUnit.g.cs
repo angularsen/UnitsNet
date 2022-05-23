@@ -40,6 +40,10 @@ namespace UnitsNet.Units
         AstronomicalUnit,
         Centimeter,
         Chain,
+
+        /// <summary>
+        ///     In radar-related subjects and in JTIDS, a data mile is a unit of distance equal to 6000 feet (1.8288 kilometres or 0.987 nautical miles).
+        /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Data_mile</remarks>
         DataMile,
         Decameter,
