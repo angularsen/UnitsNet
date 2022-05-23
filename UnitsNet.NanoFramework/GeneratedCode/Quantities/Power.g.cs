@@ -150,6 +150,11 @@ namespace UnitsNet
         public double MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegabritishThermalUnitPerHour"/>
+        /// </summary>
+        public double MegabritishThermalUnitsPerHour => As(PowerUnit.MegabritishThermalUnitPerHour);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegajoulePerHour"/>
         /// </summary>
         public double MegajoulesPerHour => As(PowerUnit.MegajoulePerHour);
@@ -293,6 +298,12 @@ namespace UnitsNet
         public static Power FromMechanicalHorsepower(double mechanicalhorsepower) => new Power(mechanicalhorsepower, PowerUnit.MechanicalHorsepower);
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegabritishThermalUnitPerHour"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Power FromMegabritishThermalUnitsPerHour(double megabritishthermalunitsperhour) => new Power(megabritishthermalunitsperhour, PowerUnit.MegabritishThermalUnitPerHour);
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegajoulePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -412,6 +423,7 @@ namespace UnitsNet
                 PowerUnit.KilojoulePerHour => (_value / 3600d) * 1e3d,
                 PowerUnit.Kilowatt => (_value) * 1e3d,
                 PowerUnit.MechanicalHorsepower => _value * 745.69d,
+                PowerUnit.MegabritishThermalUnitPerHour => (_value * 0.293071d) * 1e6d,
                 PowerUnit.MegajoulePerHour => (_value / 3600d) * 1e6d,
                 PowerUnit.Megawatt => (_value) * 1e6d,
                 PowerUnit.MetricHorsepower => _value * 735.49875d,
@@ -450,6 +462,7 @@ namespace UnitsNet
                 PowerUnit.KilojoulePerHour => (baseUnitValue * 3600d) / 1e3d,
                 PowerUnit.Kilowatt => (baseUnitValue) / 1e3d,
                 PowerUnit.MechanicalHorsepower => baseUnitValue / 745.69d,
+                PowerUnit.MegabritishThermalUnitPerHour => (baseUnitValue / 0.293071d) / 1e6d,
                 PowerUnit.MegajoulePerHour => (baseUnitValue * 3600d) / 1e6d,
                 PowerUnit.Megawatt => (baseUnitValue) / 1e6d,
                 PowerUnit.MetricHorsepower => baseUnitValue / 735.49875d,
