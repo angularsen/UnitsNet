@@ -251,6 +251,24 @@ namespace UnitsNet.Tests
             Assert.Equal("10 dm", convertedQuantitySpecificCulture);
         }
 
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ConvertTo_GivenCurrentCulture_ReturnValueFormattedAccordingToGivenCulture(bool useDisplayAsAttribute)
+        {
+            QuantityTypeConverter<Length> converter = new();
+            var attributes = useDisplayAsAttribute ? new Attribute[] { new DisplayAsUnitAttribute(Units.LengthUnit.Meter) } : Array.Empty<Attribute>();
+            ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", attributes);
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-AT"); // uses comma as decimal separator
+            CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture; // uses dot as decimal separator
+            Length length = Length.FromMeters(1.5);
+            string expectedResult = length.ToString(CultureInfo.CurrentCulture);
+
+            string convertedQuantity = (string)converter.ConvertTo(context, CultureInfo.CurrentCulture, length, typeof(string));
+
+            Assert.Equal(expectedResult, convertedQuantity);
+        }
+
         [Fact]
         public void ConvertFrom_GivenDefaultUnitAttributeWithWrongUnitType_ThrowsArgumentException()
         {

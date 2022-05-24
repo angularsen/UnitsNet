@@ -218,15 +218,22 @@ namespace UnitsNet
         {
             DisplayAsUnitAttribute? displayAsUnit = GetAttribute<DisplayAsUnitAttribute>(context);
 
-            if (value is IQuantity qvalue && destinationType == typeof(string) && displayAsUnit != null)
+            if (value is not IQuantity qvalue || destinationType != typeof(string))
             {
-                if (displayAsUnit.UnitType != null)
-                    return qvalue.ToUnit(displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture);
-                else
-                    return qvalue.ToString(displayAsUnit.Format, culture);
+                return base.ConvertTo(context, culture, value, destinationType);
             }
 
-            return base.ConvertTo(context, culture, value, destinationType);
+            if (displayAsUnit == null)
+            {
+                return qvalue.ToString(culture);
+            }
+
+            if (displayAsUnit.UnitType == null)
+            {
+                return qvalue.ToString(displayAsUnit.Format, culture);
+            }
+
+            return qvalue.ToUnit(displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture);
         }
     }
 }
