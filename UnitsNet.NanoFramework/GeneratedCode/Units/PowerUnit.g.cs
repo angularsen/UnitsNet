@@ -40,6 +40,7 @@ namespace UnitsNet.Units
         KilojoulePerHour,
         Kilowatt,
         MechanicalHorsepower,
+        MegabritishThermalUnitPerHour,
         MegajoulePerHour,
         Megawatt,
         MetricHorsepower,
