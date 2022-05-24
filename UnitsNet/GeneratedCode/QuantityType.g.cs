@@ -82,6 +82,7 @@ namespace UnitsNet
         Information,
         Irradiance,
         Irradiation,
+        Jerk,
         KinematicViscosity,
         LapseRate,
         Length,

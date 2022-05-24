@@ -182,6 +182,9 @@ namespace UnitsNet
                 case IrradiationUnit irradiationUnit:
                     quantity = Irradiation.From(value, irradiationUnit);
                     return true;
+                case JerkUnit jerkUnit:
+                    quantity = Jerk.From(value, jerkUnit);
+                    return true;
                 case KinematicViscosityUnit kinematicViscosityUnit:
                     quantity = KinematicViscosity.From(value, kinematicViscosityUnit);
                     return true;
@@ -574,6 +577,9 @@ namespace UnitsNet
             if (quantityType == typeof(Irradiation))
                 return parser.TryParse<Irradiation, IrradiationUnit>(quantityString, formatProvider, Irradiation.From, out quantity);
 
+            if (quantityType == typeof(Jerk))
+                return parser.TryParse<Jerk, JerkUnit>(quantityString, formatProvider, Jerk.From, out quantity);
+
             if (quantityType == typeof(KinematicViscosity))
                 return parser.TryParse<KinematicViscosity, KinematicViscosityUnit>(quantityString, formatProvider, KinematicViscosity.From, out quantity);
 
@@ -828,6 +834,7 @@ namespace UnitsNet
             yield return typeof(Information);
             yield return typeof(Irradiance);
             yield return typeof(Irradiation);
+            yield return typeof(Jerk);
             yield return typeof(KinematicViscosity);
             yield return typeof(LapseRate);
             yield return typeof(Length);
