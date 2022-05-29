@@ -615,16 +615,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this BrakeSpecificFuelConsumption to another BrakeSpecificFuelConsumption with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A BrakeSpecificFuelConsumption with the specified unit.</returns>
-        public QuantityValue ToQuantity(BrakeSpecificFuelConsumptionUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this BrakeSpecificFuelConsumption to another BrakeSpecificFuelConsumption using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

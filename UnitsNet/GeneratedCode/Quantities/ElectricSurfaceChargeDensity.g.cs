@@ -618,16 +618,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ElectricSurfaceChargeDensity to another ElectricSurfaceChargeDensity with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A ElectricSurfaceChargeDensity with the specified unit.</returns>
-        public QuantityValue ToQuantity(ElectricSurfaceChargeDensityUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this ElectricSurfaceChargeDensity to another ElectricSurfaceChargeDensity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

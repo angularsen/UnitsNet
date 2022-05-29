@@ -1017,16 +1017,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this MassFraction to another MassFraction with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A MassFraction with the specified unit.</returns>
-        public QuantityValue ToQuantity(MassFractionUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this MassFraction to another MassFraction using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

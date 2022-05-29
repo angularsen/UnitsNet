@@ -1069,16 +1069,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A BitRate with the specified unit.</returns>
-        public QuantityValue ToQuantity(BitRateUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this BitRate to another BitRate using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

@@ -197,5 +197,25 @@ namespace UnitsNet
         {
             return source.Select(selector).Average(unitType);
         }
+
+        /// <summary>
+        /// Explicitly create a <see cref="QuantityValue"/> instance from a double
+        /// </summary>
+        /// <param name="value">The input value</param>
+        /// <returns>An instance of <see cref="QuantityValue"/></returns>
+        public static QuantityValue ToQuantityValue(this double value)
+        {
+            return value; // Implicit cast
+        }
+
+        /// <summary>
+        /// Explicitly create a <see cref="QuantityValue"/> instance from a decimal
+        /// </summary>
+        /// <param name="value">The input value</param>
+        /// <returns>An instance of <see cref="QuantityValue"/></returns>
+        public static QuantityValue ToQuantityValue(this decimal value)
+        {
+            return value; // Implicit cast
+        }
     }
 }

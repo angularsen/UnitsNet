@@ -672,16 +672,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this WarpingMomentOfInertia to another WarpingMomentOfInertia with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A WarpingMomentOfInertia with the specified unit.</returns>
-        public QuantityValue ToQuantity(WarpingMomentOfInertiaUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this WarpingMomentOfInertia to another WarpingMomentOfInertia using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

@@ -1444,16 +1444,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A Pressure with the specified unit.</returns>
-        public QuantityValue ToQuantity(PressureUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this Pressure to another Pressure using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

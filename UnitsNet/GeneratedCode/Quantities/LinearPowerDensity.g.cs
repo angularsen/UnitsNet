@@ -1036,16 +1036,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this LinearPowerDensity to another LinearPowerDensity with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A LinearPowerDensity with the specified unit.</returns>
-        public QuantityValue ToQuantity(LinearPowerDensityUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this LinearPowerDensity to another LinearPowerDensity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

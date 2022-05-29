@@ -580,16 +580,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Permittivity to another Permittivity with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A Permittivity with the specified unit.</returns>
-        public QuantityValue ToQuantity(PermittivityUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this Permittivity to another Permittivity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>

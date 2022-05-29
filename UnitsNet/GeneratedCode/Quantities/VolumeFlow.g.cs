@@ -1763,16 +1763,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this VolumeFlow to another VolumeFlow with the unit representation <paramref name="unit" /> and returns its see <cref name="QuantityValue" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A VolumeFlow with the specified unit.</returns>
-        public QuantityValue ToQuantity(VolumeFlowUnit unit)
-        {
-            return ((IQuantity)ToUnit(unit, DefaultConversionFunctions)).Value;
-        }
-
-        /// <summary>
         ///     Converts this VolumeFlow to another VolumeFlow using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
