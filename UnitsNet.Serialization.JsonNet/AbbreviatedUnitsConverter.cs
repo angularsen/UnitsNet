@@ -85,7 +85,7 @@ namespace UnitsNet.Serialization.JsonNet
             }
             else
             {
-                writer.WriteValue(quantity.Value);
+                writer.WriteValue((double)quantity.Value);
             }
 
             //  write the 'Unit' abbreviation
