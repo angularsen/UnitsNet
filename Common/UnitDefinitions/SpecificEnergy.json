@@ -87,6 +87,19 @@
       ]
     },
     {
+      "SingularName": "WattHourPerPound",
+      "PluralName": "WattHoursPerPound",
+      "FromUnitToBaseFunc": "{x} * 7.93664e3",
+      "FromBaseToUnitFunc": "{x} / 7.93664e3",
+      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wh/lbs" ]
+        }
+      ]
+    },
+    {
       "SingularName": "BtuPerPound",
       "PluralName": "BtuPerPound",
       "FromUnitToBaseFunc": "{x} * 2326.000075362",
