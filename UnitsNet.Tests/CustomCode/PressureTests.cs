@@ -33,6 +33,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilopoundsForcePerSquareInchInOnePascal => 1.450377377302092e-7;
 
+        protected override double KilopoundsForcePerSquareMilInOnePascal => 1.450377377302092e-13;
+
         protected override double MegapascalsInOnePascal => 1E-6;
 
         protected override double MetersOfHeadInOnePascal => 0.00010199773339984054;
@@ -50,6 +52,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsForcePerSquareFootInOnePascal => 0.0208854342;
 
         protected override double PoundsForcePerSquareInchInOnePascal => 1.450377377302092e-4;
+
+        protected override double PoundsForcePerSquareMilInOnePascal => 1.450377377302092e-10;
 
         protected override double TechnicalAtmospheresInOnePascal => 1.0197 * 1E-5;
 
