@@ -49,6 +49,10 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEnergy.FromGigawattHoursPerKilogram(2), 2.GigawattHoursPerKilogram());
 
         [Fact]
+        public void NumberToGigawattHoursPerPoundTest() =>
+            Assert.Equal(SpecificEnergy.FromGigawattHoursPerPound(2), 2.GigawattHoursPerPound());
+
+        [Fact]
         public void NumberToJoulesPerKilogramTest() =>
             Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(2), 2.JoulesPerKilogram());
 
@@ -77,6 +81,10 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEnergy.FromKilowattHoursPerKilogram(2), 2.KilowattHoursPerKilogram());
 
         [Fact]
+        public void NumberToKilowattHoursPerPoundTest() =>
+            Assert.Equal(SpecificEnergy.FromKilowattHoursPerPound(2), 2.KilowattHoursPerPound());
+
+        [Fact]
         public void NumberToMegajoulesPerKilogramTest() =>
             Assert.Equal(SpecificEnergy.FromMegajoulesPerKilogram(2), 2.MegajoulesPerKilogram());
 
@@ -95,6 +103,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToMegawattHoursPerKilogramTest() =>
             Assert.Equal(SpecificEnergy.FromMegawattHoursPerKilogram(2), 2.MegawattHoursPerKilogram());
+
+        [Fact]
+        public void NumberToMegawattHoursPerPoundTest() =>
+            Assert.Equal(SpecificEnergy.FromMegawattHoursPerPound(2), 2.MegawattHoursPerPound());
 
         [Fact]
         public void NumberToTerawattDaysPerKilogramTest() =>
@@ -123,6 +135,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToWattHoursPerKilogramTest() =>
             Assert.Equal(SpecificEnergy.FromWattHoursPerKilogram(2), 2.WattHoursPerKilogram());
+
+        [Fact]
+        public void NumberToWattHoursPerPoundTest() =>
+            Assert.Equal(SpecificEnergy.FromWattHoursPerPound(2), 2.WattHoursPerPound());
 
     }
 }

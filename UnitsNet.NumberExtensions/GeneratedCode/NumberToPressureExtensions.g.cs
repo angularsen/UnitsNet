@@ -116,6 +116,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
         public static Pressure KilopoundsForcePerSquareInch<T>(this T value) =>
             Pressure.FromKilopoundsForcePerSquareInch(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareMil(UnitsNet.QuantityValue)" />
+        public static Pressure KilopoundsForcePerSquareMil<T>(this T value) =>
+            Pressure.FromKilopoundsForcePerSquareMil(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
         public static Pressure Megabars<T>(this T value) =>
             Pressure.FromMegabars(Convert.ToDouble(value));
@@ -183,6 +187,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
         public static Pressure PoundsForcePerSquareInch<T>(this T value) =>
             Pressure.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareMil(UnitsNet.QuantityValue)" />
+        public static Pressure PoundsForcePerSquareMil<T>(this T value) =>
+            Pressure.FromPoundsForcePerSquareMil(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(UnitsNet.QuantityValue)" />
         public static Pressure PoundsPerInchSecondSquared<T>(this T value) =>

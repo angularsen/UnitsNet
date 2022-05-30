@@ -125,7 +125,7 @@ namespace UnitsNet.Tests
             Assertion(3, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, Quantity.From(3, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot));
             Assertion(3, ScalarUnit.Amount, Quantity.From(3, ScalarUnit.Amount));
             Assertion(3, SolidAngleUnit.Steradian, Quantity.From(3, SolidAngleUnit.Steradian));
-            Assertion(3, SpecificEnergyUnit.WattHourPerKilogram, Quantity.From(3, SpecificEnergyUnit.WattHourPerKilogram));
+            Assertion(3, SpecificEnergyUnit.WattHourPerPound, Quantity.From(3, SpecificEnergyUnit.WattHourPerPound));
             Assertion(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin, Quantity.From(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin));
             Assertion(3, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, Quantity.From(3, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
             Assertion(3, SpecificVolumeUnit.MillicubicMeterPerKilogram, Quantity.From(3, SpecificVolumeUnit.MillicubicMeterPerKilogram));

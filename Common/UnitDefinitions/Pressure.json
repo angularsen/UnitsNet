@@ -214,6 +214,20 @@
       ]
     },
     {
+      "SingularName": "PoundForcePerSquareMil",
+      "PluralName": "PoundsForcePerSquareMil",
+      "FromUnitToBaseFunc": "{x} * 6.894757293168361e9",
+      "FromBaseToUnitFunc": "{x} / 6.894757293168361e9",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/mil²", "lbs/mil²" ],
+          "AbbreviationsForPrefixes": { "Kilo": "kipf/mil²" }
+        }
+      ]
+    },
+    {
       "SingularName": "PoundForcePerSquareFoot",
       "PluralName": "PoundsForcePerSquareFoot",
       "FromUnitToBaseFunc": "{x} * 4.788025898033584e1",
