@@ -19,6 +19,18 @@ namespace UnitsNet
             return Power.FromWatts(energy.Joules / duration.Seconds);
         }
 
+        /// <summary>Get <see cref="Power"/> from <see cref="Energy"/> times <see cref="Frequency"/>.</summary>
+        public static Power operator *(Energy energy, Frequency frequency)
+        {
+            return Power.FromWatts(energy.Joules * frequency.PerSecond);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Frequency"/> times <see cref="Power"/>.</summary>
+        public static Power operator *(Frequency frequency, Energy energy)
+        {
+            return Power.FromWatts(energy.Joules * frequency.PerSecond);
+        }
+
         /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Energy"/> divided by <see cref="Entropy"/>.</summary>
         public static TemperatureDelta operator /(Energy energy, Entropy entropy)
         {

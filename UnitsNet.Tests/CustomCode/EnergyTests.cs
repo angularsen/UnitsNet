@@ -122,6 +122,20 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void EnergyTimesFrequencyEqualsPower()
+        {
+            Power p = Energy.FromJoules(25) * Frequency.FromPerSecond(5);
+            Assert.Equal(125, p.Watts);
+        }
+
+        [Fact]
+        public void FrequencyTimesEnergyEqualsPower()
+        {
+            Power p = Frequency.FromCyclesPerHour(100) * Energy.FromWattHours(1);
+            Assert.Equal(100, p.Watts);
+        }
+
+        [Fact]
         public void EnergyDividedByEntropyEqualsTemperatureDelta()
         {
             TemperatureDelta t = Energy.FromJoules(15) / Entropy.FromJoulesPerKelvin(3);
