@@ -120,5 +120,12 @@ namespace UnitsNet.Tests.CustomCode
             Power p = Energy.FromWattHours(20) / Duration.FromHours(5);
             Assert.Equal(4, p.Watts);
         }
+
+        [Fact]
+        public void EnergyDividedByEntropyEqualsTemperatureDelta()
+        {
+            TemperatureDelta t = Energy.FromJoules(15) / Entropy.FromJoulesPerKelvin(3);
+            Assert.Equal(TemperatureDelta.FromKelvins(5), t);
+        }
     }
 }

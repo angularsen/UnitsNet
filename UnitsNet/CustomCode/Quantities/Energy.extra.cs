@@ -18,5 +18,11 @@ namespace UnitsNet
         {
             return Power.FromWatts(energy.Joules / duration.Seconds);
         }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Energy"/> divided by <see cref="Entropy"/>.</summary>
+        public static TemperatureDelta operator /(Energy energy, Entropy entropy)
+        {
+            return TemperatureDelta.FromKelvins(energy.Joules / entropy.JoulesPerKelvin);
+        }
     }
 }
