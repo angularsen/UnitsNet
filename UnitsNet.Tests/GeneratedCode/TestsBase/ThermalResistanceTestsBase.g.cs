@@ -217,6 +217,170 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ThermalResistance.Parse("1 Hrft²°F/Btu", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.HourSquareFeetDegreesFahrenheitPerBtu, HourSquareFeetDegreesFahrenheitPerBtuTolerance);
+                Assert.Equal(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ThermalResistance.Parse("1 cm²Hr°C/kcal", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeterHourDegreesCelsiusPerKilocalorie, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ThermalResistance.Parse("1 cm²K/W", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeterKelvinsPerWatt, SquareCentimeterKelvinsPerWattTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ThermalResistance.Parse("1 m²°C/W", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ThermalResistance.Parse("1 m²K/kW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ThermalResistance.Parse("1 m²K/W", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerWatt, SquareMeterKelvinsPerWattTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerWatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ThermalResistance.TryParse("1 Hrft²°F/Btu", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.HourSquareFeetDegreesFahrenheitPerBtu, HourSquareFeetDegreesFahrenheitPerBtuTolerance);
+                Assert.Equal(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, parsed.Unit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParse("1 cm²Hr°C/kcal", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeterHourDegreesCelsiusPerKilocalorie, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, parsed.Unit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParse("1 cm²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareCentimeterKelvinsPerWatt, SquareCentimeterKelvinsPerWattTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, parsed.Unit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParse("1 m²°C/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, parsed.Unit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParse("1 m²K/kW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, parsed.Unit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParse("1 m²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerWatt, SquareMeterKelvinsPerWattTolerance);
+                Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerWatt, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ThermalResistance.ParseUnit("Hrft²°F/Btu", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ThermalResistance.ParseUnit("cm²Hr°C/kcal", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ThermalResistance.ParseUnit("cm²K/W", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ThermalResistance.ParseUnit("m²°C/W", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ThermalResistance.ParseUnit("m²K/kW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ThermalResistance.ParseUnit("m²K/W", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerWatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ThermalResistance.TryParseUnit("Hrft²°F/Btu", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, parsedUnit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParseUnit("cm²Hr°C/kcal", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, parsedUnit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParseUnit("cm²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, parsedUnit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParseUnit("m²°C/W", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, parsedUnit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParseUnit("m²K/kW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, parsedUnit);
+            }
+
+            {
+                Assert.True(ThermalResistance.TryParseUnit("m²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerWatt, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ThermalResistanceUnit unit)

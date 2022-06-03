@@ -20,5 +20,13 @@ namespace UnitsNet
         {
             return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, UnitsNet.Units.SpeedUnit.MeterPerSecond);
         }
+
+        /// <summary>
+        /// Divide  <see cref="Acceleration"/> by <see cref="Duration"/> to get <see cref="Jerk"/>.
+        /// </summary>
+        public static Jerk operator /(Acceleration acceleration, Duration duration)
+        {
+            return new Jerk(acceleration.MetersPerSecondSquared / duration.Seconds, UnitsNet.Units.JerkUnit.MeterPerSecondCubed);
+        }
     }
 }

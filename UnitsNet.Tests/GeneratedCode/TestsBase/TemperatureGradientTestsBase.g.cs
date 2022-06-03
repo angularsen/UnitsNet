@@ -197,6 +197,122 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = TemperatureGradient.Parse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureGradient.Parse("1 ∆°C/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
+                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureGradient.Parse("1 ∆°F/ft", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
+                Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = TemperatureGradient.Parse("1 ∆°K/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KelvinsPerMeter, KelvinsPerMeterTolerance);
+                Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(TemperatureGradient.TryParse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureGradient.TryParse("1 ∆°C/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerMeter, DegreesCelciusPerMeterTolerance);
+                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureGradient.TryParse("1 ∆°F/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
+                Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(TemperatureGradient.TryParse("1 ∆°K/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KelvinsPerMeter, KelvinsPerMeterTolerance);
+                Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = TemperatureGradient.ParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = TemperatureGradient.ParseUnit("∆°C/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = TemperatureGradient.ParseUnit("∆°F/ft", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = TemperatureGradient.ParseUnit("∆°K/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(TemperatureGradient.TryParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsedUnit);
+            }
+
+            {
+                Assert.True(TemperatureGradient.TryParseUnit("∆°C/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsedUnit);
+            }
+
+            {
+                Assert.True(TemperatureGradient.TryParseUnit("∆°F/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(TemperatureGradient.TryParseUnit("∆°K/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(TemperatureGradientUnit unit)

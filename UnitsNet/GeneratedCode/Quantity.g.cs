@@ -49,6 +49,7 @@ namespace UnitsNet
             { "BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.Info },
             { "Capacitance", Capacitance.Info },
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
+            { "Compressibility", Compressibility.Info },
             { "Density", Density.Info },
             { "Duration", Duration.Info },
             { "DynamicViscosity", DynamicViscosity.Info },
@@ -82,6 +83,7 @@ namespace UnitsNet
             { "Information", Information.Info },
             { "Irradiance", Irradiance.Info },
             { "Irradiation", Irradiation.Info },
+            { "Jerk", Jerk.Info },
             { "KinematicViscosity", KinematicViscosity.Info },
             { "LapseRate", LapseRate.Info },
             { "Length", Length.Info },
@@ -106,6 +108,7 @@ namespace UnitsNet
             { "MolarMass", MolarMass.Info },
             { "Permeability", Permeability.Info },
             { "Permittivity", Permittivity.Info },
+            { "PorousMediumPermeability", PorousMediumPermeability.Info },
             { "Power", Power.Info },
             { "PowerDensity", PowerDensity.Info },
             { "PowerRatio", PowerRatio.Info },
@@ -173,6 +176,7 @@ namespace UnitsNet
                 "BrakeSpecificFuelConsumption" => BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit),
                 "Capacitance" => Capacitance.From(value, Capacitance.BaseUnit),
                 "CoefficientOfThermalExpansion" => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
+                "Compressibility" => Compressibility.From(value, Compressibility.BaseUnit),
                 "Density" => Density.From(value, Density.BaseUnit),
                 "Duration" => Duration.From(value, Duration.BaseUnit),
                 "DynamicViscosity" => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
@@ -206,6 +210,7 @@ namespace UnitsNet
                 "Information" => Information.From(value, Information.BaseUnit),
                 "Irradiance" => Irradiance.From(value, Irradiance.BaseUnit),
                 "Irradiation" => Irradiation.From(value, Irradiation.BaseUnit),
+                "Jerk" => Jerk.From(value, Jerk.BaseUnit),
                 "KinematicViscosity" => KinematicViscosity.From(value, KinematicViscosity.BaseUnit),
                 "LapseRate" => LapseRate.From(value, LapseRate.BaseUnit),
                 "Length" => Length.From(value, Length.BaseUnit),
@@ -230,6 +235,7 @@ namespace UnitsNet
                 "MolarMass" => MolarMass.From(value, MolarMass.BaseUnit),
                 "Permeability" => Permeability.From(value, Permeability.BaseUnit),
                 "Permittivity" => Permittivity.From(value, Permittivity.BaseUnit),
+                "PorousMediumPermeability" => PorousMediumPermeability.From(value, PorousMediumPermeability.BaseUnit),
                 "Power" => Power.From(value, Power.BaseUnit),
                 "PowerDensity" => PowerDensity.From(value, PowerDensity.BaseUnit),
                 "PowerRatio" => PowerRatio.From(value, PowerRatio.BaseUnit),
@@ -325,6 +331,9 @@ namespace UnitsNet
                     return true;
                 case CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit:
                     quantity = CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit);
+                    return true;
+                case CompressibilityUnit compressibilityUnit:
+                    quantity = Compressibility.From(value, compressibilityUnit);
                     return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
@@ -425,6 +434,9 @@ namespace UnitsNet
                 case IrradiationUnit irradiationUnit:
                     quantity = Irradiation.From(value, irradiationUnit);
                     return true;
+                case JerkUnit jerkUnit:
+                    quantity = Jerk.From(value, jerkUnit);
+                    return true;
                 case KinematicViscosityUnit kinematicViscosityUnit:
                     quantity = KinematicViscosity.From(value, kinematicViscosityUnit);
                     return true;
@@ -496,6 +508,9 @@ namespace UnitsNet
                     return true;
                 case PermittivityUnit permittivityUnit:
                     quantity = Permittivity.From(value, permittivityUnit);
+                    return true;
+                case PorousMediumPermeabilityUnit porousMediumPermeabilityUnit:
+                    quantity = PorousMediumPermeability.From(value, porousMediumPermeabilityUnit);
                     return true;
                 case PowerUnit powerUnit:
                     quantity = Power.From(value, powerUnit);
@@ -663,6 +678,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(BrakeSpecificFuelConsumption) => parser.TryParse<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>(quantityString, formatProvider, BrakeSpecificFuelConsumption.From, out quantity),
                 Type _ when quantityType == typeof(Capacitance) => parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity),
                 Type _ when quantityType == typeof(CoefficientOfThermalExpansion) => parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity),
+                Type _ when quantityType == typeof(Compressibility) => parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity),
                 Type _ when quantityType == typeof(Density) => parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity),
                 Type _ when quantityType == typeof(Duration) => parser.TryParse<Duration, DurationUnit>(quantityString, formatProvider, Duration.From, out quantity),
                 Type _ when quantityType == typeof(DynamicViscosity) => parser.TryParse<DynamicViscosity, DynamicViscosityUnit>(quantityString, formatProvider, DynamicViscosity.From, out quantity),
@@ -696,6 +712,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Information) => parser.TryParse<Information, InformationUnit>(quantityString, formatProvider, Information.From, out quantity),
                 Type _ when quantityType == typeof(Irradiance) => parser.TryParse<Irradiance, IrradianceUnit>(quantityString, formatProvider, Irradiance.From, out quantity),
                 Type _ when quantityType == typeof(Irradiation) => parser.TryParse<Irradiation, IrradiationUnit>(quantityString, formatProvider, Irradiation.From, out quantity),
+                Type _ when quantityType == typeof(Jerk) => parser.TryParse<Jerk, JerkUnit>(quantityString, formatProvider, Jerk.From, out quantity),
                 Type _ when quantityType == typeof(KinematicViscosity) => parser.TryParse<KinematicViscosity, KinematicViscosityUnit>(quantityString, formatProvider, KinematicViscosity.From, out quantity),
                 Type _ when quantityType == typeof(LapseRate) => parser.TryParse<LapseRate, LapseRateUnit>(quantityString, formatProvider, LapseRate.From, out quantity),
                 Type _ when quantityType == typeof(Length) => parser.TryParse<Length, LengthUnit>(quantityString, formatProvider, Length.From, out quantity),
@@ -720,6 +737,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(MolarMass) => parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity),
                 Type _ when quantityType == typeof(Permeability) => parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity),
                 Type _ when quantityType == typeof(Permittivity) => parser.TryParse<Permittivity, PermittivityUnit>(quantityString, formatProvider, Permittivity.From, out quantity),
+                Type _ when quantityType == typeof(PorousMediumPermeability) => parser.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(quantityString, formatProvider, PorousMediumPermeability.From, out quantity),
                 Type _ when quantityType == typeof(Power) => parser.TryParse<Power, PowerUnit>(quantityString, formatProvider, Power.From, out quantity),
                 Type _ when quantityType == typeof(PowerDensity) => parser.TryParse<PowerDensity, PowerDensityUnit>(quantityString, formatProvider, PowerDensity.From, out quantity),
                 Type _ when quantityType == typeof(PowerRatio) => parser.TryParse<PowerRatio, PowerRatioUnit>(quantityString, formatProvider, PowerRatio.From, out quantity),
@@ -781,6 +799,7 @@ namespace UnitsNet
             yield return typeof(BrakeSpecificFuelConsumption);
             yield return typeof(Capacitance);
             yield return typeof(CoefficientOfThermalExpansion);
+            yield return typeof(Compressibility);
             yield return typeof(Density);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);
@@ -814,6 +833,7 @@ namespace UnitsNet
             yield return typeof(Information);
             yield return typeof(Irradiance);
             yield return typeof(Irradiation);
+            yield return typeof(Jerk);
             yield return typeof(KinematicViscosity);
             yield return typeof(LapseRate);
             yield return typeof(Length);
@@ -838,6 +858,7 @@ namespace UnitsNet
             yield return typeof(MolarMass);
             yield return typeof(Permeability);
             yield return typeof(Permittivity);
+            yield return typeof(PorousMediumPermeability);
             yield return typeof(Power);
             yield return typeof(PowerDensity);
             yield return typeof(PowerRatio);

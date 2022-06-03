@@ -113,6 +113,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromKilopoundsForcePerSquareInch(2), 2.KilopoundsForcePerSquareInch());
 
         [Fact]
+        public void NumberToKilopoundsForcePerSquareMilTest() =>
+            Assert.Equal(Pressure.FromKilopoundsForcePerSquareMil(2), 2.KilopoundsForcePerSquareMil());
+
+        [Fact]
         public void NumberToMegabarsTest() =>
             Assert.Equal(Pressure.FromMegabars(2), 2.Megabars());
 
@@ -179,6 +183,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToPoundsForcePerSquareInchTest() =>
             Assert.Equal(Pressure.FromPoundsForcePerSquareInch(2), 2.PoundsForcePerSquareInch());
+
+        [Fact]
+        public void NumberToPoundsForcePerSquareMilTest() =>
+            Assert.Equal(Pressure.FromPoundsForcePerSquareMil(2), 2.PoundsForcePerSquareMil());
 
         [Fact]
         public void NumberToPoundsPerInchSecondSquaredTest() =>

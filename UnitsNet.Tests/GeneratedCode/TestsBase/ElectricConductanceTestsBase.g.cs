@@ -187,6 +187,98 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricConductance.Parse("1 µS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Microsiemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricConductance.Parse("1 mS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millisiemens, MillisiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Millisiemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricConductance.Parse("1 S", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Siemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricConductance.TryParse("1 µS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Microsiemens, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricConductance.TryParse("1 mS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millisiemens, MillisiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Millisiemens, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricConductance.TryParse("1 S", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
+                Assert.Equal(ElectricConductanceUnit.Siemens, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricConductance.ParseUnit("µS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricConductanceUnit.Microsiemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricConductance.ParseUnit("mS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricConductanceUnit.Millisiemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricConductance.ParseUnit("S", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricConductanceUnit.Siemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricConductance.TryParseUnit("µS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricConductanceUnit.Microsiemens, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricConductance.TryParseUnit("mS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricConductanceUnit.Millisiemens, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricConductance.TryParseUnit("S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricConductanceUnit.Siemens, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricConductanceUnit unit)

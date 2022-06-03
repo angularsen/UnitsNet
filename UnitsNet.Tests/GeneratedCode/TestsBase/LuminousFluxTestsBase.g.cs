@@ -167,6 +167,50 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = LuminousFlux.Parse("1 lm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Lumens, LumensTolerance);
+                Assert.Equal(LuminousFluxUnit.Lumen, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(LuminousFlux.TryParse("1 lm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Lumens, LumensTolerance);
+                Assert.Equal(LuminousFluxUnit.Lumen, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = LuminousFlux.ParseUnit("lm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LuminousFluxUnit.Lumen, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(LuminousFlux.TryParseUnit("lm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LuminousFluxUnit.Lumen, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(LuminousFluxUnit unit)

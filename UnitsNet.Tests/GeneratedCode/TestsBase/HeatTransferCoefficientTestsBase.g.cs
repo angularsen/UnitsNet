@@ -187,6 +187,98 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = HeatTransferCoefficient.Parse("1 Btu/ft²·hr·°F", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.BtusPerSquareFootDegreeFahrenheit, BtusPerSquareFootDegreeFahrenheitTolerance);
+                Assert.Equal(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = HeatTransferCoefficient.Parse("1 W/m²·°C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerSquareMeterCelsius, WattsPerSquareMeterCelsiusTolerance);
+                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = HeatTransferCoefficient.Parse("1 W/m²·K", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
+                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(HeatTransferCoefficient.TryParse("1 Btu/ft²·hr·°F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.BtusPerSquareFootDegreeFahrenheit, BtusPerSquareFootDegreeFahrenheitTolerance);
+                Assert.Equal(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, parsed.Unit);
+            }
+
+            {
+                Assert.True(HeatTransferCoefficient.TryParse("1 W/m²·°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerSquareMeterCelsius, WattsPerSquareMeterCelsiusTolerance);
+                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, parsed.Unit);
+            }
+
+            {
+                Assert.True(HeatTransferCoefficient.TryParse("1 W/m²·K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
+                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = HeatTransferCoefficient.ParseUnit("Btu/ft²·hr·°F", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = HeatTransferCoefficient.ParseUnit("W/m²·°C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = HeatTransferCoefficient.ParseUnit("W/m²·K", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(HeatTransferCoefficient.TryParseUnit("Btu/ft²·hr·°F", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit, parsedUnit);
+            }
+
+            {
+                Assert.True(HeatTransferCoefficient.TryParseUnit("W/m²·°C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, parsedUnit);
+            }
+
+            {
+                Assert.True(HeatTransferCoefficient.TryParseUnit("W/m²·K", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(HeatTransferCoefficientUnit unit)

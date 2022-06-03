@@ -177,6 +177,98 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = PowerRatio.Parse("1 dBmW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
+                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = PowerRatio.Parse("1 dBm", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
+                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = PowerRatio.Parse("1 dBW", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecibelWatts, DecibelWattsTolerance);
+                Assert.Equal(PowerRatioUnit.DecibelWatt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(PowerRatio.TryParse("1 dBmW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
+                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
+            }
+
+            {
+                Assert.True(PowerRatio.TryParse("1 dBm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
+                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
+            }
+
+            {
+                Assert.True(PowerRatio.TryParse("1 dBW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecibelWatts, DecibelWattsTolerance);
+                Assert.Equal(PowerRatioUnit.DecibelWatt, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = PowerRatio.ParseUnit("dBmW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = PowerRatio.ParseUnit("dBm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = PowerRatio.ParseUnit("dBW", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PowerRatioUnit.DecibelWatt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(PowerRatio.TryParseUnit("dBmW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsedUnit);
+            }
+
+            {
+                Assert.True(PowerRatio.TryParseUnit("dBm", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsedUnit);
+            }
+
+            {
+                Assert.True(PowerRatio.TryParseUnit("dBW", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PowerRatioUnit.DecibelWatt, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(PowerRatioUnit unit)

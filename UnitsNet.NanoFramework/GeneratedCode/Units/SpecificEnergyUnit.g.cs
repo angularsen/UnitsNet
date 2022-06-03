@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         GigawattDayPerShortTon,
         GigawattDayPerTonne,
         GigawattHourPerKilogram,
+        GigawattHourPerPound,
         JoulePerKilogram,
         KilocaloriePerGram,
         KilojoulePerKilogram,
@@ -38,11 +39,13 @@ namespace UnitsNet.Units
         KilowattDayPerShortTon,
         KilowattDayPerTonne,
         KilowattHourPerKilogram,
+        KilowattHourPerPound,
         MegajoulePerKilogram,
         MegawattDayPerKilogram,
         MegawattDayPerShortTon,
         MegawattDayPerTonne,
         MegawattHourPerKilogram,
+        MegawattHourPerPound,
         TerawattDayPerKilogram,
         TerawattDayPerShortTon,
         TerawattDayPerTonne,
@@ -50,6 +53,7 @@ namespace UnitsNet.Units
         WattDayPerShortTon,
         WattDayPerTonne,
         WattHourPerKilogram,
+        WattHourPerPound,
     }
 
     #pragma warning restore 1591

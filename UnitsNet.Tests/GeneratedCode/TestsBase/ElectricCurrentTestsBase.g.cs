@@ -237,6 +237,196 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricCurrent.Parse("1 A", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Amperes, AmperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Ampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrent.Parse("1 cA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Centiamperes, CentiamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Centiampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrent.Parse("1 kA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kiloamperes, KiloamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Kiloampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrent.Parse("1 MA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megaamperes, MegaamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Megaampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrent.Parse("1 µA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microamperes, MicroamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Microampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrent.Parse("1 mA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Milliamperes, MilliamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Milliampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrent.Parse("1 nA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanoamperes, NanoamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Nanoampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrent.Parse("1 pA", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picoamperes, PicoamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Picoampere, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricCurrent.TryParse("1 A", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Amperes, AmperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Ampere, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParse("1 cA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Centiamperes, CentiamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Centiampere, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParse("1 kA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kiloamperes, KiloamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Kiloampere, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParse("1 µA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microamperes, MicroamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Microampere, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParse("1 nA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanoamperes, NanoamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Nanoampere, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParse("1 pA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picoamperes, PicoamperesTolerance);
+                Assert.Equal(ElectricCurrentUnit.Picoampere, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricCurrent.ParseUnit("A", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentUnit.Ampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrent.ParseUnit("cA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentUnit.Centiampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrent.ParseUnit("kA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentUnit.Kiloampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrent.ParseUnit("MA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentUnit.Megaampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrent.ParseUnit("µA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentUnit.Microampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrent.ParseUnit("mA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentUnit.Milliampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrent.ParseUnit("nA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentUnit.Nanoampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrent.ParseUnit("pA", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentUnit.Picoampere, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricCurrent.TryParseUnit("A", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentUnit.Ampere, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParseUnit("cA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentUnit.Centiampere, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParseUnit("kA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentUnit.Kiloampere, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParseUnit("µA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentUnit.Microampere, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParseUnit("nA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentUnit.Nanoampere, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCurrent.TryParseUnit("pA", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentUnit.Picoampere, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricCurrentUnit unit)
