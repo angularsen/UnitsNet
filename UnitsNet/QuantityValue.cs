@@ -1,8 +1,10 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-
+using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -17,11 +19,15 @@ namespace UnitsNet
     /// </list>
     /// </summary>
     /// <remarks>
-    ///     At the time of this writing, this reduces the number of From(value, unit) overloads to 1/4th:
+    ///     <para>At the time of this writing, this reduces the number of From(value, unit) overloads to 1/4th:
     ///     From 8 (int, long, double, decimal + each nullable) down to 2 (QuantityValue and QuantityValue?).
-    ///     This also adds more numeric types with no extra overhead, such as float, short and byte.
+    ///     This also adds more numeric types with no extra overhead, such as float, short and byte.</para>
+    ///     <para>So far, the internal representation can be either <see cref="double"/> or <see cref="decimal"/>,
+    ///     but as this struct is realized as a union struct with overlapping fields, only the amount of memory of the largest data type is used.
+    ///     This allows for adding support for smaller data types without increasing the overall size.</para>
     /// </remarks>
     [StructLayout(LayoutKind.Explicit)]
+    [DebuggerDisplay("{GetDebugRepresentation()}")]
     public readonly struct QuantityValue
     {
         /// <summary>
@@ -37,7 +43,7 @@ namespace UnitsNet
         ///     as their value type.
         /// </summary>
         [FieldOffset(0)]
-        // bytes layout: 0-1 unused, 2 exponent, 3 sign (only first bit), 4-15 number
+        // bytes layout: 0-1 unused, 2 exponent, 3 sign (only highest bit), 4-15 number
         private readonly decimal _decimalValue;
 
         /// <summary>
@@ -87,7 +93,7 @@ namespace UnitsNet
             {
                 UnderlyingDataType.Decimal => (double)number._decimalValue,
                 UnderlyingDataType.Double => number._doubleValue,
-                _ => throw new System.NotImplementedException()
+                _ => throw new NotImplementedException()
             };
 
         #endregion
@@ -100,7 +106,7 @@ namespace UnitsNet
             {
                 UnderlyingDataType.Decimal => number._decimalValue,
                 UnderlyingDataType.Double => (decimal)number._doubleValue,
-                _ => throw new System.NotImplementedException()
+                _ => throw new NotImplementedException()
             };
 
         #endregion
@@ -111,56 +117,31 @@ namespace UnitsNet
             {
                 UnderlyingDataType.Decimal => _decimalValue.ToString(),
                 UnderlyingDataType.Double => _doubleValue.ToString(),
-                _ => throw new System.NotImplementedException()
+                _ => throw new NotImplementedException()
             };
+
+        private string GetDebugRepresentation()
+        {
+            StringBuilder builder = new($"{Type} {ToString()} Hex:");
+
+            byte[] bytes = BytesUtility.GetBytes(this);
+            for (int i = bytes.Length - 1; i >= 0; i--)
+            {
+                builder.Append($" {bytes[i]:X2}");
+            }
+
+            return builder.ToString();
+        }
 
         /// <summary>
         ///     Describes the underlying type of a <see cref="QuantityValue"/>.
         /// </summary>
         public enum UnderlyingDataType : byte
         {
-            /// <inheritdoc cref="decimal"/>
-            /// <remarks>Has to be 0 due to the bit structure of <see cref="decimal"/>.</remarks>
+            /// <summary><see cref="Decimal"/> must have the value 0 due to the bit structure of <see cref="decimal"/>.</summary>
             Decimal = 0,
             /// <inheritdoc cref="double"/>
             Double = 1
         }
-
-        #region just for debugging
-#if DEBUG
-        [FieldOffset(0)]
-        private readonly byte byte0;
-        [FieldOffset(1)]
-        private readonly byte byte1;
-        [FieldOffset(2)]
-        private readonly byte byte2;
-        [FieldOffset(3)]
-        private readonly byte byte3;
-        [FieldOffset(4)]
-        private readonly byte byte4;
-        [FieldOffset(5)]
-        private readonly byte byte5;
-        [FieldOffset(6)]
-        private readonly byte byte6;
-        [FieldOffset(7)]
-        private readonly byte byte7;
-        [FieldOffset(8)]
-        private readonly byte byte8;
-        [FieldOffset(9)]
-        private readonly byte byte9;
-        [FieldOffset(10)]
-        private readonly byte byte10;
-        [FieldOffset(11)]
-        private readonly byte byte11;
-        [FieldOffset(12)]
-        private readonly byte byte12;
-        [FieldOffset(13)]
-        private readonly byte byte13;
-        [FieldOffset(14)]
-        private readonly byte byte14;
-        [FieldOffset(15)]
-        private readonly byte byte15;
-#endif
-        #endregion
     }
 }
