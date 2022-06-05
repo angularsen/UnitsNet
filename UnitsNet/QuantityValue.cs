@@ -5,7 +5,6 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using System;
 using System.Globalization;
 using UnitsNet.InternalHelpers;
 
@@ -71,16 +70,24 @@ namespace UnitsNet
             Type = UnderlyingDataType.Decimal;
         }
 
-        private QuantityValue(double value, decimal valueDecimal)
+        private QuantityValue(double value, decimal valueDecimal) : this()
         {
-            _value = value;
-            _valueDecimal = valueDecimal;
+            if (valueDecimal != 0)
+            {
+                _decimalValue = valueDecimal;
+                Type = UnderlyingDataType.Decimal;
+            }
+            else
+            {
+                _doubleValue = 0;
+                Type = UnderlyingDataType.Double;
+            }
         }
 
         /// <summary>
         /// Returns true if the underlying value is stored as a decimal
         /// </summary>
-        public bool IsDecimal =>  _valueDecimal.HasValue;
+        public bool IsDecimal =>  Type == UnderlyingDataType.Decimal;
 
         #region To QuantityValue
 
@@ -147,11 +154,11 @@ namespace UnitsNet
         {
             if (IsDecimal)
             {
-                return _valueDecimal.GetHashCode();
+                return _decimalValue.GetHashCode();
             }
             else
             {
-                return _value.GetHashCode();
+                return _doubleValue.GetHashCode();
             }
         }
 
@@ -165,19 +172,19 @@ namespace UnitsNet
         {
             if (IsDecimal && other.IsDecimal)
             {
-                return _valueDecimal == other._valueDecimal;
+                return _decimalValue == other._decimalValue;
             }
             else if (IsDecimal)
             {
-                return _valueDecimal == (decimal)other._value.GetValueOrDefault(0); // other._value cannot be null here
+                return _decimalValue == (decimal)other._doubleValue;
             }
             else if (other.IsDecimal)
             {
-                return (decimal)_value.GetValueOrDefault(0) == other._valueDecimal;
+                return (decimal)_doubleValue == other._decimalValue;
             }
             else
             {
-                return _value == other._value;
+                return _doubleValue == other._doubleValue;
             }
         }
 
@@ -200,20 +207,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault(0) > b._valueDecimal.GetValueOrDefault(0);
+                return a._decimalValue > b._decimalValue;
             }
             else if (a.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault(0) > (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+                return a._decimalValue > (decimal)b._doubleValue;
             }
             else if (b.IsDecimal)
             {
-                return (decimal)a._value.GetValueOrDefault(0) > b._valueDecimal.GetValueOrDefault(0);
+                return (decimal)a._doubleValue > b._decimalValue;
             }
             else
             {
                 // Both are double
-                return a._value.GetValueOrDefault(0) > b._value.GetValueOrDefault(0);
+                return a._doubleValue > b._doubleValue;
             }
         }
 
@@ -224,20 +231,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault(0) < b._valueDecimal.GetValueOrDefault(0);
+                return a._decimalValue < b._decimalValue;
             }
             else if (a.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault(0) < (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+                return a._decimalValue < (decimal)b._doubleValue;
             }
             else if (b.IsDecimal)
             {
-                return (decimal)a._value.GetValueOrDefault(0) < b._valueDecimal.GetValueOrDefault(0);
+                return (decimal)a._doubleValue < b._decimalValue;
             }
             else
             {
                 // Both are double
-                return a._value.GetValueOrDefault(0) < b._value.GetValueOrDefault(0);
+                return a._doubleValue < b._doubleValue;
             }
         }
 
@@ -248,20 +255,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault(0) >= b._valueDecimal.GetValueOrDefault(0);
+                return a._decimalValue >= b._decimalValue;
             }
             else if (a.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault(0) >= (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+                return a._decimalValue >= (decimal)b._doubleValue;
             }
             else if (b.IsDecimal)
             {
-                return (decimal)a._value.GetValueOrDefault(0) >= b._valueDecimal.GetValueOrDefault(0);
+                return (decimal)a._doubleValue >= b._decimalValue;
             }
             else
             {
                 // Both are double
-                return a._value >= b._value;
+                return a._doubleValue >= b._doubleValue;
             }
         }
 
@@ -272,20 +279,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault(0) <= b._valueDecimal.GetValueOrDefault(0);
+                return a._decimalValue <= b._decimalValue;
             }
             else if (a.IsDecimal)
             {
-                return a._valueDecimal.GetValueOrDefault(0) <= (decimal)b._value.GetValueOrDefault(0); // other._value cannot be null here
+                return a._decimalValue <= (decimal)b._doubleValue;
             }
             else if (b.IsDecimal)
             {
-                return (decimal)a._value.GetValueOrDefault(0) <= b._valueDecimal.GetValueOrDefault(0);
+                return (decimal)a._doubleValue <= b._decimalValue;
             }
             else
             {
                 // Both are double
-                return a._value.GetValueOrDefault(0) <= b._value.GetValueOrDefault(0);
+                return a._doubleValue <= b._doubleValue;
             }
         }
 
@@ -296,13 +303,13 @@ namespace UnitsNet
         /// <returns>-v</returns>
         public static QuantityValue operator -(QuantityValue v)
         {
-            if (v._valueDecimal.HasValue)
+            if (v.IsDecimal)
             {
-                return new QuantityValue(-v._valueDecimal.Value);
+                return new QuantityValue(-v._decimalValue);
             }
             else
             {
-                return new QuantityValue(-v._value.GetValueOrDefault());
+                return new QuantityValue(-v._doubleValue);
             }
         }
 
@@ -316,20 +323,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return new QuantityValue(a._valueDecimal.GetValueOrDefault(0) * b._valueDecimal.GetValueOrDefault(0));
+                return new QuantityValue(a._decimalValue * b._decimalValue);
             }
             else if (a.IsDecimal)
             {
-                return new QuantityValue(a._valueDecimal.GetValueOrDefault(0) * (decimal)b._value.GetValueOrDefault(0)); // other._value cannot be null here
+                return new QuantityValue(a._decimalValue * (decimal)b._doubleValue);
             }
             else if (b.IsDecimal)
             {
-                return new QuantityValue((decimal)a._value.GetValueOrDefault(0) * b._valueDecimal.GetValueOrDefault(0));
+                return new QuantityValue((decimal)a._doubleValue * b._decimalValue);
             }
             else
             {
                 // Both are double
-                return new QuantityValue(a._value.GetValueOrDefault(0) * b._value.GetValueOrDefault(0));
+                return new QuantityValue(a._doubleValue * b._doubleValue);
             }
         }
 
@@ -343,20 +350,20 @@ namespace UnitsNet
         {
             if (a.IsDecimal && b.IsDecimal)
             {
-                return new QuantityValue(a._valueDecimal.GetValueOrDefault(0) / b._valueDecimal.GetValueOrDefault(0));
+                return new QuantityValue(a._decimalValue / b._decimalValue);
             }
             else if (a.IsDecimal)
             {
-                return new QuantityValue(a._valueDecimal.GetValueOrDefault(0) / (decimal)b._value.GetValueOrDefault(0)); // other._value cannot be null here
+                return new QuantityValue(a._decimalValue / (decimal)b._doubleValue);
             }
             else if (b.IsDecimal)
             {
-                return new QuantityValue((decimal)a._value.GetValueOrDefault(0) / b._valueDecimal.GetValueOrDefault(0));
+                return new QuantityValue((decimal)a._doubleValue / b._decimalValue);
             }
             else
             {
                 // Both are double
-                return new QuantityValue(a._value.GetValueOrDefault(0) / b._value.GetValueOrDefault(0));
+                return new QuantityValue(a._doubleValue / b._doubleValue);
             }
         }
 
@@ -412,16 +419,14 @@ namespace UnitsNet
         /// <returns>A string representation of the number</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            if (_value.HasValue)
+            if (IsDecimal)
             {
-                return _value.Value.ToString(format, formatProvider);
+                return _decimalValue.ToString(format, formatProvider);
             }
-            else if (_valueDecimal.HasValue)
+            else
             {
-                return _valueDecimal.Value.ToString(format, formatProvider);
+                return _doubleValue.ToString(format, formatProvider);
             }
-
-            return 0.ToString(format, formatProvider);
         }
 
         /// <summary>
