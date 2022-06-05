@@ -167,6 +167,50 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricField.Parse("1 V/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.VoltsPerMeter, VoltsPerMeterTolerance);
+                Assert.Equal(ElectricFieldUnit.VoltPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricField.TryParse("1 V/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.VoltsPerMeter, VoltsPerMeterTolerance);
+                Assert.Equal(ElectricFieldUnit.VoltPerMeter, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricField.ParseUnit("V/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricFieldUnit.VoltPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricField.TryParseUnit("V/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricFieldUnit.VoltPerMeter, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricFieldUnit unit)

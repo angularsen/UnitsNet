@@ -197,6 +197,122 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricAdmittance.Parse("1 µS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
+                Assert.Equal(ElectricAdmittanceUnit.Microsiemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricAdmittance.Parse("1 mS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millisiemens, MillisiemensTolerance);
+                Assert.Equal(ElectricAdmittanceUnit.Millisiemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricAdmittance.Parse("1 nS", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanosiemens, NanosiemensTolerance);
+                Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricAdmittance.Parse("1 S", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
+                Assert.Equal(ElectricAdmittanceUnit.Siemens, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricAdmittance.TryParse("1 µS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
+                Assert.Equal(ElectricAdmittanceUnit.Microsiemens, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricAdmittance.TryParse("1 mS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millisiemens, MillisiemensTolerance);
+                Assert.Equal(ElectricAdmittanceUnit.Millisiemens, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricAdmittance.TryParse("1 nS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanosiemens, NanosiemensTolerance);
+                Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricAdmittance.TryParse("1 S", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
+                Assert.Equal(ElectricAdmittanceUnit.Siemens, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricAdmittance.ParseUnit("µS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricAdmittanceUnit.Microsiemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricAdmittance.ParseUnit("mS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricAdmittanceUnit.Millisiemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricAdmittance.ParseUnit("nS", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricAdmittance.ParseUnit("S", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricAdmittanceUnit.Siemens, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricAdmittance.TryParseUnit("µS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricAdmittanceUnit.Microsiemens, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricAdmittance.TryParseUnit("mS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricAdmittanceUnit.Millisiemens, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricAdmittance.TryParseUnit("nS", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricAdmittance.TryParseUnit("S", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricAdmittanceUnit.Siemens, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricAdmittanceUnit unit)

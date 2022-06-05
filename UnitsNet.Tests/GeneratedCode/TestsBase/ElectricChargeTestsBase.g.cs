@@ -207,6 +207,198 @@ namespace UnitsNet.Tests
             }
         }
 
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 A-h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AmpereHours, AmpereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.AmpereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 Ah", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AmpereHours, AmpereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.AmpereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 C", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Coulombs, CoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Coulomb, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 kA-h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KiloampereHours, KiloampereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 kAh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KiloampereHours, KiloampereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 MA-h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegaampereHours, MegaampereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.MegaampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 MAh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegaampereHours, MegaampereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.MegaampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 mA-h", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliampereHours, MilliampereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.MilliampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 mAh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MilliampereHours, MilliampereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.MilliampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricCharge.TryParse("1 A-h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AmpereHours, AmpereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.AmpereHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParse("1 Ah", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AmpereHours, AmpereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.AmpereHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParse("1 C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Coulombs, CoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Coulomb, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParse("1 kA-h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KiloampereHours, KiloampereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParse("1 kAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KiloampereHours, KiloampereHoursTolerance);
+                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("A-h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.AmpereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("Ah", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.AmpereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("C", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.Coulomb, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("kA-h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("kAh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("MA-h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.MegaampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("MAh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.MegaampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("mA-h", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.MilliampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("mAh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.MilliampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricCharge.TryParseUnit("A-h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.AmpereHour, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParseUnit("Ah", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.AmpereHour, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParseUnit("C", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.Coulomb, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParseUnit("kA-h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParseUnit("kAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
+            }
+
+        }
+
         [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ElectricChargeUnit unit)

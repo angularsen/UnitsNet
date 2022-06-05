@@ -22,6 +22,11 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-10;
         protected override double GigawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-13;
 
+        protected override double WattHoursPerPoundInOneJoulePerKilogram => 1.2599788055556e-4;
+        protected override double KilowattHoursPerPoundInOneJoulePerKilogram => 1.2599788055556e-7;
+        protected override double MegawattHoursPerPoundInOneJoulePerKilogram => 1.2599788055556e-10;
+        protected override double GigawattHoursPerPoundInOneJoulePerKilogram => 1.2599788055556e-13;
+
         protected override double WattDaysPerKilogramInOneJoulePerKilogram => 1.15740741E-5;
         protected override double KilowattDaysPerKilogramInOneJoulePerKilogram => 1.15740741E-8;
         protected override double MegawattDaysPerKilogramInOneJoulePerKilogram => 1.15740741E-11;

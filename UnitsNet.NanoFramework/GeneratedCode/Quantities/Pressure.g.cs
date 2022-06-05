@@ -190,6 +190,11 @@ namespace UnitsNet
         public double KilopoundsForcePerSquareInch => As(PressureUnit.KilopoundForcePerSquareInch);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareMil"/>
+        /// </summary>
+        public double KilopoundsForcePerSquareMil => As(PressureUnit.KilopoundForcePerSquareMil);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Megabar"/>
         /// </summary>
         public double Megabars => As(PressureUnit.Megabar);
@@ -273,6 +278,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareInch"/>
         /// </summary>
         public double PoundsForcePerSquareInch => As(PressureUnit.PoundForcePerSquareInch);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareMil"/>
+        /// </summary>
+        public double PoundsForcePerSquareMil => As(PressureUnit.PoundForcePerSquareMil);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundPerInchSecondSquared"/>
@@ -441,6 +451,12 @@ namespace UnitsNet
         public static Pressure FromKilopoundsForcePerSquareInch(double kilopoundsforcepersquareinch) => new Pressure(kilopoundsforcepersquareinch, PressureUnit.KilopoundForcePerSquareInch);
 
         /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareMil"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromKilopoundsForcePerSquareMil(double kilopoundsforcepersquaremil) => new Pressure(kilopoundsforcepersquaremil, PressureUnit.KilopoundForcePerSquareMil);
+
+        /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megabar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -543,6 +559,12 @@ namespace UnitsNet
         public static Pressure FromPoundsForcePerSquareInch(double poundsforcepersquareinch) => new Pressure(poundsforcepersquareinch, PressureUnit.PoundForcePerSquareInch);
 
         /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareMil"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromPoundsForcePerSquareMil(double poundsforcepersquaremil) => new Pressure(poundsforcepersquaremil, PressureUnit.PoundForcePerSquareMil);
+
+        /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundPerInchSecondSquared"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -640,6 +662,7 @@ namespace UnitsNet
                         PressureUnit.Kilopascal => (_value) * 1e3d,
                         PressureUnit.KilopoundForcePerSquareFoot => (_value * 4.788025898033584e1) * 1e3d,
                         PressureUnit.KilopoundForcePerSquareInch => (_value * 6.894757293168361e3) * 1e3d,
+                        PressureUnit.KilopoundForcePerSquareMil => (_value * 6.894757293168361e9) * 1e3d,
                         PressureUnit.Megabar => (_value * 1e5) * 1e6d,
                         PressureUnit.MeganewtonPerSquareMeter => (_value) * 1e6d,
                         PressureUnit.Megapascal => (_value) * 1e6d,
@@ -657,6 +680,7 @@ namespace UnitsNet
                         PressureUnit.Pascal => _value,
                         PressureUnit.PoundForcePerSquareFoot => _value * 4.788025898033584e1,
                         PressureUnit.PoundForcePerSquareInch => _value * 6.894757293168361e3,
+                        PressureUnit.PoundForcePerSquareMil => _value * 6.894757293168361e9,
                         PressureUnit.PoundPerInchSecondSquared => _value * 1.785796732283465e1,
                         PressureUnit.TechnicalAtmosphere => _value * 9.80680592331 * 1e4,
                         PressureUnit.TonneForcePerSquareCentimeter => _value * 9.80665e7,
@@ -698,6 +722,7 @@ namespace UnitsNet
                         PressureUnit.Kilopascal => (baseUnitValue) / 1e3d,
                         PressureUnit.KilopoundForcePerSquareFoot => (baseUnitValue / 4.788025898033584e1) / 1e3d,
                         PressureUnit.KilopoundForcePerSquareInch => (baseUnitValue / 6.894757293168361e3) / 1e3d,
+                        PressureUnit.KilopoundForcePerSquareMil => (baseUnitValue / 6.894757293168361e9) / 1e3d,
                         PressureUnit.Megabar => (baseUnitValue / 1e5) / 1e6d,
                         PressureUnit.MeganewtonPerSquareMeter => (baseUnitValue) / 1e6d,
                         PressureUnit.Megapascal => (baseUnitValue) / 1e6d,
@@ -715,6 +740,7 @@ namespace UnitsNet
                         PressureUnit.Pascal => baseUnitValue,
                         PressureUnit.PoundForcePerSquareFoot => baseUnitValue / 4.788025898033584e1,
                         PressureUnit.PoundForcePerSquareInch => baseUnitValue / 6.894757293168361e3,
+                        PressureUnit.PoundForcePerSquareMil => baseUnitValue / 6.894757293168361e9,
                         PressureUnit.PoundPerInchSecondSquared => baseUnitValue / 1.785796732283465e1,
                         PressureUnit.TechnicalAtmosphere => baseUnitValue / (9.80680592331 * 1e4),
                         PressureUnit.TonneForcePerSquareCentimeter => baseUnitValue / 9.80665e7,

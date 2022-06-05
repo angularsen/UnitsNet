@@ -41,6 +41,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Length.FromChains(2), 2.Chains());
 
         [Fact]
+        public void NumberToDataMilesTest() =>
+            Assert.Equal(Length.FromDataMiles(2), 2.DataMiles());
+
+        [Fact]
         public void NumberToDecametersTest() =>
             Assert.Equal(Length.FromDecameters(2), 2.Decameters());
 

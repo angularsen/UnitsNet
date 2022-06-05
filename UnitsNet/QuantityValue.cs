@@ -1,7 +1,10 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Text;
 using System;
 using System.Globalization;
 using UnitsNet.InternalHelpers;
@@ -18,11 +21,16 @@ namespace UnitsNet
     /// </list>
     /// </summary>
     /// <remarks>
-    ///     At the time of this writing, this reduces the number of From(value, unit) overloads to 1/4th:
+    ///     <para>At the time of this writing, this reduces the number of From(value, unit) overloads to 1/4th:
     ///     From 8 (int, long, double, decimal + each nullable) down to 2 (QuantityValue and QuantityValue?).
-    ///     This also adds more numeric types with no extra overhead, such as float, short and byte.
+    ///     This also adds more numeric types with no extra overhead, such as float, short and byte.</para>
+    ///     <para>So far, the internal representation can be either <see cref="double"/> or <see cref="decimal"/>,
+    ///     but as this struct is realized as a union struct with overlapping fields, only the amount of memory of the largest data type is used.
+    ///     This allows for adding support for smaller data types without increasing the overall size.</para>
     /// </remarks>
-    public struct QuantityValue : IFormattable, IEquatable<QuantityValue>
+    [StructLayout(LayoutKind.Explicit)]
+    [DebuggerDisplay("{GetDebugRepresentation()}")]
+    public readonly struct QuantityValue : IFormattable, IEquatable<QuantityValue>
     {
         /// <summary>
         /// The value 0
@@ -31,27 +39,36 @@ namespace UnitsNet
 
         /// <summary>
         ///     Value assigned when implicitly casting from all numeric types except <see cref="decimal" />, since
-        ///     <see cref="double" /> has the greatest range and is 64 bits versus 128 bits for <see cref="decimal"/>.
+        ///     <see cref="double" /> has the greatest range.
         /// </summary>
-        private readonly double? _value;
+        [FieldOffset(8)] // so that it does not interfere with the Type field
+        private readonly double _doubleValue;
 
         /// <summary>
         ///     Value assigned when implicitly casting from <see cref="decimal" /> type, since it has a greater precision than
         ///     <see cref="double"/> and we want to preserve that when constructing quantities that use <see cref="decimal"/>
         ///     as their value type.
         /// </summary>
-        private readonly decimal? _valueDecimal;
+        [FieldOffset(0)]
+        // bytes layout: 0-1 unused, 2 exponent, 3 sign (only highest bit), 4-15 number
+        private readonly decimal _decimalValue;
 
-        private QuantityValue(double val)
+        /// <summary>
+        ///     Determines the underlying type of this <see cref="QuantityValue"/>.
+        /// </summary>
+        [FieldOffset(0)] // using unused byte for storing type
+        public readonly UnderlyingDataType Type;
+
+        private QuantityValue(double val) : this()
         {
-            _value = Guard.EnsureValidNumber(val, nameof(val));
-            _valueDecimal = null;
+            _doubleValue = Guard.EnsureValidNumber(val, nameof(val));
+            Type = UnderlyingDataType.Double;
         }
 
-        private QuantityValue(decimal val)
+        private QuantityValue(decimal val) : this()
         {
-            _valueDecimal = val;
-            _value = null;
+            _decimalValue = val;
+            Type = UnderlyingDataType.Decimal;
         }
 
         private QuantityValue(double value, decimal valueDecimal)
@@ -90,10 +107,12 @@ namespace UnitsNet
 
         /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="double"/>.</summary>
         public static explicit operator double(QuantityValue number)
+            => number.Type switch
         {
-            // double -> decimal -> zero (since we can't implement the default struct ctor)
-            return number._value ?? (double) number._valueDecimal.GetValueOrDefault();
-        }
+            UnderlyingDataType.Decimal => (double)number._decimalValue,
+            UnderlyingDataType.Double => number._doubleValue,
+            _ => throw new NotImplementedException()
+        };
 
         #endregion
 
@@ -101,10 +120,12 @@ namespace UnitsNet
 
         /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="decimal"/>.</summary>
         public static explicit operator decimal(QuantityValue number)
+            => number.Type switch
         {
-            // decimal -> double -> zero (since we can't implement the default struct ctor)
-            return number._valueDecimal ?? (decimal) number._value.GetValueOrDefault();
-        }
+            UnderlyingDataType.Decimal => number._decimalValue,
+            UnderlyingDataType.Double => (decimal)number._doubleValue,
+            _ => throw new NotImplementedException()
+        };
 
         #endregion
 
@@ -343,8 +364,24 @@ namespace UnitsNet
 
         /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()
+            => Type switch
         {
-            return ToString(string.Empty, CultureInfo.CurrentCulture);
+            UnderlyingDataType.Decimal => _decimalValue.ToString(),
+            UnderlyingDataType.Double => _doubleValue.ToString(),
+            _ => throw new NotImplementedException()
+        };
+
+        private string GetDebugRepresentation()
+        {
+            StringBuilder builder = new($"{Type} {ToString()} Hex:");
+
+            byte[] bytes = BytesUtility.GetBytes(this);
+            for (int i = bytes.Length - 1; i >= 0; i--)
+            {
+                builder.Append($" {bytes[i]:X2}");
+            }
+
+            return builder.ToString();
         }
 
         /// <summary>
@@ -385,6 +422,17 @@ namespace UnitsNet
             }
 
             return 0.ToString(format, formatProvider);
+        }
+
+        /// <summary>
+        ///     Describes the underlying type of a <see cref="QuantityValue"/>.
+        /// </summary>
+        public enum UnderlyingDataType : byte
+        {
+            /// <summary><see cref="Decimal"/> must have the value 0 due to the bit structure of <see cref="decimal"/>.</summary>
+            Decimal = 0,
+            /// <inheritdoc cref="double"/>
+            Double = 1
         }
     }
 }

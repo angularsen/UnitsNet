@@ -19,6 +19,7 @@ function Invoke-BuildNanoNugets {
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\VolumeConcentration\UnitsNet.NanoFramework.VolumeConcentration.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Power\UnitsNet.NanoFramework.Power.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Density\UnitsNet.NanoFramework.Density.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  & $nuget pack "$root\UnitsNet.NanoFramework\GeneratedCode\Mass\UnitsNet.NanoFramework.Mass.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
 
 }
 
