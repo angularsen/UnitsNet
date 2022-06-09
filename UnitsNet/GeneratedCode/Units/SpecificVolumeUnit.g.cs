@@ -25,9 +25,9 @@ namespace UnitsNet.Units
 
     public enum SpecificVolumeUnit
     {
-        CubicFootPerPound,
-        CubicMeterPerKilogram,
-        MillicubicMeterPerKilogram,
+        CubicFootPerPound = 1,
+        CubicMeterPerKilogram = 2,
+        MillicubicMeterPerKilogram = 3,
     }
 
     #pragma warning restore 1591

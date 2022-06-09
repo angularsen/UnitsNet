@@ -25,7 +25,7 @@ namespace UnitsNet.Units
 
     public enum MagnetizationUnit
     {
-        AmperePerMeter,
+        AmperePerMeter = 1,
     }
 
     #pragma warning restore 1591

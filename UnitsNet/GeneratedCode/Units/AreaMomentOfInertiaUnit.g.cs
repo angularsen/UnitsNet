@@ -25,12 +25,12 @@ namespace UnitsNet.Units
 
     public enum AreaMomentOfInertiaUnit
     {
-        CentimeterToTheFourth,
-        DecimeterToTheFourth,
-        FootToTheFourth,
-        InchToTheFourth,
-        MeterToTheFourth,
-        MillimeterToTheFourth,
+        CentimeterToTheFourth = 1,
+        DecimeterToTheFourth = 2,
+        FootToTheFourth = 3,
+        InchToTheFourth = 4,
+        MeterToTheFourth = 5,
+        MillimeterToTheFourth = 6,
     }
 
     #pragma warning restore 1591

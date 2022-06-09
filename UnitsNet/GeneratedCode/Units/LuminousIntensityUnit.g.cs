@@ -25,7 +25,7 @@ namespace UnitsNet.Units
 
     public enum LuminousIntensityUnit
     {
-        Candela,
+        Candela = 1,
     }
 
     #pragma warning restore 1591

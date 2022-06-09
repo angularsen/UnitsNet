@@ -25,9 +25,9 @@ namespace UnitsNet.Units
 
     public enum ElectricConductivityUnit
     {
-        SiemensPerFoot,
-        SiemensPerInch,
-        SiemensPerMeter,
+        SiemensPerFoot = 1,
+        SiemensPerInch = 2,
+        SiemensPerMeter = 3,
     }
 
     #pragma warning restore 1591

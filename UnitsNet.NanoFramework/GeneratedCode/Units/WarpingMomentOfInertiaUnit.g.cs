@@ -25,12 +25,12 @@ namespace UnitsNet.Units
 
     public enum WarpingMomentOfInertiaUnit
     {
-        CentimeterToTheSixth,
-        DecimeterToTheSixth,
-        FootToTheSixth,
-        InchToTheSixth,
-        MeterToTheSixth,
-        MillimeterToTheSixth,
+        CentimeterToTheSixth = 1,
+        DecimeterToTheSixth = 2,
+        FootToTheSixth = 3,
+        InchToTheSixth = 4,
+        MeterToTheSixth = 5,
+        MillimeterToTheSixth = 6,
     }
 
     #pragma warning restore 1591

@@ -25,7 +25,7 @@ namespace UnitsNet.Units
 
     public enum PermittivityUnit
     {
-        FaradPerMeter,
+        FaradPerMeter = 1,
     }
 
     #pragma warning restore 1591

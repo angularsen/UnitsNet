@@ -25,10 +25,10 @@ namespace UnitsNet.Units
 
     public enum IlluminanceUnit
     {
-        Kilolux,
-        Lux,
-        Megalux,
-        Millilux,
+        Kilolux = 1,
+        Lux = 2,
+        Megalux = 3,
+        Millilux = 4,
     }
 
     #pragma warning restore 1591

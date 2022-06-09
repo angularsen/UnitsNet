@@ -25,7 +25,7 @@ namespace UnitsNet.Units
 
     public enum PermeabilityUnit
     {
-        HenryPerMeter,
+        HenryPerMeter = 1,
     }
 
     #pragma warning restore 1591

@@ -25,7 +25,7 @@ namespace UnitsNet.Units
 
     public enum LuminousFluxUnit
     {
-        Lumen,
+        Lumen = 1,
     }
 
     #pragma warning restore 1591

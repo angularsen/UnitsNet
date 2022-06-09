@@ -25,11 +25,11 @@ namespace UnitsNet.Units
 
     public enum ElectricPotentialUnit
     {
-        Kilovolt,
-        Megavolt,
-        Microvolt,
-        Millivolt,
-        Volt,
+        Kilovolt = 1,
+        Megavolt = 2,
+        Microvolt = 3,
+        Millivolt = 4,
+        Volt = 5,
     }
 
     #pragma warning restore 1591

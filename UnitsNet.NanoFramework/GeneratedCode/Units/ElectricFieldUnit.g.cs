@@ -25,7 +25,7 @@ namespace UnitsNet.Units
 
     public enum ElectricFieldUnit
     {
-        VoltPerMeter,
+        VoltPerMeter = 1,
     }
 
     #pragma warning restore 1591

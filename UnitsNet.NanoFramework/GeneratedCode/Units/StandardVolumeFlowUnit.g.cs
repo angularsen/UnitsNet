@@ -25,15 +25,15 @@ namespace UnitsNet.Units
 
     public enum StandardVolumeFlowUnit
     {
-        StandardCubicCentimeterPerMinute,
-        StandardCubicFootPerHour,
-        StandardCubicFootPerMinute,
-        StandardCubicFootPerSecond,
-        StandardCubicMeterPerDay,
-        StandardCubicMeterPerHour,
-        StandardCubicMeterPerMinute,
-        StandardCubicMeterPerSecond,
-        StandardLiterPerMinute,
+        StandardCubicCentimeterPerMinute = 1,
+        StandardCubicFootPerHour = 2,
+        StandardCubicFootPerMinute = 3,
+        StandardCubicFootPerSecond = 4,
+        StandardCubicMeterPerDay = 5,
+        StandardCubicMeterPerHour = 6,
+        StandardCubicMeterPerMinute = 7,
+        StandardCubicMeterPerSecond = 8,
+        StandardLiterPerMinute = 9,
     }
 
     #pragma warning restore 1591
