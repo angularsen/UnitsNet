@@ -26,8 +26,8 @@ namespace UnitsNet.Units
     public enum PowerRatioUnit
     {
         Undefined = 0,
-        DecibelMilliwatt,
-        DecibelWatt,
+        DecibelMilliwatt = 1,
+        DecibelWatt = 2,
     }
 
     #pragma warning restore 1591

@@ -31,67 +31,67 @@ namespace UnitsNet.Units
         ///     Angstrom is a metric unit of length equal to 1e-10 meter
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Angstrom</remarks>
-        Angstrom,
+        Angstrom = 1,
 
         /// <summary>
         ///     One Astronomical Unit is the distance from the solar system Star, the sun, to planet Earth.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Astronomical_unit</remarks>
-        AstronomicalUnit,
-        Centimeter,
-        Chain,
+        AstronomicalUnit = 2,
+        Centimeter = 3,
+        Chain = 4,
 
         /// <summary>
         ///     In radar-related subjects and in JTIDS, a data mile is a unit of distance equal to 6000 feet (1.8288 kilometres or 0.987 nautical miles).
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Data_mile</remarks>
-        DataMile,
-        Decameter,
-        Decimeter,
-        DtpPica,
-        DtpPoint,
-        Fathom,
-        Foot,
-        Hand,
-        Hectometer,
-        Inch,
-        KilolightYear,
-        Kilometer,
-        Kiloparsec,
+        DataMile = 5,
+        Decameter = 6,
+        Decimeter = 7,
+        DtpPica = 8,
+        DtpPoint = 9,
+        Fathom = 10,
+        Foot = 11,
+        Hand = 12,
+        Hectometer = 13,
+        Inch = 14,
+        KilolightYear = 15,
+        Kilometer = 16,
+        Kiloparsec = 17,
 
         /// <summary>
         ///     A Light Year (ly) is the distance that light travel during an Earth year, ie 365 days.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Light-year</remarks>
-        LightYear,
-        MegalightYear,
-        Megaparsec,
-        Meter,
-        Microinch,
-        Micrometer,
-        Mil,
-        Mile,
-        Millimeter,
-        Nanometer,
-        NauticalMile,
+        LightYear = 18,
+        MegalightYear = 19,
+        Megaparsec = 20,
+        Meter = 21,
+        Microinch = 22,
+        Micrometer = 23,
+        Mil = 24,
+        Mile = 25,
+        Millimeter = 26,
+        Nanometer = 27,
+        NauticalMile = 28,
 
         /// <summary>
         ///     A parsec is defined as the distance at which one astronomical unit (AU) subtends an angle of one arcsecond.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Parsec</remarks>
-        Parsec,
-        PrinterPica,
-        PrinterPoint,
-        Shackle,
+        Parsec = 29,
+        PrinterPica = 30,
+        PrinterPoint = 31,
+        Shackle = 32,
 
         /// <summary>
         ///     Solar radius is a ratio unit to the radius of the solar system star, the sun.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Stellar_classification</remarks>
-        SolarRadius,
-        Twip,
-        UsSurveyFoot,
-        Yard,
+        SolarRadius = 33,
+        Twip = 34,
+        UsSurveyFoot = 35,
+        Yard = 36,
     }
 
     #pragma warning restore 1591

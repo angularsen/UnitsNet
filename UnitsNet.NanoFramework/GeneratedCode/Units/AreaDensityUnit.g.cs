@@ -26,7 +26,7 @@ namespace UnitsNet.Units
     public enum AreaDensityUnit
     {
         Undefined = 0,
-        KilogramPerSquareMeter,
+        KilogramPerSquareMeter = 1,
     }
 
     #pragma warning restore 1591
