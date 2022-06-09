@@ -57,9 +57,6 @@
     <None Include="..\Common\**\*">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </None>
-    <Compile Remove="UnitDefinitions\**" />
-    <EmbeddedResource Remove="UnitDefinitions\**" />
-    <None Remove="UnitDefinitions\**" />
   </ItemGroup>
 
   <!-- Files to include in nuget package -->
