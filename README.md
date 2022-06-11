@@ -2,6 +2,12 @@
 [![codecov](https://codecov.io/gh/angularsen/UnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/UnitsNet)
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
+## Feature branch agl/split-nuget-v5
+
+### Challenges
+- UnitSystem and BaseUnits depending on 7 projects for SI units, change to string? Move to SI project and extension methods?
+-
+
 ## Units.NET
 
 Add strongly typed quantities to your code and get merrily on with your life.

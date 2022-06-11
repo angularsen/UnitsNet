@@ -70,6 +70,7 @@ namespace CodeGen
                 QuantityNameToUnitEnumValues quantityNameToUnitEnumValues = UnitEnumValueAllocator.AllocateNewUnitEnumValues($"{rootDir}/Common/UnitEnumValues.g.json", quantities);
 
                 UnitsNetGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
+                UnitsNetModularGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
 
                 if (updateNanoFrameworkDependencies)
                 {

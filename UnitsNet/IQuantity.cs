@@ -15,6 +15,13 @@ namespace UnitsNet
     /// </summary>
     public interface IQuantity : IFormattable
     {
+#if NET7_0_OR_GREATER
+        /// <summary>
+        ///     The zero value of this quantity.
+        /// </summary>
+        static abstract QuantityInfo Info { get; }
+#endif
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -132,5 +139,11 @@ namespace UnitsNet
         where TUnitType : Enum
         where TValueType : struct
     {
+#if NET7_0_OR_GREATER
+        /// <summary>
+        ///     The zero value of this quantity.
+        /// </summary>
+        static abstract TSelf Zero { get; }
+#endif
     }
 }

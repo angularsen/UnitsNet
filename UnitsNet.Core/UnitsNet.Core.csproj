@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- NuGet properties -->
+  <PropertyGroup>
+    <PackageId>UnitsNet.Core</PackageId>
+    <Version>5.0.0-rc008</Version>
+    <Authors>Andreas Gullberg Larsen</Authors>
+    <Description>Common types and abstractions that are required for the UnitsNet packages that adds quantities and units.</Description>
+    <Title>Units.NET Core</Title>
+    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
+    <PackageIcon>logo-32.png</PackageIcon>
+    <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <!-- Assembly and msbuild properties -->
+  <PropertyGroup>
+    <AssemblyVersion>5.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>UnitsNet</RootNamespace>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- SourceLink: https://github.com/dotnet/sourcelink -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+    <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <!-- Strong name signing -->
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyName>UnitsNet</AssemblyName>
+  </PropertyGroup>
+
+  <!-- TEMP: Ignore warnings about xmldoc referencing non-existing types, such as Length not being accessible from UnitsNet.Core.
+    Will fix the xmldoc to not have strong type references. -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CS1574;CS1584;CS1581;CS1580</NoWarn>
+  </PropertyGroup>
+
+  <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!-- Link in common unit definition .json files -->
+  <ItemGroup>
+    <None Include="..\Common\**\*">
+      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
+  </ItemGroup>
+
+  <!-- Files to include in nuget package -->
+  <ItemGroup>
+    <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
+    <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+</Project>

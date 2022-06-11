@@ -25,7 +25,7 @@ namespace UnitsNet.Tests.CustomQuantities
 
         public BaseDimensions Dimensions => BaseDimensions.Dimensionless;
 
-        public QuantityInfo QuantityInfo => new(
+        public static QuantityInfo Info => new(
             nameof(HowMuch),
             typeof(HowMuchUnit),
             new UnitInfo[]
@@ -37,6 +37,8 @@ namespace UnitsNet.Tests.CustomQuantities
             HowMuchUnit.Some,
             Zero,
             BaseDimensions.Dimensionless);
+
+        public QuantityInfo QuantityInfo => Info;
 
         public double As(Enum unit) => Convert.ToDouble(unit);
 

@@ -154,6 +154,9 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<PressureUnit> Info { get; }
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        static QuantityInfo IQuantity.Info => Info;
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
