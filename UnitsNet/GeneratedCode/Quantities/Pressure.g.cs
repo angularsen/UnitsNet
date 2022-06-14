@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).
     /// </summary>
     [DataContract]
-    public readonly partial struct Pressure : IQuantity<PressureUnit>, IComparable, IComparable<Pressure>, IConvertible, IFormattable
+    public readonly partial struct Pressure : IQuantity<PressureUnit>, IEquatable<Pressure>, IComparable, IComparable<Pressure>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1356,7 +1356,33 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        /// <inheritdoc />
+        /// <summary>Returns true if both <see cref="Value" /> and <see cref="Unit" /> are exactly equal for both quantities.</summary>
+        /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        public static bool operator ==(Pressure left, Pressure right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
+        /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        public static bool operator !=(Pressure left, Pressure right)
+        {
+            return !(left == right);
+        }
+
+        /// <summary>Compares the current <see cref="Pressure"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="obj">An object to compare with this instance.</param>
+        /// <exception cref="T:System.ArgumentException">
+        ///    <paramref name="obj" /> is not the same type as this instance.
+        /// </exception>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
         public int CompareTo(object obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
@@ -1365,10 +1391,38 @@ namespace UnitsNet
             return CompareTo(objPressure);
         }
 
-        /// <inheritdoc />
+        /// <summary>Compares the current <see cref="Pressure"/> with another <see cref="Pressure"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="other">A quantity to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
         public int CompareTo(Pressure other)
         {
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
+        }
+
+        /// <inheritdoc />
+        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
+        /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Pressure objPressure))
+                return false;
+
+            return Equals(objPressure);
+        }
+
+        /// <inheritdoc />
+        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
+        /// <remarks>Consider using <see cref="Equals(Pressure, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        public bool Equals(Pressure other)
+        {
+            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
         }
 
         /// <summary>

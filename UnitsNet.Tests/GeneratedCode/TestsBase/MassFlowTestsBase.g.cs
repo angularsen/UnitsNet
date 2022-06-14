@@ -1675,6 +1675,47 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => grampersecond.CompareTo(null));
         }
 
+        [Theory]
+        [InlineData(1, MassFlowUnit.GramPerSecond, 1, MassFlowUnit.GramPerSecond, true)]  // Same value and unit.
+        [InlineData(1, MassFlowUnit.GramPerSecond, 2, MassFlowUnit.GramPerSecond, false)] // Different value.
+        [InlineData(2, MassFlowUnit.GramPerSecond, 1, MassFlowUnit.CentigramPerDay, false)] // Different value and unit.
+        [InlineData(1, MassFlowUnit.GramPerSecond, 1, MassFlowUnit.CentigramPerDay, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassFlowUnit unitA, double valueB, MassFlowUnit unitB, bool expectEqual)
+        {
+            var a = new MassFlow(valueA, unitA);
+            var b = new MassFlow(valueB, unitB);
+
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
+
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
+
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
+
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = MassFlow.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
+            Assert.False(a == null);
+            Assert.False(null == a);
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
+        }
+
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {

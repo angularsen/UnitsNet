@@ -1104,6 +1104,47 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => meterpersecondsquared.CompareTo(null));
         }
 
+        [Theory]
+        [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.MeterPerSecondSquared, true)]  // Same value and unit.
+        [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 2, AccelerationUnit.MeterPerSecondSquared, false)] // Different value.
+        [InlineData(2, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.CentimeterPerSecondSquared, false)] // Different value and unit.
+        [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.CentimeterPerSecondSquared, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AccelerationUnit unitA, double valueB, AccelerationUnit unitB, bool expectEqual)
+        {
+            var a = new Acceleration(valueA, unitA);
+            var b = new Acceleration(valueB, unitB);
+
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
+
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
+
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
+
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = Acceleration.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
+            Assert.False(a == null);
+            Assert.False(null == a);
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
+        }
+
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {

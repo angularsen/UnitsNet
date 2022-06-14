@@ -2165,6 +2165,47 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogram.CompareTo(null));
         }
 
+        [Theory]
+        [InlineData(1, MassUnit.Kilogram, 1, MassUnit.Kilogram, true)]  // Same value and unit.
+        [InlineData(1, MassUnit.Kilogram, 2, MassUnit.Kilogram, false)] // Different value.
+        [InlineData(2, MassUnit.Kilogram, 1, MassUnit.Centigram, false)] // Different value and unit.
+        [InlineData(1, MassUnit.Kilogram, 1, MassUnit.Centigram, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassUnit unitA, double valueB, MassUnit unitB, bool expectEqual)
+        {
+            var a = new Mass(valueA, unitA);
+            var b = new Mass(valueB, unitB);
+
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
+
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
+
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
+
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = Mass.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
+            Assert.False(a == null);
+            Assert.False(null == a);
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
+        }
+
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {

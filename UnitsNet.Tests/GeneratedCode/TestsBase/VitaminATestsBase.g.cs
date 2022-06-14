@@ -313,6 +313,46 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => internationalunit.CompareTo(null));
         }
 
+        [Theory]
+        [InlineData(1, VitaminAUnit.InternationalUnit, 1, VitaminAUnit.InternationalUnit, true)]  // Same value and unit.
+        [InlineData(1, VitaminAUnit.InternationalUnit, 2, VitaminAUnit.InternationalUnit, false)] // Different value.
+        [InlineData(2, VitaminAUnit.InternationalUnit, 1, VitaminAUnit.InternationalUnit, false)] // Different value and unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, VitaminAUnit unitA, double valueB, VitaminAUnit unitB, bool expectEqual)
+        {
+            var a = new VitaminA(valueA, unitA);
+            var b = new VitaminA(valueB, unitB);
+
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
+
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
+
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
+
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = VitaminA.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
+            Assert.False(a == null);
+            Assert.False(null == a);
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
+        }
+
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
