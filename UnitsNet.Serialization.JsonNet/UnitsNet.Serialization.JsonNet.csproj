@@ -42,9 +42,9 @@
 
   <!-- NuGet references that work for both signed and unsigned -->
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <!-- Project references, will also generate the corresponding nuget dependencies -->

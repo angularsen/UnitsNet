@@ -43,8 +43,8 @@
 
   <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
 
   <!-- System.ValueTuple is only required for net40 target. -->
