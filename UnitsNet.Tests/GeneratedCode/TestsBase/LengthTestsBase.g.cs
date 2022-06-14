@@ -2231,7 +2231,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LengthUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Length.Units.FirstOrDefault(u => u != Length.BaseUnit);
+            var fromUnit = Length.Units.Where(u => u != Length.BaseUnit).DefaultIfEmpty(Length.BaseUnit).FirstOrDefault();
 
             var quantity = Length.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

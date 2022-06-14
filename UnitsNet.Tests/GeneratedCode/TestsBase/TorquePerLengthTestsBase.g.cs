@@ -989,7 +989,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TorquePerLengthUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = TorquePerLength.Units.FirstOrDefault(u => u != TorquePerLength.BaseUnit);
+            var fromUnit = TorquePerLength.Units.Where(u => u != TorquePerLength.BaseUnit).DefaultIfEmpty(TorquePerLength.BaseUnit).FirstOrDefault();
 
             var quantity = TorquePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

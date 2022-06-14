@@ -907,7 +907,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeConcentrationUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VolumeConcentration.Units.FirstOrDefault(u => u != VolumeConcentration.BaseUnit);
+            var fromUnit = VolumeConcentration.Units.Where(u => u != VolumeConcentration.BaseUnit).DefaultIfEmpty(VolumeConcentration.BaseUnit).FirstOrDefault();
 
             var quantity = VolumeConcentration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

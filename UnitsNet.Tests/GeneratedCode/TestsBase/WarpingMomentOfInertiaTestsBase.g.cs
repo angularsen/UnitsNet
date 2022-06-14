@@ -551,7 +551,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(WarpingMomentOfInertiaUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = WarpingMomentOfInertia.Units.FirstOrDefault(u => u != WarpingMomentOfInertia.BaseUnit);
+            var fromUnit = WarpingMomentOfInertia.Units.Where(u => u != WarpingMomentOfInertia.BaseUnit).DefaultIfEmpty(WarpingMomentOfInertia.BaseUnit).FirstOrDefault();
 
             var quantity = WarpingMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

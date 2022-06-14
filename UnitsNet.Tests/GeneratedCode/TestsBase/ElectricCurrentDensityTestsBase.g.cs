@@ -305,7 +305,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricCurrentDensityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricCurrentDensity.Units.FirstOrDefault(u => u != ElectricCurrentDensity.BaseUnit);
+            var fromUnit = ElectricCurrentDensity.Units.Where(u => u != ElectricCurrentDensity.BaseUnit).DefaultIfEmpty(ElectricCurrentDensity.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricCurrentDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
