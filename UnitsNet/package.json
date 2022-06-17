@@ -1,0 +1,14 @@
+{
+  "name": "com.reveal.unitsnet",
+  "version": "1.0",
+  "displayName": "UnitsNet",
+  "description": "Makes life working with units of measurement just a little bit better.",
+  "keywords": [
+    "units",
+    "measurements"
+  ],
+  "author": {
+    "name": "angularsen",
+    "url" : "https://github.com/angularsen/UnitsNet"
+  }
+}

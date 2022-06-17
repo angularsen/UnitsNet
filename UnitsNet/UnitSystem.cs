@@ -34,7 +34,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public bool Equals(UnitSystem? other)
         {
-            return other is not null && BaseUnits.Equals(other.BaseUnits);
+            return other != null && BaseUnits.Equals(other.BaseUnits);
         }
 
         /// <summary>

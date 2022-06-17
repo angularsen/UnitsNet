@@ -138,11 +138,11 @@ namespace UnitsNet
             return (sourceType == typeof(string)) || base.CanConvertFrom(context, sourceType);
         }
 
-        private static TAttribute? GetAttribute<TAttribute>(ITypeDescriptorContext? context) where TAttribute : UnitAttributeBase
+        private static TAttribute GetAttribute<TAttribute>(ITypeDescriptorContext? context) where TAttribute : UnitAttributeBase
         {
             if (context?.PropertyDescriptor is null) return null;
 
-            var attribute = (TAttribute?)context.PropertyDescriptor.Attributes[typeof(TAttribute)];
+            var attribute = (TAttribute)context.PropertyDescriptor.Attributes[typeof(TAttribute)];
 
             // Ensure the attribute's unit is compatible with this converter's quantity.
             if (attribute?.UnitType != null)
@@ -218,7 +218,7 @@ namespace UnitsNet
         {
             DisplayAsUnitAttribute? displayAsUnit = GetAttribute<DisplayAsUnitAttribute>(context);
 
-            if (value is not IQuantity qvalue || destinationType != typeof(string))
+            if (!(value is IQuantity qvalue) || destinationType != typeof(string))
             {
                 return base.ConvertTo(context, culture, value, destinationType);
             }
