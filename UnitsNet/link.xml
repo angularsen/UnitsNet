@@ -1,0 +1,5 @@
+<linker>
+    <assembly fullname="UnitsNet" preserve="all"/>
+    <assembly fullname="UnitsNet.CodeGen" preserve="all"/>
+    <assembly fullname="UnitsNet.Attr" preserve="all"/>
+</linker>
