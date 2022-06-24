@@ -136,10 +136,31 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void EnergyDividedByTemperatureDeltaEqualsEntropy()
+        {
+            Entropy e = Energy.FromJoules(16) / TemperatureDelta.FromKelvins(8);
+            Assert.Equal(Entropy.FromJoulesPerKelvin(2), e);
+        }
+
+        [Fact]
         public void EnergyDividedByEntropyEqualsTemperatureDelta()
         {
             TemperatureDelta t = Energy.FromJoules(15) / Entropy.FromJoulesPerKelvin(3);
             Assert.Equal(TemperatureDelta.FromKelvins(5), t);
+        }
+
+        [Fact]
+        public void EnergyDividedByMassEqualsSpecificEnergy()
+        {
+            SpecificEnergy e = Energy.FromJoules(10) / Mass.FromKilograms(2);
+            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(5), e);
+        }
+
+        [Fact]
+        public void EnergyDividedBySpecificEnergyEqualsMass()
+        {
+            Mass m = Energy.FromJoules(24) / SpecificEnergy.FromJoulesPerKilogram(8);
+            Assert.Equal(Mass.FromKilograms(3), m);
         }
     }
 }
