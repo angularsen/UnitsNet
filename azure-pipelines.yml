@@ -1,0 +1,44 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+- task: Bash@3
+  displayName: 'Generate code'
+  inputs:
+    targetType: 'inline'
+    script: 'dotnet run CodeGen'
+    failOnStderr: true
+- task: PowerShell@2
+  displayName: 'Build, test, pack'
+  inputs:
+    filePath: 'Build/build.ps1'
+    arguments: '-IncludeWindowsRuntimeComponent -IncludeNanoFramework'
+    failOnStderr: true
+    showWarnings: true
+    pwsh: true
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    failOnStderr: true
+    showWarnings: true
+    pwsh: true
+    script: |
+      $ProgressPreference = 'SilentlyContinue'
+      Invoke-WebRequest -Uri https://keybase.io/codecovsecurity/pgp_keys.asc -OutFile codecov.asc
+      gpg.exe --import codecov.asc
+
+      Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+      Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
+      Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
+
+      gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
+      If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
+
+      .\codecov.exe "Artifacts/Coverage" -t $env:codecov_upload_token
+

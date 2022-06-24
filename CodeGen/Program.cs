@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using CodeGen.Generators;
+using CodeGen.Helpers.UnitEnumValueAllocation;
 using Serilog;
 using Serilog.Events;
 
@@ -67,7 +68,9 @@ namespace CodeGen
                 var sw = Stopwatch.StartNew();
                 var quantities = QuantityJsonFilesParser.ParseQuantities(repositoryRoot.FullName);
 
-                UnitsNetGenerator.Generate(rootDir, quantities);
+                QuantityNameToUnitEnumValues quantityNameToUnitEnumValues = UnitEnumValueAllocator.AllocateNewUnitEnumValues($"{rootDir}/Common/UnitEnumValues.g.json", quantities);
+
+                UnitsNetGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
 
                 if (!skipWrc)
                 {
@@ -87,7 +90,7 @@ namespace CodeGen
                 if (!skipNanoFramework)
                 {
                     Log.Information("Generate nanoFramework projects\n---");
-                    NanoFrameworkGenerator.Generate(rootDir, quantities);
+                    NanoFrameworkGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
                 }
 
                 Log.Information("Completed in {ElapsedMs} ms!", sw.ElapsedMilliseconds);

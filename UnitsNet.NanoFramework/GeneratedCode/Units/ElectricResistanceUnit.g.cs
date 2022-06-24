@@ -26,12 +26,12 @@ namespace UnitsNet.Units
     public enum ElectricResistanceUnit
     {
         Undefined = 0,
-        Gigaohm,
-        Kiloohm,
-        Megaohm,
-        Microohm,
-        Milliohm,
-        Ohm,
+        Gigaohm = 1,
+        Kiloohm = 2,
+        Megaohm = 3,
+        Microohm = 4,
+        Milliohm = 5,
+        Ohm = 6,
     }
 
     #pragma warning restore 1591
