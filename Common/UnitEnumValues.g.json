@@ -1343,7 +1343,8 @@
     "UsSurveyFootPerSecond": 29,
     "YardPerHour": 30,
     "YardPerMinute": 31,
-    "YardPerSecond": 32
+    "YardPerSecond": 32,
+    "Mach": 42
   },
   "StandardVolumeFlow": {
     "StandardCubicCentimeterPerMinute": 1,

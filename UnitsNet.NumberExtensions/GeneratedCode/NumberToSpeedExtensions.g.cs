@@ -88,6 +88,10 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
         public static Speed Knots<T>(this T value) =>
             Speed.FromKnots(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Speed.FromMach(UnitsNet.QuantityValue)" />
+        public static Speed Mach<T>(this T value) =>
+            Speed.FromMach(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
         public static Speed MetersPerHour<T>(this T value) =>
             Speed.FromMetersPerHour(Convert.ToDouble(value));
