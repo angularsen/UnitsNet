@@ -131,8 +131,8 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void FrequencyTimesEnergyEqualsPower()
         {
-            Power p = Frequency.FromCyclesPerHour(100) * Energy.FromWattHours(1);
-            Assert.Equal(100, p.Watts);
+            Power p = Frequency.FromCyclesPerHour(100) * Energy.FromWattHours(2);
+            Assert.Equal(200, p.Watts);
         }
 
         [Fact]
