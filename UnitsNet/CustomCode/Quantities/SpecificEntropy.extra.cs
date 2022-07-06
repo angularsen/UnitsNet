@@ -8,13 +8,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Entropy"/> from <see cref="SpecificEntropy"/> times <see cref="Mass"/>.</summary>
         public static Entropy operator *(SpecificEntropy specificEntropy, Mass mass)
         {
-            return Entropy.FromJoulesPerKelvin(mass.Kilograms * specificEntropy.JoulesPerKilogramKelvin);
+            return Entropy.FromJoulesPerKelvin(specificEntropy.JoulesPerKilogramKelvin * mass.Kilograms);
         }
 
         /// <summary>Get <see cref="Entropy"/> from <see cref="Mass"/> times <see cref="SpecificEntropy"/>.</summary>
         public static Entropy operator *(Mass mass, SpecificEntropy specificEntropy)
         {
-            return Entropy.FromJoulesPerKelvin(mass.Kilograms * specificEntropy.JoulesPerKilogramKelvin);
+            return Entropy.FromJoulesPerKelvin(specificEntropy.JoulesPerKilogramKelvin * mass.Kilograms);
         }
     }
 }
