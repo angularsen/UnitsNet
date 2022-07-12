@@ -54,7 +54,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShacklesInOneMeter => 0.0364538;
 
-        protected override double NauticalMilesInOneMeter => 1.0 / 1852.0;
+        protected override double NauticalMilesInOneMeter => 1.0/1852.0;
 
         protected override double HandsInOneMeter => 9.8425196850393701;
 
@@ -82,38 +82,38 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DataMilesInOneMeter => 0.000546807;
 
-        [Fact]
+        [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {
-            Volume volume = Area.FromSquareMeters(10) * Length.FromMeters(3);
+            Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
             Assert.Equal(volume, Volume.FromCubicMeters(30));
         }
 
         [Fact]
         public void ForceTimesLengthEqualsTorque()
         {
-            Torque torque = Force.FromNewtons(1) * Length.FromMeters(3);
+            Torque torque = Force.FromNewtons(1)*Length.FromMeters(3);
             Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
         [Fact]
         public void LengthTimesAreaEqualsVolume()
         {
-            Volume volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
+            Volume volume = Length.FromMeters(3)*Area.FromSquareMeters(9);
             Assert.Equal(volume, Volume.FromCubicMeters(27));
         }
 
         [Fact]
         public void LengthTimesForceEqualsTorque()
         {
-            Torque torque = Length.FromMeters(3) * Force.FromNewtons(1);
+            Torque torque = Length.FromMeters(3)*Force.FromNewtons(1);
             Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
         [Fact]
         public void LengthTimesLengthEqualsArea()
         {
-            Area area = Length.FromMeters(10) * Length.FromMeters(2);
+            Area area = Length.FromMeters(10)*Length.FromMeters(2);
             Assert.Equal(area, Area.FromSquareMeters(20));
         }
 
@@ -218,6 +218,20 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(0.0508, inSI.Value);
             Assert.Equal(LengthUnit.Meter, inSI.Unit);
+        }
+
+        [Theory]
+        [InlineData(-1.0, -1.0)]
+        [InlineData(-2.0, -0.5)]
+        [InlineData(0.0, 0.0)]
+        [InlineData(1.0, 1.0)]
+        [InlineData(2.0, 0.5)]
+        public static void InverseReturnsReciprocalLength(double value, double expected)
+        {
+            var length = new Length(value, Units.LengthUnit.Meter);
+            var inverseLength = length.Inverse();
+
+            Assert.Equal(expected, inverseLength.InverseMeters);
         }
 
         [Theory]
