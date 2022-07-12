@@ -54,7 +54,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShacklesInOneMeter => 0.0364538;
 
-        protected override double NauticalMilesInOneMeter => 1.0/1852.0;
+        protected override double NauticalMilesInOneMeter => 1.0 / 1852.0;
 
         protected override double HandsInOneMeter => 9.8425196850393701;
 
@@ -82,38 +82,38 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DataMilesInOneMeter => 0.000546807;
 
-        [ Fact]
+        [Fact]
         public void AreaTimesLengthEqualsVolume()
         {
-            Volume volume = Area.FromSquareMeters(10)*Length.FromMeters(3);
+            Volume volume = Area.FromSquareMeters(10) * Length.FromMeters(3);
             Assert.Equal(volume, Volume.FromCubicMeters(30));
         }
 
         [Fact]
         public void ForceTimesLengthEqualsTorque()
         {
-            Torque torque = Force.FromNewtons(1)*Length.FromMeters(3);
+            Torque torque = Force.FromNewtons(1) * Length.FromMeters(3);
             Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
         [Fact]
         public void LengthTimesAreaEqualsVolume()
         {
-            Volume volume = Length.FromMeters(3)*Area.FromSquareMeters(9);
+            Volume volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
             Assert.Equal(volume, Volume.FromCubicMeters(27));
         }
 
         [Fact]
         public void LengthTimesForceEqualsTorque()
         {
-            Torque torque = Length.FromMeters(3)*Force.FromNewtons(1);
+            Torque torque = Length.FromMeters(3) * Force.FromNewtons(1);
             Assert.Equal(torque, Torque.FromNewtonMeters(3));
         }
 
         [Fact]
         public void LengthTimesLengthEqualsArea()
         {
-            Area area = Length.FromMeters(10)*Length.FromMeters(2);
+            Area area = Length.FromMeters(10) * Length.FromMeters(2);
             Assert.Equal(area, Area.FromSquareMeters(20));
         }
 
@@ -221,17 +221,22 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData(-1.0, -1.0)]
-        [InlineData(-2.0, -0.5)]
-        [InlineData(0.0, 0.0)]
-        [InlineData(1.0, 1.0)]
-        [InlineData(2.0, 0.5)]
-        public static void InverseReturnsReciprocalLength(double value, double expected)
+        [InlineData(3, 2.563, 16, "3' - 2 9/16\"")]
+        [InlineData(3, 2.563, 32, "3' - 2 9/16\"")]
+        [InlineData(3, 2, 16, "3' - 2\"")]
+        [InlineData(3, 2.5, 1, "3' - 2\"")]
+        [InlineData(0, 2, 32, "2\"")]
+        public static void ToArchitecturalString_ReturnsFormatted(double ft, double inch, int fractionDenominator, string expected)
         {
-            var length = new Length(value, Units.LengthUnit.Meter);
-            var inverseLength = length.Inverse();
+            var length = Length.FromFeetInches(ft, inch);
 
-            Assert.Equal(expected, inverseLength.InverseMeters);
+            Assert.Equal(expected, length.FeetInches.ToArchitecturalString(fractionDenominator));
+        }
+
+        [Fact]
+        public static void ToArchitecturalString_DenomLessThan1_ThrowsArgumentOutOfRangeException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Length.FromFeetInches(1, 2).FeetInches.ToArchitecturalString(0));
         }
     }
 }

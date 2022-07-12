@@ -46,7 +46,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromFeetInches(double feet, double inches)
         {
-            return FromInches(InchesInOneFoot*feet + inches);
+            return FromInches(InchesInOneFoot * feet + inches);
         }
 
         /// <summary>
@@ -128,55 +128,55 @@ namespace UnitsNet
         /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> divided by <see cref="TimeSpan"/>.</summary>
         public static Speed operator /(Length length, TimeSpan timeSpan)
         {
-            return Speed.FromMetersPerSecond(length.Meters/timeSpan.TotalSeconds);
+            return Speed.FromMetersPerSecond(length.Meters / timeSpan.TotalSeconds);
         }
 
         /// <summary>Get <see cref="Speed"/> from <see cref="Length"/> divided by <see cref="Duration"/>.</summary>
         public static Speed operator /(Length length, Duration duration)
         {
-            return Speed.FromMetersPerSecond(length.Meters/duration.Seconds);
+            return Speed.FromMetersPerSecond(length.Meters / duration.Seconds);
         }
 
         /// <summary>Get <see cref="Duration"/> from <see cref="Length"/> divided by <see cref="Speed"/>.</summary>
         public static Duration operator /(Length length, Speed speed)
         {
-            return Duration.FromSeconds(length.Meters/speed.MetersPerSecond);
+            return Duration.FromSeconds(length.Meters / speed.MetersPerSecond);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="Length"/> times <see cref="Length"/>.</summary>
         public static Area operator *(Length length1, Length length2)
         {
-            return Area.FromSquareMeters(length1.Meters*length2.Meters);
+            return Area.FromSquareMeters(length1.Meters * length2.Meters);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="Area"/> times <see cref="Length"/>.</summary>
         public static Volume operator *(Area area, Length length)
         {
-            return Volume.FromCubicMeters(area.SquareMeters*length.Meters);
+            return Volume.FromCubicMeters(area.SquareMeters * length.Meters);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="Length"/> times <see cref="Area"/>.</summary>
         public static Volume operator *(Length length, Area area)
         {
-            return Volume.FromCubicMeters(area.SquareMeters*length.Meters);
+            return Volume.FromCubicMeters(area.SquareMeters * length.Meters);
         }
 
         /// <summary>Get <see cref="Torque"/> from <see cref="Force"/> times <see cref="Length"/>.</summary>
         public static Torque operator *(Force force, Length length)
         {
-            return Torque.FromNewtonMeters(force.Newtons*length.Meters);
+            return Torque.FromNewtonMeters(force.Newtons * length.Meters);
         }
 
         /// <summary>Get <see cref="Torque"/> from <see cref="Length"/> times <see cref="Force"/>.</summary>
         public static Torque operator *(Length length, Force force)
         {
-            return Torque.FromNewtonMeters(force.Newtons*length.Meters);
+            return Torque.FromNewtonMeters(force.Newtons * length.Meters);
         }
 
         /// <summary>Get <see cref="KinematicViscosity"/> from <see cref="Length"/> times <see cref="Speed"/>.</summary>
         public static KinematicViscosity operator *(Length length, Speed speed)
         {
-            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters*speed.MetersPerSecond);
+            return KinematicViscosity.FromSquareMetersPerSecond(length.Meters * speed.MetersPerSecond);
         }
 
         /// <summary>Get <see cref="Pressure"/> from <see cref="Length"/> times <see cref="SpecificWeight"/>.</summary>
@@ -235,6 +235,71 @@ namespace UnitsNet
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
             return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches), inchUnit);
+        }
+
+        /// <summary>
+        ///     Outputs feet and inches on the format: {feetValue}' - {inchesValueIntegral}[ {inchesValueFractional}]"
+        ///     The inches are rounded to the nearest fraction of the fractionDenominator argument and reduced over the greatest common divisor.
+        /// </summary>
+        /// <param name="fractionDenominator">The maximum precision to express the rounded inch fraction part</param>
+        /// <example>Length.FromFeetInches(3,2).ToArchitecturalString(32).ToString() outputs: "3 ft 2 in"</example>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when fractionDenominator is &lt; 1 (use 1 to round to nearest integer, with no fraction)</exception>
+        public string ToArchitecturalString(int fractionDenominator)
+        {
+            if (fractionDenominator < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch cannot be zero");
+            }
+
+            var inchTrunc = (int)Math.Truncate(this.Inches);
+            var numerator = (int)Math.Round((this.Inches - inchTrunc) * fractionDenominator);
+
+            if (numerator == fractionDenominator)
+            {
+                inchTrunc++;
+                numerator = 0;
+            }
+
+            var inchPart = new System.Text.StringBuilder();
+
+            if (inchTrunc != 0 || numerator == 0)
+            {
+                inchPart.Append(inchTrunc);
+            }
+
+            if (numerator > 0)
+            {
+                int greatestCommonDivisor(int a, int b)
+                {
+                    while (a != 0 && b != 0)
+                    {
+                        if (a > b)
+                            a %= b;
+                        else
+                            b %= a;
+                    }
+
+                    return a | b;
+                }
+
+                var gcd = greatestCommonDivisor((int)Math.Abs(numerator), fractionDenominator);
+
+                if (inchPart.Length > 0)
+                {
+                    inchPart.Append(' ');
+                }
+
+                inchPart.Append($"{numerator / gcd}/{fractionDenominator / gcd}");
+            }
+
+            inchPart.Append('"');
+
+            if (this.Feet == 0)
+            {
+                return inchPart.ToString();
+            }
+
+            return $"{this.Feet}' - {inchPart}";
         }
     }
 }
