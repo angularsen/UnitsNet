@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricField", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricField, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricFieldUnit>().Except(new[] {ElectricFieldUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricFieldUnit>().Except(new[] {ElectricFieldUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

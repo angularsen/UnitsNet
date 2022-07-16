@@ -242,7 +242,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Speed", quantityInfo.Name);
             Assert.Equal(QuantityType.Speed, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<SpeedUnit>().Except(new[] {SpeedUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpeedUnit>().Except(new[] {SpeedUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

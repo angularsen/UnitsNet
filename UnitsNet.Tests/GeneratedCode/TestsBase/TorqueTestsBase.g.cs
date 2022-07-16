@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Torque", quantityInfo.Name);
             Assert.Equal(QuantityType.Torque, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<TorqueUnit>().Except(new[] {TorqueUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<TorqueUnit>().Except(new[] {TorqueUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
             Assert.Equal("MagneticField", quantityInfo.Name);
             Assert.Equal(QuantityType.MagneticField, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MagneticFieldUnit>().Except(new[] {MagneticFieldUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MagneticFieldUnit>().Except(new[] {MagneticFieldUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

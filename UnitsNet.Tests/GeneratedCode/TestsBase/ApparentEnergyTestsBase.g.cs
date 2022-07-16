@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ApparentEnergy", quantityInfo.Name);
             Assert.Equal(QuantityType.ApparentEnergy, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ApparentEnergyUnit>().Except(new[] {ApparentEnergyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ApparentEnergyUnit>().Except(new[] {ApparentEnergyUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

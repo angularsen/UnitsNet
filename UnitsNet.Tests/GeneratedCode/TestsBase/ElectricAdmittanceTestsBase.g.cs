@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricAdmittance", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricAdmittance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricAdmittanceUnit>().Except(new[] {ElectricAdmittanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricAdmittanceUnit>().Except(new[] {ElectricAdmittanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

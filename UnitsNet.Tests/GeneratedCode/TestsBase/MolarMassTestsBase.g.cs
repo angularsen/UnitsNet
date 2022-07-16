@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
             Assert.Equal("MolarMass", quantityInfo.Name);
             Assert.Equal(QuantityType.MolarMass, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MolarMassUnit>().Except(new[] {MolarMassUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MolarMassUnit>().Except(new[] {MolarMassUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Irradiance", quantityInfo.Name);
             Assert.Equal(QuantityType.Irradiance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<IrradianceUnit>().Except(new[] {IrradianceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<IrradianceUnit>().Except(new[] {IrradianceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

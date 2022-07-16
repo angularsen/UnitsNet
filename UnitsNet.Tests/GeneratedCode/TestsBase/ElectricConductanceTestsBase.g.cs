@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricConductance", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricConductance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricConductanceUnit>().Except(new[] {ElectricConductanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricConductanceUnit>().Except(new[] {ElectricConductanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

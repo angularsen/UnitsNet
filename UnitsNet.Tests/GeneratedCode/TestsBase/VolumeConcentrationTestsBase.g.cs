@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.Equal("VolumeConcentration", quantityInfo.Name);
             Assert.Equal(QuantityType.VolumeConcentration, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().Except(new[] {VolumeConcentrationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().Except(new[] {VolumeConcentrationUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

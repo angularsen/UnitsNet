@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Information", quantityInfo.Name);
             Assert.Equal(QuantityType.Information, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<InformationUnit>().Except(new[] {InformationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<InformationUnit>().Except(new[] {InformationUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricCurrentGradient", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricCurrentGradient, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricCurrentGradientUnit>().Except(new[] {ElectricCurrentGradientUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricCurrentGradientUnit>().Except(new[] {ElectricCurrentGradientUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

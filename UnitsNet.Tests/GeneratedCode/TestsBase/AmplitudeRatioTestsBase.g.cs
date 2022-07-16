@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("AmplitudeRatio", quantityInfo.Name);
             Assert.Equal(QuantityType.AmplitudeRatio, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<AmplitudeRatioUnit>().Except(new[] {AmplitudeRatioUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<AmplitudeRatioUnit>().Except(new[] {AmplitudeRatioUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
