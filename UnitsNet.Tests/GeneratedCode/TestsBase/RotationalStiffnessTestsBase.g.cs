@@ -246,7 +246,7 @@ namespace UnitsNet.Tests
             Assert.Equal("RotationalStiffness", quantityInfo.Name);
             Assert.Equal(QuantityType.RotationalStiffness, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<RotationalStiffnessUnit>().Except(new[] {RotationalStiffnessUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<RotationalStiffnessUnit>().Except(new[] {RotationalStiffnessUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

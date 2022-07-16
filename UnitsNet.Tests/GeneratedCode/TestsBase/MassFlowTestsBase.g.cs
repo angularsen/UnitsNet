@@ -246,7 +246,7 @@ namespace UnitsNet.Tests
             Assert.Equal("MassFlow", quantityInfo.Name);
             Assert.Equal(QuantityType.MassFlow, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MassFlowUnit>().Except(new[] {MassFlowUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MassFlowUnit>().Except(new[] {MassFlowUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             Assert.Equal("PressureChangeRate", quantityInfo.Name);
             Assert.Equal(QuantityType.PressureChangeRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>().Except(new[] {PressureChangeRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>().Except(new[] {PressureChangeRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

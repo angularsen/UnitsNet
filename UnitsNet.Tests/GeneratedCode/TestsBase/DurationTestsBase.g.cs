@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Duration", quantityInfo.Name);
             Assert.Equal(QuantityType.Duration, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

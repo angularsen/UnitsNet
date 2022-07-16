@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("LuminousIntensity", quantityInfo.Name);
             Assert.Equal(QuantityType.LuminousIntensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LuminousIntensityUnit>().Except(new[] {LuminousIntensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LuminousIntensityUnit>().Except(new[] {LuminousIntensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

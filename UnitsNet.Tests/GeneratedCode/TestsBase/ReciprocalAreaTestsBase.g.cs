@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ReciprocalArea", quantityInfo.Name);
             Assert.Equal(QuantityType.ReciprocalArea, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ReciprocalAreaUnit>().Except(new[] {ReciprocalAreaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ReciprocalAreaUnit>().Except(new[] {ReciprocalAreaUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

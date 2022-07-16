@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal("PowerRatio", quantityInfo.Name);
             Assert.Equal(QuantityType.PowerRatio, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<PowerRatioUnit>().Except(new[] {PowerRatioUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PowerRatioUnit>().Except(new[] {PowerRatioUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

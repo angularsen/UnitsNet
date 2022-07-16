@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricCurrent", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricCurrent, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricCurrentUnit>().Except(new[] {ElectricCurrentUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricCurrentUnit>().Except(new[] {ElectricCurrentUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

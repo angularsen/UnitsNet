@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("CoefficientOfThermalExpansion", quantityInfo.Name);
             Assert.Equal(QuantityType.CoefficientOfThermalExpansion, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<CoefficientOfThermalExpansionUnit>().Except(new[] {CoefficientOfThermalExpansionUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<CoefficientOfThermalExpansionUnit>().Except(new[] {CoefficientOfThermalExpansionUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
             Assert.Equal("MassMomentOfInertia", quantityInfo.Name);
             Assert.Equal(QuantityType.MassMomentOfInertia, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MassMomentOfInertiaUnit>().Except(new[] {MassMomentOfInertiaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MassMomentOfInertiaUnit>().Except(new[] {MassMomentOfInertiaUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

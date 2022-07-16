@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Length", quantityInfo.Name);
             Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

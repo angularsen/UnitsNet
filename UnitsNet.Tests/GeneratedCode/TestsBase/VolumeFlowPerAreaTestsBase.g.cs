@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal("VolumeFlowPerArea", quantityInfo.Name);
             Assert.Equal(QuantityType.VolumeFlowPerArea, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<VolumeFlowPerAreaUnit>().Except(new[] {VolumeFlowPerAreaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<VolumeFlowPerAreaUnit>().Except(new[] {VolumeFlowPerAreaUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

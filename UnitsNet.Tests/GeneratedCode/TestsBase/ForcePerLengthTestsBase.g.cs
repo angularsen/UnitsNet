@@ -266,7 +266,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ForcePerLength", quantityInfo.Name);
             Assert.Equal(QuantityType.ForcePerLength, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ForcePerLengthUnit>().Except(new[] {ForcePerLengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ForcePerLengthUnit>().Except(new[] {ForcePerLengthUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

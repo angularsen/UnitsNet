@@ -302,7 +302,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Pressure", quantityInfo.Name);
             Assert.Equal(QuantityType.Pressure, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<PressureUnit>().Except(new[] {PressureUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PressureUnit>().Except(new[] {PressureUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

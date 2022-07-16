@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricSurfaceChargeDensity", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricSurfaceChargeDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>().Except(new[] {ElectricSurfaceChargeDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>().Except(new[] {ElectricSurfaceChargeDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

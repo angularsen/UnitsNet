@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Jerk", quantityInfo.Name);
             Assert.Equal(QuantityType.Jerk, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<JerkUnit>().Except(new[] {JerkUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<JerkUnit>().Except(new[] {JerkUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
