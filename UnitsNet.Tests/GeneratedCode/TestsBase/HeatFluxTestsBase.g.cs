@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
             Assert.Equal("HeatFlux", quantityInfo.Name);
             Assert.Equal(QuantityType.HeatFlux, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<HeatFluxUnit>().Except(new[] {HeatFluxUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<HeatFluxUnit>().Except(new[] {HeatFluxUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

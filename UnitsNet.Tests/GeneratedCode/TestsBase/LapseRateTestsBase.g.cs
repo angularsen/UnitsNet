@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("LapseRate", quantityInfo.Name);
             Assert.Equal(QuantityType.LapseRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

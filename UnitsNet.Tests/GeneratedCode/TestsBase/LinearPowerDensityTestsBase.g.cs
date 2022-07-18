@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
             Assert.Equal("LinearPowerDensity", quantityInfo.Name);
             Assert.Equal(QuantityType.LinearPowerDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().Except(new[] {LinearPowerDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().Except(new[] {LinearPowerDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

@@ -34,5 +34,11 @@ namespace UnitsNet
         {
             return Power.FromWatts(massFlow.KilogramsPerSecond * specificEnergy.JoulesPerKilogram);
         }
+        
+        /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="SpecificEnergy"/> divided by <see cref="TemperatureDelta"/>.</summary>
+        public static SpecificEntropy operator /(SpecificEnergy specificEnergy, TemperatureDelta temperatureDelta)
+        {
+            return SpecificEntropy.FromJoulesPerKilogramKelvin(specificEnergy.JoulesPerKilogram / temperatureDelta.Kelvins);
+        }
     }
 }

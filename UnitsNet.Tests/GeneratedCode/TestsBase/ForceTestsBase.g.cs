@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Force", quantityInfo.Name);
             Assert.Equal(QuantityType.Force, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ForceUnit>().Except(new[] {ForceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ForceUnit>().Except(new[] {ForceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

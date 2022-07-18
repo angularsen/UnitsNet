@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ThermalResistance", quantityInfo.Name);
             Assert.Equal(QuantityType.ThermalResistance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>().Except(new[] {ThermalResistanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>().Except(new[] {ThermalResistanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

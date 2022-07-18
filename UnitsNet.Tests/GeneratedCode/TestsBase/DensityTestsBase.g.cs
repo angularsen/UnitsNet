@@ -318,7 +318,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Density", quantityInfo.Name);
             Assert.Equal(QuantityType.Density, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<DensityUnit>().Except(new[] {DensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<DensityUnit>().Except(new[] {DensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

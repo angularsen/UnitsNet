@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Area", quantityInfo.Name);
             Assert.Equal(QuantityType.Area, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<AreaUnit>().Except(new[] {AreaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<AreaUnit>().Except(new[] {AreaUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

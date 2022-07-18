@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Equal("DynamicViscosity", quantityInfo.Name);
             Assert.Equal(QuantityType.DynamicViscosity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<DynamicViscosityUnit>().Except(new[] {DynamicViscosityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<DynamicViscosityUnit>().Except(new[] {DynamicViscosityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

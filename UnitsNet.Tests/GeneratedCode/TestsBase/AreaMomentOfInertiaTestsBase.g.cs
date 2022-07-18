@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
             Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
             Assert.Equal(QuantityType.AreaMomentOfInertia, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().Except(new[] {AreaMomentOfInertiaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().Except(new[] {AreaMomentOfInertiaUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Molarity", quantityInfo.Name);
             Assert.Equal(QuantityType.Molarity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MolarityUnit>().Except(new[] {MolarityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MolarityUnit>().Except(new[] {MolarityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

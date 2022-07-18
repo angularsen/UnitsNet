@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("BrakeSpecificFuelConsumption", quantityInfo.Name);
             Assert.Equal(QuantityType.BrakeSpecificFuelConsumption, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<BrakeSpecificFuelConsumptionUnit>().Except(new[] {BrakeSpecificFuelConsumptionUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<BrakeSpecificFuelConsumptionUnit>().Except(new[] {BrakeSpecificFuelConsumptionUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

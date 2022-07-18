@@ -230,7 +230,7 @@ namespace UnitsNet.Tests
             Assert.Equal("SpecificEnergy", quantityInfo.Name);
             Assert.Equal(QuantityType.SpecificEnergy, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().Except(new[] {SpecificEnergyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().Except(new[] {SpecificEnergyUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

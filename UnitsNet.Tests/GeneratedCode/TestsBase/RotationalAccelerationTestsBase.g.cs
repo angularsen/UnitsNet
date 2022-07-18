@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("RotationalAcceleration", quantityInfo.Name);
             Assert.Equal(QuantityType.RotationalAcceleration, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<RotationalAccelerationUnit>().Except(new[] {RotationalAccelerationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<RotationalAccelerationUnit>().Except(new[] {RotationalAccelerationUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

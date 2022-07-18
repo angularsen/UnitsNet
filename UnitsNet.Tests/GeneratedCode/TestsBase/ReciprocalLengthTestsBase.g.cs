@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ReciprocalLength", quantityInfo.Name);
             Assert.Equal(QuantityType.ReciprocalLength, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ReciprocalLengthUnit>().Except(new[] {ReciprocalLengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ReciprocalLengthUnit>().Except(new[] {ReciprocalLengthUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

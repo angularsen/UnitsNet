@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricPotentialChangeRate", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricPotentialChangeRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricPotentialChangeRateUnit>().Except(new[] {ElectricPotentialChangeRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricPotentialChangeRateUnit>().Except(new[] {ElectricPotentialChangeRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

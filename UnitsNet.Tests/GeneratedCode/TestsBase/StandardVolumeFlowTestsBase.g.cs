@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
             Assert.Equal("StandardVolumeFlow", quantityInfo.Name);
             Assert.Equal(QuantityType.StandardVolumeFlow, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<StandardVolumeFlowUnit>().Except(new[] {StandardVolumeFlowUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<StandardVolumeFlowUnit>().Except(new[] {StandardVolumeFlowUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members

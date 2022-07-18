@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Temperature", quantityInfo.Name);
             Assert.Equal(QuantityType.Temperature, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<TemperatureUnit>().Except(new[] {TemperatureUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<TemperatureUnit>().Except(new[] {TemperatureUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
