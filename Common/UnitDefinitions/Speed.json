@@ -322,7 +322,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Ma" ]
+          "Abbreviations": [ "M", "Ma", "MN", "MACH" ]
         },
 		    {
           "Culture": "ru-RU",

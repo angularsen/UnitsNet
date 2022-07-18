@@ -714,7 +714,28 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Speed.Parse("1 M", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Mach, MachTolerance);
+                Assert.Equal(SpeedUnit.Mach, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Speed.Parse("1 Ma", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Mach, MachTolerance);
+                Assert.Equal(SpeedUnit.Mach, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 MN", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Mach, MachTolerance);
+                Assert.Equal(SpeedUnit.Mach, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Speed.Parse("1 MACH", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Mach, MachTolerance);
                 Assert.Equal(SpeedUnit.Mach, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -1108,7 +1129,25 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Speed.TryParse("1 M", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Mach, MachTolerance);
+                Assert.Equal(SpeedUnit.Mach, parsed.Unit);
+            }
+
+            {
                 Assert.True(Speed.TryParse("1 Ma", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Mach, MachTolerance);
+                Assert.Equal(SpeedUnit.Mach, parsed.Unit);
+            }
+
+            {
+                Assert.True(Speed.TryParse("1 MN", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Mach, MachTolerance);
+                Assert.Equal(SpeedUnit.Mach, parsed.Unit);
+            }
+
+            {
+                Assert.True(Speed.TryParse("1 MACH", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Mach, MachTolerance);
                 Assert.Equal(SpeedUnit.Mach, parsed.Unit);
             }
@@ -1474,7 +1513,25 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Speed.ParseUnit("M", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.Mach, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Speed.ParseUnit("Ma", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.Mach, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("MN", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(SpeedUnit.Mach, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Speed.ParseUnit("MACH", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(SpeedUnit.Mach, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -1808,7 +1865,22 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Speed.TryParseUnit("M", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.Mach, parsedUnit);
+            }
+
+            {
                 Assert.True(Speed.TryParseUnit("Ma", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.Mach, parsedUnit);
+            }
+
+            {
+                Assert.True(Speed.TryParseUnit("MN", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(SpeedUnit.Mach, parsedUnit);
+            }
+
+            {
+                Assert.True(Speed.TryParseUnit("MACH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(SpeedUnit.Mach, parsedUnit);
             }
 
@@ -2206,7 +2278,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 km/min", new Speed(1, SpeedUnit.KilometerPerMinute).ToString());
                 Assert.Equal("1 km/s", new Speed(1, SpeedUnit.KilometerPerSecond).ToString());
                 Assert.Equal("1 kn", new Speed(1, SpeedUnit.Knot).ToString());
-                Assert.Equal("1 Ma", new Speed(1, SpeedUnit.Mach).ToString());
+                Assert.Equal("1 M", new Speed(1, SpeedUnit.Mach).ToString());
                 Assert.Equal("1 m/h", new Speed(1, SpeedUnit.MeterPerHour).ToString());
                 Assert.Equal("1 m/min", new Speed(1, SpeedUnit.MeterPerMinute).ToString());
                 Assert.Equal("1 m/s", new Speed(1, SpeedUnit.MeterPerSecond).ToString());
@@ -2252,7 +2324,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 km/min", new Speed(1, SpeedUnit.KilometerPerMinute).ToString(swedishCulture));
             Assert.Equal("1 km/s", new Speed(1, SpeedUnit.KilometerPerSecond).ToString(swedishCulture));
             Assert.Equal("1 kn", new Speed(1, SpeedUnit.Knot).ToString(swedishCulture));
-            Assert.Equal("1 Ma", new Speed(1, SpeedUnit.Mach).ToString(swedishCulture));
+            Assert.Equal("1 M", new Speed(1, SpeedUnit.Mach).ToString(swedishCulture));
             Assert.Equal("1 m/h", new Speed(1, SpeedUnit.MeterPerHour).ToString(swedishCulture));
             Assert.Equal("1 m/min", new Speed(1, SpeedUnit.MeterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 m/s", new Speed(1, SpeedUnit.MeterPerSecond).ToString(swedishCulture));

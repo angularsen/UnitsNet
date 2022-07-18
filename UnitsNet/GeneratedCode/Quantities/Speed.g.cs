@@ -495,7 +495,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"км/с"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("en-US"), false, true, new string[]{"kn", "kt", "knot", "knots"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("ru-RU"), false, true, new string[]{"уз."});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("en-US"), false, true, new string[]{"Ma"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("en-US"), false, true, new string[]{"M", "Ma", "MN", "MACH"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("ru-RU"), false, true, new string[]{"мах"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"m/h"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"м/ч"});

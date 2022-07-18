@@ -73,7 +73,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsSurveyFeetPerHourInOneMeterPerSecond => 1.1811E4;
 
-        protected override double MachInOneMeterPerSecond => (1.0 / 340.29);
+        protected override double MachInOneMeterPerSecond =>2.9386699579770E-3;
 
         [Fact]
         public void DurationSpeedTimesEqualsLength()
