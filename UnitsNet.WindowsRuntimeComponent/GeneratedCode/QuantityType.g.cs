@@ -87,6 +87,7 @@ namespace UnitsNet
         Level,
         LinearDensity,
         LinearPowerDensity,
+        Luminance,
         Luminosity,
         LuminousFlux,
         LuminousIntensity,

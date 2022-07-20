@@ -1,0 +1,65 @@
+{
+  "Name": "Luminance",
+  "BaseUnit": "CandelaPerSquareMeter",
+  "BaseType": "double",
+  "XmlDoc": "Luminance is a photometric measure of the luminous intensity per unit area of light travelling in a given direction.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Luminance",
+  "BaseDimensions": {
+    "L": -2,
+    "J": 1
+  },
+  "Units": [
+    {
+      "SingularName": "CandelaPerSquareMeter",
+      "PluralName": "CandelasPerSquareMeter",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Cd" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "CandelaPerSquareFoot",
+      "PluralName": "CandelasPerSquareFoot",
+      "FromUnitToBaseFunc": "{x}* 9.290304e-2",
+      "FromBaseToUnitFunc": "{x}/ 9.290304e-2",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Cd" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "CandelaPerSquareInch",
+      "PluralName": "CandelasPerSquareInch",
+      "FromUnitToBaseFunc": "{x}* 0.00064516",
+      "FromBaseToUnitFunc": "{x}/ 0.00064516",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Cd" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "Nit",
+      "PluralName": "Nits",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "XmlDocRemarks": "https://www.britannica.com/science/luminosity",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "L⊙" ]
+        }
+      ]
+    }
+  ]
+}
