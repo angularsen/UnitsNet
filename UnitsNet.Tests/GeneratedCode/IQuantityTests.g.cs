@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
             Assertion(3, LinearDensityUnit.PoundPerInch, Quantity.From(3, LinearDensityUnit.PoundPerInch));
             Assertion(3, LinearPowerDensityUnit.WattPerMillimeter, Quantity.From(3, LinearPowerDensityUnit.WattPerMillimeter));
-            Assertion(3, LuminanceUnit.TeracandelaPerSquareMeter, Quantity.From(3, LuminanceUnit.TeracandelaPerSquareMeter));
+            Assertion(3, LuminanceUnit.Nit, Quantity.From(3, LuminanceUnit.Nit));
             Assertion(3, LuminosityUnit.Watt, Quantity.From(3, LuminosityUnit.Watt));
             Assertion(3, LuminousFluxUnit.Lumen, Quantity.From(3, LuminousFluxUnit.Lumen));
             Assertion(3, LuminousIntensityUnit.Candela, Quantity.From(3, LuminousIntensityUnit.Candela));

@@ -27,6 +27,33 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CandelasPerSquareMeterInOneCandelaPerSquareMeter => 1;
         protected override double CandelasPerSquareFootInOneCandelaPerSquareMeter => 9.290304e-2;
         protected override double CandelasPerSquareInchInOneCandelaPerSquareMeter => 6.4516e-4;
+        protected override double KilocandelasPerSquareMeterInOneCandelaPerSquareMeter => 1e-3;
+        protected override double DecicandelasPerSquareMeterInOneCandelaPerSquareMeter => 1e1;
+        protected override double CenticandelasPerSquareMeterInOneCandelaPerSquareMeter => 1e2;
+        protected override double MillicandelasPerSquareMeterInOneCandelaPerSquareMeter => 1e3;
+        protected override double MicrocandelasPerSquareMeterInOneCandelaPerSquareMeter => 1e6;
+        protected override double NanocandelasPerSquareMeterInOneCandelaPerSquareMeter => 1e9;
         protected override double NitsInOneCandelaPerSquareMeter => 1;
+
+        [Fact]
+        public void LuminanceTimesAreaEqualsLuminousIntensity()
+        {
+            LuminousIntensity luminousIntensity = Luminance.FromCandelasPerSquareMeter(3) * Area.FromSquareMeters(4);
+            Assert.Equal(luminousIntensity, LuminousIntensity.FromCandelas(12));
+        }
+
+        [Fact]
+        public void LuminousIntensityDividedByAreaEqualsLuminance()
+        {
+            Luminance luminance = LuminousIntensity.FromCandelas(12) / Area.FromSquareMeters(4);
+            Assert.Equal(luminance, Luminance.FromCandelasPerSquareMeter(3));
+        }
+
+        [Fact]
+        public void LuminousIntensityDividedByLuminanceEqualsArea()
+        {
+            Area area = LuminousIntensity.FromCandelas(12) / Luminance.FromCandelasPerSquareMeter(4);
+            Assert.Equal(area, Area.FromSquareMeters(3));
+        }
     }
 }

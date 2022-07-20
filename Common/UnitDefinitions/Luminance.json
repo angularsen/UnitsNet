@@ -14,11 +14,11 @@
       "PluralName": "CandelasPerSquareMeter",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+	  "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Cd" ]
+          "Abbreviations": [ "Cd/m²" ]
         }
       ]
     },
@@ -27,11 +27,10 @@
       "PluralName": "CandelasPerSquareFoot",
       "FromUnitToBaseFunc": "{x}* 9.290304e-2",
       "FromBaseToUnitFunc": "{x}/ 9.290304e-2",
-      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Cd" ]
+          "Abbreviations": [ "Cd/ft²" ]
         }
       ]
     },
@@ -40,11 +39,10 @@
       "PluralName": "CandelasPerSquareInch",
       "FromUnitToBaseFunc": "{x}* 0.00064516",
       "FromBaseToUnitFunc": "{x}/ 0.00064516",
-      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Cd" ]
+          "Abbreviations": [ "Cd/s·in²" ]
         }
       ]
     },
@@ -57,7 +55,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "L⊙" ]
+          "Abbreviations": [ "nt" ]
         }
       ]
     }

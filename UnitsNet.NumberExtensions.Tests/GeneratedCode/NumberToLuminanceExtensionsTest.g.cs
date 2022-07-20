@@ -37,108 +37,24 @@ namespace UnitsNet.Tests
             Assert.Equal(Luminance.FromCandelasPerSquareMeter(2), 2.CandelasPerSquareMeter());
 
         [Fact]
-        public void NumberToDecacandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromDecacandelasPerSquareFoot(2), 2.DecacandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToDecacandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromDecacandelasPerSquareInch(2), 2.DecacandelasPerSquareInch());
-
-        [Fact]
-        public void NumberToDecacandelasPerSquareMeterTest() =>
-            Assert.Equal(Luminance.FromDecacandelasPerSquareMeter(2), 2.DecacandelasPerSquareMeter());
-
-        [Fact]
-        public void NumberToDecicandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromDecicandelasPerSquareFoot(2), 2.DecicandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToDecicandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromDecicandelasPerSquareInch(2), 2.DecicandelasPerSquareInch());
+        public void NumberToCenticandelasPerSquareMeterTest() =>
+            Assert.Equal(Luminance.FromCenticandelasPerSquareMeter(2), 2.CenticandelasPerSquareMeter());
 
         [Fact]
         public void NumberToDecicandelasPerSquareMeterTest() =>
             Assert.Equal(Luminance.FromDecicandelasPerSquareMeter(2), 2.DecicandelasPerSquareMeter());
 
         [Fact]
-        public void NumberToFemtocandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromFemtocandelasPerSquareFoot(2), 2.FemtocandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToFemtocandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromFemtocandelasPerSquareInch(2), 2.FemtocandelasPerSquareInch());
-
-        [Fact]
-        public void NumberToFemtocandelasPerSquareMeterTest() =>
-            Assert.Equal(Luminance.FromFemtocandelasPerSquareMeter(2), 2.FemtocandelasPerSquareMeter());
-
-        [Fact]
-        public void NumberToGigacandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromGigacandelasPerSquareFoot(2), 2.GigacandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToGigacandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromGigacandelasPerSquareInch(2), 2.GigacandelasPerSquareInch());
-
-        [Fact]
-        public void NumberToGigacandelasPerSquareMeterTest() =>
-            Assert.Equal(Luminance.FromGigacandelasPerSquareMeter(2), 2.GigacandelasPerSquareMeter());
-
-        [Fact]
-        public void NumberToKilocandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromKilocandelasPerSquareFoot(2), 2.KilocandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToKilocandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromKilocandelasPerSquareInch(2), 2.KilocandelasPerSquareInch());
-
-        [Fact]
         public void NumberToKilocandelasPerSquareMeterTest() =>
             Assert.Equal(Luminance.FromKilocandelasPerSquareMeter(2), 2.KilocandelasPerSquareMeter());
-
-        [Fact]
-        public void NumberToMegacandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromMegacandelasPerSquareFoot(2), 2.MegacandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToMegacandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromMegacandelasPerSquareInch(2), 2.MegacandelasPerSquareInch());
-
-        [Fact]
-        public void NumberToMegacandelasPerSquareMeterTest() =>
-            Assert.Equal(Luminance.FromMegacandelasPerSquareMeter(2), 2.MegacandelasPerSquareMeter());
-
-        [Fact]
-        public void NumberToMicrocandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromMicrocandelasPerSquareFoot(2), 2.MicrocandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToMicrocandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromMicrocandelasPerSquareInch(2), 2.MicrocandelasPerSquareInch());
 
         [Fact]
         public void NumberToMicrocandelasPerSquareMeterTest() =>
             Assert.Equal(Luminance.FromMicrocandelasPerSquareMeter(2), 2.MicrocandelasPerSquareMeter());
 
         [Fact]
-        public void NumberToMillicandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromMillicandelasPerSquareFoot(2), 2.MillicandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToMillicandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromMillicandelasPerSquareInch(2), 2.MillicandelasPerSquareInch());
-
-        [Fact]
         public void NumberToMillicandelasPerSquareMeterTest() =>
             Assert.Equal(Luminance.FromMillicandelasPerSquareMeter(2), 2.MillicandelasPerSquareMeter());
-
-        [Fact]
-        public void NumberToNanocandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromNanocandelasPerSquareFoot(2), 2.NanocandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToNanocandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromNanocandelasPerSquareInch(2), 2.NanocandelasPerSquareInch());
 
         [Fact]
         public void NumberToNanocandelasPerSquareMeterTest() =>
@@ -147,42 +63,6 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToNitsTest() =>
             Assert.Equal(Luminance.FromNits(2), 2.Nits());
-
-        [Fact]
-        public void NumberToPetacandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromPetacandelasPerSquareFoot(2), 2.PetacandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToPetacandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromPetacandelasPerSquareInch(2), 2.PetacandelasPerSquareInch());
-
-        [Fact]
-        public void NumberToPetacandelasPerSquareMeterTest() =>
-            Assert.Equal(Luminance.FromPetacandelasPerSquareMeter(2), 2.PetacandelasPerSquareMeter());
-
-        [Fact]
-        public void NumberToPicocandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromPicocandelasPerSquareFoot(2), 2.PicocandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToPicocandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromPicocandelasPerSquareInch(2), 2.PicocandelasPerSquareInch());
-
-        [Fact]
-        public void NumberToPicocandelasPerSquareMeterTest() =>
-            Assert.Equal(Luminance.FromPicocandelasPerSquareMeter(2), 2.PicocandelasPerSquareMeter());
-
-        [Fact]
-        public void NumberToTeracandelasPerSquareFootTest() =>
-            Assert.Equal(Luminance.FromTeracandelasPerSquareFoot(2), 2.TeracandelasPerSquareFoot());
-
-        [Fact]
-        public void NumberToTeracandelasPerSquareInchTest() =>
-            Assert.Equal(Luminance.FromTeracandelasPerSquareInch(2), 2.TeracandelasPerSquareInch());
-
-        [Fact]
-        public void NumberToTeracandelasPerSquareMeterTest() =>
-            Assert.Equal(Luminance.FromTeracandelasPerSquareMeter(2), 2.TeracandelasPerSquareMeter());
 
     }
 }

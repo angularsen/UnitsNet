@@ -1691,6 +1691,7 @@
     "PicocandelaPerSquareMeter": 47,
     "TeracandelaPerSquareFoot": 54,
     "TeracandelaPerSquareInch": 46,
-    "TeracandelaPerSquareMeter": 53
+    "TeracandelaPerSquareMeter": 53,
+    "CenticandelaPerSquareMeter": 55
   }
 }

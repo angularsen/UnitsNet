@@ -68,43 +68,13 @@ namespace UnitsNet
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareFoot, "CandelasPerSquareFoot", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareInch, "CandelasPerSquareInch", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareMeter, "CandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.DecacandelaPerSquareFoot, "DecacandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.DecacandelaPerSquareInch, "DecacandelasPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.DecacandelaPerSquareMeter, "DecacandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.DecicandelaPerSquareFoot, "DecicandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.DecicandelaPerSquareInch, "DecicandelasPerSquareInch", BaseUnits.Undefined),
+                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelasPerSquareMeter", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.DecicandelaPerSquareMeter, "DecicandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.FemtocandelaPerSquareFoot, "FemtocandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.FemtocandelaPerSquareInch, "FemtocandelasPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.FemtocandelaPerSquareMeter, "FemtocandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.GigacandelaPerSquareFoot, "GigacandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.GigacandelaPerSquareInch, "GigacandelasPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.GigacandelaPerSquareMeter, "GigacandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.KilocandelaPerSquareFoot, "KilocandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.KilocandelaPerSquareInch, "KilocandelasPerSquareInch", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.KilocandelaPerSquareMeter, "KilocandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MegacandelaPerSquareFoot, "MegacandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MegacandelaPerSquareInch, "MegacandelasPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MegacandelaPerSquareMeter, "MegacandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MicrocandelaPerSquareFoot, "MicrocandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MicrocandelaPerSquareInch, "MicrocandelasPerSquareInch", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.MicrocandelaPerSquareMeter, "MicrocandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MillicandelaPerSquareFoot, "MillicandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.MillicandelaPerSquareInch, "MillicandelasPerSquareInch", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.MillicandelaPerSquareMeter, "MillicandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.NanocandelaPerSquareFoot, "NanocandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.NanocandelaPerSquareInch, "NanocandelasPerSquareInch", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.NanocandelaPerSquareMeter, "NanocandelasPerSquareMeter", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.Nit, "Nits", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.PetacandelaPerSquareFoot, "PetacandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.PetacandelaPerSquareInch, "PetacandelasPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.PetacandelaPerSquareMeter, "PetacandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.PicocandelaPerSquareFoot, "PicocandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.PicocandelaPerSquareInch, "PicocandelasPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.PicocandelaPerSquareMeter, "PicocandelasPerSquareMeter", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.TeracandelaPerSquareFoot, "TeracandelasPerSquareFoot", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.TeracandelaPerSquareInch, "TeracandelasPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.TeracandelaPerSquareMeter, "TeracandelasPerSquareMeter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Luminance);
 
@@ -245,29 +215,9 @@ namespace UnitsNet
         public double CandelasPerSquareMeter => As(LuminanceUnit.CandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.DecacandelaPerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.CenticandelaPerSquareMeter"/>
         /// </summary>
-        public double DecacandelasPerSquareFoot => As(LuminanceUnit.DecacandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.DecacandelaPerSquareInch"/>
-        /// </summary>
-        public double DecacandelasPerSquareInch => As(LuminanceUnit.DecacandelaPerSquareInch);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.DecacandelaPerSquareMeter"/>
-        /// </summary>
-        public double DecacandelasPerSquareMeter => As(LuminanceUnit.DecacandelaPerSquareMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.DecicandelaPerSquareFoot"/>
-        /// </summary>
-        public double DecicandelasPerSquareFoot => As(LuminanceUnit.DecicandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.DecicandelaPerSquareInch"/>
-        /// </summary>
-        public double DecicandelasPerSquareInch => As(LuminanceUnit.DecicandelaPerSquareInch);
+        public double CenticandelasPerSquareMeter => As(LuminanceUnit.CenticandelaPerSquareMeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.DecicandelaPerSquareMeter"/>
@@ -275,74 +225,9 @@ namespace UnitsNet
         public double DecicandelasPerSquareMeter => As(LuminanceUnit.DecicandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.FemtocandelaPerSquareFoot"/>
-        /// </summary>
-        public double FemtocandelasPerSquareFoot => As(LuminanceUnit.FemtocandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.FemtocandelaPerSquareInch"/>
-        /// </summary>
-        public double FemtocandelasPerSquareInch => As(LuminanceUnit.FemtocandelaPerSquareInch);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.FemtocandelaPerSquareMeter"/>
-        /// </summary>
-        public double FemtocandelasPerSquareMeter => As(LuminanceUnit.FemtocandelaPerSquareMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.GigacandelaPerSquareFoot"/>
-        /// </summary>
-        public double GigacandelasPerSquareFoot => As(LuminanceUnit.GigacandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.GigacandelaPerSquareInch"/>
-        /// </summary>
-        public double GigacandelasPerSquareInch => As(LuminanceUnit.GigacandelaPerSquareInch);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.GigacandelaPerSquareMeter"/>
-        /// </summary>
-        public double GigacandelasPerSquareMeter => As(LuminanceUnit.GigacandelaPerSquareMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.KilocandelaPerSquareFoot"/>
-        /// </summary>
-        public double KilocandelasPerSquareFoot => As(LuminanceUnit.KilocandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.KilocandelaPerSquareInch"/>
-        /// </summary>
-        public double KilocandelasPerSquareInch => As(LuminanceUnit.KilocandelaPerSquareInch);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.KilocandelaPerSquareMeter"/>
         /// </summary>
         public double KilocandelasPerSquareMeter => As(LuminanceUnit.KilocandelaPerSquareMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MegacandelaPerSquareFoot"/>
-        /// </summary>
-        public double MegacandelasPerSquareFoot => As(LuminanceUnit.MegacandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MegacandelaPerSquareInch"/>
-        /// </summary>
-        public double MegacandelasPerSquareInch => As(LuminanceUnit.MegacandelaPerSquareInch);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MegacandelaPerSquareMeter"/>
-        /// </summary>
-        public double MegacandelasPerSquareMeter => As(LuminanceUnit.MegacandelaPerSquareMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MicrocandelaPerSquareFoot"/>
-        /// </summary>
-        public double MicrocandelasPerSquareFoot => As(LuminanceUnit.MicrocandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MicrocandelaPerSquareInch"/>
-        /// </summary>
-        public double MicrocandelasPerSquareInch => As(LuminanceUnit.MicrocandelaPerSquareInch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MicrocandelaPerSquareMeter"/>
@@ -350,29 +235,9 @@ namespace UnitsNet
         public double MicrocandelasPerSquareMeter => As(LuminanceUnit.MicrocandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MillicandelaPerSquareFoot"/>
-        /// </summary>
-        public double MillicandelasPerSquareFoot => As(LuminanceUnit.MillicandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MillicandelaPerSquareInch"/>
-        /// </summary>
-        public double MillicandelasPerSquareInch => As(LuminanceUnit.MillicandelaPerSquareInch);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MillicandelaPerSquareMeter"/>
         /// </summary>
         public double MillicandelasPerSquareMeter => As(LuminanceUnit.MillicandelaPerSquareMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.NanocandelaPerSquareFoot"/>
-        /// </summary>
-        public double NanocandelasPerSquareFoot => As(LuminanceUnit.NanocandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.NanocandelaPerSquareInch"/>
-        /// </summary>
-        public double NanocandelasPerSquareInch => As(LuminanceUnit.NanocandelaPerSquareInch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.NanocandelaPerSquareMeter"/>
@@ -383,51 +248,6 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.Nit"/>
         /// </summary>
         public double Nits => As(LuminanceUnit.Nit);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.PetacandelaPerSquareFoot"/>
-        /// </summary>
-        public double PetacandelasPerSquareFoot => As(LuminanceUnit.PetacandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.PetacandelaPerSquareInch"/>
-        /// </summary>
-        public double PetacandelasPerSquareInch => As(LuminanceUnit.PetacandelaPerSquareInch);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.PetacandelaPerSquareMeter"/>
-        /// </summary>
-        public double PetacandelasPerSquareMeter => As(LuminanceUnit.PetacandelaPerSquareMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.PicocandelaPerSquareFoot"/>
-        /// </summary>
-        public double PicocandelasPerSquareFoot => As(LuminanceUnit.PicocandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.PicocandelaPerSquareInch"/>
-        /// </summary>
-        public double PicocandelasPerSquareInch => As(LuminanceUnit.PicocandelaPerSquareInch);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.PicocandelaPerSquareMeter"/>
-        /// </summary>
-        public double PicocandelasPerSquareMeter => As(LuminanceUnit.PicocandelaPerSquareMeter);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.TeracandelaPerSquareFoot"/>
-        /// </summary>
-        public double TeracandelasPerSquareFoot => As(LuminanceUnit.TeracandelaPerSquareFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.TeracandelaPerSquareInch"/>
-        /// </summary>
-        public double TeracandelasPerSquareInch => As(LuminanceUnit.TeracandelaPerSquareInch);
-
-        /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.TeracandelaPerSquareMeter"/>
-        /// </summary>
-        public double TeracandelasPerSquareMeter => As(LuminanceUnit.TeracandelaPerSquareMeter);
 
         #endregion
 
@@ -442,43 +262,13 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> LuminanceUnit
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot, quantity => new Luminance(quantity.Value/ 9.290304e-2, LuminanceUnit.CandelaPerSquareFoot));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch, quantity => new Luminance(quantity.Value/ 0.00064516, LuminanceUnit.CandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecacandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e1d, LuminanceUnit.DecacandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecacandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e1d, LuminanceUnit.DecacandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecacandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e1d, LuminanceUnit.DecacandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecicandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e-1d, LuminanceUnit.DecicandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecicandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e-1d, LuminanceUnit.DecicandelaPerSquareInch));
+            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CenticandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-2d, LuminanceUnit.CenticandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecicandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-1d, LuminanceUnit.DecicandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.FemtocandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e-15d, LuminanceUnit.FemtocandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.FemtocandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e-15d, LuminanceUnit.FemtocandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.FemtocandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-15d, LuminanceUnit.FemtocandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.GigacandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e9d, LuminanceUnit.GigacandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.GigacandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e9d, LuminanceUnit.GigacandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.GigacandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e9d, LuminanceUnit.GigacandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.KilocandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e3d, LuminanceUnit.KilocandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.KilocandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e3d, LuminanceUnit.KilocandelaPerSquareInch));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.KilocandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e3d, LuminanceUnit.KilocandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MegacandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e6d, LuminanceUnit.MegacandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MegacandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e6d, LuminanceUnit.MegacandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MegacandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e6d, LuminanceUnit.MegacandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MicrocandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e-6d, LuminanceUnit.MicrocandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MicrocandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e-6d, LuminanceUnit.MicrocandelaPerSquareInch));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MicrocandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-6d, LuminanceUnit.MicrocandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MillicandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e-3d, LuminanceUnit.MillicandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MillicandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e-3d, LuminanceUnit.MillicandelaPerSquareInch));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MillicandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-3d, LuminanceUnit.MillicandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.NanocandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e-9d, LuminanceUnit.NanocandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.NanocandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e-9d, LuminanceUnit.NanocandelaPerSquareInch));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.NanocandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-9d, LuminanceUnit.NanocandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.Nit, quantity => new Luminance(quantity.Value, LuminanceUnit.Nit));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.PetacandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e15d, LuminanceUnit.PetacandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.PetacandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e15d, LuminanceUnit.PetacandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.PetacandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e15d, LuminanceUnit.PetacandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.PicocandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e-12d, LuminanceUnit.PicocandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.PicocandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e-12d, LuminanceUnit.PicocandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.PicocandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-12d, LuminanceUnit.PicocandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.TeracandelaPerSquareFoot, quantity => new Luminance((quantity.Value/ 9.290304e-2) / 1e12d, LuminanceUnit.TeracandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.TeracandelaPerSquareInch, quantity => new Luminance((quantity.Value/ 0.00064516) / 1e12d, LuminanceUnit.TeracandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.TeracandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e12d, LuminanceUnit.TeracandelaPerSquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity);
@@ -486,87 +276,27 @@ namespace UnitsNet
             // Register in unit converter: LuminanceUnit -> BaseUnit
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance(quantity.Value* 9.290304e-2, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance(quantity.Value* 0.00064516, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.DecacandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e1d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.DecacandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e1d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.DecacandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e1d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.DecicandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e-1d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.DecicandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e-1d, LuminanceUnit.CandelaPerSquareMeter));
+            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CenticandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-2d, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.DecicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-1d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.FemtocandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e-15d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.FemtocandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e-15d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.FemtocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-15d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.GigacandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e9d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.GigacandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e9d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.GigacandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e9d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.KilocandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e3d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.KilocandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e3d, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.KilocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e3d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MegacandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e6d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MegacandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e6d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MegacandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e6d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MicrocandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e-6d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MicrocandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e-6d, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MicrocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-6d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MillicandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e-3d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MillicandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e-3d, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MillicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-3d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.NanocandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e-9d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.NanocandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e-9d, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.NanocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-9d, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.Nit, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance(quantity.Value, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.PetacandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e15d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.PetacandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e15d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.PetacandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e15d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.PicocandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e-12d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.PicocandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e-12d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.PicocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-12d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.TeracandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 9.290304e-2) * 1e12d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.TeracandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value* 0.00064516) * 1e12d, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.TeracandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e12d, LuminanceUnit.CandelaPerSquareMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"Cd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"Cd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"Cd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecacandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"daCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecacandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"daCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecacandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"daCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecicandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"dCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecicandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"dCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecicandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"dCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.FemtocandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"fCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.FemtocandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"fCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.FemtocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"fCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.GigacandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"GCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.GigacandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"GCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.GigacandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"GCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.KilocandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"kCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.KilocandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"kCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.KilocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MegacandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"MCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MegacandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"MCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MegacandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"MCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MicrocandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"µCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MicrocandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"µCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MicrocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"µCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MillicandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"mCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MillicandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"mCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MillicandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.NanocandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"nCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.NanocandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"nCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.NanocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"nCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.Nit, new CultureInfo("en-US"), false, true, new string[]{"L⊙"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.PetacandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"PCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.PetacandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"PCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.PetacandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"PCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.PicocandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"pCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.PicocandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"pCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.PicocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"pCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.TeracandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"TCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.TeracandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"TCd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.TeracandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"TCd"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"Cd/ft²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"Cd/s·in²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"Cd/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CenticandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"cCd/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecicandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"dCd/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.KilocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kCd/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MicrocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"µCd/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MillicandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mCd/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.NanocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"nCd/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.Nit, new CultureInfo("en-US"), false, true, new string[]{"nt"});
         }
 
         /// <summary>
@@ -625,53 +355,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecacandelaPerSquareFoot"/>.
+        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CenticandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromDecacandelasPerSquareFoot(QuantityValue decacandelaspersquarefoot)
+        public static Luminance FromCenticandelasPerSquareMeter(QuantityValue centicandelaspersquaremeter)
         {
-            double value = (double) decacandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.DecacandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecacandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromDecacandelasPerSquareInch(QuantityValue decacandelaspersquareinch)
-        {
-            double value = (double) decacandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.DecacandelaPerSquareInch);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecacandelaPerSquareMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromDecacandelasPerSquareMeter(QuantityValue decacandelaspersquaremeter)
-        {
-            double value = (double) decacandelaspersquaremeter;
-            return new Luminance(value, LuminanceUnit.DecacandelaPerSquareMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecicandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromDecicandelasPerSquareFoot(QuantityValue decicandelaspersquarefoot)
-        {
-            double value = (double) decicandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.DecicandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecicandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromDecicandelasPerSquareInch(QuantityValue decicandelaspersquareinch)
-        {
-            double value = (double) decicandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.DecicandelaPerSquareInch);
+            double value = (double) centicandelaspersquaremeter;
+            return new Luminance(value, LuminanceUnit.CenticandelaPerSquareMeter);
         }
 
         /// <summary>
@@ -685,86 +375,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.FemtocandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromFemtocandelasPerSquareFoot(QuantityValue femtocandelaspersquarefoot)
-        {
-            double value = (double) femtocandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.FemtocandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.FemtocandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromFemtocandelasPerSquareInch(QuantityValue femtocandelaspersquareinch)
-        {
-            double value = (double) femtocandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.FemtocandelaPerSquareInch);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.FemtocandelaPerSquareMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromFemtocandelasPerSquareMeter(QuantityValue femtocandelaspersquaremeter)
-        {
-            double value = (double) femtocandelaspersquaremeter;
-            return new Luminance(value, LuminanceUnit.FemtocandelaPerSquareMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.GigacandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromGigacandelasPerSquareFoot(QuantityValue gigacandelaspersquarefoot)
-        {
-            double value = (double) gigacandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.GigacandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.GigacandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromGigacandelasPerSquareInch(QuantityValue gigacandelaspersquareinch)
-        {
-            double value = (double) gigacandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.GigacandelaPerSquareInch);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.GigacandelaPerSquareMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromGigacandelasPerSquareMeter(QuantityValue gigacandelaspersquaremeter)
-        {
-            double value = (double) gigacandelaspersquaremeter;
-            return new Luminance(value, LuminanceUnit.GigacandelaPerSquareMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.KilocandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromKilocandelasPerSquareFoot(QuantityValue kilocandelaspersquarefoot)
-        {
-            double value = (double) kilocandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.KilocandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.KilocandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromKilocandelasPerSquareInch(QuantityValue kilocandelaspersquareinch)
-        {
-            double value = (double) kilocandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.KilocandelaPerSquareInch);
-        }
-
-        /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.KilocandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -772,56 +382,6 @@ namespace UnitsNet
         {
             double value = (double) kilocandelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.KilocandelaPerSquareMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MegacandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMegacandelasPerSquareFoot(QuantityValue megacandelaspersquarefoot)
-        {
-            double value = (double) megacandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.MegacandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MegacandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMegacandelasPerSquareInch(QuantityValue megacandelaspersquareinch)
-        {
-            double value = (double) megacandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.MegacandelaPerSquareInch);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MegacandelaPerSquareMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMegacandelasPerSquareMeter(QuantityValue megacandelaspersquaremeter)
-        {
-            double value = (double) megacandelaspersquaremeter;
-            return new Luminance(value, LuminanceUnit.MegacandelaPerSquareMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MicrocandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMicrocandelasPerSquareFoot(QuantityValue microcandelaspersquarefoot)
-        {
-            double value = (double) microcandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.MicrocandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MicrocandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMicrocandelasPerSquareInch(QuantityValue microcandelaspersquareinch)
-        {
-            double value = (double) microcandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.MicrocandelaPerSquareInch);
         }
 
         /// <summary>
@@ -835,26 +395,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MillicandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMillicandelasPerSquareFoot(QuantityValue millicandelaspersquarefoot)
-        {
-            double value = (double) millicandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.MillicandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MillicandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromMillicandelasPerSquareInch(QuantityValue millicandelaspersquareinch)
-        {
-            double value = (double) millicandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.MillicandelaPerSquareInch);
-        }
-
-        /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MillicandelaPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -862,26 +402,6 @@ namespace UnitsNet
         {
             double value = (double) millicandelaspersquaremeter;
             return new Luminance(value, LuminanceUnit.MillicandelaPerSquareMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.NanocandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromNanocandelasPerSquareFoot(QuantityValue nanocandelaspersquarefoot)
-        {
-            double value = (double) nanocandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.NanocandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.NanocandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromNanocandelasPerSquareInch(QuantityValue nanocandelaspersquareinch)
-        {
-            double value = (double) nanocandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.NanocandelaPerSquareInch);
         }
 
         /// <summary>
@@ -902,96 +422,6 @@ namespace UnitsNet
         {
             double value = (double) nits;
             return new Luminance(value, LuminanceUnit.Nit);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.PetacandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromPetacandelasPerSquareFoot(QuantityValue petacandelaspersquarefoot)
-        {
-            double value = (double) petacandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.PetacandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.PetacandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromPetacandelasPerSquareInch(QuantityValue petacandelaspersquareinch)
-        {
-            double value = (double) petacandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.PetacandelaPerSquareInch);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.PetacandelaPerSquareMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromPetacandelasPerSquareMeter(QuantityValue petacandelaspersquaremeter)
-        {
-            double value = (double) petacandelaspersquaremeter;
-            return new Luminance(value, LuminanceUnit.PetacandelaPerSquareMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.PicocandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromPicocandelasPerSquareFoot(QuantityValue picocandelaspersquarefoot)
-        {
-            double value = (double) picocandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.PicocandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.PicocandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromPicocandelasPerSquareInch(QuantityValue picocandelaspersquareinch)
-        {
-            double value = (double) picocandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.PicocandelaPerSquareInch);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.PicocandelaPerSquareMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromPicocandelasPerSquareMeter(QuantityValue picocandelaspersquaremeter)
-        {
-            double value = (double) picocandelaspersquaremeter;
-            return new Luminance(value, LuminanceUnit.PicocandelaPerSquareMeter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.TeracandelaPerSquareFoot"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromTeracandelasPerSquareFoot(QuantityValue teracandelaspersquarefoot)
-        {
-            double value = (double) teracandelaspersquarefoot;
-            return new Luminance(value, LuminanceUnit.TeracandelaPerSquareFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.TeracandelaPerSquareInch"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromTeracandelasPerSquareInch(QuantityValue teracandelaspersquareinch)
-        {
-            double value = (double) teracandelaspersquareinch;
-            return new Luminance(value, LuminanceUnit.TeracandelaPerSquareInch);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.TeracandelaPerSquareMeter"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Luminance FromTeracandelasPerSquareMeter(QuantityValue teracandelaspersquaremeter)
-        {
-            double value = (double) teracandelaspersquaremeter;
-            return new Luminance(value, LuminanceUnit.TeracandelaPerSquareMeter);
         }
 
         /// <summary>
