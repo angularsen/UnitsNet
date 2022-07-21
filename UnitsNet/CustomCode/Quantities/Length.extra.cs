@@ -238,12 +238,24 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Outputs feet and inches on the format: {feetValue}' - {inchesValueIntegral}[ {inchesValueFractional}]"
+        ///     Outputs feet and inches on the format: {feetValue}' - {inchesValueIntegral}[ / {inchesValueFractional}]"
         ///     The inches are rounded to the nearest fraction of the fractionDenominator argument and reduced over the greatest common divisor.
+        ///     The fractional inch value is omitted if the numerator is 0 after rounding, or if the provided denominator is 1.
         /// </summary>
-        /// <param name="fractionDenominator">The maximum precision to express the rounded inch fraction part</param>
-        /// <example>Length.FromFeetInches(3,2).ToArchitecturalString(32).ToString() outputs: "3 ft 2 in"</example>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when fractionDenominator is &lt; 1 (use 1 to round to nearest integer, with no fraction)</exception>
+        /// <param name="fractionDenominator">The maximum precision to express the rounded inch fraction part. Use 1 to round to nearest integer, with no fraction.</param>
+        /// <example>
+        /// <code>
+        /// var length = Length.FromFeetInches(3, 2.6);
+        /// length.ToArchitecturalString(1)   => 3' - 3"
+        /// length.ToArchitecturalString(2)   => 3' - 2 1/2"
+        /// length.ToArchitecturalString(4)   => 3' - 2 1/2"
+        /// length.ToArchitecturalString(8)   => 3' - 2 5/8"
+        /// length.ToArchitecturalString(16)  => 3' - 2 5/8"
+        /// length.ToArchitecturalString(32)  => 3' - 2 19/32"
+        /// length.ToArchitecturalString(128) => 3' - 2 77/128"
+        /// </code>
+        /// </example>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when fractionDenominator is &lt; 1</exception>
         public string ToArchitecturalString(int fractionDenominator)
         {
             if (fractionDenominator < 1)
