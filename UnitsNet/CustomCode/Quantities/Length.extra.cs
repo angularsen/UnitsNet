@@ -255,12 +255,12 @@ namespace UnitsNet
         /// length.ToArchitecturalString(128) => 3' - 2 77/128"
         /// </code>
         /// </example>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when fractionDenominator is &lt; 1</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Denominator for fractional inch must be greater than zero.</exception>
         public string ToArchitecturalString(int fractionDenominator)
         {
             if (fractionDenominator < 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch cannot be zero");
+                throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch must be greater than zero.");
             }
 
             var inchTrunc = (int)Math.Truncate(this.Inches);
@@ -294,7 +294,7 @@ namespace UnitsNet
                     return a | b;
                 }
 
-                var gcd = greatestCommonDivisor((int)Math.Abs(numerator), fractionDenominator);
+                int gcd = greatestCommonDivisor((int)Math.Abs(numerator), fractionDenominator);
 
                 if (inchPart.Length > 0)
                 {
