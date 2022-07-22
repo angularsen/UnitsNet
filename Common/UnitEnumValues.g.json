@@ -1637,5 +1637,17 @@
     "InchToTheSixth": 4,
     "MeterToTheSixth": 5,
     "MillimeterToTheSixth": 6
+  },
+  "Luminance": {
+    "CandelaPerSquareFoot": 10,
+    "CandelaPerSquareInch": 7,
+    "CandelaPerSquareMeter": 8,
+    "CenticandelaPerSquareMeter": 3,
+    "DecicandelaPerSquareMeter": 4,
+    "KilocandelaPerSquareMeter": 9,
+    "MicrocandelaPerSquareMeter": 6,
+    "MillicandelaPerSquareMeter": 2,
+    "NanocandelaPerSquareMeter": 1,
+    "Nit": 5
   }
 }
