@@ -424,7 +424,7 @@ Stargen is a decades old software to create realistic planets and satellites fro
 
 https://github.com/ebfortin/primoris.universe.stargen
 
-<img src="https://www.harringtonhoists.com/images/harrington_logo3.png" height="35">
+<img src="https://cdn.harringtonhoists.com/assets/harringtonhoists/logo-60629cc144429045d4c85740ab225e219add75b2c5c1e2c444ffa9500347a414.png" height="35">
 
 #### Harrington Hoists, Inc. (A Subsidiary of KITO Americas, Inc.)
 > Harrington Hoists, Inc. is located in Manheim, PA, Elizabethtown, PA, South Holland, IL and Corona, CA. Harrington is a leading manufacturer of manual, electric and air chain hoists as well as wire rope hoists and crane products serving the North American material handling industry.
