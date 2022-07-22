@@ -281,7 +281,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = Luminance.Parse("1 Cd/s·in²", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = Luminance.Parse("1 Cd/in²", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.CandelasPerSquareInch, CandelasPerSquareInchTolerance);
                 Assert.Equal(LuminanceUnit.CandelaPerSquareInch, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -354,7 +354,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Luminance.TryParse("1 Cd/s·in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(Luminance.TryParse("1 Cd/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.CandelasPerSquareInch, CandelasPerSquareInchTolerance);
                 Assert.Equal(LuminanceUnit.CandelaPerSquareInch, parsed.Unit);
             }
@@ -420,7 +420,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = Luminance.ParseUnit("Cd/s·in²", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = Luminance.ParseUnit("Cd/in²", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(LuminanceUnit.CandelaPerSquareInch, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -483,7 +483,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(Luminance.TryParseUnit("Cd/s·in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(Luminance.TryParseUnit("Cd/in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(LuminanceUnit.CandelaPerSquareInch, parsedUnit);
             }
 
@@ -739,7 +739,7 @@ namespace UnitsNet.Tests
             Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 Cd/ft²", new Luminance(1, LuminanceUnit.CandelaPerSquareFoot).ToString());
-                Assert.Equal("1 Cd/s·in²", new Luminance(1, LuminanceUnit.CandelaPerSquareInch).ToString());
+                Assert.Equal("1 Cd/in²", new Luminance(1, LuminanceUnit.CandelaPerSquareInch).ToString());
                 Assert.Equal("1 Cd/m²", new Luminance(1, LuminanceUnit.CandelaPerSquareMeter).ToString());
                 Assert.Equal("1 cCd/m²", new Luminance(1, LuminanceUnit.CenticandelaPerSquareMeter).ToString());
                 Assert.Equal("1 dCd/m²", new Luminance(1, LuminanceUnit.DecicandelaPerSquareMeter).ToString());
@@ -762,7 +762,7 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 Cd/ft²", new Luminance(1, LuminanceUnit.CandelaPerSquareFoot).ToString(swedishCulture));
-            Assert.Equal("1 Cd/s·in²", new Luminance(1, LuminanceUnit.CandelaPerSquareInch).ToString(swedishCulture));
+            Assert.Equal("1 Cd/in²", new Luminance(1, LuminanceUnit.CandelaPerSquareInch).ToString(swedishCulture));
             Assert.Equal("1 Cd/m²", new Luminance(1, LuminanceUnit.CandelaPerSquareMeter).ToString(swedishCulture));
             Assert.Equal("1 cCd/m²", new Luminance(1, LuminanceUnit.CenticandelaPerSquareMeter).ToString(swedishCulture));
             Assert.Equal("1 dCd/m²", new Luminance(1, LuminanceUnit.DecicandelaPerSquareMeter).ToString(swedishCulture));

@@ -288,7 +288,7 @@ namespace UnitsNet
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"Cd/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"Cd/s·in²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"Cd/in²"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"Cd/m²"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CenticandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"cCd/m²"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecicandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"dCd/m²"});

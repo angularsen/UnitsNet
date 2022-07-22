@@ -26,17 +26,17 @@ namespace UnitsNet.Units
     public enum LuminanceUnit
     {
         Undefined = 0,
-        CandelaPerSquareFoot = 12,
-        CandelaPerSquareInch = 22,
-        CandelaPerSquareMeter = 16,
-        CenticandelaPerSquareMeter = 55,
-        DecicandelaPerSquareMeter = 24,
-        KilocandelaPerSquareMeter = 31,
-        MicrocandelaPerSquareMeter = 41,
-        MillicandelaPerSquareMeter = 37,
-        NanocandelaPerSquareMeter = 36,
+        CandelaPerSquareFoot = 10,
+        CandelaPerSquareInch = 7,
+        CandelaPerSquareMeter = 8,
+        CenticandelaPerSquareMeter = 3,
+        DecicandelaPerSquareMeter = 4,
+        KilocandelaPerSquareMeter = 9,
+        MicrocandelaPerSquareMeter = 6,
+        MillicandelaPerSquareMeter = 2,
+        NanocandelaPerSquareMeter = 1,
         /// <remarks>https://www.britannica.com/science/luminosity</remarks>
-        Nit = 50,
+        Nit = 5,
     }
 
     #pragma warning restore 1591
