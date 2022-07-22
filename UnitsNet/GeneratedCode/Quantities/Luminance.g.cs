@@ -67,7 +67,7 @@ namespace UnitsNet
                 {
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareFoot, "CandelasPerSquareFoot", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareInch, "CandelasPerSquareInch", BaseUnits.Undefined),
-                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareMeter, "CandelasPerSquareMeter", BaseUnits.Undefined),
+                    new UnitInfo<LuminanceUnit>(LuminanceUnit.CandelaPerSquareMeter, "CandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela)),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelasPerSquareMeter", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.DecicandelaPerSquareMeter, "DecicandelasPerSquareMeter", BaseUnits.Undefined),
                     new UnitInfo<LuminanceUnit>(LuminanceUnit.KilocandelaPerSquareMeter, "KilocandelasPerSquareMeter", BaseUnits.Undefined),
@@ -260,8 +260,8 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: BaseUnit -> LuminanceUnit
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot, quantity => new Luminance(quantity.Value/ 9.290304e-2, LuminanceUnit.CandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch, quantity => new Luminance(quantity.Value/ 0.00064516, LuminanceUnit.CandelaPerSquareInch));
+            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot, quantity => new Luminance(quantity.Value/ 1.07639e1, LuminanceUnit.CandelaPerSquareFoot));
+            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch, quantity => new Luminance(quantity.Value/ 1.5500031e3, LuminanceUnit.CandelaPerSquareInch));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CenticandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-2d, LuminanceUnit.CenticandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecicandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e-1d, LuminanceUnit.DecicandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.KilocandelaPerSquareMeter, quantity => new Luminance((quantity.Value) / 1e3d, LuminanceUnit.KilocandelaPerSquareMeter));
@@ -274,8 +274,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity);
 
             // Register in unit converter: LuminanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance(quantity.Value* 9.290304e-2, LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance(quantity.Value* 0.00064516, LuminanceUnit.CandelaPerSquareMeter));
+            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance(quantity.Value* 1.07639e1, LuminanceUnit.CandelaPerSquareMeter));
+            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance(quantity.Value* 1.5500031e3, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CenticandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-2d, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.DecicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e-1d, LuminanceUnit.CandelaPerSquareMeter));
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.KilocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => new Luminance((quantity.Value) * 1e3d, LuminanceUnit.CandelaPerSquareMeter));

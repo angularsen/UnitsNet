@@ -660,8 +660,8 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case LuminanceUnit.CandelaPerSquareFoot: return _value* 9.290304e-2;
-                case LuminanceUnit.CandelaPerSquareInch: return _value* 0.00064516;
+                case LuminanceUnit.CandelaPerSquareFoot: return _value* 1.07639e1;
+                case LuminanceUnit.CandelaPerSquareInch: return _value* 1.5500031e3;
                 case LuminanceUnit.CandelaPerSquareMeter: return _value;
                 case LuminanceUnit.CenticandelaPerSquareMeter: return (_value) * 1e-2d;
                 case LuminanceUnit.DecicandelaPerSquareMeter: return (_value) * 1e-1d;
@@ -684,8 +684,8 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case LuminanceUnit.CandelaPerSquareFoot: return baseUnitValue/ 9.290304e-2;
-                case LuminanceUnit.CandelaPerSquareInch: return baseUnitValue/ 0.00064516;
+                case LuminanceUnit.CandelaPerSquareFoot: return baseUnitValue/ 1.07639e1;
+                case LuminanceUnit.CandelaPerSquareInch: return baseUnitValue/ 1.5500031e3;
                 case LuminanceUnit.CandelaPerSquareMeter: return baseUnitValue;
                 case LuminanceUnit.CenticandelaPerSquareMeter: return (baseUnitValue) / 1e-2d;
                 case LuminanceUnit.DecicandelaPerSquareMeter: return (baseUnitValue) / 1e-1d;

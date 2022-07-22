@@ -5,8 +5,8 @@
   "XmlDoc": "Luminance is a photometric measure of the luminous intensity per unit area of light travelling in a given direction.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Luminance",
   "BaseDimensions": {
-    "L": -2,
-    "J": 1
+    "J": 1,
+    "L": -2
   },
   "Units": [
     {
@@ -14,6 +14,10 @@
       "PluralName": "CandelasPerSquareMeter",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
+	   "BaseUnits": {
+        "J": "Candela",
+        "L": "Meter"
+      },
 	  "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
       "Localization": [
         {
@@ -25,8 +29,8 @@
 	{
       "SingularName": "CandelaPerSquareFoot",
       "PluralName": "CandelasPerSquareFoot",
-      "FromUnitToBaseFunc": "{x}* 9.290304e-2",
-      "FromBaseToUnitFunc": "{x}/ 9.290304e-2",
+      "FromUnitToBaseFunc": "{x}* 1.07639e1",
+      "FromBaseToUnitFunc": "{x}/ 1.07639e1",
       "Localization": [
         {
           "Culture": "en-US",
@@ -37,8 +41,8 @@
 	{
       "SingularName": "CandelaPerSquareInch",
       "PluralName": "CandelasPerSquareInch",
-      "FromUnitToBaseFunc": "{x}* 0.00064516",
-      "FromBaseToUnitFunc": "{x}/ 0.00064516",
+      "FromUnitToBaseFunc": "{x}* 1.5500031e3",
+      "FromBaseToUnitFunc": "{x}/ 1.5500031e3",
       "Localization": [
         {
           "Culture": "en-US",
