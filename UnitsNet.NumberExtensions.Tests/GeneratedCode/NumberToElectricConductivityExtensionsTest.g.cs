@@ -25,6 +25,18 @@ namespace UnitsNet.Tests
     public class NumberToElectricConductivityExtensionsTests
     {
         [Fact]
+        public void NumberToMicrosiemensPerCentimeterTest() =>
+            Assert.Equal(ElectricConductivity.FromMicrosiemensPerCentimeter(2), 2.MicrosiemensPerCentimeter());
+
+        [Fact]
+        public void NumberToMillisiemensPerCentimeterTest() =>
+            Assert.Equal(ElectricConductivity.FromMillisiemensPerCentimeter(2), 2.MillisiemensPerCentimeter());
+
+        [Fact]
+        public void NumberToSiemensPerCentimeterTest() =>
+            Assert.Equal(ElectricConductivity.FromSiemensPerCentimeter(2), 2.SiemensPerCentimeter());
+
+        [Fact]
         public void NumberToSiemensPerFootTest() =>
             Assert.Equal(ElectricConductivity.FromSiemensPerFoot(2), 2.SiemensPerFoot());
 
