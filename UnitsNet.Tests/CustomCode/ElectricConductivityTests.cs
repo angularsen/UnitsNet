@@ -33,6 +33,9 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SiemensPerMeterInOneSiemensPerMeter => 1;
         protected override double SiemensPerInchInOneSiemensPerMeter => 2.54e-2;
         protected override double SiemensPerFootInOneSiemensPerMeter => 3.048e-1;
+        protected override double SiemensPerCentimeterInOneSiemensPerMeter => 1e-2;
+        protected override double MillisiemensPerCentimeterInOneSiemensPerMeter => 1e1;
+        protected override double MicrosiemensPerCentimeterInOneSiemensPerMeter => 1e4;
 
         [Theory]
         [InlineData( -1.0, -1.0 )]
