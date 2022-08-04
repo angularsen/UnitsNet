@@ -197,6 +197,11 @@ namespace UnitsNet
         public double GigawattHoursPerKilogram => As(SpecificEnergyUnit.GigawattHourPerKilogram);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattHourPerPound"/>
+        /// </summary>
+        public double GigawattHoursPerPound => As(SpecificEnergyUnit.GigawattHourPerPound);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.JoulePerKilogram"/>
         /// </summary>
         public double JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
@@ -232,6 +237,11 @@ namespace UnitsNet
         public double KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattHourPerPound"/>
+        /// </summary>
+        public double KilowattHoursPerPound => As(SpecificEnergyUnit.KilowattHourPerPound);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>
         /// </summary>
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
@@ -255,6 +265,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>
         /// </summary>
         public double MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattHourPerPound"/>
+        /// </summary>
+        public double MegawattHoursPerPound => As(SpecificEnergyUnit.MegawattHourPerPound);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>
@@ -291,6 +306,11 @@ namespace UnitsNet
         /// </summary>
         public double WattHoursPerKilogram => As(SpecificEnergyUnit.WattHourPerKilogram);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattHourPerPound"/>
+        /// </summary>
+        public double WattHoursPerPound => As(SpecificEnergyUnit.WattHourPerPound);
+
         #endregion
 
         #region Static Methods
@@ -303,6 +323,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"GWd/ST"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"GWd/t"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"GWh/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattHourPerPound, new CultureInfo("en-US"), false, true, new string[]{"GWh/lbs"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.JoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"J/kg"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilocaloriePerGram, new CultureInfo("en-US"), false, true, new string[]{"kcal/g"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilojoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg"});
@@ -310,11 +331,13 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"kWd/ST"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"kWd/t"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kWh/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattHourPerPound, new CultureInfo("en-US"), false, true, new string[]{"kWh/lbs"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegajoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MWd/kg"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"MWd/ST"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"MWd/t"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MWh/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattHourPerPound, new CultureInfo("en-US"), false, true, new string[]{"MWh/lbs"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"TWd/kg"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"TWd/ST"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"TWd/t"});
@@ -322,6 +345,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"Wd/ST"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"Wd/t"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"Wh/kg"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattHourPerPound, new CultureInfo("en-US"), false, true, new string[]{"Wh/lbs"});
         }
 
         /// <summary>
@@ -417,6 +441,17 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattHourPerPound"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificEnergy FromGigawattHoursPerPound(double gigawatthoursperpound)
+        {
+            double value = (double) gigawatthoursperpound;
+            return new SpecificEnergy(value, SpecificEnergyUnit.GigawattHourPerPound);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.JoulePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -494,6 +529,17 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattHourPerPound"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificEnergy FromKilowattHoursPerPound(double kilowatthoursperpound)
+        {
+            double value = (double) kilowatthoursperpound;
+            return new SpecificEnergy(value, SpecificEnergyUnit.KilowattHourPerPound);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -546,6 +592,17 @@ namespace UnitsNet
         {
             double value = (double) megawatthoursperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerKilogram);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattHourPerPound"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificEnergy FromMegawattHoursPerPound(double megawatthoursperpound)
+        {
+            double value = (double) megawatthoursperpound;
+            return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerPound);
         }
 
         /// <summary>
@@ -623,6 +680,17 @@ namespace UnitsNet
         {
             double value = (double) watthoursperkilogram;
             return new SpecificEnergy(value, SpecificEnergyUnit.WattHourPerKilogram);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattHourPerPound"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificEnergy FromWattHoursPerPound(double watthoursperpound)
+        {
+            double value = (double) watthoursperpound;
+            return new SpecificEnergy(value, SpecificEnergyUnit.WattHourPerPound);
         }
 
         /// <summary>
@@ -921,6 +989,7 @@ namespace UnitsNet
                 case SpecificEnergyUnit.GigawattDayPerShortTon: return (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e9d;
                 case SpecificEnergyUnit.GigawattDayPerTonne: return (_value * ((24 * 3.6e3) / 1e3)) * 1e9d;
                 case SpecificEnergyUnit.GigawattHourPerKilogram: return (_value * 3.6e3) * 1e9d;
+                case SpecificEnergyUnit.GigawattHourPerPound: return (_value * 7.93664e3) * 1e9d;
                 case SpecificEnergyUnit.JoulePerKilogram: return _value;
                 case SpecificEnergyUnit.KilocaloriePerGram: return (_value * 4.184e3) * 1e3d;
                 case SpecificEnergyUnit.KilojoulePerKilogram: return (_value) * 1e3d;
@@ -928,11 +997,13 @@ namespace UnitsNet
                 case SpecificEnergyUnit.KilowattDayPerShortTon: return (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e3d;
                 case SpecificEnergyUnit.KilowattDayPerTonne: return (_value * ((24 * 3.6e3) / 1e3)) * 1e3d;
                 case SpecificEnergyUnit.KilowattHourPerKilogram: return (_value * 3.6e3) * 1e3d;
+                case SpecificEnergyUnit.KilowattHourPerPound: return (_value * 7.93664e3) * 1e3d;
                 case SpecificEnergyUnit.MegajoulePerKilogram: return (_value) * 1e6d;
                 case SpecificEnergyUnit.MegawattDayPerKilogram: return (_value * (24 * 3.6e3)) * 1e6d;
                 case SpecificEnergyUnit.MegawattDayPerShortTon: return (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e6d;
                 case SpecificEnergyUnit.MegawattDayPerTonne: return (_value * ((24 * 3.6e3) / 1e3)) * 1e6d;
                 case SpecificEnergyUnit.MegawattHourPerKilogram: return (_value * 3.6e3) * 1e6d;
+                case SpecificEnergyUnit.MegawattHourPerPound: return (_value * 7.93664e3) * 1e6d;
                 case SpecificEnergyUnit.TerawattDayPerKilogram: return (_value * (24 * 3.6e3)) * 1e12d;
                 case SpecificEnergyUnit.TerawattDayPerShortTon: return (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e12d;
                 case SpecificEnergyUnit.TerawattDayPerTonne: return (_value * ((24 * 3.6e3) / 1e3)) * 1e12d;
@@ -940,6 +1011,7 @@ namespace UnitsNet
                 case SpecificEnergyUnit.WattDayPerShortTon: return _value * ((24 * 3.6e3) / 9.0718474e2);
                 case SpecificEnergyUnit.WattDayPerTonne: return _value * ((24 * 3.6e3) / 1e3);
                 case SpecificEnergyUnit.WattHourPerKilogram: return _value * 3.6e3;
+                case SpecificEnergyUnit.WattHourPerPound: return _value * 7.93664e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -960,6 +1032,7 @@ namespace UnitsNet
                 case SpecificEnergyUnit.GigawattDayPerShortTon: return (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e9d;
                 case SpecificEnergyUnit.GigawattDayPerTonne: return (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e9d;
                 case SpecificEnergyUnit.GigawattHourPerKilogram: return (baseUnitValue / 3.6e3) / 1e9d;
+                case SpecificEnergyUnit.GigawattHourPerPound: return (baseUnitValue / 7.93664e3) / 1e9d;
                 case SpecificEnergyUnit.JoulePerKilogram: return baseUnitValue;
                 case SpecificEnergyUnit.KilocaloriePerGram: return (baseUnitValue / 4.184e3) / 1e3d;
                 case SpecificEnergyUnit.KilojoulePerKilogram: return (baseUnitValue) / 1e3d;
@@ -967,11 +1040,13 @@ namespace UnitsNet
                 case SpecificEnergyUnit.KilowattDayPerShortTon: return (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e3d;
                 case SpecificEnergyUnit.KilowattDayPerTonne: return (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e3d;
                 case SpecificEnergyUnit.KilowattHourPerKilogram: return (baseUnitValue / 3.6e3) / 1e3d;
+                case SpecificEnergyUnit.KilowattHourPerPound: return (baseUnitValue / 7.93664e3) / 1e3d;
                 case SpecificEnergyUnit.MegajoulePerKilogram: return (baseUnitValue) / 1e6d;
                 case SpecificEnergyUnit.MegawattDayPerKilogram: return (baseUnitValue / (24 * 3.6e3)) / 1e6d;
                 case SpecificEnergyUnit.MegawattDayPerShortTon: return (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e6d;
                 case SpecificEnergyUnit.MegawattDayPerTonne: return (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e6d;
                 case SpecificEnergyUnit.MegawattHourPerKilogram: return (baseUnitValue / 3.6e3) / 1e6d;
+                case SpecificEnergyUnit.MegawattHourPerPound: return (baseUnitValue / 7.93664e3) / 1e6d;
                 case SpecificEnergyUnit.TerawattDayPerKilogram: return (baseUnitValue / (24 * 3.6e3)) / 1e12d;
                 case SpecificEnergyUnit.TerawattDayPerShortTon: return (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e12d;
                 case SpecificEnergyUnit.TerawattDayPerTonne: return (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e12d;
@@ -979,6 +1054,7 @@ namespace UnitsNet
                 case SpecificEnergyUnit.WattDayPerShortTon: return baseUnitValue / ((24 * 3.6e3) / 9.0718474e2);
                 case SpecificEnergyUnit.WattDayPerTonne: return baseUnitValue / ((24 * 3.6e3) / 1e3);
                 case SpecificEnergyUnit.WattHourPerKilogram: return baseUnitValue / 3.6e3;
+                case SpecificEnergyUnit.WattHourPerPound: return baseUnitValue / 7.93664e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

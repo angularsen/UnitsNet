@@ -80,6 +80,9 @@ namespace UnitsNet
                 case CoefficientOfThermalExpansionUnit coefficientOfThermalExpansionUnit:
                     quantity = CoefficientOfThermalExpansion.From(value, coefficientOfThermalExpansionUnit);
                     return true;
+                case CompressibilityUnit compressibilityUnit:
+                    quantity = Compressibility.From(value, compressibilityUnit);
+                    return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
                     return true;
@@ -179,6 +182,9 @@ namespace UnitsNet
                 case IrradiationUnit irradiationUnit:
                     quantity = Irradiation.From(value, irradiationUnit);
                     return true;
+                case JerkUnit jerkUnit:
+                    quantity = Jerk.From(value, jerkUnit);
+                    return true;
                 case KinematicViscosityUnit kinematicViscosityUnit:
                     quantity = KinematicViscosity.From(value, kinematicViscosityUnit);
                     return true;
@@ -196,6 +202,9 @@ namespace UnitsNet
                     return true;
                 case LinearPowerDensityUnit linearPowerDensityUnit:
                     quantity = LinearPowerDensity.From(value, linearPowerDensityUnit);
+                    return true;
+                case LuminanceUnit luminanceUnit:
+                    quantity = Luminance.From(value, luminanceUnit);
                     return true;
                 case LuminosityUnit luminosityUnit:
                     quantity = Luminosity.From(value, luminosityUnit);
@@ -250,6 +259,9 @@ namespace UnitsNet
                     return true;
                 case PermittivityUnit permittivityUnit:
                     quantity = Permittivity.From(value, permittivityUnit);
+                    return true;
+                case PorousMediumPermeabilityUnit porousMediumPermeabilityUnit:
+                    quantity = PorousMediumPermeability.From(value, porousMediumPermeabilityUnit);
                     return true;
                 case PowerUnit powerUnit:
                     quantity = Power.From(value, powerUnit);
@@ -466,6 +478,9 @@ namespace UnitsNet
             if (quantityType == typeof(CoefficientOfThermalExpansion))
                 return parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity);
 
+            if (quantityType == typeof(Compressibility))
+                return parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity);
+
             if (quantityType == typeof(Density))
                 return parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity);
 
@@ -565,6 +580,9 @@ namespace UnitsNet
             if (quantityType == typeof(Irradiation))
                 return parser.TryParse<Irradiation, IrradiationUnit>(quantityString, formatProvider, Irradiation.From, out quantity);
 
+            if (quantityType == typeof(Jerk))
+                return parser.TryParse<Jerk, JerkUnit>(quantityString, formatProvider, Jerk.From, out quantity);
+
             if (quantityType == typeof(KinematicViscosity))
                 return parser.TryParse<KinematicViscosity, KinematicViscosityUnit>(quantityString, formatProvider, KinematicViscosity.From, out quantity);
 
@@ -582,6 +600,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(LinearPowerDensity))
                 return parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity);
+
+            if (quantityType == typeof(Luminance))
+                return parser.TryParse<Luminance, LuminanceUnit>(quantityString, formatProvider, Luminance.From, out quantity);
 
             if (quantityType == typeof(Luminosity))
                 return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
@@ -636,6 +657,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Permittivity))
                 return parser.TryParse<Permittivity, PermittivityUnit>(quantityString, formatProvider, Permittivity.From, out quantity);
+
+            if (quantityType == typeof(PorousMediumPermeability))
+                return parser.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(quantityString, formatProvider, PorousMediumPermeability.From, out quantity);
 
             if (quantityType == typeof(Power))
                 return parser.TryParse<Power, PowerUnit>(quantityString, formatProvider, Power.From, out quantity);
@@ -782,6 +806,7 @@ namespace UnitsNet
             yield return typeof(BrakeSpecificFuelConsumption);
             yield return typeof(Capacitance);
             yield return typeof(CoefficientOfThermalExpansion);
+            yield return typeof(Compressibility);
             yield return typeof(Density);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);
@@ -815,12 +840,14 @@ namespace UnitsNet
             yield return typeof(Information);
             yield return typeof(Irradiance);
             yield return typeof(Irradiation);
+            yield return typeof(Jerk);
             yield return typeof(KinematicViscosity);
             yield return typeof(LapseRate);
             yield return typeof(Length);
             yield return typeof(Level);
             yield return typeof(LinearDensity);
             yield return typeof(LinearPowerDensity);
+            yield return typeof(Luminance);
             yield return typeof(Luminosity);
             yield return typeof(LuminousFlux);
             yield return typeof(LuminousIntensity);
@@ -839,6 +866,7 @@ namespace UnitsNet
             yield return typeof(MolarMass);
             yield return typeof(Permeability);
             yield return typeof(Permittivity);
+            yield return typeof(PorousMediumPermeability);
             yield return typeof(Power);
             yield return typeof(PowerDensity);
             yield return typeof(PowerRatio);

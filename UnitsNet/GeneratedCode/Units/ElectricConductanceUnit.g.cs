@@ -26,9 +26,9 @@ namespace UnitsNet.Units
     public enum ElectricConductanceUnit
     {
         Undefined = 0,
-        Microsiemens,
-        Millisiemens,
-        Siemens,
+        Microsiemens = 1,
+        Millisiemens = 2,
+        Siemens = 3,
     }
 
     #pragma warning restore 1591

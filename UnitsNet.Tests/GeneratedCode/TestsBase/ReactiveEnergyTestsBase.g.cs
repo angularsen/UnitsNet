@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ReactiveEnergy", quantityInfo.Name);
             Assert.Equal(QuantityType.ReactiveEnergy, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ReactiveEnergyUnit>().Except(new[] {ReactiveEnergyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ReactiveEnergyUnit>().Except(new[] {ReactiveEnergyUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -197,6 +197,98 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ReactiveEnergy.Parse("1 kvarh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilovoltampereReactiveHours, KilovoltampereReactiveHoursTolerance);
+                Assert.Equal(ReactiveEnergyUnit.KilovoltampereReactiveHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ReactiveEnergy.Parse("1 Mvarh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.MegavoltampereReactiveHours, MegavoltampereReactiveHoursTolerance);
+                Assert.Equal(ReactiveEnergyUnit.MegavoltampereReactiveHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ReactiveEnergy.Parse("1 varh", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.VoltampereReactiveHours, VoltampereReactiveHoursTolerance);
+                Assert.Equal(ReactiveEnergyUnit.VoltampereReactiveHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ReactiveEnergy.TryParse("1 kvarh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilovoltampereReactiveHours, KilovoltampereReactiveHoursTolerance);
+                Assert.Equal(ReactiveEnergyUnit.KilovoltampereReactiveHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(ReactiveEnergy.TryParse("1 Mvarh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.MegavoltampereReactiveHours, MegavoltampereReactiveHoursTolerance);
+                Assert.Equal(ReactiveEnergyUnit.MegavoltampereReactiveHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(ReactiveEnergy.TryParse("1 varh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.VoltampereReactiveHours, VoltampereReactiveHoursTolerance);
+                Assert.Equal(ReactiveEnergyUnit.VoltampereReactiveHour, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ReactiveEnergy.ParseUnit("kvarh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ReactiveEnergyUnit.KilovoltampereReactiveHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ReactiveEnergy.ParseUnit("Mvarh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ReactiveEnergyUnit.MegavoltampereReactiveHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ReactiveEnergy.ParseUnit("varh", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ReactiveEnergyUnit.VoltampereReactiveHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ReactiveEnergy.TryParseUnit("kvarh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ReactiveEnergyUnit.KilovoltampereReactiveHour, parsedUnit);
+            }
+
+            {
+                Assert.True(ReactiveEnergy.TryParseUnit("Mvarh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ReactiveEnergyUnit.MegavoltampereReactiveHour, parsedUnit);
+            }
+
+            {
+                Assert.True(ReactiveEnergy.TryParseUnit("varh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ReactiveEnergyUnit.VoltampereReactiveHour, parsedUnit);
+            }
+
         }
 
         [Theory]

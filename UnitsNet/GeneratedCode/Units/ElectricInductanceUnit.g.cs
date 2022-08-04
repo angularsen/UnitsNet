@@ -26,10 +26,10 @@ namespace UnitsNet.Units
     public enum ElectricInductanceUnit
     {
         Undefined = 0,
-        Henry,
-        Microhenry,
-        Millihenry,
-        Nanohenry,
+        Henry = 1,
+        Microhenry = 2,
+        Millihenry = 3,
+        Nanohenry = 4,
     }
 
     #pragma warning restore 1591

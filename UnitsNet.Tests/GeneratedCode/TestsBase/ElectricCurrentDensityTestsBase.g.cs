@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricCurrentDensity", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricCurrentDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricCurrentDensityUnit>().Except(new[] {ElectricCurrentDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricCurrentDensityUnit>().Except(new[] {ElectricCurrentDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -197,6 +197,98 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricCurrentDensity.Parse("1 A/ft²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AmperesPerSquareFoot, AmperesPerSquareFootTolerance);
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareFoot, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrentDensity.Parse("1 A/in²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AmperesPerSquareInch, AmperesPerSquareInchTolerance);
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareInch, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCurrentDensity.Parse("1 A/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.AmperesPerSquareMeter, AmperesPerSquareMeterTolerance);
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricCurrentDensity.TryParse("1 A/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AmperesPerSquareFoot, AmperesPerSquareFootTolerance);
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCurrentDensity.TryParse("1 A/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AmperesPerSquareInch, AmperesPerSquareInchTolerance);
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareInch, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCurrentDensity.TryParse("1 A/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.AmperesPerSquareMeter, AmperesPerSquareMeterTolerance);
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricCurrentDensity.ParseUnit("A/ft²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareFoot, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrentDensity.ParseUnit("A/in²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareInch, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCurrentDensity.ParseUnit("A/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricCurrentDensity.TryParseUnit("A/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCurrentDensity.TryParseUnit("A/in²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareInch, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCurrentDensity.TryParseUnit("A/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricCurrentDensityUnit.AmperePerSquareMeter, parsedUnit);
+            }
+
         }
 
         [Theory]

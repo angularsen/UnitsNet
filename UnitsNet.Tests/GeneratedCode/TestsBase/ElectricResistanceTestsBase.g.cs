@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricResistance", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricResistance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricResistanceUnit>().Except(new[] {ElectricResistanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricResistanceUnit>().Except(new[] {ElectricResistanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -227,6 +227,148 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricResistance.Parse("1 GΩ", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Gigaohms, GigaohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Gigaohm, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricResistance.Parse("1 kΩ", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kiloohms, KiloohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Kiloohm, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricResistance.Parse("1 MΩ", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megaohms, MegaohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Megaohm, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricResistance.Parse("1 µΩ", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microohms, MicroohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Microohm, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricResistance.Parse("1 mΩ", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Milliohms, MilliohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Milliohm, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricResistance.Parse("1 Ω", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Ohms, OhmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Ohm, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricResistance.TryParse("1 GΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Gigaohms, GigaohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Gigaohm, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricResistance.TryParse("1 kΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kiloohms, KiloohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Kiloohm, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricResistance.TryParse("1 µΩ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microohms, MicroohmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Microohm, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricResistance.TryParse("1 Ω", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Ohms, OhmsTolerance);
+                Assert.Equal(ElectricResistanceUnit.Ohm, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricResistance.ParseUnit("GΩ", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricResistanceUnit.Gigaohm, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricResistance.ParseUnit("kΩ", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricResistanceUnit.Kiloohm, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricResistance.ParseUnit("MΩ", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricResistanceUnit.Megaohm, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricResistance.ParseUnit("µΩ", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricResistanceUnit.Microohm, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricResistance.ParseUnit("mΩ", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricResistanceUnit.Milliohm, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricResistance.ParseUnit("Ω", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricResistanceUnit.Ohm, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricResistance.TryParseUnit("GΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricResistanceUnit.Gigaohm, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricResistance.TryParseUnit("kΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricResistanceUnit.Kiloohm, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricResistance.TryParseUnit("µΩ", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricResistanceUnit.Microohm, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricResistance.TryParseUnit("Ω", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricResistanceUnit.Ohm, parsedUnit);
+            }
+
         }
 
         [Theory]

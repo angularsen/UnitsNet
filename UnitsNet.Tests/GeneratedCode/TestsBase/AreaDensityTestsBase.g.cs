@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("AreaDensity", quantityInfo.Name);
             Assert.Equal(QuantityType.AreaDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<AreaDensityUnit>().Except(new[] {AreaDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<AreaDensityUnit>().Except(new[] {AreaDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -177,6 +177,50 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = AreaDensity.Parse("1 kg/m²", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(AreaDensity.TryParse("1 kg/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.KilogramsPerSquareMeter, KilogramsPerSquareMeterTolerance);
+                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = AreaDensity.ParseUnit("kg/m²", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(AreaDensity.TryParseUnit("kg/m²", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, parsedUnit);
+            }
+
         }
 
         [Theory]

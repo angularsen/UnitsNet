@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("LapseRate", quantityInfo.Name);
             Assert.Equal(QuantityType.LapseRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -177,6 +177,50 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = LapseRate.Parse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+                Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(LapseRate.TryParse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+                Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = LapseRate.ParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(LapseRate.TryParseUnit("∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, parsedUnit);
+            }
+
         }
 
         [Theory]

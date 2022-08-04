@@ -1,4 +1,5 @@
 using CodeGen.Helpers;
+using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
@@ -6,11 +7,13 @@ namespace CodeGen.Generators.UnitsNetGen
     internal class UnitTypeGenerator : GeneratorBase
     {
         private readonly Quantity _quantity;
+        private readonly UnitEnumNameToValue _unitEnumNameToValue;
         private readonly string _unitEnumName;
 
-        public UnitTypeGenerator(Quantity quantity)
+        public UnitTypeGenerator(Quantity quantity, UnitEnumNameToValue unitEnumNameToValue)
         {
             _quantity = quantity;
+            _unitEnumNameToValue = unitEnumNameToValue;
             _unitEnumName = $"{quantity.Name}Unit";
         }
 
@@ -47,7 +50,7 @@ namespace UnitsNet.Units
 
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
                 Writer.WL($@"
-        {unit.SingularName},");
+        {unit.SingularName} = {_unitEnumNameToValue[unit.SingularName]},");
             }
 
             Writer.WL($@"

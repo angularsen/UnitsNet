@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("AmplitudeRatio", quantityInfo.Name);
             Assert.Equal(QuantityType.AmplitudeRatio, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<AmplitudeRatioUnit>().Except(new[] {AmplitudeRatioUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<AmplitudeRatioUnit>().Except(new[] {AmplitudeRatioUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -207,6 +207,122 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = AmplitudeRatio.Parse("1 dBµV", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecibelMicrovolts, DecibelMicrovoltsTolerance);
+                Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmplitudeRatio.Parse("1 dBmV", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecibelMillivolts, DecibelMillivoltsTolerance);
+                Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmplitudeRatio.Parse("1 dBu", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecibelsUnloaded, DecibelsUnloadedTolerance);
+                Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = AmplitudeRatio.Parse("1 dBV", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.DecibelVolts, DecibelVoltsTolerance);
+                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(AmplitudeRatio.TryParse("1 dBµV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecibelMicrovolts, DecibelMicrovoltsTolerance);
+                Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmplitudeRatio.TryParse("1 dBmV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecibelMillivolts, DecibelMillivoltsTolerance);
+                Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmplitudeRatio.TryParse("1 dBu", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecibelsUnloaded, DecibelsUnloadedTolerance);
+                Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, parsed.Unit);
+            }
+
+            {
+                Assert.True(AmplitudeRatio.TryParse("1 dBV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.DecibelVolts, DecibelVoltsTolerance);
+                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = AmplitudeRatio.ParseUnit("dBµV", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmplitudeRatio.ParseUnit("dBmV", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmplitudeRatio.ParseUnit("dBu", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = AmplitudeRatio.ParseUnit("dBV", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(AmplitudeRatio.TryParseUnit("dBµV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, parsedUnit);
+            }
+
+            {
+                Assert.True(AmplitudeRatio.TryParseUnit("dBmV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, parsedUnit);
+            }
+
+            {
+                Assert.True(AmplitudeRatio.TryParseUnit("dBu", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, parsedUnit);
+            }
+
+            {
+                Assert.True(AmplitudeRatio.TryParseUnit("dBV", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, parsedUnit);
+            }
+
         }
 
         [Theory]

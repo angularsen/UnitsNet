@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Permeability", quantityInfo.Name);
             Assert.Equal(QuantityType.Permeability, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<PermeabilityUnit>().Except(new[] {PermeabilityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PermeabilityUnit>().Except(new[] {PermeabilityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -177,6 +177,50 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Permeability.Parse("1 H/m", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.HenriesPerMeter, HenriesPerMeterTolerance);
+                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(Permeability.TryParse("1 H/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.HenriesPerMeter, HenriesPerMeterTolerance);
+                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Permeability.ParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(Permeability.TryParseUnit("H/m", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(PermeabilityUnit.HenryPerMeter, parsedUnit);
+            }
+
         }
 
         [Theory]

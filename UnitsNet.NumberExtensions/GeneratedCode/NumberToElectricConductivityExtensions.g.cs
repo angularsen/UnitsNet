@@ -28,6 +28,18 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
     /// </summary>
     public static class NumberToElectricConductivityExtensions
     {
+        /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        public static ElectricConductivity MicrosiemensPerCentimeter<T>(this T value) =>
+            ElectricConductivity.FromMicrosiemensPerCentimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        public static ElectricConductivity MillisiemensPerCentimeter<T>(this T value) =>
+            ElectricConductivity.FromMillisiemensPerCentimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(UnitsNet.QuantityValue)" />
+        public static ElectricConductivity SiemensPerCentimeter<T>(this T value) =>
+            ElectricConductivity.FromSiemensPerCentimeter(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(UnitsNet.QuantityValue)" />
         public static ElectricConductivity SiemensPerFoot<T>(this T value) =>
             ElectricConductivity.FromSiemensPerFoot(Convert.ToDouble(value));

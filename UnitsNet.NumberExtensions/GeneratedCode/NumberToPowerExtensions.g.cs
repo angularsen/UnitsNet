@@ -84,6 +84,10 @@ namespace UnitsNet.NumberExtensions.NumberToPower
         public static Power MechanicalHorsepower<T>(this T value) =>
             Power.FromMechanicalHorsepower(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Power.FromMegabritishThermalUnitsPerHour(UnitsNet.QuantityValue)" />
+        public static Power MegabritishThermalUnitsPerHour<T>(this T value) =>
+            Power.FromMegabritishThermalUnitsPerHour(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Power.FromMegajoulesPerHour(UnitsNet.QuantityValue)" />
         public static Power MegajoulesPerHour<T>(this T value) =>
             Power.FromMegajoulesPerHour(Convert.ToDouble(value));

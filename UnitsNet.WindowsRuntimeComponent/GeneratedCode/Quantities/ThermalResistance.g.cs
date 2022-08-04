@@ -591,8 +591,8 @@ namespace UnitsNet
             {
                 case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu: return _value * 176.1121482159839;
                 case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie: return _value * 0.0859779507590433;
-                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return _value * 0.0999964777570357;
-                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return _value * 1000.088056074108;
+                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return _value * 0.1;
+                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return _value * 1000.0;
                 case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt: return _value;
                 case ThermalResistanceUnit.SquareMeterKelvinPerWatt: return _value * 1000;
                 default:
@@ -611,8 +611,8 @@ namespace UnitsNet
             {
                 case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu: return baseUnitValue / 176.1121482159839;
                 case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie: return baseUnitValue / 0.0859779507590433;
-                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return baseUnitValue / 0.0999964777570357;
-                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return baseUnitValue / 1000.088056074108;
+                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return baseUnitValue / 0.1;
+                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return baseUnitValue / 1000.0;
                 case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt: return baseUnitValue;
                 case ThermalResistanceUnit.SquareMeterKelvinPerWatt: return baseUnitValue / 1000;
                 default:

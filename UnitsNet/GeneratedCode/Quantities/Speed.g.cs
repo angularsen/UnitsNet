@@ -77,6 +77,7 @@ namespace UnitsNet
                     new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerMinute, "KilometersPerMinutes", BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.KilometerPerSecond, "KilometersPerSecond", BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.Knot, "Knots", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour)),
+                    new UnitInfo<SpeedUnit>(SpeedUnit.Mach, "Mach", BaseUnits.Undefined),
                     new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerHour, "MetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour)),
                     new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerMinute, "MetersPerMinutes", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute)),
                     new UnitInfo<SpeedUnit>(SpeedUnit.MeterPerSecond, "MetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second)),
@@ -294,6 +295,11 @@ namespace UnitsNet
         public double Knots => As(SpeedUnit.Knot);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.Mach"/>
+        /// </summary>
+        public double Mach => As(SpeedUnit.Mach);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerHour"/>
         /// </summary>
         public double MetersPerHour => As(SpeedUnit.MeterPerHour);
@@ -404,6 +410,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.KilometerPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.MeterPerSecond));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.KilometerPerSecond, SpeedUnit.MeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.MeterPerSecond));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.Knot, SpeedUnit.MeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.MeterPerSecond));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.Mach, SpeedUnit.MeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.MeterPerSecond));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerHour, SpeedUnit.MeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.MeterPerSecond));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.MeterPerSecond));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MicrometerPerMinute, SpeedUnit.MeterPerSecond, quantity => quantity.ToUnit(SpeedUnit.MeterPerSecond));
@@ -440,6 +447,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerMinute, quantity => quantity.ToUnit(SpeedUnit.KilometerPerMinute));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerSecond, quantity => quantity.ToUnit(SpeedUnit.KilometerPerSecond));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.Knot, quantity => quantity.ToUnit(SpeedUnit.Knot));
+            unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.Mach, quantity => quantity.ToUnit(SpeedUnit.Mach));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerHour, quantity => quantity.ToUnit(SpeedUnit.MeterPerHour));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerMinute, quantity => quantity.ToUnit(SpeedUnit.MeterPerMinute));
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.MicrometerPerMinute, quantity => quantity.ToUnit(SpeedUnit.MicrometerPerMinute));
@@ -487,6 +495,8 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"км/с"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("en-US"), false, true, new string[]{"kn", "kt", "knot", "knots"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("ru-RU"), false, true, new string[]{"уз."});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("en-US"), false, true, new string[]{"M", "Ma", "MN", "MACH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("ru-RU"), false, true, new string[]{"мах"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"m/h"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"м/ч"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"m/min"});
@@ -690,6 +700,16 @@ namespace UnitsNet
         {
             double value = (double) knots;
             return new Speed(value, SpeedUnit.Knot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Mach"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMach(QuantityValue mach)
+        {
+            double value = (double) mach;
+            return new Speed(value, SpeedUnit.Mach);
         }
 
         /// <summary>
@@ -1311,6 +1331,7 @@ namespace UnitsNet
                 (SpeedUnit.KilometerPerMinute, SpeedUnit.MeterPerSecond) => new Speed((_value / 60) * 1e3d, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.KilometerPerSecond, SpeedUnit.MeterPerSecond) => new Speed((_value) * 1e3d, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.Knot, SpeedUnit.MeterPerSecond) => new Speed(_value * 0.514444, SpeedUnit.MeterPerSecond),
+                (SpeedUnit.Mach, SpeedUnit.MeterPerSecond) => new Speed(_value * 340.29, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MeterPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value / 3600, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MeterPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value / 60, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MicrometerPerMinute, SpeedUnit.MeterPerSecond) => new Speed((_value / 60) * 1e-6d, SpeedUnit.MeterPerSecond),
@@ -1344,6 +1365,7 @@ namespace UnitsNet
                 (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerMinute) => new Speed((_value * 60) / 1e3d, SpeedUnit.KilometerPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerSecond) => new Speed((_value) / 1e3d, SpeedUnit.KilometerPerSecond),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.Knot) => new Speed(_value / 0.514444, SpeedUnit.Knot),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.Mach) => new Speed(_value / 340.29, SpeedUnit.Mach),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerHour) => new Speed(_value * 3600, SpeedUnit.MeterPerHour),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerMinute) => new Speed(_value * 60, SpeedUnit.MeterPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MicrometerPerMinute) => new Speed((_value * 60) / 1e-6d, SpeedUnit.MicrometerPerMinute),

@@ -234,6 +234,11 @@ namespace UnitsNet
         public double MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegabritishThermalUnitPerHour"/>
+        /// </summary>
+        public double MegabritishThermalUnitsPerHour => As(PowerUnit.MegabritishThermalUnitPerHour);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegajoulePerHour"/>
         /// </summary>
         public double MegajoulesPerHour => As(PowerUnit.MegajoulePerHour);
@@ -308,6 +313,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.KilojoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"kJ/h"});
             unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Kilowatt, new CultureInfo("en-US"), false, true, new string[]{"kW"});
             unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MechanicalHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(I)"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MegabritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"MBtu/h", "MBtu/hr"});
             unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MegajoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"MJ/h"});
             unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Megawatt, new CultureInfo("en-US"), false, true, new string[]{"MW"});
             unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MetricHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(M)"});
@@ -499,6 +505,17 @@ namespace UnitsNet
         {
             decimal value = (decimal) mechanicalhorsepower;
             return new Power(value, PowerUnit.MechanicalHorsepower);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegabritishThermalUnitPerHour"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Power FromMegabritishThermalUnitsPerHour(double megabritishthermalunitsperhour)
+        {
+            decimal value = (decimal) megabritishthermalunitsperhour;
+            return new Power(value, PowerUnit.MegabritishThermalUnitPerHour);
         }
 
         /// <summary>
@@ -926,6 +943,7 @@ namespace UnitsNet
                 case PowerUnit.KilojoulePerHour: return (_value / 3600m) * 1e3m;
                 case PowerUnit.Kilowatt: return (_value) * 1e3m;
                 case PowerUnit.MechanicalHorsepower: return _value * 745.69m;
+                case PowerUnit.MegabritishThermalUnitPerHour: return (_value * 0.293071m) * 1e6m;
                 case PowerUnit.MegajoulePerHour: return (_value / 3600m) * 1e6m;
                 case PowerUnit.Megawatt: return (_value) * 1e6m;
                 case PowerUnit.MetricHorsepower: return _value * 735.49875m;
@@ -965,6 +983,7 @@ namespace UnitsNet
                 case PowerUnit.KilojoulePerHour: return (baseUnitValue * 3600m) / 1e3m;
                 case PowerUnit.Kilowatt: return (baseUnitValue) / 1e3m;
                 case PowerUnit.MechanicalHorsepower: return baseUnitValue / 745.69m;
+                case PowerUnit.MegabritishThermalUnitPerHour: return (baseUnitValue / 0.293071m) / 1e6m;
                 case PowerUnit.MegajoulePerHour: return (baseUnitValue * 3600m) / 1e6m;
                 case PowerUnit.Megawatt: return (baseUnitValue) / 1e6m;
                 case PowerUnit.MetricHorsepower: return baseUnitValue / 735.49875m;

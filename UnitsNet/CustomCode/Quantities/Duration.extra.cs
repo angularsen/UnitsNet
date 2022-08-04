@@ -18,7 +18,7 @@ namespace UnitsNet
             if ( Seconds > TimeSpan.MaxValue.TotalSeconds ||
                 Seconds < TimeSpan.MinValue.TotalSeconds )
                 throw new ArgumentOutOfRangeException( nameof( Duration ), "The duration is too large or small to fit in a TimeSpan" );
-            return TimeSpan.FromSeconds( Seconds );
+            return TimeSpan.FromTicks((long)(Seconds * TimeSpan.TicksPerSecond));
         }
 
         /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> plus <see cref="Duration"/>.</summary>

@@ -177,6 +177,11 @@ namespace UnitsNet
         public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.FemtomolePerLiter"/>
+        /// </summary>
+        public double FemtomolesPerLiter => As(MolarityUnit.FemtomolePerLiter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MicromolePerLiter"/>
         /// </summary>
         public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
@@ -216,6 +221,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"cmol/L", "cM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"dmol/L", "dM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"dmol/L", "dM"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.FemtomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"fmol/L", "fM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"µmol/L", "µM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"µmol/L", "µM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mmol/L", "mM"});
@@ -276,6 +282,17 @@ namespace UnitsNet
         {
             double value = (double) decimolesperliter;
             return new Molarity(value, MolarityUnit.DecimolePerLiter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.FemtomolePerLiter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Molarity FromFemtomolesPerLiter(double femtomolesperliter)
+        {
+            double value = (double) femtomolesperliter;
+            return new Molarity(value, MolarityUnit.FemtomolePerLiter);
         }
 
         /// <summary>
@@ -638,6 +655,7 @@ namespace UnitsNet
                 case MolarityUnit.CentimolesPerLiter: return (_value / 1e-3) * 1e-2d;
                 case MolarityUnit.DecimolePerLiter: return (_value / 1e-3) * 1e-1d;
                 case MolarityUnit.DecimolesPerLiter: return (_value / 1e-3) * 1e-1d;
+                case MolarityUnit.FemtomolePerLiter: return (_value / 1e-3) * 1e-15d;
                 case MolarityUnit.MicromolePerLiter: return (_value / 1e-3) * 1e-6d;
                 case MolarityUnit.MicromolesPerLiter: return (_value / 1e-3) * 1e-6d;
                 case MolarityUnit.MillimolePerLiter: return (_value / 1e-3) * 1e-3d;
@@ -668,6 +686,7 @@ namespace UnitsNet
                 case MolarityUnit.CentimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-2d;
                 case MolarityUnit.DecimolePerLiter: return (baseUnitValue * 1e-3) / 1e-1d;
                 case MolarityUnit.DecimolesPerLiter: return (baseUnitValue * 1e-3) / 1e-1d;
+                case MolarityUnit.FemtomolePerLiter: return (baseUnitValue * 1e-3) / 1e-15d;
                 case MolarityUnit.MicromolePerLiter: return (baseUnitValue * 1e-3) / 1e-6d;
                 case MolarityUnit.MicromolesPerLiter: return (baseUnitValue * 1e-3) / 1e-6d;
                 case MolarityUnit.MillimolePerLiter: return (baseUnitValue * 1e-3) / 1e-3d;

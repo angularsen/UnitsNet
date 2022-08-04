@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Illuminance", quantityInfo.Name);
             Assert.Equal(QuantityType.Illuminance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<IlluminanceUnit>().Except(new[] {IlluminanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<IlluminanceUnit>().Except(new[] {IlluminanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -207,6 +207,100 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Illuminance.Parse("1 klx", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilolux, KiloluxTolerance);
+                Assert.Equal(IlluminanceUnit.Kilolux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Illuminance.Parse("1 lx", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Lux, LuxTolerance);
+                Assert.Equal(IlluminanceUnit.Lux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Illuminance.Parse("1 Mlx", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megalux, MegaluxTolerance);
+                Assert.Equal(IlluminanceUnit.Megalux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Illuminance.Parse("1 mlx", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millilux, MilliluxTolerance);
+                Assert.Equal(IlluminanceUnit.Millilux, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(Illuminance.TryParse("1 klx", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilolux, KiloluxTolerance);
+                Assert.Equal(IlluminanceUnit.Kilolux, parsed.Unit);
+            }
+
+            {
+                Assert.True(Illuminance.TryParse("1 lx", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Lux, LuxTolerance);
+                Assert.Equal(IlluminanceUnit.Lux, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Illuminance.ParseUnit("klx", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(IlluminanceUnit.Kilolux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Illuminance.ParseUnit("lx", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(IlluminanceUnit.Lux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Illuminance.ParseUnit("Mlx", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(IlluminanceUnit.Megalux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Illuminance.ParseUnit("mlx", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(IlluminanceUnit.Millilux, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(Illuminance.TryParseUnit("klx", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(IlluminanceUnit.Kilolux, parsedUnit);
+            }
+
+            {
+                Assert.True(Illuminance.TryParseUnit("lx", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(IlluminanceUnit.Lux, parsedUnit);
+            }
+
         }
 
         [Theory]

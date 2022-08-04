@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricInductance", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricInductance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricInductanceUnit>().Except(new[] {ElectricInductanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricInductanceUnit>().Except(new[] {ElectricInductanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -207,6 +207,122 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = ElectricInductance.Parse("1 H", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Henries, HenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Henry, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricInductance.Parse("1 µH", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microhenries, MicrohenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Microhenry, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricInductance.Parse("1 mH", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millihenries, MillihenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Millihenry, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricInductance.Parse("1 nH", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanohenries, NanohenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Nanohenry, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(ElectricInductance.TryParse("1 H", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Henries, HenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Henry, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricInductance.TryParse("1 µH", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microhenries, MicrohenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Microhenry, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricInductance.TryParse("1 mH", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Millihenries, MillihenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Millihenry, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricInductance.TryParse("1 nH", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanohenries, NanohenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Nanohenry, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = ElectricInductance.ParseUnit("H", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricInductanceUnit.Henry, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricInductance.ParseUnit("µH", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricInductanceUnit.Microhenry, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricInductance.ParseUnit("mH", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricInductanceUnit.Millihenry, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricInductance.ParseUnit("nH", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricInductanceUnit.Nanohenry, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(ElectricInductance.TryParseUnit("H", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricInductanceUnit.Henry, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricInductance.TryParseUnit("µH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricInductanceUnit.Microhenry, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricInductance.TryParseUnit("mH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricInductanceUnit.Millihenry, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricInductance.TryParseUnit("nH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricInductanceUnit.Nanohenry, parsedUnit);
+            }
+
         }
 
         [Theory]

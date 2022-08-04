@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("VitaminA", quantityInfo.Name);
             Assert.Equal(QuantityType.VitaminA, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<VitaminAUnit>().Except(new[] {VitaminAUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<VitaminAUnit>().Except(new[] {VitaminAUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -177,6 +177,50 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = VitaminA.Parse("1 IU", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.InternationalUnits, InternationalUnitsTolerance);
+                Assert.Equal(VitaminAUnit.InternationalUnit, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(VitaminA.TryParse("1 IU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.InternationalUnits, InternationalUnitsTolerance);
+                Assert.Equal(VitaminAUnit.InternationalUnit, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = VitaminA.ParseUnit("IU", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(VitaminA.TryParseUnit("IU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VitaminAUnit.InternationalUnit, parsedUnit);
+            }
+
         }
 
         [Theory]

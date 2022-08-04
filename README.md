@@ -1,5 +1,6 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master)
 [![codecov](https://codecov.io/gh/angularsen/UnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/UnitsNet)
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
 ## Units.NET
 
@@ -423,7 +424,7 @@ Stargen is a decades old software to create realistic planets and satellites fro
 
 https://github.com/ebfortin/primoris.universe.stargen
 
-<img src="https://www.harringtonhoists.com/images/harrington_logo3.png" height="35">
+<img src="https://cdn.harringtonhoists.com/assets/harringtonhoists/logo-60629cc144429045d4c85740ab225e219add75b2c5c1e2c444ffa9500347a414.png" height="35">
 
 #### Harrington Hoists, Inc. (A Subsidiary of KITO Americas, Inc.)
 > Harrington Hoists, Inc. is located in Manheim, PA, Elizabethtown, PA, South Holland, IL and Corona, CA. Harrington is a leading manufacturer of manual, electric and air chain hoists as well as wire rope hoists and crane products serving the North American material handling industry.

@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Turbidity", quantityInfo.Name);
             Assert.Equal(QuantityType.Turbidity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<TurbidityUnit>().Except(new[] {TurbidityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<TurbidityUnit>().Except(new[] {TurbidityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -177,6 +177,50 @@ namespace UnitsNet.Tests
             {
                 Assert.Throws<ArgumentException>(AsWithSIUnitSystem);
             }
+        }
+
+        [Fact]
+        public void Parse()
+        {
+            try
+            {
+                var parsed = Turbidity.Parse("1 NTU", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.NTU, NTUTolerance);
+                Assert.Equal(TurbidityUnit.NTU, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParse()
+        {
+            {
+                Assert.True(Turbidity.TryParse("1 NTU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.NTU, NTUTolerance);
+                Assert.Equal(TurbidityUnit.NTU, parsed.Unit);
+            }
+
+        }
+
+        [Fact]
+        public void ParseUnit()
+        {
+            try
+            {
+                var parsedUnit = Turbidity.ParseUnit("NTU", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(TurbidityUnit.NTU, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+        }
+
+        [Fact]
+        public void TryParseUnit()
+        {
+            {
+                Assert.True(Turbidity.TryParseUnit("NTU", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(TurbidityUnit.NTU, parsedUnit);
+            }
+
         }
 
         [Theory]

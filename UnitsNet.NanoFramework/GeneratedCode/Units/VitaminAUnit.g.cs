@@ -26,7 +26,7 @@ namespace UnitsNet.Units
     public enum VitaminAUnit
     {
         Undefined = 0,
-        InternationalUnit,
+        InternationalUnit = 1,
     }
 
     #pragma warning restore 1591
