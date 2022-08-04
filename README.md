@@ -350,15 +350,8 @@ The base unit of any unit should be treated as volatile as we have changed this 
 
 ### <a name="contribute"></a>Want To Contribute?
 
-This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/angularsen/UnitsNet/issues) by creating an issue.
-
-Please read the wiki on [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit).
-
-Generally adding a unit involves adding or modifying [Common/UnitDefinitions/*.json](Common/UnitDefinitions/) files and running [generate-code.bat](generate-code.bat) to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
-
-  * [Fork the repo](https://help.github.com/articles/fork-a-repo)
-  * Do work on branches such as **feature/add-myunit** and **fix/34**
-  * [Create a pull request](https://help.github.com/articles/using-pull-requests)
+- [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
+- Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/UnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/UnitsNet/discussions).
 
 ### <a name="ci"></a>Continuous Integration
 
