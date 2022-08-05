@@ -122,6 +122,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void EnergyDividedByPowerEqualsDuration()
+        {
+            Duration d = Energy.FromKilowattHours(100) / Power.FromKilowatts(20);
+            Assert.Equal(5, d.Hours);
+        }
+
+        [Fact]
         public void EnergyTimesFrequencyEqualsPower()
         {
             Power p = Energy.FromJoules(25) * Frequency.FromPerSecond(5);
