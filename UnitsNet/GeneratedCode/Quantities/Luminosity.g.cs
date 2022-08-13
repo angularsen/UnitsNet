@@ -925,13 +925,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(LuminosityUnit unit, out Luminosity? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // LuminosityUnit -> BaseUnit
                 (LuminosityUnit.Decawatt, LuminosityUnit.Watt) => new Luminosity((_value) * 1e1d, LuminosityUnit.Watt),

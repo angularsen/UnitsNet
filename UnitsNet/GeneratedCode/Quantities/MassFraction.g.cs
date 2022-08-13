@@ -1115,13 +1115,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MassFractionUnit unit, out MassFraction? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // MassFractionUnit -> BaseUnit
                 (MassFractionUnit.CentigramPerGram, MassFractionUnit.DecimalFraction) => new MassFraction((_value) * 1e-2d, MassFractionUnit.DecimalFraction),

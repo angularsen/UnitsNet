@@ -694,13 +694,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(RatioChangeRateUnit unit, out RatioChangeRate? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // RatioChangeRateUnit -> BaseUnit
                 (RatioChangeRateUnit.PercentPerSecond, RatioChangeRateUnit.DecimalFractionPerSecond) => new RatioChangeRate(_value / 1e2, RatioChangeRateUnit.DecimalFractionPerSecond),

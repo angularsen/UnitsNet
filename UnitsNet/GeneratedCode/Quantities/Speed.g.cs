@@ -1307,13 +1307,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(SpeedUnit unit, out Speed? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // SpeedUnit -> BaseUnit
                 (SpeedUnit.CentimeterPerHour, SpeedUnit.MeterPerSecond) => new Speed((_value / 3600) * 1e-2d, SpeedUnit.MeterPerSecond),

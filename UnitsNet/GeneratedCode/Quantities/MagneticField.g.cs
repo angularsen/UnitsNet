@@ -773,13 +773,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MagneticFieldUnit unit, out MagneticField? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // MagneticFieldUnit -> BaseUnit
                 (MagneticFieldUnit.Gauss, MagneticFieldUnit.Tesla) => new MagneticField(_value / 1e4, MagneticFieldUnit.Tesla),

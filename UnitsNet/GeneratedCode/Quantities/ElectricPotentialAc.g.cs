@@ -751,13 +751,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricPotentialAcUnit unit, out ElectricPotentialAc? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // ElectricPotentialAcUnit -> BaseUnit
                 (ElectricPotentialAcUnit.KilovoltAc, ElectricPotentialAcUnit.VoltAc) => new ElectricPotentialAc((_value) * 1e3d, ElectricPotentialAcUnit.VoltAc),
