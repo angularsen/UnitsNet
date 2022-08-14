@@ -362,6 +362,15 @@ namespace UnitsNet.Tests
             Assert.Equal(converted.Unit, unit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(FuelEfficiencyUnit unit)
+        {
+            var quantity = default(FuelEfficiency);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

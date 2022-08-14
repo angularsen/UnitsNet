@@ -340,6 +340,15 @@ namespace UnitsNet.Tests
             Assert.Equal(converted.Unit, unit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(IlluminanceUnit unit)
+        {
+            var quantity = default(Illuminance);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

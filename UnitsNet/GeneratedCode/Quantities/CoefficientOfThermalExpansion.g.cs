@@ -713,13 +713,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(CoefficientOfThermalExpansionUnit unit, out CoefficientOfThermalExpansion? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // CoefficientOfThermalExpansionUnit -> BaseUnit
                 (CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.InverseKelvin) => new CoefficientOfThermalExpansion(_value, CoefficientOfThermalExpansionUnit.InverseKelvin),

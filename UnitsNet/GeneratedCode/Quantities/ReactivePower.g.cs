@@ -732,13 +732,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ReactivePowerUnit unit, out ReactivePower? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // ReactivePowerUnit -> BaseUnit
                 (ReactivePowerUnit.GigavoltampereReactive, ReactivePowerUnit.VoltampereReactive) => new ReactivePower((_value) * 1e9d, ReactivePowerUnit.VoltampereReactive),

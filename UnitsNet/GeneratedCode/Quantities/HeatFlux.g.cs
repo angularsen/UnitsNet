@@ -998,13 +998,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(HeatFluxUnit unit, out HeatFlux? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // HeatFluxUnit -> BaseUnit
                 (HeatFluxUnit.BtuPerHourSquareFoot, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value * 3.15459075, HeatFluxUnit.WattPerSquareMeter),

@@ -566,6 +566,15 @@ namespace UnitsNet.Tests
             Assert.Equal(converted.Unit, unit);
         }
 
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TemperatureChangeRateUnit unit)
+        {
+            var quantity = default(TemperatureChangeRate);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
         [Fact]
         public void ConversionRoundTrip()
         {

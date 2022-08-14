@@ -876,13 +876,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(JerkUnit unit, out Jerk? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // JerkUnit -> BaseUnit
                 (JerkUnit.CentimeterPerSecondCubed, JerkUnit.MeterPerSecondCubed) => new Jerk((_value) * 1e-2d, JerkUnit.MeterPerSecondCubed),

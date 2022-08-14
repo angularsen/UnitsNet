@@ -751,13 +751,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(RotationalStiffnessPerLengthUnit unit, out RotationalStiffnessPerLength? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // RotationalStiffnessPerLengthUnit -> BaseUnit
                 (RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter) => new RotationalStiffnessPerLength((_value) * 1e3d, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter),

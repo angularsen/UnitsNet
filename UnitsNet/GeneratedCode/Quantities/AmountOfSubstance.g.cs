@@ -941,13 +941,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(AmountOfSubstanceUnit unit, out AmountOfSubstance? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // AmountOfSubstanceUnit -> BaseUnit
                 (AmountOfSubstanceUnit.Centimole, AmountOfSubstanceUnit.Mole) => new AmountOfSubstance((_value) * 1e-2d, AmountOfSubstanceUnit.Mole),

@@ -770,13 +770,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(RatioUnit unit, out Ratio? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // RatioUnit -> BaseUnit
                 (RatioUnit.PartPerBillion, RatioUnit.DecimalFraction) => new Ratio(_value / 1e9, RatioUnit.DecimalFraction),

@@ -941,13 +941,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ForceChangeRateUnit unit, out ForceChangeRate? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // ForceChangeRateUnit -> BaseUnit
                 (ForceChangeRateUnit.CentinewtonPerSecond, ForceChangeRateUnit.NewtonPerSecond) => new ForceChangeRate((_value) * 1e-2d, ForceChangeRateUnit.NewtonPerSecond),

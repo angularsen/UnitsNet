@@ -754,13 +754,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(PorousMediumPermeabilityUnit unit, out PorousMediumPermeability? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // PorousMediumPermeabilityUnit -> BaseUnit
                 (PorousMediumPermeabilityUnit.Darcy, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability(_value * 9.869233e-13, PorousMediumPermeabilityUnit.SquareMeter),

@@ -732,13 +732,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricAdmittanceUnit unit, out ElectricAdmittance? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // ElectricAdmittanceUnit -> BaseUnit
                 (ElectricAdmittanceUnit.Microsiemens, ElectricAdmittanceUnit.Siemens) => new ElectricAdmittance((_value) * 1e-6d, ElectricAdmittanceUnit.Siemens),

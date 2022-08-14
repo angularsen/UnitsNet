@@ -50,11 +50,11 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mmHg/s" ],
+          "Abbreviations": [ "mmHg/s" ]
         },
         {
           "Culture": "ru-RU",
-          "Abbreviations": [ "mmHg/с" ],
+          "Abbreviations": [ "mmHg/с" ]
         }
       ]
     },

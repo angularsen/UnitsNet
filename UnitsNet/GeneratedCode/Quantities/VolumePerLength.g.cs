@@ -789,13 +789,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(VolumePerLengthUnit unit, out VolumePerLength? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // VolumePerLengthUnit -> BaseUnit
                 (VolumePerLengthUnit.CubicYardPerFoot, VolumePerLengthUnit.CubicMeterPerMeter) => new VolumePerLength(_value * 2.50838208, VolumePerLengthUnit.CubicMeterPerMeter),

@@ -713,13 +713,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MolarEnergyUnit unit, out MolarEnergy? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // MolarEnergyUnit -> BaseUnit
                 (MolarEnergyUnit.KilojoulePerMole, MolarEnergyUnit.JoulePerMole) => new MolarEnergy((_value) * 1e3d, MolarEnergyUnit.JoulePerMole),

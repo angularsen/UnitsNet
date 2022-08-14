@@ -732,13 +732,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricCurrentGradientUnit unit, out ElectricCurrentGradient? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // ElectricCurrentGradientUnit -> BaseUnit
                 (ElectricCurrentGradientUnit.AmperePerMicrosecond, ElectricCurrentGradientUnit.AmperePerSecond) => new ElectricCurrentGradient(_value * 1E6, ElectricCurrentGradientUnit.AmperePerSecond),

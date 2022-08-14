@@ -875,13 +875,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(DurationUnit unit, out Duration? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // DurationUnit -> BaseUnit
                 (DurationUnit.Day, DurationUnit.Second) => new Duration(_value * 24 * 3600, DurationUnit.Second),

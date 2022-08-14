@@ -1155,13 +1155,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(InformationUnit unit, out Information? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // InformationUnit -> BaseUnit
                 (InformationUnit.Byte, InformationUnit.Bit) => new Information(_value * 8m, InformationUnit.Bit),

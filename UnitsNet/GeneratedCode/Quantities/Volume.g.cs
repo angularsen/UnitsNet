@@ -1691,13 +1691,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(VolumeUnit unit, out Volume? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // VolumeUnit -> BaseUnit
                 (VolumeUnit.AcreFoot, VolumeUnit.CubicMeter) => new Volume(_value / 0.000810714, VolumeUnit.CubicMeter),

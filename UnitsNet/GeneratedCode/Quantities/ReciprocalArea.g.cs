@@ -868,13 +868,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ReciprocalAreaUnit unit, out ReciprocalArea? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // ReciprocalAreaUnit -> BaseUnit
                 (ReciprocalAreaUnit.InverseSquareCentimeter, ReciprocalAreaUnit.InverseSquareMeter) => new ReciprocalArea(_value / 1e-4, ReciprocalAreaUnit.InverseSquareMeter),

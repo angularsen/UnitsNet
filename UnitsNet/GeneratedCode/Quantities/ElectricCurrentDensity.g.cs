@@ -716,13 +716,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricCurrentDensityUnit unit, out ElectricCurrentDensity? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // ElectricCurrentDensityUnit -> BaseUnit
                 (ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter),

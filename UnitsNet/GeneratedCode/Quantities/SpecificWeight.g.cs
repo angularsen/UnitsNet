@@ -982,13 +982,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(SpecificWeightUnit unit, out SpecificWeight? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // SpecificWeightUnit -> BaseUnit
                 (SpecificWeightUnit.KilogramForcePerCubicCentimeter, SpecificWeightUnit.NewtonPerCubicMeter) => new SpecificWeight(_value * 9.80665e6, SpecificWeightUnit.NewtonPerCubicMeter),

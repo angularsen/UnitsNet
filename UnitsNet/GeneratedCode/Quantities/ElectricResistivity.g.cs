@@ -925,13 +925,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(ElectricResistivityUnit unit, out ElectricResistivity? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // ElectricResistivityUnit -> BaseUnit
                 (ElectricResistivityUnit.KiloohmCentimeter, ElectricResistivityUnit.OhmMeter) => new ElectricResistivity((_value / 100) * 1e3d, ElectricResistivityUnit.OhmMeter),

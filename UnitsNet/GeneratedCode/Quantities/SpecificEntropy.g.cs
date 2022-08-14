@@ -827,13 +827,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(SpecificEntropyUnit unit, out SpecificEntropy? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // SpecificEntropyUnit -> BaseUnit
                 (SpecificEntropyUnit.BtuPerPoundFahrenheit, SpecificEntropyUnit.JoulePerKilogramKelvin) => new SpecificEntropy(_value * 4.1868e3, SpecificEntropyUnit.JoulePerKilogramKelvin),

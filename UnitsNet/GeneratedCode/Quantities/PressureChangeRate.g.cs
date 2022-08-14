@@ -936,13 +936,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(PressureChangeRateUnit unit, out PressureChangeRate? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // PressureChangeRateUnit -> BaseUnit
                 (PressureChangeRateUnit.AtmospherePerSecond, PressureChangeRateUnit.PascalPerSecond) => new PressureChangeRate(_value * 1.01325 * 1e5, PressureChangeRateUnit.PascalPerSecond),

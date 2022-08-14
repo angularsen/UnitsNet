@@ -1632,13 +1632,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(DensityUnit unit, out Density? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // DensityUnit -> BaseUnit
                 (DensityUnit.CentigramPerDeciliter, DensityUnit.KilogramPerCubicMeter) => new Density((_value / 1e-1) * 1e-2d, DensityUnit.KilogramPerCubicMeter),

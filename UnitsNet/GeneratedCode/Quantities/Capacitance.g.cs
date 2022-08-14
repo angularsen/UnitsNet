@@ -792,13 +792,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(CapacitanceUnit unit, out Capacitance? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // CapacitanceUnit -> BaseUnit
                 (CapacitanceUnit.Kilofarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e3d, CapacitanceUnit.Farad),

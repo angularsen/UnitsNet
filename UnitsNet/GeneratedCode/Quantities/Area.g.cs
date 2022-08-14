@@ -949,13 +949,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(AreaUnit unit, out Area? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // AreaUnit -> BaseUnit
                 (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(_value * 4046.85642, AreaUnit.SquareMeter),

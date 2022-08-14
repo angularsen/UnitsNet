@@ -702,13 +702,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(LevelUnit unit, out Level? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // LevelUnit -> BaseUnit
                 (LevelUnit.Neper, LevelUnit.Decibel) => new Level((1 / 0.115129254) * _value, LevelUnit.Decibel),

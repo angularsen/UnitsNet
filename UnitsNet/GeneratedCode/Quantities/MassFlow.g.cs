@@ -1285,13 +1285,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MassFlowUnit unit, out MassFlow? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // MassFlowUnit -> BaseUnit
                 (MassFlowUnit.CentigramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e-2d, MassFlowUnit.GramPerSecond),

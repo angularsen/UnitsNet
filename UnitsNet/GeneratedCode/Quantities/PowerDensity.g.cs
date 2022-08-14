@@ -1492,13 +1492,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(PowerDensityUnit unit, out PowerDensity? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // PowerDensityUnit -> BaseUnit
                 (PowerDensityUnit.DecawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 3.531466672148859e1) * 1e1d, PowerDensityUnit.WattPerCubicMeter),

@@ -1166,13 +1166,13 @@ namespace UnitsNet
         /// <returns>True if successful, otherwise false.</returns>
         private bool TryToUnit(MassUnit unit, out Mass? converted)
         {
-            if (_unit == unit)
+            if (Unit == unit)
             {
                 converted = this;
                 return true;
             }
 
-            converted = (_unit, unit) switch
+            converted = (Unit, unit) switch
             {
                 // MassUnit -> BaseUnit
                 (MassUnit.Centigram, MassUnit.Kilogram) => new Mass((_value / 1e3) * 1e-2d, MassUnit.Kilogram),
