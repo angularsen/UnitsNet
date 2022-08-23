@@ -24,7 +24,7 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> times <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption bsfc)
+        public static QuantityValue operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption bsfc)
         {
             return specificEnergy.JoulesPerKilogram * bsfc.KilogramsPerJoule;
         }

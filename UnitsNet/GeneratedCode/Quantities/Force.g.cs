@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     In physics, a force is any influence that causes an object to undergo a certain change, either concerning its movement, direction, or geometrical construction. In other words, a force can cause an object with mass to change its velocity (which includes to begin moving from a state of rest), i.e., to accelerate, or a flexible object to deform, or both. Force can also be described by intuitive concepts such as a push or a pull. A force has both magnitude and direction, making it a vector quantity. It is measured in the SI unit of newtons and represented by the symbol F.
     /// </summary>
     [DataContract]
-    public partial struct Force : IQuantity<ForceUnit>, IComparable, IComparable<Force>, IConvertible, IFormattable
+    public partial struct Force : IQuantity<ForceUnit>, IEquatable<Force>, IComparable, IComparable<Force>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -86,9 +86,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Force(double value, ForceUnit unit)
+        public Force(QuantityValue value, ForceUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -100,14 +100,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Force(double value, UnitSystem unitSystem)
+        public Force(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -148,7 +148,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public QuantityValue Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -171,79 +174,79 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Decanewton"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.Decanewton"/>
         /// </summary>
-        public double Decanewtons => As(ForceUnit.Decanewton);
+        public QuantityValue Decanewtons => As(ForceUnit.Decanewton);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Dyn"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.Dyn"/>
         /// </summary>
-        public double Dyne => As(ForceUnit.Dyn);
+        public QuantityValue Dyne => As(ForceUnit.Dyn);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilogramForce"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.KilogramForce"/>
         /// </summary>
-        public double KilogramsForce => As(ForceUnit.KilogramForce);
+        public QuantityValue KilogramsForce => As(ForceUnit.KilogramForce);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Kilonewton"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.Kilonewton"/>
         /// </summary>
-        public double Kilonewtons => As(ForceUnit.Kilonewton);
+        public QuantityValue Kilonewtons => As(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KiloPond"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.KiloPond"/>
         /// </summary>
-        public double KiloPonds => As(ForceUnit.KiloPond);
+        public QuantityValue KiloPonds => As(ForceUnit.KiloPond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
         /// </summary>
-        public double KilopoundsForce => As(ForceUnit.KilopoundForce);
+        public QuantityValue KilopoundsForce => As(ForceUnit.KilopoundForce);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Meganewton"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.Meganewton"/>
         /// </summary>
-        public double Meganewtons => As(ForceUnit.Meganewton);
+        public QuantityValue Meganewtons => As(ForceUnit.Meganewton);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Micronewton"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.Micronewton"/>
         /// </summary>
-        public double Micronewtons => As(ForceUnit.Micronewton);
+        public QuantityValue Micronewtons => As(ForceUnit.Micronewton);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Millinewton"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.Millinewton"/>
         /// </summary>
-        public double Millinewtons => As(ForceUnit.Millinewton);
+        public QuantityValue Millinewtons => As(ForceUnit.Millinewton);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Newton"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.Newton"/>
         /// </summary>
-        public double Newtons => As(ForceUnit.Newton);
+        public QuantityValue Newtons => As(ForceUnit.Newton);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.OunceForce"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.OunceForce"/>
         /// </summary>
-        public double OunceForce => As(ForceUnit.OunceForce);
+        public QuantityValue OunceForce => As(ForceUnit.OunceForce);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Poundal"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.Poundal"/>
         /// </summary>
-        public double Poundals => As(ForceUnit.Poundal);
+        public QuantityValue Poundals => As(ForceUnit.Poundal);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.PoundForce"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.PoundForce"/>
         /// </summary>
-        public double PoundsForce => As(ForceUnit.PoundForce);
+        public QuantityValue PoundsForce => As(ForceUnit.PoundForce);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.ShortTonForce"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.ShortTonForce"/>
         /// </summary>
-        public double ShortTonsForce => As(ForceUnit.ShortTonForce);
+        public QuantityValue ShortTonsForce => As(ForceUnit.ShortTonForce);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.TonneForce"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ForceUnit.TonneForce"/>
         /// </summary>
-        public double TonnesForce => As(ForceUnit.TonneForce);
+        public QuantityValue TonnesForce => As(ForceUnit.TonneForce);
 
         #endregion
 
@@ -354,7 +357,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromDecanewtons(QuantityValue decanewtons)
         {
-            double value = (double) decanewtons;
+            QuantityValue value = (QuantityValue) decanewtons;
             return new Force(value, ForceUnit.Decanewton);
         }
 
@@ -364,7 +367,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromDyne(QuantityValue dyne)
         {
-            double value = (double) dyne;
+            QuantityValue value = (QuantityValue) dyne;
             return new Force(value, ForceUnit.Dyn);
         }
 
@@ -374,7 +377,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromKilogramsForce(QuantityValue kilogramsforce)
         {
-            double value = (double) kilogramsforce;
+            QuantityValue value = (QuantityValue) kilogramsforce;
             return new Force(value, ForceUnit.KilogramForce);
         }
 
@@ -384,7 +387,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromKilonewtons(QuantityValue kilonewtons)
         {
-            double value = (double) kilonewtons;
+            QuantityValue value = (QuantityValue) kilonewtons;
             return new Force(value, ForceUnit.Kilonewton);
         }
 
@@ -394,7 +397,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromKiloPonds(QuantityValue kiloponds)
         {
-            double value = (double) kiloponds;
+            QuantityValue value = (QuantityValue) kiloponds;
             return new Force(value, ForceUnit.KiloPond);
         }
 
@@ -404,7 +407,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromKilopoundsForce(QuantityValue kilopoundsforce)
         {
-            double value = (double) kilopoundsforce;
+            QuantityValue value = (QuantityValue) kilopoundsforce;
             return new Force(value, ForceUnit.KilopoundForce);
         }
 
@@ -414,7 +417,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromMeganewtons(QuantityValue meganewtons)
         {
-            double value = (double) meganewtons;
+            QuantityValue value = (QuantityValue) meganewtons;
             return new Force(value, ForceUnit.Meganewton);
         }
 
@@ -424,7 +427,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromMicronewtons(QuantityValue micronewtons)
         {
-            double value = (double) micronewtons;
+            QuantityValue value = (QuantityValue) micronewtons;
             return new Force(value, ForceUnit.Micronewton);
         }
 
@@ -434,7 +437,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromMillinewtons(QuantityValue millinewtons)
         {
-            double value = (double) millinewtons;
+            QuantityValue value = (QuantityValue) millinewtons;
             return new Force(value, ForceUnit.Millinewton);
         }
 
@@ -444,7 +447,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromNewtons(QuantityValue newtons)
         {
-            double value = (double) newtons;
+            QuantityValue value = (QuantityValue) newtons;
             return new Force(value, ForceUnit.Newton);
         }
 
@@ -454,7 +457,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromOunceForce(QuantityValue ounceforce)
         {
-            double value = (double) ounceforce;
+            QuantityValue value = (QuantityValue) ounceforce;
             return new Force(value, ForceUnit.OunceForce);
         }
 
@@ -464,7 +467,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromPoundals(QuantityValue poundals)
         {
-            double value = (double) poundals;
+            QuantityValue value = (QuantityValue) poundals;
             return new Force(value, ForceUnit.Poundal);
         }
 
@@ -474,7 +477,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromPoundsForce(QuantityValue poundsforce)
         {
-            double value = (double) poundsforce;
+            QuantityValue value = (QuantityValue) poundsforce;
             return new Force(value, ForceUnit.PoundForce);
         }
 
@@ -484,7 +487,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromShortTonsForce(QuantityValue shorttonsforce)
         {
-            double value = (double) shorttonsforce;
+            QuantityValue value = (QuantityValue) shorttonsforce;
             return new Force(value, ForceUnit.ShortTonForce);
         }
 
@@ -494,7 +497,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Force FromTonnesForce(QuantityValue tonnesforce)
         {
-            double value = (double) tonnesforce;
+            QuantityValue value = (QuantityValue) tonnesforce;
             return new Force(value, ForceUnit.TonneForce);
         }
 
@@ -506,7 +509,7 @@ namespace UnitsNet
         /// <returns>Force unit value.</returns>
         public static Force From(QuantityValue value, ForceUnit fromUnit)
         {
-            return new Force((double)value, fromUnit);
+            return new Force((QuantityValue)value, fromUnit);
         }
 
         #endregion
@@ -676,25 +679,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Force"/> from multiplying value and <see cref="Force"/>.</summary>
-        public static Force operator *(double left, Force right)
+        public static Force operator *(QuantityValue left, Force right)
         {
             return new Force(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Force"/> from multiplying value and <see cref="Force"/>.</summary>
-        public static Force operator *(Force left, double right)
+        public static Force operator *(Force left, QuantityValue right)
         {
             return new Force(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Force"/> from dividing <see cref="Force"/> by value.</summary>
-        public static Force operator /(Force left, double right)
+        public static Force operator /(Force left, QuantityValue right)
         {
             return new Force(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Force"/> by <see cref="Force"/>.</summary>
-        public static double operator /(Force left, Force right)
+        public static QuantityValue operator /(Force left, Force right)
         {
             return left.Newtons / right.Newtons;
         }
@@ -727,6 +730,19 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Force, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Force left, Force right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Force, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Force left, Force right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -739,7 +755,29 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Force other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Force, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is Force objForce))
+                return false;
+            return Equals(objForce);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Force, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Force other)
+        {
+            if (Value.IsDecimal)
+                return other.Value.Equals(this.GetValueAs(other.Unit));
+            if (other.Value.IsDecimal)
+                return Value.Equals(other.GetValueAs(this.Unit));
+            return this.Unit == other.Unit && this.Value.Equals(other.Value);
         }
 
         /// <summary>
@@ -782,13 +820,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Force other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Force other, QuantityValue tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            QuantityValue thisValue = this.Value;
+            QuantityValue otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -799,7 +837,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Force.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Info.Name.GetHashCode();
         }
 
         #endregion
@@ -810,17 +848,16 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ForceUnit unit)
+        public QuantityValue As(ForceUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -835,12 +872,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
-            if (!(unit is ForceUnit unitAsForceUnit))
+            if (!(unit is ForceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
-            return As(unitAsForceUnit);
+            return (QuantityValue)As(typedUnit);
         }
 
         /// <summary>
@@ -872,7 +909,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Force)converted;
             }
-            else if (Unit != BaseUnit)
+            else if (Enum.IsDefined(typeof(ForceUnit), unit))
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -880,17 +917,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is ForceUnit unitAsForceUnit))
+            if (!(unit is ForceUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsForceUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -917,10 +954,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private double GetValueAs(ForceUnit unit)
+        private QuantityValue GetValueAs(ForceUnit unit)
         {
             var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return (QuantityValue)converted.Value;
         }
 
         #endregion

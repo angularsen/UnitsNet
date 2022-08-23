@@ -24,7 +24,7 @@ namespace UnitsNet
                     "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
 
             // E(dBV) = 20*log10(value(V)/reference(V))
-            _value = 20 * Math.Log10(voltage.Volts / 1);
+            _value = 20 * Math.Log10((double)(voltage.Volts / 1));
             _unit = AmplitudeRatioUnit.DecibelVolt;
         }
 
@@ -40,7 +40,7 @@ namespace UnitsNet
         public ElectricPotential ToElectricPotential()
         {
             // E(V) = 1V * 10^(E(dBV)/20)
-            return ElectricPotential.FromVolts( Math.Pow( 10, DecibelVolts / 20 ) );
+            return ElectricPotential.FromVolts( Math.Pow( 10, (double)(DecibelVolts / 20) ) );
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace UnitsNet
         public PowerRatio ToPowerRatio( ElectricResistance impedance )
         {
             // P(dBW) = E(dBV) - 10*log10(Z(Ω)/1)
-            return PowerRatio.FromDecibelWatts( DecibelVolts - 10 * Math.Log10( impedance.Ohms / 1 ) );
+            return PowerRatio.FromDecibelWatts( DecibelVolts - 10 * Math.Log10( (double)(impedance.Ohms / 1) ) );
         }
 
         #region Static Methods

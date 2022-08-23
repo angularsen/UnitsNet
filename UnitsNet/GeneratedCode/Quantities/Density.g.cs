@@ -38,13 +38,13 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Density
     /// </remarks>
     [DataContract]
-    public partial struct Density : IQuantity<DensityUnit>, IComparable, IComparable<Density>, IConvertible, IFormattable
+    public partial struct Density : IQuantity<DensityUnit>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -125,9 +125,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Density(double value, DensityUnit unit)
+        public Density(QuantityValue value, DensityUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -139,14 +139,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Density(double value, UnitSystem unitSystem)
+        public Density(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -187,7 +187,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public QuantityValue Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -210,259 +213,259 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerDeciliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.CentigramPerDeciliter"/>
         /// </summary>
-        public double CentigramsPerDeciLiter => As(DensityUnit.CentigramPerDeciliter);
+        public QuantityValue CentigramsPerDeciLiter => As(DensityUnit.CentigramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerLiter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.CentigramPerLiter"/>
         /// </summary>
-        public double CentigramsPerLiter => As(DensityUnit.CentigramPerLiter);
+        public QuantityValue CentigramsPerLiter => As(DensityUnit.CentigramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.CentigramPerMilliliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.CentigramPerMilliliter"/>
         /// </summary>
-        public double CentigramsPerMilliliter => As(DensityUnit.CentigramPerMilliliter);
+        public QuantityValue CentigramsPerMilliliter => As(DensityUnit.CentigramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerDeciliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.DecigramPerDeciliter"/>
         /// </summary>
-        public double DecigramsPerDeciLiter => As(DensityUnit.DecigramPerDeciliter);
+        public QuantityValue DecigramsPerDeciLiter => As(DensityUnit.DecigramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerLiter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.DecigramPerLiter"/>
         /// </summary>
-        public double DecigramsPerLiter => As(DensityUnit.DecigramPerLiter);
+        public QuantityValue DecigramsPerLiter => As(DensityUnit.DecigramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.DecigramPerMilliliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.DecigramPerMilliliter"/>
         /// </summary>
-        public double DecigramsPerMilliliter => As(DensityUnit.DecigramPerMilliliter);
+        public QuantityValue DecigramsPerMilliliter => As(DensityUnit.DecigramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicCentimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.GramPerCubicCentimeter"/>
         /// </summary>
-        public double GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
+        public QuantityValue GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicFoot"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.GramPerCubicFoot"/>
         /// </summary>
-        public double GramsPerCubicFoot => As(DensityUnit.GramPerCubicFoot);
+        public QuantityValue GramsPerCubicFoot => As(DensityUnit.GramPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicInch"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.GramPerCubicInch"/>
         /// </summary>
-        public double GramsPerCubicInch => As(DensityUnit.GramPerCubicInch);
+        public QuantityValue GramsPerCubicInch => As(DensityUnit.GramPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.GramPerCubicMeter"/>
         /// </summary>
-        public double GramsPerCubicMeter => As(DensityUnit.GramPerCubicMeter);
+        public QuantityValue GramsPerCubicMeter => As(DensityUnit.GramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerCubicMillimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.GramPerCubicMillimeter"/>
         /// </summary>
-        public double GramsPerCubicMillimeter => As(DensityUnit.GramPerCubicMillimeter);
+        public QuantityValue GramsPerCubicMillimeter => As(DensityUnit.GramPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerDeciliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.GramPerDeciliter"/>
         /// </summary>
-        public double GramsPerDeciLiter => As(DensityUnit.GramPerDeciliter);
+        public QuantityValue GramsPerDeciLiter => As(DensityUnit.GramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerLiter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.GramPerLiter"/>
         /// </summary>
-        public double GramsPerLiter => As(DensityUnit.GramPerLiter);
+        public QuantityValue GramsPerLiter => As(DensityUnit.GramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.GramPerMilliliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.GramPerMilliliter"/>
         /// </summary>
-        public double GramsPerMilliliter => As(DensityUnit.GramPerMilliliter);
+        public QuantityValue GramsPerMilliliter => As(DensityUnit.GramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicCentimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicCentimeter"/>
         /// </summary>
-        public double KilogramsPerCubicCentimeter => As(DensityUnit.KilogramPerCubicCentimeter);
+        public QuantityValue KilogramsPerCubicCentimeter => As(DensityUnit.KilogramPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicMeter"/>
         /// </summary>
-        public double KilogramsPerCubicMeter => As(DensityUnit.KilogramPerCubicMeter);
+        public QuantityValue KilogramsPerCubicMeter => As(DensityUnit.KilogramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicMillimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.KilogramPerCubicMillimeter"/>
         /// </summary>
-        public double KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
+        public QuantityValue KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilogramPerLiter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.KilogramPerLiter"/>
         /// </summary>
-        public double KilogramsPerLiter => As(DensityUnit.KilogramPerLiter);
+        public QuantityValue KilogramsPerLiter => As(DensityUnit.KilogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicFoot"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicFoot"/>
         /// </summary>
-        public double KilopoundsPerCubicFoot => As(DensityUnit.KilopoundPerCubicFoot);
+        public QuantityValue KilopoundsPerCubicFoot => As(DensityUnit.KilopoundPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicInch"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.KilopoundPerCubicInch"/>
         /// </summary>
-        public double KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
+        public QuantityValue KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerCubicMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.MicrogramPerCubicMeter"/>
         /// </summary>
-        public double MicrogramsPerCubicMeter => As(DensityUnit.MicrogramPerCubicMeter);
+        public QuantityValue MicrogramsPerCubicMeter => As(DensityUnit.MicrogramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerDeciliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.MicrogramPerDeciliter"/>
         /// </summary>
-        public double MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
+        public QuantityValue MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerLiter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.MicrogramPerLiter"/>
         /// </summary>
-        public double MicrogramsPerLiter => As(DensityUnit.MicrogramPerLiter);
+        public QuantityValue MicrogramsPerLiter => As(DensityUnit.MicrogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MicrogramPerMilliliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.MicrogramPerMilliliter"/>
         /// </summary>
-        public double MicrogramsPerMilliliter => As(DensityUnit.MicrogramPerMilliliter);
+        public QuantityValue MicrogramsPerMilliliter => As(DensityUnit.MicrogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerCubicMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.MilligramPerCubicMeter"/>
         /// </summary>
-        public double MilligramsPerCubicMeter => As(DensityUnit.MilligramPerCubicMeter);
+        public QuantityValue MilligramsPerCubicMeter => As(DensityUnit.MilligramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerDeciliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.MilligramPerDeciliter"/>
         /// </summary>
-        public double MilligramsPerDeciLiter => As(DensityUnit.MilligramPerDeciliter);
+        public QuantityValue MilligramsPerDeciLiter => As(DensityUnit.MilligramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerLiter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.MilligramPerLiter"/>
         /// </summary>
-        public double MilligramsPerLiter => As(DensityUnit.MilligramPerLiter);
+        public QuantityValue MilligramsPerLiter => As(DensityUnit.MilligramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.MilligramPerMilliliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.MilligramPerMilliliter"/>
         /// </summary>
-        public double MilligramsPerMilliliter => As(DensityUnit.MilligramPerMilliliter);
+        public QuantityValue MilligramsPerMilliliter => As(DensityUnit.MilligramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerDeciliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.NanogramPerDeciliter"/>
         /// </summary>
-        public double NanogramsPerDeciLiter => As(DensityUnit.NanogramPerDeciliter);
+        public QuantityValue NanogramsPerDeciLiter => As(DensityUnit.NanogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerLiter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.NanogramPerLiter"/>
         /// </summary>
-        public double NanogramsPerLiter => As(DensityUnit.NanogramPerLiter);
+        public QuantityValue NanogramsPerLiter => As(DensityUnit.NanogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.NanogramPerMilliliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.NanogramPerMilliliter"/>
         /// </summary>
-        public double NanogramsPerMilliliter => As(DensityUnit.NanogramPerMilliliter);
+        public QuantityValue NanogramsPerMilliliter => As(DensityUnit.NanogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerDeciliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PicogramPerDeciliter"/>
         /// </summary>
-        public double PicogramsPerDeciLiter => As(DensityUnit.PicogramPerDeciliter);
+        public QuantityValue PicogramsPerDeciLiter => As(DensityUnit.PicogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerLiter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PicogramPerLiter"/>
         /// </summary>
-        public double PicogramsPerLiter => As(DensityUnit.PicogramPerLiter);
+        public QuantityValue PicogramsPerLiter => As(DensityUnit.PicogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PicogramPerMilliliter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PicogramPerMilliliter"/>
         /// </summary>
-        public double PicogramsPerMilliliter => As(DensityUnit.PicogramPerMilliliter);
+        public QuantityValue PicogramsPerMilliliter => As(DensityUnit.PicogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicCentimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PoundPerCubicCentimeter"/>
         /// </summary>
-        public double PoundsPerCubicCentimeter => As(DensityUnit.PoundPerCubicCentimeter);
+        public QuantityValue PoundsPerCubicCentimeter => As(DensityUnit.PoundPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicFoot"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PoundPerCubicFoot"/>
         /// </summary>
-        public double PoundsPerCubicFoot => As(DensityUnit.PoundPerCubicFoot);
+        public QuantityValue PoundsPerCubicFoot => As(DensityUnit.PoundPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicInch"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PoundPerCubicInch"/>
         /// </summary>
-        public double PoundsPerCubicInch => As(DensityUnit.PoundPerCubicInch);
+        public QuantityValue PoundsPerCubicInch => As(DensityUnit.PoundPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMeter"/>
         /// </summary>
-        public double PoundsPerCubicMeter => As(DensityUnit.PoundPerCubicMeter);
+        public QuantityValue PoundsPerCubicMeter => As(DensityUnit.PoundPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMillimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PoundPerCubicMillimeter"/>
         /// </summary>
-        public double PoundsPerCubicMillimeter => As(DensityUnit.PoundPerCubicMillimeter);
+        public QuantityValue PoundsPerCubicMillimeter => As(DensityUnit.PoundPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerImperialGallon"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PoundPerImperialGallon"/>
         /// </summary>
-        public double PoundsPerImperialGallon => As(DensityUnit.PoundPerImperialGallon);
+        public QuantityValue PoundsPerImperialGallon => As(DensityUnit.PoundPerImperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.PoundPerUSGallon"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.PoundPerUSGallon"/>
         /// </summary>
-        public double PoundsPerUSGallon => As(DensityUnit.PoundPerUSGallon);
+        public QuantityValue PoundsPerUSGallon => As(DensityUnit.PoundPerUSGallon);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicCentimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.SlugPerCubicCentimeter"/>
         /// </summary>
-        public double SlugsPerCubicCentimeter => As(DensityUnit.SlugPerCubicCentimeter);
+        public QuantityValue SlugsPerCubicCentimeter => As(DensityUnit.SlugPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicFoot"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.SlugPerCubicFoot"/>
         /// </summary>
-        public double SlugsPerCubicFoot => As(DensityUnit.SlugPerCubicFoot);
+        public QuantityValue SlugsPerCubicFoot => As(DensityUnit.SlugPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicInch"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.SlugPerCubicInch"/>
         /// </summary>
-        public double SlugsPerCubicInch => As(DensityUnit.SlugPerCubicInch);
+        public QuantityValue SlugsPerCubicInch => As(DensityUnit.SlugPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.SlugPerCubicMeter"/>
         /// </summary>
-        public double SlugsPerCubicMeter => As(DensityUnit.SlugPerCubicMeter);
+        public QuantityValue SlugsPerCubicMeter => As(DensityUnit.SlugPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.SlugPerCubicMillimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.SlugPerCubicMillimeter"/>
         /// </summary>
-        public double SlugsPerCubicMillimeter => As(DensityUnit.SlugPerCubicMillimeter);
+        public QuantityValue SlugsPerCubicMillimeter => As(DensityUnit.SlugPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicCentimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.TonnePerCubicCentimeter"/>
         /// </summary>
-        public double TonnesPerCubicCentimeter => As(DensityUnit.TonnePerCubicCentimeter);
+        public QuantityValue TonnesPerCubicCentimeter => As(DensityUnit.TonnePerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicFoot"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.TonnePerCubicFoot"/>
         /// </summary>
-        public double TonnesPerCubicFoot => As(DensityUnit.TonnePerCubicFoot);
+        public QuantityValue TonnesPerCubicFoot => As(DensityUnit.TonnePerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicInch"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.TonnePerCubicInch"/>
         /// </summary>
-        public double TonnesPerCubicInch => As(DensityUnit.TonnePerCubicInch);
+        public QuantityValue TonnesPerCubicInch => As(DensityUnit.TonnePerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.TonnePerCubicMeter"/>
         /// </summary>
-        public double TonnesPerCubicMeter => As(DensityUnit.TonnePerCubicMeter);
+        public QuantityValue TonnesPerCubicMeter => As(DensityUnit.TonnePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DensityUnit.TonnePerCubicMillimeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DensityUnit.TonnePerCubicMillimeter"/>
         /// </summary>
-        public double TonnesPerCubicMillimeter => As(DensityUnit.TonnePerCubicMillimeter);
+        public QuantityValue TonnesPerCubicMillimeter => As(DensityUnit.TonnePerCubicMillimeter);
 
         #endregion
 
@@ -672,7 +675,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromCentigramsPerDeciLiter(QuantityValue centigramsperdeciliter)
         {
-            double value = (double) centigramsperdeciliter;
+            QuantityValue value = (QuantityValue) centigramsperdeciliter;
             return new Density(value, DensityUnit.CentigramPerDeciliter);
         }
 
@@ -682,7 +685,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromCentigramsPerLiter(QuantityValue centigramsperliter)
         {
-            double value = (double) centigramsperliter;
+            QuantityValue value = (QuantityValue) centigramsperliter;
             return new Density(value, DensityUnit.CentigramPerLiter);
         }
 
@@ -692,7 +695,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromCentigramsPerMilliliter(QuantityValue centigramspermilliliter)
         {
-            double value = (double) centigramspermilliliter;
+            QuantityValue value = (QuantityValue) centigramspermilliliter;
             return new Density(value, DensityUnit.CentigramPerMilliliter);
         }
 
@@ -702,7 +705,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerDeciLiter(QuantityValue decigramsperdeciliter)
         {
-            double value = (double) decigramsperdeciliter;
+            QuantityValue value = (QuantityValue) decigramsperdeciliter;
             return new Density(value, DensityUnit.DecigramPerDeciliter);
         }
 
@@ -712,7 +715,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerLiter(QuantityValue decigramsperliter)
         {
-            double value = (double) decigramsperliter;
+            QuantityValue value = (QuantityValue) decigramsperliter;
             return new Density(value, DensityUnit.DecigramPerLiter);
         }
 
@@ -722,7 +725,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromDecigramsPerMilliliter(QuantityValue decigramspermilliliter)
         {
-            double value = (double) decigramspermilliliter;
+            QuantityValue value = (QuantityValue) decigramspermilliliter;
             return new Density(value, DensityUnit.DecigramPerMilliliter);
         }
 
@@ -732,7 +735,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicCentimeter(QuantityValue gramspercubiccentimeter)
         {
-            double value = (double) gramspercubiccentimeter;
+            QuantityValue value = (QuantityValue) gramspercubiccentimeter;
             return new Density(value, DensityUnit.GramPerCubicCentimeter);
         }
 
@@ -742,7 +745,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicFoot(QuantityValue gramspercubicfoot)
         {
-            double value = (double) gramspercubicfoot;
+            QuantityValue value = (QuantityValue) gramspercubicfoot;
             return new Density(value, DensityUnit.GramPerCubicFoot);
         }
 
@@ -752,7 +755,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicInch(QuantityValue gramspercubicinch)
         {
-            double value = (double) gramspercubicinch;
+            QuantityValue value = (QuantityValue) gramspercubicinch;
             return new Density(value, DensityUnit.GramPerCubicInch);
         }
 
@@ -762,7 +765,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicMeter(QuantityValue gramspercubicmeter)
         {
-            double value = (double) gramspercubicmeter;
+            QuantityValue value = (QuantityValue) gramspercubicmeter;
             return new Density(value, DensityUnit.GramPerCubicMeter);
         }
 
@@ -772,7 +775,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerCubicMillimeter(QuantityValue gramspercubicmillimeter)
         {
-            double value = (double) gramspercubicmillimeter;
+            QuantityValue value = (QuantityValue) gramspercubicmillimeter;
             return new Density(value, DensityUnit.GramPerCubicMillimeter);
         }
 
@@ -782,7 +785,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerDeciLiter(QuantityValue gramsperdeciliter)
         {
-            double value = (double) gramsperdeciliter;
+            QuantityValue value = (QuantityValue) gramsperdeciliter;
             return new Density(value, DensityUnit.GramPerDeciliter);
         }
 
@@ -792,7 +795,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerLiter(QuantityValue gramsperliter)
         {
-            double value = (double) gramsperliter;
+            QuantityValue value = (QuantityValue) gramsperliter;
             return new Density(value, DensityUnit.GramPerLiter);
         }
 
@@ -802,7 +805,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromGramsPerMilliliter(QuantityValue gramspermilliliter)
         {
-            double value = (double) gramspermilliliter;
+            QuantityValue value = (QuantityValue) gramspermilliliter;
             return new Density(value, DensityUnit.GramPerMilliliter);
         }
 
@@ -812,7 +815,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicCentimeter(QuantityValue kilogramspercubiccentimeter)
         {
-            double value = (double) kilogramspercubiccentimeter;
+            QuantityValue value = (QuantityValue) kilogramspercubiccentimeter;
             return new Density(value, DensityUnit.KilogramPerCubicCentimeter);
         }
 
@@ -822,7 +825,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicMeter(QuantityValue kilogramspercubicmeter)
         {
-            double value = (double) kilogramspercubicmeter;
+            QuantityValue value = (QuantityValue) kilogramspercubicmeter;
             return new Density(value, DensityUnit.KilogramPerCubicMeter);
         }
 
@@ -832,7 +835,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerCubicMillimeter(QuantityValue kilogramspercubicmillimeter)
         {
-            double value = (double) kilogramspercubicmillimeter;
+            QuantityValue value = (QuantityValue) kilogramspercubicmillimeter;
             return new Density(value, DensityUnit.KilogramPerCubicMillimeter);
         }
 
@@ -842,7 +845,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilogramsPerLiter(QuantityValue kilogramsperliter)
         {
-            double value = (double) kilogramsperliter;
+            QuantityValue value = (QuantityValue) kilogramsperliter;
             return new Density(value, DensityUnit.KilogramPerLiter);
         }
 
@@ -852,7 +855,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilopoundsPerCubicFoot(QuantityValue kilopoundspercubicfoot)
         {
-            double value = (double) kilopoundspercubicfoot;
+            QuantityValue value = (QuantityValue) kilopoundspercubicfoot;
             return new Density(value, DensityUnit.KilopoundPerCubicFoot);
         }
 
@@ -862,7 +865,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromKilopoundsPerCubicInch(QuantityValue kilopoundspercubicinch)
         {
-            double value = (double) kilopoundspercubicinch;
+            QuantityValue value = (QuantityValue) kilopoundspercubicinch;
             return new Density(value, DensityUnit.KilopoundPerCubicInch);
         }
 
@@ -872,7 +875,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerCubicMeter(QuantityValue microgramspercubicmeter)
         {
-            double value = (double) microgramspercubicmeter;
+            QuantityValue value = (QuantityValue) microgramspercubicmeter;
             return new Density(value, DensityUnit.MicrogramPerCubicMeter);
         }
 
@@ -882,7 +885,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerDeciLiter(QuantityValue microgramsperdeciliter)
         {
-            double value = (double) microgramsperdeciliter;
+            QuantityValue value = (QuantityValue) microgramsperdeciliter;
             return new Density(value, DensityUnit.MicrogramPerDeciliter);
         }
 
@@ -892,7 +895,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerLiter(QuantityValue microgramsperliter)
         {
-            double value = (double) microgramsperliter;
+            QuantityValue value = (QuantityValue) microgramsperliter;
             return new Density(value, DensityUnit.MicrogramPerLiter);
         }
 
@@ -902,7 +905,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMicrogramsPerMilliliter(QuantityValue microgramspermilliliter)
         {
-            double value = (double) microgramspermilliliter;
+            QuantityValue value = (QuantityValue) microgramspermilliliter;
             return new Density(value, DensityUnit.MicrogramPerMilliliter);
         }
 
@@ -912,7 +915,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerCubicMeter(QuantityValue milligramspercubicmeter)
         {
-            double value = (double) milligramspercubicmeter;
+            QuantityValue value = (QuantityValue) milligramspercubicmeter;
             return new Density(value, DensityUnit.MilligramPerCubicMeter);
         }
 
@@ -922,7 +925,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerDeciLiter(QuantityValue milligramsperdeciliter)
         {
-            double value = (double) milligramsperdeciliter;
+            QuantityValue value = (QuantityValue) milligramsperdeciliter;
             return new Density(value, DensityUnit.MilligramPerDeciliter);
         }
 
@@ -932,7 +935,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerLiter(QuantityValue milligramsperliter)
         {
-            double value = (double) milligramsperliter;
+            QuantityValue value = (QuantityValue) milligramsperliter;
             return new Density(value, DensityUnit.MilligramPerLiter);
         }
 
@@ -942,7 +945,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromMilligramsPerMilliliter(QuantityValue milligramspermilliliter)
         {
-            double value = (double) milligramspermilliliter;
+            QuantityValue value = (QuantityValue) milligramspermilliliter;
             return new Density(value, DensityUnit.MilligramPerMilliliter);
         }
 
@@ -952,7 +955,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromNanogramsPerDeciLiter(QuantityValue nanogramsperdeciliter)
         {
-            double value = (double) nanogramsperdeciliter;
+            QuantityValue value = (QuantityValue) nanogramsperdeciliter;
             return new Density(value, DensityUnit.NanogramPerDeciliter);
         }
 
@@ -962,7 +965,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromNanogramsPerLiter(QuantityValue nanogramsperliter)
         {
-            double value = (double) nanogramsperliter;
+            QuantityValue value = (QuantityValue) nanogramsperliter;
             return new Density(value, DensityUnit.NanogramPerLiter);
         }
 
@@ -972,7 +975,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromNanogramsPerMilliliter(QuantityValue nanogramspermilliliter)
         {
-            double value = (double) nanogramspermilliliter;
+            QuantityValue value = (QuantityValue) nanogramspermilliliter;
             return new Density(value, DensityUnit.NanogramPerMilliliter);
         }
 
@@ -982,7 +985,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPicogramsPerDeciLiter(QuantityValue picogramsperdeciliter)
         {
-            double value = (double) picogramsperdeciliter;
+            QuantityValue value = (QuantityValue) picogramsperdeciliter;
             return new Density(value, DensityUnit.PicogramPerDeciliter);
         }
 
@@ -992,7 +995,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPicogramsPerLiter(QuantityValue picogramsperliter)
         {
-            double value = (double) picogramsperliter;
+            QuantityValue value = (QuantityValue) picogramsperliter;
             return new Density(value, DensityUnit.PicogramPerLiter);
         }
 
@@ -1002,7 +1005,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPicogramsPerMilliliter(QuantityValue picogramspermilliliter)
         {
-            double value = (double) picogramspermilliliter;
+            QuantityValue value = (QuantityValue) picogramspermilliliter;
             return new Density(value, DensityUnit.PicogramPerMilliliter);
         }
 
@@ -1012,7 +1015,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicCentimeter(QuantityValue poundspercubiccentimeter)
         {
-            double value = (double) poundspercubiccentimeter;
+            QuantityValue value = (QuantityValue) poundspercubiccentimeter;
             return new Density(value, DensityUnit.PoundPerCubicCentimeter);
         }
 
@@ -1022,7 +1025,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicFoot(QuantityValue poundspercubicfoot)
         {
-            double value = (double) poundspercubicfoot;
+            QuantityValue value = (QuantityValue) poundspercubicfoot;
             return new Density(value, DensityUnit.PoundPerCubicFoot);
         }
 
@@ -1032,7 +1035,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicInch(QuantityValue poundspercubicinch)
         {
-            double value = (double) poundspercubicinch;
+            QuantityValue value = (QuantityValue) poundspercubicinch;
             return new Density(value, DensityUnit.PoundPerCubicInch);
         }
 
@@ -1042,7 +1045,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicMeter(QuantityValue poundspercubicmeter)
         {
-            double value = (double) poundspercubicmeter;
+            QuantityValue value = (QuantityValue) poundspercubicmeter;
             return new Density(value, DensityUnit.PoundPerCubicMeter);
         }
 
@@ -1052,7 +1055,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerCubicMillimeter(QuantityValue poundspercubicmillimeter)
         {
-            double value = (double) poundspercubicmillimeter;
+            QuantityValue value = (QuantityValue) poundspercubicmillimeter;
             return new Density(value, DensityUnit.PoundPerCubicMillimeter);
         }
 
@@ -1062,7 +1065,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerImperialGallon(QuantityValue poundsperimperialgallon)
         {
-            double value = (double) poundsperimperialgallon;
+            QuantityValue value = (QuantityValue) poundsperimperialgallon;
             return new Density(value, DensityUnit.PoundPerImperialGallon);
         }
 
@@ -1072,7 +1075,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromPoundsPerUSGallon(QuantityValue poundsperusgallon)
         {
-            double value = (double) poundsperusgallon;
+            QuantityValue value = (QuantityValue) poundsperusgallon;
             return new Density(value, DensityUnit.PoundPerUSGallon);
         }
 
@@ -1082,7 +1085,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicCentimeter(QuantityValue slugspercubiccentimeter)
         {
-            double value = (double) slugspercubiccentimeter;
+            QuantityValue value = (QuantityValue) slugspercubiccentimeter;
             return new Density(value, DensityUnit.SlugPerCubicCentimeter);
         }
 
@@ -1092,7 +1095,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicFoot(QuantityValue slugspercubicfoot)
         {
-            double value = (double) slugspercubicfoot;
+            QuantityValue value = (QuantityValue) slugspercubicfoot;
             return new Density(value, DensityUnit.SlugPerCubicFoot);
         }
 
@@ -1102,7 +1105,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicInch(QuantityValue slugspercubicinch)
         {
-            double value = (double) slugspercubicinch;
+            QuantityValue value = (QuantityValue) slugspercubicinch;
             return new Density(value, DensityUnit.SlugPerCubicInch);
         }
 
@@ -1112,7 +1115,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicMeter(QuantityValue slugspercubicmeter)
         {
-            double value = (double) slugspercubicmeter;
+            QuantityValue value = (QuantityValue) slugspercubicmeter;
             return new Density(value, DensityUnit.SlugPerCubicMeter);
         }
 
@@ -1122,7 +1125,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromSlugsPerCubicMillimeter(QuantityValue slugspercubicmillimeter)
         {
-            double value = (double) slugspercubicmillimeter;
+            QuantityValue value = (QuantityValue) slugspercubicmillimeter;
             return new Density(value, DensityUnit.SlugPerCubicMillimeter);
         }
 
@@ -1132,7 +1135,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicCentimeter(QuantityValue tonnespercubiccentimeter)
         {
-            double value = (double) tonnespercubiccentimeter;
+            QuantityValue value = (QuantityValue) tonnespercubiccentimeter;
             return new Density(value, DensityUnit.TonnePerCubicCentimeter);
         }
 
@@ -1142,7 +1145,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicFoot(QuantityValue tonnespercubicfoot)
         {
-            double value = (double) tonnespercubicfoot;
+            QuantityValue value = (QuantityValue) tonnespercubicfoot;
             return new Density(value, DensityUnit.TonnePerCubicFoot);
         }
 
@@ -1152,7 +1155,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicInch(QuantityValue tonnespercubicinch)
         {
-            double value = (double) tonnespercubicinch;
+            QuantityValue value = (QuantityValue) tonnespercubicinch;
             return new Density(value, DensityUnit.TonnePerCubicInch);
         }
 
@@ -1162,7 +1165,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicMeter(QuantityValue tonnespercubicmeter)
         {
-            double value = (double) tonnespercubicmeter;
+            QuantityValue value = (QuantityValue) tonnespercubicmeter;
             return new Density(value, DensityUnit.TonnePerCubicMeter);
         }
 
@@ -1172,7 +1175,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Density FromTonnesPerCubicMillimeter(QuantityValue tonnespercubicmillimeter)
         {
-            double value = (double) tonnespercubicmillimeter;
+            QuantityValue value = (QuantityValue) tonnespercubicmillimeter;
             return new Density(value, DensityUnit.TonnePerCubicMillimeter);
         }
 
@@ -1184,7 +1187,7 @@ namespace UnitsNet
         /// <returns>Density unit value.</returns>
         public static Density From(QuantityValue value, DensityUnit fromUnit)
         {
-            return new Density((double)value, fromUnit);
+            return new Density((QuantityValue)value, fromUnit);
         }
 
         #endregion
@@ -1354,25 +1357,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Density"/> from multiplying value and <see cref="Density"/>.</summary>
-        public static Density operator *(double left, Density right)
+        public static Density operator *(QuantityValue left, Density right)
         {
             return new Density(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Density"/> from multiplying value and <see cref="Density"/>.</summary>
-        public static Density operator *(Density left, double right)
+        public static Density operator *(Density left, QuantityValue right)
         {
             return new Density(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Density"/> from dividing <see cref="Density"/> by value.</summary>
-        public static Density operator /(Density left, double right)
+        public static Density operator /(Density left, QuantityValue right)
         {
             return new Density(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Density"/> by <see cref="Density"/>.</summary>
-        public static double operator /(Density left, Density right)
+        public static QuantityValue operator /(Density left, Density right)
         {
             return left.KilogramsPerCubicMeter / right.KilogramsPerCubicMeter;
         }
@@ -1405,6 +1408,19 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Density, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Density left, Density right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Density, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Density left, Density right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -1417,7 +1433,29 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Density other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Density, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is Density objDensity))
+                return false;
+            return Equals(objDensity);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Density, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Density other)
+        {
+            if (Value.IsDecimal)
+                return other.Value.Equals(this.GetValueAs(other.Unit));
+            if (other.Value.IsDecimal)
+                return Value.Equals(other.GetValueAs(this.Unit));
+            return this.Unit == other.Unit && this.Value.Equals(other.Value);
         }
 
         /// <summary>
@@ -1460,13 +1498,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Density other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Density other, QuantityValue tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            QuantityValue thisValue = this.Value;
+            QuantityValue otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -1477,7 +1515,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Density.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Info.Name.GetHashCode();
         }
 
         #endregion
@@ -1488,17 +1526,16 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(DensityUnit unit)
+        public QuantityValue As(DensityUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1513,12 +1550,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
-            if (!(unit is DensityUnit unitAsDensityUnit))
+            if (!(unit is DensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsDensityUnit);
+            return (QuantityValue)As(typedUnit);
         }
 
         /// <summary>
@@ -1550,7 +1587,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Density)converted;
             }
-            else if (Unit != BaseUnit)
+            else if (Enum.IsDefined(typeof(DensityUnit), unit))
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1558,17 +1595,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is DensityUnit unitAsDensityUnit))
+            if (!(unit is DensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsDensityUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1595,10 +1632,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private double GetValueAs(DensityUnit unit)
+        private QuantityValue GetValueAs(DensityUnit unit)
         {
             var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return (QuantityValue)converted.Value;
         }
 
         #endregion

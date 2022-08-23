@@ -57,23 +57,23 @@ namespace UnitsNet.Tests
         protected abstract double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilogramsForcePerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsForcePerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsForcePerCubicMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonsPerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonsPerCubicMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundsForcePerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundsForcePerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double MeganewtonsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double NewtonsPerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double NewtonsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double NewtonsPerCubicMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForcePerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForcePerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double TonnesForcePerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double TonnesForcePerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double TonnesForcePerCubicMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForcePerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsForcePerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsForcePerCubicMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonsPerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonsPerCubicMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundsForcePerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundsForcePerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double MeganewtonsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double NewtonsPerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double NewtonsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double NewtonsPerCubicMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForcePerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForcePerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double TonnesForcePerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double TonnesForcePerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double TonnesForcePerCubicMillimeterTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificWeightUnit unit)
@@ -318,7 +318,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -759,12 +759,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(SpecificWeightUnit unit)
         {
-            var inBaseUnits = SpecificWeight.From(1.0, SpecificWeight.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = SpecificWeight.From(1.0, SpecificWeight.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = SpecificWeight.From(1.0, SpecificWeight.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(SpecificWeightUnit)));
         }
 
         [Theory]
@@ -780,8 +787,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificWeightUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = SpecificWeight.Units.Where(u => u != SpecificWeight.BaseUnit).DefaultIfEmpty(SpecificWeight.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = SpecificWeight.Units.First(u => u != SpecificWeight.BaseUnit);
 
             var quantity = SpecificWeight.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1024,8 +1031,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -1059,36 +1067,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -1101,22 +1114,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = SpecificWeight.FromNewtonsPerCubicMeter(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -1158,7 +1174,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificWeight.FromNewtonsPerCubicMeter(1.0);
-            Assert.Equal(new {SpecificWeight.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(SpecificWeight.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

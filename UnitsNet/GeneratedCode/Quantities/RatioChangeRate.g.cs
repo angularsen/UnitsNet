@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     The change in ratio per unit of time.
     /// </summary>
     [DataContract]
-    public partial struct RatioChangeRate : IQuantity<RatioChangeRateUnit>, IComparable, IComparable<RatioChangeRate>, IConvertible, IFormattable
+    public partial struct RatioChangeRate : IQuantity<RatioChangeRateUnit>, IEquatable<RatioChangeRate>, IComparable, IComparable<RatioChangeRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -73,9 +73,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public RatioChangeRate(double value, RatioChangeRateUnit unit)
+        public RatioChangeRate(QuantityValue value, RatioChangeRateUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -87,14 +87,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RatioChangeRate(double value, UnitSystem unitSystem)
+        public RatioChangeRate(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -135,7 +135,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public QuantityValue Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -158,14 +161,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>
         /// </summary>
-        public double DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
+        public QuantityValue DecimalFractionsPerSecond => As(RatioChangeRateUnit.DecimalFractionPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioChangeRateUnit.PercentPerSecond"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="RatioChangeRateUnit.PercentPerSecond"/>
         /// </summary>
-        public double PercentsPerSecond => As(RatioChangeRateUnit.PercentPerSecond);
+        public QuantityValue PercentsPerSecond => As(RatioChangeRateUnit.PercentPerSecond);
 
         #endregion
 
@@ -224,7 +227,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RatioChangeRate FromDecimalFractionsPerSecond(QuantityValue decimalfractionspersecond)
         {
-            double value = (double) decimalfractionspersecond;
+            QuantityValue value = (QuantityValue) decimalfractionspersecond;
             return new RatioChangeRate(value, RatioChangeRateUnit.DecimalFractionPerSecond);
         }
 
@@ -234,7 +237,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static RatioChangeRate FromPercentsPerSecond(QuantityValue percentspersecond)
         {
-            double value = (double) percentspersecond;
+            QuantityValue value = (QuantityValue) percentspersecond;
             return new RatioChangeRate(value, RatioChangeRateUnit.PercentPerSecond);
         }
 
@@ -246,7 +249,7 @@ namespace UnitsNet
         /// <returns>RatioChangeRate unit value.</returns>
         public static RatioChangeRate From(QuantityValue value, RatioChangeRateUnit fromUnit)
         {
-            return new RatioChangeRate((double)value, fromUnit);
+            return new RatioChangeRate((QuantityValue)value, fromUnit);
         }
 
         #endregion
@@ -416,25 +419,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="RatioChangeRate"/> from multiplying value and <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator *(double left, RatioChangeRate right)
+        public static RatioChangeRate operator *(QuantityValue left, RatioChangeRate right)
         {
             return new RatioChangeRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="RatioChangeRate"/> from multiplying value and <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator *(RatioChangeRate left, double right)
+        public static RatioChangeRate operator *(RatioChangeRate left, QuantityValue right)
         {
             return new RatioChangeRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="RatioChangeRate"/> from dividing <see cref="RatioChangeRate"/> by value.</summary>
-        public static RatioChangeRate operator /(RatioChangeRate left, double right)
+        public static RatioChangeRate operator /(RatioChangeRate left, QuantityValue right)
         {
             return new RatioChangeRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="RatioChangeRate"/> by <see cref="RatioChangeRate"/>.</summary>
-        public static double operator /(RatioChangeRate left, RatioChangeRate right)
+        public static QuantityValue operator /(RatioChangeRate left, RatioChangeRate right)
         {
             return left.DecimalFractionsPerSecond / right.DecimalFractionsPerSecond;
         }
@@ -467,6 +470,19 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(RatioChangeRate left, RatioChangeRate right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(RatioChangeRate left, RatioChangeRate right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -479,7 +495,29 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(RatioChangeRate other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is RatioChangeRate objRatioChangeRate))
+                return false;
+            return Equals(objRatioChangeRate);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(RatioChangeRate, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(RatioChangeRate other)
+        {
+            if (Value.IsDecimal)
+                return other.Value.Equals(this.GetValueAs(other.Unit));
+            if (other.Value.IsDecimal)
+                return Value.Equals(other.GetValueAs(this.Unit));
+            return this.Unit == other.Unit && this.Value.Equals(other.Value);
         }
 
         /// <summary>
@@ -522,13 +560,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(RatioChangeRate other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(RatioChangeRate other, QuantityValue tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            QuantityValue thisValue = this.Value;
+            QuantityValue otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -539,7 +577,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current RatioChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Info.Name.GetHashCode();
         }
 
         #endregion
@@ -550,17 +588,16 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(RatioChangeRateUnit unit)
+        public QuantityValue As(RatioChangeRateUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -575,12 +612,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
-            if (!(unit is RatioChangeRateUnit unitAsRatioChangeRateUnit))
+            if (!(unit is RatioChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
 
-            return As(unitAsRatioChangeRateUnit);
+            return (QuantityValue)As(typedUnit);
         }
 
         /// <summary>
@@ -612,7 +649,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (RatioChangeRate)converted;
             }
-            else if (Unit != BaseUnit)
+            else if (Enum.IsDefined(typeof(RatioChangeRateUnit), unit))
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -620,17 +657,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is RatioChangeRateUnit unitAsRatioChangeRateUnit))
+            if (!(unit is RatioChangeRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsRatioChangeRateUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -657,10 +694,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private double GetValueAs(RatioChangeRateUnit unit)
+        private QuantityValue GetValueAs(RatioChangeRateUnit unit)
         {
             var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return (QuantityValue)converted.Value;
         }
 
         #endregion

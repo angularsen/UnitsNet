@@ -78,44 +78,44 @@ namespace UnitsNet.Tests
         protected abstract double TonnesForcePerMillimeterInOneNewtonPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentinewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double CentinewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double CentinewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double DecanewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double DecanewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double DecanewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double DecinewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double DecinewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double DecinewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsForcePerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsForcePerMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsForcePerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundsForcePerFootTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundsForcePerInchTolerance { get { return 1e-5; } }
-        protected virtual double MeganewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MeganewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MeganewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double MicronewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MicronewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MicronewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double MillinewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MillinewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MillinewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double NanonewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double NanonewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double NanonewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double NewtonsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double NewtonsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double NewtonsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForcePerFootTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForcePerInchTolerance { get { return 1e-5; } }
-        protected virtual double PoundsForcePerYardTolerance { get { return 1e-5; } }
-        protected virtual double TonnesForcePerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double TonnesForcePerMeterTolerance { get { return 1e-5; } }
-        protected virtual double TonnesForcePerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double CentinewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double CentinewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double CentinewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double DecanewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double DecanewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double DecanewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double DecinewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double DecinewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double DecinewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsForcePerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsForcePerMeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsForcePerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundsForcePerFootTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundsForcePerInchTolerance { get { return 1E-5; } }
+        protected virtual double MeganewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double MeganewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double MeganewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double MicronewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double MicronewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double MicronewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double MillinewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double MillinewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double MillinewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double NanonewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double NanonewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double NanonewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double NewtonsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double NewtonsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double NewtonsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForcePerFootTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForcePerInchTolerance { get { return 1E-5; } }
+        protected virtual double PoundsForcePerYardTolerance { get { return 1E-5; } }
+        protected virtual double TonnesForcePerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double TonnesForcePerMeterTolerance { get { return 1E-5; } }
+        protected virtual double TonnesForcePerMillimeterTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ForcePerLengthUnit unit)
@@ -528,7 +528,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -1647,12 +1647,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(ForcePerLengthUnit unit)
         {
-            var inBaseUnits = ForcePerLength.From(1.0, ForcePerLength.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = ForcePerLength.From(1.0, ForcePerLength.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = ForcePerLength.From(1.0, ForcePerLength.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(ForcePerLengthUnit)));
         }
 
         [Theory]
@@ -1668,8 +1675,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ForcePerLengthUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ForcePerLength.Units.Where(u => u != ForcePerLength.BaseUnit).DefaultIfEmpty(ForcePerLength.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = ForcePerLength.Units.First(u => u != ForcePerLength.BaseUnit);
 
             var quantity = ForcePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1975,8 +1982,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -2010,36 +2018,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -2052,22 +2065,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = ForcePerLength.FromNewtonsPerMeter(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -2109,7 +2125,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ForcePerLength.FromNewtonsPerMeter(1.0);
-            Assert.Equal(new {ForcePerLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(ForcePerLength.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

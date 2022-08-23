@@ -51,17 +51,17 @@ namespace UnitsNet.Tests
         protected abstract double Years365InOneSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DaysTolerance { get { return 1e-5; } }
-        protected virtual double HoursTolerance { get { return 1e-5; } }
-        protected virtual double JulianYearsTolerance { get { return 1e-5; } }
-        protected virtual double MicrosecondsTolerance { get { return 1e-5; } }
-        protected virtual double MillisecondsTolerance { get { return 1e-5; } }
-        protected virtual double MinutesTolerance { get { return 1e-5; } }
-        protected virtual double Months30Tolerance { get { return 1e-5; } }
-        protected virtual double NanosecondsTolerance { get { return 1e-5; } }
-        protected virtual double SecondsTolerance { get { return 1e-5; } }
-        protected virtual double WeeksTolerance { get { return 1e-5; } }
-        protected virtual double Years365Tolerance { get { return 1e-5; } }
+        protected virtual double DaysTolerance { get { return 1E-5; } }
+        protected virtual double HoursTolerance { get { return 1E-5; } }
+        protected virtual double JulianYearsTolerance { get { return 1E-5; } }
+        protected virtual double MicrosecondsTolerance { get { return 1E-5; } }
+        protected virtual double MillisecondsTolerance { get { return 1E-5; } }
+        protected virtual double MinutesTolerance { get { return 1E-5; } }
+        protected virtual double Months30Tolerance { get { return 1E-5; } }
+        protected virtual double NanosecondsTolerance { get { return 1E-5; } }
+        protected virtual double SecondsTolerance { get { return 1E-5; } }
+        protected virtual double WeeksTolerance { get { return 1E-5; } }
+        protected virtual double Years365Tolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(DurationUnit unit)
@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -1731,12 +1731,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(DurationUnit unit)
         {
-            var inBaseUnits = Duration.From(1.0, Duration.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = Duration.From(1.0, Duration.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = Duration.From(1.0, Duration.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(DurationUnit)));
         }
 
         [Theory]
@@ -1752,8 +1759,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DurationUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Duration.Units.Where(u => u != Duration.BaseUnit).DefaultIfEmpty(Duration.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = Duration.Units.First(u => u != Duration.BaseUnit);
 
             var quantity = Duration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1978,8 +1985,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -2013,36 +2021,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -2055,22 +2068,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = Duration.FromSeconds(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -2112,7 +2128,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(new {Duration.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Duration.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

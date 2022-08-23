@@ -64,7 +64,7 @@ namespace UnitsNet.Tests.Serialization
         [Fact]
         public void LargeDecimalValueQuantity_SerializationRoundTrips()
         {
-            var quantity = Information.FromExabytes(1E+24);
+            var quantity = Information.FromExabytes(1E+24m);
 
             var payload = SerializeObject(quantity);
             var result = DeserializeObject<Information>(payload);

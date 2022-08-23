@@ -31,7 +31,7 @@ namespace UnitsNet
         public double NumberOfParticles()
         {
             var moles = GetValueAs(AmountOfSubstanceUnit.Mole);
-            return AvogadroConstant * moles;
+            return AvogadroConstant * (double) moles;
         }
 
         /// <summary>Get <see cref="AmountOfSubstance" /> from <see cref="Mass" /> and a given <see cref="MolarMass" />.</summary>

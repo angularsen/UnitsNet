@@ -38,13 +38,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminous_intensity
     /// </remarks>
     [DataContract]
-    public partial struct LuminousIntensity : IQuantity<LuminousIntensityUnit>, IComparable, IComparable<LuminousIntensity>, IConvertible, IFormattable
+    public partial struct LuminousIntensity : IQuantity<LuminousIntensityUnit>, IEquatable<LuminousIntensity>, IComparable, IComparable<LuminousIntensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -75,9 +75,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public LuminousIntensity(double value, LuminousIntensityUnit unit)
+        public LuminousIntensity(QuantityValue value, LuminousIntensityUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -89,14 +89,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public LuminousIntensity(double value, UnitSystem unitSystem)
+        public LuminousIntensity(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -137,7 +137,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public QuantityValue Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -160,9 +163,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Candela"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="LuminousIntensityUnit.Candela"/>
         /// </summary>
-        public double Candela => As(LuminousIntensityUnit.Candela);
+        public QuantityValue Candela => As(LuminousIntensityUnit.Candela);
 
         #endregion
 
@@ -218,7 +221,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static LuminousIntensity FromCandela(QuantityValue candela)
         {
-            double value = (double) candela;
+            QuantityValue value = (QuantityValue) candela;
             return new LuminousIntensity(value, LuminousIntensityUnit.Candela);
         }
 
@@ -230,7 +233,7 @@ namespace UnitsNet
         /// <returns>LuminousIntensity unit value.</returns>
         public static LuminousIntensity From(QuantityValue value, LuminousIntensityUnit fromUnit)
         {
-            return new LuminousIntensity((double)value, fromUnit);
+            return new LuminousIntensity((QuantityValue)value, fromUnit);
         }
 
         #endregion
@@ -400,25 +403,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from multiplying value and <see cref="LuminousIntensity"/>.</summary>
-        public static LuminousIntensity operator *(double left, LuminousIntensity right)
+        public static LuminousIntensity operator *(QuantityValue left, LuminousIntensity right)
         {
             return new LuminousIntensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from multiplying value and <see cref="LuminousIntensity"/>.</summary>
-        public static LuminousIntensity operator *(LuminousIntensity left, double right)
+        public static LuminousIntensity operator *(LuminousIntensity left, QuantityValue right)
         {
             return new LuminousIntensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from dividing <see cref="LuminousIntensity"/> by value.</summary>
-        public static LuminousIntensity operator /(LuminousIntensity left, double right)
+        public static LuminousIntensity operator /(LuminousIntensity left, QuantityValue right)
         {
             return new LuminousIntensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="LuminousIntensity"/> by <see cref="LuminousIntensity"/>.</summary>
-        public static double operator /(LuminousIntensity left, LuminousIntensity right)
+        public static QuantityValue operator /(LuminousIntensity left, LuminousIntensity right)
         {
             return left.Candela / right.Candela;
         }
@@ -451,6 +454,19 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(LuminousIntensity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(LuminousIntensity left, LuminousIntensity right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(LuminousIntensity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(LuminousIntensity left, LuminousIntensity right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -463,7 +479,29 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(LuminousIntensity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(LuminousIntensity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is LuminousIntensity objLuminousIntensity))
+                return false;
+            return Equals(objLuminousIntensity);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(LuminousIntensity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(LuminousIntensity other)
+        {
+            if (Value.IsDecimal)
+                return other.Value.Equals(this.GetValueAs(other.Unit));
+            if (other.Value.IsDecimal)
+                return Value.Equals(other.GetValueAs(this.Unit));
+            return this.Unit == other.Unit && this.Value.Equals(other.Value);
         }
 
         /// <summary>
@@ -506,13 +544,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(LuminousIntensity other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(LuminousIntensity other, QuantityValue tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            QuantityValue thisValue = this.Value;
+            QuantityValue otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -523,7 +561,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current LuminousIntensity.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Info.Name.GetHashCode();
         }
 
         #endregion
@@ -534,17 +572,16 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(LuminousIntensityUnit unit)
+        public QuantityValue As(LuminousIntensityUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -559,12 +596,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
-            if (!(unit is LuminousIntensityUnit unitAsLuminousIntensityUnit))
+            if (!(unit is LuminousIntensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousIntensityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsLuminousIntensityUnit);
+            return (QuantityValue)As(typedUnit);
         }
 
         /// <summary>
@@ -596,7 +633,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (LuminousIntensity)converted;
             }
-            else if (Unit != BaseUnit)
+            else if (Enum.IsDefined(typeof(LuminousIntensityUnit), unit))
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -604,17 +641,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is LuminousIntensityUnit unitAsLuminousIntensityUnit))
+            if (!(unit is LuminousIntensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousIntensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLuminousIntensityUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -641,10 +678,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<LuminousIntensityUnit> IQuantity<LuminousIntensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private double GetValueAs(LuminousIntensityUnit unit)
+        private QuantityValue GetValueAs(LuminousIntensityUnit unit)
         {
             var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return (QuantityValue)converted.Value;
         }
 
         #endregion

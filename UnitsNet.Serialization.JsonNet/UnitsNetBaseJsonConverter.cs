@@ -186,13 +186,14 @@ namespace UnitsNet.Serialization.JsonNet
                 return new ExtendedValueUnit
                 {
                     Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}",
-                    Value = quantity.Value,
+                    // The type of "Value" is still double
+                    Value = (double)quantity.Value,
                     ValueString = d.Value.ToString(CultureInfo.InvariantCulture),
                     ValueType = "decimal"
                 };
             }
 
-            return new ValueUnit {Value = quantity.Value, Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"};
+            return new ValueUnit {Value = (double)quantity.Value, Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"};
         }
 
         /// <summary>
