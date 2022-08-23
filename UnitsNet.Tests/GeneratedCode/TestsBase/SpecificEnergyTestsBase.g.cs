@@ -69,35 +69,35 @@ namespace UnitsNet.Tests
         protected abstract double WattHoursPerPoundInOneJoulePerKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BtuPerPoundTolerance { get { return 1E-5; } }
-        protected virtual double CaloriesPerGramTolerance { get { return 1E-5; } }
-        protected virtual double GigawattDaysPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double GigawattDaysPerShortTonTolerance { get { return 1E-5; } }
-        protected virtual double GigawattDaysPerTonneTolerance { get { return 1E-5; } }
-        protected virtual double GigawattHoursPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double GigawattHoursPerPoundTolerance { get { return 1E-5; } }
-        protected virtual double JoulesPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double KilocaloriesPerGramTolerance { get { return 1E-5; } }
-        protected virtual double KilojoulesPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double KilowattDaysPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double KilowattDaysPerShortTonTolerance { get { return 1E-5; } }
-        protected virtual double KilowattDaysPerTonneTolerance { get { return 1E-5; } }
-        protected virtual double KilowattHoursPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double KilowattHoursPerPoundTolerance { get { return 1E-5; } }
-        protected virtual double MegajoulesPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double MegawattDaysPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double MegawattDaysPerShortTonTolerance { get { return 1E-5; } }
-        protected virtual double MegawattDaysPerTonneTolerance { get { return 1E-5; } }
-        protected virtual double MegawattHoursPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double MegawattHoursPerPoundTolerance { get { return 1E-5; } }
-        protected virtual double TerawattDaysPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double TerawattDaysPerShortTonTolerance { get { return 1E-5; } }
-        protected virtual double TerawattDaysPerTonneTolerance { get { return 1E-5; } }
-        protected virtual double WattDaysPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double WattDaysPerShortTonTolerance { get { return 1E-5; } }
-        protected virtual double WattDaysPerTonneTolerance { get { return 1E-5; } }
-        protected virtual double WattHoursPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double WattHoursPerPoundTolerance { get { return 1E-5; } }
+        protected virtual double BtuPerPoundTolerance { get { return 1e-5; } }
+        protected virtual double CaloriesPerGramTolerance { get { return 1e-5; } }
+        protected virtual double GigawattDaysPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double GigawattDaysPerShortTonTolerance { get { return 1e-5; } }
+        protected virtual double GigawattDaysPerTonneTolerance { get { return 1e-5; } }
+        protected virtual double GigawattHoursPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double GigawattHoursPerPoundTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double KilocaloriesPerGramTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double KilowattDaysPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double KilowattDaysPerShortTonTolerance { get { return 1e-5; } }
+        protected virtual double KilowattDaysPerTonneTolerance { get { return 1e-5; } }
+        protected virtual double KilowattHoursPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double KilowattHoursPerPoundTolerance { get { return 1e-5; } }
+        protected virtual double MegajoulesPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double MegawattDaysPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double MegawattDaysPerShortTonTolerance { get { return 1e-5; } }
+        protected virtual double MegawattDaysPerTonneTolerance { get { return 1e-5; } }
+        protected virtual double MegawattHoursPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double MegawattHoursPerPoundTolerance { get { return 1e-5; } }
+        protected virtual double TerawattDaysPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double TerawattDaysPerShortTonTolerance { get { return 1e-5; } }
+        protected virtual double TerawattDaysPerTonneTolerance { get { return 1e-5; } }
+        protected virtual double WattDaysPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double WattDaysPerShortTonTolerance { get { return 1e-5; } }
+        protected virtual double WattDaysPerTonneTolerance { get { return 1e-5; } }
+        protected virtual double WattHoursPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double WattHoursPerPoundTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificEnergyUnit unit)
@@ -438,7 +438,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) (QuantityValue) AsWithSIUnitSystem();
+                var value = (double) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -1167,19 +1167,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(SpecificEnergyUnit unit)
         {
-            var inBaseUnit = SpecificEnergy.From(1.0, SpecificEnergy.BaseUnit);
-            var converted = inBaseUnit.ToUnit(unit);
+            var inBaseUnits = SpecificEnergy.From(1.0, SpecificEnergy.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
-        }
-
-        [Fact]
-        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
-        {
-            var inBaseUnit = SpecificEnergy.From(1.0, SpecificEnergy.BaseUnit);
-            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(SpecificEnergyUnit)));
         }
 
         [Theory]
@@ -1195,8 +1188,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificEnergyUnit unit)
         {
-            // This test is only available for quantities with more than one units.
-            var fromUnit = SpecificEnergy.Units.First(u => u != SpecificEnergy.BaseUnit);
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = SpecificEnergy.Units.Where(u => u != SpecificEnergy.BaseUnit).DefaultIfEmpty(SpecificEnergy.BaseUnit).FirstOrDefault();
 
             var quantity = SpecificEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1475,9 +1468,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-           Assert.Equal((byte)value, Convert.ToByte(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -1511,41 +1503,36 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.Equal((short)value, Convert.ToInt16(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.Equal((int)value, Convert.ToInt32(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.Equal((long)value, Convert.ToInt64(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.Equal((float)value, Convert.ToSingle(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -1558,25 +1545,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = SpecificEnergy.FromJoulesPerKilogram(value);
-            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
+            var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -1618,7 +1602,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
-            Assert.Equal(SpecificEnergy.Info.Name.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {SpecificEnergy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

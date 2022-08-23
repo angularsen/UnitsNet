@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
     [DataContract]
-    public partial struct Speed : IQuantity<SpeedUnit>, IEquatable<Speed>, IComparable, IComparable<Speed>, IConvertible, IFormattable
+    public partial struct Speed : IQuantity<SpeedUnit>, IComparable, IComparable<Speed>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -103,9 +103,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Speed(QuantityValue value, SpeedUnit unit)
+        public Speed(double value, SpeedUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -117,14 +117,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Speed(QuantityValue value, UnitSystem unitSystem)
+        public Speed(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -165,10 +165,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -191,164 +188,164 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.CentimeterPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerHour"/>
         /// </summary>
-        public QuantityValue CentimetersPerHour => As(SpeedUnit.CentimeterPerHour);
+        public double CentimetersPerHour => As(SpeedUnit.CentimeterPerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.CentimeterPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerMinute"/>
         /// </summary>
-        public QuantityValue CentimetersPerMinutes => As(SpeedUnit.CentimeterPerMinute);
+        public double CentimetersPerMinutes => As(SpeedUnit.CentimeterPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.CentimeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.CentimeterPerSecond"/>
         /// </summary>
-        public QuantityValue CentimetersPerSecond => As(SpeedUnit.CentimeterPerSecond);
+        public double CentimetersPerSecond => As(SpeedUnit.CentimeterPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.DecimeterPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.DecimeterPerMinute"/>
         /// </summary>
-        public QuantityValue DecimetersPerMinutes => As(SpeedUnit.DecimeterPerMinute);
+        public double DecimetersPerMinutes => As(SpeedUnit.DecimeterPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.DecimeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.DecimeterPerSecond"/>
         /// </summary>
-        public QuantityValue DecimetersPerSecond => As(SpeedUnit.DecimeterPerSecond);
+        public double DecimetersPerSecond => As(SpeedUnit.DecimeterPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.FootPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerHour"/>
         /// </summary>
-        public QuantityValue FeetPerHour => As(SpeedUnit.FootPerHour);
+        public double FeetPerHour => As(SpeedUnit.FootPerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.FootPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerMinute"/>
         /// </summary>
-        public QuantityValue FeetPerMinute => As(SpeedUnit.FootPerMinute);
+        public double FeetPerMinute => As(SpeedUnit.FootPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.FootPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.FootPerSecond"/>
         /// </summary>
-        public QuantityValue FeetPerSecond => As(SpeedUnit.FootPerSecond);
+        public double FeetPerSecond => As(SpeedUnit.FootPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.InchPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerHour"/>
         /// </summary>
-        public QuantityValue InchesPerHour => As(SpeedUnit.InchPerHour);
+        public double InchesPerHour => As(SpeedUnit.InchPerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.InchPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerMinute"/>
         /// </summary>
-        public QuantityValue InchesPerMinute => As(SpeedUnit.InchPerMinute);
+        public double InchesPerMinute => As(SpeedUnit.InchPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.InchPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.InchPerSecond"/>
         /// </summary>
-        public QuantityValue InchesPerSecond => As(SpeedUnit.InchPerSecond);
+        public double InchesPerSecond => As(SpeedUnit.InchPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.KilometerPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerHour"/>
         /// </summary>
-        public QuantityValue KilometersPerHour => As(SpeedUnit.KilometerPerHour);
+        public double KilometersPerHour => As(SpeedUnit.KilometerPerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.KilometerPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerMinute"/>
         /// </summary>
-        public QuantityValue KilometersPerMinutes => As(SpeedUnit.KilometerPerMinute);
+        public double KilometersPerMinutes => As(SpeedUnit.KilometerPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.KilometerPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.KilometerPerSecond"/>
         /// </summary>
-        public QuantityValue KilometersPerSecond => As(SpeedUnit.KilometerPerSecond);
+        public double KilometersPerSecond => As(SpeedUnit.KilometerPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.Knot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.Knot"/>
         /// </summary>
-        public QuantityValue Knots => As(SpeedUnit.Knot);
+        public double Knots => As(SpeedUnit.Knot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MeterPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerHour"/>
         /// </summary>
-        public QuantityValue MetersPerHour => As(SpeedUnit.MeterPerHour);
+        public double MetersPerHour => As(SpeedUnit.MeterPerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MeterPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerMinute"/>
         /// </summary>
-        public QuantityValue MetersPerMinutes => As(SpeedUnit.MeterPerMinute);
+        public double MetersPerMinutes => As(SpeedUnit.MeterPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerSecond"/>
         /// </summary>
-        public QuantityValue MetersPerSecond => As(SpeedUnit.MeterPerSecond);
+        public double MetersPerSecond => As(SpeedUnit.MeterPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MicrometerPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MicrometerPerMinute"/>
         /// </summary>
-        public QuantityValue MicrometersPerMinutes => As(SpeedUnit.MicrometerPerMinute);
+        public double MicrometersPerMinutes => As(SpeedUnit.MicrometerPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MicrometerPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MicrometerPerSecond"/>
         /// </summary>
-        public QuantityValue MicrometersPerSecond => As(SpeedUnit.MicrometerPerSecond);
+        public double MicrometersPerSecond => As(SpeedUnit.MicrometerPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MilePerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MilePerHour"/>
         /// </summary>
-        public QuantityValue MilesPerHour => As(SpeedUnit.MilePerHour);
+        public double MilesPerHour => As(SpeedUnit.MilePerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MillimeterPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerHour"/>
         /// </summary>
-        public QuantityValue MillimetersPerHour => As(SpeedUnit.MillimeterPerHour);
+        public double MillimetersPerHour => As(SpeedUnit.MillimeterPerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MillimeterPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerMinute"/>
         /// </summary>
-        public QuantityValue MillimetersPerMinutes => As(SpeedUnit.MillimeterPerMinute);
+        public double MillimetersPerMinutes => As(SpeedUnit.MillimeterPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.MillimeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MillimeterPerSecond"/>
         /// </summary>
-        public QuantityValue MillimetersPerSecond => As(SpeedUnit.MillimeterPerSecond);
+        public double MillimetersPerSecond => As(SpeedUnit.MillimeterPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.NanometerPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.NanometerPerMinute"/>
         /// </summary>
-        public QuantityValue NanometersPerMinutes => As(SpeedUnit.NanometerPerMinute);
+        public double NanometersPerMinutes => As(SpeedUnit.NanometerPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.NanometerPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.NanometerPerSecond"/>
         /// </summary>
-        public QuantityValue NanometersPerSecond => As(SpeedUnit.NanometerPerSecond);
+        public double NanometersPerSecond => As(SpeedUnit.NanometerPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerHour"/>
         /// </summary>
-        public QuantityValue UsSurveyFeetPerHour => As(SpeedUnit.UsSurveyFootPerHour);
+        public double UsSurveyFeetPerHour => As(SpeedUnit.UsSurveyFootPerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerMinute"/>
         /// </summary>
-        public QuantityValue UsSurveyFeetPerMinute => As(SpeedUnit.UsSurveyFootPerMinute);
+        public double UsSurveyFeetPerMinute => As(SpeedUnit.UsSurveyFootPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.UsSurveyFootPerSecond"/>
         /// </summary>
-        public QuantityValue UsSurveyFeetPerSecond => As(SpeedUnit.UsSurveyFootPerSecond);
+        public double UsSurveyFeetPerSecond => As(SpeedUnit.UsSurveyFootPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.YardPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerHour"/>
         /// </summary>
-        public QuantityValue YardsPerHour => As(SpeedUnit.YardPerHour);
+        public double YardsPerHour => As(SpeedUnit.YardPerHour);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.YardPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerMinute"/>
         /// </summary>
-        public QuantityValue YardsPerMinute => As(SpeedUnit.YardPerMinute);
+        public double YardsPerMinute => As(SpeedUnit.YardPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="SpeedUnit.YardPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.YardPerSecond"/>
         /// </summary>
-        public QuantityValue YardsPerSecond => As(SpeedUnit.YardPerSecond);
+        public double YardsPerSecond => As(SpeedUnit.YardPerSecond);
 
         #endregion
 
@@ -520,7 +517,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerHour(QuantityValue centimetersperhour)
         {
-            QuantityValue value = (QuantityValue) centimetersperhour;
+            double value = (double) centimetersperhour;
             return new Speed(value, SpeedUnit.CentimeterPerHour);
         }
 
@@ -530,7 +527,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerMinutes(QuantityValue centimetersperminutes)
         {
-            QuantityValue value = (QuantityValue) centimetersperminutes;
+            double value = (double) centimetersperminutes;
             return new Speed(value, SpeedUnit.CentimeterPerMinute);
         }
 
@@ -540,7 +537,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromCentimetersPerSecond(QuantityValue centimeterspersecond)
         {
-            QuantityValue value = (QuantityValue) centimeterspersecond;
+            double value = (double) centimeterspersecond;
             return new Speed(value, SpeedUnit.CentimeterPerSecond);
         }
 
@@ -550,7 +547,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromDecimetersPerMinutes(QuantityValue decimetersperminutes)
         {
-            QuantityValue value = (QuantityValue) decimetersperminutes;
+            double value = (double) decimetersperminutes;
             return new Speed(value, SpeedUnit.DecimeterPerMinute);
         }
 
@@ -560,7 +557,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromDecimetersPerSecond(QuantityValue decimeterspersecond)
         {
-            QuantityValue value = (QuantityValue) decimeterspersecond;
+            double value = (double) decimeterspersecond;
             return new Speed(value, SpeedUnit.DecimeterPerSecond);
         }
 
@@ -570,7 +567,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerHour(QuantityValue feetperhour)
         {
-            QuantityValue value = (QuantityValue) feetperhour;
+            double value = (double) feetperhour;
             return new Speed(value, SpeedUnit.FootPerHour);
         }
 
@@ -580,7 +577,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerMinute(QuantityValue feetperminute)
         {
-            QuantityValue value = (QuantityValue) feetperminute;
+            double value = (double) feetperminute;
             return new Speed(value, SpeedUnit.FootPerMinute);
         }
 
@@ -590,7 +587,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromFeetPerSecond(QuantityValue feetpersecond)
         {
-            QuantityValue value = (QuantityValue) feetpersecond;
+            double value = (double) feetpersecond;
             return new Speed(value, SpeedUnit.FootPerSecond);
         }
 
@@ -600,7 +597,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerHour(QuantityValue inchesperhour)
         {
-            QuantityValue value = (QuantityValue) inchesperhour;
+            double value = (double) inchesperhour;
             return new Speed(value, SpeedUnit.InchPerHour);
         }
 
@@ -610,7 +607,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerMinute(QuantityValue inchesperminute)
         {
-            QuantityValue value = (QuantityValue) inchesperminute;
+            double value = (double) inchesperminute;
             return new Speed(value, SpeedUnit.InchPerMinute);
         }
 
@@ -620,7 +617,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromInchesPerSecond(QuantityValue inchespersecond)
         {
-            QuantityValue value = (QuantityValue) inchespersecond;
+            double value = (double) inchespersecond;
             return new Speed(value, SpeedUnit.InchPerSecond);
         }
 
@@ -630,7 +627,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerHour(QuantityValue kilometersperhour)
         {
-            QuantityValue value = (QuantityValue) kilometersperhour;
+            double value = (double) kilometersperhour;
             return new Speed(value, SpeedUnit.KilometerPerHour);
         }
 
@@ -640,7 +637,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerMinutes(QuantityValue kilometersperminutes)
         {
-            QuantityValue value = (QuantityValue) kilometersperminutes;
+            double value = (double) kilometersperminutes;
             return new Speed(value, SpeedUnit.KilometerPerMinute);
         }
 
@@ -650,7 +647,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKilometersPerSecond(QuantityValue kilometerspersecond)
         {
-            QuantityValue value = (QuantityValue) kilometerspersecond;
+            double value = (double) kilometerspersecond;
             return new Speed(value, SpeedUnit.KilometerPerSecond);
         }
 
@@ -660,7 +657,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromKnots(QuantityValue knots)
         {
-            QuantityValue value = (QuantityValue) knots;
+            double value = (double) knots;
             return new Speed(value, SpeedUnit.Knot);
         }
 
@@ -670,7 +667,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerHour(QuantityValue metersperhour)
         {
-            QuantityValue value = (QuantityValue) metersperhour;
+            double value = (double) metersperhour;
             return new Speed(value, SpeedUnit.MeterPerHour);
         }
 
@@ -680,7 +677,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerMinutes(QuantityValue metersperminutes)
         {
-            QuantityValue value = (QuantityValue) metersperminutes;
+            double value = (double) metersperminutes;
             return new Speed(value, SpeedUnit.MeterPerMinute);
         }
 
@@ -690,7 +687,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMetersPerSecond(QuantityValue meterspersecond)
         {
-            QuantityValue value = (QuantityValue) meterspersecond;
+            double value = (double) meterspersecond;
             return new Speed(value, SpeedUnit.MeterPerSecond);
         }
 
@@ -700,7 +697,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMicrometersPerMinutes(QuantityValue micrometersperminutes)
         {
-            QuantityValue value = (QuantityValue) micrometersperminutes;
+            double value = (double) micrometersperminutes;
             return new Speed(value, SpeedUnit.MicrometerPerMinute);
         }
 
@@ -710,7 +707,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMicrometersPerSecond(QuantityValue micrometerspersecond)
         {
-            QuantityValue value = (QuantityValue) micrometerspersecond;
+            double value = (double) micrometerspersecond;
             return new Speed(value, SpeedUnit.MicrometerPerSecond);
         }
 
@@ -720,7 +717,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMilesPerHour(QuantityValue milesperhour)
         {
-            QuantityValue value = (QuantityValue) milesperhour;
+            double value = (double) milesperhour;
             return new Speed(value, SpeedUnit.MilePerHour);
         }
 
@@ -730,7 +727,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerHour(QuantityValue millimetersperhour)
         {
-            QuantityValue value = (QuantityValue) millimetersperhour;
+            double value = (double) millimetersperhour;
             return new Speed(value, SpeedUnit.MillimeterPerHour);
         }
 
@@ -740,7 +737,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerMinutes(QuantityValue millimetersperminutes)
         {
-            QuantityValue value = (QuantityValue) millimetersperminutes;
+            double value = (double) millimetersperminutes;
             return new Speed(value, SpeedUnit.MillimeterPerMinute);
         }
 
@@ -750,7 +747,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromMillimetersPerSecond(QuantityValue millimeterspersecond)
         {
-            QuantityValue value = (QuantityValue) millimeterspersecond;
+            double value = (double) millimeterspersecond;
             return new Speed(value, SpeedUnit.MillimeterPerSecond);
         }
 
@@ -760,7 +757,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromNanometersPerMinutes(QuantityValue nanometersperminutes)
         {
-            QuantityValue value = (QuantityValue) nanometersperminutes;
+            double value = (double) nanometersperminutes;
             return new Speed(value, SpeedUnit.NanometerPerMinute);
         }
 
@@ -770,7 +767,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromNanometersPerSecond(QuantityValue nanometerspersecond)
         {
-            QuantityValue value = (QuantityValue) nanometerspersecond;
+            double value = (double) nanometerspersecond;
             return new Speed(value, SpeedUnit.NanometerPerSecond);
         }
 
@@ -780,7 +777,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerHour(QuantityValue ussurveyfeetperhour)
         {
-            QuantityValue value = (QuantityValue) ussurveyfeetperhour;
+            double value = (double) ussurveyfeetperhour;
             return new Speed(value, SpeedUnit.UsSurveyFootPerHour);
         }
 
@@ -790,7 +787,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerMinute(QuantityValue ussurveyfeetperminute)
         {
-            QuantityValue value = (QuantityValue) ussurveyfeetperminute;
+            double value = (double) ussurveyfeetperminute;
             return new Speed(value, SpeedUnit.UsSurveyFootPerMinute);
         }
 
@@ -800,7 +797,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromUsSurveyFeetPerSecond(QuantityValue ussurveyfeetpersecond)
         {
-            QuantityValue value = (QuantityValue) ussurveyfeetpersecond;
+            double value = (double) ussurveyfeetpersecond;
             return new Speed(value, SpeedUnit.UsSurveyFootPerSecond);
         }
 
@@ -810,7 +807,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerHour(QuantityValue yardsperhour)
         {
-            QuantityValue value = (QuantityValue) yardsperhour;
+            double value = (double) yardsperhour;
             return new Speed(value, SpeedUnit.YardPerHour);
         }
 
@@ -820,7 +817,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerMinute(QuantityValue yardsperminute)
         {
-            QuantityValue value = (QuantityValue) yardsperminute;
+            double value = (double) yardsperminute;
             return new Speed(value, SpeedUnit.YardPerMinute);
         }
 
@@ -830,7 +827,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Speed FromYardsPerSecond(QuantityValue yardspersecond)
         {
-            QuantityValue value = (QuantityValue) yardspersecond;
+            double value = (double) yardspersecond;
             return new Speed(value, SpeedUnit.YardPerSecond);
         }
 
@@ -842,7 +839,7 @@ namespace UnitsNet
         /// <returns>Speed unit value.</returns>
         public static Speed From(QuantityValue value, SpeedUnit fromUnit)
         {
-            return new Speed((QuantityValue)value, fromUnit);
+            return new Speed((double)value, fromUnit);
         }
 
         #endregion
@@ -1012,25 +1009,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
-        public static Speed operator *(QuantityValue left, Speed right)
+        public static Speed operator *(double left, Speed right)
         {
             return new Speed(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from multiplying value and <see cref="Speed"/>.</summary>
-        public static Speed operator *(Speed left, QuantityValue right)
+        public static Speed operator *(Speed left, double right)
         {
             return new Speed(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Speed"/> from dividing <see cref="Speed"/> by value.</summary>
-        public static Speed operator /(Speed left, QuantityValue right)
+        public static Speed operator /(Speed left, double right)
         {
             return new Speed(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Speed"/> by <see cref="Speed"/>.</summary>
-        public static QuantityValue operator /(Speed left, Speed right)
+        public static double operator /(Speed left, Speed right)
         {
             return left.MetersPerSecond / right.MetersPerSecond;
         }
@@ -1063,19 +1060,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Speed, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Speed left, Speed right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Speed, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Speed left, Speed right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -1088,29 +1072,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Speed other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Speed, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is Speed objSpeed))
-                return false;
-            return Equals(objSpeed);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Speed, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Speed other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1153,13 +1115,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Speed other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(Speed other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -1170,7 +1132,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Speed.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1181,16 +1143,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(SpeedUnit unit)
+        public double As(SpeedUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1205,12 +1168,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is SpeedUnit typedUnit))
+            if (!(unit is SpeedUnit unitAsSpeedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsSpeedUnit);
         }
 
         /// <summary>
@@ -1242,7 +1205,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Speed)converted;
             }
-            else if (Enum.IsDefined(typeof(SpeedUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1250,17 +1213,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is SpeedUnit typedUnit))
+            if (!(unit is SpeedUnit unitAsSpeedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsSpeedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1287,10 +1250,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(SpeedUnit unit)
+        private double GetValueAs(SpeedUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

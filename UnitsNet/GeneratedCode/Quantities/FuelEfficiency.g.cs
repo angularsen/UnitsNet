@@ -38,13 +38,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Fuel_efficiency
     /// </remarks>
     [DataContract]
-    public partial struct FuelEfficiency : IQuantity<FuelEfficiencyUnit>, IEquatable<FuelEfficiency>, IComparable, IComparable<FuelEfficiency>, IConvertible, IFormattable
+    public partial struct FuelEfficiency : IQuantity<FuelEfficiencyUnit>, IComparable, IComparable<FuelEfficiency>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -78,9 +78,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public FuelEfficiency(QuantityValue value, FuelEfficiencyUnit unit)
+        public FuelEfficiency(double value, FuelEfficiencyUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -92,14 +92,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public FuelEfficiency(QuantityValue value, UnitSystem unitSystem)
+        public FuelEfficiency(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -140,10 +140,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -166,24 +163,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>
         /// </summary>
-        public QuantityValue KilometersPerLiters => As(FuelEfficiencyUnit.KilometerPerLiter);
+        public double KilometersPerLiters => As(FuelEfficiencyUnit.KilometerPerLiter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>
         /// </summary>
-        public QuantityValue LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
+        public double LitersPer100Kilometers => As(FuelEfficiencyUnit.LiterPer100Kilometers);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
         /// </summary>
-        public QuantityValue MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
+        public double MilesPerUkGallon => As(FuelEfficiencyUnit.MilePerUkGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>
         /// </summary>
-        public QuantityValue MilesPerUsGallon => As(FuelEfficiencyUnit.MilePerUsGallon);
+        public double MilesPerUsGallon => As(FuelEfficiencyUnit.MilePerUsGallon);
 
         #endregion
 
@@ -248,7 +245,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromKilometersPerLiters(QuantityValue kilometersperliters)
         {
-            QuantityValue value = (QuantityValue) kilometersperliters;
+            double value = (double) kilometersperliters;
             return new FuelEfficiency(value, FuelEfficiencyUnit.KilometerPerLiter);
         }
 
@@ -258,7 +255,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromLitersPer100Kilometers(QuantityValue litersper100kilometers)
         {
-            QuantityValue value = (QuantityValue) litersper100kilometers;
+            double value = (double) litersper100kilometers;
             return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
         }
 
@@ -268,7 +265,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromMilesPerUkGallon(QuantityValue milesperukgallon)
         {
-            QuantityValue value = (QuantityValue) milesperukgallon;
+            double value = (double) milesperukgallon;
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUkGallon);
         }
 
@@ -278,7 +275,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static FuelEfficiency FromMilesPerUsGallon(QuantityValue milesperusgallon)
         {
-            QuantityValue value = (QuantityValue) milesperusgallon;
+            double value = (double) milesperusgallon;
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUsGallon);
         }
 
@@ -290,7 +287,7 @@ namespace UnitsNet
         /// <returns>FuelEfficiency unit value.</returns>
         public static FuelEfficiency From(QuantityValue value, FuelEfficiencyUnit fromUnit)
         {
-            return new FuelEfficiency((QuantityValue)value, fromUnit);
+            return new FuelEfficiency((double)value, fromUnit);
         }
 
         #endregion
@@ -460,25 +457,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from multiplying value and <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator *(QuantityValue left, FuelEfficiency right)
+        public static FuelEfficiency operator *(double left, FuelEfficiency right)
         {
             return new FuelEfficiency(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from multiplying value and <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator *(FuelEfficiency left, QuantityValue right)
+        public static FuelEfficiency operator *(FuelEfficiency left, double right)
         {
             return new FuelEfficiency(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from dividing <see cref="FuelEfficiency"/> by value.</summary>
-        public static FuelEfficiency operator /(FuelEfficiency left, QuantityValue right)
+        public static FuelEfficiency operator /(FuelEfficiency left, double right)
         {
             return new FuelEfficiency(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="FuelEfficiency"/> by <see cref="FuelEfficiency"/>.</summary>
-        public static QuantityValue operator /(FuelEfficiency left, FuelEfficiency right)
+        public static double operator /(FuelEfficiency left, FuelEfficiency right)
         {
             return left.LitersPer100Kilometers / right.LitersPer100Kilometers;
         }
@@ -511,19 +508,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(FuelEfficiency, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(FuelEfficiency left, FuelEfficiency right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(FuelEfficiency, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(FuelEfficiency left, FuelEfficiency right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -536,29 +520,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(FuelEfficiency other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(FuelEfficiency, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is FuelEfficiency objFuelEfficiency))
-                return false;
-            return Equals(objFuelEfficiency);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(FuelEfficiency, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(FuelEfficiency other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -601,13 +563,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(FuelEfficiency other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(FuelEfficiency other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -618,7 +580,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current FuelEfficiency.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -629,16 +591,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(FuelEfficiencyUnit unit)
+        public double As(FuelEfficiencyUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -653,12 +616,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is FuelEfficiencyUnit typedUnit))
+            if (!(unit is FuelEfficiencyUnit unitAsFuelEfficiencyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FuelEfficiencyUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsFuelEfficiencyUnit);
         }
 
         /// <summary>
@@ -690,7 +653,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (FuelEfficiency)converted;
             }
-            else if (Enum.IsDefined(typeof(FuelEfficiencyUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -698,17 +661,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is FuelEfficiencyUnit typedUnit))
+            if (!(unit is FuelEfficiencyUnit unitAsFuelEfficiencyUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FuelEfficiencyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsFuelEfficiencyUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -735,10 +698,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<FuelEfficiencyUnit> IQuantity<FuelEfficiencyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(FuelEfficiencyUnit unit)
+        private double GetValueAs(FuelEfficiencyUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

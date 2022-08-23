@@ -17,7 +17,7 @@ namespace UnitsNet
         /// <returns>A quantity with a value, such that 0 ≤ value ≤ <see cref="F:System.Double.MaxValue" />.</returns>
         public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : IQuantity
         {
-            return value.Value >= QuantityValue.Zero ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
+            return value.Value >= 0 ? value : (TQuantity) Quantity.From(-value.Value, value.Unit);
         }
 
         /// <summary>Computes the sum of a sequence of <typeparamref name="TQuantity" /> values.</summary>
@@ -33,7 +33,7 @@ namespace UnitsNet
         public static TQuantity Sum<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
             where TQuantity : IQuantity
         {
-            return (TQuantity) Quantity.From(source.Aggregate(QuantityValue.Zero, (current, quantity) => current + quantity.As(unitType)), unitType);
+            return (TQuantity) Quantity.From(source.Sum(x => x.As(unitType)), unitType);
         }
 
         /// <summary>
@@ -172,20 +172,7 @@ namespace UnitsNet
         public static TQuantity Average<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
             where TQuantity : IQuantity
         {
-            var count = 0;
-            var total = QuantityValue.Zero;
-            foreach (var quantity in source)
-            {
-                count++;
-                total += quantity.As(unitType);
-            }
-
-            if (count == 0)
-            {
-                throw new InvalidOperationException($"{nameof(source)} contains no elements.");
-            }
-
-            return (TQuantity) Quantity.From(total / count, unitType);
+            return (TQuantity) Quantity.From(source.Average(x => x.As(unitType)), unitType);
         }
 
         /// <summary>
@@ -209,26 +196,6 @@ namespace UnitsNet
             where TQuantity : IQuantity
         {
             return source.Select(selector).Average(unitType);
-        }
-
-        /// <summary>
-        /// Explicitly create a <see cref="QuantityValue"/> instance from a double
-        /// </summary>
-        /// <param name="value">The input value</param>
-        /// <returns>An instance of <see cref="QuantityValue"/></returns>
-        public static QuantityValue ToQuantityValue(this double value)
-        {
-            return value; // Implicit cast
-        }
-
-        /// <summary>
-        /// Explicitly create a <see cref="QuantityValue"/> instance from a decimal
-        /// </summary>
-        /// <param name="value">The input value</param>
-        /// <returns>An instance of <see cref="QuantityValue"/></returns>
-        public static QuantityValue ToQuantityValue(this decimal value)
-        {
-            return value; // Implicit cast
         }
     }
 }

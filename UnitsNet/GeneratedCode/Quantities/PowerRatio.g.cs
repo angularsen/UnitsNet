@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one watt.
     /// </summary>
     [DataContract]
-    public partial struct PowerRatio : IQuantity<PowerRatioUnit>, IEquatable<PowerRatio>, IComparable, IComparable<PowerRatio>, IConvertible, IFormattable
+    public partial struct PowerRatio : IQuantity<PowerRatioUnit>, IComparable, IComparable<PowerRatio>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -73,9 +73,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public PowerRatio(QuantityValue value, PowerRatioUnit unit)
+        public PowerRatio(double value, PowerRatioUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -87,14 +87,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public PowerRatio(QuantityValue value, UnitSystem unitSystem)
+        public PowerRatio(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -135,10 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -161,14 +158,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>
         /// </summary>
-        public QuantityValue DecibelMilliwatts => As(PowerRatioUnit.DecibelMilliwatt);
+        public double DecibelMilliwatts => As(PowerRatioUnit.DecibelMilliwatt);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PowerRatioUnit.DecibelWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelWatt"/>
         /// </summary>
-        public QuantityValue DecibelWatts => As(PowerRatioUnit.DecibelWatt);
+        public double DecibelWatts => As(PowerRatioUnit.DecibelWatt);
 
         #endregion
 
@@ -227,7 +224,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelMilliwatts(QuantityValue decibelmilliwatts)
         {
-            QuantityValue value = (QuantityValue) decibelmilliwatts;
+            double value = (double) decibelmilliwatts;
             return new PowerRatio(value, PowerRatioUnit.DecibelMilliwatt);
         }
 
@@ -237,7 +234,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static PowerRatio FromDecibelWatts(QuantityValue decibelwatts)
         {
-            QuantityValue value = (QuantityValue) decibelwatts;
+            double value = (double) decibelwatts;
             return new PowerRatio(value, PowerRatioUnit.DecibelWatt);
         }
 
@@ -249,7 +246,7 @@ namespace UnitsNet
         /// <returns>PowerRatio unit value.</returns>
         public static PowerRatio From(QuantityValue value, PowerRatioUnit fromUnit)
         {
-            return new PowerRatio((QuantityValue)value, fromUnit);
+            return new PowerRatio((double)value, fromUnit);
         }
 
         #endregion
@@ -411,7 +408,7 @@ namespace UnitsNet
         {
             // Logarithmic addition
             // Formula: 10 * log10(10^(x/10) + 10^(y/10))
-            return new PowerRatio(10 * Math.Log10(Math.Pow(10, (double)left.Value/10) + Math.Pow(10, (double)right.GetValueAs(left.Unit)/10)), left.Unit);
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic subtraction of two <see cref="PowerRatio"/>.</summary>
@@ -419,11 +416,11 @@ namespace UnitsNet
         {
             // Logarithmic subtraction
             // Formula: 10 * log10(10^(x/10) - 10^(y/10))
-            return new PowerRatio(10 * Math.Log10(Math.Pow(10, (double)left.Value/10) - Math.Pow(10, (double)right.GetValueAs(left.Unit)/10)), left.Unit);
+            return new PowerRatio(10 * Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
-        public static PowerRatio operator *(QuantityValue left, PowerRatio right)
+        public static PowerRatio operator *(double left, PowerRatio right)
         {
             // Logarithmic multiplication = addition
             return new PowerRatio(left + right.Value, right.Unit);
@@ -433,14 +430,14 @@ namespace UnitsNet
         public static PowerRatio operator *(PowerRatio left, double right)
         {
             // Logarithmic multiplication = addition
-            return new PowerRatio(left.Value + (QuantityValue)right, left.Unit);
+            return new PowerRatio(left.Value + (double)right, left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic division of <see cref="PowerRatio"/> by value.</summary>
         public static PowerRatio operator /(PowerRatio left, double right)
         {
             // Logarithmic division = subtraction
-            return new PowerRatio(left.Value - (QuantityValue)right, left.Unit);
+            return new PowerRatio(left.Value - (double)right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="PowerRatio"/> by <see cref="PowerRatio"/>.</summary>
@@ -478,19 +475,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(PowerRatio, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(PowerRatio left, PowerRatio right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(PowerRatio, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(PowerRatio left, PowerRatio right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -503,29 +487,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(PowerRatio other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(PowerRatio, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is PowerRatio objPowerRatio))
-                return false;
-            return Equals(objPowerRatio);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(PowerRatio, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(PowerRatio other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -568,13 +530,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(PowerRatio other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(PowerRatio other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -585,7 +547,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current PowerRatio.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -596,16 +558,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(PowerRatioUnit unit)
+        public double As(PowerRatioUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -620,12 +583,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is PowerRatioUnit typedUnit))
+            if (!(unit is PowerRatioUnit unitAsPowerRatioUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsPowerRatioUnit);
         }
 
         /// <summary>
@@ -657,7 +620,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (PowerRatio)converted;
             }
-            else if (Enum.IsDefined(typeof(PowerRatioUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -665,17 +628,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is PowerRatioUnit typedUnit))
+            if (!(unit is PowerRatioUnit unitAsPowerRatioUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsPowerRatioUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -702,10 +665,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(PowerRatioUnit unit)
+        private double GetValueAs(PowerRatioUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

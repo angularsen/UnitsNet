@@ -68,7 +68,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             Length diameter = Length.FromMeters(diameterMeters);
 
-            double actual = (double)Area.FromCircleDiameter(diameter).SquareMeters;
+            double actual = Area.FromCircleDiameter(diameter).SquareMeters;
 
             Assert.Equal(expected, actual);
         }
@@ -82,7 +82,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             Length radius = Length.FromMeters(radiusMeters);
 
-            double actual = (double)Area.FromCircleRadius(radius).SquareMeters;
+            double actual = Area.FromCircleRadius(radius).SquareMeters;
 
             Assert.Equal(expected, actual);
         }

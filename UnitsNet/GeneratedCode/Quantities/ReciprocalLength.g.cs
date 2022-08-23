@@ -38,13 +38,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Reciprocal_length
     /// </remarks>
     [DataContract]
-    public partial struct ReciprocalLength : IQuantity<ReciprocalLengthUnit>, IEquatable<ReciprocalLength>, IComparable, IComparable<ReciprocalLength>, IConvertible, IFormattable
+    public partial struct ReciprocalLength : IQuantity<ReciprocalLengthUnit>, IComparable, IComparable<ReciprocalLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -84,9 +84,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ReciprocalLength(QuantityValue value, ReciprocalLengthUnit unit)
+        public ReciprocalLength(double value, ReciprocalLengthUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -98,14 +98,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ReciprocalLength(QuantityValue value, UnitSystem unitSystem)
+        public ReciprocalLength(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -146,10 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -172,54 +169,54 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseCentimeter"/>
         /// </summary>
-        public QuantityValue InverseCentimeters => As(ReciprocalLengthUnit.InverseCentimeter);
+        public double InverseCentimeters => As(ReciprocalLengthUnit.InverseCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseFoot"/>
         /// </summary>
-        public QuantityValue InverseFeet => As(ReciprocalLengthUnit.InverseFoot);
+        public double InverseFeet => As(ReciprocalLengthUnit.InverseFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseInch"/>
         /// </summary>
-        public QuantityValue InverseInches => As(ReciprocalLengthUnit.InverseInch);
+        public double InverseInches => As(ReciprocalLengthUnit.InverseInch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMeter"/>
         /// </summary>
-        public QuantityValue InverseMeters => As(ReciprocalLengthUnit.InverseMeter);
+        public double InverseMeters => As(ReciprocalLengthUnit.InverseMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMicroinch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMicroinch"/>
         /// </summary>
-        public QuantityValue InverseMicroinches => As(ReciprocalLengthUnit.InverseMicroinch);
+        public double InverseMicroinches => As(ReciprocalLengthUnit.InverseMicroinch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMil"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMil"/>
         /// </summary>
-        public QuantityValue InverseMils => As(ReciprocalLengthUnit.InverseMil);
+        public double InverseMils => As(ReciprocalLengthUnit.InverseMil);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMile"/>
         /// </summary>
-        public QuantityValue InverseMiles => As(ReciprocalLengthUnit.InverseMile);
+        public double InverseMiles => As(ReciprocalLengthUnit.InverseMile);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseMillimeter"/>
         /// </summary>
-        public QuantityValue InverseMillimeters => As(ReciprocalLengthUnit.InverseMillimeter);
+        public double InverseMillimeters => As(ReciprocalLengthUnit.InverseMillimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseUsSurveyFoot"/>
         /// </summary>
-        public QuantityValue InverseUsSurveyFeet => As(ReciprocalLengthUnit.InverseUsSurveyFoot);
+        public double InverseUsSurveyFeet => As(ReciprocalLengthUnit.InverseUsSurveyFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseYard"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalLengthUnit.InverseYard"/>
         /// </summary>
-        public QuantityValue InverseYards => As(ReciprocalLengthUnit.InverseYard);
+        public double InverseYards => As(ReciprocalLengthUnit.InverseYard);
 
         #endregion
 
@@ -302,7 +299,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseCentimeters(QuantityValue inversecentimeters)
         {
-            QuantityValue value = (QuantityValue) inversecentimeters;
+            double value = (double) inversecentimeters;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseCentimeter);
         }
 
@@ -312,7 +309,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseFeet(QuantityValue inversefeet)
         {
-            QuantityValue value = (QuantityValue) inversefeet;
+            double value = (double) inversefeet;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseFoot);
         }
 
@@ -322,7 +319,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseInches(QuantityValue inverseinches)
         {
-            QuantityValue value = (QuantityValue) inverseinches;
+            double value = (double) inverseinches;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseInch);
         }
 
@@ -332,7 +329,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMeters(QuantityValue inversemeters)
         {
-            QuantityValue value = (QuantityValue) inversemeters;
+            double value = (double) inversemeters;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
         }
 
@@ -342,7 +339,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMicroinches(QuantityValue inversemicroinches)
         {
-            QuantityValue value = (QuantityValue) inversemicroinches;
+            double value = (double) inversemicroinches;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMicroinch);
         }
 
@@ -352,7 +349,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMils(QuantityValue inversemils)
         {
-            QuantityValue value = (QuantityValue) inversemils;
+            double value = (double) inversemils;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMil);
         }
 
@@ -362,7 +359,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMiles(QuantityValue inversemiles)
         {
-            QuantityValue value = (QuantityValue) inversemiles;
+            double value = (double) inversemiles;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMile);
         }
 
@@ -372,7 +369,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseMillimeters(QuantityValue inversemillimeters)
         {
-            QuantityValue value = (QuantityValue) inversemillimeters;
+            double value = (double) inversemillimeters;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseMillimeter);
         }
 
@@ -382,7 +379,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseUsSurveyFeet(QuantityValue inverseussurveyfeet)
         {
-            QuantityValue value = (QuantityValue) inverseussurveyfeet;
+            double value = (double) inverseussurveyfeet;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseUsSurveyFoot);
         }
 
@@ -392,7 +389,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ReciprocalLength FromInverseYards(QuantityValue inverseyards)
         {
-            QuantityValue value = (QuantityValue) inverseyards;
+            double value = (double) inverseyards;
             return new ReciprocalLength(value, ReciprocalLengthUnit.InverseYard);
         }
 
@@ -404,7 +401,7 @@ namespace UnitsNet
         /// <returns>ReciprocalLength unit value.</returns>
         public static ReciprocalLength From(QuantityValue value, ReciprocalLengthUnit fromUnit)
         {
-            return new ReciprocalLength((QuantityValue)value, fromUnit);
+            return new ReciprocalLength((double)value, fromUnit);
         }
 
         #endregion
@@ -574,25 +571,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from multiplying value and <see cref="ReciprocalLength"/>.</summary>
-        public static ReciprocalLength operator *(QuantityValue left, ReciprocalLength right)
+        public static ReciprocalLength operator *(double left, ReciprocalLength right)
         {
             return new ReciprocalLength(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from multiplying value and <see cref="ReciprocalLength"/>.</summary>
-        public static ReciprocalLength operator *(ReciprocalLength left, QuantityValue right)
+        public static ReciprocalLength operator *(ReciprocalLength left, double right)
         {
             return new ReciprocalLength(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from dividing <see cref="ReciprocalLength"/> by value.</summary>
-        public static ReciprocalLength operator /(ReciprocalLength left, QuantityValue right)
+        public static ReciprocalLength operator /(ReciprocalLength left, double right)
         {
             return new ReciprocalLength(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ReciprocalLength"/> by <see cref="ReciprocalLength"/>.</summary>
-        public static QuantityValue operator /(ReciprocalLength left, ReciprocalLength right)
+        public static double operator /(ReciprocalLength left, ReciprocalLength right)
         {
             return left.InverseMeters / right.InverseMeters;
         }
@@ -625,19 +622,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ReciprocalLength, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ReciprocalLength left, ReciprocalLength right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ReciprocalLength, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ReciprocalLength left, ReciprocalLength right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -650,29 +634,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ReciprocalLength other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ReciprocalLength, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is ReciprocalLength objReciprocalLength))
-                return false;
-            return Equals(objReciprocalLength);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ReciprocalLength, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ReciprocalLength other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -715,13 +677,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ReciprocalLength other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(ReciprocalLength other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -732,7 +694,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ReciprocalLength.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -743,16 +705,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(ReciprocalLengthUnit unit)
+        public double As(ReciprocalLengthUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -767,12 +730,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is ReciprocalLengthUnit typedUnit))
+            if (!(unit is ReciprocalLengthUnit unitAsReciprocalLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalLengthUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsReciprocalLengthUnit);
         }
 
         /// <summary>
@@ -804,7 +767,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (ReciprocalLength)converted;
             }
-            else if (Enum.IsDefined(typeof(ReciprocalLengthUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -812,17 +775,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is ReciprocalLengthUnit typedUnit))
+            if (!(unit is ReciprocalLengthUnit unitAsReciprocalLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalLengthUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsReciprocalLengthUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -849,10 +812,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ReciprocalLengthUnit> IQuantity<ReciprocalLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(ReciprocalLengthUnit unit)
+        private double GetValueAs(ReciprocalLengthUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

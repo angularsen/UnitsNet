@@ -49,15 +49,15 @@ namespace UnitsNet.Tests
         protected abstract double PicomolesPerLiterInOneMolesPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentimolesPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double DecimolesPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double FemtomolesPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double MicromolesPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double MillimolesPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double MolesPerCubicMeterTolerance { get { return 1E-5; } }
-        protected virtual double MolesPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double NanomolesPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double PicomolesPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double CentimolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double DecimolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double FemtomolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double MicromolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double MillimolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double MolesPerCubicMeterTolerance { get { return 1e-5; } }
+        protected virtual double MolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double NanomolesPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double PicomolesPerLiterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarityUnit unit)
@@ -302,7 +302,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) (QuantityValue) AsWithSIUnitSystem();
+                var value = (double) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -578,19 +578,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(MolarityUnit unit)
         {
-            var inBaseUnit = Molarity.From(1.0, Molarity.BaseUnit);
-            var converted = inBaseUnit.ToUnit(unit);
+            var inBaseUnits = Molarity.From(1.0, Molarity.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
-        }
-
-        [Fact]
-        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
-        {
-            var inBaseUnit = Molarity.From(1.0, Molarity.BaseUnit);
-            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(MolarityUnit)));
         }
 
         [Theory]
@@ -606,8 +599,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarityUnit unit)
         {
-            // This test is only available for quantities with more than one units.
-            var fromUnit = Molarity.Units.First(u => u != Molarity.BaseUnit);
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Molarity.Units.Where(u => u != Molarity.BaseUnit).DefaultIfEmpty(Molarity.BaseUnit).FirstOrDefault();
 
             var quantity = Molarity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -850,9 +843,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-           Assert.Equal((byte)value, Convert.ToByte(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -886,41 +878,36 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-            Assert.Equal((short)value, Convert.ToInt16(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-            Assert.Equal((int)value, Convert.ToInt32(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-            Assert.Equal((long)value, Convert.ToInt64(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-            Assert.Equal((float)value, Convert.ToSingle(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -933,25 +920,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Molarity.FromMolesPerCubicMeter(value);
-            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
+            var quantity = Molarity.FromMolesPerCubicMeter(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -993,7 +977,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Molarity.FromMolesPerCubicMeter(1.0);
-            Assert.Equal(Molarity.Info.Name.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Molarity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

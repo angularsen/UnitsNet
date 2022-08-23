@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public partial struct Jerk : IQuantity<JerkUnit>, IEquatable<Jerk>, IComparable, IComparable<Jerk>, IConvertible, IFormattable
+    public partial struct Jerk : IQuantity<JerkUnit>, IComparable, IComparable<Jerk>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -82,9 +82,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Jerk(QuantityValue value, JerkUnit unit)
+        public Jerk(double value, JerkUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -96,14 +96,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Jerk(QuantityValue value, UnitSystem unitSystem)
+        public Jerk(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -144,10 +144,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -170,59 +167,59 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.CentimeterPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.CentimeterPerSecondCubed"/>
         /// </summary>
-        public QuantityValue CentimetersPerSecondCubed => As(JerkUnit.CentimeterPerSecondCubed);
+        public double CentimetersPerSecondCubed => As(JerkUnit.CentimeterPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.DecimeterPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.DecimeterPerSecondCubed"/>
         /// </summary>
-        public QuantityValue DecimetersPerSecondCubed => As(JerkUnit.DecimeterPerSecondCubed);
+        public double DecimetersPerSecondCubed => As(JerkUnit.DecimeterPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.FootPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.FootPerSecondCubed"/>
         /// </summary>
-        public QuantityValue FeetPerSecondCubed => As(JerkUnit.FootPerSecondCubed);
+        public double FeetPerSecondCubed => As(JerkUnit.FootPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.InchPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.InchPerSecondCubed"/>
         /// </summary>
-        public QuantityValue InchesPerSecondCubed => As(JerkUnit.InchPerSecondCubed);
+        public double InchesPerSecondCubed => As(JerkUnit.InchPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.KilometerPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.KilometerPerSecondCubed"/>
         /// </summary>
-        public QuantityValue KilometersPerSecondCubed => As(JerkUnit.KilometerPerSecondCubed);
+        public double KilometersPerSecondCubed => As(JerkUnit.KilometerPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.MeterPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.MeterPerSecondCubed"/>
         /// </summary>
-        public QuantityValue MetersPerSecondCubed => As(JerkUnit.MeterPerSecondCubed);
+        public double MetersPerSecondCubed => As(JerkUnit.MeterPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.MicrometerPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.MicrometerPerSecondCubed"/>
         /// </summary>
-        public QuantityValue MicrometersPerSecondCubed => As(JerkUnit.MicrometerPerSecondCubed);
+        public double MicrometersPerSecondCubed => As(JerkUnit.MicrometerPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.MillimeterPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.MillimeterPerSecondCubed"/>
         /// </summary>
-        public QuantityValue MillimetersPerSecondCubed => As(JerkUnit.MillimeterPerSecondCubed);
+        public double MillimetersPerSecondCubed => As(JerkUnit.MillimeterPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.MillistandardGravitiesPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.MillistandardGravitiesPerSecond"/>
         /// </summary>
-        public QuantityValue MillistandardGravitiesPerSecond => As(JerkUnit.MillistandardGravitiesPerSecond);
+        public double MillistandardGravitiesPerSecond => As(JerkUnit.MillistandardGravitiesPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.NanometerPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.NanometerPerSecondCubed"/>
         /// </summary>
-        public QuantityValue NanometersPerSecondCubed => As(JerkUnit.NanometerPerSecondCubed);
+        public double NanometersPerSecondCubed => As(JerkUnit.NanometerPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="JerkUnit.StandardGravitiesPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.StandardGravitiesPerSecond"/>
         /// </summary>
-        public QuantityValue StandardGravitiesPerSecond => As(JerkUnit.StandardGravitiesPerSecond);
+        public double StandardGravitiesPerSecond => As(JerkUnit.StandardGravitiesPerSecond);
 
         #endregion
 
@@ -319,7 +316,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromCentimetersPerSecondCubed(QuantityValue centimeterspersecondcubed)
         {
-            QuantityValue value = (QuantityValue) centimeterspersecondcubed;
+            double value = (double) centimeterspersecondcubed;
             return new Jerk(value, JerkUnit.CentimeterPerSecondCubed);
         }
 
@@ -329,7 +326,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromDecimetersPerSecondCubed(QuantityValue decimeterspersecondcubed)
         {
-            QuantityValue value = (QuantityValue) decimeterspersecondcubed;
+            double value = (double) decimeterspersecondcubed;
             return new Jerk(value, JerkUnit.DecimeterPerSecondCubed);
         }
 
@@ -339,7 +336,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromFeetPerSecondCubed(QuantityValue feetpersecondcubed)
         {
-            QuantityValue value = (QuantityValue) feetpersecondcubed;
+            double value = (double) feetpersecondcubed;
             return new Jerk(value, JerkUnit.FootPerSecondCubed);
         }
 
@@ -349,7 +346,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromInchesPerSecondCubed(QuantityValue inchespersecondcubed)
         {
-            QuantityValue value = (QuantityValue) inchespersecondcubed;
+            double value = (double) inchespersecondcubed;
             return new Jerk(value, JerkUnit.InchPerSecondCubed);
         }
 
@@ -359,7 +356,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromKilometersPerSecondCubed(QuantityValue kilometerspersecondcubed)
         {
-            QuantityValue value = (QuantityValue) kilometerspersecondcubed;
+            double value = (double) kilometerspersecondcubed;
             return new Jerk(value, JerkUnit.KilometerPerSecondCubed);
         }
 
@@ -369,7 +366,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromMetersPerSecondCubed(QuantityValue meterspersecondcubed)
         {
-            QuantityValue value = (QuantityValue) meterspersecondcubed;
+            double value = (double) meterspersecondcubed;
             return new Jerk(value, JerkUnit.MeterPerSecondCubed);
         }
 
@@ -379,7 +376,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromMicrometersPerSecondCubed(QuantityValue micrometerspersecondcubed)
         {
-            QuantityValue value = (QuantityValue) micrometerspersecondcubed;
+            double value = (double) micrometerspersecondcubed;
             return new Jerk(value, JerkUnit.MicrometerPerSecondCubed);
         }
 
@@ -389,7 +386,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromMillimetersPerSecondCubed(QuantityValue millimeterspersecondcubed)
         {
-            QuantityValue value = (QuantityValue) millimeterspersecondcubed;
+            double value = (double) millimeterspersecondcubed;
             return new Jerk(value, JerkUnit.MillimeterPerSecondCubed);
         }
 
@@ -399,7 +396,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromMillistandardGravitiesPerSecond(QuantityValue millistandardgravitiespersecond)
         {
-            QuantityValue value = (QuantityValue) millistandardgravitiespersecond;
+            double value = (double) millistandardgravitiespersecond;
             return new Jerk(value, JerkUnit.MillistandardGravitiesPerSecond);
         }
 
@@ -409,7 +406,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromNanometersPerSecondCubed(QuantityValue nanometerspersecondcubed)
         {
-            QuantityValue value = (QuantityValue) nanometerspersecondcubed;
+            double value = (double) nanometerspersecondcubed;
             return new Jerk(value, JerkUnit.NanometerPerSecondCubed);
         }
 
@@ -419,7 +416,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Jerk FromStandardGravitiesPerSecond(QuantityValue standardgravitiespersecond)
         {
-            QuantityValue value = (QuantityValue) standardgravitiespersecond;
+            double value = (double) standardgravitiespersecond;
             return new Jerk(value, JerkUnit.StandardGravitiesPerSecond);
         }
 
@@ -431,7 +428,7 @@ namespace UnitsNet
         /// <returns>Jerk unit value.</returns>
         public static Jerk From(QuantityValue value, JerkUnit fromUnit)
         {
-            return new Jerk((QuantityValue)value, fromUnit);
+            return new Jerk((double)value, fromUnit);
         }
 
         #endregion
@@ -601,25 +598,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Jerk"/> from multiplying value and <see cref="Jerk"/>.</summary>
-        public static Jerk operator *(QuantityValue left, Jerk right)
+        public static Jerk operator *(double left, Jerk right)
         {
             return new Jerk(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Jerk"/> from multiplying value and <see cref="Jerk"/>.</summary>
-        public static Jerk operator *(Jerk left, QuantityValue right)
+        public static Jerk operator *(Jerk left, double right)
         {
             return new Jerk(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Jerk"/> from dividing <see cref="Jerk"/> by value.</summary>
-        public static Jerk operator /(Jerk left, QuantityValue right)
+        public static Jerk operator /(Jerk left, double right)
         {
             return new Jerk(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Jerk"/> by <see cref="Jerk"/>.</summary>
-        public static QuantityValue operator /(Jerk left, Jerk right)
+        public static double operator /(Jerk left, Jerk right)
         {
             return left.MetersPerSecondCubed / right.MetersPerSecondCubed;
         }
@@ -652,19 +649,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Jerk, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Jerk left, Jerk right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Jerk, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Jerk left, Jerk right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -677,29 +661,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Jerk other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Jerk, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is Jerk objJerk))
-                return false;
-            return Equals(objJerk);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Jerk, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Jerk other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -742,13 +704,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Jerk other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(Jerk other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -759,7 +721,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Jerk.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -770,16 +732,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(JerkUnit unit)
+        public double As(JerkUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -794,12 +757,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is JerkUnit typedUnit))
+            if (!(unit is JerkUnit unitAsJerkUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(JerkUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsJerkUnit);
         }
 
         /// <summary>
@@ -831,7 +794,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Jerk)converted;
             }
-            else if (Enum.IsDefined(typeof(JerkUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -839,17 +802,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is JerkUnit typedUnit))
+            if (!(unit is JerkUnit unitAsJerkUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(JerkUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsJerkUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -876,10 +839,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<JerkUnit> IQuantity<JerkUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(JerkUnit unit)
+        private double GetValueAs(JerkUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.
     /// </summary>
     [DataContract]
-    public partial struct Volume : IQuantity<VolumeUnit>, IEquatable<Volume>, IComparable, IComparable<Volume>, IConvertible, IFormattable
+    public partial struct Volume : IQuantity<VolumeUnit>, IComparable, IComparable<Volume>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -123,9 +123,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Volume(QuantityValue value, VolumeUnit unit)
+        public Volume(double value, VolumeUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -137,14 +137,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Volume(QuantityValue value, UnitSystem unitSystem)
+        public Volume(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -185,10 +185,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -211,264 +208,264 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.AcreFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.AcreFoot"/>
         /// </summary>
-        public QuantityValue AcreFeet => As(VolumeUnit.AcreFoot);
+        public double AcreFeet => As(VolumeUnit.AcreFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.AuTablespoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.AuTablespoon"/>
         /// </summary>
-        public QuantityValue AuTablespoons => As(VolumeUnit.AuTablespoon);
+        public double AuTablespoons => As(VolumeUnit.AuTablespoon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.BoardFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.BoardFoot"/>
         /// </summary>
-        public QuantityValue BoardFeet => As(VolumeUnit.BoardFoot);
+        public double BoardFeet => As(VolumeUnit.BoardFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Centiliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Centiliter"/>
         /// </summary>
-        public QuantityValue Centiliters => As(VolumeUnit.Centiliter);
+        public double Centiliters => As(VolumeUnit.Centiliter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicCentimeter"/>
         /// </summary>
-        public QuantityValue CubicCentimeters => As(VolumeUnit.CubicCentimeter);
+        public double CubicCentimeters => As(VolumeUnit.CubicCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicDecimeter"/>
         /// </summary>
-        public QuantityValue CubicDecimeters => As(VolumeUnit.CubicDecimeter);
+        public double CubicDecimeters => As(VolumeUnit.CubicDecimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicFoot"/>
         /// </summary>
-        public QuantityValue CubicFeet => As(VolumeUnit.CubicFoot);
+        public double CubicFeet => As(VolumeUnit.CubicFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicHectometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicHectometer"/>
         /// </summary>
-        public QuantityValue CubicHectometers => As(VolumeUnit.CubicHectometer);
+        public double CubicHectometers => As(VolumeUnit.CubicHectometer);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicInch"/>
         /// </summary>
-        public QuantityValue CubicInches => As(VolumeUnit.CubicInch);
+        public double CubicInches => As(VolumeUnit.CubicInch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicKilometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicKilometer"/>
         /// </summary>
-        public QuantityValue CubicKilometers => As(VolumeUnit.CubicKilometer);
+        public double CubicKilometers => As(VolumeUnit.CubicKilometer);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMeter"/>
         /// </summary>
-        public QuantityValue CubicMeters => As(VolumeUnit.CubicMeter);
+        public double CubicMeters => As(VolumeUnit.CubicMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMicrometer"/>
         /// </summary>
-        public QuantityValue CubicMicrometers => As(VolumeUnit.CubicMicrometer);
+        public double CubicMicrometers => As(VolumeUnit.CubicMicrometer);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMile"/>
         /// </summary>
-        public QuantityValue CubicMiles => As(VolumeUnit.CubicMile);
+        public double CubicMiles => As(VolumeUnit.CubicMile);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMillimeter"/>
         /// </summary>
-        public QuantityValue CubicMillimeters => As(VolumeUnit.CubicMillimeter);
+        public double CubicMillimeters => As(VolumeUnit.CubicMillimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.CubicYard"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicYard"/>
         /// </summary>
-        public QuantityValue CubicYards => As(VolumeUnit.CubicYard);
+        public double CubicYards => As(VolumeUnit.CubicYard);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Decaliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Decaliter"/>
         /// </summary>
-        public QuantityValue Decaliters => As(VolumeUnit.Decaliter);
+        public double Decaliters => As(VolumeUnit.Decaliter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.DecausGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.DecausGallon"/>
         /// </summary>
-        public QuantityValue DecausGallons => As(VolumeUnit.DecausGallon);
+        public double DecausGallons => As(VolumeUnit.DecausGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Deciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Deciliter"/>
         /// </summary>
-        public QuantityValue Deciliters => As(VolumeUnit.Deciliter);
+        public double Deciliters => As(VolumeUnit.Deciliter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.DeciusGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.DeciusGallon"/>
         /// </summary>
-        public QuantityValue DeciusGallons => As(VolumeUnit.DeciusGallon);
+        public double DeciusGallons => As(VolumeUnit.DeciusGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.HectocubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicFoot"/>
         /// </summary>
-        public QuantityValue HectocubicFeet => As(VolumeUnit.HectocubicFoot);
+        public double HectocubicFeet => As(VolumeUnit.HectocubicFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.HectocubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicMeter"/>
         /// </summary>
-        public QuantityValue HectocubicMeters => As(VolumeUnit.HectocubicMeter);
+        public double HectocubicMeters => As(VolumeUnit.HectocubicMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Hectoliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Hectoliter"/>
         /// </summary>
-        public QuantityValue Hectoliters => As(VolumeUnit.Hectoliter);
+        public double Hectoliters => As(VolumeUnit.Hectoliter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.HectousGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectousGallon"/>
         /// </summary>
-        public QuantityValue HectousGallons => As(VolumeUnit.HectousGallon);
+        public double HectousGallons => As(VolumeUnit.HectousGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>
         /// </summary>
-        public QuantityValue ImperialBeerBarrels => As(VolumeUnit.ImperialBeerBarrel);
+        public double ImperialBeerBarrels => As(VolumeUnit.ImperialBeerBarrel);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.ImperialGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialGallon"/>
         /// </summary>
-        public QuantityValue ImperialGallons => As(VolumeUnit.ImperialGallon);
+        public double ImperialGallons => As(VolumeUnit.ImperialGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.ImperialOunce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialOunce"/>
         /// </summary>
-        public QuantityValue ImperialOunces => As(VolumeUnit.ImperialOunce);
+        public double ImperialOunces => As(VolumeUnit.ImperialOunce);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.ImperialPint"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialPint"/>
         /// </summary>
-        public QuantityValue ImperialPints => As(VolumeUnit.ImperialPint);
+        public double ImperialPints => As(VolumeUnit.ImperialPint);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
         /// </summary>
-        public QuantityValue KilocubicFeet => As(VolumeUnit.KilocubicFoot);
+        public double KilocubicFeet => As(VolumeUnit.KilocubicFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.KilocubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicMeter"/>
         /// </summary>
-        public QuantityValue KilocubicMeters => As(VolumeUnit.KilocubicMeter);
+        public double KilocubicMeters => As(VolumeUnit.KilocubicMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.KiloimperialGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KiloimperialGallon"/>
         /// </summary>
-        public QuantityValue KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
+        public double KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Kiloliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Kiloliter"/>
         /// </summary>
-        public QuantityValue Kiloliters => As(VolumeUnit.Kiloliter);
+        public double Kiloliters => As(VolumeUnit.Kiloliter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.KilousGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilousGallon"/>
         /// </summary>
-        public QuantityValue KilousGallons => As(VolumeUnit.KilousGallon);
+        public double KilousGallons => As(VolumeUnit.KilousGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Liter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Liter"/>
         /// </summary>
-        public QuantityValue Liters => As(VolumeUnit.Liter);
+        public double Liters => As(VolumeUnit.Liter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.MegacubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegacubicFoot"/>
         /// </summary>
-        public QuantityValue MegacubicFeet => As(VolumeUnit.MegacubicFoot);
+        public double MegacubicFeet => As(VolumeUnit.MegacubicFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.MegaimperialGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegaimperialGallon"/>
         /// </summary>
-        public QuantityValue MegaimperialGallons => As(VolumeUnit.MegaimperialGallon);
+        public double MegaimperialGallons => As(VolumeUnit.MegaimperialGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Megaliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Megaliter"/>
         /// </summary>
-        public QuantityValue Megaliters => As(VolumeUnit.Megaliter);
+        public double Megaliters => As(VolumeUnit.Megaliter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.MegausGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegausGallon"/>
         /// </summary>
-        public QuantityValue MegausGallons => As(VolumeUnit.MegausGallon);
+        public double MegausGallons => As(VolumeUnit.MegausGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.MetricCup"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricCup"/>
         /// </summary>
-        public QuantityValue MetricCups => As(VolumeUnit.MetricCup);
+        public double MetricCups => As(VolumeUnit.MetricCup);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.MetricTeaspoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricTeaspoon"/>
         /// </summary>
-        public QuantityValue MetricTeaspoons => As(VolumeUnit.MetricTeaspoon);
+        public double MetricTeaspoons => As(VolumeUnit.MetricTeaspoon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Microliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Microliter"/>
         /// </summary>
-        public QuantityValue Microliters => As(VolumeUnit.Microliter);
+        public double Microliters => As(VolumeUnit.Microliter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.Milliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Milliliter"/>
         /// </summary>
-        public QuantityValue Milliliters => As(VolumeUnit.Milliliter);
+        public double Milliliters => As(VolumeUnit.Milliliter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
         /// </summary>
-        public QuantityValue OilBarrels => As(VolumeUnit.OilBarrel);
+        public double OilBarrels => As(VolumeUnit.OilBarrel);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UkTablespoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UkTablespoon"/>
         /// </summary>
-        public QuantityValue UkTablespoons => As(VolumeUnit.UkTablespoon);
+        public double UkTablespoons => As(VolumeUnit.UkTablespoon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsBeerBarrel"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsBeerBarrel"/>
         /// </summary>
-        public QuantityValue UsBeerBarrels => As(VolumeUnit.UsBeerBarrel);
+        public double UsBeerBarrels => As(VolumeUnit.UsBeerBarrel);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsCustomaryCup"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsCustomaryCup"/>
         /// </summary>
-        public QuantityValue UsCustomaryCups => As(VolumeUnit.UsCustomaryCup);
+        public double UsCustomaryCups => As(VolumeUnit.UsCustomaryCup);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsGallon"/>
         /// </summary>
-        public QuantityValue UsGallons => As(VolumeUnit.UsGallon);
+        public double UsGallons => As(VolumeUnit.UsGallon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsLegalCup"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsLegalCup"/>
         /// </summary>
-        public QuantityValue UsLegalCups => As(VolumeUnit.UsLegalCup);
+        public double UsLegalCups => As(VolumeUnit.UsLegalCup);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsOunce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsOunce"/>
         /// </summary>
-        public QuantityValue UsOunces => As(VolumeUnit.UsOunce);
+        public double UsOunces => As(VolumeUnit.UsOunce);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsPint"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsPint"/>
         /// </summary>
-        public QuantityValue UsPints => As(VolumeUnit.UsPint);
+        public double UsPints => As(VolumeUnit.UsPint);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsQuart"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsQuart"/>
         /// </summary>
-        public QuantityValue UsQuarts => As(VolumeUnit.UsQuart);
+        public double UsQuarts => As(VolumeUnit.UsQuart);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsTablespoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsTablespoon"/>
         /// </summary>
-        public QuantityValue UsTablespoons => As(VolumeUnit.UsTablespoon);
+        public double UsTablespoons => As(VolumeUnit.UsTablespoon);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="VolumeUnit.UsTeaspoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsTeaspoon"/>
         /// </summary>
-        public QuantityValue UsTeaspoons => As(VolumeUnit.UsTeaspoon);
+        public double UsTeaspoons => As(VolumeUnit.UsTeaspoon);
 
         #endregion
 
@@ -724,7 +721,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromAcreFeet(QuantityValue acrefeet)
         {
-            QuantityValue value = (QuantityValue) acrefeet;
+            double value = (double) acrefeet;
             return new Volume(value, VolumeUnit.AcreFoot);
         }
 
@@ -734,7 +731,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromAuTablespoons(QuantityValue autablespoons)
         {
-            QuantityValue value = (QuantityValue) autablespoons;
+            double value = (double) autablespoons;
             return new Volume(value, VolumeUnit.AuTablespoon);
         }
 
@@ -744,7 +741,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromBoardFeet(QuantityValue boardfeet)
         {
-            QuantityValue value = (QuantityValue) boardfeet;
+            double value = (double) boardfeet;
             return new Volume(value, VolumeUnit.BoardFoot);
         }
 
@@ -754,7 +751,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCentiliters(QuantityValue centiliters)
         {
-            QuantityValue value = (QuantityValue) centiliters;
+            double value = (double) centiliters;
             return new Volume(value, VolumeUnit.Centiliter);
         }
 
@@ -764,7 +761,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicCentimeters(QuantityValue cubiccentimeters)
         {
-            QuantityValue value = (QuantityValue) cubiccentimeters;
+            double value = (double) cubiccentimeters;
             return new Volume(value, VolumeUnit.CubicCentimeter);
         }
 
@@ -774,7 +771,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicDecimeters(QuantityValue cubicdecimeters)
         {
-            QuantityValue value = (QuantityValue) cubicdecimeters;
+            double value = (double) cubicdecimeters;
             return new Volume(value, VolumeUnit.CubicDecimeter);
         }
 
@@ -784,7 +781,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicFeet(QuantityValue cubicfeet)
         {
-            QuantityValue value = (QuantityValue) cubicfeet;
+            double value = (double) cubicfeet;
             return new Volume(value, VolumeUnit.CubicFoot);
         }
 
@@ -794,7 +791,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicHectometers(QuantityValue cubichectometers)
         {
-            QuantityValue value = (QuantityValue) cubichectometers;
+            double value = (double) cubichectometers;
             return new Volume(value, VolumeUnit.CubicHectometer);
         }
 
@@ -804,7 +801,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicInches(QuantityValue cubicinches)
         {
-            QuantityValue value = (QuantityValue) cubicinches;
+            double value = (double) cubicinches;
             return new Volume(value, VolumeUnit.CubicInch);
         }
 
@@ -814,7 +811,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicKilometers(QuantityValue cubickilometers)
         {
-            QuantityValue value = (QuantityValue) cubickilometers;
+            double value = (double) cubickilometers;
             return new Volume(value, VolumeUnit.CubicKilometer);
         }
 
@@ -824,7 +821,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicMeters(QuantityValue cubicmeters)
         {
-            QuantityValue value = (QuantityValue) cubicmeters;
+            double value = (double) cubicmeters;
             return new Volume(value, VolumeUnit.CubicMeter);
         }
 
@@ -834,7 +831,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicMicrometers(QuantityValue cubicmicrometers)
         {
-            QuantityValue value = (QuantityValue) cubicmicrometers;
+            double value = (double) cubicmicrometers;
             return new Volume(value, VolumeUnit.CubicMicrometer);
         }
 
@@ -844,7 +841,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicMiles(QuantityValue cubicmiles)
         {
-            QuantityValue value = (QuantityValue) cubicmiles;
+            double value = (double) cubicmiles;
             return new Volume(value, VolumeUnit.CubicMile);
         }
 
@@ -854,7 +851,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicMillimeters(QuantityValue cubicmillimeters)
         {
-            QuantityValue value = (QuantityValue) cubicmillimeters;
+            double value = (double) cubicmillimeters;
             return new Volume(value, VolumeUnit.CubicMillimeter);
         }
 
@@ -864,7 +861,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromCubicYards(QuantityValue cubicyards)
         {
-            QuantityValue value = (QuantityValue) cubicyards;
+            double value = (double) cubicyards;
             return new Volume(value, VolumeUnit.CubicYard);
         }
 
@@ -874,7 +871,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromDecaliters(QuantityValue decaliters)
         {
-            QuantityValue value = (QuantityValue) decaliters;
+            double value = (double) decaliters;
             return new Volume(value, VolumeUnit.Decaliter);
         }
 
@@ -884,7 +881,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromDecausGallons(QuantityValue decausgallons)
         {
-            QuantityValue value = (QuantityValue) decausgallons;
+            double value = (double) decausgallons;
             return new Volume(value, VolumeUnit.DecausGallon);
         }
 
@@ -894,7 +891,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromDeciliters(QuantityValue deciliters)
         {
-            QuantityValue value = (QuantityValue) deciliters;
+            double value = (double) deciliters;
             return new Volume(value, VolumeUnit.Deciliter);
         }
 
@@ -904,7 +901,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromDeciusGallons(QuantityValue deciusgallons)
         {
-            QuantityValue value = (QuantityValue) deciusgallons;
+            double value = (double) deciusgallons;
             return new Volume(value, VolumeUnit.DeciusGallon);
         }
 
@@ -914,7 +911,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromHectocubicFeet(QuantityValue hectocubicfeet)
         {
-            QuantityValue value = (QuantityValue) hectocubicfeet;
+            double value = (double) hectocubicfeet;
             return new Volume(value, VolumeUnit.HectocubicFoot);
         }
 
@@ -924,7 +921,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromHectocubicMeters(QuantityValue hectocubicmeters)
         {
-            QuantityValue value = (QuantityValue) hectocubicmeters;
+            double value = (double) hectocubicmeters;
             return new Volume(value, VolumeUnit.HectocubicMeter);
         }
 
@@ -934,7 +931,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromHectoliters(QuantityValue hectoliters)
         {
-            QuantityValue value = (QuantityValue) hectoliters;
+            double value = (double) hectoliters;
             return new Volume(value, VolumeUnit.Hectoliter);
         }
 
@@ -944,7 +941,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromHectousGallons(QuantityValue hectousgallons)
         {
-            QuantityValue value = (QuantityValue) hectousgallons;
+            double value = (double) hectousgallons;
             return new Volume(value, VolumeUnit.HectousGallon);
         }
 
@@ -954,7 +951,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromImperialBeerBarrels(QuantityValue imperialbeerbarrels)
         {
-            QuantityValue value = (QuantityValue) imperialbeerbarrels;
+            double value = (double) imperialbeerbarrels;
             return new Volume(value, VolumeUnit.ImperialBeerBarrel);
         }
 
@@ -964,7 +961,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromImperialGallons(QuantityValue imperialgallons)
         {
-            QuantityValue value = (QuantityValue) imperialgallons;
+            double value = (double) imperialgallons;
             return new Volume(value, VolumeUnit.ImperialGallon);
         }
 
@@ -974,7 +971,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromImperialOunces(QuantityValue imperialounces)
         {
-            QuantityValue value = (QuantityValue) imperialounces;
+            double value = (double) imperialounces;
             return new Volume(value, VolumeUnit.ImperialOunce);
         }
 
@@ -984,7 +981,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromImperialPints(QuantityValue imperialpints)
         {
-            QuantityValue value = (QuantityValue) imperialpints;
+            double value = (double) imperialpints;
             return new Volume(value, VolumeUnit.ImperialPint);
         }
 
@@ -994,7 +991,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKilocubicFeet(QuantityValue kilocubicfeet)
         {
-            QuantityValue value = (QuantityValue) kilocubicfeet;
+            double value = (double) kilocubicfeet;
             return new Volume(value, VolumeUnit.KilocubicFoot);
         }
 
@@ -1004,7 +1001,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKilocubicMeters(QuantityValue kilocubicmeters)
         {
-            QuantityValue value = (QuantityValue) kilocubicmeters;
+            double value = (double) kilocubicmeters;
             return new Volume(value, VolumeUnit.KilocubicMeter);
         }
 
@@ -1014,7 +1011,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKiloimperialGallons(QuantityValue kiloimperialgallons)
         {
-            QuantityValue value = (QuantityValue) kiloimperialgallons;
+            double value = (double) kiloimperialgallons;
             return new Volume(value, VolumeUnit.KiloimperialGallon);
         }
 
@@ -1024,7 +1021,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKiloliters(QuantityValue kiloliters)
         {
-            QuantityValue value = (QuantityValue) kiloliters;
+            double value = (double) kiloliters;
             return new Volume(value, VolumeUnit.Kiloliter);
         }
 
@@ -1034,7 +1031,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromKilousGallons(QuantityValue kilousgallons)
         {
-            QuantityValue value = (QuantityValue) kilousgallons;
+            double value = (double) kilousgallons;
             return new Volume(value, VolumeUnit.KilousGallon);
         }
 
@@ -1044,7 +1041,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromLiters(QuantityValue liters)
         {
-            QuantityValue value = (QuantityValue) liters;
+            double value = (double) liters;
             return new Volume(value, VolumeUnit.Liter);
         }
 
@@ -1054,7 +1051,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMegacubicFeet(QuantityValue megacubicfeet)
         {
-            QuantityValue value = (QuantityValue) megacubicfeet;
+            double value = (double) megacubicfeet;
             return new Volume(value, VolumeUnit.MegacubicFoot);
         }
 
@@ -1064,7 +1061,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMegaimperialGallons(QuantityValue megaimperialgallons)
         {
-            QuantityValue value = (QuantityValue) megaimperialgallons;
+            double value = (double) megaimperialgallons;
             return new Volume(value, VolumeUnit.MegaimperialGallon);
         }
 
@@ -1074,7 +1071,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMegaliters(QuantityValue megaliters)
         {
-            QuantityValue value = (QuantityValue) megaliters;
+            double value = (double) megaliters;
             return new Volume(value, VolumeUnit.Megaliter);
         }
 
@@ -1084,7 +1081,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMegausGallons(QuantityValue megausgallons)
         {
-            QuantityValue value = (QuantityValue) megausgallons;
+            double value = (double) megausgallons;
             return new Volume(value, VolumeUnit.MegausGallon);
         }
 
@@ -1094,7 +1091,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMetricCups(QuantityValue metriccups)
         {
-            QuantityValue value = (QuantityValue) metriccups;
+            double value = (double) metriccups;
             return new Volume(value, VolumeUnit.MetricCup);
         }
 
@@ -1104,7 +1101,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMetricTeaspoons(QuantityValue metricteaspoons)
         {
-            QuantityValue value = (QuantityValue) metricteaspoons;
+            double value = (double) metricteaspoons;
             return new Volume(value, VolumeUnit.MetricTeaspoon);
         }
 
@@ -1114,7 +1111,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMicroliters(QuantityValue microliters)
         {
-            QuantityValue value = (QuantityValue) microliters;
+            double value = (double) microliters;
             return new Volume(value, VolumeUnit.Microliter);
         }
 
@@ -1124,7 +1121,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromMilliliters(QuantityValue milliliters)
         {
-            QuantityValue value = (QuantityValue) milliliters;
+            double value = (double) milliliters;
             return new Volume(value, VolumeUnit.Milliliter);
         }
 
@@ -1134,7 +1131,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromOilBarrels(QuantityValue oilbarrels)
         {
-            QuantityValue value = (QuantityValue) oilbarrels;
+            double value = (double) oilbarrels;
             return new Volume(value, VolumeUnit.OilBarrel);
         }
 
@@ -1144,7 +1141,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUkTablespoons(QuantityValue uktablespoons)
         {
-            QuantityValue value = (QuantityValue) uktablespoons;
+            double value = (double) uktablespoons;
             return new Volume(value, VolumeUnit.UkTablespoon);
         }
 
@@ -1154,7 +1151,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsBeerBarrels(QuantityValue usbeerbarrels)
         {
-            QuantityValue value = (QuantityValue) usbeerbarrels;
+            double value = (double) usbeerbarrels;
             return new Volume(value, VolumeUnit.UsBeerBarrel);
         }
 
@@ -1164,7 +1161,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsCustomaryCups(QuantityValue uscustomarycups)
         {
-            QuantityValue value = (QuantityValue) uscustomarycups;
+            double value = (double) uscustomarycups;
             return new Volume(value, VolumeUnit.UsCustomaryCup);
         }
 
@@ -1174,7 +1171,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsGallons(QuantityValue usgallons)
         {
-            QuantityValue value = (QuantityValue) usgallons;
+            double value = (double) usgallons;
             return new Volume(value, VolumeUnit.UsGallon);
         }
 
@@ -1184,7 +1181,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsLegalCups(QuantityValue uslegalcups)
         {
-            QuantityValue value = (QuantityValue) uslegalcups;
+            double value = (double) uslegalcups;
             return new Volume(value, VolumeUnit.UsLegalCup);
         }
 
@@ -1194,7 +1191,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsOunces(QuantityValue usounces)
         {
-            QuantityValue value = (QuantityValue) usounces;
+            double value = (double) usounces;
             return new Volume(value, VolumeUnit.UsOunce);
         }
 
@@ -1204,7 +1201,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsPints(QuantityValue uspints)
         {
-            QuantityValue value = (QuantityValue) uspints;
+            double value = (double) uspints;
             return new Volume(value, VolumeUnit.UsPint);
         }
 
@@ -1214,7 +1211,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsQuarts(QuantityValue usquarts)
         {
-            QuantityValue value = (QuantityValue) usquarts;
+            double value = (double) usquarts;
             return new Volume(value, VolumeUnit.UsQuart);
         }
 
@@ -1224,7 +1221,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsTablespoons(QuantityValue ustablespoons)
         {
-            QuantityValue value = (QuantityValue) ustablespoons;
+            double value = (double) ustablespoons;
             return new Volume(value, VolumeUnit.UsTablespoon);
         }
 
@@ -1234,7 +1231,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Volume FromUsTeaspoons(QuantityValue usteaspoons)
         {
-            QuantityValue value = (QuantityValue) usteaspoons;
+            double value = (double) usteaspoons;
             return new Volume(value, VolumeUnit.UsTeaspoon);
         }
 
@@ -1246,7 +1243,7 @@ namespace UnitsNet
         /// <returns>Volume unit value.</returns>
         public static Volume From(QuantityValue value, VolumeUnit fromUnit)
         {
-            return new Volume((QuantityValue)value, fromUnit);
+            return new Volume((double)value, fromUnit);
         }
 
         #endregion
@@ -1416,25 +1413,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Volume"/> from multiplying value and <see cref="Volume"/>.</summary>
-        public static Volume operator *(QuantityValue left, Volume right)
+        public static Volume operator *(double left, Volume right)
         {
             return new Volume(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Volume"/> from multiplying value and <see cref="Volume"/>.</summary>
-        public static Volume operator *(Volume left, QuantityValue right)
+        public static Volume operator *(Volume left, double right)
         {
             return new Volume(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Volume"/> from dividing <see cref="Volume"/> by value.</summary>
-        public static Volume operator /(Volume left, QuantityValue right)
+        public static Volume operator /(Volume left, double right)
         {
             return new Volume(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Volume"/> by <see cref="Volume"/>.</summary>
-        public static QuantityValue operator /(Volume left, Volume right)
+        public static double operator /(Volume left, Volume right)
         {
             return left.CubicMeters / right.CubicMeters;
         }
@@ -1467,19 +1464,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Volume, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Volume left, Volume right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Volume, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Volume left, Volume right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -1492,29 +1476,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Volume other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Volume, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is Volume objVolume))
-                return false;
-            return Equals(objVolume);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Volume, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Volume other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1557,13 +1519,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Volume other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(Volume other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -1574,7 +1536,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Volume.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1585,16 +1547,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(VolumeUnit unit)
+        public double As(VolumeUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1609,12 +1572,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is VolumeUnit typedUnit))
+            if (!(unit is VolumeUnit unitAsVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsVolumeUnit);
         }
 
         /// <summary>
@@ -1646,7 +1609,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Volume)converted;
             }
-            else if (Enum.IsDefined(typeof(VolumeUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1654,17 +1617,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is VolumeUnit typedUnit))
+            if (!(unit is VolumeUnit unitAsVolumeUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsVolumeUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1691,10 +1654,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(VolumeUnit unit)
+        private double GetValueAs(VolumeUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

@@ -28,7 +28,7 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>Value converted to the specified unit.</returns>
         /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
-        QuantityValue As(Enum unit);
+        double As(Enum unit);
 
         /// <summary>
         ///     Gets the value in the unit determined by the given <see cref="UnitSystem"/>. If multiple units were found for the given <see cref="UnitSystem"/>,
@@ -36,7 +36,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
         /// <returns>The converted value.</returns>
-        QuantityValue As(UnitSystem unitSystem);
+        double As(UnitSystem unitSystem);
 
         /// <summary>
         ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
@@ -46,7 +46,7 @@ namespace UnitsNet
         /// <summary>
         ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
-        QuantityValue Value { get; }
+        double Value { get; }
 
         /// <summary>
         ///     Converts this <see cref="IQuantity"/> to an <see cref="IQuantity"/> in the given <paramref name="unit"/>.
@@ -89,7 +89,7 @@ namespace UnitsNet
         ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        QuantityValue As(TUnitType unit);
+        double As(TUnitType unit);
 
         /// <inheritdoc cref="IQuantity.Unit"/>
         new TUnitType Unit { get; }

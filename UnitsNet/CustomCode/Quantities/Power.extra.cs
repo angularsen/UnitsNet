@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -91,7 +90,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Area"/> from <see cref="Power"/> divided by <see cref="HeatFlux"/>.</summary>
         public static Area operator /(Power power, HeatFlux heatFlux)
         {
-            return Area.FromSquareMeters(power.Watts / heatFlux.WattsPerSquareMeter );
+            return Area.FromSquareMeters( power.Watts / heatFlux.WattsPerSquareMeter );
         }
 
         /// <summary>Calculate <see cref="ElectricCurrent"/> from <see cref="Power"/> divided by <see cref="ElectricPotential"/>.</summary>

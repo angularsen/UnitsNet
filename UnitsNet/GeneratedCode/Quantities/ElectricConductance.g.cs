@@ -38,13 +38,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance
     /// </remarks>
     [DataContract]
-    public partial struct ElectricConductance : IQuantity<ElectricConductanceUnit>, IEquatable<ElectricConductance>, IComparable, IComparable<ElectricConductance>, IConvertible, IFormattable
+    public partial struct ElectricConductance : IQuantity<ElectricConductanceUnit>, IComparable, IComparable<ElectricConductance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -77,9 +77,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ElectricConductance(QuantityValue value, ElectricConductanceUnit unit)
+        public ElectricConductance(double value, ElectricConductanceUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -91,14 +91,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricConductance(QuantityValue value, UnitSystem unitSystem)
+        public ElectricConductance(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -139,10 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -165,19 +162,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ElectricConductanceUnit.Microsiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Microsiemens"/>
         /// </summary>
-        public QuantityValue Microsiemens => As(ElectricConductanceUnit.Microsiemens);
+        public double Microsiemens => As(ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ElectricConductanceUnit.Millisiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millisiemens"/>
         /// </summary>
-        public QuantityValue Millisiemens => As(ElectricConductanceUnit.Millisiemens);
+        public double Millisiemens => As(ElectricConductanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ElectricConductanceUnit.Siemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Siemens"/>
         /// </summary>
-        public QuantityValue Siemens => As(ElectricConductanceUnit.Siemens);
+        public double Siemens => As(ElectricConductanceUnit.Siemens);
 
         #endregion
 
@@ -239,7 +236,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromMicrosiemens(QuantityValue microsiemens)
         {
-            QuantityValue value = (QuantityValue) microsiemens;
+            double value = (double) microsiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
         }
 
@@ -249,7 +246,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromMillisiemens(QuantityValue millisiemens)
         {
-            QuantityValue value = (QuantityValue) millisiemens;
+            double value = (double) millisiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
         }
 
@@ -259,7 +256,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricConductance FromSiemens(QuantityValue siemens)
         {
-            QuantityValue value = (QuantityValue) siemens;
+            double value = (double) siemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Siemens);
         }
 
@@ -271,7 +268,7 @@ namespace UnitsNet
         /// <returns>ElectricConductance unit value.</returns>
         public static ElectricConductance From(QuantityValue value, ElectricConductanceUnit fromUnit)
         {
-            return new ElectricConductance((QuantityValue)value, fromUnit);
+            return new ElectricConductance((double)value, fromUnit);
         }
 
         #endregion
@@ -441,25 +438,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from multiplying value and <see cref="ElectricConductance"/>.</summary>
-        public static ElectricConductance operator *(QuantityValue left, ElectricConductance right)
+        public static ElectricConductance operator *(double left, ElectricConductance right)
         {
             return new ElectricConductance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from multiplying value and <see cref="ElectricConductance"/>.</summary>
-        public static ElectricConductance operator *(ElectricConductance left, QuantityValue right)
+        public static ElectricConductance operator *(ElectricConductance left, double right)
         {
             return new ElectricConductance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from dividing <see cref="ElectricConductance"/> by value.</summary>
-        public static ElectricConductance operator /(ElectricConductance left, QuantityValue right)
+        public static ElectricConductance operator /(ElectricConductance left, double right)
         {
             return new ElectricConductance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricConductance"/> by <see cref="ElectricConductance"/>.</summary>
-        public static QuantityValue operator /(ElectricConductance left, ElectricConductance right)
+        public static double operator /(ElectricConductance left, ElectricConductance right)
         {
             return left.Siemens / right.Siemens;
         }
@@ -492,19 +489,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricConductance, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ElectricConductance left, ElectricConductance right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricConductance, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ElectricConductance left, ElectricConductance right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -517,29 +501,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricConductance other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricConductance, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is ElectricConductance objElectricConductance))
-                return false;
-            return Equals(objElectricConductance);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricConductance, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ElectricConductance other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -582,13 +544,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricConductance other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricConductance other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -599,7 +561,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricConductance.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -610,16 +572,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(ElectricConductanceUnit unit)
+        public double As(ElectricConductanceUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -634,12 +597,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is ElectricConductanceUnit typedUnit))
+            if (!(unit is ElectricConductanceUnit unitAsElectricConductanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsElectricConductanceUnit);
         }
 
         /// <summary>
@@ -671,7 +634,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (ElectricConductance)converted;
             }
-            else if (Enum.IsDefined(typeof(ElectricConductanceUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -679,17 +642,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is ElectricConductanceUnit typedUnit))
+            if (!(unit is ElectricConductanceUnit unitAsElectricConductanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsElectricConductanceUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -716,10 +679,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(ElectricConductanceUnit unit)
+        private double GetValueAs(ElectricConductanceUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

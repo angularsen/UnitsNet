@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     Heat flux is the flow of energy per unit of area per unit of time
     /// </summary>
     [DataContract]
-    public partial struct HeatFlux : IQuantity<HeatFluxUnit>, IEquatable<HeatFlux>, IComparable, IComparable<HeatFlux>, IConvertible, IFormattable
+    public partial struct HeatFlux : IQuantity<HeatFluxUnit>, IComparable, IComparable<HeatFlux>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -89,9 +89,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public HeatFlux(QuantityValue value, HeatFluxUnit unit)
+        public HeatFlux(double value, HeatFluxUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -103,14 +103,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public HeatFlux(QuantityValue value, UnitSystem unitSystem)
+        public HeatFlux(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -151,10 +151,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -177,94 +174,94 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerHourSquareFoot"/>
         /// </summary>
-        public QuantityValue BtusPerHourSquareFoot => As(HeatFluxUnit.BtuPerHourSquareFoot);
+        public double BtusPerHourSquareFoot => As(HeatFluxUnit.BtuPerHourSquareFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerMinuteSquareFoot"/>
         /// </summary>
-        public QuantityValue BtusPerMinuteSquareFoot => As(HeatFluxUnit.BtuPerMinuteSquareFoot);
+        public double BtusPerMinuteSquareFoot => As(HeatFluxUnit.BtuPerMinuteSquareFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerSecondSquareFoot"/>
         /// </summary>
-        public QuantityValue BtusPerSecondSquareFoot => As(HeatFluxUnit.BtuPerSecondSquareFoot);
+        public double BtusPerSecondSquareFoot => As(HeatFluxUnit.BtuPerSecondSquareFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.BtuPerSecondSquareInch"/>
         /// </summary>
-        public QuantityValue BtusPerSecondSquareInch => As(HeatFluxUnit.BtuPerSecondSquareInch);
+        public double BtusPerSecondSquareInch => As(HeatFluxUnit.BtuPerSecondSquareInch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.CaloriePerSecondSquareCentimeter"/>
         /// </summary>
-        public QuantityValue CaloriesPerSecondSquareCentimeter => As(HeatFluxUnit.CaloriePerSecondSquareCentimeter);
+        public double CaloriesPerSecondSquareCentimeter => As(HeatFluxUnit.CaloriePerSecondSquareCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.CentiwattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue CentiwattsPerSquareMeter => As(HeatFluxUnit.CentiwattPerSquareMeter);
+        public double CentiwattsPerSquareMeter => As(HeatFluxUnit.CentiwattPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue DeciwattsPerSquareMeter => As(HeatFluxUnit.DeciwattPerSquareMeter);
+        public double DeciwattsPerSquareMeter => As(HeatFluxUnit.DeciwattPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>
         /// </summary>
-        public QuantityValue KilocaloriesPerHourSquareMeter => As(HeatFluxUnit.KilocaloriePerHourSquareMeter);
+        public double KilocaloriesPerHourSquareMeter => As(HeatFluxUnit.KilocaloriePerHourSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerSecondSquareCentimeter"/>
         /// </summary>
-        public QuantityValue KilocaloriesPerSecondSquareCentimeter => As(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
+        public double KilocaloriesPerSecondSquareCentimeter => As(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilowattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilowattsPerSquareMeter => As(HeatFluxUnit.KilowattPerSquareMeter);
+        public double KilowattsPerSquareMeter => As(HeatFluxUnit.KilowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue MicrowattsPerSquareMeter => As(HeatFluxUnit.MicrowattPerSquareMeter);
+        public double MicrowattsPerSquareMeter => As(HeatFluxUnit.MicrowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue MilliwattsPerSquareMeter => As(HeatFluxUnit.MilliwattPerSquareMeter);
+        public double MilliwattsPerSquareMeter => As(HeatFluxUnit.MilliwattPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue NanowattsPerSquareMeter => As(HeatFluxUnit.NanowattPerSquareMeter);
+        public double NanowattsPerSquareMeter => As(HeatFluxUnit.NanowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>
         /// </summary>
-        public QuantityValue PoundsForcePerFootSecond => As(HeatFluxUnit.PoundForcePerFootSecond);
+        public double PoundsForcePerFootSecond => As(HeatFluxUnit.PoundForcePerFootSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.PoundPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.PoundPerSecondCubed"/>
         /// </summary>
-        public QuantityValue PoundsPerSecondCubed => As(HeatFluxUnit.PoundPerSecondCubed);
+        public double PoundsPerSecondCubed => As(HeatFluxUnit.PoundPerSecondCubed);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareFoot"/>
         /// </summary>
-        public QuantityValue WattsPerSquareFoot => As(HeatFluxUnit.WattPerSquareFoot);
+        public double WattsPerSquareFoot => As(HeatFluxUnit.WattPerSquareFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareInch"/>
         /// </summary>
-        public QuantityValue WattsPerSquareInch => As(HeatFluxUnit.WattPerSquareInch);
+        public double WattsPerSquareInch => As(HeatFluxUnit.WattPerSquareInch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue WattsPerSquareMeter => As(HeatFluxUnit.WattPerSquareMeter);
+        public double WattsPerSquareMeter => As(HeatFluxUnit.WattPerSquareMeter);
 
         #endregion
 
@@ -371,7 +368,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerHourSquareFoot(QuantityValue btusperhoursquarefoot)
         {
-            QuantityValue value = (QuantityValue) btusperhoursquarefoot;
+            double value = (double) btusperhoursquarefoot;
             return new HeatFlux(value, HeatFluxUnit.BtuPerHourSquareFoot);
         }
 
@@ -381,7 +378,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerMinuteSquareFoot(QuantityValue btusperminutesquarefoot)
         {
-            QuantityValue value = (QuantityValue) btusperminutesquarefoot;
+            double value = (double) btusperminutesquarefoot;
             return new HeatFlux(value, HeatFluxUnit.BtuPerMinuteSquareFoot);
         }
 
@@ -391,7 +388,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerSecondSquareFoot(QuantityValue btuspersecondsquarefoot)
         {
-            QuantityValue value = (QuantityValue) btuspersecondsquarefoot;
+            double value = (double) btuspersecondsquarefoot;
             return new HeatFlux(value, HeatFluxUnit.BtuPerSecondSquareFoot);
         }
 
@@ -401,7 +398,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromBtusPerSecondSquareInch(QuantityValue btuspersecondsquareinch)
         {
-            QuantityValue value = (QuantityValue) btuspersecondsquareinch;
+            double value = (double) btuspersecondsquareinch;
             return new HeatFlux(value, HeatFluxUnit.BtuPerSecondSquareInch);
         }
 
@@ -411,7 +408,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromCaloriesPerSecondSquareCentimeter(QuantityValue caloriespersecondsquarecentimeter)
         {
-            QuantityValue value = (QuantityValue) caloriespersecondsquarecentimeter;
+            double value = (double) caloriespersecondsquarecentimeter;
             return new HeatFlux(value, HeatFluxUnit.CaloriePerSecondSquareCentimeter);
         }
 
@@ -421,7 +418,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromCentiwattsPerSquareMeter(QuantityValue centiwattspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) centiwattspersquaremeter;
+            double value = (double) centiwattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.CentiwattPerSquareMeter);
         }
 
@@ -431,7 +428,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromDeciwattsPerSquareMeter(QuantityValue deciwattspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) deciwattspersquaremeter;
+            double value = (double) deciwattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.DeciwattPerSquareMeter);
         }
 
@@ -441,7 +438,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilocaloriesPerHourSquareMeter(QuantityValue kilocaloriesperhoursquaremeter)
         {
-            QuantityValue value = (QuantityValue) kilocaloriesperhoursquaremeter;
+            double value = (double) kilocaloriesperhoursquaremeter;
             return new HeatFlux(value, HeatFluxUnit.KilocaloriePerHourSquareMeter);
         }
 
@@ -451,7 +448,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilocaloriesPerSecondSquareCentimeter(QuantityValue kilocaloriespersecondsquarecentimeter)
         {
-            QuantityValue value = (QuantityValue) kilocaloriespersecondsquarecentimeter;
+            double value = (double) kilocaloriespersecondsquarecentimeter;
             return new HeatFlux(value, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter);
         }
 
@@ -461,7 +458,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromKilowattsPerSquareMeter(QuantityValue kilowattspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) kilowattspersquaremeter;
+            double value = (double) kilowattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.KilowattPerSquareMeter);
         }
 
@@ -471,7 +468,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromMicrowattsPerSquareMeter(QuantityValue microwattspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) microwattspersquaremeter;
+            double value = (double) microwattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.MicrowattPerSquareMeter);
         }
 
@@ -481,7 +478,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromMilliwattsPerSquareMeter(QuantityValue milliwattspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) milliwattspersquaremeter;
+            double value = (double) milliwattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.MilliwattPerSquareMeter);
         }
 
@@ -491,7 +488,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromNanowattsPerSquareMeter(QuantityValue nanowattspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) nanowattspersquaremeter;
+            double value = (double) nanowattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.NanowattPerSquareMeter);
         }
 
@@ -501,7 +498,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromPoundsForcePerFootSecond(QuantityValue poundsforceperfootsecond)
         {
-            QuantityValue value = (QuantityValue) poundsforceperfootsecond;
+            double value = (double) poundsforceperfootsecond;
             return new HeatFlux(value, HeatFluxUnit.PoundForcePerFootSecond);
         }
 
@@ -511,7 +508,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromPoundsPerSecondCubed(QuantityValue poundspersecondcubed)
         {
-            QuantityValue value = (QuantityValue) poundspersecondcubed;
+            double value = (double) poundspersecondcubed;
             return new HeatFlux(value, HeatFluxUnit.PoundPerSecondCubed);
         }
 
@@ -521,7 +518,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareFoot(QuantityValue wattspersquarefoot)
         {
-            QuantityValue value = (QuantityValue) wattspersquarefoot;
+            double value = (double) wattspersquarefoot;
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareFoot);
         }
 
@@ -531,7 +528,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareInch(QuantityValue wattspersquareinch)
         {
-            QuantityValue value = (QuantityValue) wattspersquareinch;
+            double value = (double) wattspersquareinch;
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareInch);
         }
 
@@ -541,7 +538,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatFlux FromWattsPerSquareMeter(QuantityValue wattspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) wattspersquaremeter;
+            double value = (double) wattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareMeter);
         }
 
@@ -553,7 +550,7 @@ namespace UnitsNet
         /// <returns>HeatFlux unit value.</returns>
         public static HeatFlux From(QuantityValue value, HeatFluxUnit fromUnit)
         {
-            return new HeatFlux((QuantityValue)value, fromUnit);
+            return new HeatFlux((double)value, fromUnit);
         }
 
         #endregion
@@ -723,25 +720,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="HeatFlux"/> from multiplying value and <see cref="HeatFlux"/>.</summary>
-        public static HeatFlux operator *(QuantityValue left, HeatFlux right)
+        public static HeatFlux operator *(double left, HeatFlux right)
         {
             return new HeatFlux(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="HeatFlux"/> from multiplying value and <see cref="HeatFlux"/>.</summary>
-        public static HeatFlux operator *(HeatFlux left, QuantityValue right)
+        public static HeatFlux operator *(HeatFlux left, double right)
         {
             return new HeatFlux(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="HeatFlux"/> from dividing <see cref="HeatFlux"/> by value.</summary>
-        public static HeatFlux operator /(HeatFlux left, QuantityValue right)
+        public static HeatFlux operator /(HeatFlux left, double right)
         {
             return new HeatFlux(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="HeatFlux"/> by <see cref="HeatFlux"/>.</summary>
-        public static QuantityValue operator /(HeatFlux left, HeatFlux right)
+        public static double operator /(HeatFlux left, HeatFlux right)
         {
             return left.WattsPerSquareMeter / right.WattsPerSquareMeter;
         }
@@ -774,19 +771,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(HeatFlux left, HeatFlux right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(HeatFlux left, HeatFlux right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -799,29 +783,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(HeatFlux other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is HeatFlux objHeatFlux))
-                return false;
-            return Equals(objHeatFlux);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(HeatFlux, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(HeatFlux other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -864,13 +826,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(HeatFlux other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(HeatFlux other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -881,7 +843,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current HeatFlux.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -892,16 +854,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(HeatFluxUnit unit)
+        public double As(HeatFluxUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -916,12 +879,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is HeatFluxUnit typedUnit))
+            if (!(unit is HeatFluxUnit unitAsHeatFluxUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsHeatFluxUnit);
         }
 
         /// <summary>
@@ -953,7 +916,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (HeatFlux)converted;
             }
-            else if (Enum.IsDefined(typeof(HeatFluxUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -961,17 +924,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is HeatFluxUnit typedUnit))
+            if (!(unit is HeatFluxUnit unitAsHeatFluxUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(HeatFluxUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsHeatFluxUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -998,10 +961,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(HeatFluxUnit unit)
+        private double GetValueAs(HeatFluxUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

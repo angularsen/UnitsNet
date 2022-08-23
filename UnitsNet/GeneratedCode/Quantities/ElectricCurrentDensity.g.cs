@@ -38,13 +38,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Current_density
     /// </remarks>
     [DataContract]
-    public partial struct ElectricCurrentDensity : IQuantity<ElectricCurrentDensityUnit>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
+    public partial struct ElectricCurrentDensity : IQuantity<ElectricCurrentDensityUnit>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -77,9 +77,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ElectricCurrentDensity(QuantityValue value, ElectricCurrentDensityUnit unit)
+        public ElectricCurrentDensity(double value, ElectricCurrentDensityUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -91,14 +91,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCurrentDensity(QuantityValue value, UnitSystem unitSystem)
+        public ElectricCurrentDensity(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -139,10 +139,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -165,19 +162,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>
         /// </summary>
-        public QuantityValue AmperesPerSquareFoot => As(ElectricCurrentDensityUnit.AmperePerSquareFoot);
+        public double AmperesPerSquareFoot => As(ElectricCurrentDensityUnit.AmperePerSquareFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>
         /// </summary>
-        public QuantityValue AmperesPerSquareInch => As(ElectricCurrentDensityUnit.AmperePerSquareInch);
+        public double AmperesPerSquareInch => As(ElectricCurrentDensityUnit.AmperePerSquareInch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>
         /// </summary>
-        public QuantityValue AmperesPerSquareMeter => As(ElectricCurrentDensityUnit.AmperePerSquareMeter);
+        public double AmperesPerSquareMeter => As(ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
         #endregion
 
@@ -239,7 +236,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareFoot(QuantityValue amperespersquarefoot)
         {
-            QuantityValue value = (QuantityValue) amperespersquarefoot;
+            double value = (double) amperespersquarefoot;
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareFoot);
         }
 
@@ -249,7 +246,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareInch(QuantityValue amperespersquareinch)
         {
-            QuantityValue value = (QuantityValue) amperespersquareinch;
+            double value = (double) amperespersquareinch;
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareInch);
         }
 
@@ -259,7 +256,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrentDensity FromAmperesPerSquareMeter(QuantityValue amperespersquaremeter)
         {
-            QuantityValue value = (QuantityValue) amperespersquaremeter;
+            double value = (double) amperespersquaremeter;
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareMeter);
         }
 
@@ -271,7 +268,7 @@ namespace UnitsNet
         /// <returns>ElectricCurrentDensity unit value.</returns>
         public static ElectricCurrentDensity From(QuantityValue value, ElectricCurrentDensityUnit fromUnit)
         {
-            return new ElectricCurrentDensity((QuantityValue)value, fromUnit);
+            return new ElectricCurrentDensity((double)value, fromUnit);
         }
 
         #endregion
@@ -441,25 +438,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from multiplying value and <see cref="ElectricCurrentDensity"/>.</summary>
-        public static ElectricCurrentDensity operator *(QuantityValue left, ElectricCurrentDensity right)
+        public static ElectricCurrentDensity operator *(double left, ElectricCurrentDensity right)
         {
             return new ElectricCurrentDensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from multiplying value and <see cref="ElectricCurrentDensity"/>.</summary>
-        public static ElectricCurrentDensity operator *(ElectricCurrentDensity left, QuantityValue right)
+        public static ElectricCurrentDensity operator *(ElectricCurrentDensity left, double right)
         {
             return new ElectricCurrentDensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from dividing <see cref="ElectricCurrentDensity"/> by value.</summary>
-        public static ElectricCurrentDensity operator /(ElectricCurrentDensity left, QuantityValue right)
+        public static ElectricCurrentDensity operator /(ElectricCurrentDensity left, double right)
         {
             return new ElectricCurrentDensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricCurrentDensity"/> by <see cref="ElectricCurrentDensity"/>.</summary>
-        public static QuantityValue operator /(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        public static double operator /(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             return left.AmperesPerSquareMeter / right.AmperesPerSquareMeter;
         }
@@ -492,19 +489,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -517,29 +501,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricCurrentDensity other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is ElectricCurrentDensity objElectricCurrentDensity))
-                return false;
-            return Equals(objElectricCurrentDensity);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ElectricCurrentDensity other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -582,13 +544,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricCurrentDensity other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricCurrentDensity other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -599,7 +561,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricCurrentDensity.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -610,16 +572,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(ElectricCurrentDensityUnit unit)
+        public double As(ElectricCurrentDensityUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -634,12 +597,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is ElectricCurrentDensityUnit typedUnit))
+            if (!(unit is ElectricCurrentDensityUnit unitAsElectricCurrentDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsElectricCurrentDensityUnit);
         }
 
         /// <summary>
@@ -671,7 +634,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (ElectricCurrentDensity)converted;
             }
-            else if (Enum.IsDefined(typeof(ElectricCurrentDensityUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -679,17 +642,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is ElectricCurrentDensityUnit typedUnit))
+            if (!(unit is ElectricCurrentDensityUnit unitAsElectricCurrentDensityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsElectricCurrentDensityUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -716,10 +679,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(ElectricCurrentDensityUnit unit)
+        private double GetValueAs(ElectricCurrentDensityUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

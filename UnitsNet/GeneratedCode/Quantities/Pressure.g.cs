@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).
     /// </summary>
     [DataContract]
-    public partial struct Pressure : IQuantity<PressureUnit>, IEquatable<Pressure>, IComparable, IComparable<Pressure>, IConvertible, IFormattable
+    public partial struct Pressure : IQuantity<PressureUnit>, IComparable, IComparable<Pressure>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -118,9 +118,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Pressure(QuantityValue value, PressureUnit unit)
+        public Pressure(double value, PressureUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -132,14 +132,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Pressure(QuantityValue value, UnitSystem unitSystem)
+        public Pressure(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -180,10 +180,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -206,239 +203,239 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Atmosphere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Atmosphere"/>
         /// </summary>
-        public QuantityValue Atmospheres => As(PressureUnit.Atmosphere);
+        public double Atmospheres => As(PressureUnit.Atmosphere);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Bar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Bar"/>
         /// </summary>
-        public QuantityValue Bars => As(PressureUnit.Bar);
+        public double Bars => As(PressureUnit.Bar);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Centibar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Centibar"/>
         /// </summary>
-        public QuantityValue Centibars => As(PressureUnit.Centibar);
+        public double Centibars => As(PressureUnit.Centibar);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Decapascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Decapascal"/>
         /// </summary>
-        public QuantityValue Decapascals => As(PressureUnit.Decapascal);
+        public double Decapascals => As(PressureUnit.Decapascal);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Decibar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Decibar"/>
         /// </summary>
-        public QuantityValue Decibars => As(PressureUnit.Decibar);
+        public double Decibars => As(PressureUnit.Decibar);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.DynePerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.DynePerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue DynesPerSquareCentimeter => As(PressureUnit.DynePerSquareCentimeter);
+        public double DynesPerSquareCentimeter => As(PressureUnit.DynePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.FootOfElevation"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.FootOfElevation"/>
         /// </summary>
-        public QuantityValue FeetOfElevation => As(PressureUnit.FootOfElevation);
+        public double FeetOfElevation => As(PressureUnit.FootOfElevation);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.FootOfHead"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.FootOfHead"/>
         /// </summary>
-        public QuantityValue FeetOfHead => As(PressureUnit.FootOfHead);
+        public double FeetOfHead => As(PressureUnit.FootOfHead);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Gigapascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Gigapascal"/>
         /// </summary>
-        public QuantityValue Gigapascals => As(PressureUnit.Gigapascal);
+        public double Gigapascals => As(PressureUnit.Gigapascal);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Hectopascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Hectopascal"/>
         /// </summary>
-        public QuantityValue Hectopascals => As(PressureUnit.Hectopascal);
+        public double Hectopascals => As(PressureUnit.Hectopascal);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.InchOfMercury"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.InchOfMercury"/>
         /// </summary>
-        public QuantityValue InchesOfMercury => As(PressureUnit.InchOfMercury);
+        public double InchesOfMercury => As(PressureUnit.InchOfMercury);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.InchOfWaterColumn"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.InchOfWaterColumn"/>
         /// </summary>
-        public QuantityValue InchesOfWaterColumn => As(PressureUnit.InchOfWaterColumn);
+        public double InchesOfWaterColumn => As(PressureUnit.InchOfWaterColumn);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Kilobar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Kilobar"/>
         /// </summary>
-        public QuantityValue Kilobars => As(PressureUnit.Kilobar);
+        public double Kilobars => As(PressureUnit.Kilobar);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue KilogramsForcePerSquareCentimeter => As(PressureUnit.KilogramForcePerSquareCentimeter);
+        public double KilogramsForcePerSquareCentimeter => As(PressureUnit.KilogramForcePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilogramsForcePerSquareMeter => As(PressureUnit.KilogramForcePerSquareMeter);
+        public double KilogramsForcePerSquareMeter => As(PressureUnit.KilogramForcePerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue KilogramsForcePerSquareMillimeter => As(PressureUnit.KilogramForcePerSquareMillimeter);
+        public double KilogramsForcePerSquareMillimeter => As(PressureUnit.KilogramForcePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue KilonewtonsPerSquareCentimeter => As(PressureUnit.KilonewtonPerSquareCentimeter);
+        public double KilonewtonsPerSquareCentimeter => As(PressureUnit.KilonewtonPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilonewtonsPerSquareMeter => As(PressureUnit.KilonewtonPerSquareMeter);
+        public double KilonewtonsPerSquareMeter => As(PressureUnit.KilonewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue KilonewtonsPerSquareMillimeter => As(PressureUnit.KilonewtonPerSquareMillimeter);
+        public double KilonewtonsPerSquareMillimeter => As(PressureUnit.KilonewtonPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Kilopascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Kilopascal"/>
         /// </summary>
-        public QuantityValue Kilopascals => As(PressureUnit.Kilopascal);
+        public double Kilopascals => As(PressureUnit.Kilopascal);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>
         /// </summary>
-        public QuantityValue KilopoundsForcePerSquareFoot => As(PressureUnit.KilopoundForcePerSquareFoot);
+        public double KilopoundsForcePerSquareFoot => As(PressureUnit.KilopoundForcePerSquareFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareInch"/>
         /// </summary>
-        public QuantityValue KilopoundsForcePerSquareInch => As(PressureUnit.KilopoundForcePerSquareInch);
+        public double KilopoundsForcePerSquareInch => As(PressureUnit.KilopoundForcePerSquareInch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareMil"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareMil"/>
         /// </summary>
-        public QuantityValue KilopoundsForcePerSquareMil => As(PressureUnit.KilopoundForcePerSquareMil);
+        public double KilopoundsForcePerSquareMil => As(PressureUnit.KilopoundForcePerSquareMil);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Megabar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Megabar"/>
         /// </summary>
-        public QuantityValue Megabars => As(PressureUnit.Megabar);
+        public double Megabars => As(PressureUnit.Megabar);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.MeganewtonPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeganewtonPerSquareMeter"/>
         /// </summary>
-        public QuantityValue MeganewtonsPerSquareMeter => As(PressureUnit.MeganewtonPerSquareMeter);
+        public double MeganewtonsPerSquareMeter => As(PressureUnit.MeganewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Megapascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Megapascal"/>
         /// </summary>
-        public QuantityValue Megapascals => As(PressureUnit.Megapascal);
+        public double Megapascals => As(PressureUnit.Megapascal);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.MeterOfElevation"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfElevation"/>
         /// </summary>
-        public QuantityValue MetersOfElevation => As(PressureUnit.MeterOfElevation);
+        public double MetersOfElevation => As(PressureUnit.MeterOfElevation);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.MeterOfHead"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfHead"/>
         /// </summary>
-        public QuantityValue MetersOfHead => As(PressureUnit.MeterOfHead);
+        public double MetersOfHead => As(PressureUnit.MeterOfHead);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Microbar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Microbar"/>
         /// </summary>
-        public QuantityValue Microbars => As(PressureUnit.Microbar);
+        public double Microbars => As(PressureUnit.Microbar);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Micropascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Micropascal"/>
         /// </summary>
-        public QuantityValue Micropascals => As(PressureUnit.Micropascal);
+        public double Micropascals => As(PressureUnit.Micropascal);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Millibar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millibar"/>
         /// </summary>
-        public QuantityValue Millibars => As(PressureUnit.Millibar);
+        public double Millibars => As(PressureUnit.Millibar);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.MillimeterOfMercury"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfMercury"/>
         /// </summary>
-        public QuantityValue MillimetersOfMercury => As(PressureUnit.MillimeterOfMercury);
+        public double MillimetersOfMercury => As(PressureUnit.MillimeterOfMercury);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.MillimeterOfWaterColumn"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfWaterColumn"/>
         /// </summary>
-        public QuantityValue MillimeterOfWaterColumn => As(PressureUnit.MillimeterOfWaterColumn);
+        public double MillimeterOfWaterColumn => As(PressureUnit.MillimeterOfWaterColumn);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Millipascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millipascal"/>
         /// </summary>
-        public QuantityValue Millipascals => As(PressureUnit.Millipascal);
+        public double Millipascals => As(PressureUnit.Millipascal);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue NewtonsPerSquareCentimeter => As(PressureUnit.NewtonPerSquareCentimeter);
+        public double NewtonsPerSquareCentimeter => As(PressureUnit.NewtonPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareMeter"/>
         /// </summary>
-        public QuantityValue NewtonsPerSquareMeter => As(PressureUnit.NewtonPerSquareMeter);
+        public double NewtonsPerSquareMeter => As(PressureUnit.NewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue NewtonsPerSquareMillimeter => As(PressureUnit.NewtonPerSquareMillimeter);
+        public double NewtonsPerSquareMillimeter => As(PressureUnit.NewtonPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Pascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Pascal"/>
         /// </summary>
-        public QuantityValue Pascals => As(PressureUnit.Pascal);
+        public double Pascals => As(PressureUnit.Pascal);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareFoot"/>
         /// </summary>
-        public QuantityValue PoundsForcePerSquareFoot => As(PressureUnit.PoundForcePerSquareFoot);
+        public double PoundsForcePerSquareFoot => As(PressureUnit.PoundForcePerSquareFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareInch"/>
         /// </summary>
-        public QuantityValue PoundsForcePerSquareInch => As(PressureUnit.PoundForcePerSquareInch);
+        public double PoundsForcePerSquareInch => As(PressureUnit.PoundForcePerSquareInch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareMil"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareMil"/>
         /// </summary>
-        public QuantityValue PoundsForcePerSquareMil => As(PressureUnit.PoundForcePerSquareMil);
+        public double PoundsForcePerSquareMil => As(PressureUnit.PoundForcePerSquareMil);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.PoundPerInchSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundPerInchSecondSquared"/>
         /// </summary>
-        public QuantityValue PoundsPerInchSecondSquared => As(PressureUnit.PoundPerInchSecondSquared);
+        public double PoundsPerInchSecondSquared => As(PressureUnit.PoundPerInchSecondSquared);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.TechnicalAtmosphere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.TechnicalAtmosphere"/>
         /// </summary>
-        public QuantityValue TechnicalAtmospheres => As(PressureUnit.TechnicalAtmosphere);
+        public double TechnicalAtmospheres => As(PressureUnit.TechnicalAtmosphere);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue TonnesForcePerSquareCentimeter => As(PressureUnit.TonneForcePerSquareCentimeter);
+        public double TonnesForcePerSquareCentimeter => As(PressureUnit.TonneForcePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareMeter"/>
         /// </summary>
-        public QuantityValue TonnesForcePerSquareMeter => As(PressureUnit.TonneForcePerSquareMeter);
+        public double TonnesForcePerSquareMeter => As(PressureUnit.TonneForcePerSquareMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue TonnesForcePerSquareMillimeter => As(PressureUnit.TonneForcePerSquareMillimeter);
+        public double TonnesForcePerSquareMillimeter => As(PressureUnit.TonneForcePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="PressureUnit.Torr"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Torr"/>
         /// </summary>
-        public QuantityValue Torrs => As(PressureUnit.Torr);
+        public double Torrs => As(PressureUnit.Torr);
 
         #endregion
 
@@ -457,7 +454,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Decapascal, quantity => new Pressure((quantity.Value) / 1e1d, PressureUnit.Decapascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Decibar, quantity => new Pressure((quantity.Value / 1e5) / 1e-1d, PressureUnit.Decibar));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.DynePerSquareCentimeter, quantity => new Pressure(quantity.Value / 1.0e-1, PressureUnit.DynePerSquareCentimeter));
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.FootOfElevation, quantity => new Pressure((1.0 - Math.Pow((double)quantity.Value / 101325.0, 0.190284)) * 145366.45, PressureUnit.FootOfElevation));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.FootOfElevation, quantity => new Pressure((1.0 - Math.Pow(quantity.Value / 101325.0, 0.190284)) * 145366.45, PressureUnit.FootOfElevation));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.FootOfHead, quantity => new Pressure(quantity.Value * 0.000334552565551, PressureUnit.FootOfHead));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Gigapascal, quantity => new Pressure((quantity.Value) / 1e9d, PressureUnit.Gigapascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Hectopascal, quantity => new Pressure((quantity.Value) / 1e2d, PressureUnit.Hectopascal));
@@ -477,7 +474,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Megabar, quantity => new Pressure((quantity.Value / 1e5) / 1e6d, PressureUnit.Megabar));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MeganewtonPerSquareMeter, quantity => new Pressure((quantity.Value) / 1e6d, PressureUnit.MeganewtonPerSquareMeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Megapascal, quantity => new Pressure((quantity.Value) / 1e6d, PressureUnit.Megapascal));
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MeterOfElevation, quantity => new Pressure((1.0 - Math.Pow((double)quantity.Value / 101325.0, 0.190284)) * 44307.69396, PressureUnit.MeterOfElevation));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MeterOfElevation, quantity => new Pressure((1.0 - Math.Pow(quantity.Value / 101325.0, 0.190284)) * 44307.69396, PressureUnit.MeterOfElevation));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MeterOfHead, quantity => new Pressure(quantity.Value * 0.0001019977334, PressureUnit.MeterOfHead));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Microbar, quantity => new Pressure((quantity.Value / 1e5) / 1e-6d, PressureUnit.Microbar));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Micropascal, quantity => new Pressure((quantity.Value) / 1e-6d, PressureUnit.Micropascal));
@@ -508,7 +505,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Decapascal, PressureUnit.Pascal, quantity => new Pressure((quantity.Value) * 1e1d, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Decibar, PressureUnit.Pascal, quantity => new Pressure((quantity.Value * 1e5) * 1e-1d, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.DynePerSquareCentimeter, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 1.0e-1, PressureUnit.Pascal));
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.FootOfElevation, PressureUnit.Pascal, quantity => new Pressure(Math.Pow(1.0 - ((double)quantity.Value / 145366.45), 5.2553026003237266401799415610351) * 101325.0, PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.FootOfElevation, PressureUnit.Pascal, quantity => new Pressure(Math.Pow(1.0 - (quantity.Value / 145366.45), 5.2553026003237266401799415610351) * 101325.0, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.FootOfHead, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 2989.0669, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Gigapascal, PressureUnit.Pascal, quantity => new Pressure((quantity.Value) * 1e9d, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Hectopascal, PressureUnit.Pascal, quantity => new Pressure((quantity.Value) * 1e2d, PressureUnit.Pascal));
@@ -528,7 +525,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Megabar, PressureUnit.Pascal, quantity => new Pressure((quantity.Value * 1e5) * 1e6d, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MeganewtonPerSquareMeter, PressureUnit.Pascal, quantity => new Pressure((quantity.Value) * 1e6d, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Megapascal, PressureUnit.Pascal, quantity => new Pressure((quantity.Value) * 1e6d, PressureUnit.Pascal));
-            unitConverter.SetConversionFunction<Pressure>(PressureUnit.MeterOfElevation, PressureUnit.Pascal, quantity => new Pressure(Math.Pow(1.0 - ((double)quantity.Value / 44307.69396), 5.2553026003237266401799415610351) * 101325.0, PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.MeterOfElevation, PressureUnit.Pascal, quantity => new Pressure(Math.Pow(1.0 - (quantity.Value / 44307.69396), 5.2553026003237266401799415610351) * 101325.0, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MeterOfHead, PressureUnit.Pascal, quantity => new Pressure(quantity.Value * 9804.139432, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Microbar, PressureUnit.Pascal, quantity => new Pressure((quantity.Value * 1e5) * 1e-6d, PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Micropascal, PressureUnit.Pascal, quantity => new Pressure((quantity.Value) * 1e-6d, PressureUnit.Pascal));
@@ -663,7 +660,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromAtmospheres(QuantityValue atmospheres)
         {
-            QuantityValue value = (QuantityValue) atmospheres;
+            double value = (double) atmospheres;
             return new Pressure(value, PressureUnit.Atmosphere);
         }
 
@@ -673,7 +670,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromBars(QuantityValue bars)
         {
-            QuantityValue value = (QuantityValue) bars;
+            double value = (double) bars;
             return new Pressure(value, PressureUnit.Bar);
         }
 
@@ -683,7 +680,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromCentibars(QuantityValue centibars)
         {
-            QuantityValue value = (QuantityValue) centibars;
+            double value = (double) centibars;
             return new Pressure(value, PressureUnit.Centibar);
         }
 
@@ -693,7 +690,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromDecapascals(QuantityValue decapascals)
         {
-            QuantityValue value = (QuantityValue) decapascals;
+            double value = (double) decapascals;
             return new Pressure(value, PressureUnit.Decapascal);
         }
 
@@ -703,7 +700,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromDecibars(QuantityValue decibars)
         {
-            QuantityValue value = (QuantityValue) decibars;
+            double value = (double) decibars;
             return new Pressure(value, PressureUnit.Decibar);
         }
 
@@ -713,7 +710,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromDynesPerSquareCentimeter(QuantityValue dynespersquarecentimeter)
         {
-            QuantityValue value = (QuantityValue) dynespersquarecentimeter;
+            double value = (double) dynespersquarecentimeter;
             return new Pressure(value, PressureUnit.DynePerSquareCentimeter);
         }
 
@@ -723,7 +720,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromFeetOfElevation(QuantityValue feetofelevation)
         {
-            QuantityValue value = (QuantityValue) feetofelevation;
+            double value = (double) feetofelevation;
             return new Pressure(value, PressureUnit.FootOfElevation);
         }
 
@@ -733,7 +730,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromFeetOfHead(QuantityValue feetofhead)
         {
-            QuantityValue value = (QuantityValue) feetofhead;
+            double value = (double) feetofhead;
             return new Pressure(value, PressureUnit.FootOfHead);
         }
 
@@ -743,7 +740,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromGigapascals(QuantityValue gigapascals)
         {
-            QuantityValue value = (QuantityValue) gigapascals;
+            double value = (double) gigapascals;
             return new Pressure(value, PressureUnit.Gigapascal);
         }
 
@@ -753,7 +750,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromHectopascals(QuantityValue hectopascals)
         {
-            QuantityValue value = (QuantityValue) hectopascals;
+            double value = (double) hectopascals;
             return new Pressure(value, PressureUnit.Hectopascal);
         }
 
@@ -763,7 +760,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromInchesOfMercury(QuantityValue inchesofmercury)
         {
-            QuantityValue value = (QuantityValue) inchesofmercury;
+            double value = (double) inchesofmercury;
             return new Pressure(value, PressureUnit.InchOfMercury);
         }
 
@@ -773,7 +770,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromInchesOfWaterColumn(QuantityValue inchesofwatercolumn)
         {
-            QuantityValue value = (QuantityValue) inchesofwatercolumn;
+            double value = (double) inchesofwatercolumn;
             return new Pressure(value, PressureUnit.InchOfWaterColumn);
         }
 
@@ -783,7 +780,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilobars(QuantityValue kilobars)
         {
-            QuantityValue value = (QuantityValue) kilobars;
+            double value = (double) kilobars;
             return new Pressure(value, PressureUnit.Kilobar);
         }
 
@@ -793,7 +790,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilogramsForcePerSquareCentimeter(QuantityValue kilogramsforcepersquarecentimeter)
         {
-            QuantityValue value = (QuantityValue) kilogramsforcepersquarecentimeter;
+            double value = (double) kilogramsforcepersquarecentimeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareCentimeter);
         }
 
@@ -803,7 +800,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilogramsForcePerSquareMeter(QuantityValue kilogramsforcepersquaremeter)
         {
-            QuantityValue value = (QuantityValue) kilogramsforcepersquaremeter;
+            double value = (double) kilogramsforcepersquaremeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareMeter);
         }
 
@@ -813,7 +810,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilogramsForcePerSquareMillimeter(QuantityValue kilogramsforcepersquaremillimeter)
         {
-            QuantityValue value = (QuantityValue) kilogramsforcepersquaremillimeter;
+            double value = (double) kilogramsforcepersquaremillimeter;
             return new Pressure(value, PressureUnit.KilogramForcePerSquareMillimeter);
         }
 
@@ -823,7 +820,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilonewtonsPerSquareCentimeter(QuantityValue kilonewtonspersquarecentimeter)
         {
-            QuantityValue value = (QuantityValue) kilonewtonspersquarecentimeter;
+            double value = (double) kilonewtonspersquarecentimeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareCentimeter);
         }
 
@@ -833,7 +830,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilonewtonsPerSquareMeter(QuantityValue kilonewtonspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) kilonewtonspersquaremeter;
+            double value = (double) kilonewtonspersquaremeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareMeter);
         }
 
@@ -843,7 +840,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilonewtonsPerSquareMillimeter(QuantityValue kilonewtonspersquaremillimeter)
         {
-            QuantityValue value = (QuantityValue) kilonewtonspersquaremillimeter;
+            double value = (double) kilonewtonspersquaremillimeter;
             return new Pressure(value, PressureUnit.KilonewtonPerSquareMillimeter);
         }
 
@@ -853,7 +850,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilopascals(QuantityValue kilopascals)
         {
-            QuantityValue value = (QuantityValue) kilopascals;
+            double value = (double) kilopascals;
             return new Pressure(value, PressureUnit.Kilopascal);
         }
 
@@ -863,7 +860,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilopoundsForcePerSquareFoot(QuantityValue kilopoundsforcepersquarefoot)
         {
-            QuantityValue value = (QuantityValue) kilopoundsforcepersquarefoot;
+            double value = (double) kilopoundsforcepersquarefoot;
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareFoot);
         }
 
@@ -873,7 +870,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilopoundsForcePerSquareInch(QuantityValue kilopoundsforcepersquareinch)
         {
-            QuantityValue value = (QuantityValue) kilopoundsforcepersquareinch;
+            double value = (double) kilopoundsforcepersquareinch;
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareInch);
         }
 
@@ -883,7 +880,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromKilopoundsForcePerSquareMil(QuantityValue kilopoundsforcepersquaremil)
         {
-            QuantityValue value = (QuantityValue) kilopoundsforcepersquaremil;
+            double value = (double) kilopoundsforcepersquaremil;
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareMil);
         }
 
@@ -893,7 +890,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMegabars(QuantityValue megabars)
         {
-            QuantityValue value = (QuantityValue) megabars;
+            double value = (double) megabars;
             return new Pressure(value, PressureUnit.Megabar);
         }
 
@@ -903,7 +900,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMeganewtonsPerSquareMeter(QuantityValue meganewtonspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) meganewtonspersquaremeter;
+            double value = (double) meganewtonspersquaremeter;
             return new Pressure(value, PressureUnit.MeganewtonPerSquareMeter);
         }
 
@@ -913,7 +910,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMegapascals(QuantityValue megapascals)
         {
-            QuantityValue value = (QuantityValue) megapascals;
+            double value = (double) megapascals;
             return new Pressure(value, PressureUnit.Megapascal);
         }
 
@@ -923,7 +920,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMetersOfElevation(QuantityValue metersofelevation)
         {
-            QuantityValue value = (QuantityValue) metersofelevation;
+            double value = (double) metersofelevation;
             return new Pressure(value, PressureUnit.MeterOfElevation);
         }
 
@@ -933,7 +930,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMetersOfHead(QuantityValue metersofhead)
         {
-            QuantityValue value = (QuantityValue) metersofhead;
+            double value = (double) metersofhead;
             return new Pressure(value, PressureUnit.MeterOfHead);
         }
 
@@ -943,7 +940,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMicrobars(QuantityValue microbars)
         {
-            QuantityValue value = (QuantityValue) microbars;
+            double value = (double) microbars;
             return new Pressure(value, PressureUnit.Microbar);
         }
 
@@ -953,7 +950,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMicropascals(QuantityValue micropascals)
         {
-            QuantityValue value = (QuantityValue) micropascals;
+            double value = (double) micropascals;
             return new Pressure(value, PressureUnit.Micropascal);
         }
 
@@ -963,7 +960,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMillibars(QuantityValue millibars)
         {
-            QuantityValue value = (QuantityValue) millibars;
+            double value = (double) millibars;
             return new Pressure(value, PressureUnit.Millibar);
         }
 
@@ -973,7 +970,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMillimetersOfMercury(QuantityValue millimetersofmercury)
         {
-            QuantityValue value = (QuantityValue) millimetersofmercury;
+            double value = (double) millimetersofmercury;
             return new Pressure(value, PressureUnit.MillimeterOfMercury);
         }
 
@@ -983,7 +980,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMillimeterOfWaterColumn(QuantityValue millimeterofwatercolumn)
         {
-            QuantityValue value = (QuantityValue) millimeterofwatercolumn;
+            double value = (double) millimeterofwatercolumn;
             return new Pressure(value, PressureUnit.MillimeterOfWaterColumn);
         }
 
@@ -993,7 +990,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromMillipascals(QuantityValue millipascals)
         {
-            QuantityValue value = (QuantityValue) millipascals;
+            double value = (double) millipascals;
             return new Pressure(value, PressureUnit.Millipascal);
         }
 
@@ -1003,7 +1000,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromNewtonsPerSquareCentimeter(QuantityValue newtonspersquarecentimeter)
         {
-            QuantityValue value = (QuantityValue) newtonspersquarecentimeter;
+            double value = (double) newtonspersquarecentimeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareCentimeter);
         }
 
@@ -1013,7 +1010,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromNewtonsPerSquareMeter(QuantityValue newtonspersquaremeter)
         {
-            QuantityValue value = (QuantityValue) newtonspersquaremeter;
+            double value = (double) newtonspersquaremeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareMeter);
         }
 
@@ -1023,7 +1020,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromNewtonsPerSquareMillimeter(QuantityValue newtonspersquaremillimeter)
         {
-            QuantityValue value = (QuantityValue) newtonspersquaremillimeter;
+            double value = (double) newtonspersquaremillimeter;
             return new Pressure(value, PressureUnit.NewtonPerSquareMillimeter);
         }
 
@@ -1033,7 +1030,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromPascals(QuantityValue pascals)
         {
-            QuantityValue value = (QuantityValue) pascals;
+            double value = (double) pascals;
             return new Pressure(value, PressureUnit.Pascal);
         }
 
@@ -1043,7 +1040,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromPoundsForcePerSquareFoot(QuantityValue poundsforcepersquarefoot)
         {
-            QuantityValue value = (QuantityValue) poundsforcepersquarefoot;
+            double value = (double) poundsforcepersquarefoot;
             return new Pressure(value, PressureUnit.PoundForcePerSquareFoot);
         }
 
@@ -1053,7 +1050,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromPoundsForcePerSquareInch(QuantityValue poundsforcepersquareinch)
         {
-            QuantityValue value = (QuantityValue) poundsforcepersquareinch;
+            double value = (double) poundsforcepersquareinch;
             return new Pressure(value, PressureUnit.PoundForcePerSquareInch);
         }
 
@@ -1063,7 +1060,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromPoundsForcePerSquareMil(QuantityValue poundsforcepersquaremil)
         {
-            QuantityValue value = (QuantityValue) poundsforcepersquaremil;
+            double value = (double) poundsforcepersquaremil;
             return new Pressure(value, PressureUnit.PoundForcePerSquareMil);
         }
 
@@ -1073,7 +1070,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromPoundsPerInchSecondSquared(QuantityValue poundsperinchsecondsquared)
         {
-            QuantityValue value = (QuantityValue) poundsperinchsecondsquared;
+            double value = (double) poundsperinchsecondsquared;
             return new Pressure(value, PressureUnit.PoundPerInchSecondSquared);
         }
 
@@ -1083,7 +1080,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromTechnicalAtmospheres(QuantityValue technicalatmospheres)
         {
-            QuantityValue value = (QuantityValue) technicalatmospheres;
+            double value = (double) technicalatmospheres;
             return new Pressure(value, PressureUnit.TechnicalAtmosphere);
         }
 
@@ -1093,7 +1090,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromTonnesForcePerSquareCentimeter(QuantityValue tonnesforcepersquarecentimeter)
         {
-            QuantityValue value = (QuantityValue) tonnesforcepersquarecentimeter;
+            double value = (double) tonnesforcepersquarecentimeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareCentimeter);
         }
 
@@ -1103,7 +1100,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromTonnesForcePerSquareMeter(QuantityValue tonnesforcepersquaremeter)
         {
-            QuantityValue value = (QuantityValue) tonnesforcepersquaremeter;
+            double value = (double) tonnesforcepersquaremeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareMeter);
         }
 
@@ -1113,7 +1110,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromTonnesForcePerSquareMillimeter(QuantityValue tonnesforcepersquaremillimeter)
         {
-            QuantityValue value = (QuantityValue) tonnesforcepersquaremillimeter;
+            double value = (double) tonnesforcepersquaremillimeter;
             return new Pressure(value, PressureUnit.TonneForcePerSquareMillimeter);
         }
 
@@ -1123,7 +1120,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Pressure FromTorrs(QuantityValue torrs)
         {
-            QuantityValue value = (QuantityValue) torrs;
+            double value = (double) torrs;
             return new Pressure(value, PressureUnit.Torr);
         }
 
@@ -1135,7 +1132,7 @@ namespace UnitsNet
         /// <returns>Pressure unit value.</returns>
         public static Pressure From(QuantityValue value, PressureUnit fromUnit)
         {
-            return new Pressure((QuantityValue)value, fromUnit);
+            return new Pressure((double)value, fromUnit);
         }
 
         #endregion
@@ -1305,25 +1302,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Pressure"/> from multiplying value and <see cref="Pressure"/>.</summary>
-        public static Pressure operator *(QuantityValue left, Pressure right)
+        public static Pressure operator *(double left, Pressure right)
         {
             return new Pressure(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Pressure"/> from multiplying value and <see cref="Pressure"/>.</summary>
-        public static Pressure operator *(Pressure left, QuantityValue right)
+        public static Pressure operator *(Pressure left, double right)
         {
             return new Pressure(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Pressure"/> from dividing <see cref="Pressure"/> by value.</summary>
-        public static Pressure operator /(Pressure left, QuantityValue right)
+        public static Pressure operator /(Pressure left, double right)
         {
             return new Pressure(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Pressure"/> by <see cref="Pressure"/>.</summary>
-        public static QuantityValue operator /(Pressure left, Pressure right)
+        public static double operator /(Pressure left, Pressure right)
         {
             return left.Pascals / right.Pascals;
         }
@@ -1356,19 +1353,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Pressure, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Pressure left, Pressure right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Pressure, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Pressure left, Pressure right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -1381,29 +1365,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Pressure other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Pressure, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is Pressure objPressure))
-                return false;
-            return Equals(objPressure);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Pressure, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Pressure other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1446,13 +1408,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Pressure other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(Pressure other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -1463,7 +1425,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Pressure.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1474,16 +1436,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(PressureUnit unit)
+        public double As(PressureUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1498,12 +1461,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is PressureUnit typedUnit))
+            if (!(unit is PressureUnit unitAsPressureUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsPressureUnit);
         }
 
         /// <summary>
@@ -1535,7 +1498,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Pressure)converted;
             }
-            else if (Enum.IsDefined(typeof(PressureUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1543,17 +1506,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is PressureUnit typedUnit))
+            if (!(unit is PressureUnit unitAsPressureUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsPressureUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1580,10 +1543,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(PressureUnit unit)
+        private double GetValueAs(PressureUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

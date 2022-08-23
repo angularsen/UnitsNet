@@ -26,7 +26,7 @@ namespace UnitsNet.Tests
                 Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), 0, ComparisonType.Relative), "Integer values have zero difference.");
                 Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), smallError, ComparisonType.Relative), "Using a max difference value should not change that fact.");
 
-                Assert.False(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), 0.0, ComparisonType.Relative),
+                Assert.False(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), 0, ComparisonType.Relative),
                     "Example of floating precision arithmetic that produces slightly different results.");
                 Assert.True(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), smallError, ComparisonType.Relative), "But the difference is very small");
             }

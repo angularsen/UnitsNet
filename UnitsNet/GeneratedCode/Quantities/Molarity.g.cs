@@ -38,13 +38,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Molar_concentration
     /// </remarks>
     [DataContract]
-    public partial struct Molarity : IQuantity<MolarityUnit>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
+    public partial struct Molarity : IQuantity<MolarityUnit>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -91,9 +91,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Molarity(QuantityValue value, MolarityUnit unit)
+        public Molarity(double value, MolarityUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -105,14 +105,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Molarity(QuantityValue value, UnitSystem unitSystem)
+        public Molarity(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -153,10 +153,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -179,49 +176,49 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.CentimolePerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.CentimolePerLiter"/>
         /// </summary>
-        public QuantityValue CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
+        public double CentimolesPerLiter => As(MolarityUnit.CentimolePerLiter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.DecimolePerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.DecimolePerLiter"/>
         /// </summary>
-        public QuantityValue DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
+        public double DecimolesPerLiter => As(MolarityUnit.DecimolePerLiter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.FemtomolePerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.FemtomolePerLiter"/>
         /// </summary>
-        public QuantityValue FemtomolesPerLiter => As(MolarityUnit.FemtomolePerLiter);
+        public double FemtomolesPerLiter => As(MolarityUnit.FemtomolePerLiter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.MicromolePerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MicromolePerLiter"/>
         /// </summary>
-        public QuantityValue MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
+        public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.MillimolePerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MillimolePerLiter"/>
         /// </summary>
-        public QuantityValue MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
+        public double MillimolesPerLiter => As(MolarityUnit.MillimolePerLiter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.MolePerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MolePerCubicMeter"/>
         /// </summary>
-        public QuantityValue MolesPerCubicMeter => As(MolarityUnit.MolePerCubicMeter);
+        public double MolesPerCubicMeter => As(MolarityUnit.MolePerCubicMeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.MolePerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MolePerLiter"/>
         /// </summary>
-        public QuantityValue MolesPerLiter => As(MolarityUnit.MolePerLiter);
+        public double MolesPerLiter => As(MolarityUnit.MolePerLiter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.NanomolePerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.NanomolePerLiter"/>
         /// </summary>
-        public QuantityValue NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
+        public double NanomolesPerLiter => As(MolarityUnit.NanomolePerLiter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="MolarityUnit.PicomolePerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.PicomolePerLiter"/>
         /// </summary>
-        public QuantityValue PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
+        public double PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
 
         #endregion
 
@@ -325,7 +322,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromCentimolesPerLiter(QuantityValue centimolesperliter)
         {
-            QuantityValue value = (QuantityValue) centimolesperliter;
+            double value = (double) centimolesperliter;
             return new Molarity(value, MolarityUnit.CentimolePerLiter);
         }
 
@@ -335,7 +332,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromDecimolesPerLiter(QuantityValue decimolesperliter)
         {
-            QuantityValue value = (QuantityValue) decimolesperliter;
+            double value = (double) decimolesperliter;
             return new Molarity(value, MolarityUnit.DecimolePerLiter);
         }
 
@@ -345,7 +342,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromFemtomolesPerLiter(QuantityValue femtomolesperliter)
         {
-            QuantityValue value = (QuantityValue) femtomolesperliter;
+            double value = (double) femtomolesperliter;
             return new Molarity(value, MolarityUnit.FemtomolePerLiter);
         }
 
@@ -355,7 +352,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMicromolesPerLiter(QuantityValue micromolesperliter)
         {
-            QuantityValue value = (QuantityValue) micromolesperliter;
+            double value = (double) micromolesperliter;
             return new Molarity(value, MolarityUnit.MicromolePerLiter);
         }
 
@@ -365,7 +362,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMillimolesPerLiter(QuantityValue millimolesperliter)
         {
-            QuantityValue value = (QuantityValue) millimolesperliter;
+            double value = (double) millimolesperliter;
             return new Molarity(value, MolarityUnit.MillimolePerLiter);
         }
 
@@ -375,7 +372,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMolesPerCubicMeter(QuantityValue molespercubicmeter)
         {
-            QuantityValue value = (QuantityValue) molespercubicmeter;
+            double value = (double) molespercubicmeter;
             return new Molarity(value, MolarityUnit.MolePerCubicMeter);
         }
 
@@ -385,7 +382,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromMolesPerLiter(QuantityValue molesperliter)
         {
-            QuantityValue value = (QuantityValue) molesperliter;
+            double value = (double) molesperliter;
             return new Molarity(value, MolarityUnit.MolePerLiter);
         }
 
@@ -395,7 +392,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromNanomolesPerLiter(QuantityValue nanomolesperliter)
         {
-            QuantityValue value = (QuantityValue) nanomolesperliter;
+            double value = (double) nanomolesperliter;
             return new Molarity(value, MolarityUnit.NanomolePerLiter);
         }
 
@@ -405,7 +402,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromPicomolesPerLiter(QuantityValue picomolesperliter)
         {
-            QuantityValue value = (QuantityValue) picomolesperliter;
+            double value = (double) picomolesperliter;
             return new Molarity(value, MolarityUnit.PicomolePerLiter);
         }
 
@@ -417,7 +414,7 @@ namespace UnitsNet
         /// <returns>Molarity unit value.</returns>
         public static Molarity From(QuantityValue value, MolarityUnit fromUnit)
         {
-            return new Molarity((QuantityValue)value, fromUnit);
+            return new Molarity((double)value, fromUnit);
         }
 
         #endregion
@@ -587,25 +584,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
-        public static Molarity operator *(QuantityValue left, Molarity right)
+        public static Molarity operator *(double left, Molarity right)
         {
             return new Molarity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Molarity"/> from multiplying value and <see cref="Molarity"/>.</summary>
-        public static Molarity operator *(Molarity left, QuantityValue right)
+        public static Molarity operator *(Molarity left, double right)
         {
             return new Molarity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Molarity"/> from dividing <see cref="Molarity"/> by value.</summary>
-        public static Molarity operator /(Molarity left, QuantityValue right)
+        public static Molarity operator /(Molarity left, double right)
         {
             return new Molarity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Molarity"/> by <see cref="Molarity"/>.</summary>
-        public static QuantityValue operator /(Molarity left, Molarity right)
+        public static double operator /(Molarity left, Molarity right)
         {
             return left.MolesPerCubicMeter / right.MolesPerCubicMeter;
         }
@@ -638,19 +635,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Molarity left, Molarity right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Molarity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Molarity left, Molarity right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -663,29 +647,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Molarity other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Molarity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is Molarity objMolarity))
-                return false;
-            return Equals(objMolarity);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Molarity, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Molarity other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -728,13 +690,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Molarity other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(Molarity other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -745,7 +707,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Molarity.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -756,16 +718,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(MolarityUnit unit)
+        public double As(MolarityUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -780,12 +743,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is MolarityUnit typedUnit))
+            if (!(unit is MolarityUnit unitAsMolarityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsMolarityUnit);
         }
 
         /// <summary>
@@ -817,7 +780,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Molarity)converted;
             }
-            else if (Enum.IsDefined(typeof(MolarityUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -825,17 +788,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is MolarityUnit typedUnit))
+            if (!(unit is MolarityUnit unitAsMolarityUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsMolarityUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -862,10 +825,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(MolarityUnit unit)
+        private double GetValueAs(MolarityUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

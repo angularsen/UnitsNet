@@ -64,30 +64,30 @@ namespace UnitsNet.Tests
         protected abstract double PercentInOneDecimalFraction { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentigramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double CentigramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double DecagramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double DecagramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double DecigramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double DecigramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double DecimalFractionsTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double HectogramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double HectogramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double NanogramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double NanogramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerBillionTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerMillionTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerThousandTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerTrillionTolerance { get { return 1E-5; } }
-        protected virtual double PercentTolerance { get { return 1E-5; } }
+        protected virtual double CentigramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double CentigramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double DecimalFractionsTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerBillionTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerMillionTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerThousandTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerTrillionTolerance { get { return 1e-5; } }
+        protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFractionUnit unit)
@@ -388,7 +388,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) (QuantityValue) AsWithSIUnitSystem();
+                var value = (double) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -1021,19 +1021,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(MassFractionUnit unit)
         {
-            var inBaseUnit = MassFraction.From(1.0, MassFraction.BaseUnit);
-            var converted = inBaseUnit.ToUnit(unit);
+            var inBaseUnits = MassFraction.From(1.0, MassFraction.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
-        }
-
-        [Fact]
-        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
-        {
-            var inBaseUnit = MassFraction.From(1.0, MassFraction.BaseUnit);
-            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(MassFractionUnit)));
         }
 
         [Theory]
@@ -1049,8 +1042,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFractionUnit unit)
         {
-            // This test is only available for quantities with more than one units.
-            var fromUnit = MassFraction.Units.First(u => u != MassFraction.BaseUnit);
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = MassFraction.Units.Where(u => u != MassFraction.BaseUnit).DefaultIfEmpty(MassFraction.BaseUnit).FirstOrDefault();
 
             var quantity = MassFraction.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1314,9 +1307,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-           Assert.Equal((byte)value, Convert.ToByte(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -1350,41 +1342,36 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-            Assert.Equal((short)value, Convert.ToInt16(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-            Assert.Equal((int)value, Convert.ToInt32(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-            Assert.Equal((long)value, Convert.ToInt64(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-            Assert.Equal((float)value, Convert.ToSingle(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -1397,25 +1384,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = MassFraction.FromDecimalFractions(value);
-            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
+            var quantity = MassFraction.FromDecimalFractions(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -1457,7 +1441,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassFraction.FromDecimalFractions(1.0);
-            Assert.Equal(MassFraction.Info.Name.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {MassFraction.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -25,10 +25,10 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1e-3 km", 1)]
         [InlineData("5.5 m", 5.5)]
         [InlineData("500,005 m", 500005)]
-        public void ParseLengthToMetersUsEnglish(string s, QuantityValue expected)
+        public void ParseLengthToMetersUsEnglish(string s, double expected)
         {
             CultureInfo usEnglish = new CultureInfo("en-US");
-            QuantityValue actual = Length.Parse(s, usEnglish).Meters;
+            double actual = Length.Parse(s, usEnglish).Meters;
             Assert.Equal(expected, actual);
         }
 
@@ -50,7 +50,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("5.5 m", 5.5)]
         [InlineData("500 005 m", 500005)]
         // quantity doesn't match number format
-        public void ParseWithCultureUsingSpaceAsThousandSeparators(string s, QuantityValue expected)
+        public void ParseWithCultureUsingSpaceAsThousandSeparators(string s, double expected)
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = " ";
@@ -58,7 +58,7 @@ namespace UnitsNet.Tests.CustomCode
             numberFormat.NumberDecimalSeparator = ".";
             numberFormat.CurrencyDecimalSeparator = ".";
 
-            QuantityValue actual = Length.Parse(s, numberFormat).Meters;
+            double actual = Length.Parse(s, numberFormat).Meters;
             Assert.Equal(expected, actual);
         }
 
@@ -81,7 +81,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("5,5 m", 5.5)]
         [InlineData("500.005.050,001 m", 500005050.001)]
         [InlineData("5.555 m", 5555)] // Dot is group separator not decimal
-        public void ParseWithCultureUsingDotAsThousandSeparators(string s, QuantityValue expected)
+        public void ParseWithCultureUsingDotAsThousandSeparators(string s, double expected)
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = ".";
@@ -89,7 +89,7 @@ namespace UnitsNet.Tests.CustomCode
             numberFormat.NumberDecimalSeparator = ",";
             numberFormat.CurrencyDecimalSeparator = ",";
 
-            QuantityValue actual = Length.Parse(s, numberFormat).Meters;
+            double actual = Length.Parse(s, numberFormat).Meters;
             Assert.Equal(expected, actual);
         }
 

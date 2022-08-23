@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.
     /// </summary>
     [DataContract]
-    public partial struct Length : IQuantity<LengthUnit>, IEquatable<Length>, IComparable, IComparable<Length>, IConvertible, IFormattable
+    public partial struct Length : IQuantity<LengthUnit>, IComparable, IComparable<Length>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -107,9 +107,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Length(QuantityValue value, LengthUnit unit)
+        public Length(double value, LengthUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -121,14 +121,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Length(QuantityValue value, UnitSystem unitSystem)
+        public Length(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -169,10 +169,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -195,184 +192,184 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Angstrom"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Angstrom"/>
         /// </summary>
-        public QuantityValue Angstroms => As(LengthUnit.Angstrom);
+        public double Angstroms => As(LengthUnit.Angstrom);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
         /// </summary>
-        public QuantityValue AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
+        public double AstronomicalUnits => As(LengthUnit.AstronomicalUnit);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Centimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Centimeter"/>
         /// </summary>
-        public QuantityValue Centimeters => As(LengthUnit.Centimeter);
+        public double Centimeters => As(LengthUnit.Centimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Chain"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Chain"/>
         /// </summary>
-        public QuantityValue Chains => As(LengthUnit.Chain);
+        public double Chains => As(LengthUnit.Chain);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.DataMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DataMile"/>
         /// </summary>
-        public QuantityValue DataMiles => As(LengthUnit.DataMile);
+        public double DataMiles => As(LengthUnit.DataMile);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Decameter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decameter"/>
         /// </summary>
-        public QuantityValue Decameters => As(LengthUnit.Decameter);
+        public double Decameters => As(LengthUnit.Decameter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Decimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decimeter"/>
         /// </summary>
-        public QuantityValue Decimeters => As(LengthUnit.Decimeter);
+        public double Decimeters => As(LengthUnit.Decimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.DtpPica"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPica"/>
         /// </summary>
-        public QuantityValue DtpPicas => As(LengthUnit.DtpPica);
+        public double DtpPicas => As(LengthUnit.DtpPica);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.DtpPoint"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPoint"/>
         /// </summary>
-        public QuantityValue DtpPoints => As(LengthUnit.DtpPoint);
+        public double DtpPoints => As(LengthUnit.DtpPoint);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Fathom"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Fathom"/>
         /// </summary>
-        public QuantityValue Fathoms => As(LengthUnit.Fathom);
+        public double Fathoms => As(LengthUnit.Fathom);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Foot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Foot"/>
         /// </summary>
-        public QuantityValue Feet => As(LengthUnit.Foot);
+        public double Feet => As(LengthUnit.Foot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Hand"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hand"/>
         /// </summary>
-        public QuantityValue Hands => As(LengthUnit.Hand);
+        public double Hands => As(LengthUnit.Hand);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Hectometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hectometer"/>
         /// </summary>
-        public QuantityValue Hectometers => As(LengthUnit.Hectometer);
+        public double Hectometers => As(LengthUnit.Hectometer);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Inch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Inch"/>
         /// </summary>
-        public QuantityValue Inches => As(LengthUnit.Inch);
+        public double Inches => As(LengthUnit.Inch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.KilolightYear"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.KilolightYear"/>
         /// </summary>
-        public QuantityValue KilolightYears => As(LengthUnit.KilolightYear);
+        public double KilolightYears => As(LengthUnit.KilolightYear);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Kilometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kilometer"/>
         /// </summary>
-        public QuantityValue Kilometers => As(LengthUnit.Kilometer);
+        public double Kilometers => As(LengthUnit.Kilometer);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Kiloparsec"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloparsec"/>
         /// </summary>
-        public QuantityValue Kiloparsecs => As(LengthUnit.Kiloparsec);
+        public double Kiloparsecs => As(LengthUnit.Kiloparsec);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.LightYear"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.LightYear"/>
         /// </summary>
-        public QuantityValue LightYears => As(LengthUnit.LightYear);
+        public double LightYears => As(LengthUnit.LightYear);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.MegalightYear"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.MegalightYear"/>
         /// </summary>
-        public QuantityValue MegalightYears => As(LengthUnit.MegalightYear);
+        public double MegalightYears => As(LengthUnit.MegalightYear);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Megaparsec"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megaparsec"/>
         /// </summary>
-        public QuantityValue Megaparsecs => As(LengthUnit.Megaparsec);
+        public double Megaparsecs => As(LengthUnit.Megaparsec);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Meter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Meter"/>
         /// </summary>
-        public QuantityValue Meters => As(LengthUnit.Meter);
+        public double Meters => As(LengthUnit.Meter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Microinch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Microinch"/>
         /// </summary>
-        public QuantityValue Microinches => As(LengthUnit.Microinch);
+        public double Microinches => As(LengthUnit.Microinch);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Micrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Micrometer"/>
         /// </summary>
-        public QuantityValue Micrometers => As(LengthUnit.Micrometer);
+        public double Micrometers => As(LengthUnit.Micrometer);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Mil"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mil"/>
         /// </summary>
-        public QuantityValue Mils => As(LengthUnit.Mil);
+        public double Mils => As(LengthUnit.Mil);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Mile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mile"/>
         /// </summary>
-        public QuantityValue Miles => As(LengthUnit.Mile);
+        public double Miles => As(LengthUnit.Mile);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Millimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Millimeter"/>
         /// </summary>
-        public QuantityValue Millimeters => As(LengthUnit.Millimeter);
+        public double Millimeters => As(LengthUnit.Millimeter);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Nanometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Nanometer"/>
         /// </summary>
-        public QuantityValue Nanometers => As(LengthUnit.Nanometer);
+        public double Nanometers => As(LengthUnit.Nanometer);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.NauticalMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.NauticalMile"/>
         /// </summary>
-        public QuantityValue NauticalMiles => As(LengthUnit.NauticalMile);
+        public double NauticalMiles => As(LengthUnit.NauticalMile);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Parsec"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Parsec"/>
         /// </summary>
-        public QuantityValue Parsecs => As(LengthUnit.Parsec);
+        public double Parsecs => As(LengthUnit.Parsec);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.PrinterPica"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPica"/>
         /// </summary>
-        public QuantityValue PrinterPicas => As(LengthUnit.PrinterPica);
+        public double PrinterPicas => As(LengthUnit.PrinterPica);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.PrinterPoint"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPoint"/>
         /// </summary>
-        public QuantityValue PrinterPoints => As(LengthUnit.PrinterPoint);
+        public double PrinterPoints => As(LengthUnit.PrinterPoint);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Shackle"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Shackle"/>
         /// </summary>
-        public QuantityValue Shackles => As(LengthUnit.Shackle);
+        public double Shackles => As(LengthUnit.Shackle);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.SolarRadius"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.SolarRadius"/>
         /// </summary>
-        public QuantityValue SolarRadiuses => As(LengthUnit.SolarRadius);
+        public double SolarRadiuses => As(LengthUnit.SolarRadius);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Twip"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Twip"/>
         /// </summary>
-        public QuantityValue Twips => As(LengthUnit.Twip);
+        public double Twips => As(LengthUnit.Twip);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.UsSurveyFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.UsSurveyFoot"/>
         /// </summary>
-        public QuantityValue UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
+        public double UsSurveyFeet => As(LengthUnit.UsSurveyFoot);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="LengthUnit.Yard"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Yard"/>
         /// </summary>
-        public QuantityValue Yards => As(LengthUnit.Yard);
+        public double Yards => As(LengthUnit.Yard);
 
         #endregion
 
@@ -565,7 +562,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromAngstroms(QuantityValue angstroms)
         {
-            QuantityValue value = (QuantityValue) angstroms;
+            double value = (double) angstroms;
             return new Length(value, LengthUnit.Angstrom);
         }
 
@@ -575,7 +572,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromAstronomicalUnits(QuantityValue astronomicalunits)
         {
-            QuantityValue value = (QuantityValue) astronomicalunits;
+            double value = (double) astronomicalunits;
             return new Length(value, LengthUnit.AstronomicalUnit);
         }
 
@@ -585,7 +582,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromCentimeters(QuantityValue centimeters)
         {
-            QuantityValue value = (QuantityValue) centimeters;
+            double value = (double) centimeters;
             return new Length(value, LengthUnit.Centimeter);
         }
 
@@ -595,7 +592,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromChains(QuantityValue chains)
         {
-            QuantityValue value = (QuantityValue) chains;
+            double value = (double) chains;
             return new Length(value, LengthUnit.Chain);
         }
 
@@ -605,7 +602,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromDataMiles(QuantityValue datamiles)
         {
-            QuantityValue value = (QuantityValue) datamiles;
+            double value = (double) datamiles;
             return new Length(value, LengthUnit.DataMile);
         }
 
@@ -615,7 +612,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromDecameters(QuantityValue decameters)
         {
-            QuantityValue value = (QuantityValue) decameters;
+            double value = (double) decameters;
             return new Length(value, LengthUnit.Decameter);
         }
 
@@ -625,7 +622,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromDecimeters(QuantityValue decimeters)
         {
-            QuantityValue value = (QuantityValue) decimeters;
+            double value = (double) decimeters;
             return new Length(value, LengthUnit.Decimeter);
         }
 
@@ -635,7 +632,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromDtpPicas(QuantityValue dtppicas)
         {
-            QuantityValue value = (QuantityValue) dtppicas;
+            double value = (double) dtppicas;
             return new Length(value, LengthUnit.DtpPica);
         }
 
@@ -645,7 +642,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromDtpPoints(QuantityValue dtppoints)
         {
-            QuantityValue value = (QuantityValue) dtppoints;
+            double value = (double) dtppoints;
             return new Length(value, LengthUnit.DtpPoint);
         }
 
@@ -655,7 +652,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromFathoms(QuantityValue fathoms)
         {
-            QuantityValue value = (QuantityValue) fathoms;
+            double value = (double) fathoms;
             return new Length(value, LengthUnit.Fathom);
         }
 
@@ -665,7 +662,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromFeet(QuantityValue feet)
         {
-            QuantityValue value = (QuantityValue) feet;
+            double value = (double) feet;
             return new Length(value, LengthUnit.Foot);
         }
 
@@ -675,7 +672,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromHands(QuantityValue hands)
         {
-            QuantityValue value = (QuantityValue) hands;
+            double value = (double) hands;
             return new Length(value, LengthUnit.Hand);
         }
 
@@ -685,7 +682,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromHectometers(QuantityValue hectometers)
         {
-            QuantityValue value = (QuantityValue) hectometers;
+            double value = (double) hectometers;
             return new Length(value, LengthUnit.Hectometer);
         }
 
@@ -695,7 +692,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromInches(QuantityValue inches)
         {
-            QuantityValue value = (QuantityValue) inches;
+            double value = (double) inches;
             return new Length(value, LengthUnit.Inch);
         }
 
@@ -705,7 +702,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromKilolightYears(QuantityValue kilolightyears)
         {
-            QuantityValue value = (QuantityValue) kilolightyears;
+            double value = (double) kilolightyears;
             return new Length(value, LengthUnit.KilolightYear);
         }
 
@@ -715,7 +712,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromKilometers(QuantityValue kilometers)
         {
-            QuantityValue value = (QuantityValue) kilometers;
+            double value = (double) kilometers;
             return new Length(value, LengthUnit.Kilometer);
         }
 
@@ -725,7 +722,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromKiloparsecs(QuantityValue kiloparsecs)
         {
-            QuantityValue value = (QuantityValue) kiloparsecs;
+            double value = (double) kiloparsecs;
             return new Length(value, LengthUnit.Kiloparsec);
         }
 
@@ -735,7 +732,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromLightYears(QuantityValue lightyears)
         {
-            QuantityValue value = (QuantityValue) lightyears;
+            double value = (double) lightyears;
             return new Length(value, LengthUnit.LightYear);
         }
 
@@ -745,7 +742,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMegalightYears(QuantityValue megalightyears)
         {
-            QuantityValue value = (QuantityValue) megalightyears;
+            double value = (double) megalightyears;
             return new Length(value, LengthUnit.MegalightYear);
         }
 
@@ -755,7 +752,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMegaparsecs(QuantityValue megaparsecs)
         {
-            QuantityValue value = (QuantityValue) megaparsecs;
+            double value = (double) megaparsecs;
             return new Length(value, LengthUnit.Megaparsec);
         }
 
@@ -765,7 +762,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMeters(QuantityValue meters)
         {
-            QuantityValue value = (QuantityValue) meters;
+            double value = (double) meters;
             return new Length(value, LengthUnit.Meter);
         }
 
@@ -775,7 +772,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMicroinches(QuantityValue microinches)
         {
-            QuantityValue value = (QuantityValue) microinches;
+            double value = (double) microinches;
             return new Length(value, LengthUnit.Microinch);
         }
 
@@ -785,7 +782,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMicrometers(QuantityValue micrometers)
         {
-            QuantityValue value = (QuantityValue) micrometers;
+            double value = (double) micrometers;
             return new Length(value, LengthUnit.Micrometer);
         }
 
@@ -795,7 +792,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMils(QuantityValue mils)
         {
-            QuantityValue value = (QuantityValue) mils;
+            double value = (double) mils;
             return new Length(value, LengthUnit.Mil);
         }
 
@@ -805,7 +802,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMiles(QuantityValue miles)
         {
-            QuantityValue value = (QuantityValue) miles;
+            double value = (double) miles;
             return new Length(value, LengthUnit.Mile);
         }
 
@@ -815,7 +812,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromMillimeters(QuantityValue millimeters)
         {
-            QuantityValue value = (QuantityValue) millimeters;
+            double value = (double) millimeters;
             return new Length(value, LengthUnit.Millimeter);
         }
 
@@ -825,7 +822,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromNanometers(QuantityValue nanometers)
         {
-            QuantityValue value = (QuantityValue) nanometers;
+            double value = (double) nanometers;
             return new Length(value, LengthUnit.Nanometer);
         }
 
@@ -835,7 +832,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromNauticalMiles(QuantityValue nauticalmiles)
         {
-            QuantityValue value = (QuantityValue) nauticalmiles;
+            double value = (double) nauticalmiles;
             return new Length(value, LengthUnit.NauticalMile);
         }
 
@@ -845,7 +842,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromParsecs(QuantityValue parsecs)
         {
-            QuantityValue value = (QuantityValue) parsecs;
+            double value = (double) parsecs;
             return new Length(value, LengthUnit.Parsec);
         }
 
@@ -855,7 +852,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromPrinterPicas(QuantityValue printerpicas)
         {
-            QuantityValue value = (QuantityValue) printerpicas;
+            double value = (double) printerpicas;
             return new Length(value, LengthUnit.PrinterPica);
         }
 
@@ -865,7 +862,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromPrinterPoints(QuantityValue printerpoints)
         {
-            QuantityValue value = (QuantityValue) printerpoints;
+            double value = (double) printerpoints;
             return new Length(value, LengthUnit.PrinterPoint);
         }
 
@@ -875,7 +872,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromShackles(QuantityValue shackles)
         {
-            QuantityValue value = (QuantityValue) shackles;
+            double value = (double) shackles;
             return new Length(value, LengthUnit.Shackle);
         }
 
@@ -885,7 +882,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromSolarRadiuses(QuantityValue solarradiuses)
         {
-            QuantityValue value = (QuantityValue) solarradiuses;
+            double value = (double) solarradiuses;
             return new Length(value, LengthUnit.SolarRadius);
         }
 
@@ -895,7 +892,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromTwips(QuantityValue twips)
         {
-            QuantityValue value = (QuantityValue) twips;
+            double value = (double) twips;
             return new Length(value, LengthUnit.Twip);
         }
 
@@ -905,7 +902,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromUsSurveyFeet(QuantityValue ussurveyfeet)
         {
-            QuantityValue value = (QuantityValue) ussurveyfeet;
+            double value = (double) ussurveyfeet;
             return new Length(value, LengthUnit.UsSurveyFoot);
         }
 
@@ -915,7 +912,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Length FromYards(QuantityValue yards)
         {
-            QuantityValue value = (QuantityValue) yards;
+            double value = (double) yards;
             return new Length(value, LengthUnit.Yard);
         }
 
@@ -927,7 +924,7 @@ namespace UnitsNet
         /// <returns>Length unit value.</returns>
         public static Length From(QuantityValue value, LengthUnit fromUnit)
         {
-            return new Length((QuantityValue)value, fromUnit);
+            return new Length((double)value, fromUnit);
         }
 
         #endregion
@@ -1097,25 +1094,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(QuantityValue left, Length right)
+        public static Length operator *(double left, Length right)
         {
             return new Length(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(Length left, QuantityValue right)
+        public static Length operator *(Length left, double right)
         {
             return new Length(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from dividing <see cref="Length"/> by value.</summary>
-        public static Length operator /(Length left, QuantityValue right)
+        public static Length operator /(Length left, double right)
         {
             return new Length(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Length"/> by <see cref="Length"/>.</summary>
-        public static QuantityValue operator /(Length left, Length right)
+        public static double operator /(Length left, Length right)
         {
             return left.Meters / right.Meters;
         }
@@ -1148,19 +1145,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Length, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Length left, Length right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Length, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Length left, Length right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -1173,29 +1157,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Length other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Length, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is Length objLength))
-                return false;
-            return Equals(objLength);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Length, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Length other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1238,13 +1200,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Length other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(Length other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -1255,7 +1217,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Length.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1266,16 +1228,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(LengthUnit unit)
+        public double As(LengthUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1290,12 +1253,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is LengthUnit typedUnit))
+            if (!(unit is LengthUnit unitAsLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsLengthUnit);
         }
 
         /// <summary>
@@ -1327,7 +1290,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Length)converted;
             }
-            else if (Enum.IsDefined(typeof(LengthUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -1335,17 +1298,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is LengthUnit typedUnit))
+            if (!(unit is LengthUnit unitAsLengthUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LengthUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsLengthUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1372,10 +1335,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(LengthUnit unit)
+        private double GetValueAs(LengthUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

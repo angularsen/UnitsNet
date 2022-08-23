@@ -51,17 +51,17 @@ namespace UnitsNet.Tests
         protected abstract double TerahertzInOneHertz { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BeatsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double BUnitsTolerance { get { return 1E-5; } }
-        protected virtual double CyclesPerHourTolerance { get { return 1E-5; } }
-        protected virtual double CyclesPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double GigahertzTolerance { get { return 1E-5; } }
-        protected virtual double HertzTolerance { get { return 1E-5; } }
-        protected virtual double KilohertzTolerance { get { return 1E-5; } }
-        protected virtual double MegahertzTolerance { get { return 1E-5; } }
-        protected virtual double PerSecondTolerance { get { return 1E-5; } }
-        protected virtual double RadiansPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double TerahertzTolerance { get { return 1E-5; } }
+        protected virtual double BeatsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double BUnitsTolerance { get { return 1e-5; } }
+        protected virtual double CyclesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double CyclesPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double GigahertzTolerance { get { return 1e-5; } }
+        protected virtual double HertzTolerance { get { return 1e-5; } }
+        protected virtual double KilohertzTolerance { get { return 1e-5; } }
+        protected virtual double MegahertzTolerance { get { return 1e-5; } }
+        protected virtual double PerSecondTolerance { get { return 1e-5; } }
+        protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double TerahertzTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(FrequencyUnit unit)
@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) (QuantityValue) AsWithSIUnitSystem();
+                var value = (double) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -723,19 +723,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(FrequencyUnit unit)
         {
-            var inBaseUnit = Frequency.From(1.0, Frequency.BaseUnit);
-            var converted = inBaseUnit.ToUnit(unit);
+            var inBaseUnits = Frequency.From(1.0, Frequency.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
-        }
-
-        [Fact]
-        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
-        {
-            var inBaseUnit = Frequency.From(1.0, Frequency.BaseUnit);
-            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(FrequencyUnit)));
         }
 
         [Theory]
@@ -751,8 +744,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(FrequencyUnit unit)
         {
-            // This test is only available for quantities with more than one units.
-            var fromUnit = Frequency.Units.First(u => u != Frequency.BaseUnit);
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Frequency.Units.Where(u => u != Frequency.BaseUnit).DefaultIfEmpty(Frequency.BaseUnit).FirstOrDefault();
 
             var quantity = Frequency.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -977,9 +970,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-           Assert.Equal((byte)value, Convert.ToByte(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -1013,41 +1005,36 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-            Assert.Equal((short)value, Convert.ToInt16(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-            Assert.Equal((int)value, Convert.ToInt32(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-            Assert.Equal((long)value, Convert.ToInt64(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-            Assert.Equal((float)value, Convert.ToSingle(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -1060,25 +1047,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Frequency.FromHertz(value);
-            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
+            var quantity = Frequency.FromHertz(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -1120,7 +1104,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Frequency.FromHertz(1.0);
-            Assert.Equal(Frequency.Info.Name.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Frequency.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

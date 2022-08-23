@@ -130,7 +130,7 @@ namespace UnitsNet.Wrappers
         /// </summary>
         /// <param name="reference">The <see cref="PressureReference" /> to convert <see cref="ReferencePressure" /> to.</param>
         /// <returns>The value of pressure at <see cref="PressureReference" /></returns>
-        private QuantityValue AsBaseNumericType(PressureReference reference)
+        private double AsBaseNumericType(PressureReference reference)
         {
             var baseReferenceValue = AsBaseReference();
 
@@ -156,7 +156,7 @@ namespace UnitsNet.Wrappers
         ///     <see cref="BaseReference" />
         /// </summary>
         /// <returns>The value of pressure at the <see cref="BaseReference" /></returns>
-        private QuantityValue AsBaseReference()
+        private double AsBaseReference()
         {
             switch (Reference)
             {

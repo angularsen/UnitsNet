@@ -41,12 +41,11 @@ namespace UnitsNet.Tests.CustomCode
         public void ExpectPowerConvertedCorrectly(double power, double expected)
         {
             Power p = Power.FromWatts(power);
-            double actual = (double)PowerRatio.FromPower(p).DecibelWatts;
+            double actual = PowerRatio.FromPower(p).DecibelWatts;
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        // Note: Attribute arguments cannot be of type decimal.
         [InlineData(-20, 0.01)]
         [InlineData(-10, 0.1)]
         [InlineData(0, 1)]
@@ -55,8 +54,8 @@ namespace UnitsNet.Tests.CustomCode
         public void ExpectPowerRatioConvertedCorrectly(double powerRatio, double expected)
         {
             PowerRatio pr = PowerRatio.FromDecibelWatts(powerRatio);
-            decimal actual = (decimal)pr.ToPower().Watts;
-            Assert.Equal((decimal)expected, actual);
+            double actual = pr.ToPower().Watts;
+            Assert.Equal(expected, actual);
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808
@@ -70,7 +69,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round((double)powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
+            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
             Assert.Equal(expected, actual);
         }
 
@@ -83,7 +82,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round((double)powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
+            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
             Assert.Equal(expected, actual);
         }
     }

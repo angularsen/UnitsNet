@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     Force change rate is the ratio of the force change to the time during which the change occurred (value of force changes per unit time).
     /// </summary>
     [DataContract]
-    public partial struct ForceChangeRate : IQuantity<ForceChangeRateUnit>, IEquatable<ForceChangeRate>, IComparable, IComparable<ForceChangeRate>, IConvertible, IFormattable
+    public partial struct ForceChangeRate : IQuantity<ForceChangeRateUnit>, IComparable, IComparable<ForceChangeRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -86,9 +86,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ForceChangeRate(QuantityValue value, ForceChangeRateUnit unit)
+        public ForceChangeRate(double value, ForceChangeRateUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -100,14 +100,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ForceChangeRate(QuantityValue value, UnitSystem unitSystem)
+        public ForceChangeRate(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -148,10 +148,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -174,79 +171,79 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.CentinewtonPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.CentinewtonPerSecond"/>
         /// </summary>
-        public QuantityValue CentinewtonsPerSecond => As(ForceChangeRateUnit.CentinewtonPerSecond);
+        public double CentinewtonsPerSecond => As(ForceChangeRateUnit.CentinewtonPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.DecanewtonPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.DecanewtonPerMinute"/>
         /// </summary>
-        public QuantityValue DecanewtonsPerMinute => As(ForceChangeRateUnit.DecanewtonPerMinute);
+        public double DecanewtonsPerMinute => As(ForceChangeRateUnit.DecanewtonPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.DecanewtonPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.DecanewtonPerSecond"/>
         /// </summary>
-        public QuantityValue DecanewtonsPerSecond => As(ForceChangeRateUnit.DecanewtonPerSecond);
+        public double DecanewtonsPerSecond => As(ForceChangeRateUnit.DecanewtonPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.DecinewtonPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.DecinewtonPerSecond"/>
         /// </summary>
-        public QuantityValue DecinewtonsPerSecond => As(ForceChangeRateUnit.DecinewtonPerSecond);
+        public double DecinewtonsPerSecond => As(ForceChangeRateUnit.DecinewtonPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.KilonewtonPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.KilonewtonPerMinute"/>
         /// </summary>
-        public QuantityValue KilonewtonsPerMinute => As(ForceChangeRateUnit.KilonewtonPerMinute);
+        public double KilonewtonsPerMinute => As(ForceChangeRateUnit.KilonewtonPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.KilonewtonPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.KilonewtonPerSecond"/>
         /// </summary>
-        public QuantityValue KilonewtonsPerSecond => As(ForceChangeRateUnit.KilonewtonPerSecond);
+        public double KilonewtonsPerSecond => As(ForceChangeRateUnit.KilonewtonPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.KilopoundForcePerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.KilopoundForcePerMinute"/>
         /// </summary>
-        public QuantityValue KilopoundsForcePerMinute => As(ForceChangeRateUnit.KilopoundForcePerMinute);
+        public double KilopoundsForcePerMinute => As(ForceChangeRateUnit.KilopoundForcePerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.KilopoundForcePerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.KilopoundForcePerSecond"/>
         /// </summary>
-        public QuantityValue KilopoundsForcePerSecond => As(ForceChangeRateUnit.KilopoundForcePerSecond);
+        public double KilopoundsForcePerSecond => As(ForceChangeRateUnit.KilopoundForcePerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.MicronewtonPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.MicronewtonPerSecond"/>
         /// </summary>
-        public QuantityValue MicronewtonsPerSecond => As(ForceChangeRateUnit.MicronewtonPerSecond);
+        public double MicronewtonsPerSecond => As(ForceChangeRateUnit.MicronewtonPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.MillinewtonPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.MillinewtonPerSecond"/>
         /// </summary>
-        public QuantityValue MillinewtonsPerSecond => As(ForceChangeRateUnit.MillinewtonPerSecond);
+        public double MillinewtonsPerSecond => As(ForceChangeRateUnit.MillinewtonPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.NanonewtonPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.NanonewtonPerSecond"/>
         /// </summary>
-        public QuantityValue NanonewtonsPerSecond => As(ForceChangeRateUnit.NanonewtonPerSecond);
+        public double NanonewtonsPerSecond => As(ForceChangeRateUnit.NanonewtonPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.NewtonPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.NewtonPerMinute"/>
         /// </summary>
-        public QuantityValue NewtonsPerMinute => As(ForceChangeRateUnit.NewtonPerMinute);
+        public double NewtonsPerMinute => As(ForceChangeRateUnit.NewtonPerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.NewtonPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.NewtonPerSecond"/>
         /// </summary>
-        public QuantityValue NewtonsPerSecond => As(ForceChangeRateUnit.NewtonPerSecond);
+        public double NewtonsPerSecond => As(ForceChangeRateUnit.NewtonPerSecond);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.PoundForcePerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.PoundForcePerMinute"/>
         /// </summary>
-        public QuantityValue PoundsForcePerMinute => As(ForceChangeRateUnit.PoundForcePerMinute);
+        public double PoundsForcePerMinute => As(ForceChangeRateUnit.PoundForcePerMinute);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="ForceChangeRateUnit.PoundForcePerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceChangeRateUnit.PoundForcePerSecond"/>
         /// </summary>
-        public QuantityValue PoundsForcePerSecond => As(ForceChangeRateUnit.PoundForcePerSecond);
+        public double PoundsForcePerSecond => As(ForceChangeRateUnit.PoundForcePerSecond);
 
         #endregion
 
@@ -344,7 +341,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromCentinewtonsPerSecond(QuantityValue centinewtonspersecond)
         {
-            QuantityValue value = (QuantityValue) centinewtonspersecond;
+            double value = (double) centinewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.CentinewtonPerSecond);
         }
 
@@ -354,7 +351,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromDecanewtonsPerMinute(QuantityValue decanewtonsperminute)
         {
-            QuantityValue value = (QuantityValue) decanewtonsperminute;
+            double value = (double) decanewtonsperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.DecanewtonPerMinute);
         }
 
@@ -364,7 +361,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromDecanewtonsPerSecond(QuantityValue decanewtonspersecond)
         {
-            QuantityValue value = (QuantityValue) decanewtonspersecond;
+            double value = (double) decanewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.DecanewtonPerSecond);
         }
 
@@ -374,7 +371,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromDecinewtonsPerSecond(QuantityValue decinewtonspersecond)
         {
-            QuantityValue value = (QuantityValue) decinewtonspersecond;
+            double value = (double) decinewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.DecinewtonPerSecond);
         }
 
@@ -384,7 +381,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromKilonewtonsPerMinute(QuantityValue kilonewtonsperminute)
         {
-            QuantityValue value = (QuantityValue) kilonewtonsperminute;
+            double value = (double) kilonewtonsperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilonewtonPerMinute);
         }
 
@@ -394,7 +391,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromKilonewtonsPerSecond(QuantityValue kilonewtonspersecond)
         {
-            QuantityValue value = (QuantityValue) kilonewtonspersecond;
+            double value = (double) kilonewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilonewtonPerSecond);
         }
 
@@ -404,7 +401,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromKilopoundsForcePerMinute(QuantityValue kilopoundsforceperminute)
         {
-            QuantityValue value = (QuantityValue) kilopoundsforceperminute;
+            double value = (double) kilopoundsforceperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilopoundForcePerMinute);
         }
 
@@ -414,7 +411,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromKilopoundsForcePerSecond(QuantityValue kilopoundsforcepersecond)
         {
-            QuantityValue value = (QuantityValue) kilopoundsforcepersecond;
+            double value = (double) kilopoundsforcepersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.KilopoundForcePerSecond);
         }
 
@@ -424,7 +421,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromMicronewtonsPerSecond(QuantityValue micronewtonspersecond)
         {
-            QuantityValue value = (QuantityValue) micronewtonspersecond;
+            double value = (double) micronewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.MicronewtonPerSecond);
         }
 
@@ -434,7 +431,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromMillinewtonsPerSecond(QuantityValue millinewtonspersecond)
         {
-            QuantityValue value = (QuantityValue) millinewtonspersecond;
+            double value = (double) millinewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.MillinewtonPerSecond);
         }
 
@@ -444,7 +441,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromNanonewtonsPerSecond(QuantityValue nanonewtonspersecond)
         {
-            QuantityValue value = (QuantityValue) nanonewtonspersecond;
+            double value = (double) nanonewtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.NanonewtonPerSecond);
         }
 
@@ -454,7 +451,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromNewtonsPerMinute(QuantityValue newtonsperminute)
         {
-            QuantityValue value = (QuantityValue) newtonsperminute;
+            double value = (double) newtonsperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.NewtonPerMinute);
         }
 
@@ -464,7 +461,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromNewtonsPerSecond(QuantityValue newtonspersecond)
         {
-            QuantityValue value = (QuantityValue) newtonspersecond;
+            double value = (double) newtonspersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.NewtonPerSecond);
         }
 
@@ -474,7 +471,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromPoundsForcePerMinute(QuantityValue poundsforceperminute)
         {
-            QuantityValue value = (QuantityValue) poundsforceperminute;
+            double value = (double) poundsforceperminute;
             return new ForceChangeRate(value, ForceChangeRateUnit.PoundForcePerMinute);
         }
 
@@ -484,7 +481,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ForceChangeRate FromPoundsForcePerSecond(QuantityValue poundsforcepersecond)
         {
-            QuantityValue value = (QuantityValue) poundsforcepersecond;
+            double value = (double) poundsforcepersecond;
             return new ForceChangeRate(value, ForceChangeRateUnit.PoundForcePerSecond);
         }
 
@@ -496,7 +493,7 @@ namespace UnitsNet
         /// <returns>ForceChangeRate unit value.</returns>
         public static ForceChangeRate From(QuantityValue value, ForceChangeRateUnit fromUnit)
         {
-            return new ForceChangeRate((QuantityValue)value, fromUnit);
+            return new ForceChangeRate((double)value, fromUnit);
         }
 
         #endregion
@@ -666,25 +663,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ForceChangeRate"/> from multiplying value and <see cref="ForceChangeRate"/>.</summary>
-        public static ForceChangeRate operator *(QuantityValue left, ForceChangeRate right)
+        public static ForceChangeRate operator *(double left, ForceChangeRate right)
         {
             return new ForceChangeRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ForceChangeRate"/> from multiplying value and <see cref="ForceChangeRate"/>.</summary>
-        public static ForceChangeRate operator *(ForceChangeRate left, QuantityValue right)
+        public static ForceChangeRate operator *(ForceChangeRate left, double right)
         {
             return new ForceChangeRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ForceChangeRate"/> from dividing <see cref="ForceChangeRate"/> by value.</summary>
-        public static ForceChangeRate operator /(ForceChangeRate left, QuantityValue right)
+        public static ForceChangeRate operator /(ForceChangeRate left, double right)
         {
             return new ForceChangeRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ForceChangeRate"/> by <see cref="ForceChangeRate"/>.</summary>
-        public static QuantityValue operator /(ForceChangeRate left, ForceChangeRate right)
+        public static double operator /(ForceChangeRate left, ForceChangeRate right)
         {
             return left.NewtonsPerSecond / right.NewtonsPerSecond;
         }
@@ -717,19 +714,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ForceChangeRate, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(ForceChangeRate left, ForceChangeRate right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(ForceChangeRate, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(ForceChangeRate left, ForceChangeRate right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -742,29 +726,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ForceChangeRate other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ForceChangeRate, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is ForceChangeRate objForceChangeRate))
-                return false;
-            return Equals(objForceChangeRate);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(ForceChangeRate, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(ForceChangeRate other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -807,13 +769,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ForceChangeRate other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(ForceChangeRate other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -824,7 +786,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ForceChangeRate.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -835,16 +797,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(ForceChangeRateUnit unit)
+        public double As(ForceChangeRateUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -859,12 +822,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is ForceChangeRateUnit typedUnit))
+            if (!(unit is ForceChangeRateUnit unitAsForceChangeRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsForceChangeRateUnit);
         }
 
         /// <summary>
@@ -896,7 +859,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (ForceChangeRate)converted;
             }
-            else if (Enum.IsDefined(typeof(ForceChangeRateUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -904,17 +867,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is ForceChangeRateUnit typedUnit))
+            if (!(unit is ForceChangeRateUnit unitAsForceChangeRateUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsForceChangeRateUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -941,10 +904,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(ForceChangeRateUnit unit)
+        private double GetValueAs(ForceChangeRateUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

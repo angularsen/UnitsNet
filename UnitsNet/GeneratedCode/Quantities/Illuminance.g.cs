@@ -38,13 +38,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Illuminance
     /// </remarks>
     [DataContract]
-    public partial struct Illuminance : IQuantity<IlluminanceUnit>, IEquatable<Illuminance>, IComparable, IComparable<Illuminance>, IConvertible, IFormattable
+    public partial struct Illuminance : IQuantity<IlluminanceUnit>, IComparable, IComparable<Illuminance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -78,9 +78,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Illuminance(QuantityValue value, IlluminanceUnit unit)
+        public Illuminance(double value, IlluminanceUnit unit)
         {
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
 
@@ -92,14 +92,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Illuminance(QuantityValue value, UnitSystem unitSystem)
+        public Illuminance(double value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = value;
+            _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -140,10 +140,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public QuantityValue Value => _value;
-
-        /// <inheritdoc />
-        QuantityValue IQuantity.Value => _value;
+        public double Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -166,24 +163,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
         /// </summary>
-        public QuantityValue Kilolux => As(IlluminanceUnit.Kilolux);
+        public double Kilolux => As(IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
         /// </summary>
-        public QuantityValue Lux => As(IlluminanceUnit.Lux);
+        public double Lux => As(IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
         /// </summary>
-        public QuantityValue Megalux => As(IlluminanceUnit.Megalux);
+        public double Megalux => As(IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Gets the numeric value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
         /// </summary>
-        public QuantityValue Millilux => As(IlluminanceUnit.Millilux);
+        public double Millilux => As(IlluminanceUnit.Millilux);
 
         #endregion
 
@@ -248,7 +245,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromKilolux(QuantityValue kilolux)
         {
-            QuantityValue value = (QuantityValue) kilolux;
+            double value = (double) kilolux;
             return new Illuminance(value, IlluminanceUnit.Kilolux);
         }
 
@@ -258,7 +255,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromLux(QuantityValue lux)
         {
-            QuantityValue value = (QuantityValue) lux;
+            double value = (double) lux;
             return new Illuminance(value, IlluminanceUnit.Lux);
         }
 
@@ -268,7 +265,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromMegalux(QuantityValue megalux)
         {
-            QuantityValue value = (QuantityValue) megalux;
+            double value = (double) megalux;
             return new Illuminance(value, IlluminanceUnit.Megalux);
         }
 
@@ -278,7 +275,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Illuminance FromMillilux(QuantityValue millilux)
         {
-            QuantityValue value = (QuantityValue) millilux;
+            double value = (double) millilux;
             return new Illuminance(value, IlluminanceUnit.Millilux);
         }
 
@@ -290,7 +287,7 @@ namespace UnitsNet
         /// <returns>Illuminance unit value.</returns>
         public static Illuminance From(QuantityValue value, IlluminanceUnit fromUnit)
         {
-            return new Illuminance((QuantityValue)value, fromUnit);
+            return new Illuminance((double)value, fromUnit);
         }
 
         #endregion
@@ -460,25 +457,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Illuminance"/> from multiplying value and <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator *(QuantityValue left, Illuminance right)
+        public static Illuminance operator *(double left, Illuminance right)
         {
             return new Illuminance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Illuminance"/> from multiplying value and <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator *(Illuminance left, QuantityValue right)
+        public static Illuminance operator *(Illuminance left, double right)
         {
             return new Illuminance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Illuminance"/> from dividing <see cref="Illuminance"/> by value.</summary>
-        public static Illuminance operator /(Illuminance left, QuantityValue right)
+        public static Illuminance operator /(Illuminance left, double right)
         {
             return new Illuminance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Illuminance"/> by <see cref="Illuminance"/>.</summary>
-        public static QuantityValue operator /(Illuminance left, Illuminance right)
+        public static double operator /(Illuminance left, Illuminance right)
         {
             return left.Lux / right.Lux;
         }
@@ -511,19 +508,6 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Illuminance, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(Illuminance left, Illuminance right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(Illuminance, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(Illuminance left, Illuminance right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -536,29 +520,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Illuminance other)
         {
-            var asFirstUnit = other.GetValueAs(this.Unit);
-            var asSecondUnit = GetValueAs(other.Unit);
-            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Illuminance, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is Illuminance objIlluminance))
-                return false;
-            return Equals(objIlluminance);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(Illuminance, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(Illuminance other)
-        {
-            if (Value.IsDecimal)
-                return other.Value.Equals(this.GetValueAs(other.Unit));
-            if (other.Value.IsDecimal)
-                return Value.Equals(other.GetValueAs(this.Unit));
-            return this.Unit == other.Unit && this.Value.Equals(other.Value);
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -601,13 +563,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Illuminance other, QuantityValue tolerance, ComparisonType comparisonType)
+        public bool Equals(Illuminance other, double tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            QuantityValue thisValue = this.Value;
-            QuantityValue otherValueInThisUnits = other.As(this.Unit);
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -618,7 +580,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Illuminance.</returns>
         public override int GetHashCode()
         {
-            return Info.Name.GetHashCode();
+            return new { Info.Name, Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -629,16 +591,17 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public QuantityValue As(IlluminanceUnit unit)
+        public double As(IlluminanceUnit unit)
         {
-            if(Unit == unit)
-                return Value;
+            if (Unit == unit)
+                return Convert.ToDouble(Value);
 
-            return GetValueAs(unit);
+            var converted = GetValueAs(unit);
+            return Convert.ToDouble(converted);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public QuantityValue As(UnitSystem unitSystem)
+        public double As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -653,12 +616,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        QuantityValue IQuantity.As(Enum unit)
+        double IQuantity.As(Enum unit)
         {
-            if (!(unit is IlluminanceUnit typedUnit))
+            if (!(unit is IlluminanceUnit unitAsIlluminanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
 
-            return (QuantityValue)As(typedUnit);
+            return As(unitAsIlluminanceUnit);
         }
 
         /// <summary>
@@ -690,7 +653,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Illuminance)converted;
             }
-            else if (Enum.IsDefined(typeof(IlluminanceUnit), unit))
+            else if (Unit != BaseUnit)
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -698,17 +661,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
+                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is IlluminanceUnit typedUnit))
+            if (!(unit is IlluminanceUnit unitAsIlluminanceUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IlluminanceUnit)} is supported.", nameof(unit));
 
-            return ToUnit(typedUnit, DefaultConversionFunctions);
+            return ToUnit(unitAsIlluminanceUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -735,10 +698,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private QuantityValue GetValueAs(IlluminanceUnit unit)
+        private double GetValueAs(IlluminanceUnit unit)
         {
             var converted = ToUnit(unit);
-            return (QuantityValue)converted.Value;
+            return (double)converted.Value;
         }
 
         #endregion

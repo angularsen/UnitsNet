@@ -17,7 +17,7 @@ namespace UnitsNet.Tests.CustomQuantities
         Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
-        public QuantityValue Value { get; }
+        public double Value { get; }
 
         #region IQuantity
 
@@ -38,13 +38,13 @@ namespace UnitsNet.Tests.CustomQuantities
             Zero,
             BaseDimensions.Dimensionless);
 
-        public QuantityValue As(Enum unit) => Convert.ToDouble(unit);
+        public double As(Enum unit) => Convert.ToDouble(unit);
 
-        public QuantityValue As(UnitSystem unitSystem) => throw new NotImplementedException();
+        public double As(UnitSystem unitSystem) => throw new NotImplementedException();
 
         public IQuantity ToUnit(Enum unit)
         {
-            if (unit is HowMuchUnit howMuchUnit) return new HowMuch((double)As(unit), howMuchUnit);
+            if (unit is HowMuchUnit howMuchUnit) return new HowMuch(As(unit), howMuchUnit);
             throw new ArgumentException("Must be of type HowMuchUnit.", nameof(unit));
         }
 

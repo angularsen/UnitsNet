@@ -87,53 +87,53 @@ namespace UnitsNet.Tests
         protected abstract double TorrsInOnePascal { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double AtmospheresTolerance { get { return 1E-5; } }
-        protected virtual double BarsTolerance { get { return 1E-5; } }
-        protected virtual double CentibarsTolerance { get { return 1E-5; } }
-        protected virtual double DecapascalsTolerance { get { return 1E-5; } }
-        protected virtual double DecibarsTolerance { get { return 1E-5; } }
-        protected virtual double DynesPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double FeetOfElevationTolerance { get { return 1E-5; } }
-        protected virtual double FeetOfHeadTolerance { get { return 1E-5; } }
-        protected virtual double GigapascalsTolerance { get { return 1E-5; } }
-        protected virtual double HectopascalsTolerance { get { return 1E-5; } }
-        protected virtual double InchesOfMercuryTolerance { get { return 1E-5; } }
-        protected virtual double InchesOfWaterColumnTolerance { get { return 1E-5; } }
-        protected virtual double KilobarsTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsForcePerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsForcePerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsForcePerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsPerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilopascalsTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsForcePerSquareFootTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsForcePerSquareInchTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsForcePerSquareMilTolerance { get { return 1E-5; } }
-        protected virtual double MegabarsTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double MegapascalsTolerance { get { return 1E-5; } }
-        protected virtual double MetersOfElevationTolerance { get { return 1E-5; } }
-        protected virtual double MetersOfHeadTolerance { get { return 1E-5; } }
-        protected virtual double MicrobarsTolerance { get { return 1E-5; } }
-        protected virtual double MicropascalsTolerance { get { return 1E-5; } }
-        protected virtual double MillibarsTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersOfMercuryTolerance { get { return 1E-5; } }
-        protected virtual double MillimeterOfWaterColumnTolerance { get { return 1E-5; } }
-        protected virtual double MillipascalsTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double PascalsTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForcePerSquareFootTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForcePerSquareInchTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForcePerSquareMilTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerInchSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double TechnicalAtmospheresTolerance { get { return 1E-5; } }
-        protected virtual double TonnesForcePerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double TonnesForcePerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double TonnesForcePerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double TorrsTolerance { get { return 1E-5; } }
+        protected virtual double AtmospheresTolerance { get { return 1e-5; } }
+        protected virtual double BarsTolerance { get { return 1e-5; } }
+        protected virtual double CentibarsTolerance { get { return 1e-5; } }
+        protected virtual double DecapascalsTolerance { get { return 1e-5; } }
+        protected virtual double DecibarsTolerance { get { return 1e-5; } }
+        protected virtual double DynesPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double FeetOfElevationTolerance { get { return 1e-5; } }
+        protected virtual double FeetOfHeadTolerance { get { return 1e-5; } }
+        protected virtual double GigapascalsTolerance { get { return 1e-5; } }
+        protected virtual double HectopascalsTolerance { get { return 1e-5; } }
+        protected virtual double InchesOfMercuryTolerance { get { return 1e-5; } }
+        protected virtual double InchesOfWaterColumnTolerance { get { return 1e-5; } }
+        protected virtual double KilobarsTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForcePerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForcePerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForcePerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilopascalsTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerSquareInchTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerSquareMilTolerance { get { return 1e-5; } }
+        protected virtual double MegabarsTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double MegapascalsTolerance { get { return 1e-5; } }
+        protected virtual double MetersOfElevationTolerance { get { return 1e-5; } }
+        protected virtual double MetersOfHeadTolerance { get { return 1e-5; } }
+        protected virtual double MicrobarsTolerance { get { return 1e-5; } }
+        protected virtual double MicropascalsTolerance { get { return 1e-5; } }
+        protected virtual double MillibarsTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersOfMercuryTolerance { get { return 1e-5; } }
+        protected virtual double MillimeterOfWaterColumnTolerance { get { return 1e-5; } }
+        protected virtual double MillipascalsTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double PascalsTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerSquareInchTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerSquareMilTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerInchSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double TechnicalAtmospheresTolerance { get { return 1e-5; } }
+        protected virtual double TonnesForcePerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double TonnesForcePerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double TonnesForcePerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double TorrsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PressureUnit unit)
@@ -618,7 +618,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) (QuantityValue) AsWithSIUnitSystem();
+                var value = (double) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -2629,19 +2629,12 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(PressureUnit unit)
         {
-            var inBaseUnit = Pressure.From(1.0, Pressure.BaseUnit);
-            var converted = inBaseUnit.ToUnit(unit);
+            var inBaseUnits = Pressure.From(1.0, Pressure.BaseUnit);
+            var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
-        }
-
-        [Fact]
-        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
-        {
-            var inBaseUnit = Pressure.From(1.0, Pressure.BaseUnit);
-            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(PressureUnit)));
         }
 
         [Theory]
@@ -2657,8 +2650,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PressureUnit unit)
         {
-            // This test is only available for quantities with more than one units.
-            var fromUnit = Pressure.Units.First(u => u != Pressure.BaseUnit);
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Pressure.Units.Where(u => u != Pressure.BaseUnit).DefaultIfEmpty(Pressure.BaseUnit).FirstOrDefault();
 
             var quantity = Pressure.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -2991,9 +2984,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-           Assert.Equal((byte)value, Convert.ToByte(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -3027,41 +3019,36 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-            Assert.Equal((short)value, Convert.ToInt16(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-            Assert.Equal((int)value, Convert.ToInt32(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-            Assert.Equal((long)value, Convert.ToInt64(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-            Assert.Equal((float)value, Convert.ToSingle(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -3074,25 +3061,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var value = 1.0;
-            var quantity = Pressure.FromPascals(value);
-            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
+            var quantity = Pressure.FromPascals(1.0);
+            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -3134,7 +3118,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Pressure.FromPascals(1.0);
-            Assert.Equal(Pressure.Info.Name.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(new {Pressure.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

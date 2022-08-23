@@ -1,20 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>UnitsNet.NumberExtensions.Tests</RootNamespace>
+    <RootNamespace>UnitsNet.Serialization.JsonNet.CompatibilityTests</RootNamespace>
     <LangVersion>latest</LangVersion>
-    <Nullable>enable</Nullable>
     <IsTestProject>true</IsTestProject>
-  </PropertyGroup>
-
-  <!-- Strong name signing -->
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
-    <DelaySign>false</DelaySign>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyName>UnitsNet.NumberExtensions.Tests</AssemblyName>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+    <!--Get the latest released version of UnitsNet.Serialization.JsonNet in Nuget-->
+    <PackageReference Include="UnitsNet.Serialization.JsonNet" Version="4.5.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -36,11 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj" />
+    <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="GeneratedCode\" />
-  </ItemGroup>
-
 </Project>

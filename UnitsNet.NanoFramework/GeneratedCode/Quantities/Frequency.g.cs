@@ -245,7 +245,7 @@ namespace UnitsNet
                     return Unit switch
                     {
                         FrequencyUnit.BeatPerMinute => _value / 60,
-                        FrequencyUnit.BUnit => Math.Sqrt((double)_value * 1e3),
+                        FrequencyUnit.BUnit => Math.Sqrt(_value * 1e3),
                         FrequencyUnit.CyclePerHour => _value / 3600,
                         FrequencyUnit.CyclePerMinute => _value / 60,
                         FrequencyUnit.Gigahertz => (_value) * 1e9d,

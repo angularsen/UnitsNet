@@ -95,7 +95,7 @@
     {
       "SingularName": "BUnit",
       "PluralName": "BUnits",
-      "FromUnitToBaseFunc": "Math.Sqrt((double){x} * 1e3)",
+      "FromUnitToBaseFunc": "Math.Sqrt({x} * 1e3)",
       "FromBaseToUnitFunc": "{x} * {x} * 1e-3",
       "Localization": [
         {
