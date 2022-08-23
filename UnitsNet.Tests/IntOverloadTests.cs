@@ -18,7 +18,7 @@ namespace UnitsNet.Tests
         public static void CreatingQuantityWithIntBackingFieldFromIntReturnsCorrectValue()
         {
             Power power = Power.FromWatts(1);
-            Assert.Equal(1.0, power.Watts);
+            Assert.Equal(1.0m, power.Watts);
         }
     }
 }

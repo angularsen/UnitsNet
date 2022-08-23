@@ -70,13 +70,13 @@ namespace UnitsNet.Tests.CustomCode
         public void SpecificEnergyTimesMassFlowEqualsPower()
         {
             Power power = SpecificEnergy.FromJoulesPerKilogram(10.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.Equal(200d, power.Watts);
+            Assert.Equal(200m, power.Watts);
         }
 
         [Fact]
         public void SpecificEnergyTimesBrakeSpecificFuelConsumptionEqualsEnergy()
         {
-            double value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
+            double value = (double)(SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0));
             Assert.Equal(200d, value);
         }
     }

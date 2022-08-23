@@ -102,68 +102,68 @@ namespace UnitsNet.Tests
         protected abstract double UsGallonsPerSecondInOneCubicMeterPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double AcreFeetPerDayTolerance { get { return 1e-5; } }
-        protected virtual double AcreFeetPerHourTolerance { get { return 1e-5; } }
-        protected virtual double AcreFeetPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double AcreFeetPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double CentilitersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double CentilitersPerHourTolerance { get { return 1e-5; } }
-        protected virtual double CentilitersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double CentilitersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double CubicCentimetersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double CubicDecimetersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double CubicFeetPerHourTolerance { get { return 1e-5; } }
-        protected virtual double CubicFeetPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double CubicFeetPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double CubicMetersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double CubicMetersPerHourTolerance { get { return 1e-5; } }
-        protected virtual double CubicMetersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double CubicMetersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double CubicMillimetersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double CubicYardsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double CubicYardsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double CubicYardsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double CubicYardsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double DecilitersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double DecilitersPerHourTolerance { get { return 1e-5; } }
-        protected virtual double DecilitersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double DecilitersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilolitersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double KilolitersPerHourTolerance { get { return 1e-5; } }
-        protected virtual double KilolitersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double KilolitersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilousGallonsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double LitersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double LitersPerHourTolerance { get { return 1e-5; } }
-        protected virtual double LitersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double LitersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MegalitersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double MegaukGallonsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MicrolitersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double MicrolitersPerHourTolerance { get { return 1e-5; } }
-        protected virtual double MicrolitersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double MicrolitersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MillilitersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double MillilitersPerHourTolerance { get { return 1e-5; } }
-        protected virtual double MillilitersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double MillilitersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MillionUsGallonsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double NanolitersPerDayTolerance { get { return 1e-5; } }
-        protected virtual double NanolitersPerHourTolerance { get { return 1e-5; } }
-        protected virtual double NanolitersPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double NanolitersPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double OilBarrelsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double OilBarrelsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double OilBarrelsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double OilBarrelsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double UkGallonsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double UkGallonsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double UkGallonsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double UkGallonsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double UsGallonsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double UsGallonsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double UsGallonsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double UsGallonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double AcreFeetPerDayTolerance { get { return 1E-5; } }
+        protected virtual double AcreFeetPerHourTolerance { get { return 1E-5; } }
+        protected virtual double AcreFeetPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double AcreFeetPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CentilitersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double CentilitersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double CentilitersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double CentilitersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CubicCentimetersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double CubicDecimetersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double CubicFeetPerHourTolerance { get { return 1E-5; } }
+        protected virtual double CubicFeetPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double CubicFeetPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CubicMetersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double CubicMetersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double CubicMetersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double CubicMetersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CubicMillimetersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CubicYardsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double CubicYardsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double CubicYardsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double CubicYardsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DecilitersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double DecilitersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double DecilitersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double DecilitersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double KilolitersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double KilolitersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double KilolitersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double KilolitersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double KilousGallonsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double LitersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double LitersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double LitersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double LitersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MegalitersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double MegaukGallonsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MicrolitersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double MicrolitersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double MicrolitersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double MicrolitersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MillilitersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double MillilitersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double MillilitersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double MillilitersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MillionUsGallonsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double NanolitersPerDayTolerance { get { return 1E-5; } }
+        protected virtual double NanolitersPerHourTolerance { get { return 1E-5; } }
+        protected virtual double NanolitersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double NanolitersPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double OilBarrelsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double OilBarrelsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double OilBarrelsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double OilBarrelsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double UkGallonsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double UkGallonsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double UkGallonsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double UkGallonsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double UsGallonsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double UsGallonsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double UsGallonsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double UsGallonsPerSecondTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumeFlowUnit unit)
@@ -768,7 +768,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -3951,12 +3951,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(VolumeFlowUnit unit)
         {
-            var inBaseUnits = VolumeFlow.From(1.0, VolumeFlow.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = VolumeFlow.From(1.0, VolumeFlow.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = VolumeFlow.From(1.0, VolumeFlow.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(VolumeFlowUnit)));
         }
 
         [Theory]
@@ -3972,8 +3979,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeFlowUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VolumeFlow.Units.Where(u => u != VolumeFlow.BaseUnit).DefaultIfEmpty(VolumeFlow.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = VolumeFlow.Units.First(u => u != VolumeFlow.BaseUnit);
 
             var quantity = VolumeFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -4351,8 +4358,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -4386,36 +4394,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -4428,22 +4441,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = VolumeFlow.FromCubicMetersPerSecond(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -4485,7 +4501,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal(new {VolumeFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(VolumeFlow.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

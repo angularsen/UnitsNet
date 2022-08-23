@@ -18,7 +18,7 @@ namespace UnitsNet.Tests
         public static void CreatingQuantityWithLongBackingFieldFromLongReturnsCorrectValue()
         {
             Power power = Power.FromWatts(1L);
-            Assert.Equal(1.0, power.Watts);
+            Assert.Equal(1.0m, power.Watts);
         }
     }
 }

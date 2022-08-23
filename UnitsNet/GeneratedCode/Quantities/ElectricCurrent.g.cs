@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
     /// </summary>
     [DataContract]
-    public partial struct ElectricCurrent : IQuantity<ElectricCurrentUnit>, IComparable, IComparable<ElectricCurrent>, IConvertible, IFormattable
+    public partial struct ElectricCurrent : IQuantity<ElectricCurrentUnit>, IEquatable<ElectricCurrent>, IComparable, IComparable<ElectricCurrent>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -79,9 +79,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ElectricCurrent(double value, ElectricCurrentUnit unit)
+        public ElectricCurrent(QuantityValue value, ElectricCurrentUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -93,14 +93,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCurrent(double value, UnitSystem unitSystem)
+        public ElectricCurrent(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -141,7 +141,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public QuantityValue Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -164,44 +167,44 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Ampere"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentUnit.Ampere"/>
         /// </summary>
-        public double Amperes => As(ElectricCurrentUnit.Ampere);
+        public QuantityValue Amperes => As(ElectricCurrentUnit.Ampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Centiampere"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentUnit.Centiampere"/>
         /// </summary>
-        public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
+        public QuantityValue Centiamperes => As(ElectricCurrentUnit.Centiampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Kiloampere"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentUnit.Kiloampere"/>
         /// </summary>
-        public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
+        public QuantityValue Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Megaampere"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentUnit.Megaampere"/>
         /// </summary>
-        public double Megaamperes => As(ElectricCurrentUnit.Megaampere);
+        public QuantityValue Megaamperes => As(ElectricCurrentUnit.Megaampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Microampere"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentUnit.Microampere"/>
         /// </summary>
-        public double Microamperes => As(ElectricCurrentUnit.Microampere);
+        public QuantityValue Microamperes => As(ElectricCurrentUnit.Microampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Milliampere"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentUnit.Milliampere"/>
         /// </summary>
-        public double Milliamperes => As(ElectricCurrentUnit.Milliampere);
+        public QuantityValue Milliamperes => As(ElectricCurrentUnit.Milliampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Nanoampere"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentUnit.Nanoampere"/>
         /// </summary>
-        public double Nanoamperes => As(ElectricCurrentUnit.Nanoampere);
+        public QuantityValue Nanoamperes => As(ElectricCurrentUnit.Nanoampere);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Picoampere"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ElectricCurrentUnit.Picoampere"/>
         /// </summary>
-        public double Picoamperes => As(ElectricCurrentUnit.Picoampere);
+        public QuantityValue Picoamperes => As(ElectricCurrentUnit.Picoampere);
 
         #endregion
 
@@ -278,7 +281,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromAmperes(QuantityValue amperes)
         {
-            double value = (double) amperes;
+            QuantityValue value = (QuantityValue) amperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Ampere);
         }
 
@@ -288,7 +291,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromCentiamperes(QuantityValue centiamperes)
         {
-            double value = (double) centiamperes;
+            QuantityValue value = (QuantityValue) centiamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
         }
 
@@ -298,7 +301,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromKiloamperes(QuantityValue kiloamperes)
         {
-            double value = (double) kiloamperes;
+            QuantityValue value = (QuantityValue) kiloamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Kiloampere);
         }
 
@@ -308,7 +311,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMegaamperes(QuantityValue megaamperes)
         {
-            double value = (double) megaamperes;
+            QuantityValue value = (QuantityValue) megaamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Megaampere);
         }
 
@@ -318,7 +321,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMicroamperes(QuantityValue microamperes)
         {
-            double value = (double) microamperes;
+            QuantityValue value = (QuantityValue) microamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Microampere);
         }
 
@@ -328,7 +331,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromMilliamperes(QuantityValue milliamperes)
         {
-            double value = (double) milliamperes;
+            QuantityValue value = (QuantityValue) milliamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Milliampere);
         }
 
@@ -338,7 +341,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromNanoamperes(QuantityValue nanoamperes)
         {
-            double value = (double) nanoamperes;
+            QuantityValue value = (QuantityValue) nanoamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Nanoampere);
         }
 
@@ -348,7 +351,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCurrent FromPicoamperes(QuantityValue picoamperes)
         {
-            double value = (double) picoamperes;
+            QuantityValue value = (QuantityValue) picoamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Picoampere);
         }
 
@@ -360,7 +363,7 @@ namespace UnitsNet
         /// <returns>ElectricCurrent unit value.</returns>
         public static ElectricCurrent From(QuantityValue value, ElectricCurrentUnit fromUnit)
         {
-            return new ElectricCurrent((double)value, fromUnit);
+            return new ElectricCurrent((QuantityValue)value, fromUnit);
         }
 
         #endregion
@@ -530,25 +533,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from multiplying value and <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCurrent operator *(double left, ElectricCurrent right)
+        public static ElectricCurrent operator *(QuantityValue left, ElectricCurrent right)
         {
             return new ElectricCurrent(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from multiplying value and <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCurrent operator *(ElectricCurrent left, double right)
+        public static ElectricCurrent operator *(ElectricCurrent left, QuantityValue right)
         {
             return new ElectricCurrent(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from dividing <see cref="ElectricCurrent"/> by value.</summary>
-        public static ElectricCurrent operator /(ElectricCurrent left, double right)
+        public static ElectricCurrent operator /(ElectricCurrent left, QuantityValue right)
         {
             return new ElectricCurrent(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricCurrent"/> by <see cref="ElectricCurrent"/>.</summary>
-        public static double operator /(ElectricCurrent left, ElectricCurrent right)
+        public static QuantityValue operator /(ElectricCurrent left, ElectricCurrent right)
         {
             return left.Amperes / right.Amperes;
         }
@@ -581,6 +584,19 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ElectricCurrent left, ElectricCurrent right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -593,7 +609,29 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricCurrent other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is ElectricCurrent objElectricCurrent))
+                return false;
+            return Equals(objElectricCurrent);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ElectricCurrent other)
+        {
+            if (Value.IsDecimal)
+                return other.Value.Equals(this.GetValueAs(other.Unit));
+            if (other.Value.IsDecimal)
+                return Value.Equals(other.GetValueAs(this.Unit));
+            return this.Unit == other.Unit && this.Value.Equals(other.Value);
         }
 
         /// <summary>
@@ -636,13 +674,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ElectricCurrent other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ElectricCurrent other, QuantityValue tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            QuantityValue thisValue = this.Value;
+            QuantityValue otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -653,7 +691,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricCurrent.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Info.Name.GetHashCode();
         }
 
         #endregion
@@ -664,17 +702,16 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricCurrentUnit unit)
+        public QuantityValue As(ElectricCurrentUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -689,12 +726,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
-            if (!(unit is ElectricCurrentUnit unitAsElectricCurrentUnit))
+            if (!(unit is ElectricCurrentUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentUnit)} is supported.", nameof(unit));
 
-            return As(unitAsElectricCurrentUnit);
+            return (QuantityValue)As(typedUnit);
         }
 
         /// <summary>
@@ -726,7 +763,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (ElectricCurrent)converted;
             }
-            else if (Unit != BaseUnit)
+            else if (Enum.IsDefined(typeof(ElectricCurrentUnit), unit))
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -734,17 +771,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is ElectricCurrentUnit unitAsElectricCurrentUnit))
+            if (!(unit is ElectricCurrentUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsElectricCurrentUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -771,10 +808,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricCurrentUnit> IQuantity<ElectricCurrentUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private double GetValueAs(ElectricCurrentUnit unit)
+        private QuantityValue GetValueAs(ElectricCurrentUnit unit)
         {
             var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return (QuantityValue)converted.Value;
         }
 
         #endregion

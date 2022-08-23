@@ -39,7 +39,7 @@ namespace UnitsNet.Tests.Serialization.Xml
         public void DoubleQuantity_SerializedWithValueAndMemberName()
         {
             var quantity = new Mass(1.20, MassUnit.Milligram);
-            var expectedXml = $"<Mass {Namespace} {XmlSchema}><Value>1.2</Value><Unit>Milligram</Unit></Mass>";
+            var expectedXml = $"<Mass {Namespace} {XmlSchema}><Value><Double>1.2</Double></Value><Unit>Milligram</Unit></Mass>";
 
             var xml = SerializeObject(quantity);
 
@@ -50,7 +50,7 @@ namespace UnitsNet.Tests.Serialization.Xml
         public void DecimalQuantity_SerializedWithValueAndMemberName()
         {
             var quantity = new Information(1.20m, InformationUnit.Exabyte);
-            var expectedXml = $"<Information {Namespace} {XmlSchema}><Value>1.20</Value><Unit>Exabyte</Unit></Information>";
+            var expectedXml = $"<Information {Namespace} {XmlSchema}><Value><Decimal>1.20</Decimal></Value><Unit>Exabyte</Unit></Information>";
 
             var xml = SerializeObject(quantity);
 
@@ -63,7 +63,7 @@ namespace UnitsNet.Tests.Serialization.Xml
             var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
 
             var quantityNamespace = "xmlns:a=\"http://schemas.datacontract.org/2004/07/UnitsNet\""; // there is an extra 'a' compared to Namespace
-            var expectedQuantityXml = $"<Quantity i:type=\"a:Information\" {quantityNamespace}><a:Value>1.20</a:Value><a:Unit>Exabyte</a:Unit></Quantity>";
+            var expectedQuantityXml = $"<Quantity i:type=\"a:Information\" {quantityNamespace}><a:Value><a:Decimal>1.20</a:Decimal></a:Value><a:Unit>Exabyte</a:Unit></Quantity>";
             var expectedXml = $"<TestInterfaceObject xmlns=\"http://schemas.datacontract.org/2004/07/UnitsNet.Tests.Serialization\" {XmlSchema}>{expectedQuantityXml}</TestInterfaceObject>";
 
             var xml = SerializeObject(testObject);

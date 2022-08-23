@@ -34,7 +34,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="TimeSpan"/> from <see cref="Volume"/> divided by <see cref="VolumeFlow"/>.</summary>
         public static TimeSpan operator /(Volume volume, VolumeFlow volumeFlow)
         {
-            return TimeSpan.FromSeconds(volume.CubicMeters / volumeFlow.CubicMetersPerSecond);
+            return TimeSpan.FromSeconds((double)(volume.CubicMeters / volumeFlow.CubicMetersPerSecond));
         }
     }
 }

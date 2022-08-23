@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29609.76
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet", "UnitsNet\UnitsNet.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Tests", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj", "{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.CompatibilityTests", "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj", "{21F2FFAC-BF39-487F-9ADE-37100162F955}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Benchmark", "UnitsNet.Benchmark\UnitsNet.Benchmark.csproj", "{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}"
 EndProject
@@ -22,27 +20,27 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions.Tests", "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj", "{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Files", "_Files", "{B92B01BE-243E-4CCB-B5E5-AF469ADB1F54}"
-ProjectSection(SolutionItems) = preProject
-	.editorconfig = .editorconfig
-	.gitattributes = .gitattributes
-	.gitignore = .gitignore
-	appveyor.yml = appveyor.yml
-	build.bat = build.bat
-	build-all-targets.bat = build-all-targets.bat
-	clean.bat = clean.bat
-	CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
-	CONTRIBUTING.md = CONTRIBUTING.md
-	Directory.Build.props = Directory.Build.props
-	generate-code.bat = generate-code.bat
-	init.bat = init.bat
-	LICENSE = LICENSE
-	nuget.config = nuget.config
-	publish-unitsnet.bat = publish-unitsnet.bat
-	README.md = README.md
-	test.bat = test.bat
-	UnitsNet.sln.DotSettings = UnitsNet.sln.DotSettings
-	UnitsNet.snk = UnitsNet.snk
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		build-all-targets.bat = build-all-targets.bat
+		build.bat = build.bat
+		clean.bat = clean.bat
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		Directory.Build.props = Directory.Build.props
+		generate-code.bat = generate-code.bat
+		init.bat = init.bat
+		LICENSE = LICENSE
+		nuget.config = nuget.config
+		publish-unitsnet.bat = publish-unitsnet.bat
+		README.md = README.md
+		test.bat = test.bat
+		UnitsNet.sln.DotSettings = UnitsNet.sln.DotSettings
+		UnitsNet.snk = UnitsNet.snk
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,10 +64,6 @@ Global
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
     [DataContract]
-    public partial struct Duration : IQuantity<DurationUnit>, IComparable, IComparable<Duration>, IConvertible, IFormattable
+    public partial struct Duration : IQuantity<DurationUnit>, IEquatable<Duration>, IComparable, IComparable<Duration>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -82,9 +82,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Duration(double value, DurationUnit unit)
+        public Duration(QuantityValue value, DurationUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -96,14 +96,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Duration(double value, UnitSystem unitSystem)
+        public Duration(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -144,7 +144,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public QuantityValue Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -167,59 +170,59 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Day"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Day"/>
         /// </summary>
-        public double Days => As(DurationUnit.Day);
+        public QuantityValue Days => As(DurationUnit.Day);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Hour"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Hour"/>
         /// </summary>
-        public double Hours => As(DurationUnit.Hour);
+        public QuantityValue Hours => As(DurationUnit.Hour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
         /// </summary>
-        public double JulianYears => As(DurationUnit.JulianYear);
+        public QuantityValue JulianYears => As(DurationUnit.JulianYear);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
         /// </summary>
-        public double Microseconds => As(DurationUnit.Microsecond);
+        public QuantityValue Microseconds => As(DurationUnit.Microsecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
         /// </summary>
-        public double Milliseconds => As(DurationUnit.Millisecond);
+        public QuantityValue Milliseconds => As(DurationUnit.Millisecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Minute"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Minute"/>
         /// </summary>
-        public double Minutes => As(DurationUnit.Minute);
+        public QuantityValue Minutes => As(DurationUnit.Minute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Month30"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Month30"/>
         /// </summary>
-        public double Months30 => As(DurationUnit.Month30);
+        public QuantityValue Months30 => As(DurationUnit.Month30);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
         /// </summary>
-        public double Nanoseconds => As(DurationUnit.Nanosecond);
+        public QuantityValue Nanoseconds => As(DurationUnit.Nanosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
-        public double Seconds => As(DurationUnit.Second);
+        public QuantityValue Seconds => As(DurationUnit.Second);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Week"/>
         /// </summary>
-        public double Weeks => As(DurationUnit.Week);
+        public QuantityValue Weeks => As(DurationUnit.Week);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Year365"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="DurationUnit.Year365"/>
         /// </summary>
-        public double Years365 => As(DurationUnit.Year365);
+        public QuantityValue Years365 => As(DurationUnit.Year365);
 
         #endregion
 
@@ -315,7 +318,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromDays(QuantityValue days)
         {
-            double value = (double) days;
+            QuantityValue value = (QuantityValue) days;
             return new Duration(value, DurationUnit.Day);
         }
 
@@ -325,7 +328,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromHours(QuantityValue hours)
         {
-            double value = (double) hours;
+            QuantityValue value = (QuantityValue) hours;
             return new Duration(value, DurationUnit.Hour);
         }
 
@@ -335,7 +338,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromJulianYears(QuantityValue julianyears)
         {
-            double value = (double) julianyears;
+            QuantityValue value = (QuantityValue) julianyears;
             return new Duration(value, DurationUnit.JulianYear);
         }
 
@@ -345,7 +348,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMicroseconds(QuantityValue microseconds)
         {
-            double value = (double) microseconds;
+            QuantityValue value = (QuantityValue) microseconds;
             return new Duration(value, DurationUnit.Microsecond);
         }
 
@@ -355,7 +358,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMilliseconds(QuantityValue milliseconds)
         {
-            double value = (double) milliseconds;
+            QuantityValue value = (QuantityValue) milliseconds;
             return new Duration(value, DurationUnit.Millisecond);
         }
 
@@ -365,7 +368,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMinutes(QuantityValue minutes)
         {
-            double value = (double) minutes;
+            QuantityValue value = (QuantityValue) minutes;
             return new Duration(value, DurationUnit.Minute);
         }
 
@@ -375,7 +378,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromMonths30(QuantityValue months30)
         {
-            double value = (double) months30;
+            QuantityValue value = (QuantityValue) months30;
             return new Duration(value, DurationUnit.Month30);
         }
 
@@ -385,7 +388,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromNanoseconds(QuantityValue nanoseconds)
         {
-            double value = (double) nanoseconds;
+            QuantityValue value = (QuantityValue) nanoseconds;
             return new Duration(value, DurationUnit.Nanosecond);
         }
 
@@ -395,7 +398,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromSeconds(QuantityValue seconds)
         {
-            double value = (double) seconds;
+            QuantityValue value = (QuantityValue) seconds;
             return new Duration(value, DurationUnit.Second);
         }
 
@@ -405,7 +408,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromWeeks(QuantityValue weeks)
         {
-            double value = (double) weeks;
+            QuantityValue value = (QuantityValue) weeks;
             return new Duration(value, DurationUnit.Week);
         }
 
@@ -415,7 +418,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Duration FromYears365(QuantityValue years365)
         {
-            double value = (double) years365;
+            QuantityValue value = (QuantityValue) years365;
             return new Duration(value, DurationUnit.Year365);
         }
 
@@ -427,7 +430,7 @@ namespace UnitsNet
         /// <returns>Duration unit value.</returns>
         public static Duration From(QuantityValue value, DurationUnit fromUnit)
         {
-            return new Duration((double)value, fromUnit);
+            return new Duration((QuantityValue)value, fromUnit);
         }
 
         #endregion
@@ -597,25 +600,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
-        public static Duration operator *(double left, Duration right)
+        public static Duration operator *(QuantityValue left, Duration right)
         {
             return new Duration(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
-        public static Duration operator *(Duration left, double right)
+        public static Duration operator *(Duration left, QuantityValue right)
         {
             return new Duration(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from dividing <see cref="Duration"/> by value.</summary>
-        public static Duration operator /(Duration left, double right)
+        public static Duration operator /(Duration left, QuantityValue right)
         {
             return new Duration(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Duration"/> by <see cref="Duration"/>.</summary>
-        public static double operator /(Duration left, Duration right)
+        public static QuantityValue operator /(Duration left, Duration right)
         {
             return left.Seconds / right.Seconds;
         }
@@ -648,6 +651,19 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Duration, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(Duration left, Duration right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Duration, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(Duration left, Duration right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -660,7 +676,29 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Duration other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Duration, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is Duration objDuration))
+                return false;
+            return Equals(objDuration);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(Duration, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(Duration other)
+        {
+            if (Value.IsDecimal)
+                return other.Value.Equals(this.GetValueAs(other.Unit));
+            if (other.Value.IsDecimal)
+                return Value.Equals(other.GetValueAs(this.Unit));
+            return this.Unit == other.Unit && this.Value.Equals(other.Value);
         }
 
         /// <summary>
@@ -703,13 +741,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Duration other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Duration other, QuantityValue tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            QuantityValue thisValue = this.Value;
+            QuantityValue otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -720,7 +758,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Duration.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Info.Name.GetHashCode();
         }
 
         #endregion
@@ -731,17 +769,16 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(DurationUnit unit)
+        public QuantityValue As(DurationUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -756,12 +793,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
-            if (!(unit is DurationUnit unitAsDurationUnit))
+            if (!(unit is DurationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
 
-            return As(unitAsDurationUnit);
+            return (QuantityValue)As(typedUnit);
         }
 
         /// <summary>
@@ -793,7 +830,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (Duration)converted;
             }
-            else if (Unit != BaseUnit)
+            else if (Enum.IsDefined(typeof(DurationUnit), unit))
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -801,17 +838,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is DurationUnit unitAsDurationUnit))
+            if (!(unit is DurationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsDurationUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -838,10 +875,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private double GetValueAs(DurationUnit unit)
+        private QuantityValue GetValueAs(DurationUnit unit)
         {
             var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return (QuantityValue)converted.Value;
         }
 
         #endregion

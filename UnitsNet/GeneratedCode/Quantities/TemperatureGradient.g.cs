@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public partial struct TemperatureGradient : IQuantity<TemperatureGradientUnit>, IComparable, IComparable<TemperatureGradient>, IConvertible, IFormattable
+    public partial struct TemperatureGradient : IQuantity<TemperatureGradientUnit>, IEquatable<TemperatureGradient>, IComparable, IComparable<TemperatureGradient>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -75,9 +75,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public TemperatureGradient(double value, TemperatureGradientUnit unit)
+        public TemperatureGradient(QuantityValue value, TemperatureGradientUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -89,14 +89,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public TemperatureGradient(double value, UnitSystem unitSystem)
+        public TemperatureGradient(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -137,7 +137,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public QuantityValue Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -160,24 +163,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerKilometer"/>
         /// </summary>
-        public double DegreesCelciusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
+        public QuantityValue DegreesCelciusPerKilometer => As(TemperatureGradientUnit.DegreeCelsiusPerKilometer);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeCelsiusPerMeter"/>
         /// </summary>
-        public double DegreesCelciusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
+        public QuantityValue DegreesCelciusPerMeter => As(TemperatureGradientUnit.DegreeCelsiusPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="TemperatureGradientUnit.DegreeFahrenheitPerFoot"/>
         /// </summary>
-        public double DegreesFahrenheitPerFoot => As(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
+        public QuantityValue DegreesFahrenheitPerFoot => As(TemperatureGradientUnit.DegreeFahrenheitPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureGradientUnit.KelvinPerMeter"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="TemperatureGradientUnit.KelvinPerMeter"/>
         /// </summary>
-        public double KelvinsPerMeter => As(TemperatureGradientUnit.KelvinPerMeter);
+        public QuantityValue KelvinsPerMeter => As(TemperatureGradientUnit.KelvinPerMeter);
 
         #endregion
 
@@ -242,7 +245,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesCelciusPerKilometer(QuantityValue degreescelciusperkilometer)
         {
-            double value = (double) degreescelciusperkilometer;
+            QuantityValue value = (QuantityValue) degreescelciusperkilometer;
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
         }
 
@@ -252,7 +255,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesCelciusPerMeter(QuantityValue degreescelciuspermeter)
         {
-            double value = (double) degreescelciuspermeter;
+            QuantityValue value = (QuantityValue) degreescelciuspermeter;
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeCelsiusPerMeter);
         }
 
@@ -262,7 +265,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromDegreesFahrenheitPerFoot(QuantityValue degreesfahrenheitperfoot)
         {
-            double value = (double) degreesfahrenheitperfoot;
+            QuantityValue value = (QuantityValue) degreesfahrenheitperfoot;
             return new TemperatureGradient(value, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
         }
 
@@ -272,7 +275,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static TemperatureGradient FromKelvinsPerMeter(QuantityValue kelvinspermeter)
         {
-            double value = (double) kelvinspermeter;
+            QuantityValue value = (QuantityValue) kelvinspermeter;
             return new TemperatureGradient(value, TemperatureGradientUnit.KelvinPerMeter);
         }
 
@@ -284,7 +287,7 @@ namespace UnitsNet
         /// <returns>TemperatureGradient unit value.</returns>
         public static TemperatureGradient From(QuantityValue value, TemperatureGradientUnit fromUnit)
         {
-            return new TemperatureGradient((double)value, fromUnit);
+            return new TemperatureGradient((QuantityValue)value, fromUnit);
         }
 
         #endregion
@@ -454,25 +457,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from multiplying value and <see cref="TemperatureGradient"/>.</summary>
-        public static TemperatureGradient operator *(double left, TemperatureGradient right)
+        public static TemperatureGradient operator *(QuantityValue left, TemperatureGradient right)
         {
             return new TemperatureGradient(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from multiplying value and <see cref="TemperatureGradient"/>.</summary>
-        public static TemperatureGradient operator *(TemperatureGradient left, double right)
+        public static TemperatureGradient operator *(TemperatureGradient left, QuantityValue right)
         {
             return new TemperatureGradient(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from dividing <see cref="TemperatureGradient"/> by value.</summary>
-        public static TemperatureGradient operator /(TemperatureGradient left, double right)
+        public static TemperatureGradient operator /(TemperatureGradient left, QuantityValue right)
         {
             return new TemperatureGradient(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="TemperatureGradient"/> by <see cref="TemperatureGradient"/>.</summary>
-        public static double operator /(TemperatureGradient left, TemperatureGradient right)
+        public static QuantityValue operator /(TemperatureGradient left, TemperatureGradient right)
         {
             return left.KelvinsPerMeter / right.KelvinsPerMeter;
         }
@@ -505,6 +508,19 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(TemperatureGradient, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(TemperatureGradient left, TemperatureGradient right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(TemperatureGradient, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(TemperatureGradient left, TemperatureGradient right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -517,7 +533,29 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(TemperatureGradient other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(TemperatureGradient, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is TemperatureGradient objTemperatureGradient))
+                return false;
+            return Equals(objTemperatureGradient);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(TemperatureGradient, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(TemperatureGradient other)
+        {
+            if (Value.IsDecimal)
+                return other.Value.Equals(this.GetValueAs(other.Unit));
+            if (other.Value.IsDecimal)
+                return Value.Equals(other.GetValueAs(this.Unit));
+            return this.Unit == other.Unit && this.Value.Equals(other.Value);
         }
 
         /// <summary>
@@ -560,13 +598,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(TemperatureGradient other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(TemperatureGradient other, QuantityValue tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            QuantityValue thisValue = this.Value;
+            QuantityValue otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -577,7 +615,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current TemperatureGradient.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Info.Name.GetHashCode();
         }
 
         #endregion
@@ -588,17 +626,16 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(TemperatureGradientUnit unit)
+        public QuantityValue As(TemperatureGradientUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -613,12 +650,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
-            if (!(unit is TemperatureGradientUnit unitAsTemperatureGradientUnit))
+            if (!(unit is TemperatureGradientUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureGradientUnit)} is supported.", nameof(unit));
 
-            return As(unitAsTemperatureGradientUnit);
+            return (QuantityValue)As(typedUnit);
         }
 
         /// <summary>
@@ -650,7 +687,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (TemperatureGradient)converted;
             }
-            else if (Unit != BaseUnit)
+            else if (Enum.IsDefined(typeof(TemperatureGradientUnit), unit))
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -658,17 +695,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is TemperatureGradientUnit unitAsTemperatureGradientUnit))
+            if (!(unit is TemperatureGradientUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureGradientUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsTemperatureGradientUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -695,10 +732,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private double GetValueAs(TemperatureGradientUnit unit)
+        private QuantityValue GetValueAs(TemperatureGradientUnit unit)
         {
             var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return (QuantityValue)converted.Value;
         }
 
         #endregion

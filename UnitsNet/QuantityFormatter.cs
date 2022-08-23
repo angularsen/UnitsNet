@@ -180,8 +180,9 @@ namespace UnitsNet
 
         private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, int number) where TUnitType : Enum
         {
-            string formatForSignificantDigits = UnitFormatter.GetFormat(quantity.Value, number);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(quantity.Unit, quantity.Value, formatProvider, Enumerable.Empty<object>());
+            // When a fixed number of digits after the dot is expected, double and decimal behave the same
+            string formatForSignificantDigits = UnitFormatter.GetFormat((double)quantity.Value, number);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(quantity.Unit, (double)quantity.Value, formatProvider, Enumerable.Empty<object>());
             return string.Format(formatProvider, formatForSignificantDigits, formatArgs);
         }
     }

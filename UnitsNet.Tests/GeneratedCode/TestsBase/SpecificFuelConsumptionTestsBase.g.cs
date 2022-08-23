@@ -44,10 +44,10 @@ namespace UnitsNet.Tests
         protected abstract double PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GramsPerKiloNewtonSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerKilogramForceHourTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerKiloNewtonSecondTolerance { get { return 1e-5; } }
-        protected virtual double PoundsMassPerPoundForceHourTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerKiloNewtonSecondTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerKilogramForceHourTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerKiloNewtonSecondTolerance { get { return 1E-5; } }
+        protected virtual double PoundsMassPerPoundForceHourTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificFuelConsumptionUnit unit)
@@ -188,7 +188,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -317,12 +317,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(SpecificFuelConsumptionUnit unit)
         {
-            var inBaseUnits = SpecificFuelConsumption.From(1.0, SpecificFuelConsumption.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = SpecificFuelConsumption.From(1.0, SpecificFuelConsumption.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = SpecificFuelConsumption.From(1.0, SpecificFuelConsumption.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(SpecificFuelConsumptionUnit)));
         }
 
         [Theory]
@@ -338,8 +345,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificFuelConsumptionUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = SpecificFuelConsumption.Units.Where(u => u != SpecificFuelConsumption.BaseUnit).DefaultIfEmpty(SpecificFuelConsumption.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = SpecificFuelConsumption.Units.First(u => u != SpecificFuelConsumption.BaseUnit);
 
             var quantity = SpecificFuelConsumption.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -543,8 +550,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -578,36 +586,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -620,22 +633,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -677,7 +693,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificFuelConsumption.FromGramsPerKiloNewtonSecond(1.0);
-            Assert.Equal(new {SpecificFuelConsumption.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(SpecificFuelConsumption.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

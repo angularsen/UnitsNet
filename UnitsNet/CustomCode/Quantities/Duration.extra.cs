@@ -18,19 +18,19 @@ namespace UnitsNet
             if ( Seconds > TimeSpan.MaxValue.TotalSeconds ||
                 Seconds < TimeSpan.MinValue.TotalSeconds )
                 throw new ArgumentOutOfRangeException( nameof( Duration ), "The duration is too large or small to fit in a TimeSpan" );
-            return TimeSpan.FromTicks((long)(Seconds * TimeSpan.TicksPerSecond));
+            return TimeSpan.FromTicks((long)((double)Seconds * TimeSpan.TicksPerSecond));
         }
 
         /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> plus <see cref="Duration"/>.</summary>
         public static DateTime operator +(DateTime time, Duration duration)
         {
-            return time.AddSeconds(duration.Seconds);
+            return time.AddSeconds((double)duration.Seconds);
         }
 
         /// <summary>Get <see cref="DateTime"/> from <see cref="DateTime"/> minus <see cref="Duration"/>.</summary>
         public static DateTime operator -(DateTime time, Duration duration)
         {
-            return time.AddSeconds(-duration.Seconds);
+            return time.AddSeconds(-(double)duration.Seconds);
         }
 
         /// <summary>Explicitly cast <see cref="Duration"/> to <see cref="TimeSpan"/>.</summary>

@@ -73,39 +73,39 @@ namespace UnitsNet.Tests
         protected abstract double PoundForceFeetPerDegreesInOneNewtonMeterPerRadian { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentinewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double CentinewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double CentinewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double DecanewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double DecanewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double DecanewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double DecinewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double DecinewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double DecinewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonMetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double KilonewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundForceFeetPerDegreesTolerance { get { return 1e-5; } }
-        protected virtual double MeganewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double MeganewtonMetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double MeganewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double MeganewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double MicronewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double MicronewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double MicronewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double MillinewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double MillinewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double MillinewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double NanonewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double NanonewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double NanonewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double NewtonMetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double NewtonMetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double NewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
-        protected virtual double NewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double PoundForceFeetPerRadianTolerance { get { return 1e-5; } }
-        protected virtual double PoundForceFeetPerDegreesTolerance { get { return 1e-5; } }
+        protected virtual double CentinewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double CentinewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double CentinewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double DecanewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double DecanewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double DecanewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double DecinewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double DecinewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double DecinewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonMetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundForceFeetPerDegreesTolerance { get { return 1E-5; } }
+        protected virtual double MeganewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double MeganewtonMetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double MeganewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double MeganewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double MicronewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double MicronewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double MicronewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double MillinewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double MillinewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double MillinewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double NanonewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double NanonewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double NanonewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double NewtonMetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double NewtonMetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double NewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
+        protected virtual double NewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double PoundForceFeetPerRadianTolerance { get { return 1E-5; } }
+        protected virtual double PoundForceFeetPerDegreesTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalStiffnessUnit unit)
@@ -478,7 +478,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -2787,12 +2787,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(RotationalStiffnessUnit unit)
         {
-            var inBaseUnits = RotationalStiffness.From(1.0, RotationalStiffness.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = RotationalStiffness.From(1.0, RotationalStiffness.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = RotationalStiffness.From(1.0, RotationalStiffness.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(RotationalStiffnessUnit)));
         }
 
         [Theory]
@@ -2808,8 +2815,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalStiffnessUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RotationalStiffness.Units.Where(u => u != RotationalStiffness.BaseUnit).DefaultIfEmpty(RotationalStiffness.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = RotationalStiffness.Units.First(u => u != RotationalStiffness.BaseUnit);
 
             var quantity = RotationalStiffness.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -3100,8 +3107,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -3135,36 +3143,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -3177,22 +3190,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = RotationalStiffness.FromNewtonMetersPerRadian(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -3234,7 +3250,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalStiffness.FromNewtonMetersPerRadian(1.0);
-            Assert.Equal(new {RotationalStiffness.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(RotationalStiffness.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

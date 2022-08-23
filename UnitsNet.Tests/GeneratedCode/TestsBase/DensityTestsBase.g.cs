@@ -91,57 +91,57 @@ namespace UnitsNet.Tests
         protected abstract double TonnesPerCubicMillimeterInOneKilogramPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentigramsPerDeciLiterTolerance { get { return 1e-5; } }
-        protected virtual double CentigramsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double CentigramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double DecigramsPerDeciLiterTolerance { get { return 1e-5; } }
-        protected virtual double DecigramsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double DecigramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerCubicMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerDeciLiterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerCubicMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double KilopoundsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerDeciLiterTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerDeciLiterTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double NanogramsPerDeciLiterTolerance { get { return 1e-5; } }
-        protected virtual double NanogramsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double NanogramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double PicogramsPerDeciLiterTolerance { get { return 1e-5; } }
-        protected virtual double PicogramsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double PicogramsPerMilliliterTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerCubicMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerImperialGallonTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerUSGallonTolerance { get { return 1e-5; } }
-        protected virtual double SlugsPerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double SlugsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double SlugsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double SlugsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double SlugsPerCubicMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double TonnesPerCubicCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double TonnesPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double TonnesPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double TonnesPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double TonnesPerCubicMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double CentigramsPerDeciLiterTolerance { get { return 1E-5; } }
+        protected virtual double CentigramsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double CentigramsPerMilliliterTolerance { get { return 1E-5; } }
+        protected virtual double DecigramsPerDeciLiterTolerance { get { return 1E-5; } }
+        protected virtual double DecigramsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double DecigramsPerMilliliterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerCubicMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerDeciLiterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerMilliliterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerCubicMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double KilopoundsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerDeciLiterTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerMilliliterTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerDeciLiterTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerMilliliterTolerance { get { return 1E-5; } }
+        protected virtual double NanogramsPerDeciLiterTolerance { get { return 1E-5; } }
+        protected virtual double NanogramsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double NanogramsPerMilliliterTolerance { get { return 1E-5; } }
+        protected virtual double PicogramsPerDeciLiterTolerance { get { return 1E-5; } }
+        protected virtual double PicogramsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double PicogramsPerMilliliterTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerCubicMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerImperialGallonTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerUSGallonTolerance { get { return 1E-5; } }
+        protected virtual double SlugsPerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double SlugsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double SlugsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double SlugsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double SlugsPerCubicMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double TonnesPerCubicCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double TonnesPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double TonnesPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double TonnesPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double TonnesPerCubicMillimeterTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(DensityUnit unit)
@@ -658,7 +658,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -2011,12 +2011,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(DensityUnit unit)
         {
-            var inBaseUnits = Density.From(1.0, Density.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = Density.From(1.0, Density.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = Density.From(1.0, Density.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(DensityUnit)));
         }
 
         [Theory]
@@ -2032,8 +2039,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Density.Units.Where(u => u != Density.BaseUnit).DefaultIfEmpty(Density.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = Density.Units.First(u => u != Density.BaseUnit);
 
             var quantity = Density.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -2378,8 +2385,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -2413,36 +2421,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -2455,22 +2468,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = Density.FromKilogramsPerCubicMeter(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -2512,7 +2528,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Density.FromKilogramsPerCubicMeter(1.0);
-            Assert.Equal(new {Density.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Density.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

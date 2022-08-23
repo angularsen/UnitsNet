@@ -24,15 +24,15 @@ namespace UnitsNet.Benchmark
 
         [Benchmark]
         [BenchmarkCategory("Transformation")]
-        public double ToProperty() => _length.Centimeters;
+        public QuantityValue ToProperty() => _length.Centimeters;
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public double As() => _length.As(LengthUnit.Centimeter);
+        public QuantityValue As() => _length.As(LengthUnit.Centimeter);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public double As_SI() => _length.As(UnitSystem.SI);
+        public QuantityValue As_SI() => _length.As(UnitSystem.SI);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Quantity")]
@@ -64,11 +64,11 @@ namespace UnitsNet.Benchmark
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public double IQuantity_As() => _lengthIQuantity.As(LengthUnit.Centimeter);
+        public QuantityValue IQuantity_As() => _lengthIQuantity.As(LengthUnit.Centimeter);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Value")]
-        public double IQuantity_As_SI() => _lengthIQuantity.As(UnitSystem.SI);
+        public QuantityValue IQuantity_As_SI() => _lengthIQuantity.As(UnitSystem.SI);
 
         [Benchmark]
         [BenchmarkCategory("Transformation, Quantity")]

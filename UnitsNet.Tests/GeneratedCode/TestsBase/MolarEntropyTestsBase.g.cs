@@ -43,9 +43,9 @@ namespace UnitsNet.Tests
         protected abstract double MegajoulesPerMoleKelvinInOneJoulePerMoleKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double JoulesPerMoleKelvinTolerance { get { return 1e-5; } }
-        protected virtual double KilojoulesPerMoleKelvinTolerance { get { return 1e-5; } }
-        protected virtual double MegajoulesPerMoleKelvinTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerMoleKelvinTolerance { get { return 1E-5; } }
+        protected virtual double KilojoulesPerMoleKelvinTolerance { get { return 1E-5; } }
+        protected virtual double MegajoulesPerMoleKelvinTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarEntropyUnit unit)
@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -283,12 +283,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(MolarEntropyUnit unit)
         {
-            var inBaseUnits = MolarEntropy.From(1.0, MolarEntropy.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = MolarEntropy.From(1.0, MolarEntropy.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = MolarEntropy.From(1.0, MolarEntropy.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(MolarEntropyUnit)));
         }
 
         [Theory]
@@ -304,8 +311,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarEntropyUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MolarEntropy.Units.Where(u => u != MolarEntropy.BaseUnit).DefaultIfEmpty(MolarEntropy.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = MolarEntropy.Units.First(u => u != MolarEntropy.BaseUnit);
 
             var quantity = MolarEntropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -506,8 +513,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -541,36 +549,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -583,22 +596,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = MolarEntropy.FromJoulesPerMoleKelvin(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -640,7 +656,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MolarEntropy.FromJoulesPerMoleKelvin(1.0);
-            Assert.Equal(new {MolarEntropy.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(MolarEntropy.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

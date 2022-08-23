@@ -314,7 +314,7 @@ namespace UnitsNet
                         AngleUnit.NatoMil => _value * 9 / 160,
                         AngleUnit.Radian => _value * 180 / 3.1415926535897931,
                         AngleUnit.Revolution => _value * 360,
-                        AngleUnit.Tilt => Math.Asin(_value) * 180 / 3.1415926535897931,
+                        AngleUnit.Tilt => Math.Asin((double)_value) * 180 / 3.1415926535897931,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -343,7 +343,7 @@ namespace UnitsNet
                         AngleUnit.NatoMil => baseUnitValue * 160 / 9,
                         AngleUnit.Radian => baseUnitValue / 180 * 3.1415926535897931,
                         AngleUnit.Revolution => baseUnitValue / 360,
-                        AngleUnit.Tilt => Math.Sin(baseUnitValue / 180 * 3.1415926535897931),
+                        AngleUnit.Tilt => Math.Sin((double)baseUnitValue / 180 * 3.1415926535897931),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

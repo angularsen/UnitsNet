@@ -35,13 +35,13 @@ namespace UnitsNet
     ///     A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.
     /// </summary>
     [DataContract]
-    public partial struct ApparentEnergy : IQuantity<ApparentEnergyUnit>, IComparable, IComparable<ApparentEnergy>, IConvertible, IFormattable
+    public partial struct ApparentEnergy : IQuantity<ApparentEnergyUnit>, IEquatable<ApparentEnergy>, IComparable, IComparable<ApparentEnergy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 0)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -74,9 +74,9 @@ namespace UnitsNet
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public ApparentEnergy(double value, ApparentEnergyUnit unit)
+        public ApparentEnergy(QuantityValue value, ApparentEnergyUnit unit)
         {
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = unit;
         }
 
@@ -88,14 +88,14 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ApparentEnergy(double value, UnitSystem unitSystem)
+        public ApparentEnergy(QuantityValue value, UnitSystem unitSystem)
         {
             if (unitSystem is null) throw new ArgumentNullException(nameof(unitSystem));
 
             var unitInfos = Info.GetUnitInfosFor(unitSystem.BaseUnits);
             var firstUnitInfo = unitInfos.FirstOrDefault();
 
-            _value = Guard.EnsureValidNumber(value, nameof(value));
+            _value = value;
             _unit = firstUnitInfo?.Value ?? throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
         }
 
@@ -136,7 +136,10 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public double Value => _value;
+        public QuantityValue Value => _value;
+
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -159,19 +162,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.KilovoltampereHour"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ApparentEnergyUnit.KilovoltampereHour"/>
         /// </summary>
-        public double KilovoltampereHours => As(ApparentEnergyUnit.KilovoltampereHour);
+        public QuantityValue KilovoltampereHours => As(ApparentEnergyUnit.KilovoltampereHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.MegavoltampereHour"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ApparentEnergyUnit.MegavoltampereHour"/>
         /// </summary>
-        public double MegavoltampereHours => As(ApparentEnergyUnit.MegavoltampereHour);
+        public QuantityValue MegavoltampereHours => As(ApparentEnergyUnit.MegavoltampereHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentEnergyUnit.VoltampereHour"/>
+        ///     Gets the numeric value of this quantity converted into <see cref="ApparentEnergyUnit.VoltampereHour"/>
         /// </summary>
-        public double VoltampereHours => As(ApparentEnergyUnit.VoltampereHour);
+        public QuantityValue VoltampereHours => As(ApparentEnergyUnit.VoltampereHour);
 
         #endregion
 
@@ -233,7 +236,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromKilovoltampereHours(QuantityValue kilovoltamperehours)
         {
-            double value = (double) kilovoltamperehours;
+            QuantityValue value = (QuantityValue) kilovoltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.KilovoltampereHour);
         }
 
@@ -243,7 +246,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromMegavoltampereHours(QuantityValue megavoltamperehours)
         {
-            double value = (double) megavoltamperehours;
+            QuantityValue value = (QuantityValue) megavoltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.MegavoltampereHour);
         }
 
@@ -253,7 +256,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentEnergy FromVoltampereHours(QuantityValue voltamperehours)
         {
-            double value = (double) voltamperehours;
+            QuantityValue value = (QuantityValue) voltamperehours;
             return new ApparentEnergy(value, ApparentEnergyUnit.VoltampereHour);
         }
 
@@ -265,7 +268,7 @@ namespace UnitsNet
         /// <returns>ApparentEnergy unit value.</returns>
         public static ApparentEnergy From(QuantityValue value, ApparentEnergyUnit fromUnit)
         {
-            return new ApparentEnergy((double)value, fromUnit);
+            return new ApparentEnergy((QuantityValue)value, fromUnit);
         }
 
         #endregion
@@ -435,25 +438,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ApparentEnergy"/> from multiplying value and <see cref="ApparentEnergy"/>.</summary>
-        public static ApparentEnergy operator *(double left, ApparentEnergy right)
+        public static ApparentEnergy operator *(QuantityValue left, ApparentEnergy right)
         {
             return new ApparentEnergy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ApparentEnergy"/> from multiplying value and <see cref="ApparentEnergy"/>.</summary>
-        public static ApparentEnergy operator *(ApparentEnergy left, double right)
+        public static ApparentEnergy operator *(ApparentEnergy left, QuantityValue right)
         {
             return new ApparentEnergy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ApparentEnergy"/> from dividing <see cref="ApparentEnergy"/> by value.</summary>
-        public static ApparentEnergy operator /(ApparentEnergy left, double right)
+        public static ApparentEnergy operator /(ApparentEnergy left, QuantityValue right)
         {
             return new ApparentEnergy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ApparentEnergy"/> by <see cref="ApparentEnergy"/>.</summary>
-        public static double operator /(ApparentEnergy left, ApparentEnergy right)
+        public static QuantityValue operator /(ApparentEnergy left, ApparentEnergy right)
         {
             return left.VoltampereHours / right.VoltampereHours;
         }
@@ -486,6 +489,19 @@ namespace UnitsNet
             return left.Value > right.GetValueAs(left.Unit);
         }
 
+        /// <summary>Returns true if exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ApparentEnergy, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator ==(ApparentEnergy left, ApparentEnergy right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary>Returns true if not exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ApparentEnergy, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public static bool operator !=(ApparentEnergy left, ApparentEnergy right)
+        {
+            return !(left == right);
+        }
+
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -498,7 +514,29 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ApparentEnergy other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            var asFirstUnit = other.GetValueAs(this.Unit);
+            var asSecondUnit = GetValueAs(other.Unit);
+            return (_value.CompareTo(asFirstUnit) - other.Value.CompareTo(asSecondUnit)) / 2;
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ApparentEnergy, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is ApparentEnergy objApparentEnergy))
+                return false;
+            return Equals(objApparentEnergy);
+        }
+
+        /// <inheritdoc />
+        /// <remarks>Consider using <see cref="Equals(ApparentEnergy, QuantityValue, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        public bool Equals(ApparentEnergy other)
+        {
+            if (Value.IsDecimal)
+                return other.Value.Equals(this.GetValueAs(other.Unit));
+            if (other.Value.IsDecimal)
+                return Value.Equals(other.GetValueAs(this.Unit));
+            return this.Unit == other.Unit && this.Value.Equals(other.Value);
         }
 
         /// <summary>
@@ -541,13 +579,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(ApparentEnergy other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(ApparentEnergy other, QuantityValue tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            QuantityValue thisValue = this.Value;
+            QuantityValue otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -558,7 +596,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ApparentEnergy.</returns>
         public override int GetHashCode()
         {
-            return new { Info.Name, Value, Unit }.GetHashCode();
+            return Info.Name.GetHashCode();
         }
 
         #endregion
@@ -569,17 +607,16 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(ApparentEnergyUnit unit)
+        public QuantityValue As(ApparentEnergyUnit unit)
         {
-            if (Unit == unit)
-                return Convert.ToDouble(Value);
+            if(Unit == unit)
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public QuantityValue As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -594,12 +631,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        double IQuantity.As(Enum unit)
+        QuantityValue IQuantity.As(Enum unit)
         {
-            if (!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
+            if (!(unit is ApparentEnergyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
 
-            return As(unitAsApparentEnergyUnit);
+            return (QuantityValue)As(typedUnit);
         }
 
         /// <summary>
@@ -631,7 +668,7 @@ namespace UnitsNet
                 var converted = conversionFunction(this);
                 return (ApparentEnergy)converted;
             }
-            else if (Unit != BaseUnit)
+            else if (Enum.IsDefined(typeof(ApparentEnergyUnit), unit))
             {
                 // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
@@ -639,17 +676,17 @@ namespace UnitsNet
             }
             else
             {
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new NotSupportedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is ApparentEnergyUnit unitAsApparentEnergyUnit))
+            if (!(unit is ApparentEnergyUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsApparentEnergyUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -676,10 +713,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
-        private double GetValueAs(ApparentEnergyUnit unit)
+        private QuantityValue GetValueAs(ApparentEnergyUnit unit)
         {
             var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return (QuantityValue)converted.Value;
         }
 
         #endregion

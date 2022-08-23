@@ -29,7 +29,7 @@ namespace UnitsNet
         {
             get
             {
-                var inPounds = Pounds;
+                var inPounds = (double)Pounds;
 
                 var stones = Math.Truncate(inPounds / StonesInOnePound);
                 var pounds = inPounds % StonesInOnePound;

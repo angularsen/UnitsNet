@@ -51,7 +51,7 @@ namespace UnitsNet.Tests.CustomCode
             // Amplitude ratio increases linearly by 20 dBV with power-of-10 increases of voltage.
             ElectricPotential v = ElectricPotential.FromVolts(voltage);
 
-            double actual = AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
+            double actual = (double)AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
             Assert.Equal(expected, actual);
         }
 
@@ -61,12 +61,12 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(0, 1)]
         [InlineData(20, 10)]
         [InlineData(40, 100)]
-        public void ExpectAmplitudeRatioConvertedToVoltageCorrectly(double amplitudeRatio, double expected)
+        public void ExpectAmplitudeRatioConvertedToVoltageCorrectly(QuantityValue amplitudeRatio, QuantityValue expected)
         {
             // Voltage increases by powers of 10 for every 20 dBV increase in amplitude ratio.
             AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
 
-            double actual = ar.ToElectricPotential().Volts;
+            QuantityValue actual = ar.ToElectricPotential().Volts;
             Assert.Equal(expected, actual);
         }
 
@@ -81,7 +81,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
-            double actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts, 2);
+            double actual = Math.Round((double)ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts, 2);
             Assert.Equal(expected, actual);
         }
 
@@ -94,7 +94,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
-            double actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts, 2);
+            double actual = Math.Round((double)ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts, 2);
             Assert.Equal(expected, actual);
         }
     }

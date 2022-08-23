@@ -32,7 +32,7 @@ namespace UnitsNet
         {
             get
             {
-                var inInches = Inches;
+                var inInches = (double)Inches;
                 var feet = Math.Truncate(inInches / InchesInOneFoot);
                 var inches = inInches % InchesInOneFoot;
 

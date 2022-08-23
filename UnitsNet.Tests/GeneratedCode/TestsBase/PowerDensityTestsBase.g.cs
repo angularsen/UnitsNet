@@ -84,50 +84,50 @@ namespace UnitsNet.Tests
         protected abstract double WattsPerLiterInOneWattPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DecawattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double DecawattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double DecawattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double DecawattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double DeciwattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double DeciwattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double DeciwattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double DeciwattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double GigawattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double GigawattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double GigawattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double GigawattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double KilowattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double KilowattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double KilowattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilowattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double MegawattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double MegawattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double MegawattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double MegawattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double MicrowattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double MicrowattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double MicrowattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double MicrowattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double MilliwattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double MilliwattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double MilliwattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double MilliwattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double NanowattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double NanowattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double NanowattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double NanowattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double PicowattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double PicowattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double PicowattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double PicowattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double TerawattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double TerawattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double TerawattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double TerawattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double WattsPerCubicFootTolerance { get { return 1e-5; } }
-        protected virtual double WattsPerCubicInchTolerance { get { return 1e-5; } }
-        protected virtual double WattsPerCubicMeterTolerance { get { return 1e-5; } }
-        protected virtual double WattsPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double DecawattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double DecawattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double DecawattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double DecawattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double DeciwattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double DeciwattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double DeciwattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double DeciwattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double GigawattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double GigawattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double GigawattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double GigawattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double KilowattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double KilowattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double KilowattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double KilowattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double MegawattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double MegawattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double MegawattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double MegawattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double MicrowattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double MicrowattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double MicrowattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double MicrowattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double MilliwattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double MilliwattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double MilliwattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double MilliwattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double NanowattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double NanowattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double NanowattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double NanowattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double PicowattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double PicowattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double PicowattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double PicowattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double TerawattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double TerawattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double TerawattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double TerawattsPerLiterTolerance { get { return 1E-5; } }
+        protected virtual double WattsPerCubicFootTolerance { get { return 1E-5; } }
+        protected virtual double WattsPerCubicInchTolerance { get { return 1E-5; } }
+        protected virtual double WattsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double WattsPerLiterTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PowerDensityUnit unit)
@@ -588,7 +588,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -1589,12 +1589,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(PowerDensityUnit unit)
         {
-            var inBaseUnits = PowerDensity.From(1.0, PowerDensity.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = PowerDensity.From(1.0, PowerDensity.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = PowerDensity.From(1.0, PowerDensity.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(PowerDensityUnit)));
         }
 
         [Theory]
@@ -1610,8 +1617,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PowerDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = PowerDensity.Units.Where(u => u != PowerDensity.BaseUnit).DefaultIfEmpty(PowerDensity.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = PowerDensity.Units.First(u => u != PowerDensity.BaseUnit);
 
             var quantity = PowerDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1935,8 +1942,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -1970,36 +1978,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -2012,22 +2025,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = PowerDensity.FromWattsPerCubicMeter(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -2069,7 +2085,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PowerDensity.FromWattsPerCubicMeter(1.0);
-            Assert.Equal(new {PowerDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(PowerDensity.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

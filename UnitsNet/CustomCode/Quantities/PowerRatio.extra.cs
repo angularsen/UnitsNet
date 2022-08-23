@@ -21,7 +21,7 @@ namespace UnitsNet
                     nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
 
             // P(dBW) = 10*log10(value(W)/reference(W))
-            _value = 10 * Math.Log10(power.Watts / 1);
+            _value = 10 * Math.Log10((double)power.Watts);
             _unit = PowerRatioUnit.DecibelWatt;
         }
 
@@ -37,7 +37,7 @@ namespace UnitsNet
         public Power ToPower()
         {
             // P(W) = 1W * 10^(P(dBW)/10)
-            return Power.FromWatts(Math.Pow(10, DecibelWatts / 10));
+            return Power.FromWatts(Math.Pow(10, (double)(DecibelWatts / 10)));
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace UnitsNet
         public AmplitudeRatio ToAmplitudeRatio(ElectricResistance impedance)
         {
             // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
-            return AmplitudeRatio.FromDecibelVolts(10 * Math.Log10(impedance.Ohms / 1) + DecibelWatts);
+            return AmplitudeRatio.FromDecibelVolts(10 * Math.Log10((double)(impedance.Ohms / 1)) + DecibelWatts);
         }
 
         #region Static Methods

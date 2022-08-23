@@ -54,20 +54,20 @@ namespace UnitsNet.Tests
         protected abstract double PoundsPerInchInOneKilogramPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GramsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerMillimeterTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerFootTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerInchTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerCentimeterTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerFootTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerInchTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LinearDensityUnit unit)
@@ -288,7 +288,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -657,12 +657,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(LinearDensityUnit unit)
         {
-            var inBaseUnits = LinearDensity.From(1.0, LinearDensity.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = LinearDensity.From(1.0, LinearDensity.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = LinearDensity.From(1.0, LinearDensity.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(LinearDensityUnit)));
         }
 
         [Theory]
@@ -678,8 +685,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LinearDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = LinearDensity.Units.Where(u => u != LinearDensity.BaseUnit).DefaultIfEmpty(LinearDensity.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = LinearDensity.Units.First(u => u != LinearDensity.BaseUnit);
 
             var quantity = LinearDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -913,8 +920,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -948,36 +956,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -990,22 +1003,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = LinearDensity.FromKilogramsPerMeter(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -1047,7 +1063,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LinearDensity.FromKilogramsPerMeter(1.0);
-            Assert.Equal(new {LinearDensity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(LinearDensity.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

@@ -112,8 +112,8 @@ namespace UnitsNet.Tests
         {
             // Intentionally don't map conversion Some->Some, it is not necessary
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.ATon, x => new HowMuch(x.Value * 2, HowMuchUnit.ATon));
-            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.AShitTon, x => new HowMuch(x.Value * 10, HowMuchUnit.AShitTon));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.ATon, x => new HowMuch((double)x.Value * 2, HowMuchUnit.ATon));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.AShitTon, x => new HowMuch((double)x.Value * 10, HowMuchUnit.AShitTon));
 
             var foundConversionFunction = unitConverter.GetConversionFunction<HowMuch>(fromUnit, toUnit);
             var converted = foundConversionFunction(new HowMuch(fromValue, fromUnit));
@@ -164,9 +164,9 @@ namespace UnitsNet.Tests
         [InlineData(1, "UnknownQuantity", "Meter", "Centimeter")]
         [InlineData(1, "Length", "UnknownFromUnit", "Centimeter")]
         [InlineData(1, "Length", "Meter", "UnknownToUnit")]
-        public void TryConvertByName_ReturnsFalseForInvalidInput(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
+        public void TryConvertByName_ReturnsFalseForInvalidInput(QuantityValue inputValue, string quantityTypeName, string fromUnit, string toUnit)
         {
-            Assert.False(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out double result));
+            Assert.False(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out var result));
             Assert.Equal(0, result);
         }
 
@@ -175,10 +175,10 @@ namespace UnitsNet.Tests
         [InlineData(100, 1, "Length", "Meter", "Centimeter")]
         [InlineData(1, 1000, "Mass", "Gram", "Kilogram")]
         [InlineData(1000, 1, "ElectricCurrent", "Kiloampere", "Ampere")]
-        public void TryConvertByName_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
+        public void TryConvertByName_ReturnsTrueOnSuccessAndOutputsResult(QuantityValue expectedValue, double inputValue, string quantityTypeName, string fromUnit,
             string toUnit)
         {
-            Assert.True(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out double result), "TryConvertByName() return value.");
+            Assert.True(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out var result), "TryConvertByName() return value.");
             Assert.Equal(expectedValue, result);
         }
 
@@ -211,9 +211,9 @@ namespace UnitsNet.Tests
         [InlineData(1, "UnknownQuantity", "m", "cm")]
         [InlineData(1, "Length", "UnknownFromUnit", "cm")]
         [InlineData(1, "Length", "m", "UnknownToUnit")]
-        public void TryConvertByAbbreviation_ReturnsFalseForInvalidInput(double inputValue, string quantityTypeName, string fromUnit, string toUnit)
+        public void TryConvertByAbbreviation_ReturnsFalseForInvalidInput(QuantityValue inputValue, string quantityTypeName, string fromUnit, string toUnit)
         {
-            Assert.False(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result));
+            Assert.False(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out var result));
             Assert.Equal(0, result);
         }
 
@@ -222,10 +222,10 @@ namespace UnitsNet.Tests
         [InlineData(100, 1, "Length", "m", "cm")]
         [InlineData(1, 1000, "Mass", "g", "kg")]
         [InlineData(1000, 1, "ElectricCurrent", "kA", "A")]
-        public void TryConvertByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
+        public void TryConvertByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(QuantityValue expectedValue, double inputValue, string quantityTypeName, string fromUnit,
             string toUnit)
         {
-            Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result), "TryConvertByAbbreviation() return value.");
+            Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out var result), "TryConvertByAbbreviation() return value.");
             Assert.Equal(expectedValue, result);
         }
     }

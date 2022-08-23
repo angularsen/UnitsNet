@@ -73,39 +73,39 @@ namespace UnitsNet.Tests
         protected abstract double TonnesPerHourInOneGramPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentigramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double CentigramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double DecagramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double DecagramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double DecigramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double DecigramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double GramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double HectogramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double HectogramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double KilogramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MegagramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double MegapoundsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double MegapoundsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double MegapoundsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double MegapoundsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double MicrogramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double MilligramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double NanogramsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double NanogramsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerDayTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerMinuteTolerance { get { return 1e-5; } }
-        protected virtual double PoundsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double ShortTonsPerHourTolerance { get { return 1e-5; } }
-        protected virtual double TonnesPerDayTolerance { get { return 1e-5; } }
-        protected virtual double TonnesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double CentigramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double CentigramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DecagramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double DecagramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DecigramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double DecigramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double HectogramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double HectogramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MegagramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double MegapoundsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double MegapoundsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double MegapoundsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double MegapoundsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double MicrogramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double MilligramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double NanogramsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double NanogramsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerDayTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double PoundsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double ShortTonsPerHourTolerance { get { return 1E-5; } }
+        protected virtual double TonnesPerDayTolerance { get { return 1E-5; } }
+        protected virtual double TonnesPerHourTolerance { get { return 1E-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFlowUnit unit)
@@ -478,7 +478,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = (double) (QuantityValue) AsWithSIUnitSystem();
                 Assert.Equal(1, value);
             }
             else
@@ -1545,12 +1545,19 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(MassFlowUnit unit)
         {
-            var inBaseUnits = MassFlow.From(1.0, MassFlow.BaseUnit);
-            var converted = inBaseUnits.ToUnit(unit);
+            var inBaseUnit = MassFlow.From(1.0, MassFlow.BaseUnit);
+            var converted = inBaseUnit.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
+        }
+
+        [Fact]
+        public void ToUnit_FromNonExistingUnit_ThrowsNotSupportedException()
+        {
+            var inBaseUnit = MassFlow.From(1.0, MassFlow.BaseUnit);
+            Assert.Throws<NotSupportedException>(() => inBaseUnit.ToUnit(default(MassFlowUnit)));
         }
 
         [Theory]
@@ -1566,8 +1573,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFlowUnit unit)
         {
-            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MassFlow.Units.Where(u => u != MassFlow.BaseUnit).DefaultIfEmpty(MassFlow.BaseUnit).FirstOrDefault();
+            // This test is only available for quantities with more than one units.
+            var fromUnit = MassFlow.Units.First(u => u != MassFlow.BaseUnit);
 
             var quantity = MassFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1858,8 +1865,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToByte_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-           Assert.Equal((byte)quantity.Value, Convert.ToByte(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+           Assert.Equal((byte)value, Convert.ToByte(quantity));
         }
 
         [Fact]
@@ -1893,36 +1901,41 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToInt16_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal((short)quantity.Value, Convert.ToInt16(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+            Assert.Equal((short)value, Convert.ToInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToInt32_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal((int)quantity.Value, Convert.ToInt32(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+            Assert.Equal((int)value, Convert.ToInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToInt64_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal((long)quantity.Value, Convert.ToInt64(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+            Assert.Equal((long)value, Convert.ToInt64(quantity));
         }
 
         [Fact]
         public void Convert_ToSByte_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal((sbyte)quantity.Value, Convert.ToSByte(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+            Assert.Equal((sbyte)value, Convert.ToSByte(quantity));
         }
 
         [Fact]
         public void Convert_ToSingle_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal((float)quantity.Value, Convert.ToSingle(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+            Assert.Equal((float)value, Convert.ToSingle(quantity));
         }
 
         [Fact]
@@ -1935,22 +1948,25 @@ namespace UnitsNet.Tests
         [Fact]
         public void Convert_ToUInt16_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal((ushort)quantity.Value, Convert.ToUInt16(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+            Assert.Equal((ushort)value, Convert.ToUInt16(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt32_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal((uint)quantity.Value, Convert.ToUInt32(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+            Assert.Equal((uint)value, Convert.ToUInt32(quantity));
         }
 
         [Fact]
         public void Convert_ToUInt64_EqualsValueAsSameType()
         {
-            var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal((ulong)quantity.Value, Convert.ToUInt64(quantity));
+            var value = 1.0;
+            var quantity = MassFlow.FromGramsPerSecond(value);
+            Assert.Equal((ulong)value, Convert.ToUInt64(quantity));
         }
 
         [Fact]
@@ -1992,7 +2008,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MassFlow.FromGramsPerSecond(1.0);
-            Assert.Equal(new {MassFlow.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(MassFlow.Info.Name.GetHashCode(), quantity.GetHashCode());
         }
 
         [Theory]

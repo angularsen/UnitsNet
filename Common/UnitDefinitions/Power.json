@@ -85,8 +85,8 @@
     {
       "SingularName": "BritishThermalUnitPerHour",
       "PluralName": "BritishThermalUnitsPerHour",
-      "FromUnitToBaseFunc": "{x} * 0.293071m",
-      "FromBaseToUnitFunc": "{x} / 0.293071m",
+      "FromUnitToBaseFunc": "{x} * 0.29307107017m",
+      "FromBaseToUnitFunc": "{x} / 0.29307107017m",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
