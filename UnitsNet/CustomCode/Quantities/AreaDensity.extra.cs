@@ -7,12 +7,6 @@ namespace UnitsNet
 {
     public partial struct AreaDensity
     {
-        /// <summary>Get <see cref="Area"/> from <see cref="AreaDensity"/> divided by <see cref="Length"/>.</summary>
-        public static Area operator /(AreaDensity areaDensity, Mass mass)
-        {
-            return Area.FromSquareMeters(areaDensity.KilogramsPerSquareMeter / mass.Kilograms);
-        }
-
         /// <summary>Get <see cref="Mass"/> from <see cref="AreaDensity"/> times <see cref="Area"/>.</summary>
         public static Mass operator *(AreaDensity areaDensity, Area area)
         {
