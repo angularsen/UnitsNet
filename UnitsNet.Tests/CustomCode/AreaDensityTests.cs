@@ -22,6 +22,7 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -29,6 +30,17 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override bool SupportsSIUnitSystem => true;
 
+        protected override double GramsPerSquareMeterInOneKilogramPerSquareMeter => 1000;
+
         protected override double KilogramsPerSquareMeterInOneKilogramPerSquareMeter => 1;
+
+        protected override double MilligramsPerSquareMeterInOneKilogramPerSquareMeter => 1000000;
+
+        [Fact]
+        public void CanBeCreatedFromDivisonOfMassAndArea()
+        {
+            AreaDensity grammage = Mass.FromKilograms(0.9) / Area.FromSquareMeters(3);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(0.3), grammage);
+        }
     }
 }

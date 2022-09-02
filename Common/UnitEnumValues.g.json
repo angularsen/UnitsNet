@@ -93,7 +93,9 @@
     "UsSurveySquareFoot": 14
   },
   "AreaDensity": {
-    "KilogramPerSquareMeter": 1
+    "KilogramPerSquareMeter": 1,
+    "GramPerSquareMeter": 6,
+    "MilligramPerSquareMeter": 10
   },
   "AreaMomentOfInertia": {
     "CentimeterToTheFourth": 1,
