@@ -349,7 +349,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.ShortTon, new CultureInfo("ru-RU"), false, true, new string[]{"тонна малая"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.ShortTon, new CultureInfo("zh-CN"), false, true, new string[]{"短吨"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Slug, new CultureInfo("en-US"), false, true, new string[]{"slug"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.SolarMass, new CultureInfo("en-US"), false, true, new string[]{"M⊙"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.SolarMass, new CultureInfo("en-US"), false, true, new string[]{"M☉", "M⊙"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Stone, new CultureInfo("en-US"), false, true, new string[]{"st"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Tonne, new CultureInfo("en-US"), false, true, new string[]{"t"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Tonne, new CultureInfo("ru-RU"), false, true, new string[]{"т"});
