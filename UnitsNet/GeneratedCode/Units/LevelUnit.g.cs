@@ -25,8 +25,8 @@ namespace UnitsNet.Units
 
     public enum LevelUnit
     {
-        Decibel,
-        Neper,
+        Decibel = 1,
+        Neper = 2,
     }
 
     #pragma warning restore 1591

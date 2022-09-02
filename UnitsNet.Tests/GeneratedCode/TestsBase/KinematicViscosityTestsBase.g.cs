@@ -701,7 +701,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(KinematicViscosityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = KinematicViscosity.Units.FirstOrDefault(u => u != KinematicViscosity.BaseUnit);
+            var fromUnit = KinematicViscosity.Units.Where(u => u != KinematicViscosity.BaseUnit).DefaultIfEmpty(KinematicViscosity.BaseUnit).FirstOrDefault();
 
             var quantity = KinematicViscosity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

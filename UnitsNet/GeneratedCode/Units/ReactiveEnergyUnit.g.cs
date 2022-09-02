@@ -25,9 +25,9 @@ namespace UnitsNet.Units
 
     public enum ReactiveEnergyUnit
     {
-        KilovoltampereReactiveHour,
-        MegavoltampereReactiveHour,
-        VoltampereReactiveHour,
+        KilovoltampereReactiveHour = 1,
+        MegavoltampereReactiveHour = 2,
+        VoltampereReactiveHour = 3,
     }
 
     #pragma warning restore 1591

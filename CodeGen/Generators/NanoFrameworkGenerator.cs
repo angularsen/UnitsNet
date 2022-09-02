@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using CodeGen.Generators.NanoFrameworkGen;
 using CodeGen.Helpers;
+using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 using NuGet.Common;
 using Serilog;
@@ -40,7 +41,8 @@ namespace CodeGen.Generators
         /// </summary>
         /// <param name="rootDir">The root directory</param>
         /// <param name="quantities">The quantities to create</param>
-        public static void Generate(string rootDir, Quantity[] quantities)
+        /// <param name="quantityNameToUnitEnumValues"></param>
+        public static void Generate(string rootDir, Quantity[] quantities, QuantityNameToUnitEnumValues quantityNameToUnitEnumValues)
         {
             // get latest version of .NET nanoFramework mscorlib
             ILogger logger = NullLogger.Instance;
@@ -82,7 +84,9 @@ namespace CodeGen.Generators
                     versions.MscorlibNugetVersion,
                     versions.MathNugetVersion);
 
-                GenerateUnitType(quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"));
+                UnitEnumNameToValue unitEnumValues = quantityNameToUnitEnumValues[quantity.Name];
+
+                GenerateUnitType(quantity, Path.Combine(outputUnits, $"{quantity.Name}Unit.g.cs"), unitEnumValues);
                 GenerateQuantity(quantity, Path.Combine(outputQuantities, $"{quantity.Name}.g.cs"));
                 GenerateProject(quantity, Path.Combine(projectPath, $"{quantity.Name}.nfproj"), versions);
 
@@ -347,9 +351,9 @@ namespace CodeGen.Generators
             Log.Information("✅ AssemblyInfo.cs (nanoFramework)");
         }
 
-        private static void GenerateUnitType(Quantity quantity, string filePath)
+        private static void GenerateUnitType(Quantity quantity, string filePath, UnitEnumNameToValue unitEnumValues)
         {
-            var content = new UnitTypeGenerator(quantity).Generate();
+            var content = new UnitTypeGenerator(quantity, unitEnumValues).Generate();
             File.WriteAllText(filePath, content);
         }
 

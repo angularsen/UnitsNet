@@ -25,10 +25,10 @@ namespace UnitsNet.Units
 
     public enum ApparentPowerUnit
     {
-        Gigavoltampere,
-        Kilovoltampere,
-        Megavoltampere,
-        Voltampere,
+        Gigavoltampere = 1,
+        Kilovoltampere = 2,
+        Megavoltampere = 3,
+        Voltampere = 4,
     }
 
     #pragma warning restore 1591

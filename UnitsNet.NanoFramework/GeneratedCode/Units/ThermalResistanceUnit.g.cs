@@ -25,12 +25,12 @@ namespace UnitsNet.Units
 
     public enum ThermalResistanceUnit
     {
-        HourSquareFeetDegreeFahrenheitPerBtu,
-        SquareCentimeterHourDegreeCelsiusPerKilocalorie,
-        SquareCentimeterKelvinPerWatt,
-        SquareMeterDegreeCelsiusPerWatt,
-        SquareMeterKelvinPerKilowatt,
-        SquareMeterKelvinPerWatt,
+        HourSquareFeetDegreeFahrenheitPerBtu = 1,
+        SquareCentimeterHourDegreeCelsiusPerKilocalorie = 2,
+        SquareCentimeterKelvinPerWatt = 3,
+        SquareMeterDegreeCelsiusPerWatt = 4,
+        SquareMeterKelvinPerKilowatt = 5,
+        SquareMeterKelvinPerWatt = 6,
     }
 
     #pragma warning restore 1591

@@ -4,6 +4,7 @@
 using System.IO;
 using System.Linq;
 using CodeGen.Generators.UnitsNetGen;
+using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 using Serilog;
 
@@ -31,7 +32,8 @@ namespace CodeGen.Generators
         /// </summary>
         /// <param name="rootDir">Path to repository root directory.</param>
         /// <param name="quantities">The parsed quantities.</param>
-        public static void Generate(string rootDir, Quantity[] quantities)
+        /// <param name="quantityNameToUnitEnumValues">Allocated unit enum values for generating unit enum types.</param>
+        public static void Generate(string rootDir, Quantity[] quantities, QuantityNameToUnitEnumValues quantityNameToUnitEnumValues)
         {
             var outputDir = $"{rootDir}/UnitsNet/GeneratedCode";
             var extensionsOutputDir = $"{rootDir}/UnitsNet.NumberExtensions/GeneratedCode";
@@ -49,8 +51,10 @@ namespace CodeGen.Generators
 
             foreach (var quantity in quantities)
             {
+                UnitEnumNameToValue unitEnumValues = quantityNameToUnitEnumValues[quantity.Name];
+
                 GenerateQuantity(quantity, $"{outputDir}/Quantities/{quantity.Name}.g.cs");
-                GenerateUnitType(quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs");
+                GenerateUnitType(quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs", unitEnumValues);
                 GenerateNumberToExtensions(quantity, $"{extensionsOutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
                 GenerateNumberToExtensionsTestClass(quantity, $"{extensionsTestOutputDir}/NumberTo{quantity.Name}ExtensionsTest.g.cs");
 
@@ -101,9 +105,9 @@ namespace CodeGen.Generators
             File.WriteAllText(filePath, content);
         }
 
-        private static void GenerateUnitType(Quantity quantity, string filePath)
+        private static void GenerateUnitType(Quantity quantity, string filePath, UnitEnumNameToValue unitEnumValues)
         {
-            var content = new UnitTypeGenerator(quantity).Generate();
+            var content = new UnitTypeGenerator(quantity, unitEnumValues).Generate();
             File.WriteAllText(filePath, content);
         }
 

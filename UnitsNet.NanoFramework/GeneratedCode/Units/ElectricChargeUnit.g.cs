@@ -25,11 +25,11 @@ namespace UnitsNet.Units
 
     public enum ElectricChargeUnit
     {
-        AmpereHour,
-        Coulomb,
-        KiloampereHour,
-        MegaampereHour,
-        MilliampereHour,
+        AmpereHour = 1,
+        Coulomb = 2,
+        KiloampereHour = 3,
+        MegaampereHour = 4,
+        MilliampereHour = 5,
     }
 
     #pragma warning restore 1591

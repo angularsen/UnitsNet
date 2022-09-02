@@ -25,9 +25,9 @@ namespace UnitsNet.Units
 
     public enum MolarEntropyUnit
     {
-        JoulePerMoleKelvin,
-        KilojoulePerMoleKelvin,
-        MegajoulePerMoleKelvin,
+        JoulePerMoleKelvin = 1,
+        KilojoulePerMoleKelvin = 2,
+        MegajoulePerMoleKelvin = 3,
     }
 
     #pragma warning restore 1591

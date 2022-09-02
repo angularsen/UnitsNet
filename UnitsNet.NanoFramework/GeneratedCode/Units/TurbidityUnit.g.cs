@@ -25,7 +25,7 @@ namespace UnitsNet.Units
 
     public enum TurbidityUnit
     {
-        NTU,
+        NTU = 1,
     }
 
     #pragma warning restore 1591

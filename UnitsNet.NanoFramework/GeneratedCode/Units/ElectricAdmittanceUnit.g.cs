@@ -25,10 +25,10 @@ namespace UnitsNet.Units
 
     public enum ElectricAdmittanceUnit
     {
-        Microsiemens,
-        Millisiemens,
-        Nanosiemens,
-        Siemens,
+        Microsiemens = 1,
+        Millisiemens = 2,
+        Nanosiemens = 3,
+        Siemens = 4,
     }
 
     #pragma warning restore 1591

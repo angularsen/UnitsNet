@@ -25,9 +25,9 @@ namespace UnitsNet.Units
 
     public enum MolarEnergyUnit
     {
-        JoulePerMole,
-        KilojoulePerMole,
-        MegajoulePerMole,
+        JoulePerMole = 1,
+        KilojoulePerMole = 2,
+        MegajoulePerMole = 3,
     }
 
     #pragma warning restore 1591

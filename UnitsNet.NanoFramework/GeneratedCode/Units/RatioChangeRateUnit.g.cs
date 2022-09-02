@@ -25,8 +25,8 @@ namespace UnitsNet.Units
 
     public enum RatioChangeRateUnit
     {
-        DecimalFractionPerSecond,
-        PercentPerSecond,
+        DecimalFractionPerSecond = 1,
+        PercentPerSecond = 2,
     }
 
     #pragma warning restore 1591

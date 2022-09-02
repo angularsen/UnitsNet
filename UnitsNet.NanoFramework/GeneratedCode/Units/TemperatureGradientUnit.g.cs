@@ -25,10 +25,10 @@ namespace UnitsNet.Units
 
     public enum TemperatureGradientUnit
     {
-        DegreeCelsiusPerKilometer,
-        DegreeCelsiusPerMeter,
-        DegreeFahrenheitPerFoot,
-        KelvinPerMeter,
+        DegreeCelsiusPerKilometer = 1,
+        DegreeCelsiusPerMeter = 2,
+        DegreeFahrenheitPerFoot = 3,
+        KelvinPerMeter = 4,
     }
 
     #pragma warning restore 1591

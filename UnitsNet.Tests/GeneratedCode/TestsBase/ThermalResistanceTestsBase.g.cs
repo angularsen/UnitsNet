@@ -407,7 +407,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ThermalResistanceUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ThermalResistance.Units.FirstOrDefault(u => u != ThermalResistance.BaseUnit);
+            var fromUnit = ThermalResistance.Units.Where(u => u != ThermalResistance.BaseUnit).DefaultIfEmpty(ThermalResistance.BaseUnit).FirstOrDefault();
 
             var quantity = ThermalResistance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

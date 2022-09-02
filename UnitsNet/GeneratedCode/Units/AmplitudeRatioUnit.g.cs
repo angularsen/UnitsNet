@@ -25,10 +25,10 @@ namespace UnitsNet.Units
 
     public enum AmplitudeRatioUnit
     {
-        DecibelMicrovolt,
-        DecibelMillivolt,
-        DecibelUnloaded,
-        DecibelVolt,
+        DecibelMicrovolt = 1,
+        DecibelMillivolt = 2,
+        DecibelUnloaded = 3,
+        DecibelVolt = 4,
     }
 
     #pragma warning restore 1591

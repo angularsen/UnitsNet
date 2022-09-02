@@ -25,13 +25,13 @@ namespace UnitsNet.Units
 
     public enum VolumePerLengthUnit
     {
-        CubicMeterPerMeter,
-        CubicYardPerFoot,
-        CubicYardPerUsSurveyFoot,
-        LiterPerKilometer,
-        LiterPerMeter,
-        LiterPerMillimeter,
-        OilBarrelPerFoot,
+        CubicMeterPerMeter = 1,
+        CubicYardPerFoot = 2,
+        CubicYardPerUsSurveyFoot = 3,
+        LiterPerKilometer = 4,
+        LiterPerMeter = 5,
+        LiterPerMillimeter = 6,
+        OilBarrelPerFoot = 7,
     }
 
     #pragma warning restore 1591

@@ -25,7 +25,7 @@ namespace UnitsNet.Units
 
     public enum ElectricChargeDensityUnit
     {
-        CoulombPerCubicMeter,
+        CoulombPerCubicMeter = 1,
     }
 
     #pragma warning restore 1591

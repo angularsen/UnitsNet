@@ -25,10 +25,10 @@ namespace UnitsNet.Units
 
     public enum ReactivePowerUnit
     {
-        GigavoltampereReactive,
-        KilovoltampereReactive,
-        MegavoltampereReactive,
-        VoltampereReactive,
+        GigavoltampereReactive = 1,
+        KilovoltampereReactive = 2,
+        MegavoltampereReactive = 3,
+        VoltampereReactive = 4,
     }
 
     #pragma warning restore 1591

@@ -25,9 +25,9 @@ namespace UnitsNet.Units
 
     public enum ElectricSurfaceChargeDensityUnit
     {
-        CoulombPerSquareCentimeter,
-        CoulombPerSquareInch,
-        CoulombPerSquareMeter,
+        CoulombPerSquareCentimeter = 1,
+        CoulombPerSquareInch = 2,
+        CoulombPerSquareMeter = 3,
     }
 
     #pragma warning restore 1591

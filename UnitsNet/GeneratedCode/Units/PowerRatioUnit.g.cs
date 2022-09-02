@@ -25,8 +25,8 @@ namespace UnitsNet.Units
 
     public enum PowerRatioUnit
     {
-        DecibelMilliwatt,
-        DecibelWatt,
+        DecibelMilliwatt = 1,
+        DecibelWatt = 2,
     }
 
     #pragma warning restore 1591

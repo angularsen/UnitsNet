@@ -25,20 +25,20 @@ namespace UnitsNet.Units
 
     public enum AreaUnit
     {
-        Acre,
-        Hectare,
-        SquareCentimeter,
-        SquareDecimeter,
-        SquareFoot,
-        SquareInch,
-        SquareKilometer,
-        SquareMeter,
-        SquareMicrometer,
-        SquareMile,
-        SquareMillimeter,
-        SquareNauticalMile,
-        SquareYard,
-        UsSurveySquareFoot,
+        Acre = 1,
+        Hectare = 2,
+        SquareCentimeter = 3,
+        SquareDecimeter = 4,
+        SquareFoot = 5,
+        SquareInch = 6,
+        SquareKilometer = 7,
+        SquareMeter = 8,
+        SquareMicrometer = 9,
+        SquareMile = 10,
+        SquareMillimeter = 11,
+        SquareNauticalMile = 12,
+        SquareYard = 13,
+        UsSurveySquareFoot = 14,
     }
 
     #pragma warning restore 1591
