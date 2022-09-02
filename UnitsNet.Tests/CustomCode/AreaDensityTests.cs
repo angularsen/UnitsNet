@@ -37,7 +37,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MilligramsPerSquareMeterInOneKilogramPerSquareMeter => 1000000;
 
         [Fact]
-        public void CanBeCreatedFromDivisonOfMassAndArea()
+        public void MassDividedByAreaEqualsAreaDensity()
         {
             AreaDensity grammage = Mass.FromKilograms(0.9) / Area.FromSquareMeters(3);
             Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(0.3), grammage);
