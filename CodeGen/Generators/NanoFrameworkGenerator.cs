@@ -101,8 +101,8 @@ namespace CodeGen.Generators
                         { " decimal ", " double " },
                         { "(decimal ", "(double " }
                     };
-                    new FileInfo($"{outputDir}\\Units\\{quantity.Name}Unit.g.cs").EditFile(replacements);
-                    new FileInfo($"{outputDir}\\Quantities\\{quantity.Name}.g.cs").EditFile(replacements);
+                    new FileInfo(Path.Combine(outputDir, "Units", $"{quantity.Name}Unit.g.cs")).EditFile(replacements);
+                    new FileInfo(Path.Combine(outputDir, "Quantities", $"{quantity.Name}.g.cs")).EditFile(replacements);
                 }
 
                 Log.Information("✅ {Quantity} (nanoFramework)", quantity.Name);
@@ -272,7 +272,7 @@ namespace CodeGen.Generators
         private static NanoFrameworkVersions ParseCurrentNanoFrameworkVersions(string rootDir)
         {
             // Angle has both mscorlib and System.Math dependency
-            string generatedCodePath = Path.Combine(rootDir, "UnitsNet.NanoFramework\\GeneratedCode");
+            string generatedCodePath = Path.Combine(rootDir, "UnitsNet.NanoFramework", "GeneratedCode");
             var angleProjectFile = Path.Combine(generatedCodePath, "Angle", "Angle.nfproj");
             var projectFileContent = File.ReadAllText(angleProjectFile);
 
