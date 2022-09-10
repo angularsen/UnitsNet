@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The rate of change of temperature with displacement in a given direction (as with increase of height)
     /// </summary>
     [DataContract]
-    public partial struct TemperatureGradient : IQuantity<TemperatureGradientUnit>, IEquatable<TemperatureGradient>, IComparable, IComparable<TemperatureGradient>, IConvertible, IFormattable
+    public readonly partial struct TemperatureGradient : IQuantity<TemperatureGradientUnit>, IEquatable<TemperatureGradient>, IComparable, IComparable<TemperatureGradient>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units
     /// </summary>
     [DataContract]
-    public partial struct Entropy : IQuantity<EntropyUnit>, IEquatable<Entropy>, IComparable, IComparable<Entropy>, IConvertible, IFormattable
+    public readonly partial struct Entropy : IQuantity<EntropyUnit>, IEquatable<Entropy>, IComparable, IComparable<Entropy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

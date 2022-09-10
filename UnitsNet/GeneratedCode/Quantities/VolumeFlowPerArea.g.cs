@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The volumetric flow rate per area is the volume of fluid which passes through a given unit surface area per unit time.
     /// </summary>
     [DataContract]
-    public partial struct VolumeFlowPerArea : IQuantity<VolumeFlowPerAreaUnit>, IEquatable<VolumeFlowPerArea>, IComparable, IComparable<VolumeFlowPerArea>, IConvertible, IFormattable
+    public readonly partial struct VolumeFlowPerArea : IQuantity<VolumeFlowPerAreaUnit>, IEquatable<VolumeFlowPerArea>, IComparable, IComparable<VolumeFlowPerArea>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

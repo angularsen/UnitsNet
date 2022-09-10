@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminous_intensity
     /// </remarks>
     [DataContract]
-    public partial struct LuminousIntensity : IQuantity<LuminousIntensityUnit>, IEquatable<LuminousIntensity>, IComparable, IComparable<LuminousIntensity>, IConvertible, IFormattable
+    public readonly partial struct LuminousIntensity : IQuantity<LuminousIntensityUnit>, IEquatable<LuminousIntensity>, IComparable, IComparable<LuminousIntensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

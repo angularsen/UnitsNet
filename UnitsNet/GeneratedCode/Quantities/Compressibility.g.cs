@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Compressibility is the measure of the relative volume change of a fluid or solid in response to pressure changes.
     /// </summary>
     [DataContract]
-    public partial struct Compressibility : IQuantity<CompressibilityUnit>, IEquatable<Compressibility>, IComparable, IComparable<Compressibility>, IConvertible, IFormattable
+    public readonly partial struct Compressibility : IQuantity<CompressibilityUnit>, IEquatable<Compressibility>, IComparable, IComparable<Compressibility>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

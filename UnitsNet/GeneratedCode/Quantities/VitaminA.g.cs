@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.
     /// </summary>
     [DataContract]
-    public partial struct VitaminA : IQuantity<VitaminAUnit>, IEquatable<VitaminA>, IComparable, IComparable<VitaminA>, IConvertible, IFormattable
+    public readonly partial struct VitaminA : IQuantity<VitaminAUnit>, IEquatable<VitaminA>, IComparable, IComparable<VitaminA>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

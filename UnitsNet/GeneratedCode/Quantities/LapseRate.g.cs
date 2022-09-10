@@ -37,7 +37,7 @@ namespace UnitsNet
     /// </summary>
     [Obsolete("Use TemperatureGradient instead.")]
     [DataContract]
-    public partial struct LapseRate : IQuantity<LapseRateUnit>, IEquatable<LapseRate>, IComparable, IComparable<LapseRate>, IConvertible, IFormattable
+    public readonly partial struct LapseRate : IQuantity<LapseRateUnit>, IEquatable<LapseRate>, IComparable, IComparable<LapseRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Permeability_(Earth_sciences)
     /// </remarks>
     [DataContract]
-    public partial struct PorousMediumPermeability : IQuantity<PorousMediumPermeabilityUnit>, IEquatable<PorousMediumPermeability>, IComparable, IComparable<PorousMediumPermeability>, IConvertible, IFormattable
+    public readonly partial struct PorousMediumPermeability : IQuantity<PorousMediumPermeabilityUnit>, IEquatable<PorousMediumPermeability>, IComparable, IComparable<PorousMediumPermeability>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
