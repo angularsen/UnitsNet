@@ -94,6 +94,20 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void MassDividedByAreaEqualsAreaDensity()
+        {
+            AreaDensity grammage = Mass.FromKilograms(0.9) / Area.FromSquareMeters(3);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(0.3), grammage);
+        }
+
+        [Fact]
+        public void MassDividedByAreaDensityEqualsArea()
+        {
+            Area area = Mass.FromKilograms(10) / AreaDensity.FromKilogramsPerSquareMeter(5);
+            Assert.Equal(Area.FromSquareMeters(2), area);
+        }
+
+        [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
             Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);

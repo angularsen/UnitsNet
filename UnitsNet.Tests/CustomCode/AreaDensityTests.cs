@@ -37,10 +37,10 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MilligramsPerSquareMeterInOneKilogramPerSquareMeter => 1000000;
 
         [Fact]
-        public void MassDividedByAreaEqualsAreaDensity()
+        public void AreaDensityTimesAreaEqualsMass()
         {
-            AreaDensity grammage = Mass.FromKilograms(0.9) / Area.FromSquareMeters(3);
-            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(0.3), grammage);
+            Mass massOfOneA4Paper = AreaDensity.FromGramsPerSquareMeter(120) * Area.FromSquareCentimeters(625);
+            Assert.Equal(Mass.FromGrams(7.5), massOfOneA4Paper);
         }
     }
 }
