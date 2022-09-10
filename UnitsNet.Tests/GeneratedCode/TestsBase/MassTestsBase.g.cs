@@ -865,6 +865,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Mass.Parse("1 M☉", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
+                Assert.Equal(MassUnit.SolarMass, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Mass.Parse("1 M⊙", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
                 Assert.Equal(MassUnit.SolarMass, parsed.Unit);
@@ -1261,6 +1268,12 @@ namespace UnitsNet.Tests
                 Assert.True(Mass.TryParse("1 slug", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Slugs, SlugsTolerance);
                 Assert.Equal(MassUnit.Slug, parsed.Unit);
+            }
+
+            {
+                Assert.True(Mass.TryParse("1 M☉", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.SolarMasses, SolarMassesTolerance);
+                Assert.Equal(MassUnit.SolarMass, parsed.Unit);
             }
 
             {
@@ -1672,6 +1685,12 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Mass.ParseUnit("M☉", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(MassUnit.SolarMass, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Mass.ParseUnit("M⊙", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MassUnit.SolarMass, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -2006,6 +2025,11 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Mass.TryParseUnit("M☉", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(MassUnit.SolarMass, parsedUnit);
+            }
+
+            {
                 Assert.True(Mass.TryParseUnit("M⊙", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MassUnit.SolarMass, parsedUnit);
             }
@@ -2282,7 +2306,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString());
                 Assert.Equal("1 t (short)", new Mass(1, MassUnit.ShortTon).ToString());
                 Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString());
-                Assert.Equal("1 M⊙", new Mass(1, MassUnit.SolarMass).ToString());
+                Assert.Equal("1 M☉", new Mass(1, MassUnit.SolarMass).ToString());
                 Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString());
                 Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString());
             }
@@ -2320,7 +2344,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 cwt", new Mass(1, MassUnit.ShortHundredweight).ToString(swedishCulture));
             Assert.Equal("1 t (short)", new Mass(1, MassUnit.ShortTon).ToString(swedishCulture));
             Assert.Equal("1 slug", new Mass(1, MassUnit.Slug).ToString(swedishCulture));
-            Assert.Equal("1 M⊙", new Mass(1, MassUnit.SolarMass).ToString(swedishCulture));
+            Assert.Equal("1 M☉", new Mass(1, MassUnit.SolarMass).ToString(swedishCulture));
             Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString(swedishCulture));
             Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString(swedishCulture));
         }
