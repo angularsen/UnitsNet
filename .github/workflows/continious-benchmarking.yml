@@ -9,7 +9,7 @@ on:
       - ".github/actions/**"
       
 env:
-  FRAMEWORK: net5.0 
+  FRAMEWORK: net6.0 
   EXECUTION_OPTIONS: --iterationTime 500 --disableLogFile # see https://benchmarkdotnet.org/articles/guides/console-args.html
   BENCHMARK_PAGES_BRANCH: gh-pages
   BENCHMARK_DATA_FOLDER: benchmarks
@@ -21,7 +21,7 @@ jobs:
     strategy:
       # max-parallel: 1 # is it better to avoid running in parallel?
       matrix: 
-        runtime: ["netcoreapp50", "netcoreapp21", "net472"]        
+        runtime: ["net6.0", "netcoreapp21", "net472"]        
     steps:
       - run: echo Starting benchmarks for ${{ matrix.runtime }} 
       

@@ -3,11 +3,11 @@ inputs:
   framework:
     description: 'The runtime version to use (e.g. net5.0)'
     required: false
-    default: 'net5.0'
+    default: 'net6.0'
   runtimes:
     description: 'The runtime version to use (e.g. netcoreapp31, net5.0)'
     required: false
-    default: 'net5.0'
+    default: 'net6.0'
   output-folder:
     description: 'The output folder for the benchmark (a results folder is created inside)'
     required: false
