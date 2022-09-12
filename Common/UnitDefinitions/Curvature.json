@@ -1,0 +1,70 @@
+{
+  "Name": "Curvature",
+  "BaseUnit": "PerMeter",
+  "XmlDoc": ".",
+  "BaseDimensions": {
+    "L": -1
+  },
+  "Units": [
+    {
+      "SingularName": "PerMeter",
+      "PluralName": "PerMeters",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m⁻¹" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PerMillimeter",
+      "PluralName": "PerMillimeters",
+      "FromUnitToBaseFunc": "x*1e3",
+      "FromBaseToUnitFunc": "x/1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm⁻¹" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PerCentimeter",
+      "PluralName": "PerCentimeters",
+      "FromUnitToBaseFunc": "x*1e2",
+      "FromBaseToUnitFunc": "x/1e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm⁻¹" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PerFoot",
+      "PluralName": "PerFeet",
+      "FromUnitToBaseFunc": "x/0.3048",
+      "FromBaseToUnitFunc": "x*0.3048",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft⁻¹" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PerInch",
+      "PluralName": "PerInches",
+      "FromUnitToBaseFunc": "x/2.54e-2",
+      "FromBaseToUnitFunc": "x*2.54e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in⁻¹" ]
+        }
+      ]
+    }
+  ]
+}

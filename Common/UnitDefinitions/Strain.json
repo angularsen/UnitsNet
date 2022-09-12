@@ -1,0 +1,55 @@
+{
+  "Name": "Strain",
+  "BaseUnit": "Ratio",
+  "XmlDoc": ".",
+  "Units": [
+    {
+      "SingularName": "Ratio",
+      "PluralName": "Ratio",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ε" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Percent",
+      "PluralName": "Percent",
+      "FromUnitToBaseFunc": "x/1e2",
+      "FromBaseToUnitFunc": "x*1e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "%" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MilliStrain",
+      "PluralName": "MilliStrain",
+      "FromUnitToBaseFunc": "x*1e-3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "‰" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MicroStrain",
+      "PluralName": "MicroStrain",
+      "FromUnitToBaseFunc": "x*1e-6",
+      "FromBaseToUnitFunc": "x*1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "µε" ]
+        }
+      ]
+    }
+  ]
+}

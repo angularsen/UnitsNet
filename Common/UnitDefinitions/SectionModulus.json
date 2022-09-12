@@ -1,0 +1,73 @@
+{
+  "Name": "SectionModulus",
+  "BaseUnit": "CubicMeter",
+  "XmlDoc": "Section modulus is a geometric property for a given cross-section used in the design of beams or flexural members.",
+  "BaseDimensions": {
+    "L": 3
+  },
+  "Units": [
+    {
+      "SingularName": "CubicMeter",
+      "PluralName": "CubicMeters",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicCentimeter",
+      "PluralName": "CubicCentimeters",
+      "FromUnitToBaseFunc": "x/1e6",
+      "FromBaseToUnitFunc": "x*1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicMillimeter",
+      "PluralName": "CubicMillimeters",
+      "FromUnitToBaseFunc": "x/1e9",
+      "FromBaseToUnitFunc": "x*1e9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicFoot",
+      "PluralName": "CubicFeet",
+      "FromUnitToBaseFunc": "x*0.0283168",
+      "FromBaseToUnitFunc": "x/0.0283168",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicInch",
+      "PluralName": "CubicInches",
+      "FromUnitToBaseFunc": "x*1.6387*1e-5",
+      "FromBaseToUnitFunc": "x/(1.6387*1e-5)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in³" ]
+        }
+      ]
+    }
+  ]
+}
