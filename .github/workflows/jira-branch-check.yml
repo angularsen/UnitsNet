@@ -1,0 +1,23 @@
+name: Check Jira key in branch exists and is valid
+
+# Runs on every push to non develop or master branch
+on: 
+ push:
+   branches:
+    - '**'
+    - '!master'
+ workflow_dispatch:
+      
+jobs:
+  # This workflow contains a single job called "branch-check-jira"
+  branch-jira-check:
+    # Run on Ubuntu (Linux)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: arup-group/actions-composite-oasys-jira-check/branch@main
+        if: startsWith( github.ref, 'refs/heads/release') == false
+        with:
+          valid-branch-names: task|test|bugfix|feature|hotfix|epic
+          jira-username: automation@arup.com
+          jira-password: ${{ secrets.JIRA_PASSWORD }}
