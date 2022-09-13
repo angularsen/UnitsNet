@@ -43,11 +43,14 @@ namespace UnitsNet.Tests
             Assertion(3, AreaUnit.UsSurveySquareFoot, Quantity.From(3, AreaUnit.UsSurveySquareFoot));
             Assertion(3, AreaDensityUnit.KilogramPerSquareMeter, Quantity.From(3, AreaDensityUnit.KilogramPerSquareMeter));
             Assertion(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth, Quantity.From(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth));
+            Assertion(3, AxialStiffnessUnit.TonneForce, Quantity.From(3, AxialStiffnessUnit.TonneForce));
+            Assertion(3, BendingStiffnessUnit.PoundForceSquareInch, Quantity.From(3, BendingStiffnessUnit.PoundForceSquareInch));
             Assertion(3, BitRateUnit.TerabytePerSecond, Quantity.From(3, BitRateUnit.TerabytePerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CapacitanceUnit.Picofarad, Quantity.From(3, CapacitanceUnit.Picofarad));
             Assertion(3, CoefficientOfThermalExpansionUnit.InverseKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.InverseKelvin));
             Assertion(3, CompressibilityUnit.InversePoundForcePerSquareInch, Quantity.From(3, CompressibilityUnit.InversePoundForcePerSquareInch));
+            Assertion(3, CurvatureUnit.PerMillimeter, Quantity.From(3, CurvatureUnit.PerMillimeter));
             Assertion(3, DensityUnit.TonnePerCubicMillimeter, Quantity.From(3, DensityUnit.TonnePerCubicMillimeter));
             Assertion(3, DurationUnit.Year365, Quantity.From(3, DurationUnit.Year365));
             Assertion(3, DynamicViscosityUnit.Reyn, Quantity.From(3, DynamicViscosityUnit.Reyn));
@@ -105,6 +108,7 @@ namespace UnitsNet.Tests
             Assertion(3, MolarEntropyUnit.MegajoulePerMoleKelvin, Quantity.From(3, MolarEntropyUnit.MegajoulePerMoleKelvin));
             Assertion(3, MolarityUnit.PicomolesPerLiter, Quantity.From(3, MolarityUnit.PicomolesPerLiter));
             Assertion(3, MolarMassUnit.PoundPerMole, Quantity.From(3, MolarMassUnit.PoundPerMole));
+            Assertion(3, MomentUnit.TonneForceMillimeter, Quantity.From(3, MomentUnit.TonneForceMillimeter));
             Assertion(3, PermeabilityUnit.HenryPerMeter, Quantity.From(3, PermeabilityUnit.HenryPerMeter));
             Assertion(3, PermittivityUnit.FaradPerMeter, Quantity.From(3, PermittivityUnit.FaradPerMeter));
             Assertion(3, PorousMediumPermeabilityUnit.SquareMeter, Quantity.From(3, PorousMediumPermeabilityUnit.SquareMeter));
@@ -125,6 +129,7 @@ namespace UnitsNet.Tests
             Assertion(3, RotationalStiffnessUnit.PoundForceFootPerDegrees, Quantity.From(3, RotationalStiffnessUnit.PoundForceFootPerDegrees));
             Assertion(3, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, Quantity.From(3, RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot));
             Assertion(3, ScalarUnit.Amount, Quantity.From(3, ScalarUnit.Amount));
+            Assertion(3, SectionModulusUnit.CubicMillimeter, Quantity.From(3, SectionModulusUnit.CubicMillimeter));
             Assertion(3, SolidAngleUnit.Steradian, Quantity.From(3, SolidAngleUnit.Steradian));
             Assertion(3, SpecificEnergyUnit.WattHourPerPound, Quantity.From(3, SpecificEnergyUnit.WattHourPerPound));
             Assertion(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin, Quantity.From(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin));
@@ -133,6 +138,7 @@ namespace UnitsNet.Tests
             Assertion(3, SpecificWeightUnit.TonneForcePerCubicMillimeter, Quantity.From(3, SpecificWeightUnit.TonneForcePerCubicMillimeter));
             Assertion(3, SpeedUnit.YardPerSecond, Quantity.From(3, SpeedUnit.YardPerSecond));
             Assertion(3, StandardVolumeFlowUnit.StandardLiterPerMinute, Quantity.From(3, StandardVolumeFlowUnit.StandardLiterPerMinute));
+            Assertion(3, StrainUnit.Ratio, Quantity.From(3, StrainUnit.Ratio));
             Assertion(3, TemperatureUnit.SolarTemperature, Quantity.From(3, TemperatureUnit.SolarTemperature));
             Assertion(3, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, Quantity.From(3, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond));
             Assertion(3, TemperatureDeltaUnit.MillidegreeCelsius, Quantity.From(3, TemperatureDeltaUnit.MillidegreeCelsius));
@@ -166,11 +172,14 @@ namespace UnitsNet.Tests
             Assertion(Area.Info, Area.Zero);
             Assertion(AreaDensity.Info, AreaDensity.Zero);
             Assertion(AreaMomentOfInertia.Info, AreaMomentOfInertia.Zero);
+            Assertion(AxialStiffness.Info, AxialStiffness.Zero);
+            Assertion(BendingStiffness.Info, BendingStiffness.Zero);
             Assertion(BitRate.Info, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.Info, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.Info, Capacitance.Zero);
             Assertion(CoefficientOfThermalExpansion.Info, CoefficientOfThermalExpansion.Zero);
             Assertion(Compressibility.Info, Compressibility.Zero);
+            Assertion(Curvature.Info, Curvature.Zero);
             Assertion(Density.Info, Density.Zero);
             Assertion(Duration.Info, Duration.Zero);
             Assertion(DynamicViscosity.Info, DynamicViscosity.Zero);
@@ -228,6 +237,7 @@ namespace UnitsNet.Tests
             Assertion(MolarEntropy.Info, MolarEntropy.Zero);
             Assertion(Molarity.Info, Molarity.Zero);
             Assertion(MolarMass.Info, MolarMass.Zero);
+            Assertion(Moment.Info, Moment.Zero);
             Assertion(Permeability.Info, Permeability.Zero);
             Assertion(Permittivity.Info, Permittivity.Zero);
             Assertion(PorousMediumPermeability.Info, PorousMediumPermeability.Zero);
@@ -248,6 +258,7 @@ namespace UnitsNet.Tests
             Assertion(RotationalStiffness.Info, RotationalStiffness.Zero);
             Assertion(RotationalStiffnessPerLength.Info, RotationalStiffnessPerLength.Zero);
             Assertion(Scalar.Info, Scalar.Zero);
+            Assertion(SectionModulus.Info, SectionModulus.Zero);
             Assertion(SolidAngle.Info, SolidAngle.Zero);
             Assertion(SpecificEnergy.Info, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.Info, SpecificEntropy.Zero);
@@ -256,6 +267,7 @@ namespace UnitsNet.Tests
             Assertion(SpecificWeight.Info, SpecificWeight.Zero);
             Assertion(Speed.Info, Speed.Zero);
             Assertion(StandardVolumeFlow.Info, StandardVolumeFlow.Zero);
+            Assertion(Strain.Info, Strain.Zero);
             Assertion(Temperature.Info, Temperature.Zero);
             Assertion(TemperatureChangeRate.Info, TemperatureChangeRate.Zero);
             Assertion(TemperatureDelta.Info, TemperatureDelta.Zero);
@@ -289,11 +301,14 @@ namespace UnitsNet.Tests
             Assertion(Area.QuantityType, Area.Zero);
             Assertion(AreaDensity.QuantityType, AreaDensity.Zero);
             Assertion(AreaMomentOfInertia.QuantityType, AreaMomentOfInertia.Zero);
+            Assertion(AxialStiffness.QuantityType, AxialStiffness.Zero);
+            Assertion(BendingStiffness.QuantityType, BendingStiffness.Zero);
             Assertion(BitRate.QuantityType, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.QuantityType, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.QuantityType, Capacitance.Zero);
             Assertion(CoefficientOfThermalExpansion.QuantityType, CoefficientOfThermalExpansion.Zero);
             Assertion(Compressibility.QuantityType, Compressibility.Zero);
+            Assertion(Curvature.QuantityType, Curvature.Zero);
             Assertion(Density.QuantityType, Density.Zero);
             Assertion(Duration.QuantityType, Duration.Zero);
             Assertion(DynamicViscosity.QuantityType, DynamicViscosity.Zero);
@@ -351,6 +366,7 @@ namespace UnitsNet.Tests
             Assertion(MolarEntropy.QuantityType, MolarEntropy.Zero);
             Assertion(Molarity.QuantityType, Molarity.Zero);
             Assertion(MolarMass.QuantityType, MolarMass.Zero);
+            Assertion(Moment.QuantityType, Moment.Zero);
             Assertion(Permeability.QuantityType, Permeability.Zero);
             Assertion(Permittivity.QuantityType, Permittivity.Zero);
             Assertion(PorousMediumPermeability.QuantityType, PorousMediumPermeability.Zero);
@@ -371,6 +387,7 @@ namespace UnitsNet.Tests
             Assertion(RotationalStiffness.QuantityType, RotationalStiffness.Zero);
             Assertion(RotationalStiffnessPerLength.QuantityType, RotationalStiffnessPerLength.Zero);
             Assertion(Scalar.QuantityType, Scalar.Zero);
+            Assertion(SectionModulus.QuantityType, SectionModulus.Zero);
             Assertion(SolidAngle.QuantityType, SolidAngle.Zero);
             Assertion(SpecificEnergy.QuantityType, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.QuantityType, SpecificEntropy.Zero);
@@ -379,6 +396,7 @@ namespace UnitsNet.Tests
             Assertion(SpecificWeight.QuantityType, SpecificWeight.Zero);
             Assertion(Speed.QuantityType, Speed.Zero);
             Assertion(StandardVolumeFlow.QuantityType, StandardVolumeFlow.Zero);
+            Assertion(Strain.QuantityType, Strain.Zero);
             Assertion(Temperature.QuantityType, Temperature.Zero);
             Assertion(TemperatureChangeRate.QuantityType, TemperatureChangeRate.Zero);
             Assertion(TemperatureDelta.QuantityType, TemperatureDelta.Zero);
@@ -412,11 +430,14 @@ namespace UnitsNet.Tests
             Assertion(Area.BaseDimensions, Area.Zero);
             Assertion(AreaDensity.BaseDimensions, AreaDensity.Zero);
             Assertion(AreaMomentOfInertia.BaseDimensions, AreaMomentOfInertia.Zero);
+            Assertion(AxialStiffness.BaseDimensions, AxialStiffness.Zero);
+            Assertion(BendingStiffness.BaseDimensions, BendingStiffness.Zero);
             Assertion(BitRate.BaseDimensions, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.BaseDimensions, BrakeSpecificFuelConsumption.Zero);
             Assertion(Capacitance.BaseDimensions, Capacitance.Zero);
             Assertion(CoefficientOfThermalExpansion.BaseDimensions, CoefficientOfThermalExpansion.Zero);
             Assertion(Compressibility.BaseDimensions, Compressibility.Zero);
+            Assertion(Curvature.BaseDimensions, Curvature.Zero);
             Assertion(Density.BaseDimensions, Density.Zero);
             Assertion(Duration.BaseDimensions, Duration.Zero);
             Assertion(DynamicViscosity.BaseDimensions, DynamicViscosity.Zero);
@@ -474,6 +495,7 @@ namespace UnitsNet.Tests
             Assertion(MolarEntropy.BaseDimensions, MolarEntropy.Zero);
             Assertion(Molarity.BaseDimensions, Molarity.Zero);
             Assertion(MolarMass.BaseDimensions, MolarMass.Zero);
+            Assertion(Moment.BaseDimensions, Moment.Zero);
             Assertion(Permeability.BaseDimensions, Permeability.Zero);
             Assertion(Permittivity.BaseDimensions, Permittivity.Zero);
             Assertion(PorousMediumPermeability.BaseDimensions, PorousMediumPermeability.Zero);
@@ -494,6 +516,7 @@ namespace UnitsNet.Tests
             Assertion(RotationalStiffness.BaseDimensions, RotationalStiffness.Zero);
             Assertion(RotationalStiffnessPerLength.BaseDimensions, RotationalStiffnessPerLength.Zero);
             Assertion(Scalar.BaseDimensions, Scalar.Zero);
+            Assertion(SectionModulus.BaseDimensions, SectionModulus.Zero);
             Assertion(SolidAngle.BaseDimensions, SolidAngle.Zero);
             Assertion(SpecificEnergy.BaseDimensions, SpecificEnergy.Zero);
             Assertion(SpecificEntropy.BaseDimensions, SpecificEntropy.Zero);
@@ -502,6 +525,7 @@ namespace UnitsNet.Tests
             Assertion(SpecificWeight.BaseDimensions, SpecificWeight.Zero);
             Assertion(Speed.BaseDimensions, Speed.Zero);
             Assertion(StandardVolumeFlow.BaseDimensions, StandardVolumeFlow.Zero);
+            Assertion(Strain.BaseDimensions, Strain.Zero);
             Assertion(Temperature.BaseDimensions, Temperature.Zero);
             Assertion(TemperatureChangeRate.BaseDimensions, TemperatureChangeRate.Zero);
             Assertion(TemperatureDelta.BaseDimensions, TemperatureDelta.Zero);

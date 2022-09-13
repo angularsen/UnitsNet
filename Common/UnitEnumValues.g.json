@@ -1652,5 +1652,74 @@
     "MillicandelaPerSquareMeter": 2,
     "NanocandelaPerSquareMeter": 1,
     "Nit": 5
+  },
+  "AxialStiffness": {
+    "Decanewton": 1,
+    "Dyn": 2,
+    "KilogramForce": 10,
+    "Kilonewton": 5,
+    "KiloPond": 8,
+    "KilopoundForce": 9,
+    "Meganewton": 6,
+    "Micronewton": 7,
+    "Millinewton": 4,
+    "Newton": 3,
+    "OunceForce": 14,
+    "Poundal": 11,
+    "PoundForce": 20,
+    "ShortTonForce": 12,
+    "TonneForce": 13
+  },
+  "BendingStiffness": {
+    "KilonewtonSquareMeter": 1,
+    "KilonewtonSquareMillimeter": 9,
+    "NewtonSquareMeter": 10,
+    "NewtonSquareMillimeter": 7,
+    "PoundForceSquareFoot": 8,
+    "PoundForceSquareInch": 6
+  },
+  "Curvature": {
+    "PerCentimeter": 6,
+    "PerFoot": 7,
+    "PerInch": 1,
+    "PerMeter": 8,
+    "PerMillimeter": 3
+  },
+  "Moment": {
+    "KilogramForceCentimeter": 4,
+    "KilogramForceMeter": 6,
+    "KilogramForceMillimeter": 10,
+    "KilonewtonCentimeter": 9,
+    "KilonewtonMeter": 2,
+    "KilonewtonMillimeter": 3,
+    "KilopoundForceFoot": 1,
+    "KilopoundForceInch": 7,
+    "MeganewtonCentimeter": 5,
+    "MeganewtonMeter": 8,
+    "MeganewtonMillimeter": 13,
+    "MegapoundForceFoot": 19,
+    "MegapoundForceInch": 18,
+    "NewtonCentimeter": 11,
+    "NewtonMeter": 15,
+    "NewtonMillimeter": 16,
+    "PoundalFoot": 12,
+    "PoundForceFoot": 14,
+    "PoundForceInch": 17,
+    "TonneForceCentimeter": 20,
+    "TonneForceMeter": 22,
+    "TonneForceMillimeter": 23
+  },
+  "SectionModulus": {
+    "CubicCentimeter": 2,
+    "CubicFoot": 4,
+    "CubicInch": 7,
+    "CubicMeter": 6,
+    "CubicMillimeter": 10
+  },
+  "Strain": {
+    "MicroStrain": 4,
+    "MilliStrain": 6,
+    "Percent": 5,
+    "Ratio": 8
   }
 }

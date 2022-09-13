@@ -68,6 +68,12 @@ namespace UnitsNet
                 case AreaMomentOfInertiaUnit areaMomentOfInertiaUnit:
                     quantity = AreaMomentOfInertia.From(value, areaMomentOfInertiaUnit);
                     return true;
+                case AxialStiffnessUnit axialStiffnessUnit:
+                    quantity = AxialStiffness.From(value, axialStiffnessUnit);
+                    return true;
+                case BendingStiffnessUnit bendingStiffnessUnit:
+                    quantity = BendingStiffness.From(value, bendingStiffnessUnit);
+                    return true;
                 case BitRateUnit bitRateUnit:
                     quantity = BitRate.From(value, bitRateUnit);
                     return true;
@@ -82,6 +88,9 @@ namespace UnitsNet
                     return true;
                 case CompressibilityUnit compressibilityUnit:
                     quantity = Compressibility.From(value, compressibilityUnit);
+                    return true;
+                case CurvatureUnit curvatureUnit:
+                    quantity = Curvature.From(value, curvatureUnit);
                     return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
@@ -254,6 +263,9 @@ namespace UnitsNet
                 case MolarMassUnit molarMassUnit:
                     quantity = MolarMass.From(value, molarMassUnit);
                     return true;
+                case MomentUnit momentUnit:
+                    quantity = Moment.From(value, momentUnit);
+                    return true;
                 case PermeabilityUnit permeabilityUnit:
                     quantity = Permeability.From(value, permeabilityUnit);
                     return true;
@@ -314,6 +326,9 @@ namespace UnitsNet
                 case ScalarUnit scalarUnit:
                     quantity = Scalar.From(value, scalarUnit);
                     return true;
+                case SectionModulusUnit sectionModulusUnit:
+                    quantity = SectionModulus.From(value, sectionModulusUnit);
+                    return true;
                 case SolidAngleUnit solidAngleUnit:
                     quantity = SolidAngle.From(value, solidAngleUnit);
                     return true;
@@ -337,6 +352,9 @@ namespace UnitsNet
                     return true;
                 case StandardVolumeFlowUnit standardVolumeFlowUnit:
                     quantity = StandardVolumeFlow.From(value, standardVolumeFlowUnit);
+                    return true;
+                case StrainUnit strainUnit:
+                    quantity = Strain.From(value, strainUnit);
                     return true;
                 case TemperatureUnit temperatureUnit:
                     quantity = Temperature.From(value, temperatureUnit);
@@ -466,6 +484,12 @@ namespace UnitsNet
             if (quantityType == typeof(AreaMomentOfInertia))
                 return parser.TryParse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(quantityString, formatProvider, AreaMomentOfInertia.From, out quantity);
 
+            if (quantityType == typeof(AxialStiffness))
+                return parser.TryParse<AxialStiffness, AxialStiffnessUnit>(quantityString, formatProvider, AxialStiffness.From, out quantity);
+
+            if (quantityType == typeof(BendingStiffness))
+                return parser.TryParse<BendingStiffness, BendingStiffnessUnit>(quantityString, formatProvider, BendingStiffness.From, out quantity);
+
             if (quantityType == typeof(BitRate))
                 return parser.TryParse<BitRate, BitRateUnit>(quantityString, formatProvider, BitRate.From, out quantity);
 
@@ -480,6 +504,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Compressibility))
                 return parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity);
+
+            if (quantityType == typeof(Curvature))
+                return parser.TryParse<Curvature, CurvatureUnit>(quantityString, formatProvider, Curvature.From, out quantity);
 
             if (quantityType == typeof(Density))
                 return parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity);
@@ -652,6 +679,9 @@ namespace UnitsNet
             if (quantityType == typeof(MolarMass))
                 return parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity);
 
+            if (quantityType == typeof(Moment))
+                return parser.TryParse<Moment, MomentUnit>(quantityString, formatProvider, Moment.From, out quantity);
+
             if (quantityType == typeof(Permeability))
                 return parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity);
 
@@ -712,6 +742,9 @@ namespace UnitsNet
             if (quantityType == typeof(Scalar))
                 return parser.TryParse<Scalar, ScalarUnit>(quantityString, formatProvider, Scalar.From, out quantity);
 
+            if (quantityType == typeof(SectionModulus))
+                return parser.TryParse<SectionModulus, SectionModulusUnit>(quantityString, formatProvider, SectionModulus.From, out quantity);
+
             if (quantityType == typeof(SolidAngle))
                 return parser.TryParse<SolidAngle, SolidAngleUnit>(quantityString, formatProvider, SolidAngle.From, out quantity);
 
@@ -735,6 +768,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(StandardVolumeFlow))
                 return parser.TryParse<StandardVolumeFlow, StandardVolumeFlowUnit>(quantityString, formatProvider, StandardVolumeFlow.From, out quantity);
+
+            if (quantityType == typeof(Strain))
+                return parser.TryParse<Strain, StrainUnit>(quantityString, formatProvider, Strain.From, out quantity);
 
             if (quantityType == typeof(Temperature))
                 return parser.TryParse<Temperature, TemperatureUnit>(quantityString, formatProvider, Temperature.From, out quantity);
@@ -802,11 +838,14 @@ namespace UnitsNet
             yield return typeof(Area);
             yield return typeof(AreaDensity);
             yield return typeof(AreaMomentOfInertia);
+            yield return typeof(AxialStiffness);
+            yield return typeof(BendingStiffness);
             yield return typeof(BitRate);
             yield return typeof(BrakeSpecificFuelConsumption);
             yield return typeof(Capacitance);
             yield return typeof(CoefficientOfThermalExpansion);
             yield return typeof(Compressibility);
+            yield return typeof(Curvature);
             yield return typeof(Density);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);
@@ -864,6 +903,7 @@ namespace UnitsNet
             yield return typeof(MolarEntropy);
             yield return typeof(Molarity);
             yield return typeof(MolarMass);
+            yield return typeof(Moment);
             yield return typeof(Permeability);
             yield return typeof(Permittivity);
             yield return typeof(PorousMediumPermeability);
@@ -884,6 +924,7 @@ namespace UnitsNet
             yield return typeof(RotationalStiffness);
             yield return typeof(RotationalStiffnessPerLength);
             yield return typeof(Scalar);
+            yield return typeof(SectionModulus);
             yield return typeof(SolidAngle);
             yield return typeof(SpecificEnergy);
             yield return typeof(SpecificEntropy);
@@ -892,6 +933,7 @@ namespace UnitsNet
             yield return typeof(SpecificWeight);
             yield return typeof(Speed);
             yield return typeof(StandardVolumeFlow);
+            yield return typeof(Strain);
             yield return typeof(Temperature);
             yield return typeof(TemperatureChangeRate);
             yield return typeof(TemperatureDelta);

@@ -47,11 +47,14 @@ namespace UnitsNet
             { "Area", Area.Info },
             { "AreaDensity", AreaDensity.Info },
             { "AreaMomentOfInertia", AreaMomentOfInertia.Info },
+            { "AxialStiffness", AxialStiffness.Info },
+            { "BendingStiffness", BendingStiffness.Info },
             { "BitRate", BitRate.Info },
             { "BrakeSpecificFuelConsumption", BrakeSpecificFuelConsumption.Info },
             { "Capacitance", Capacitance.Info },
             { "CoefficientOfThermalExpansion", CoefficientOfThermalExpansion.Info },
             { "Compressibility", Compressibility.Info },
+            { "Curvature", Curvature.Info },
             { "Density", Density.Info },
             { "Duration", Duration.Info },
             { "DynamicViscosity", DynamicViscosity.Info },
@@ -109,6 +112,7 @@ namespace UnitsNet
             { "MolarEntropy", MolarEntropy.Info },
             { "Molarity", Molarity.Info },
             { "MolarMass", MolarMass.Info },
+            { "Moment", Moment.Info },
             { "Permeability", Permeability.Info },
             { "Permittivity", Permittivity.Info },
             { "PorousMediumPermeability", PorousMediumPermeability.Info },
@@ -129,6 +133,7 @@ namespace UnitsNet
             { "RotationalStiffness", RotationalStiffness.Info },
             { "RotationalStiffnessPerLength", RotationalStiffnessPerLength.Info },
             { "Scalar", Scalar.Info },
+            { "SectionModulus", SectionModulus.Info },
             { "SolidAngle", SolidAngle.Info },
             { "SpecificEnergy", SpecificEnergy.Info },
             { "SpecificEntropy", SpecificEntropy.Info },
@@ -137,6 +142,7 @@ namespace UnitsNet
             { "SpecificWeight", SpecificWeight.Info },
             { "Speed", Speed.Info },
             { "StandardVolumeFlow", StandardVolumeFlow.Info },
+            { "Strain", Strain.Info },
             { "Temperature", Temperature.Info },
             { "TemperatureChangeRate", TemperatureChangeRate.Info },
             { "TemperatureDelta", TemperatureDelta.Info },
@@ -176,11 +182,14 @@ namespace UnitsNet
                 QuantityType.Area => Area.From(value, Area.BaseUnit),
                 QuantityType.AreaDensity => AreaDensity.From(value, AreaDensity.BaseUnit),
                 QuantityType.AreaMomentOfInertia => AreaMomentOfInertia.From(value, AreaMomentOfInertia.BaseUnit),
+                QuantityType.AxialStiffness => AxialStiffness.From(value, AxialStiffness.BaseUnit),
+                QuantityType.BendingStiffness => BendingStiffness.From(value, BendingStiffness.BaseUnit),
                 QuantityType.BitRate => BitRate.From(value, BitRate.BaseUnit),
                 QuantityType.BrakeSpecificFuelConsumption => BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit),
                 QuantityType.Capacitance => Capacitance.From(value, Capacitance.BaseUnit),
                 QuantityType.CoefficientOfThermalExpansion => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
                 QuantityType.Compressibility => Compressibility.From(value, Compressibility.BaseUnit),
+                QuantityType.Curvature => Curvature.From(value, Curvature.BaseUnit),
                 QuantityType.Density => Density.From(value, Density.BaseUnit),
                 QuantityType.Duration => Duration.From(value, Duration.BaseUnit),
                 QuantityType.DynamicViscosity => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
@@ -238,6 +247,7 @@ namespace UnitsNet
                 QuantityType.MolarEntropy => MolarEntropy.From(value, MolarEntropy.BaseUnit),
                 QuantityType.Molarity => Molarity.From(value, Molarity.BaseUnit),
                 QuantityType.MolarMass => MolarMass.From(value, MolarMass.BaseUnit),
+                QuantityType.Moment => Moment.From(value, Moment.BaseUnit),
                 QuantityType.Permeability => Permeability.From(value, Permeability.BaseUnit),
                 QuantityType.Permittivity => Permittivity.From(value, Permittivity.BaseUnit),
                 QuantityType.PorousMediumPermeability => PorousMediumPermeability.From(value, PorousMediumPermeability.BaseUnit),
@@ -258,6 +268,7 @@ namespace UnitsNet
                 QuantityType.RotationalStiffness => RotationalStiffness.From(value, RotationalStiffness.BaseUnit),
                 QuantityType.RotationalStiffnessPerLength => RotationalStiffnessPerLength.From(value, RotationalStiffnessPerLength.BaseUnit),
                 QuantityType.Scalar => Scalar.From(value, Scalar.BaseUnit),
+                QuantityType.SectionModulus => SectionModulus.From(value, SectionModulus.BaseUnit),
                 QuantityType.SolidAngle => SolidAngle.From(value, SolidAngle.BaseUnit),
                 QuantityType.SpecificEnergy => SpecificEnergy.From(value, SpecificEnergy.BaseUnit),
                 QuantityType.SpecificEntropy => SpecificEntropy.From(value, SpecificEntropy.BaseUnit),
@@ -266,6 +277,7 @@ namespace UnitsNet
                 QuantityType.SpecificWeight => SpecificWeight.From(value, SpecificWeight.BaseUnit),
                 QuantityType.Speed => Speed.From(value, Speed.BaseUnit),
                 QuantityType.StandardVolumeFlow => StandardVolumeFlow.From(value, StandardVolumeFlow.BaseUnit),
+                QuantityType.Strain => Strain.From(value, Strain.BaseUnit),
                 QuantityType.Temperature => Temperature.From(value, Temperature.BaseUnit),
                 QuantityType.TemperatureChangeRate => TemperatureChangeRate.From(value, TemperatureChangeRate.BaseUnit),
                 QuantityType.TemperatureDelta => TemperatureDelta.From(value, TemperatureDelta.BaseUnit),
@@ -306,11 +318,14 @@ namespace UnitsNet
                 "Area" => Area.From(value, Area.BaseUnit),
                 "AreaDensity" => AreaDensity.From(value, AreaDensity.BaseUnit),
                 "AreaMomentOfInertia" => AreaMomentOfInertia.From(value, AreaMomentOfInertia.BaseUnit),
+                "AxialStiffness" => AxialStiffness.From(value, AxialStiffness.BaseUnit),
+                "BendingStiffness" => BendingStiffness.From(value, BendingStiffness.BaseUnit),
                 "BitRate" => BitRate.From(value, BitRate.BaseUnit),
                 "BrakeSpecificFuelConsumption" => BrakeSpecificFuelConsumption.From(value, BrakeSpecificFuelConsumption.BaseUnit),
                 "Capacitance" => Capacitance.From(value, Capacitance.BaseUnit),
                 "CoefficientOfThermalExpansion" => CoefficientOfThermalExpansion.From(value, CoefficientOfThermalExpansion.BaseUnit),
                 "Compressibility" => Compressibility.From(value, Compressibility.BaseUnit),
+                "Curvature" => Curvature.From(value, Curvature.BaseUnit),
                 "Density" => Density.From(value, Density.BaseUnit),
                 "Duration" => Duration.From(value, Duration.BaseUnit),
                 "DynamicViscosity" => DynamicViscosity.From(value, DynamicViscosity.BaseUnit),
@@ -368,6 +383,7 @@ namespace UnitsNet
                 "MolarEntropy" => MolarEntropy.From(value, MolarEntropy.BaseUnit),
                 "Molarity" => Molarity.From(value, Molarity.BaseUnit),
                 "MolarMass" => MolarMass.From(value, MolarMass.BaseUnit),
+                "Moment" => Moment.From(value, Moment.BaseUnit),
                 "Permeability" => Permeability.From(value, Permeability.BaseUnit),
                 "Permittivity" => Permittivity.From(value, Permittivity.BaseUnit),
                 "PorousMediumPermeability" => PorousMediumPermeability.From(value, PorousMediumPermeability.BaseUnit),
@@ -388,6 +404,7 @@ namespace UnitsNet
                 "RotationalStiffness" => RotationalStiffness.From(value, RotationalStiffness.BaseUnit),
                 "RotationalStiffnessPerLength" => RotationalStiffnessPerLength.From(value, RotationalStiffnessPerLength.BaseUnit),
                 "Scalar" => Scalar.From(value, Scalar.BaseUnit),
+                "SectionModulus" => SectionModulus.From(value, SectionModulus.BaseUnit),
                 "SolidAngle" => SolidAngle.From(value, SolidAngle.BaseUnit),
                 "SpecificEnergy" => SpecificEnergy.From(value, SpecificEnergy.BaseUnit),
                 "SpecificEntropy" => SpecificEntropy.From(value, SpecificEntropy.BaseUnit),
@@ -396,6 +413,7 @@ namespace UnitsNet
                 "SpecificWeight" => SpecificWeight.From(value, SpecificWeight.BaseUnit),
                 "Speed" => Speed.From(value, Speed.BaseUnit),
                 "StandardVolumeFlow" => StandardVolumeFlow.From(value, StandardVolumeFlow.BaseUnit),
+                "Strain" => Strain.From(value, Strain.BaseUnit),
                 "Temperature" => Temperature.From(value, Temperature.BaseUnit),
                 "TemperatureChangeRate" => TemperatureChangeRate.From(value, TemperatureChangeRate.BaseUnit),
                 "TemperatureDelta" => TemperatureDelta.From(value, TemperatureDelta.BaseUnit),
@@ -455,6 +473,12 @@ namespace UnitsNet
                 case AreaMomentOfInertiaUnit areaMomentOfInertiaUnit:
                     quantity = AreaMomentOfInertia.From(value, areaMomentOfInertiaUnit);
                     return true;
+                case AxialStiffnessUnit axialStiffnessUnit:
+                    quantity = AxialStiffness.From(value, axialStiffnessUnit);
+                    return true;
+                case BendingStiffnessUnit bendingStiffnessUnit:
+                    quantity = BendingStiffness.From(value, bendingStiffnessUnit);
+                    return true;
                 case BitRateUnit bitRateUnit:
                     quantity = BitRate.From(value, bitRateUnit);
                     return true;
@@ -469,6 +493,9 @@ namespace UnitsNet
                     return true;
                 case CompressibilityUnit compressibilityUnit:
                     quantity = Compressibility.From(value, compressibilityUnit);
+                    return true;
+                case CurvatureUnit curvatureUnit:
+                    quantity = Curvature.From(value, curvatureUnit);
                     return true;
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
@@ -641,6 +668,9 @@ namespace UnitsNet
                 case MolarMassUnit molarMassUnit:
                     quantity = MolarMass.From(value, molarMassUnit);
                     return true;
+                case MomentUnit momentUnit:
+                    quantity = Moment.From(value, momentUnit);
+                    return true;
                 case PermeabilityUnit permeabilityUnit:
                     quantity = Permeability.From(value, permeabilityUnit);
                     return true;
@@ -701,6 +731,9 @@ namespace UnitsNet
                 case ScalarUnit scalarUnit:
                     quantity = Scalar.From(value, scalarUnit);
                     return true;
+                case SectionModulusUnit sectionModulusUnit:
+                    quantity = SectionModulus.From(value, sectionModulusUnit);
+                    return true;
                 case SolidAngleUnit solidAngleUnit:
                     quantity = SolidAngle.From(value, solidAngleUnit);
                     return true;
@@ -724,6 +757,9 @@ namespace UnitsNet
                     return true;
                 case StandardVolumeFlowUnit standardVolumeFlowUnit:
                     quantity = StandardVolumeFlow.From(value, standardVolumeFlowUnit);
+                    return true;
+                case StrainUnit strainUnit:
+                    quantity = Strain.From(value, strainUnit);
                     return true;
                 case TemperatureUnit temperatureUnit:
                     quantity = Temperature.From(value, temperatureUnit);
@@ -812,11 +848,14 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Area) => parser.TryParse<Area, AreaUnit>(quantityString, formatProvider, Area.From, out quantity),
                 Type _ when quantityType == typeof(AreaDensity) => parser.TryParse<AreaDensity, AreaDensityUnit>(quantityString, formatProvider, AreaDensity.From, out quantity),
                 Type _ when quantityType == typeof(AreaMomentOfInertia) => parser.TryParse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(quantityString, formatProvider, AreaMomentOfInertia.From, out quantity),
+                Type _ when quantityType == typeof(AxialStiffness) => parser.TryParse<AxialStiffness, AxialStiffnessUnit>(quantityString, formatProvider, AxialStiffness.From, out quantity),
+                Type _ when quantityType == typeof(BendingStiffness) => parser.TryParse<BendingStiffness, BendingStiffnessUnit>(quantityString, formatProvider, BendingStiffness.From, out quantity),
                 Type _ when quantityType == typeof(BitRate) => parser.TryParse<BitRate, BitRateUnit>(quantityString, formatProvider, BitRate.From, out quantity),
                 Type _ when quantityType == typeof(BrakeSpecificFuelConsumption) => parser.TryParse<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>(quantityString, formatProvider, BrakeSpecificFuelConsumption.From, out quantity),
                 Type _ when quantityType == typeof(Capacitance) => parser.TryParse<Capacitance, CapacitanceUnit>(quantityString, formatProvider, Capacitance.From, out quantity),
                 Type _ when quantityType == typeof(CoefficientOfThermalExpansion) => parser.TryParse<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>(quantityString, formatProvider, CoefficientOfThermalExpansion.From, out quantity),
                 Type _ when quantityType == typeof(Compressibility) => parser.TryParse<Compressibility, CompressibilityUnit>(quantityString, formatProvider, Compressibility.From, out quantity),
+                Type _ when quantityType == typeof(Curvature) => parser.TryParse<Curvature, CurvatureUnit>(quantityString, formatProvider, Curvature.From, out quantity),
                 Type _ when quantityType == typeof(Density) => parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity),
                 Type _ when quantityType == typeof(Duration) => parser.TryParse<Duration, DurationUnit>(quantityString, formatProvider, Duration.From, out quantity),
                 Type _ when quantityType == typeof(DynamicViscosity) => parser.TryParse<DynamicViscosity, DynamicViscosityUnit>(quantityString, formatProvider, DynamicViscosity.From, out quantity),
@@ -874,6 +913,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(MolarEntropy) => parser.TryParse<MolarEntropy, MolarEntropyUnit>(quantityString, formatProvider, MolarEntropy.From, out quantity),
                 Type _ when quantityType == typeof(Molarity) => parser.TryParse<Molarity, MolarityUnit>(quantityString, formatProvider, Molarity.From, out quantity),
                 Type _ when quantityType == typeof(MolarMass) => parser.TryParse<MolarMass, MolarMassUnit>(quantityString, formatProvider, MolarMass.From, out quantity),
+                Type _ when quantityType == typeof(Moment) => parser.TryParse<Moment, MomentUnit>(quantityString, formatProvider, Moment.From, out quantity),
                 Type _ when quantityType == typeof(Permeability) => parser.TryParse<Permeability, PermeabilityUnit>(quantityString, formatProvider, Permeability.From, out quantity),
                 Type _ when quantityType == typeof(Permittivity) => parser.TryParse<Permittivity, PermittivityUnit>(quantityString, formatProvider, Permittivity.From, out quantity),
                 Type _ when quantityType == typeof(PorousMediumPermeability) => parser.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(quantityString, formatProvider, PorousMediumPermeability.From, out quantity),
@@ -894,6 +934,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(RotationalStiffness) => parser.TryParse<RotationalStiffness, RotationalStiffnessUnit>(quantityString, formatProvider, RotationalStiffness.From, out quantity),
                 Type _ when quantityType == typeof(RotationalStiffnessPerLength) => parser.TryParse<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>(quantityString, formatProvider, RotationalStiffnessPerLength.From, out quantity),
                 Type _ when quantityType == typeof(Scalar) => parser.TryParse<Scalar, ScalarUnit>(quantityString, formatProvider, Scalar.From, out quantity),
+                Type _ when quantityType == typeof(SectionModulus) => parser.TryParse<SectionModulus, SectionModulusUnit>(quantityString, formatProvider, SectionModulus.From, out quantity),
                 Type _ when quantityType == typeof(SolidAngle) => parser.TryParse<SolidAngle, SolidAngleUnit>(quantityString, formatProvider, SolidAngle.From, out quantity),
                 Type _ when quantityType == typeof(SpecificEnergy) => parser.TryParse<SpecificEnergy, SpecificEnergyUnit>(quantityString, formatProvider, SpecificEnergy.From, out quantity),
                 Type _ when quantityType == typeof(SpecificEntropy) => parser.TryParse<SpecificEntropy, SpecificEntropyUnit>(quantityString, formatProvider, SpecificEntropy.From, out quantity),
@@ -902,6 +943,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(SpecificWeight) => parser.TryParse<SpecificWeight, SpecificWeightUnit>(quantityString, formatProvider, SpecificWeight.From, out quantity),
                 Type _ when quantityType == typeof(Speed) => parser.TryParse<Speed, SpeedUnit>(quantityString, formatProvider, Speed.From, out quantity),
                 Type _ when quantityType == typeof(StandardVolumeFlow) => parser.TryParse<StandardVolumeFlow, StandardVolumeFlowUnit>(quantityString, formatProvider, StandardVolumeFlow.From, out quantity),
+                Type _ when quantityType == typeof(Strain) => parser.TryParse<Strain, StrainUnit>(quantityString, formatProvider, Strain.From, out quantity),
                 Type _ when quantityType == typeof(Temperature) => parser.TryParse<Temperature, TemperatureUnit>(quantityString, formatProvider, Temperature.From, out quantity),
                 Type _ when quantityType == typeof(TemperatureChangeRate) => parser.TryParse<TemperatureChangeRate, TemperatureChangeRateUnit>(quantityString, formatProvider, TemperatureChangeRate.From, out quantity),
                 Type _ when quantityType == typeof(TemperatureDelta) => parser.TryParse<TemperatureDelta, TemperatureDeltaUnit>(quantityString, formatProvider, TemperatureDelta.From, out quantity),
@@ -934,11 +976,14 @@ namespace UnitsNet
             yield return typeof(Area);
             yield return typeof(AreaDensity);
             yield return typeof(AreaMomentOfInertia);
+            yield return typeof(AxialStiffness);
+            yield return typeof(BendingStiffness);
             yield return typeof(BitRate);
             yield return typeof(BrakeSpecificFuelConsumption);
             yield return typeof(Capacitance);
             yield return typeof(CoefficientOfThermalExpansion);
             yield return typeof(Compressibility);
+            yield return typeof(Curvature);
             yield return typeof(Density);
             yield return typeof(Duration);
             yield return typeof(DynamicViscosity);
@@ -996,6 +1041,7 @@ namespace UnitsNet
             yield return typeof(MolarEntropy);
             yield return typeof(Molarity);
             yield return typeof(MolarMass);
+            yield return typeof(Moment);
             yield return typeof(Permeability);
             yield return typeof(Permittivity);
             yield return typeof(PorousMediumPermeability);
@@ -1016,6 +1062,7 @@ namespace UnitsNet
             yield return typeof(RotationalStiffness);
             yield return typeof(RotationalStiffnessPerLength);
             yield return typeof(Scalar);
+            yield return typeof(SectionModulus);
             yield return typeof(SolidAngle);
             yield return typeof(SpecificEnergy);
             yield return typeof(SpecificEntropy);
@@ -1024,6 +1071,7 @@ namespace UnitsNet
             yield return typeof(SpecificWeight);
             yield return typeof(Speed);
             yield return typeof(StandardVolumeFlow);
+            yield return typeof(Strain);
             yield return typeof(Temperature);
             yield return typeof(TemperatureChangeRate);
             yield return typeof(TemperatureDelta);
