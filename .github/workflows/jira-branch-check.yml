@@ -1,11 +1,11 @@
 name: Check Jira key in branch exists and is valid
 
-# Runs on every push to non develop or master branch
+# Runs on every push to non develop or main branch
 on: 
  push:
    branches:
     - '**'
-    - '!master'
+    - '!main'
  workflow_dispatch:
       
 jobs:

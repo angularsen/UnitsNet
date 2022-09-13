@@ -7,7 +7,7 @@ on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
     branches:
-      - master
+      - main
     
 jobs:
   # This workflow contains a single job called "check-jira"
