@@ -24,7 +24,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AxialStiffnessTests : AxialStiffnessTestsBase
     {
-        protected override bool SupportsSIUnitSystem => throw new NotImplementedException();
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;

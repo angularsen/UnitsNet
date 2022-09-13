@@ -23,7 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class StrainTests : StrainTestsBase
     {
-        protected override bool SupportsSIUnitSystem => throw new NotImplementedException();
+        protected override bool SupportsSIUnitSystem => false;
 
         protected override double MicroStrainInOneRatio => 1e6;
 

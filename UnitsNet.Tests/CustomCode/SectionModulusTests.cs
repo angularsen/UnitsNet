@@ -23,7 +23,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SectionModulusTests : SectionModulusTestsBase
     {
-        protected override bool SupportsSIUnitSystem => throw new NotImplementedException();
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double CubicCentimetersInOneCubicMeter => 1E6;
 

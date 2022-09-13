@@ -65,7 +65,7 @@ namespace UnitsNet
                     new UnitInfo<CurvatureUnit>(CurvatureUnit.PerCentimeter, "PerCentimeters", BaseUnits.Undefined),
                     new UnitInfo<CurvatureUnit>(CurvatureUnit.PerFoot, "PerFeet", BaseUnits.Undefined),
                     new UnitInfo<CurvatureUnit>(CurvatureUnit.PerInch, "PerInches", BaseUnits.Undefined),
-                    new UnitInfo<CurvatureUnit>(CurvatureUnit.PerMeter, "PerMeters", BaseUnits.Undefined),
+                    new UnitInfo<CurvatureUnit>(CurvatureUnit.PerMeter, "PerMeters", new BaseUnits(length: LengthUnit.Meter)),
                     new UnitInfo<CurvatureUnit>(CurvatureUnit.PerMillimeter, "PerMillimeters", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions, QuantityType.Curvature);

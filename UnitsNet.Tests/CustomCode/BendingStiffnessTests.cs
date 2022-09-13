@@ -24,7 +24,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class BendingStiffnessTests : BendingStiffnessTestsBase
     {
-        protected override bool SupportsSIUnitSystem => throw new NotImplementedException();
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double KilonewtonSquareMetersInOneNewtonSquareMeter => 1e-3;
 

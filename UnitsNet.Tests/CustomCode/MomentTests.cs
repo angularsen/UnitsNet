@@ -24,7 +24,7 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class MomentTests : MomentTestsBase
     {
-        protected override bool SupportsSIUnitSystem => throw new NotImplementedException();
+        protected override bool SupportsSIUnitSystem => true;
 
         protected override double KilogramForceCentimetersInOneNewtonMeter => 10.1971621;
 

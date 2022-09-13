@@ -64,7 +64,7 @@ namespace UnitsNet
                 {
                     new UnitInfo<BendingStiffnessUnit>(BendingStiffnessUnit.KilonewtonSquareMeter, "KilonewtonSquareMeters", BaseUnits.Undefined),
                     new UnitInfo<BendingStiffnessUnit>(BendingStiffnessUnit.KilonewtonSquareMillimeter, "KilonewtonSquareMillimeters", BaseUnits.Undefined),
-                    new UnitInfo<BendingStiffnessUnit>(BendingStiffnessUnit.NewtonSquareMeter, "NewtonSquareMeters", BaseUnits.Undefined),
+                    new UnitInfo<BendingStiffnessUnit>(BendingStiffnessUnit.NewtonSquareMeter, "NewtonSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                     new UnitInfo<BendingStiffnessUnit>(BendingStiffnessUnit.NewtonSquareMillimeter, "NewtonSquareMillimeters", BaseUnits.Undefined),
                     new UnitInfo<BendingStiffnessUnit>(BendingStiffnessUnit.PoundForceSquareFoot, "PoundsForceSquareFeet", BaseUnits.Undefined),
                     new UnitInfo<BendingStiffnessUnit>(BendingStiffnessUnit.PoundForceSquareInch, "PoundsForceSquareInches", BaseUnits.Undefined),

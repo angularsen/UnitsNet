@@ -76,7 +76,7 @@ namespace UnitsNet
                     new UnitInfo<MomentUnit>(MomentUnit.MegapoundForceFoot, "MegapoundForceFeet", BaseUnits.Undefined),
                     new UnitInfo<MomentUnit>(MomentUnit.MegapoundForceInch, "MegapoundForceInches", BaseUnits.Undefined),
                     new UnitInfo<MomentUnit>(MomentUnit.NewtonCentimeter, "NewtonCentimeters", BaseUnits.Undefined),
-                    new UnitInfo<MomentUnit>(MomentUnit.NewtonMeter, "NewtonMeters", BaseUnits.Undefined),
+                    new UnitInfo<MomentUnit>(MomentUnit.NewtonMeter, "NewtonMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                     new UnitInfo<MomentUnit>(MomentUnit.NewtonMillimeter, "NewtonMillimeters", BaseUnits.Undefined),
                     new UnitInfo<MomentUnit>(MomentUnit.PoundalFoot, "PoundalFeet", BaseUnits.Undefined),
                     new UnitInfo<MomentUnit>(MomentUnit.PoundForceFoot, "PoundForceFeet", BaseUnits.Undefined),
