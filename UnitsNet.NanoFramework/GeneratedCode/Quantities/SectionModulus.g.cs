@@ -178,11 +178,11 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                SectionModulusUnit.CubicCentimeter => x/1e6,
-                SectionModulusUnit.CubicFoot => x*0.0283168,
-                SectionModulusUnit.CubicInch => x*1.6387*1e-5,
-                SectionModulusUnit.CubicMeter => x,
-                SectionModulusUnit.CubicMillimeter => x/1e9,
+                SectionModulusUnit.CubicCentimeter => _value/1e6,
+                SectionModulusUnit.CubicFoot => _value*0.0283168,
+                SectionModulusUnit.CubicInch => _value*1.6387*1e-5,
+                SectionModulusUnit.CubicMeter => _value,
+                SectionModulusUnit.CubicMillimeter => _value/1e9,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -196,11 +196,11 @@ namespace UnitsNet
 
             return unit switch
             {
-                SectionModulusUnit.CubicCentimeter => x*1e6,
-                SectionModulusUnit.CubicFoot => x/0.0283168,
-                SectionModulusUnit.CubicInch => x/(1.6387*1e-5),
-                SectionModulusUnit.CubicMeter => x,
-                SectionModulusUnit.CubicMillimeter => x*1e9,
+                SectionModulusUnit.CubicCentimeter => baseUnitValue*1e6,
+                SectionModulusUnit.CubicFoot => baseUnitValue/0.0283168,
+                SectionModulusUnit.CubicInch => baseUnitValue/(1.6387*1e-5),
+                SectionModulusUnit.CubicMeter => baseUnitValue,
+                SectionModulusUnit.CubicMillimeter => baseUnitValue*1e9,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

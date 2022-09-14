@@ -167,10 +167,10 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                StrainUnit.MicroStrain => x*1e-6,
-                StrainUnit.MilliStrain => x*1e-3,
-                StrainUnit.Percent => x/1e2,
-                StrainUnit.Ratio => x,
+                StrainUnit.MicroStrain => _value*1e-6,
+                StrainUnit.MilliStrain => _value*1e-3,
+                StrainUnit.Percent => _value/1e2,
+                StrainUnit.Ratio => _value,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -184,10 +184,10 @@ namespace UnitsNet
 
             return unit switch
             {
-                StrainUnit.MicroStrain => x*1e6,
-                StrainUnit.MilliStrain => x*1e3,
-                StrainUnit.Percent => x*1e2,
-                StrainUnit.Ratio => x,
+                StrainUnit.MicroStrain => baseUnitValue*1e6,
+                StrainUnit.MilliStrain => baseUnitValue*1e3,
+                StrainUnit.Percent => baseUnitValue*1e2,
+                StrainUnit.Ratio => baseUnitValue,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

@@ -572,11 +572,11 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case SectionModulusUnit.CubicCentimeter: return x/1e6;
-                case SectionModulusUnit.CubicFoot: return x*0.0283168;
-                case SectionModulusUnit.CubicInch: return x*1.6387*1e-5;
-                case SectionModulusUnit.CubicMeter: return x;
-                case SectionModulusUnit.CubicMillimeter: return x/1e9;
+                case SectionModulusUnit.CubicCentimeter: return _value/1e6;
+                case SectionModulusUnit.CubicFoot: return _value*0.0283168;
+                case SectionModulusUnit.CubicInch: return _value*1.6387*1e-5;
+                case SectionModulusUnit.CubicMeter: return _value;
+                case SectionModulusUnit.CubicMillimeter: return _value/1e9;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -591,11 +591,11 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case SectionModulusUnit.CubicCentimeter: return x*1e6;
-                case SectionModulusUnit.CubicFoot: return x/0.0283168;
-                case SectionModulusUnit.CubicInch: return x/(1.6387*1e-5);
-                case SectionModulusUnit.CubicMeter: return x;
-                case SectionModulusUnit.CubicMillimeter: return x*1e9;
+                case SectionModulusUnit.CubicCentimeter: return baseUnitValue*1e6;
+                case SectionModulusUnit.CubicFoot: return baseUnitValue/0.0283168;
+                case SectionModulusUnit.CubicInch: return baseUnitValue/(1.6387*1e-5);
+                case SectionModulusUnit.CubicMeter: return baseUnitValue;
+                case SectionModulusUnit.CubicMillimeter: return baseUnitValue*1e9;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

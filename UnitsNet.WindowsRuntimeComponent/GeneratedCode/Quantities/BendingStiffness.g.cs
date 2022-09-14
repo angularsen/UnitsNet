@@ -589,12 +589,12 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case BendingStiffnessUnit.KilonewtonSquareMeter: return (x) * 1e3d;
-                case BendingStiffnessUnit.KilonewtonSquareMillimeter: return (x*1e-3*1e-3) * 1e3d;
-                case BendingStiffnessUnit.NewtonSquareMeter: return x;
-                case BendingStiffnessUnit.NewtonSquareMillimeter: return x*1e-3*1e-3;
-                case BendingStiffnessUnit.PoundForceSquareFoot: return x*4.4482216152605095551842641431421*0.3048*0.3048;
-                case BendingStiffnessUnit.PoundForceSquareInch: return x*4.4482216152605095551842641431421*2.54e-2*2.54e-2;
+                case BendingStiffnessUnit.KilonewtonSquareMeter: return (_value) * 1e3d;
+                case BendingStiffnessUnit.KilonewtonSquareMillimeter: return (_value*1e-3*1e-3) * 1e3d;
+                case BendingStiffnessUnit.NewtonSquareMeter: return _value;
+                case BendingStiffnessUnit.NewtonSquareMillimeter: return _value*1e-3*1e-3;
+                case BendingStiffnessUnit.PoundForceSquareFoot: return _value*4.4482216152605095551842641431421*0.3048*0.3048;
+                case BendingStiffnessUnit.PoundForceSquareInch: return _value*4.4482216152605095551842641431421*2.54e-2*2.54e-2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -609,12 +609,12 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case BendingStiffnessUnit.KilonewtonSquareMeter: return (x) / 1e3d;
-                case BendingStiffnessUnit.KilonewtonSquareMillimeter: return (x*1e3*1e3) / 1e3d;
-                case BendingStiffnessUnit.NewtonSquareMeter: return x;
-                case BendingStiffnessUnit.NewtonSquareMillimeter: return x*1e3*1e3;
-                case BendingStiffnessUnit.PoundForceSquareFoot: return x/(4.4482216152605095551842641431421*0.3048*0.3048);
-                case BendingStiffnessUnit.PoundForceSquareInch: return x/(4.4482216152605095551842641431421*2.54e-2*2.54e-2);
+                case BendingStiffnessUnit.KilonewtonSquareMeter: return (baseUnitValue) / 1e3d;
+                case BendingStiffnessUnit.KilonewtonSquareMillimeter: return (baseUnitValue*1e3*1e3) / 1e3d;
+                case BendingStiffnessUnit.NewtonSquareMeter: return baseUnitValue;
+                case BendingStiffnessUnit.NewtonSquareMillimeter: return baseUnitValue*1e3*1e3;
+                case BendingStiffnessUnit.PoundForceSquareFoot: return baseUnitValue/(4.4482216152605095551842641431421*0.3048*0.3048);
+                case BendingStiffnessUnit.PoundForceSquareInch: return baseUnitValue/(4.4482216152605095551842641431421*2.54e-2*2.54e-2);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

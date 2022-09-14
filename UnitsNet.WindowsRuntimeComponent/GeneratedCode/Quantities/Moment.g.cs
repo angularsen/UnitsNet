@@ -861,28 +861,28 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case MomentUnit.KilogramForceCentimeter: return x*0.0980665019960652;
-                case MomentUnit.KilogramForceMeter: return x*9.80665019960652;
-                case MomentUnit.KilogramForceMillimeter: return x*0.00980665019960652;
-                case MomentUnit.KilonewtonCentimeter: return (x*0.01) * 1e3d;
-                case MomentUnit.KilonewtonMeter: return (x) * 1e3d;
-                case MomentUnit.KilonewtonMillimeter: return (x*0.001) * 1e3d;
-                case MomentUnit.KilopoundForceFoot: return (x*1.3558179483314) * 1e3d;
-                case MomentUnit.KilopoundForceInch: return (x*1.129848290276167e-1) * 1e3d;
-                case MomentUnit.MeganewtonCentimeter: return (x*0.01) * 1e6d;
-                case MomentUnit.MeganewtonMeter: return (x) * 1e6d;
-                case MomentUnit.MeganewtonMillimeter: return (x*0.001) * 1e6d;
-                case MomentUnit.MegapoundForceFoot: return (x*1.3558179483314) * 1e6d;
-                case MomentUnit.MegapoundForceInch: return (x*1.129848290276167e-1) * 1e6d;
-                case MomentUnit.NewtonCentimeter: return x*0.01;
-                case MomentUnit.NewtonMeter: return x;
-                case MomentUnit.NewtonMillimeter: return x*0.001;
-                case MomentUnit.PoundalFoot: return x*4.21401100938048e-2;
-                case MomentUnit.PoundForceFoot: return x*1.3558179483314;
-                case MomentUnit.PoundForceInch: return x*1.129848290276167e-1;
-                case MomentUnit.TonneForceCentimeter: return x*98.0665019960652;
-                case MomentUnit.TonneForceMeter: return x*9806.65019960653;
-                case MomentUnit.TonneForceMillimeter: return x*9.80665019960652;
+                case MomentUnit.KilogramForceCentimeter: return _value*0.0980665019960652;
+                case MomentUnit.KilogramForceMeter: return _value*9.80665019960652;
+                case MomentUnit.KilogramForceMillimeter: return _value*0.00980665019960652;
+                case MomentUnit.KilonewtonCentimeter: return (_value*0.01) * 1e3d;
+                case MomentUnit.KilonewtonMeter: return (_value) * 1e3d;
+                case MomentUnit.KilonewtonMillimeter: return (_value*0.001) * 1e3d;
+                case MomentUnit.KilopoundForceFoot: return (_value*1.3558179483314) * 1e3d;
+                case MomentUnit.KilopoundForceInch: return (_value*1.129848290276167e-1) * 1e3d;
+                case MomentUnit.MeganewtonCentimeter: return (_value*0.01) * 1e6d;
+                case MomentUnit.MeganewtonMeter: return (_value) * 1e6d;
+                case MomentUnit.MeganewtonMillimeter: return (_value*0.001) * 1e6d;
+                case MomentUnit.MegapoundForceFoot: return (_value*1.3558179483314) * 1e6d;
+                case MomentUnit.MegapoundForceInch: return (_value*1.129848290276167e-1) * 1e6d;
+                case MomentUnit.NewtonCentimeter: return _value*0.01;
+                case MomentUnit.NewtonMeter: return _value;
+                case MomentUnit.NewtonMillimeter: return _value*0.001;
+                case MomentUnit.PoundalFoot: return _value*4.21401100938048e-2;
+                case MomentUnit.PoundForceFoot: return _value*1.3558179483314;
+                case MomentUnit.PoundForceInch: return _value*1.129848290276167e-1;
+                case MomentUnit.TonneForceCentimeter: return _value*98.0665019960652;
+                case MomentUnit.TonneForceMeter: return _value*9806.65019960653;
+                case MomentUnit.TonneForceMillimeter: return _value*9.80665019960652;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -897,28 +897,28 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case MomentUnit.KilogramForceCentimeter: return x*10.1971619222242;
-                case MomentUnit.KilogramForceMeter: return x*0.101971619222242;
-                case MomentUnit.KilogramForceMillimeter: return x*101.971619222242;
-                case MomentUnit.KilonewtonCentimeter: return (x*100) / 1e3d;
-                case MomentUnit.KilonewtonMeter: return (x) / 1e3d;
-                case MomentUnit.KilonewtonMillimeter: return (x*1000) / 1e3d;
-                case MomentUnit.KilopoundForceFoot: return (x/1.3558179483314) / 1e3d;
-                case MomentUnit.KilopoundForceInch: return (x/1.129848290276167e-1) / 1e3d;
-                case MomentUnit.MeganewtonCentimeter: return (x*100) / 1e6d;
-                case MomentUnit.MeganewtonMeter: return (x) / 1e6d;
-                case MomentUnit.MeganewtonMillimeter: return (x*1000) / 1e6d;
-                case MomentUnit.MegapoundForceFoot: return (x/1.3558179483314) / 1e6d;
-                case MomentUnit.MegapoundForceInch: return (x/1.129848290276167e-1) / 1e6d;
-                case MomentUnit.NewtonCentimeter: return x*100;
-                case MomentUnit.NewtonMeter: return x;
-                case MomentUnit.NewtonMillimeter: return x*1000;
-                case MomentUnit.PoundalFoot: return x/4.21401100938048e-2;
-                case MomentUnit.PoundForceFoot: return x/1.3558179483314;
-                case MomentUnit.PoundForceInch: return x/1.129848290276167e-1;
-                case MomentUnit.TonneForceCentimeter: return x*0.0101971619222242;
-                case MomentUnit.TonneForceMeter: return x*0.000101971619222242;
-                case MomentUnit.TonneForceMillimeter: return x*0.101971619222242;
+                case MomentUnit.KilogramForceCentimeter: return baseUnitValue*10.1971619222242;
+                case MomentUnit.KilogramForceMeter: return baseUnitValue*0.101971619222242;
+                case MomentUnit.KilogramForceMillimeter: return baseUnitValue*101.971619222242;
+                case MomentUnit.KilonewtonCentimeter: return (baseUnitValue*100) / 1e3d;
+                case MomentUnit.KilonewtonMeter: return (baseUnitValue) / 1e3d;
+                case MomentUnit.KilonewtonMillimeter: return (baseUnitValue*1000) / 1e3d;
+                case MomentUnit.KilopoundForceFoot: return (baseUnitValue/1.3558179483314) / 1e3d;
+                case MomentUnit.KilopoundForceInch: return (baseUnitValue/1.129848290276167e-1) / 1e3d;
+                case MomentUnit.MeganewtonCentimeter: return (baseUnitValue*100) / 1e6d;
+                case MomentUnit.MeganewtonMeter: return (baseUnitValue) / 1e6d;
+                case MomentUnit.MeganewtonMillimeter: return (baseUnitValue*1000) / 1e6d;
+                case MomentUnit.MegapoundForceFoot: return (baseUnitValue/1.3558179483314) / 1e6d;
+                case MomentUnit.MegapoundForceInch: return (baseUnitValue/1.129848290276167e-1) / 1e6d;
+                case MomentUnit.NewtonCentimeter: return baseUnitValue*100;
+                case MomentUnit.NewtonMeter: return baseUnitValue;
+                case MomentUnit.NewtonMillimeter: return baseUnitValue*1000;
+                case MomentUnit.PoundalFoot: return baseUnitValue/4.21401100938048e-2;
+                case MomentUnit.PoundForceFoot: return baseUnitValue/1.3558179483314;
+                case MomentUnit.PoundForceInch: return baseUnitValue/1.129848290276167e-1;
+                case MomentUnit.TonneForceCentimeter: return baseUnitValue*0.0101971619222242;
+                case MomentUnit.TonneForceMeter: return baseUnitValue*0.000101971619222242;
+                case MomentUnit.TonneForceMillimeter: return baseUnitValue*0.101971619222242;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

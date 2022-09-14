@@ -189,12 +189,12 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                BendingStiffnessUnit.KilonewtonSquareMeter => (x) * 1e3d,
-                BendingStiffnessUnit.KilonewtonSquareMillimeter => (x*1e-3*1e-3) * 1e3d,
-                BendingStiffnessUnit.NewtonSquareMeter => x,
-                BendingStiffnessUnit.NewtonSquareMillimeter => x*1e-3*1e-3,
-                BendingStiffnessUnit.PoundForceSquareFoot => x*4.4482216152605095551842641431421*0.3048*0.3048,
-                BendingStiffnessUnit.PoundForceSquareInch => x*4.4482216152605095551842641431421*2.54e-2*2.54e-2,
+                BendingStiffnessUnit.KilonewtonSquareMeter => (_value) * 1e3d,
+                BendingStiffnessUnit.KilonewtonSquareMillimeter => (_value*1e-3*1e-3) * 1e3d,
+                BendingStiffnessUnit.NewtonSquareMeter => _value,
+                BendingStiffnessUnit.NewtonSquareMillimeter => _value*1e-3*1e-3,
+                BendingStiffnessUnit.PoundForceSquareFoot => _value*4.4482216152605095551842641431421*0.3048*0.3048,
+                BendingStiffnessUnit.PoundForceSquareInch => _value*4.4482216152605095551842641431421*2.54e-2*2.54e-2,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -208,12 +208,12 @@ namespace UnitsNet
 
             return unit switch
             {
-                BendingStiffnessUnit.KilonewtonSquareMeter => (x) / 1e3d,
-                BendingStiffnessUnit.KilonewtonSquareMillimeter => (x*1e3*1e3) / 1e3d,
-                BendingStiffnessUnit.NewtonSquareMeter => x,
-                BendingStiffnessUnit.NewtonSquareMillimeter => x*1e3*1e3,
-                BendingStiffnessUnit.PoundForceSquareFoot => x/(4.4482216152605095551842641431421*0.3048*0.3048),
-                BendingStiffnessUnit.PoundForceSquareInch => x/(4.4482216152605095551842641431421*2.54e-2*2.54e-2),
+                BendingStiffnessUnit.KilonewtonSquareMeter => (baseUnitValue) / 1e3d,
+                BendingStiffnessUnit.KilonewtonSquareMillimeter => (baseUnitValue*1e3*1e3) / 1e3d,
+                BendingStiffnessUnit.NewtonSquareMeter => baseUnitValue,
+                BendingStiffnessUnit.NewtonSquareMillimeter => baseUnitValue*1e3*1e3,
+                BendingStiffnessUnit.PoundForceSquareFoot => baseUnitValue/(4.4482216152605095551842641431421*0.3048*0.3048),
+                BendingStiffnessUnit.PoundForceSquareInch => baseUnitValue/(4.4482216152605095551842641431421*2.54e-2*2.54e-2),
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

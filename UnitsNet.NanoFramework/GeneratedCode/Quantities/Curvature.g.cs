@@ -178,11 +178,11 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                CurvatureUnit.PerCentimeter => x*1e2,
-                CurvatureUnit.PerFoot => x/0.3048,
-                CurvatureUnit.PerInch => x/2.54e-2,
-                CurvatureUnit.PerMeter => x,
-                CurvatureUnit.PerMillimeter => x*1e3,
+                CurvatureUnit.PerCentimeter => _value*1e2,
+                CurvatureUnit.PerFoot => _value/0.3048,
+                CurvatureUnit.PerInch => _value/2.54e-2,
+                CurvatureUnit.PerMeter => _value,
+                CurvatureUnit.PerMillimeter => _value*1e3,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -196,11 +196,11 @@ namespace UnitsNet
 
             return unit switch
             {
-                CurvatureUnit.PerCentimeter => x/1e2,
-                CurvatureUnit.PerFoot => x*0.3048,
-                CurvatureUnit.PerInch => x*2.54e-2,
-                CurvatureUnit.PerMeter => x,
-                CurvatureUnit.PerMillimeter => x/1e3,
+                CurvatureUnit.PerCentimeter => baseUnitValue/1e2,
+                CurvatureUnit.PerFoot => baseUnitValue*0.3048,
+                CurvatureUnit.PerInch => baseUnitValue*2.54e-2,
+                CurvatureUnit.PerMeter => baseUnitValue,
+                CurvatureUnit.PerMillimeter => baseUnitValue/1e3,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }

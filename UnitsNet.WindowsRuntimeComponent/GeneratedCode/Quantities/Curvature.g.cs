@@ -572,11 +572,11 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case CurvatureUnit.PerCentimeter: return x*1e2;
-                case CurvatureUnit.PerFoot: return x/0.3048;
-                case CurvatureUnit.PerInch: return x/2.54e-2;
-                case CurvatureUnit.PerMeter: return x;
-                case CurvatureUnit.PerMillimeter: return x*1e3;
+                case CurvatureUnit.PerCentimeter: return _value*1e2;
+                case CurvatureUnit.PerFoot: return _value/0.3048;
+                case CurvatureUnit.PerInch: return _value/2.54e-2;
+                case CurvatureUnit.PerMeter: return _value;
+                case CurvatureUnit.PerMillimeter: return _value*1e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -591,11 +591,11 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case CurvatureUnit.PerCentimeter: return x/1e2;
-                case CurvatureUnit.PerFoot: return x*0.3048;
-                case CurvatureUnit.PerInch: return x*2.54e-2;
-                case CurvatureUnit.PerMeter: return x;
-                case CurvatureUnit.PerMillimeter: return x/1e3;
+                case CurvatureUnit.PerCentimeter: return baseUnitValue/1e2;
+                case CurvatureUnit.PerFoot: return baseUnitValue*0.3048;
+                case CurvatureUnit.PerInch: return baseUnitValue*2.54e-2;
+                case CurvatureUnit.PerMeter: return baseUnitValue;
+                case CurvatureUnit.PerMillimeter: return baseUnitValue/1e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

@@ -742,21 +742,21 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case AxialStiffnessUnit.Decanewton: return (x) * 1e1d;
-                case AxialStiffnessUnit.Dyn: return x/1e5;
-                case AxialStiffnessUnit.KilogramForce: return x*9.80665002864;
-                case AxialStiffnessUnit.Kilonewton: return (x) * 1e3d;
-                case AxialStiffnessUnit.KiloPond: return x*9.80665002864;
-                case AxialStiffnessUnit.KilopoundForce: return x*4448.2216152605095551842641431421;
-                case AxialStiffnessUnit.Meganewton: return (x) * 1e6d;
-                case AxialStiffnessUnit.Micronewton: return (x) * 1e-6d;
-                case AxialStiffnessUnit.Millinewton: return (x) * 1e-3d;
-                case AxialStiffnessUnit.Newton: return x;
-                case AxialStiffnessUnit.OunceForce: return x*2.780138509537812e-1;
-                case AxialStiffnessUnit.Poundal: return x*0.13825502798973041652092282466083;
-                case AxialStiffnessUnit.PoundForce: return x*4.4482216152605095551842641431421;
-                case AxialStiffnessUnit.ShortTonForce: return x*8.896443230521e3;
-                case AxialStiffnessUnit.TonneForce: return x*9.80665002864e3;
+                case AxialStiffnessUnit.Decanewton: return (_value) * 1e1d;
+                case AxialStiffnessUnit.Dyn: return _value/1e5;
+                case AxialStiffnessUnit.KilogramForce: return _value*9.80665002864;
+                case AxialStiffnessUnit.Kilonewton: return (_value) * 1e3d;
+                case AxialStiffnessUnit.KiloPond: return _value*9.80665002864;
+                case AxialStiffnessUnit.KilopoundForce: return _value*4448.2216152605095551842641431421;
+                case AxialStiffnessUnit.Meganewton: return (_value) * 1e6d;
+                case AxialStiffnessUnit.Micronewton: return (_value) * 1e-6d;
+                case AxialStiffnessUnit.Millinewton: return (_value) * 1e-3d;
+                case AxialStiffnessUnit.Newton: return _value;
+                case AxialStiffnessUnit.OunceForce: return _value*2.780138509537812e-1;
+                case AxialStiffnessUnit.Poundal: return _value*0.13825502798973041652092282466083;
+                case AxialStiffnessUnit.PoundForce: return _value*4.4482216152605095551842641431421;
+                case AxialStiffnessUnit.ShortTonForce: return _value*8.896443230521e3;
+                case AxialStiffnessUnit.TonneForce: return _value*9.80665002864e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -771,21 +771,21 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case AxialStiffnessUnit.Decanewton: return (x) / 1e1d;
-                case AxialStiffnessUnit.Dyn: return x*1e5;
-                case AxialStiffnessUnit.KilogramForce: return x/9.80665002864;
-                case AxialStiffnessUnit.Kilonewton: return (x) / 1e3d;
-                case AxialStiffnessUnit.KiloPond: return x/9.80665002864;
-                case AxialStiffnessUnit.KilopoundForce: return x/4448.2216152605095551842641431421;
-                case AxialStiffnessUnit.Meganewton: return (x) / 1e6d;
-                case AxialStiffnessUnit.Micronewton: return (x) / 1e-6d;
-                case AxialStiffnessUnit.Millinewton: return (x) / 1e-3d;
-                case AxialStiffnessUnit.Newton: return x;
-                case AxialStiffnessUnit.OunceForce: return x/2.780138509537812e-1;
-                case AxialStiffnessUnit.Poundal: return x/0.13825502798973041652092282466083;
-                case AxialStiffnessUnit.PoundForce: return x/4.4482216152605095551842641431421;
-                case AxialStiffnessUnit.ShortTonForce: return x/8.896443230521e3;
-                case AxialStiffnessUnit.TonneForce: return x/9.80665002864e3;
+                case AxialStiffnessUnit.Decanewton: return (baseUnitValue) / 1e1d;
+                case AxialStiffnessUnit.Dyn: return baseUnitValue*1e5;
+                case AxialStiffnessUnit.KilogramForce: return baseUnitValue/9.80665002864;
+                case AxialStiffnessUnit.Kilonewton: return (baseUnitValue) / 1e3d;
+                case AxialStiffnessUnit.KiloPond: return baseUnitValue/9.80665002864;
+                case AxialStiffnessUnit.KilopoundForce: return baseUnitValue/4448.2216152605095551842641431421;
+                case AxialStiffnessUnit.Meganewton: return (baseUnitValue) / 1e6d;
+                case AxialStiffnessUnit.Micronewton: return (baseUnitValue) / 1e-6d;
+                case AxialStiffnessUnit.Millinewton: return (baseUnitValue) / 1e-3d;
+                case AxialStiffnessUnit.Newton: return baseUnitValue;
+                case AxialStiffnessUnit.OunceForce: return baseUnitValue/2.780138509537812e-1;
+                case AxialStiffnessUnit.Poundal: return baseUnitValue/0.13825502798973041652092282466083;
+                case AxialStiffnessUnit.PoundForce: return baseUnitValue/4.4482216152605095551842641431421;
+                case AxialStiffnessUnit.ShortTonForce: return baseUnitValue/8.896443230521e3;
+                case AxialStiffnessUnit.TonneForce: return baseUnitValue/9.80665002864e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

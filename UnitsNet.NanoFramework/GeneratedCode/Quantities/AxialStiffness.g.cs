@@ -288,21 +288,21 @@ namespace UnitsNet
         {
             return Unit switch
             {
-                AxialStiffnessUnit.Decanewton => (x) * 1e1d,
-                AxialStiffnessUnit.Dyn => x/1e5,
-                AxialStiffnessUnit.KilogramForce => x*9.80665002864,
-                AxialStiffnessUnit.Kilonewton => (x) * 1e3d,
-                AxialStiffnessUnit.KiloPond => x*9.80665002864,
-                AxialStiffnessUnit.KilopoundForce => x*4448.2216152605095551842641431421,
-                AxialStiffnessUnit.Meganewton => (x) * 1e6d,
-                AxialStiffnessUnit.Micronewton => (x) * 1e-6d,
-                AxialStiffnessUnit.Millinewton => (x) * 1e-3d,
-                AxialStiffnessUnit.Newton => x,
-                AxialStiffnessUnit.OunceForce => x*2.780138509537812e-1,
-                AxialStiffnessUnit.Poundal => x*0.13825502798973041652092282466083,
-                AxialStiffnessUnit.PoundForce => x*4.4482216152605095551842641431421,
-                AxialStiffnessUnit.ShortTonForce => x*8.896443230521e3,
-                AxialStiffnessUnit.TonneForce => x*9.80665002864e3,
+                AxialStiffnessUnit.Decanewton => (_value) * 1e1d,
+                AxialStiffnessUnit.Dyn => _value/1e5,
+                AxialStiffnessUnit.KilogramForce => _value*9.80665002864,
+                AxialStiffnessUnit.Kilonewton => (_value) * 1e3d,
+                AxialStiffnessUnit.KiloPond => _value*9.80665002864,
+                AxialStiffnessUnit.KilopoundForce => _value*4448.2216152605095551842641431421,
+                AxialStiffnessUnit.Meganewton => (_value) * 1e6d,
+                AxialStiffnessUnit.Micronewton => (_value) * 1e-6d,
+                AxialStiffnessUnit.Millinewton => (_value) * 1e-3d,
+                AxialStiffnessUnit.Newton => _value,
+                AxialStiffnessUnit.OunceForce => _value*2.780138509537812e-1,
+                AxialStiffnessUnit.Poundal => _value*0.13825502798973041652092282466083,
+                AxialStiffnessUnit.PoundForce => _value*4.4482216152605095551842641431421,
+                AxialStiffnessUnit.ShortTonForce => _value*8.896443230521e3,
+                AxialStiffnessUnit.TonneForce => _value*9.80665002864e3,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
             };
         }
@@ -316,21 +316,21 @@ namespace UnitsNet
 
             return unit switch
             {
-                AxialStiffnessUnit.Decanewton => (x) / 1e1d,
-                AxialStiffnessUnit.Dyn => x*1e5,
-                AxialStiffnessUnit.KilogramForce => x/9.80665002864,
-                AxialStiffnessUnit.Kilonewton => (x) / 1e3d,
-                AxialStiffnessUnit.KiloPond => x/9.80665002864,
-                AxialStiffnessUnit.KilopoundForce => x/4448.2216152605095551842641431421,
-                AxialStiffnessUnit.Meganewton => (x) / 1e6d,
-                AxialStiffnessUnit.Micronewton => (x) / 1e-6d,
-                AxialStiffnessUnit.Millinewton => (x) / 1e-3d,
-                AxialStiffnessUnit.Newton => x,
-                AxialStiffnessUnit.OunceForce => x/2.780138509537812e-1,
-                AxialStiffnessUnit.Poundal => x/0.13825502798973041652092282466083,
-                AxialStiffnessUnit.PoundForce => x/4.4482216152605095551842641431421,
-                AxialStiffnessUnit.ShortTonForce => x/8.896443230521e3,
-                AxialStiffnessUnit.TonneForce => x/9.80665002864e3,
+                AxialStiffnessUnit.Decanewton => (baseUnitValue) / 1e1d,
+                AxialStiffnessUnit.Dyn => baseUnitValue*1e5,
+                AxialStiffnessUnit.KilogramForce => baseUnitValue/9.80665002864,
+                AxialStiffnessUnit.Kilonewton => (baseUnitValue) / 1e3d,
+                AxialStiffnessUnit.KiloPond => baseUnitValue/9.80665002864,
+                AxialStiffnessUnit.KilopoundForce => baseUnitValue/4448.2216152605095551842641431421,
+                AxialStiffnessUnit.Meganewton => (baseUnitValue) / 1e6d,
+                AxialStiffnessUnit.Micronewton => (baseUnitValue) / 1e-6d,
+                AxialStiffnessUnit.Millinewton => (baseUnitValue) / 1e-3d,
+                AxialStiffnessUnit.Newton => baseUnitValue,
+                AxialStiffnessUnit.OunceForce => baseUnitValue/2.780138509537812e-1,
+                AxialStiffnessUnit.Poundal => baseUnitValue/0.13825502798973041652092282466083,
+                AxialStiffnessUnit.PoundForce => baseUnitValue/4.4482216152605095551842641431421,
+                AxialStiffnessUnit.ShortTonForce => baseUnitValue/8.896443230521e3,
+                AxialStiffnessUnit.TonneForce => baseUnitValue/9.80665002864e3,
                 _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
             };
         }
