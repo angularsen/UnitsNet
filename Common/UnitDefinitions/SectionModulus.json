@@ -9,8 +9,8 @@
     {
       "SingularName": "CubicMeter",
       "PluralName": "CubicMeters",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "BaseUnits": {
         "L": "Meter"
       },
@@ -24,8 +24,8 @@
     {
       "SingularName": "CubicCentimeter",
       "PluralName": "CubicCentimeters",
-      "FromUnitToBaseFunc": "x/1e6",
-      "FromBaseToUnitFunc": "x*1e6",
+      "FromUnitToBaseFunc": "{x}/1e6",
+      "FromBaseToUnitFunc": "{x}*1e6",
       "Localization": [
         {
           "Culture": "en-US",
@@ -36,8 +36,8 @@
     {
       "SingularName": "CubicMillimeter",
       "PluralName": "CubicMillimeters",
-      "FromUnitToBaseFunc": "x/1e9",
-      "FromBaseToUnitFunc": "x*1e9",
+      "FromUnitToBaseFunc": "{x}/1e9",
+      "FromBaseToUnitFunc": "{x}*1e9",
       "Localization": [
         {
           "Culture": "en-US",
@@ -48,8 +48,8 @@
     {
       "SingularName": "CubicFoot",
       "PluralName": "CubicFeet",
-      "FromUnitToBaseFunc": "x*0.0283168",
-      "FromBaseToUnitFunc": "x/0.0283168",
+      "FromUnitToBaseFunc": "{x}*0.0283168",
+      "FromBaseToUnitFunc": "{x}/0.0283168",
       "Localization": [
         {
           "Culture": "en-US",
@@ -60,8 +60,8 @@
     {
       "SingularName": "CubicInch",
       "PluralName": "CubicInches",
-      "FromUnitToBaseFunc": "x*1.6387*1e-5",
-      "FromBaseToUnitFunc": "x/(1.6387*1e-5)",
+      "FromUnitToBaseFunc": "{x}*1.6387*1e-5",
+      "FromBaseToUnitFunc": "{x}/(1.6387*1e-5)",
       "Localization": [
         {
           "Culture": "en-US",

@@ -11,8 +11,8 @@
     {
       "SingularName": "NewtonSquareMeter",
       "PluralName": "NewtonSquareMeters",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -24,8 +24,8 @@
     {
       "SingularName": "NewtonSquareMillimeter",
       "PluralName": "NewtonSquareMillimeters",
-      "FromUnitToBaseFunc": "x*1e-3*1e-3",
-      "FromBaseToUnitFunc": "x*1e3*1e3",
+      "FromUnitToBaseFunc": "{x}*1e-3*1e-3",
+      "FromBaseToUnitFunc": "{x}*1e3*1e3",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -37,8 +37,8 @@
     {
       "SingularName": "PoundForceSquareFoot",
       "PluralName": "PoundsForceSquareFeet",
-      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421*0.3048*0.3048",
-      "FromBaseToUnitFunc": "x/(4.4482216152605095551842641431421*0.3048*0.3048)",
+      "FromUnitToBaseFunc": "{x}*4.4482216152605095551842641431421*0.3048*0.3048",
+      "FromBaseToUnitFunc": "{x}/(4.4482216152605095551842641431421*0.3048*0.3048)",
       "Localization": [
         {
           "Culture": "en-US",
@@ -49,8 +49,8 @@
     {
       "SingularName": "PoundForceSquareInch",
       "PluralName": "PoundsForceSquareInches",
-      "FromUnitToBaseFunc": "x*4.4482216152605095551842641431421*2.54e-2*2.54e-2",
-      "FromBaseToUnitFunc": "x/(4.4482216152605095551842641431421*2.54e-2*2.54e-2)",
+      "FromUnitToBaseFunc": "{x}*4.4482216152605095551842641431421*2.54e-2*2.54e-2",
+      "FromBaseToUnitFunc": "{x}/(4.4482216152605095551842641431421*2.54e-2*2.54e-2)",
       "Localization": [
         {
           "Culture": "en-US",

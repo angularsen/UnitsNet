@@ -9,8 +9,8 @@
     {
       "SingularName": "PerMeter",
       "PluralName": "PerMeters",
-      "FromUnitToBaseFunc": "x",
-      "FromBaseToUnitFunc": "x",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
@@ -21,8 +21,8 @@
     {
       "SingularName": "PerMillimeter",
       "PluralName": "PerMillimeters",
-      "FromUnitToBaseFunc": "x*1e3",
-      "FromBaseToUnitFunc": "x/1e3",
+      "FromUnitToBaseFunc": "{x}*1e3",
+      "FromBaseToUnitFunc": "{x}/1e3",
       "Localization": [
         {
           "Culture": "en-US",
@@ -33,8 +33,8 @@
     {
       "SingularName": "PerCentimeter",
       "PluralName": "PerCentimeters",
-      "FromUnitToBaseFunc": "x*1e2",
-      "FromBaseToUnitFunc": "x/1e2",
+      "FromUnitToBaseFunc": "{x}*1e2",
+      "FromBaseToUnitFunc": "{x}/1e2",
       "Localization": [
         {
           "Culture": "en-US",
@@ -45,8 +45,8 @@
     {
       "SingularName": "PerFoot",
       "PluralName": "PerFeet",
-      "FromUnitToBaseFunc": "x/0.3048",
-      "FromBaseToUnitFunc": "x*0.3048",
+      "FromUnitToBaseFunc": "{x}/0.3048",
+      "FromBaseToUnitFunc": "{x}*0.3048",
       "Localization": [
         {
           "Culture": "en-US",
@@ -57,8 +57,8 @@
     {
       "SingularName": "PerInch",
       "PluralName": "PerInches",
-      "FromUnitToBaseFunc": "x/2.54e-2",
-      "FromBaseToUnitFunc": "x*2.54e-2",
+      "FromUnitToBaseFunc": "{x}/2.54e-2",
+      "FromBaseToUnitFunc": "{x}*2.54e-2",
       "Localization": [
         {
           "Culture": "en-US",
