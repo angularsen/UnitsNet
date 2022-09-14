@@ -59,7 +59,7 @@ steps:
     Copy-Item $coverage_file $(System.DefaultWorkingDirectory)\results\coverage.xml
     Copy-Item $coverage_file_numberExtensions $(System.DefaultWorkingDirectory)\results\coverage_numberExtensions.xml
     Copy-Item $coverage_file_serialization $(System.DefaultWorkingDirectory)\results\coverage_serialization.xml
-    Copy-Item $coverage_file $(System.DefaultWorkingDirectory)\results\coverage_compatibility.xml
+    Copy-Item $coverage_file_compatibility $(System.DefaultWorkingDirectory)\results\coverage_compatibility.xml
     ls $(System.DefaultWorkingDirectory)\results\
     codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage.xml -F unittests
     codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage_numberExtensions.xml -F numberExtensions
@@ -70,46 +70,13 @@ steps:
   displayName: Upload Code Coverage to codecovio
   failOnStderr: true
 
-- task: PowerShell@2
-  displayName: Check for existing tags
-  inputs:
-    targetType: 'inline'
-    script: |
-        $versionInfo = $(Get-Item .\Artifacts\UnitsNet\net47\UnitsNet.dll).VersionInfo
-        echo $versionInfo
-        $fullVersion = [array]${versionInfo}.FileVersion.split('.')
-        $currentTime = $(Get-Date -Format "dddd MM/dd/yyyy HH:mm")
-        $majorVersion = [string]$fullVersion[0]
-        $minorVersion = [string]$fullVersion[1]
-        $spVersion = [string]$fullVersion[2]
-        $buildNumber = [string]$fullVersion[3]
-
-        $tag = [array]@($exeName,$majorVersion,$minorVersion,$spVersion,$buildNumber)
-        $tagNumbersOnly = [array]@($majorVersion,$minorVersion,$spVersion,$buildNumber)
-
-        $dotSeparatedTag = $majorVersion + "." + $minorVersion + "." + $spVersion + "-beta"
-        $underscoreSeparatedTag = $majorVersion + "_" + $minorVersion + "_" + $spVersion + "_" + $buildNumber
-        $tagNumbersOnlyUnderscore = $majorVersion + "_" + $minorVersion + "_" + $spVersion + "_" + $buildNumber
-        $tagNumbersOnlydot = $majorVersion + "." + $minorVersion + "." + $spVersion + "." + $buildNumber
-
-        Write-Host ("##vso[task.setvariable variable=dotSeparatedTag]$dotSeparatedTag")
-        git rev-parse $dotSeparatedTag
-        if($lastExitCode -eq 0){Write-Host ("##vso[task.setvariable variable=TAG_EXISTS]true")}
-        if($lastExitCode -eq 0){
-          $tagExists = 'true'
-          echo $tagExists
-        }
-    errorActionPreference: 'continue'
-    workingDirectory: '$(System.DefaultWorkingDirectory)'
-    ignoreLASTEXITCODE: true
-
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
     packagesToPack: 'UnitsNet/*.csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'dotSeparatedTag'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
   displayName: Package NuGet
 
 - task: GitHubRelease@1
@@ -131,5 +98,5 @@ steps:
     isDraft: true
     isPreRelease: true
     addChangeLog: false
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
   displayName: 'Publishing assets to Github'
