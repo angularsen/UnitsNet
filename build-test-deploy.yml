@@ -77,7 +77,7 @@ steps:
     script: |
         $versionInfo = $(Get-Item .\Artifacts\UnitsNet\net47\UnitsNet.dll).VersionInfo
         echo $versionInfo
-        $fullVersion = [array]${versionInfo}.FileVersion.split('.')
+        $fullVersion = [array]${versionInfo}.ProductVersion.split('.')
         $currentTime = $(Get-Date -Format "dddd MM/dd/yyyy HH:mm")
         $majorVersion = [string]$fullVersion[0]
         $minorVersion = [string]$fullVersion[1]
