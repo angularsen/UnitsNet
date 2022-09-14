@@ -35,7 +35,7 @@ steps:
     MSBUILDDISABLENODEREUSE: 1
 
 - powershell: |
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.0\build --results-directory .\results --no-restore --logger trx .\Artifacts\UnitsNet.Tests\net5.0\UnitsNet.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results --no-restore --logger trx .\Artifacts\UnitsNet.Tests\net5.0\UnitsNet.Tests.dll
   displayName: dotnet test
 
 - task: PublishCodeCoverageResults@1
