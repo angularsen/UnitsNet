@@ -7,4 +7,5 @@ codecov:
     notify:
         after_n_builds: 3
 ignore:
-  - "Artifacts\UnitsNet.Tests"  # ignore folders and all its contents
+  - "UnitsNet.Tests"
+  - "Artifacts\UnitsNet.Tests"
