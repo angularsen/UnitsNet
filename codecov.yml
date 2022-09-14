@@ -6,3 +6,5 @@ coverage:
 codecov:
     notify:
         after_n_builds: 3
+ignore:
+  - "UnitsNet.Tests"  # ignore folders and all its contents
