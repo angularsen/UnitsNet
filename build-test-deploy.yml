@@ -36,6 +36,8 @@ steps:
 
 - powershell: |
     dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results --no-restore --logger trx .\Artifacts\UnitsNet.Tests\net5.0\UnitsNet.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\serialization --no-restore --logger trx .\Artifacts\UnitsNet.Serialization.JsonNet.Tests\net5.0\UnitsNet.Serialization.JsonNet.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\compatibility --no-restore --logger trx .\Artifacts\UnitsNet.Serialization.JsonNet.CompatibilityTests\net5.0\UnitsNet.Serialization.JsonNet.CompatibilityTests.dll
   displayName: dotnet test
 
 - task: PublishCodeCoverageResults@1
@@ -47,9 +49,17 @@ steps:
 - powershell: |
     $coverage_file = (Resolve-Path $(System.DefaultWorkingDirectory)/results/*/coverage.cobertura.xml).Path
     echo $coverage_file
+    $coverage_file_serialization = (Resolve-Path $(System.DefaultWorkingDirectory)/results/serialization/*/coverage.cobertura.xml).Path
+    echo $coverage_file_serialization
+    $coverage_file_compatibility = (Resolve-Path $(System.DefaultWorkingDirectory)/results/compatibility/*/coverage.cobertura.xml).Path
+    echo $coverage_file_compatibility
     Copy-Item $coverage_file $(System.DefaultWorkingDirectory)\results\coverage.xml
+    Copy-Item $coverage_file_serialization $(System.DefaultWorkingDirectory)\results\coverage_serialization.xml
+    Copy-Item $coverage_file $(System.DefaultWorkingDirectory)\results\coverage_compatibility.xml
     ls $(System.DefaultWorkingDirectory)\results\
     codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage.xml -F unittests
+    codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage_serialization.xml -F serialization
+    codecov -t $env:CODECOV_TOKEN --dir $(System.DefaultWorkingDirectory)\results --file coverage_compatibility.xml -F compatibility
   env:
     CODECOV_TOKEN: $(CODECOV_TOKEN)
   displayName: Upload Code Coverage to codecovio

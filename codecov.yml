@@ -3,3 +3,6 @@ coverage:
   precision: 0      # Default: 2
   round: down       # Default: down
   range: "80...100" # Default: 70...100
+codecov:
+    notify:
+        after_n_builds: 3
