@@ -5,7 +5,13 @@ coverage:
   range: "80...100" # Default: 70...100
 codecov:
     notify:
-        after_n_builds: 3
+        after_n_builds: 4
 ignore:
   - "UnitsNet.Tests"
+  - "UnitsNet.NumberExtensions.Tests"
+  - "UnitsNet.Serialization.JsonNet.CompatibilityTests"
+  - "UnitsNet.Serialization.JsonNet.Tests"
   - "Artifacts\UnitsNet.Tests"
+  - "Artifacts\UnitsNet.NumberExtensions.Tests"
+  - "Artifacts\UnitsNet.Serialization.JsonNet.CompatibilityTests"
+  - "Artifacts\UnitsNet.Serialization.JsonNet.Tests"
