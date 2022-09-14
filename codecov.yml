@@ -6,6 +6,15 @@ coverage:
 codecov:
     notify:
         after_n_builds: 4
+flags:
+  unittests:
+    carryforward: false
+  numberExtensions:
+    carryforward: false
+  serialization:
+    carryforward: false
+  compatibility:
+    carryforward: false
 ignore:
   - "UnitsNet.Tests"
   - "UnitsNet.NumberExtensions.Tests"
