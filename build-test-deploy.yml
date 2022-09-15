@@ -130,34 +130,3 @@ steps:
     addChangeLog: false
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
   displayName: 'Publishing assets to Github'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: 'UnitsNet/*.csproj'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'dotSeparatedTag'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
-  displayName: Package NuGet
-
-- task: GitHubRelease@1
-  inputs:
-    gitHubConnection: 'github.com_peterjgrainger'
-    repositoryName: 'arup-group/UnitsNet'
-    action: 'edit'
-    target: '$(Build.SourceVersion)'
-    tag: '$(dotSeparatedTag)'
-    title: 'OasysUnitsNet version $(dotSeparatedTag)'
-    releaseNotesSource: 'inline'
-    releaseNotesInline: |
-      Created from commit https://github.com/arup-group/UnitsNet/commit/$(Build.SourceVersion)
-    assets: |
-      $(System.DefaultWorkingDirectory)/**/*.yak
-      $(Build.ArtifactStagingDirectory)/**/*.nupkg
-      $(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg
-    assetUploadMode: 'replace'
-    isDraft: true
-    isPreRelease: true
-    addChangeLog: false
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
-  displayName: 'Publishing assets to Github'
