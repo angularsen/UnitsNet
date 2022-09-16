@@ -90,7 +90,7 @@ steps:
         $tagNumbersOnlydot = $majorVersion + "." + $minorVersion + "." + $spVersion + "." + $buildNumber
 
         Write-Host ("##vso[task.setvariable variable=dotSeparatedTag]$dotSeparatedTag")
-        git rev-parse OasysOasysUnitsNet/$dotSeparatedTag
+        git rev-parse OasysUnitsNet/$dotSeparatedTag
         if($lastExitCode -eq 0){Write-Host ("##vso[task.setvariable variable=TAG_EXISTS]true")}
         if($lastExitCode -eq 0){
           $tagExists = 'true'
@@ -115,8 +115,8 @@ steps:
     repositoryName: 'arup-group/OasysUnitsNet'
     action: 'edit'
     target: '$(Build.SourceVersion)'
-    tag: 'OasysOasysUnitsNet/$(dotSeparatedTag)'
-    title: 'OasysOasysUnitsNet version $(dotSeparatedTag)'
+    tag: 'OasysUnitsNet/$(dotSeparatedTag)'
+    title: 'OasysUnitsNet version $(dotSeparatedTag)'
     releaseNotesSource: 'inline'
     releaseNotesInline: |
       Created from commit https://github.com/arup-group/OasysUnitsNet/commit/$(Build.SourceVersion)
