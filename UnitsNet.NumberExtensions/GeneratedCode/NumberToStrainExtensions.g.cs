@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToStrain
+namespace OasysUnitsNet.NumberExtensions.NumberToStrain
 {
     /// <summary>
     /// A number to Strain Extensions
     /// </summary>
     public static class NumberToStrainExtensions
     {
-        /// <inheritdoc cref="Strain.FromMicroStrain(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Strain.FromMicroStrain(OasysUnitsNet.QuantityValue)" />
         public static Strain MicroStrain<T>(this T value) =>
             Strain.FromMicroStrain(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Strain.FromMilliStrain(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Strain.FromMilliStrain(OasysUnitsNet.QuantityValue)" />
         public static Strain MilliStrain<T>(this T value) =>
             Strain.FromMilliStrain(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Strain.FromPercent(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Strain.FromPercent(OasysUnitsNet.QuantityValue)" />
         public static Strain Percent<T>(this T value) =>
             Strain.FromPercent(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Strain.FromRatio(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Strain.FromRatio(OasysUnitsNet.QuantityValue)" />
         public static Strain Ratio<T>(this T value) =>
             Strain.FromRatio(Convert.ToDouble(value));
 

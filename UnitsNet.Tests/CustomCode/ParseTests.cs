@@ -1,12 +1,12 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace OasysUnitsNet.Tests.CustomCode
 {
     /// <remarks>
     ///     These test methods would ideally be generated for each unit class,
@@ -45,7 +45,7 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Throws(expectedExceptionType, () => Length.Parse(s, usEnglish));
         }
 
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         [Theory]
         [InlineData("5.5 m", 5.5)]
         [InlineData("500 005 m", 500005)]
@@ -76,7 +76,7 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Throws(expectedExceptionType, () => Length.Parse(s, numberFormat));
         }
 
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         [Theory]
         [InlineData("5,5 m", 5.5)]
         [InlineData("500.005.050,001 m", 500005050.001)]

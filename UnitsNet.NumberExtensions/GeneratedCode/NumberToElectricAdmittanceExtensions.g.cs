@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
+namespace OasysUnitsNet.NumberExtensions.NumberToElectricAdmittance
 {
     /// <summary>
     /// A number to ElectricAdmittance Extensions
     /// </summary>
     public static class NumberToElectricAdmittanceExtensions
     {
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(OasysUnitsNet.QuantityValue)" />
         public static ElectricAdmittance Microsiemens<T>(this T value) =>
             ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(OasysUnitsNet.QuantityValue)" />
         public static ElectricAdmittance Millisiemens<T>(this T value) =>
             ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(OasysUnitsNet.QuantityValue)" />
         public static ElectricAdmittance Nanosiemens<T>(this T value) =>
             ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(OasysUnitsNet.QuantityValue)" />
         public static ElectricAdmittance Siemens<T>(this T value) =>
             ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
 

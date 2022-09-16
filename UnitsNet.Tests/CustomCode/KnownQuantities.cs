@@ -1,4 +1,4 @@
-﻿namespace UnitsNet.Tests.CustomCode
+﻿namespace OasysUnitsNet.Tests.CustomCode
 {
     public static class KnownQuantities
     {

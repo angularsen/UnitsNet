@@ -18,12 +18,12 @@ steps:
   displayName: 'Restoring NuGet packages'
   inputs:
       command: 'restore'
-      restoreSolution: 'UnitsNet.sln'
+      restoreSolution: 'OasysUnitsNet.sln'
 
 - task: VSBuild@1
   displayName: 'Building project in $(configuration)'
   inputs:
-    solution: 'UnitsNet.sln'
+    solution: 'OasysUnitsNet.sln'
     msbuildArgs: '/p:AppxBundlePlatforms="x64" /p:AppxPackageDir="$(build.artifactStagingDirectory)\AppxPackages" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload /m /nr:false'
     platform: 'Any CPU'
     configuration: '$(configuration)'
@@ -32,10 +32,10 @@ steps:
     MSBUILDDISABLENODEREUSE: 1
 
 - powershell: |
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results --no-restore --logger trx .\Artifacts\UnitsNet.Tests\net5.0\UnitsNet.Tests.dll
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\numberExtensions --no-restore --logger trx .\Artifacts\UnitsNet.NumberExtensions.Tests\net5.0\UnitsNet.NumberExtensions.Tests.dll
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\serialization --no-restore --logger trx .\Artifacts\UnitsNet.Serialization.JsonNet.Tests\net5.0\UnitsNet.Serialization.JsonNet.Tests.dll
-    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\compatibility --no-restore --logger trx .\Artifacts\UnitsNet.Serialization.JsonNet.CompatibilityTests\net5.0\UnitsNet.Serialization.JsonNet.CompatibilityTests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results --no-restore --logger trx .\Artifacts\OasysUnitsNet.Tests\net5.0\OasysUnitsNet.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\numberExtensions --no-restore --logger trx .\Artifacts\OasysUnitsNet.NumberExtensions.Tests\net5.0\OasysUnitsNet.NumberExtensions.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\serialization --no-restore --logger trx .\Artifacts\OasysUnitsNet.Serialization.JsonNet.Tests\net5.0\OasysUnitsNet.Serialization.JsonNet.Tests.dll
+    dotnet test --collect:"XPlat Code Coverage" /TestAdapterPath:$env:UserProfile\.nuget\packages\coverlet.collector\3.1.2\build --results-directory .\results\compatibility --no-restore --logger trx .\Artifacts\OasysUnitsNet.Serialization.JsonNet.CompatibilityTests\net5.0\OasysUnitsNet.Serialization.JsonNet.CompatibilityTests.dll
   displayName: dotnet test
 
 - task: PublishCodeCoverageResults@1
@@ -72,7 +72,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-        $versionInfo = $(Get-Item .\Artifacts\UnitsNet\net47\UnitsNet.dll).VersionInfo
+        $versionInfo = $(Get-Item .\Artifacts\OasysUnitsNet\net47\OasysUnitsNet.dll).VersionInfo
         echo $versionInfo
         $fullVersion = [array]${versionInfo}.ProductVersion.split('+')[0].split('.')
         $currentTime = $(Get-Date -Format "dddd MM/dd/yyyy HH:mm")
@@ -90,7 +90,7 @@ steps:
         $tagNumbersOnlydot = $majorVersion + "." + $minorVersion + "." + $spVersion + "." + $buildNumber
 
         Write-Host ("##vso[task.setvariable variable=dotSeparatedTag]$dotSeparatedTag")
-        git rev-parse OasysUnitsNet/$dotSeparatedTag
+        git rev-parse OasysOasysUnitsNet/$dotSeparatedTag
         if($lastExitCode -eq 0){Write-Host ("##vso[task.setvariable variable=TAG_EXISTS]true")}
         if($lastExitCode -eq 0){
           $tagExists = 'true'
@@ -103,7 +103,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: 'UnitsNet/*.csproj'
+    packagesToPack: 'OasysUnitsNet/*.csproj'
     versioningScheme: 'byEnvVar'
     versionEnvVar: 'dotSeparatedTag'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
@@ -112,14 +112,14 @@ steps:
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'github.com_peterjgrainger'
-    repositoryName: 'arup-group/UnitsNet'
+    repositoryName: 'arup-group/OasysUnitsNet'
     action: 'edit'
     target: '$(Build.SourceVersion)'
-    tag: 'OasysUnitsNet/$(dotSeparatedTag)'
-    title: 'OasysUnitsNet version $(dotSeparatedTag)'
+    tag: 'OasysOasysUnitsNet/$(dotSeparatedTag)'
+    title: 'OasysOasysUnitsNet version $(dotSeparatedTag)'
     releaseNotesSource: 'inline'
     releaseNotesInline: |
-      Created from commit https://github.com/arup-group/UnitsNet/commit/$(Build.SourceVersion)
+      Created from commit https://github.com/arup-group/OasysUnitsNet/commit/$(Build.SourceVersion)
     assets: |
       $(System.DefaultWorkingDirectory)/**/*.yak
       $(Build.ArtifactStagingDirectory)/**/*.nupkg

@@ -30,13 +30,13 @@ function Update-GeneratedCode {
 function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolean] $IncludeNanoFramework = $false) {
   write-host -foreground blue "Start-Build...`n---"
 
-  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
+  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\OasysUnitsNet.msbuild.log"
 
   $appVeyorLoggerDll = "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   $appVeyorLoggerNetCoreDll = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
   $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerNetCoreDll") { "/logger:$appVeyorLoggerNetCoreDll" } else { "" }
 
-  dotnet build --configuration Release "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
+  dotnet build --configuration Release "$root\OasysUnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
   if (-not $IncludeWindowsRuntimeComponent)
@@ -46,14 +46,14 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolea
   else
   {
     write-host -foreground green "Build WindowsRuntimeComponent."
-    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.WindowsRuntimeComponent.msbuild.log"
+    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\OasysUnitsNet.WindowsRuntimeComponent.msbuild.log"
     $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
 
     # dontnet CLI does not support WindowsRuntimeComponent project type yet
     # msbuild does not auto-restore nugets for this project type
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    & "$msbuild" "$root\OasysUnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
+    & "$msbuild" "$root\OasysUnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -64,13 +64,13 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolea
   else
   {
     write-host -foreground green "Build .NET nanoFramework."
-    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.NanoFramework.msbuild.log"
+    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\OasysUnitsNet.NanoFramework.msbuild.log"
     $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
 
     # msbuild does not auto-restore nugets for this project type
-    & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
+    & "$nuget" restore "$root\OasysUnitsNet.NanoFramework\GeneratedCode\OasysUnitsNet.nanoFramework.sln"
     # now build
-    & "$msbuild" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    & "$msbuild" "$root\OasysUnitsNet.NanoFramework\GeneratedCode\OasysUnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -79,10 +79,10 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolea
 
 function Start-Tests {
   $projectPaths = @(
-    "UnitsNet.Tests\UnitsNet.Tests.csproj",
-    "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj"
+    "OasysUnitsNet.Tests\OasysUnitsNet.Tests.csproj",
+    "OasysUnitsNet.NumberExtensions.Tests\OasysUnitsNet.NumberExtensions.Tests.csproj",
+    "OasysUnitsNet.Serialization.JsonNet.Tests\OasysUnitsNet.Serialization.JsonNet.Tests.csproj",
+    "OasysUnitsNet.Serialization.JsonNet.CompatibilityTests\OasysUnitsNet.Serialization.JsonNet.CompatibilityTests.csproj"
     )
 
   # Parent dir must exist before xunit tries to write files to it
@@ -101,7 +101,7 @@ function Start-Tests {
 
     # Create coverage report for this test project
     & dotnet dotcover test `
-      --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
+      --dotCoverFilters="+:module=OasysUnitsNet*;-:module=*Tests" `
       --dotCoverOutput="$coverageReportFile" `
       --dcReportType=DetailedXML
 
@@ -117,9 +117,9 @@ function Start-Tests {
 
 function Start-PackNugets {
   $projectPaths = @(
-    "UnitsNet\UnitsNet.csproj",
-    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
-    "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
+    "OasysUnitsNet\OasysUnitsNet.csproj",
+    "OasysUnitsNet.Serialization.JsonNet\OasysUnitsNet.Serialization.JsonNet.csproj",
+    "OasysUnitsNet.NumberExtensions\OasysUnitsNet.NumberExtensions.csproj"
     )
 
   write-host -foreground blue "Pack nugets...`n---"
@@ -132,7 +132,7 @@ function Start-PackNugets {
     write-host -foreground yellow "Skipping WindowsRuntimeComponent nuget pack."
   } else {
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
-    & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+    & $nuget pack "$root\OasysUnitsNet.WindowsRuntimeComponent\OasysUnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
   }
 
   if (-not $IncludeNanoFramework) {
@@ -149,7 +149,7 @@ function Start-PackNugets {
 function Compress-ArtifactsAsZip {
   write-host -foreground blue "Zip artifacts...`n---"
 
-  $zipFileName = "UnitsNet.zip"
+  $zipFileName = "OasysUnitsNet.zip"
   $tempZipFile = "$root\$zipFileName"
   $zipFile = "$artifactsDir\$zipFileName"`
 

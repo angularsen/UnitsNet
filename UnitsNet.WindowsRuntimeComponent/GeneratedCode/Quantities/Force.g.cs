@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,18 +15,18 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.Units;
-using UnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     In physics, a force is any influence that causes an object to undergo a certain change, either concerning its movement, direction, or geometrical construction. In other words, a force can cause an object with mass to change its velocity (which includes to begin moving from a state of rest), i.e., to accelerate, or a flexible object to deform, or both. Force can also be described by intuitive concepts such as a push or a pull. A force has both magnitude and direction, making it a vector quantity. It is measured in the SI unit of newtons and represented by the symbol F.
@@ -499,9 +499,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
-        /// <exception cref="UnitsNetException">
+        /// <exception cref="OasysUnitsNetException">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref="OasysUnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Force Parse(string str)
@@ -526,9 +526,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
-        /// <exception cref="UnitsNetException">
+        /// <exception cref="OasysUnitsNetException">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref="OasysUnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
@@ -582,7 +582,7 @@ namespace UnitsNet
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         public static ForceUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
@@ -596,7 +596,7 @@ namespace UnitsNet
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static ForceUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
@@ -705,7 +705,7 @@ namespace UnitsNet
             double thisValue = (double)this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            return OasysUnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>

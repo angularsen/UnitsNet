@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
+namespace OasysUnitsNet.NumberExtensions.NumberToRotationalAcceleration
 {
     /// <summary>
     /// A number to RotationalAcceleration Extensions
     /// </summary>
     public static class NumberToRotationalAccelerationExtensions
     {
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static RotationalAcceleration DegreesPerSecondSquared<T>(this T value) =>
             RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value) =>
             RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(OasysUnitsNet.QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value) =>
             RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value) =>
             RotationalAcceleration.FromRevolutionsPerSecondSquared(Convert.ToDouble(value));
 

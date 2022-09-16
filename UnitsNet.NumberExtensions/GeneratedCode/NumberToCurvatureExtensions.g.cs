@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,36 +15,36 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToCurvature
+namespace OasysUnitsNet.NumberExtensions.NumberToCurvature
 {
     /// <summary>
     /// A number to Curvature Extensions
     /// </summary>
     public static class NumberToCurvatureExtensions
     {
-        /// <inheritdoc cref="Curvature.FromPerCentimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Curvature.FromPerCentimeters(OasysUnitsNet.QuantityValue)" />
         public static Curvature PerCentimeters<T>(this T value) =>
             Curvature.FromPerCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Curvature.FromPerFeet(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Curvature.FromPerFeet(OasysUnitsNet.QuantityValue)" />
         public static Curvature PerFeet<T>(this T value) =>
             Curvature.FromPerFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Curvature.FromPerInches(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Curvature.FromPerInches(OasysUnitsNet.QuantityValue)" />
         public static Curvature PerInches<T>(this T value) =>
             Curvature.FromPerInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Curvature.FromPerMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Curvature.FromPerMeters(OasysUnitsNet.QuantityValue)" />
         public static Curvature PerMeters<T>(this T value) =>
             Curvature.FromPerMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Curvature.FromPerMillimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Curvature.FromPerMillimeters(OasysUnitsNet.QuantityValue)" />
         public static Curvature PerMillimeters<T>(this T value) =>
             Curvature.FromPerMillimeters(Convert.ToDouble(value));
 

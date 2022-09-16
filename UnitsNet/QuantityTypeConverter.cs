@@ -1,11 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.ComponentModel;
 using System.Globalization;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     /// Is the base class for all attributes that are related to <see cref="QuantityTypeConverter{T}"/>
@@ -14,7 +14,7 @@ namespace UnitsNet
     public abstract class UnitAttributeBase : Attribute
     {
         /// <summary>
-        /// The unit enum type, such as <see cref="UnitsNet.Units.LengthUnit" />
+        /// The unit enum type, such as <see cref="OasysUnitsNet.Units.LengthUnit" />
         /// </summary>
         public Enum? UnitType { get; set; }
 
@@ -97,31 +97,31 @@ namespace UnitsNet
     ///   <para>These examples show how to use this TypeConverter.</para>
     ///
     /// <code title="Using the TypeConverter without additional attributes">
-    ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
+    ///     [TypeConverter(typeof(OasysUnitsNetTypeConverter{Length}))]
     ///     Units.Length PropertyName { get; set; }
     /// </code>
     ///
     /// <code title="Using the TypeConverter with DisplayAsUnit attribute">
-    ///     [DisplayAsUnit(UnitsNet.Units.LengthUnit.Meter)]
-    ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
+    ///     [DisplayAsUnit(OasysUnitsNet.Units.LengthUnit.Meter)]
+    ///     [TypeConverter(typeof(OasysUnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }
     /// </code>
     ///
     /// <code title="Using the TypeConverter with DisplayAsUnit attribute with formating">
-    ///     [DisplayAsUnit(UnitsNet.Units.LengthUnit.Meter, "g")]
-    ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
+    ///     [DisplayAsUnit(OasysUnitsNet.Units.LengthUnit.Meter, "g")]
+    ///     [TypeConverter(typeof(OasysUnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }
     /// </code>
     ///
     /// <code title="Using the TypeConverter with ConvertToUnit attribute">
-    ///     [ConvertToUnitAttribute(UnitsNet.Units.LengthUnit.Meter)]
-    ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
+    ///     [ConvertToUnitAttribute(OasysUnitsNet.Units.LengthUnit.Meter)]
+    ///     [TypeConverter(typeof(OasysUnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }
     /// </code>
     ///
     /// <code title="Using the TypeConverter with DefaultUnit attribute">
-    ///     [DefaultUnitAttribute(UnitsNet.Units.LengthUnit.Meter)]
-    ///     [TypeConverter(typeof(UnitsNetTypeConverter{Length}))]
+    ///     [DefaultUnitAttribute(OasysUnitsNet.Units.LengthUnit.Meter)]
+    ///     [TypeConverter(typeof(OasysUnitsNetTypeConverter{Length}))]
     ///     Units.Length Length { get; set; }
     /// </code>
     /// </example>

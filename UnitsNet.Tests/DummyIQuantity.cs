@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {
     internal class DummyIQuantity : IQuantity
     {

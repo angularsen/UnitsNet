@@ -1,13 +1,13 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
-using UnitsNet.Tests.CustomQuantities;
-using UnitsNet.Units;
+using OasysUnitsNet.Tests.CustomQuantities;
+using OasysUnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {
     [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class UnitParserTests

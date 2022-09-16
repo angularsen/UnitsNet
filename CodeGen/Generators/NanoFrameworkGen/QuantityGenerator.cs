@@ -23,9 +23,9 @@ namespace CodeGen.Generators.NanoFrameworkGen
             Writer.WL(GeneratedFileHeader);
             // Usings, properties
             Writer.WL($@"using System;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {{");
             Writer.WL($@"
     /// <inheritdoc />

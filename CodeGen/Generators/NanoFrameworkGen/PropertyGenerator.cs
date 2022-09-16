@@ -23,11 +23,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle(""CUnitsNet"")]
+[assembly: AssemblyTitle(""COasysUnitsNet"")]
 [assembly: AssemblyDescription(""Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested."")]
 [assembly: AssemblyConfiguration("""")]
 [assembly: AssemblyCompany(""Andreas Gullberg Larsen"")]
-[assembly: AssemblyProduct(""nanoFramework UnitsNet"")]
+[assembly: AssemblyProduct(""nanoFramework OasysUnitsNet"")]
 [assembly: AssemblyCopyright(""Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com)."")]
 [assembly: AssemblyTrademark("""")]
 [assembly: AssemblyCulture("""")]

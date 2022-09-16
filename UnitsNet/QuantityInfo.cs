@@ -1,14 +1,14 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     Information about the quantity, such as names, unit values and zero quantity.
@@ -85,7 +85,7 @@ namespace UnitsNet
         public string Name { get; }
 
         /// <summary>
-        ///     Quantity type, such as <see cref="UnitsNet.QuantityType.Length" /> or <see cref="UnitsNet.QuantityType.Mass" />.
+        ///     Quantity type, such as <see cref="OasysUnitsNet.QuantityType.Length" /> or <see cref="OasysUnitsNet.QuantityType.Mass" />.
         /// </summary>
         [Obsolete("QuantityType will be removed in the future. Use QuantityInfo instead.")]
         public QuantityType QuantityType { get; }
@@ -192,7 +192,7 @@ namespace UnitsNet
     public class QuantityInfo<TUnit> : QuantityInfo
         where TUnit : Enum
     {
-        /// <inheritdoc cref="QuantityInfo{TUnit}(string,UnitsNet.UnitInfo{TUnit}[],TUnit,UnitsNet.IQuantity{TUnit},UnitsNet.BaseDimensions,UnitsNet.QuantityType)" />
+        /// <inheritdoc cref="QuantityInfo{TUnit}(string,OasysUnitsNet.UnitInfo{TUnit}[],TUnit,OasysUnitsNet.IQuantity{TUnit},OasysUnitsNet.BaseDimensions,OasysUnitsNet.QuantityType)" />
         [Obsolete("QuantityType will be removed in the future. Use QuantityInfo(QuantityType, string, UnitInfo{TUnit}[], TUnit, IQuantity{TUnit}, BaseDimensions) instead.")]
         public QuantityInfo(QuantityType quantityType, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
             : this(quantityType.ToString(), unitInfos, baseUnit, zero, baseDimensions, quantityType)

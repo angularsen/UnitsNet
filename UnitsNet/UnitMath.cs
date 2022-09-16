@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     A set of extension methods for some of the most common Math operations, such as Min, Max, Sum and Average

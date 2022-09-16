@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,24 +15,24 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
+namespace OasysUnitsNet.NumberExtensions.NumberToThermalConductivity
 {
     /// <summary>
     /// A number to ThermalConductivity Extensions
     /// </summary>
     public static class NumberToThermalConductivityExtensions
     {
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(OasysUnitsNet.QuantityValue)" />
         public static ThermalConductivity BtusPerHourFootFahrenheit<T>(this T value) =>
             ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(OasysUnitsNet.QuantityValue)" />
         public static ThermalConductivity WattsPerMeterKelvin<T>(this T value) =>
             ThermalConductivity.FromWattsPerMeterKelvin(Convert.ToDouble(value));
 

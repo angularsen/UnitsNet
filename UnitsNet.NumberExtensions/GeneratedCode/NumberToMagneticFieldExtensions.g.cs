@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,40 +15,40 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToMagneticField
+namespace OasysUnitsNet.NumberExtensions.NumberToMagneticField
 {
     /// <summary>
     /// A number to MagneticField Extensions
     /// </summary>
     public static class NumberToMagneticFieldExtensions
     {
-        /// <inheritdoc cref="MagneticField.FromGausses(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromGausses(OasysUnitsNet.QuantityValue)" />
         public static MagneticField Gausses<T>(this T value) =>
             MagneticField.FromGausses(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromMicroteslas(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromMicroteslas(OasysUnitsNet.QuantityValue)" />
         public static MagneticField Microteslas<T>(this T value) =>
             MagneticField.FromMicroteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromMilligausses(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromMilligausses(OasysUnitsNet.QuantityValue)" />
         public static MagneticField Milligausses<T>(this T value) =>
             MagneticField.FromMilligausses(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromMilliteslas(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromMilliteslas(OasysUnitsNet.QuantityValue)" />
         public static MagneticField Milliteslas<T>(this T value) =>
             MagneticField.FromMilliteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromNanoteslas(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromNanoteslas(OasysUnitsNet.QuantityValue)" />
         public static MagneticField Nanoteslas<T>(this T value) =>
             MagneticField.FromNanoteslas(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="MagneticField.FromTeslas(OasysUnitsNet.QuantityValue)" />
         public static MagneticField Teslas<T>(this T value) =>
             MagneticField.FromTeslas(Convert.ToDouble(value));
 

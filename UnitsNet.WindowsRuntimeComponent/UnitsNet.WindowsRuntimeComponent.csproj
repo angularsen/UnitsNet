@@ -7,8 +7,8 @@
     <ProjectGuid>{2DA428CA-BFE1-43FA-86D2-7CB42289D596}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UnitsNet</RootNamespace>
-    <AssemblyName>UnitsNet</AssemblyName>
+    <RootNamespace>OasysUnitsNet</RootNamespace>
+    <AssemblyName>OasysUnitsNet</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
-    <OutputPath>..\Artifacts\UnitsNet.WindowsRuntimeComponent</OutputPath>
+    <OutputPath>..\Artifacts\OasysUnitsNet.WindowsRuntimeComponent</OutputPath>
     <LangVersion>7.3</LangVersion>
 
     <!-- CS0618: XXX is obsolete: 'REASON' -->
@@ -47,7 +47,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
-    <DocumentationFile>..\Artifacts\UnitsNet.WindowsRuntimeComponent\UnitsNet.XML</DocumentationFile>
+    <DocumentationFile>..\Artifacts\OasysUnitsNet.WindowsRuntimeComponent\OasysUnitsNet.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -108,7 +108,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.cs;" Exclude="**\obj\**" />
-    <None Include="UnitsNet.WindowsRuntimeComponent.nuspec" />
+    <None Include="OasysUnitsNet.WindowsRuntimeComponent.nuspec" />
     <None Include="Scripts\**\*.*" />
     <None Include="..\Common\**\*">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>

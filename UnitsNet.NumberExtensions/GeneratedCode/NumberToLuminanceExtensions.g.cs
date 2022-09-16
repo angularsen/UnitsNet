@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,56 +15,56 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToLuminance
+namespace OasysUnitsNet.NumberExtensions.NumberToLuminance
 {
     /// <summary>
     /// A number to Luminance Extensions
     /// </summary>
     public static class NumberToLuminanceExtensions
     {
-        /// <inheritdoc cref="Luminance.FromCandelasPerSquareFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromCandelasPerSquareFoot(OasysUnitsNet.QuantityValue)" />
         public static Luminance CandelasPerSquareFoot<T>(this T value) =>
             Luminance.FromCandelasPerSquareFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromCandelasPerSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromCandelasPerSquareInch(OasysUnitsNet.QuantityValue)" />
         public static Luminance CandelasPerSquareInch<T>(this T value) =>
             Luminance.FromCandelasPerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromCandelasPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromCandelasPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Luminance CandelasPerSquareMeter<T>(this T value) =>
             Luminance.FromCandelasPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromCenticandelasPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromCenticandelasPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Luminance CenticandelasPerSquareMeter<T>(this T value) =>
             Luminance.FromCenticandelasPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromDecicandelasPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromDecicandelasPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Luminance DecicandelasPerSquareMeter<T>(this T value) =>
             Luminance.FromDecicandelasPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromKilocandelasPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromKilocandelasPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Luminance KilocandelasPerSquareMeter<T>(this T value) =>
             Luminance.FromKilocandelasPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromMicrocandelasPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromMicrocandelasPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Luminance MicrocandelasPerSquareMeter<T>(this T value) =>
             Luminance.FromMicrocandelasPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromMillicandelasPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromMillicandelasPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Luminance MillicandelasPerSquareMeter<T>(this T value) =>
             Luminance.FromMillicandelasPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromNanocandelasPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromNanocandelasPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Luminance NanocandelasPerSquareMeter<T>(this T value) =>
             Luminance.FromNanocandelasPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Luminance.FromNits(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromNits(OasysUnitsNet.QuantityValue)" />
         public static Luminance Nits<T>(this T value) =>
             Luminance.FromNits(Convert.ToDouble(value));
 

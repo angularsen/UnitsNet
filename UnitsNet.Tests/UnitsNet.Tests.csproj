@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0;net48</TargetFrameworks>
-    <RootNamespace>UnitsNet.Tests</RootNamespace>
+    <RootNamespace>OasysUnitsNet.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <!-- Strong name signing -->
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>../OasysUnitsNet.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
-    <AssemblyName>UnitsNet.Tests</AssemblyName>
+    <AssemblyName>OasysUnitsNet.Tests</AssemblyName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
+    <ProjectReference Include="..\OasysUnitsNet\OasysUnitsNet.csproj" />
   </ItemGroup>
 
 </Project>

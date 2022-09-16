@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToReactivePower
+namespace OasysUnitsNet.NumberExtensions.NumberToReactivePower
 {
     /// <summary>
     /// A number to ReactivePower Extensions
     /// </summary>
     public static class NumberToReactivePowerExtensions
     {
-        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(OasysUnitsNet.QuantityValue)" />
         public static ReactivePower GigavoltamperesReactive<T>(this T value) =>
             ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(OasysUnitsNet.QuantityValue)" />
         public static ReactivePower KilovoltamperesReactive<T>(this T value) =>
             ReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(OasysUnitsNet.QuantityValue)" />
         public static ReactivePower MegavoltamperesReactive<T>(this T value) =>
             ReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(OasysUnitsNet.QuantityValue)" />
         public static ReactivePower VoltamperesReactive<T>(this T value) =>
             ReactivePower.FromVoltamperesReactive(Convert.ToDouble(value));
 

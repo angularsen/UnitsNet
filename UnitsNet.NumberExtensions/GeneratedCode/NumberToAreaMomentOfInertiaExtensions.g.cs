@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,40 +15,40 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
+namespace OasysUnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
 {
     /// <summary>
     /// A number to AreaMomentOfInertia Extensions
     /// </summary>
     public static class NumberToAreaMomentOfInertiaExtensions
     {
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(OasysUnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia CentimetersToTheFourth<T>(this T value) =>
             AreaMomentOfInertia.FromCentimetersToTheFourth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(OasysUnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia DecimetersToTheFourth<T>(this T value) =>
             AreaMomentOfInertia.FromDecimetersToTheFourth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(OasysUnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia FeetToTheFourth<T>(this T value) =>
             AreaMomentOfInertia.FromFeetToTheFourth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(OasysUnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia InchesToTheFourth<T>(this T value) =>
             AreaMomentOfInertia.FromInchesToTheFourth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(OasysUnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia MetersToTheFourth<T>(this T value) =>
             AreaMomentOfInertia.FromMetersToTheFourth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(OasysUnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia MillimetersToTheFourth<T>(this T value) =>
             AreaMomentOfInertia.FromMillimetersToTheFourth(Convert.ToDouble(value));
 

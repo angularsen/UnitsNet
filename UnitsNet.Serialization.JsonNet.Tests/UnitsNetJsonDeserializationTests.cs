@@ -1,13 +1,13 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using Newtonsoft.Json;
-using UnitsNet.Serialization.JsonNet.Tests.Infrastructure;
+using OasysUnitsNet.Serialization.JsonNet.Tests.Infrastructure;
 using Xunit;
 
-namespace UnitsNet.Serialization.JsonNet.Tests
+namespace OasysUnitsNet.Serialization.JsonNet.Tests
 {
-    public sealed class UnitsNetJsonDeserializationTests : UnitsNetJsonBaseTest
+    public sealed class OasysUnitsNetJsonDeserializationTests : OasysUnitsNetJsonBaseTest
     {
         [Fact]
         public void Information_CanDeserializeVeryLargeValues()

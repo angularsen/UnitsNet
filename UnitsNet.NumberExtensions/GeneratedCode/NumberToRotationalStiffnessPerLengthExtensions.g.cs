@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,36 +15,36 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToRotationalStiffnessPerLength
+namespace OasysUnitsNet.NumberExtensions.NumberToRotationalStiffnessPerLength
 {
     /// <summary>
     /// A number to RotationalStiffnessPerLength Extensions
     /// </summary>
     public static class NumberToRotationalStiffnessPerLengthExtensions
     {
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(OasysUnitsNet.QuantityValue)" />
         public static RotationalStiffnessPerLength KilonewtonMetersPerRadianPerMeter<T>(this T value) =>
             RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(OasysUnitsNet.QuantityValue)" />
         public static RotationalStiffnessPerLength KilopoundForceFeetPerDegreesPerFeet<T>(this T value) =>
             RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(OasysUnitsNet.QuantityValue)" />
         public static RotationalStiffnessPerLength MeganewtonMetersPerRadianPerMeter<T>(this T value) =>
             RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(OasysUnitsNet.QuantityValue)" />
         public static RotationalStiffnessPerLength NewtonMetersPerRadianPerMeter<T>(this T value) =>
             RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(OasysUnitsNet.QuantityValue)" />
         public static RotationalStiffnessPerLength PoundForceFeetPerDegreesPerFeet<T>(this T value) =>
             RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(Convert.ToDouble(value));
 

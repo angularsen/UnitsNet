@@ -1,7 +1,7 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 
 namespace WpfMVVMSample.Settings
 {

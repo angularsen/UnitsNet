@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToAmplitudeRatio
+namespace OasysUnitsNet.NumberExtensions.NumberToAmplitudeRatio
 {
     /// <summary>
     /// A number to AmplitudeRatio Extensions
     /// </summary>
     public static class NumberToAmplitudeRatioExtensions
     {
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(OasysUnitsNet.QuantityValue)" />
         public static AmplitudeRatio DecibelMicrovolts<T>(this T value) =>
             AmplitudeRatio.FromDecibelMicrovolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(OasysUnitsNet.QuantityValue)" />
         public static AmplitudeRatio DecibelMillivolts<T>(this T value) =>
             AmplitudeRatio.FromDecibelMillivolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(OasysUnitsNet.QuantityValue)" />
         public static AmplitudeRatio DecibelsUnloaded<T>(this T value) =>
             AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(OasysUnitsNet.QuantityValue)" />
         public static AmplitudeRatio DecibelVolts<T>(this T value) =>
             AmplitudeRatio.FromDecibelVolts(Convert.ToDouble(value));
 

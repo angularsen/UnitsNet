@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,36 +15,36 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
+namespace OasysUnitsNet.NumberExtensions.NumberToPorousMediumPermeability
 {
     /// <summary>
     /// A number to PorousMediumPermeability Extensions
     /// </summary>
     public static class NumberToPorousMediumPermeabilityExtensions
     {
-        /// <inheritdoc cref="PorousMediumPermeability.FromDarcys(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PorousMediumPermeability.FromDarcys(OasysUnitsNet.QuantityValue)" />
         public static PorousMediumPermeability Darcys<T>(this T value) =>
             PorousMediumPermeability.FromDarcys(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PorousMediumPermeability.FromMicrodarcys(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PorousMediumPermeability.FromMicrodarcys(OasysUnitsNet.QuantityValue)" />
         public static PorousMediumPermeability Microdarcys<T>(this T value) =>
             PorousMediumPermeability.FromMicrodarcys(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PorousMediumPermeability.FromMillidarcys(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PorousMediumPermeability.FromMillidarcys(OasysUnitsNet.QuantityValue)" />
         public static PorousMediumPermeability Millidarcys<T>(this T value) =>
             PorousMediumPermeability.FromMillidarcys(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PorousMediumPermeability.FromSquareCentimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PorousMediumPermeability.FromSquareCentimeters(OasysUnitsNet.QuantityValue)" />
         public static PorousMediumPermeability SquareCentimeters<T>(this T value) =>
             PorousMediumPermeability.FromSquareCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PorousMediumPermeability.FromSquareMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PorousMediumPermeability.FromSquareMeters(OasysUnitsNet.QuantityValue)" />
         public static PorousMediumPermeability SquareMeters<T>(this T value) =>
             PorousMediumPermeability.FromSquareMeters(Convert.ToDouble(value));
 

@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace CodeGen.Generators
         /// <summary>
         ///     Parses JSON files that define quantities and their units.
         /// </summary>
-        /// <param name="rootDir">Repository root directory, where you cloned the repo to such as "c:\dev\UnitsNet".</param>
+        /// <param name="rootDir">Repository root directory, where you cloned the repo to such as "c:\dev\OasysUnitsNet".</param>
         /// <returns>The parsed quantities and their units.</returns>
         public static Quantity[] ParseQuantities(string rootDir)
         {
@@ -45,7 +45,7 @@ namespace CodeGen.Generators
             try
             {
                 var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFileName), JsonSerializerSettings)
-                               ?? throw new UnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFileName}");
+                               ?? throw new OasysUnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFileName}");
 
                 AddPrefixUnits(quantity);
                 FixConversionFunctionsForDecimalValueTypes(quantity);

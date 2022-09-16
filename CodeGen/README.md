@@ -7,13 +7,13 @@ It is faster, easier to debug and more familiar to C# developers.
 
 Compile and run:
 ```cmd
-cd /dev/UnitsNet/CodeGen
+cd /dev/OasysUnitsNet/CodeGen
 dotnet run
 ```
 
 Alternatively, build the .exe and run it:
 ```cmd
-cd /dev/UnitsNet/CodeGen
+cd /dev/OasysUnitsNet/CodeGen
 dotnet publish -c Release -r win10-x64
 cd ../Artifacts/CodeGen/netcoreapp2.1/win10-x64/
 CodeGen.exe
@@ -26,7 +26,7 @@ To get parameter suggestions, follow the [instructions](https://github.com/dotne
 
 PowerShell:
 ```powershell
-cd /dev/UnitsNet/CodeGen
+cd /dev/OasysUnitsNet/CodeGen
 dotnet publish -c Release -r win10-x64 CodeGen
 cd ../Artifacts/CodeGen/netcoreapp2.1/win10-x64/
 CodeGen.exe --ver
@@ -41,4 +41,4 @@ This should work with any .exe that is compiled with Dragonfruit's app model.
 
 By default, the code generator will as well generate automatically 1 project per Quantity.
 
-You can load all the projects at once using the automatically generated solution ```UnitsNet.nanoFramework.sln```
+You can load all the projects at once using the automatically generated solution ```OasysUnitsNet.nanoFramework.sln```

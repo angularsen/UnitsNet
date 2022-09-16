@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {
     /// <summary>
     ///     Tests that cover generated code in quantity structs, such as <see cref="Length" /> and <see cref="Mass" />.

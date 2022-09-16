@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     /// Compiled lambda expressions that can be invoked with generic run-time parameters. This is used for performance as

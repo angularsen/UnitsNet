@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,18 +15,18 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.Units;
-using UnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     Torque, moment or moment of force (see the terminology below), is the tendency of a force to rotate an object about an axis,[1] fulcrum, or pivot. Just as a force is a push or a pull, a torque can be thought of as a twist to an object. Mathematically, torque is defined as the cross product of the lever-arm distance and force, which tends to produce rotation. Loosely speaking, torque is a measure of the turning force on an object such as a bolt or a flywheel. For example, pushing or pulling the handle of a wrench connected to a nut or bolt produces a torque (turning force) that loosens or tightens the nut or bolt.
@@ -659,9 +659,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
-        /// <exception cref="UnitsNetException">
+        /// <exception cref="OasysUnitsNetException">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref="OasysUnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Torque Parse(string str)
@@ -686,9 +686,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
-        /// <exception cref="UnitsNetException">
+        /// <exception cref="OasysUnitsNetException">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref="OasysUnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
@@ -742,7 +742,7 @@ namespace UnitsNet
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         public static TorqueUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
@@ -756,7 +756,7 @@ namespace UnitsNet
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static TorqueUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
@@ -865,7 +865,7 @@ namespace UnitsNet
             double thisValue = (double)this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            return OasysUnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>

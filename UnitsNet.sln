@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet", "UnitsNet\UnitsNet.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OasysUnitsNet", "OasysUnitsNet\OasysUnitsNet.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj", "{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OasysUnitsNet.Serialization.JsonNet", "OasysUnitsNet.Serialization.JsonNet\OasysUnitsNet.Serialization.JsonNet.csproj", "{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Tests", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj", "{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OasysUnitsNet.Serialization.JsonNet.Tests", "OasysUnitsNet.Serialization.JsonNet.Tests\OasysUnitsNet.Serialization.JsonNet.Tests.csproj", "{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OasysUnitsNet.Tests", "OasysUnitsNet.Tests\OasysUnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.CompatibilityTests", "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj", "{21F2FFAC-BF39-487F-9ADE-37100162F955}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OasysUnitsNet.Serialization.JsonNet.CompatibilityTests", "OasysUnitsNet.Serialization.JsonNet.CompatibilityTests\OasysUnitsNet.Serialization.JsonNet.CompatibilityTests.csproj", "{21F2FFAC-BF39-487F-9ADE-37100162F955}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Benchmark", "UnitsNet.Benchmark\UnitsNet.Benchmark.csproj", "{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OasysUnitsNet.Benchmark", "OasysUnitsNet.Benchmark\OasysUnitsNet.Benchmark.csproj", "{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeGen", "CodeGen\CodeGen.csproj", "{078E3D44-4F60-46B3-9099-91A7CBF0B213}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions", "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj", "{41763DBA-0F2D-40D2-853C-2CBF719C7208}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OasysUnitsNet.NumberExtensions", "OasysUnitsNet.NumberExtensions\OasysUnitsNet.NumberExtensions.csproj", "{41763DBA-0F2D-40D2-853C-2CBF719C7208}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NumberExtensions.Tests", "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj", "{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OasysUnitsNet.NumberExtensions.Tests", "OasysUnitsNet.NumberExtensions.Tests\OasysUnitsNet.NumberExtensions.Tests.csproj", "{B4996AF5-9A8B-481A-9018-EC7F5B1605FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Files", "_Files", "{B92B01BE-243E-4CCB-B5E5-AF469ADB1F54}"
 ProjectSection(SolutionItems) = preProject
@@ -37,11 +37,11 @@ ProjectSection(SolutionItems) = preProject
 	init.bat = init.bat
 	LICENSE = LICENSE
 	nuget.config = nuget.config
-	publish-unitsnet.bat = publish-unitsnet.bat
+	publish-OasysUnitsNet.bat = publish-OasysUnitsNet.bat
 	README.md = README.md
 	test.bat = test.bat
-	UnitsNet.sln.DotSettings = UnitsNet.sln.DotSettings
-	UnitsNet.snk = UnitsNet.snk
+	OasysUnitsNet.sln.DotSettings = OasysUnitsNet.sln.DotSettings
+	OasysUnitsNet.snk = OasysUnitsNet.snk
 EndProjectSection
 EndProject
 Global

@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,120 +15,120 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToBitRate
+namespace OasysUnitsNet.NumberExtensions.NumberToBitRate
 {
     /// <summary>
     /// A number to BitRate Extensions
     /// </summary>
     public static class NumberToBitRateExtensions
     {
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromBitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate BitsPerSecond<T>(this T value) =>
             BitRate.FromBitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromBytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate BytesPerSecond<T>(this T value) =>
             BitRate.FromBytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate ExabitsPerSecond<T>(this T value) =>
             BitRate.FromExabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate ExabytesPerSecond<T>(this T value) =>
             BitRate.FromExabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate ExbibitsPerSecond<T>(this T value) =>
             BitRate.FromExbibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate ExbibytesPerSecond<T>(this T value) =>
             BitRate.FromExbibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate GibibitsPerSecond<T>(this T value) =>
             BitRate.FromGibibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate GibibytesPerSecond<T>(this T value) =>
             BitRate.FromGibibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate GigabitsPerSecond<T>(this T value) =>
             BitRate.FromGigabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate GigabytesPerSecond<T>(this T value) =>
             BitRate.FromGigabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate KibibitsPerSecond<T>(this T value) =>
             BitRate.FromKibibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate KibibytesPerSecond<T>(this T value) =>
             BitRate.FromKibibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate KilobitsPerSecond<T>(this T value) =>
             BitRate.FromKilobitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate KilobytesPerSecond<T>(this T value) =>
             BitRate.FromKilobytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate MebibitsPerSecond<T>(this T value) =>
             BitRate.FromMebibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate MebibytesPerSecond<T>(this T value) =>
             BitRate.FromMebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate MegabitsPerSecond<T>(this T value) =>
             BitRate.FromMegabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate MegabytesPerSecond<T>(this T value) =>
             BitRate.FromMegabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate PebibitsPerSecond<T>(this T value) =>
             BitRate.FromPebibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate PebibytesPerSecond<T>(this T value) =>
             BitRate.FromPebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate PetabitsPerSecond<T>(this T value) =>
             BitRate.FromPetabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate PetabytesPerSecond<T>(this T value) =>
             BitRate.FromPetabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate TebibitsPerSecond<T>(this T value) =>
             BitRate.FromTebibitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate TebibytesPerSecond<T>(this T value) =>
             BitRate.FromTebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate TerabitsPerSecond<T>(this T value) =>
             BitRate.FromTerabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static BitRate TerabytesPerSecond<T>(this T value) =>
             BitRate.FromTerabytesPerSecond(Convert.ToDouble(value));
 

@@ -1,29 +1,29 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UnitsNet.Serialization.JsonNet.Internal;
+using OasysUnitsNet.Serialization.JsonNet.Internal;
 
-namespace UnitsNet.Serialization.JsonNet
+namespace OasysUnitsNet.Serialization.JsonNet
 {
     /// <inheritdoc />
     /// <summary>
     ///     A JSON.net <see cref="T:Newtonsoft.Json.JsonConverter" /> for converting to/from JSON and Units.NET
-    ///     units like <see cref="T:UnitsNet.Length" /> and <see cref="T:UnitsNet.Mass" />.
+    ///     units like <see cref="T:OasysUnitsNet.Length" /> and <see cref="T:OasysUnitsNet.Mass" />.
     /// </summary>
     /// <remarks>
     ///     Relies on reflection and the type names and namespaces as of 3.x.x of Units.NET.
     ///     Assumptions by reflection code in the converter:
-    ///     * Unit classes are of type UnitsNet.Length etc.
-    ///     * Unit enums are of type UnitsNet.Units.LengthUnit etc.
+    ///     * Unit classes are of type OasysUnitsNet.Length etc.
+    ///     * Unit enums are of type OasysUnitsNet.Units.LengthUnit etc.
     ///     * Unit class has a BaseUnit property returning the base unit, such as LengthUnit.Meter
     /// </remarks>
-    [Obsolete("Replaced by UnitsNetIQuantityJsonConverter and UnitsNetIComparableJsonConverter (if you need support for IComparable)")]
-    public class UnitsNetJsonConverter : JsonConverter
+    [Obsolete("Replaced by OasysUnitsNetIQuantityJsonConverter and OasysUnitsNetIComparableJsonConverter (if you need support for IComparable)")]
+    public class OasysUnitsNetJsonConverter : JsonConverter
     {
         /// <summary>
         ///     Reads the JSON representation of the object.
@@ -35,7 +35,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>
         ///     The object value.
         /// </returns>
-        /// <exception cref="UnitsNetException">Unable to parse value and unit from JSON.</exception>
+        /// <exception cref="OasysUnitsNetException">Unable to parse value and unit from JSON.</exception>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
@@ -74,14 +74,14 @@ namespace UnitsNet.Serialization.JsonNet
             string unitEnumTypeName = vu.Unit.Split('.')[0];
             string unitEnumValue = vu.Unit.Split('.')[1];
 
-            // "UnitsNet.Units.MassUnit,UnitsNet"
-            string unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
+            // "OasysUnitsNet.Units.MassUnit,OasysUnitsNet"
+            string unitEnumTypeAssemblyQualifiedName = "OasysUnitsNet.Units." + unitEnumTypeName + ",OasysUnitsNet";
 
             // -- see http://stackoverflow.com/a/6465096/1256096 for details
             Type unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
             if (unitEnumType == null)
             {
-                var ex = new UnitsNetException("Unable to find enum type.");
+                var ex = new OasysUnitsNetException("Unable to find enum type.");
                 ex.Data["type"] = unitEnumTypeAssemblyQualifiedName;
                 throw ex;
             }
@@ -133,7 +133,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The value to write.</param>
         /// <param name="serializer">The calling serializer.</param>
-        /// <exception cref="UnitsNetException">Can't serialize 'null' value.</exception>
+        /// <exception cref="OasysUnitsNetException">Can't serialize 'null' value.</exception>
         public override void WriteJson(JsonWriter writer, object obj, JsonSerializer serializer)
         {
             // ValueUnit should be written as usual (but read in a custom way)
@@ -191,7 +191,7 @@ namespace UnitsNet.Serialization.JsonNet
         ///     range than double.
         ///
         ///     Json: Support decimal precision #503
-        ///     https://github.com/angularsen/UnitsNet/issues/503
+        ///     https://github.com/angularsen/OasysUnitsNet/issues/503
         /// </remarks>
         private class ValueUnit
         {
@@ -212,7 +212,7 @@ namespace UnitsNet.Serialization.JsonNet
                 return CanConvertNullable(objectType);
 
             return objectType.Namespace != null &&
-                (objectType.Namespace.Equals(nameof(UnitsNet)) ||
+                (objectType.Namespace.Equals(nameof(OasysUnitsNet)) ||
                 objectType == typeof(ValueUnit) ||
                 // All unit types implement IComparable
                 objectType == typeof(IComparable));
@@ -232,12 +232,12 @@ namespace UnitsNet.Serialization.JsonNet
         ///     Determines whether this instance can convert the specified nullable object type.
         /// </summary>
         /// <param name="objectType">Type of the object.</param>
-        /// <returns><c>true</c> if the object type is a nullable container for a UnitsNet type; otherwise <c>false</c>.</returns>
+        /// <returns><c>true</c> if the object type is a nullable container for a OasysUnitsNet type; otherwise <c>false</c>.</returns>
         protected virtual bool CanConvertNullable(Type objectType)
         {
-            // Need to look at the FullName in order to determine if the nullable type contains a UnitsNet type.
-            // For example: FullName = 'System.Nullable`1[[UnitsNet.Frequency, UnitsNet, Version=3.19.0.0, Culture=neutral, PublicKeyToken=null]]'
-            return objectType.FullName != null && objectType.FullName.Contains(nameof(UnitsNet) + ".");
+            // Need to look at the FullName in order to determine if the nullable type contains a OasysUnitsNet type.
+            // For example: FullName = 'System.Nullable`1[[OasysUnitsNet.Frequency, OasysUnitsNet, Version=3.19.0.0, Culture=neutral, PublicKeyToken=null]]'
+            return objectType.FullName != null && objectType.FullName.Contains(nameof(OasysUnitsNet) + ".");
         }
 
         #endregion

@@ -1,15 +1,15 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
@@ -18,14 +18,14 @@ namespace UnitsNet
     public static class UnitConverter
     {
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
-        private static readonly Assembly UnitsNetAssembly = typeof(Length).Wrap().Assembly;
+        private static readonly Assembly OasysUnitsNetAssembly = typeof(Length).Wrap().Assembly;
 
-        private static readonly Type[] QuantityTypes = UnitsNetAssembly.GetTypes()
+        private static readonly Type[] QuantityTypes = OasysUnitsNetAssembly.GetTypes()
             .Where(typeof(IQuantity).Wrap().IsAssignableFrom)
             .Where(x => x.Wrap().IsClass || x.Wrap().IsValueType) // Future-proofing: we are discussing changing quantities from struct to class
             .ToArray();
 
-        private static readonly Type[] UnitTypes = UnitsNetAssembly.GetTypes()
+        private static readonly Type[] UnitTypes = OasysUnitsNetAssembly.GetTypes()
             .Where(x => x.Namespace == UnitTypeNamespace && x.Wrap().IsEnum && x.Name.EndsWith("Unit"))
             .ToArray();
 
@@ -242,8 +242,8 @@ namespace UnitsNet
             var fromUnitValue = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
             var toUnitValue = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
 
-            var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
+            var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: OasysUnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
+            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = OasysUnitsNet.Length.From(5, LengthUnit.Meter)
 
             var asMethod = GetAsMethod(quantityType, unitType); // ex: quantity.As(LengthUnit outputUnit)
             var asResult = asMethod.Invoke(fromResult, new object[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
@@ -330,8 +330,8 @@ namespace UnitsNet
             if (!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out var toUnitValue)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
-            var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
+            var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: OasysUnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
+            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = OasysUnitsNet.Length.From(5, LengthUnit.Meter)
 
             var asMethod = GetAsMethod(quantityType, unitType); // ex: quantity.As(LengthUnit outputUnit)
             var asResult = asMethod.Invoke(fromResult, new object[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
@@ -354,8 +354,8 @@ namespace UnitsNet
 
         private static MethodInfo GetStaticFromMethod(Type quantityType, Type unitType)
         {
-            // Want to match: Length l = UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            // Do NOT match : Length? UnitsNet.Length.From(double? inputValue, LengthUnit inputUnit)
+            // Want to match: Length l = OasysUnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
+            // Do NOT match : Length? OasysUnitsNet.Length.From(double? inputValue, LengthUnit inputUnit)
             return quantityType.Wrap().GetDeclaredMethods()
                 .Single(m => m.Name == "From" &&
                              m.IsStatic &&

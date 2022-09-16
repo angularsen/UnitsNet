@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,96 +15,96 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
+namespace OasysUnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
 {
     /// <summary>
     /// A number to ElectricPotentialChangeRate Extensions
     /// </summary>
     public static class NumberToElectricPotentialChangeRateExtensions
     {
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerHours(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate KilovoltsPerHours<T>(this T value) =>
             ElectricPotentialChangeRate.FromKilovoltsPerHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMicroseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMicroseconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate KilovoltsPerMicroseconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromKilovoltsPerMicroseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMinutes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMinutes(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate KilovoltsPerMinutes<T>(this T value) =>
             ElectricPotentialChangeRate.FromKilovoltsPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerSeconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate KilovoltsPerSeconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromKilovoltsPerSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerHours(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MegavoltsPerHours<T>(this T value) =>
             ElectricPotentialChangeRate.FromMegavoltsPerHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMicroseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMicroseconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MegavoltsPerMicroseconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromMegavoltsPerMicroseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMinutes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMinutes(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MegavoltsPerMinutes<T>(this T value) =>
             ElectricPotentialChangeRate.FromMegavoltsPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerSeconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MegavoltsPerSeconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromMegavoltsPerSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerHours(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MicrovoltsPerHours<T>(this T value) =>
             ElectricPotentialChangeRate.FromMicrovoltsPerHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMicroseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMicroseconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MicrovoltsPerMicroseconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromMicrovoltsPerMicroseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMinutes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMinutes(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MicrovoltsPerMinutes<T>(this T value) =>
             ElectricPotentialChangeRate.FromMicrovoltsPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerSeconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MicrovoltsPerSeconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromMicrovoltsPerSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerHours(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MillivoltsPerHours<T>(this T value) =>
             ElectricPotentialChangeRate.FromMillivoltsPerHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMicroseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMicroseconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MillivoltsPerMicroseconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromMillivoltsPerMicroseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMinutes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMinutes(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MillivoltsPerMinutes<T>(this T value) =>
             ElectricPotentialChangeRate.FromMillivoltsPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerSeconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate MillivoltsPerSeconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromMillivoltsPerSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerHours(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate VoltsPerHours<T>(this T value) =>
             ElectricPotentialChangeRate.FromVoltsPerHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMicroseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMicroseconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate VoltsPerMicroseconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromVoltsPerMicroseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMinutes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMinutes(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate VoltsPerMinutes<T>(this T value) =>
             ElectricPotentialChangeRate.FromVoltsPerMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerSeconds(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialChangeRate VoltsPerSeconds<T>(this T value) =>
             ElectricPotentialChangeRate.FromVoltsPerSeconds(Convert.ToDouble(value));
 

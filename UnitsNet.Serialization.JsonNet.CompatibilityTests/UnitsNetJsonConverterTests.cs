@@ -1,20 +1,20 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace UnitsNet.Serialization.JsonNet.CompatibilityTests
+namespace OasysUnitsNet.Serialization.JsonNet.CompatibilityTests
 {
-    public class UnitsNetJsonConverterTests
+    public class OasysUnitsNetJsonConverterTests
     {
         private readonly JsonSerializerSettings _jsonSerializerSettings;
 
-        protected UnitsNetJsonConverterTests()
+        protected OasysUnitsNetJsonConverterTests()
         {
             _jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-            _jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
+            _jsonSerializerSettings.Converters.Add(new OasysUnitsNetJsonConverter());
         }
 
         private string SerializeObject(object obj)
@@ -27,7 +27,7 @@ namespace UnitsNet.Serialization.JsonNet.CompatibilityTests
             return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettings);
         }
 
-        public class Serialize : UnitsNetJsonConverterTests
+        public class Serialize : OasysUnitsNetJsonConverterTests
         {
             [Fact]
             public void Information_CanSerializeVeryLargeValues()
@@ -151,7 +151,7 @@ namespace UnitsNet.Serialization.JsonNet.CompatibilityTests
             }
         }
 
-        public class Deserialize : UnitsNetJsonConverterTests
+        public class Deserialize : OasysUnitsNetJsonConverterTests
         {
             [Fact]
             public void Information_CanDeserializeVeryLargeValues()
@@ -401,7 +401,7 @@ namespace UnitsNet.Serialization.JsonNet.CompatibilityTests
                     Formatting = Formatting.Indented,
                     TypeNameHandling = TypeNameHandling.Auto
                 };
-                jsonSerializerSettings.Converters.Add(new UnitsNetJsonConverter());
+                jsonSerializerSettings.Converters.Add(new OasysUnitsNetJsonConverter());
                 return jsonSerializerSettings;
             }
         }

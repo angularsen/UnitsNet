@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
@@ -10,19 +10,19 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Xunit;
 
-namespace UnitsNet.Serialization.JsonNet.Tests
+namespace OasysUnitsNet.Serialization.JsonNet.Tests
 {
-    public sealed class UnitsNetBaseJsonConverterTest
+    public sealed class OasysUnitsNetBaseJsonConverterTest
     {
         private readonly TestConverter _sut;
 
-        public UnitsNetBaseJsonConverterTest()
+        public OasysUnitsNetBaseJsonConverterTest()
         {
             _sut = new TestConverter();
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertIQuantity_works_with_double_type()
+        public void OasysUnitsNetBaseJsonConverter_ConvertIQuantity_works_with_double_type()
         {
             var result = _sut.Test_ConvertDoubleIQuantity(Length.FromMeters(10.2365));
 
@@ -31,7 +31,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertIQuantity_works_with_decimal_type()
+        public void OasysUnitsNetBaseJsonConverter_ConvertIQuantity_works_with_decimal_type()
         {
             var result = _sut.Test_ConvertDecimalIQuantity(Power.FromWatts(10.2365m));
 
@@ -40,7 +40,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertIQuantity_throws_ArgumentNullException_when_quantity_is_NULL()
+        public void OasysUnitsNetBaseJsonConverter_ConvertIQuantity_throws_ArgumentNullException_when_quantity_is_NULL()
         {
             var result = Assert.Throws<ArgumentNullException>(() => _sut.Test_ConvertDoubleIQuantity(null));
 
@@ -48,7 +48,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_works_as_expected()
+        public void OasysUnitsNetBaseJsonConverter_ConvertValueUnit_works_as_expected()
         {
             var result = _sut.Test_ConvertDecimalValueUnit("PowerUnit.Watt", 10.2365m);
 
@@ -59,7 +59,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_works_with_NULL_value()
+        public void OasysUnitsNetBaseJsonConverter_ConvertValueUnit_works_with_NULL_value()
         {
             var result = _sut.Test_ConvertValueUnit();
 
@@ -67,19 +67,19 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_unit_does_not_exist()
+        public void OasysUnitsNetBaseJsonConverter_ConvertValueUnit_throws_OasysUnitsNetException_when_unit_does_not_exist()
         {
-            var result = Assert.Throws<UnitsNetException>(() => _sut.Test_ConvertDoubleValueUnit("SomeImaginaryUnit.Watt", 10.2365D));
+            var result = Assert.Throws<OasysUnitsNetException>(() => _sut.Test_ConvertDoubleValueUnit("SomeImaginaryUnit.Watt", 10.2365D));
 
             Assert.Equal("Unable to find enum type.", result.Message);
             Assert.True(result.Data.Contains("type"));
-            Assert.Equal("UnitsNet.Units.SomeImaginaryUnit,UnitsNet", result.Data["type"]);
+            Assert.Equal("OasysUnitsNet.Units.SomeImaginaryUnit,OasysUnitsNet", result.Data["type"]);
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_unit_is_in_unexpected_format()
+        public void OasysUnitsNetBaseJsonConverter_ConvertValueUnit_throws_OasysUnitsNetException_when_unit_is_in_unexpected_format()
         {
-            var result = Assert.Throws<UnitsNetException>(() => _sut.Test_ConvertDecimalValueUnit("PowerUnit Watt", 10.2365m));
+            var result = Assert.Throws<OasysUnitsNetException>(() => _sut.Test_ConvertDecimalValueUnit("PowerUnit Watt", 10.2365m));
 
             Assert.Equal("\"PowerUnit Watt\" is not a valid unit.", result.Message);
             Assert.True(result.Data.Contains("type"));
@@ -87,7 +87,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_CreateLocalSerializer_works_as_expected()
+        public void OasysUnitsNetBaseJsonConverter_CreateLocalSerializer_works_as_expected()
         {
             //Possible improvement: Set all possible settings and test each one. But the main goal of CreateLocalSerializer is that the current serializer is left out.
             var serializer = JsonSerializer.Create(new JsonSerializerSettings()
@@ -114,7 +114,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_works_with_double_quantity()
+        public void OasysUnitsNetBaseJsonConverter_ReadValueUnit_works_with_double_quantity()
         {
             var token = new JObject {{"Unit", "LengthUnit.Meter"}, {"Value", 10.2365}};
 
@@ -126,7 +126,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_works_with_decimal_quantity()
+        public void OasysUnitsNetBaseJsonConverter_ReadValueUnit_works_with_decimal_quantity()
         {
             var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", 10.2365m}, {"ValueString", "10.2365"}, {"ValueType", "decimal"}};
 
@@ -138,7 +138,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_is_a_string()
+        public void OasysUnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_is_a_string()
         {
             var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", "10.2365"}};
 
@@ -148,7 +148,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_type_is_not_a_string()
+        public void OasysUnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_value_type_is_not_a_string()
         {
             var token = new JObject {{"Unit", "PowerUnit.Watt"}, {"Value", 10.2365}, {"ValueType", 123}};
 
@@ -159,7 +159,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ReadDoubleValueUnit_works_with_empty_token()
+        public void OasysUnitsNetBaseJsonConverter_ReadDoubleValueUnit_works_with_empty_token()
         {
             var token = new JObject();
 
@@ -171,7 +171,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [Theory]
         [InlineData(false, true)]
         [InlineData(true, false)]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_unit_or_value_is_missing(bool withUnit, bool withValue)
+        public void OasysUnitsNetBaseJsonConverter_ReadValueUnit_returns_null_when_unit_or_value_is_missing(bool withUnit, bool withValue)
         {
             var token = new JObject();
 
@@ -196,7 +196,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [InlineData("Unit", "value", "valueString", "valueType")]
         [InlineData("unit", "value", "valueString", "valueType")]
         [InlineData("unIT", "vAlUe", "vAlUeString", "vAlUeType")]
-        public void UnitsNetBaseJsonConverter_ReadValueUnit_works_case_insensitive(
+        public void OasysUnitsNetBaseJsonConverter_ReadValueUnit_works_case_insensitive(
             string unitPropertyName,
             string valuePropertyName,
             string valueStringPropertyName,
@@ -219,9 +219,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         /// <summary>
-        /// Dummy converter, used to access protected methods on abstract UnitsNetBaseJsonConverter{T}
+        /// Dummy converter, used to access protected methods on abstract OasysUnitsNetBaseJsonConverter{T}
         /// </summary>
-        private class TestConverter : UnitsNetBaseJsonConverter<string>
+        private class TestConverter : OasysUnitsNetBaseJsonConverter<string>
         {
             public override bool CanRead => false;
             public override bool CanWrite => false;

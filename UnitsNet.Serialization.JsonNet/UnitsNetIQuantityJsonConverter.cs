@@ -1,19 +1,19 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace UnitsNet.Serialization.JsonNet
+namespace OasysUnitsNet.Serialization.JsonNet
 {
     /// <inheritdoc />
     /// <summary>
-    /// JSON.net converter for IQuantity types (e.g. all units in UnitsNet)
-    /// Use this converter to serialize and deserialize UnitsNet types to and from JSON
+    /// JSON.net converter for IQuantity types (e.g. all units in OasysUnitsNet)
+    /// Use this converter to serialize and deserialize OasysUnitsNet types to and from JSON
     /// </summary>
-    public sealed class UnitsNetIQuantityJsonConverter : UnitsNetBaseJsonConverter<IQuantity>
+    public sealed class OasysUnitsNetIQuantityJsonConverter : OasysUnitsNetBaseJsonConverter<IQuantity>
     {
         /// <summary>
         /// Writes the JSON representation of the object.
@@ -48,7 +48,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>
         /// The object value.
         /// </returns>
-        /// <exception cref="UnitsNetException">Unable to parse value and unit from JSON.</exception>
+        /// <exception cref="OasysUnitsNetException">Unable to parse value and unit from JSON.</exception>
         public override IQuantity ReadJson([NotNull] JsonReader reader, Type objectType, IQuantity existingValue, bool hasExistingValue,
             [NotNull] JsonSerializer serializer)
         {

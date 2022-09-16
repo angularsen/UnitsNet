@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {
     public class CompiledLambdasTests
     {

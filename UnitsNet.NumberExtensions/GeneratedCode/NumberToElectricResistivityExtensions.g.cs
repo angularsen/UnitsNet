@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,72 +15,72 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToElectricResistivity
+namespace OasysUnitsNet.NumberExtensions.NumberToElectricResistivity
 {
     /// <summary>
     /// A number to ElectricResistivity Extensions
     /// </summary>
     public static class NumberToElectricResistivityExtensions
     {
-        /// <inheritdoc cref="ElectricResistivity.FromKiloohmsCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromKiloohmsCentimeter(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity KiloohmsCentimeter<T>(this T value) =>
             ElectricResistivity.FromKiloohmsCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromKiloohmMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromKiloohmMeters(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity KiloohmMeters<T>(this T value) =>
             ElectricResistivity.FromKiloohmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromMegaohmsCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMegaohmsCentimeter(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity MegaohmsCentimeter<T>(this T value) =>
             ElectricResistivity.FromMegaohmsCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromMegaohmMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMegaohmMeters(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity MegaohmMeters<T>(this T value) =>
             ElectricResistivity.FromMegaohmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmsCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmsCentimeter(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity MicroohmsCentimeter<T>(this T value) =>
             ElectricResistivity.FromMicroohmsCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity MicroohmMeters<T>(this T value) =>
             ElectricResistivity.FromMicroohmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmsCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmsCentimeter(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity MilliohmsCentimeter<T>(this T value) =>
             ElectricResistivity.FromMilliohmsCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity MilliohmMeters<T>(this T value) =>
             ElectricResistivity.FromMilliohmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmsCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmsCentimeter(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity NanoohmsCentimeter<T>(this T value) =>
             ElectricResistivity.FromNanoohmsCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity NanoohmMeters<T>(this T value) =>
             ElectricResistivity.FromNanoohmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmsCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromOhmsCentimeter(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity OhmsCentimeter<T>(this T value) =>
             ElectricResistivity.FromOhmsCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity OhmMeters<T>(this T value) =>
             ElectricResistivity.FromOhmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromPicoohmsCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromPicoohmsCentimeter(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity PicoohmsCentimeter<T>(this T value) =>
             ElectricResistivity.FromPicoohmsCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromPicoohmMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromPicoohmMeters(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistivity PicoohmMeters<T>(this T value) =>
             ElectricResistivity.FromPicoohmMeters(Convert.ToDouble(value));
 

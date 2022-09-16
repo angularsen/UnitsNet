@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,7 +15,7 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -24,11 +24,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CUnitsNet")]
+[assembly: AssemblyTitle("COasysUnitsNet")]
 [assembly: AssemblyDescription("Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Andreas Gullberg Larsen")]
-[assembly: AssemblyProduct("nanoFramework UnitsNet")]
+[assembly: AssemblyProduct("nanoFramework OasysUnitsNet")]
 [assembly: AssemblyCopyright("Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

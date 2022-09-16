@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
-namespace UnitsNet
+namespace OasysUnitsNet
 {
 
     internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(double value, TUnitType fromUnit)
@@ -143,7 +143,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a string given a particular regular expression.
         /// </summary>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         private TQuantity ParseWithRegex<TQuantity, TUnitType>(string valueString,
             string unitString,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a string given a particular regular expression.
         /// </summary>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         private bool TryParseWithRegex<TQuantity, TUnitType>(string valueString,
             string unitString,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,

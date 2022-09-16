@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,76 +15,76 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToAxialStiffness
+namespace OasysUnitsNet.NumberExtensions.NumberToAxialStiffness
 {
     /// <summary>
     /// A number to AxialStiffness Extensions
     /// </summary>
     public static class NumberToAxialStiffnessExtensions
     {
-        /// <inheritdoc cref="AxialStiffness.FromDecanewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromDecanewtons(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness Decanewtons<T>(this T value) =>
             AxialStiffness.FromDecanewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromDyne(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromDyne(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness Dyne<T>(this T value) =>
             AxialStiffness.FromDyne(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromKilogramsForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromKilogramsForce(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness KilogramsForce<T>(this T value) =>
             AxialStiffness.FromKilogramsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromKilonewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromKilonewtons(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness Kilonewtons<T>(this T value) =>
             AxialStiffness.FromKilonewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromKiloPonds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromKiloPonds(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness KiloPonds<T>(this T value) =>
             AxialStiffness.FromKiloPonds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromKilopoundsForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromKilopoundsForce(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness KilopoundsForce<T>(this T value) =>
             AxialStiffness.FromKilopoundsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromMeganewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromMeganewtons(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness Meganewtons<T>(this T value) =>
             AxialStiffness.FromMeganewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromMicronewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromMicronewtons(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness Micronewtons<T>(this T value) =>
             AxialStiffness.FromMicronewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromMillinewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromMillinewtons(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness Millinewtons<T>(this T value) =>
             AxialStiffness.FromMillinewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromNewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromNewtons(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness Newtons<T>(this T value) =>
             AxialStiffness.FromNewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromOunceForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromOunceForce(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness OunceForce<T>(this T value) =>
             AxialStiffness.FromOunceForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromPoundals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromPoundals(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness Poundals<T>(this T value) =>
             AxialStiffness.FromPoundals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromPoundsForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromPoundsForce(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness PoundsForce<T>(this T value) =>
             AxialStiffness.FromPoundsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromShortTonsForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromShortTonsForce(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness ShortTonsForce<T>(this T value) =>
             AxialStiffness.FromShortTonsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AxialStiffness.FromTonnesForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="AxialStiffness.FromTonnesForce(OasysUnitsNet.QuantityValue)" />
         public static AxialStiffness TonnesForce<T>(this T value) =>
             AxialStiffness.FromTonnesForce(Convert.ToDouble(value));
 

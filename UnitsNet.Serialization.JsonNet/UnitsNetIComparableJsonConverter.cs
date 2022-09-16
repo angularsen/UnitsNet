@@ -1,22 +1,22 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace UnitsNet.Serialization.JsonNet
+namespace OasysUnitsNet.Serialization.JsonNet
 {
     /// <inheritdoc />
     /// <summary>
-    /// JSON.Net converter for IComparable properties that are actually UnitsNet units.
+    /// JSON.Net converter for IComparable properties that are actually OasysUnitsNet units.
     /// Use with caution, as this might interfere with any other converters for IComparable.
-    /// Must be registered in the <see cref="JsonSerializerSettings.Converters"/> collection -after- <see cref="UnitsNetIQuantityJsonConverter"/>
-    /// Should only be used when UnitsNet types are assigned to properties of type IComparable.
+    /// Must be registered in the <see cref="JsonSerializerSettings.Converters"/> collection -after- <see cref="OasysUnitsNetIQuantityJsonConverter"/>
+    /// Should only be used when OasysUnitsNet types are assigned to properties of type IComparable.
     /// Requires TypeNameHandling on <see cref="JsonSerializerSettings"/> to be set to something other than <see cref="TypeNameHandling.None"/> so that it outputs $type when serializing.
     /// </summary>
-    public sealed class UnitsNetIComparableJsonConverter : UnitsNetBaseJsonConverter<IComparable>
+    public sealed class OasysUnitsNetIComparableJsonConverter : OasysUnitsNetBaseJsonConverter<IComparable>
     {
         /// <summary>
         /// Indicates if this JsonConverter is capable of writing JSON
@@ -25,14 +25,14 @@ namespace UnitsNet.Serialization.JsonNet
 
         /// <summary>
         /// Serialize an IComparable to JSON.
-        /// Not implemented. Instead <see cref="UnitsNetIQuantityJsonConverter.WriteJson(JsonWriter, IQuantity, JsonSerializer)"/> is always used to serialize an IComparable when it is a UnitsNet quantity.
+        /// Not implemented. Instead <see cref="OasysUnitsNetIQuantityJsonConverter.WriteJson(JsonWriter, IQuantity, JsonSerializer)"/> is always used to serialize an IComparable when it is a OasysUnitsNet quantity.
         /// </summary>
         /// <param name="writer">The writer to use</param>
         /// <param name="value">The value to serialize</param>
         /// <param name="serializer">The serializer to use</param>
         /// <remarks>
-        /// Because this converter should only be used in combination with the <see cref="UnitsNetIQuantityJsonConverter"/>, the WriteJson method of that converter will always be used
-        /// to serialize an IComparable in the context of UnitsNet.
+        /// Because this converter should only be used in combination with the <see cref="OasysUnitsNetIQuantityJsonConverter"/>, the WriteJson method of that converter will always be used
+        /// to serialize an IComparable in the context of OasysUnitsNet.
         /// JsonNet is capable of serializing any IComparable implementation.</remarks>
         public override void WriteJson(JsonWriter writer, IComparable value, JsonSerializer serializer)
         {
@@ -40,7 +40,7 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         /// <summary>
-        /// Attempts to deserialize a JSON string as UnitsNet type, assigned to property of type IComparable
+        /// Attempts to deserialize a JSON string as OasysUnitsNet type, assigned to property of type IComparable
         /// </summary>
         /// <param name="reader">The JsonReader to access the JSON data to read</param>
         /// <param name="objectType">The type of object to deserialize</param>

@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,20 +15,20 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToRelativeHumidity
+namespace OasysUnitsNet.NumberExtensions.NumberToRelativeHumidity
 {
     /// <summary>
     /// A number to RelativeHumidity Extensions
     /// </summary>
     public static class NumberToRelativeHumidityExtensions
     {
-        /// <inheritdoc cref="RelativeHumidity.FromPercent(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="RelativeHumidity.FromPercent(OasysUnitsNet.QuantityValue)" />
         public static RelativeHumidity Percent<T>(this T value) =>
             RelativeHumidity.FromPercent(Convert.ToDouble(value));
 

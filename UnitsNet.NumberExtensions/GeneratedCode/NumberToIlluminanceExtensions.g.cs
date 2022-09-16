@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToIlluminance
+namespace OasysUnitsNet.NumberExtensions.NumberToIlluminance
 {
     /// <summary>
     /// A number to Illuminance Extensions
     /// </summary>
     public static class NumberToIlluminanceExtensions
     {
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromKilolux(OasysUnitsNet.QuantityValue)" />
         public static Illuminance Kilolux<T>(this T value) =>
             Illuminance.FromKilolux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromLux(OasysUnitsNet.QuantityValue)" />
         public static Illuminance Lux<T>(this T value) =>
             Illuminance.FromLux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromMegalux(OasysUnitsNet.QuantityValue)" />
         public static Illuminance Megalux<T>(this T value) =>
             Illuminance.FromMegalux(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromMillilux(OasysUnitsNet.QuantityValue)" />
         public static Illuminance Millilux<T>(this T value) =>
             Illuminance.FromMillilux(Convert.ToDouble(value));
 

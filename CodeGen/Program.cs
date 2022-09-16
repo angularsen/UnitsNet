@@ -20,13 +20,13 @@ namespace CodeGen
         ///             <description>Quantity types (Length, Mass, ...)</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.QuantityType enum type (QuantityType.Length, QuantityType.Mass, ...)</description>
+        ///             <description>OasysUnitsNet.QuantityType enum type (QuantityType.Length, QuantityType.Mass, ...)</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.Quantity type</description>
+        ///             <description>OasysUnitsNet.Quantity type</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.UnitAbbreviationsCache</description>
+        ///             <description>OasysUnitsNet.UnitAbbreviationsCache</description>
         ///         </item>
         ///         <item>
         ///             <description>Test stubs for testing conversion functions of all units, to be fleshed out by a human later</description>
@@ -42,8 +42,8 @@ namespace CodeGen
         ///     See https://github.com/dotnet/command-line-api/
         /// </remarks>
         /// <param name="verbose">Verbose output? Defaults to false.</param>
-        /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
-        /// <param name="skipWrc">Skip generate UnitsNet.WindowsRuntimeComponent? Defaults to false.</param>
+        /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for OasysUnitsNet.sln.</param>
+        /// <param name="skipWrc">Skip generate OasysUnitsNet.WindowsRuntimeComponent? Defaults to false.</param>
         /// <param name="skipNanoFramework">Skip generate nanoFramework Units? Defaults to false</param>
         /// <param name="updateNanoFrameworkDependencies">Update nanoFramework nuget dependencies? Defaults to false.</param>
         public static int Main(bool verbose = false, DirectoryInfo? repositoryRoot = null, bool skipWrc = false, bool skipNanoFramework = false, bool updateNanoFrameworkDependencies = false)
@@ -70,11 +70,11 @@ namespace CodeGen
 
                 QuantityNameToUnitEnumValues quantityNameToUnitEnumValues = UnitEnumValueAllocator.AllocateNewUnitEnumValues($"{rootDir}/Common/UnitEnumValues.g.json", quantities);
 
-                UnitsNetGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
+                OasysUnitsNetGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
 
                 if (!skipWrc)
                 {
-                    UnitsNetWrcGenerator.Generate(rootDir, quantities);
+                    OasysUnitsNetWrcGenerator.Generate(rootDir, quantities);
                 }
 
                 if (updateNanoFrameworkDependencies)
@@ -110,7 +110,7 @@ namespace CodeGen
 
             for (var dir = executableParentDir; dir != null; dir = dir.Parent)
             {
-                if (dir.GetFiles("UnitsNet.sln").Any())
+                if (dir.GetFiles("OasysUnitsNet.sln").Any())
                 {
                     Log.Verbose("Found repo root: {Dir}", dir);
                     return dir;

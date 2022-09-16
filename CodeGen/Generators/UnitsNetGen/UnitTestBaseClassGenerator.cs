@@ -2,15 +2,15 @@
 using System.Linq;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetGen
+namespace CodeGen.Generators.OasysUnitsNetGen
 {
     /// <summary>
     /// Generates base class for each quantity test class, with stubs for testing conversion functions and error tolerances that the developer must complete to fix compile errors.
     /// </summary>
     /// <example>
     /// <list type="bullet">
-    /// <item><description>UnitsNet.Tests\GeneratedCode\AccelerationTestsBase.g.cs</description></item>
-    /// <item><description>UnitsNet.Tests\GeneratedCode\LengthTestsBase.g.cs</description></item>
+    /// <item><description>OasysUnitsNet.Tests\GeneratedCode\AccelerationTestsBase.g.cs</description></item>
+    /// <item><description>OasysUnitsNet.Tests\GeneratedCode\LengthTestsBase.g.cs</description></item>
     /// </list>
     /// </example>
     internal class UnitTestBaseClassGenerator : GeneratorBase
@@ -80,15 +80,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using UnitsNet.Tests.TestsBase;
-using UnitsNet.Units;
+using OasysUnitsNet.Tests.TestsBase;
+using OasysUnitsNet.Units;
 using Xunit;
 
 // Disable build warning CS1718: Comparison made to same variable; did you mean to compare something else?
 #pragma warning disable 1718
 
 // ReSharper disable once CheckNamespace
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {{
     /// <summary>
     /// Test of {_quantity.Name}.

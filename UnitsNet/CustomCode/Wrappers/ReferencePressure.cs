@@ -1,13 +1,13 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnitsNet.CustomCode.Units;
-using UnitsNet.Units;
+using OasysUnitsNet.CustomCode.Units;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet.CustomCode.Wrappers
+namespace OasysUnitsNet.CustomCode.Wrappers
 {
     /// <summary>
     ///     Pressure tied to a real-world reference, allowing conversion between references.
@@ -41,23 +41,23 @@ namespace UnitsNet.CustomCode.Wrappers
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring measured
-        ///     <see cref="UnitsNet.Pressure" />
+        ///     <see cref="OasysUnitsNet.Pressure" />
         ///     parameter. Assumes the <see cref="PressureReference" /> to <see cref="PressureReference.Absolute" />, with 1 atm as
-        ///     the atmospheric <see cref="UnitsNet.Pressure" />.
+        ///     the atmospheric <see cref="OasysUnitsNet.Pressure" />.
         /// </summary>
-        /// <param name="pressure">The measured absolute <see cref="UnitsNet.Pressure" /></param>
+        /// <param name="pressure">The measured absolute <see cref="OasysUnitsNet.Pressure" /></param>
         public ReferencePressure(Pressure pressure) : this(pressure, BaseReference)
         {
         }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring
-        ///     measured <see cref="UnitsNet.Pressure" /> and <see cref="PressureReference" /> parameters. Assumes 1 atm as the atmospheric
-        ///     <see cref="UnitsNet.Pressure" />.
+        ///     measured <see cref="OasysUnitsNet.Pressure" /> and <see cref="PressureReference" /> parameters. Assumes 1 atm as the atmospheric
+        ///     <see cref="OasysUnitsNet.Pressure" />.
         /// </summary>
-        /// <param name="pressure">The measured <see cref="UnitsNet.Pressure" /></param>
+        /// <param name="pressure">The measured <see cref="OasysUnitsNet.Pressure" /></param>
         /// <param name="reference">
-        ///     The referenced <see cref="PressureReference" /> for the measured <see cref="UnitsNet.Pressure" />
+        ///     The referenced <see cref="PressureReference" /> for the measured <see cref="OasysUnitsNet.Pressure" />
         /// </param>
         public ReferencePressure(Pressure pressure, PressureReference reference) : this(pressure, reference, DefaultAtmosphericPressure)
         {
@@ -65,14 +65,14 @@ namespace UnitsNet.CustomCode.Wrappers
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring
-        ///     measured <see cref="UnitsNet.Pressure" />, <see cref="PressureReference" />, and atmospheric <see cref="UnitsNet.Pressure" />
+        ///     measured <see cref="OasysUnitsNet.Pressure" />, <see cref="PressureReference" />, and atmospheric <see cref="OasysUnitsNet.Pressure" />
         ///     parameters
         /// </summary>
-        /// <param name="pressure">The measured <see cref="UnitsNet.Pressure" /></param>
+        /// <param name="pressure">The measured <see cref="OasysUnitsNet.Pressure" /></param>
         /// <param name="reference">
-        ///     The referenced <see cref="PressureReference" /> for the measured <see cref="UnitsNet.Pressure" />
+        ///     The referenced <see cref="PressureReference" /> for the measured <see cref="OasysUnitsNet.Pressure" />
         /// </param>
-        /// <param name="atmosphericPressure">The atmospheric <see cref="UnitsNet.Pressure" /> where the measurement was taken.</param>
+        /// <param name="atmosphericPressure">The atmospheric <see cref="OasysUnitsNet.Pressure" /> where the measurement was taken.</param>
         public ReferencePressure(Pressure pressure, PressureReference reference, Pressure atmosphericPressure)
         {
             Reference = reference;
@@ -97,28 +97,28 @@ namespace UnitsNet.CustomCode.Wrappers
         public Pressure Pressure { get; }
 
         /// <summary>
-        ///     Get Gauge <see cref="UnitsNet.Pressure" />.
+        ///     Get Gauge <see cref="OasysUnitsNet.Pressure" />.
         ///     It references pressure level above Atmospheric pressure.
         /// </summary>
         public Pressure Gauge => As(PressureReference.Gauge);
 
         /// <summary>
-        ///     Get Absolute <see cref="UnitsNet.Pressure" />.
+        ///     Get Absolute <see cref="OasysUnitsNet.Pressure" />.
         ///     It is zero-referenced pressure to the perfect vacuum.
         /// </summary>
         public Pressure Absolute => As(PressureReference.Absolute);
 
         /// <summary>
-        ///     Get Vacuum <see cref="UnitsNet.Pressure" />.
+        ///     Get Vacuum <see cref="OasysUnitsNet.Pressure" />.
         ///     It is a negative Gauge pressure when Absolute pressure is below Atmospheric pressure.
         /// </summary>
         public Pressure Vacuum => As(PressureReference.Vacuum);
 
         /// <summary>
-        ///     Converts <see cref="ReferencePressure" /> to <see cref="UnitsNet.Pressure" /> at <see cref="PressureReference" />
+        ///     Converts <see cref="ReferencePressure" /> to <see cref="OasysUnitsNet.Pressure" /> at <see cref="PressureReference" />
         /// </summary>
         /// <param name="reference">The <see cref="PressureReference" /> to convert <see cref="ReferencePressure" /> to.</param>
-        /// <returns>The <see cref="UnitsNet.Pressure" /> at the specified <see cref="PressureReference" /></returns>
+        /// <returns>The <see cref="OasysUnitsNet.Pressure" /> at the specified <see cref="PressureReference" /></returns>
         private Pressure As(PressureReference reference)
         {
             var converted = AsBaseNumericType(reference);
@@ -127,7 +127,7 @@ namespace UnitsNet.CustomCode.Wrappers
         }
 
         /// <summary>
-        ///     Converts <see cref="UnitsNet.Pressure.Value" /> to <see cref="double" /> at <see cref="PressureReference" />
+        ///     Converts <see cref="OasysUnitsNet.Pressure.Value" /> to <see cref="double" /> at <see cref="PressureReference" />
         /// </summary>
         /// <param name="reference">The <see cref="PressureReference" /> to convert <see cref="ReferencePressure" /> to.</param>
         /// <returns>The value of pressure at <see cref="PressureReference" /></returns>
@@ -153,7 +153,7 @@ namespace UnitsNet.CustomCode.Wrappers
         }
 
         /// <summary>
-        ///     Converts <see cref="UnitsNet.Pressure.Value" /> at <see cref="Reference" /> to <see cref="double" /> at
+        ///     Converts <see cref="OasysUnitsNet.Pressure.Value" /> at <see cref="Reference" /> to <see cref="double" /> at
         ///     <see cref="BaseReference" />
         /// </summary>
         /// <returns>The value of pressure at the <see cref="BaseReference" /></returns>

@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,36 +15,36 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToElectricPotentialAc
+namespace OasysUnitsNet.NumberExtensions.NumberToElectricPotentialAc
 {
     /// <summary>
     /// A number to ElectricPotentialAc Extensions
     /// </summary>
     public static class NumberToElectricPotentialAcExtensions
     {
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialAc KilovoltsAc<T>(this T value) =>
             ElectricPotentialAc.FromKilovoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialAc MegavoltsAc<T>(this T value) =>
             ElectricPotentialAc.FromMegavoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialAc MicrovoltsAc<T>(this T value) =>
             ElectricPotentialAc.FromMicrovoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialAc MillivoltsAc<T>(this T value) =>
             ElectricPotentialAc.FromMillivoltsAc(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(OasysUnitsNet.QuantityValue)" />
         public static ElectricPotentialAc VoltsAc<T>(this T value) =>
             ElectricPotentialAc.FromVoltsAc(Convert.ToDouble(value));
 

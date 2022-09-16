@@ -1,9 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System.Runtime.Serialization;
 
-namespace UnitsNet.Tests.Serialization
+namespace OasysUnitsNet.Tests.Serialization
 {
     /// <summary>
     ///     A test object used for testing the serialization schema to and from an object containing a <i>generic</i> quantity

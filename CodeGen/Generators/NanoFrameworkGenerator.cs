@@ -52,7 +52,7 @@ namespace CodeGen.Generators
             logger.LogInformation($"Referencing nanoFramework.CoreLibrary {versions.MscorlibNugetVersion}");
             logger.LogInformation($"Referencing nanoFramework.System.Math {versions.MathNugetVersion}");
 
-            var outputDir = Path.Combine(rootDir, "UnitsNet.NanoFramework", "GeneratedCode");
+            var outputDir = Path.Combine(rootDir, "OasysUnitsNet.NanoFramework", "GeneratedCode");
             var outputQuantities = Path.Combine(outputDir, "Quantities");
             var outputUnits = Path.Combine(outputDir, "Units");
             var outputProperties = Path.Combine(outputDir, "Properties");
@@ -62,7 +62,7 @@ namespace CodeGen.Generators
             Directory.CreateDirectory(outputUnits);
             Directory.CreateDirectory(outputProperties);
 
-            var lengthNuspecFile = Path.Combine(outputDir, "Length", "UnitsNet.NanoFramework.Length.nuspec");
+            var lengthNuspecFile = Path.Combine(outputDir, "Length", "OasysUnitsNet.NanoFramework.Length.nuspec");
             var projectVersion = ParseVersion(File.ReadAllText(lengthNuspecFile),
                 new Regex(@"<version>(?<version>[\d\.]+)</version>", RegexOptions.IgnoreCase),
                 "projectVersion");
@@ -128,7 +128,7 @@ namespace CodeGen.Generators
             Quantity[] quantities)
         {
             // working path
-            string path = Path.Combine(rootDir, "UnitsNet.NanoFramework\\GeneratedCode");
+            string path = Path.Combine(rootDir, "OasysUnitsNet.NanoFramework\\GeneratedCode");
 
             Log.Information("");
             Log.Information("Restoring .NET nanoFramework projects");
@@ -139,7 +139,7 @@ namespace CodeGen.Generators
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = Path.Combine(rootDir, "Tools/nuget.exe"),
-                    Arguments = $"restore {path}\\UnitsNet.nanoFramework.sln",
+                    Arguments = $"restore {path}\\OasysUnitsNet.nanoFramework.sln",
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     RedirectStandardError = true
@@ -190,7 +190,7 @@ namespace CodeGen.Generators
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = Path.Combine(rootDir, "Tools/nuget.exe"),
-                    Arguments = $"update {path}\\UnitsNet.nanoFramework.sln -PreRelease",
+                    Arguments = $"update {path}\\OasysUnitsNet.nanoFramework.sln -PreRelease",
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     RedirectStandardError = true
@@ -272,7 +272,7 @@ namespace CodeGen.Generators
         private static NanoFrameworkVersions ParseCurrentNanoFrameworkVersions(string rootDir)
         {
             // Angle has both mscorlib and System.Math dependency
-            string generatedCodePath = Path.Combine(rootDir, "UnitsNet.NanoFramework", "GeneratedCode");
+            string generatedCodePath = Path.Combine(rootDir, "OasysUnitsNet.NanoFramework", "GeneratedCode");
             var angleProjectFile = Path.Combine(generatedCodePath, "Angle", "Angle.nfproj");
             var projectFileContent = File.ReadAllText(angleProjectFile);
 
@@ -334,7 +334,7 @@ namespace CodeGen.Generators
             string mscorlibNuGetVersion,
             string mathNuGetVersion)
         {
-            string filePath = Path.Combine(projectPath, $"UnitsNet.NanoFramework.{quantity.Name}.nuspec");
+            string filePath = Path.Combine(projectPath, $"OasysUnitsNet.NanoFramework.{quantity.Name}.nuspec");
 
             var content = new NuspecGenerator(
                 quantity,
@@ -378,10 +378,10 @@ namespace CodeGen.Generators
         private static void GenerateSolution(Quantity[] quantities, string outputDir)
         {
             var content = new SolutionGenerator(quantities).Generate();
-            var filePath = Path.Combine(outputDir, "UnitsNet.nanoFramework.sln");
+            var filePath = Path.Combine(outputDir, "OasysUnitsNet.nanoFramework.sln");
 
             File.WriteAllText(filePath, content);
-            Log.Information("✅ UnitsNet.nanoFramework.sln (nanoFramework)");
+            Log.Information("✅ OasysUnitsNet.nanoFramework.sln (nanoFramework)");
         }
 
         private static string GeneratePackageConfigFile(

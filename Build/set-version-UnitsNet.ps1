@@ -1,5 +1,5 @@
 <# .SYNOPSIS
-  Updates the version of all UnitsNet core projects.
+  Updates the version of all OasysUnitsNet core projects.
 .DESCRIPTION
   Updates the <Version> property of the .csproj project files and versions of AssemblyInfo.cs files.
 .PARAMETER set
@@ -51,14 +51,14 @@ Import-Module "$PSScriptRoot\set-version.psm1"
 
 $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
-$projFile = "$root\UnitsNet\UnitsNet.csproj"
-$numberExtensionsProjFile = "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
+$projFile = "$root\OasysUnitsNet\OasysUnitsNet.csproj"
+$numberExtensionsProjFile = "$root\OasysUnitsNet.NumberExtensions\OasysUnitsNet.NumberExtensions.csproj"
 $nanoFrameworkNuspecGeneratorFile = "$root\CodeGen\Generators\NanoFrameworkGen\NuspecGenerator.cs"
-$nanoFrameworkAssemblyInfoFile = "$root\UnitsNet.NanoFramework\GeneratedCode\Properties\AssemblyInfo.cs"
-$winrtAssemblyInfoFile = "$root\UnitsNet.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
-$winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec"
+$nanoFrameworkAssemblyInfoFile = "$root\OasysUnitsNet.NanoFramework\GeneratedCode\Properties\AssemblyInfo.cs"
+$winrtAssemblyInfoFile = "$root\OasysUnitsNet.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
+$winrtNuspecFile = "$root\OasysUnitsNet.WindowsRuntimeComponent\OasysUnitsNet.WindowsRuntimeComponent.nuspec"
 
-# Use UnitsNet.Common.props version as base if bumping major/minor/patch
+# Use OasysUnitsNet.Common.props version as base if bumping major/minor/patch
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
 
 # Reset and stash any other local changes.
@@ -79,15 +79,15 @@ Set-NuspecVersion $winrtNuspecFile $newVersion
 
 # Update codegen and .nuspec files for nanoFramework
 Set-NuspecVersion $nanoFrameworkNuspecGeneratorFile $newVersion
-Get-ChildItem -Path "$root\UnitsNet.NanoFramework\GeneratedCode" -Include '*.nuspec' -Recurse |
+Get-ChildItem -Path "$root\OasysUnitsNet.NanoFramework\GeneratedCode" -Include '*.nuspec' -Recurse |
     Foreach-object {
         Set-NuspecVersion $_.FullName $newVersion
         $versionFiles += $_.FullName
     }
 
 # Git commit and tag
-Invoke-CommitVersionBump @("UnitsNet") $newVersion
-Invoke-TagVersionBump "UnitsNet" $newVersion
+Invoke-CommitVersionBump @("OasysUnitsNet") $newVersion
+Invoke-TagVersionBump "OasysUnitsNet" $newVersion
 
 # Restore any local changes.
 if ($didStash) {

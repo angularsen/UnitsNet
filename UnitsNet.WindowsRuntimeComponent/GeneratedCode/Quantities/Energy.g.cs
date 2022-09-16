@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,18 +15,18 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.Units;
-using UnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.
@@ -864,9 +864,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
-        /// <exception cref="UnitsNetException">
+        /// <exception cref="OasysUnitsNetException">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref="OasysUnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static Energy Parse(string str)
@@ -891,9 +891,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
-        /// <exception cref="UnitsNetException">
+        /// <exception cref="OasysUnitsNetException">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref="OasysUnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
@@ -947,7 +947,7 @@ namespace UnitsNet
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         public static EnergyUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
@@ -961,7 +961,7 @@ namespace UnitsNet
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static EnergyUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
@@ -1070,7 +1070,7 @@ namespace UnitsNet
             double thisValue = (double)this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            return OasysUnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>

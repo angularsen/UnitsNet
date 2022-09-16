@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,28 +15,28 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToElectricConductance
+namespace OasysUnitsNet.NumberExtensions.NumberToElectricConductance
 {
     /// <summary>
     /// A number to ElectricConductance Extensions
     /// </summary>
     public static class NumberToElectricConductanceExtensions
     {
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(OasysUnitsNet.QuantityValue)" />
         public static ElectricConductance Microsiemens<T>(this T value) =>
             ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(OasysUnitsNet.QuantityValue)" />
         public static ElectricConductance Millisiemens<T>(this T value) =>
             ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(OasysUnitsNet.QuantityValue)" />
         public static ElectricConductance Siemens<T>(this T value) =>
             ElectricConductance.FromSiemens(Convert.ToDouble(value));
 

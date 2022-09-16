@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0</TargetFrameworks>
-    <RootNamespace>UnitsNet.Serialization.JsonNet.Tests</RootNamespace>
+    <RootNamespace>OasysUnitsNet.Serialization.JsonNet.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
@@ -25,8 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj" />
-    <ProjectReference Include="..\UnitsNet.Tests\UnitsNet.Tests.csproj" />
+    <ProjectReference Include="..\OasysUnitsNet.Serialization.JsonNet\OasysUnitsNet.Serialization.JsonNet.csproj" />
+    <ProjectReference Include="..\OasysUnitsNet.Tests\OasysUnitsNet.Tests.csproj" />
   </ItemGroup>
 
 </Project>

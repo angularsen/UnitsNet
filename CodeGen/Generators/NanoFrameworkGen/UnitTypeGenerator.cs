@@ -23,7 +23,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
 // ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+namespace OasysUnitsNet.Units
 {{
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Globalization;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {
     public class QuantityIConvertibleTests
     {

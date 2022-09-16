@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,44 +15,44 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToIrradiation
+namespace OasysUnitsNet.NumberExtensions.NumberToIrradiation
 {
     /// <summary>
     /// A number to Irradiation Extensions
     /// </summary>
     public static class NumberToIrradiationExtensions
     {
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareCentimeter<T>(this T value) =>
             Irradiation.FromJoulesPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareMeter<T>(this T value) =>
             Irradiation.FromJoulesPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMillimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareMillimeter<T>(this T value) =>
             Irradiation.FromJoulesPerSquareMillimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiation.FromKilojoulesPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiation KilojoulesPerSquareMeter<T>(this T value) =>
             Irradiation.FromKilojoulesPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiation KilowattHoursPerSquareMeter<T>(this T value) =>
             Irradiation.FromKilowattHoursPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiation.FromMillijoulesPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiation MillijoulesPerSquareCentimeter<T>(this T value) =>
             Irradiation.FromMillijoulesPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiation WattHoursPerSquareMeter<T>(this T value) =>
             Irradiation.FromWattHoursPerSquareMeter(Convert.ToDouble(value));
 

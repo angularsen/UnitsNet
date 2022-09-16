@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,44 +15,44 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToCompressibility
+namespace OasysUnitsNet.NumberExtensions.NumberToCompressibility
 {
     /// <summary>
     /// A number to Compressibility Extensions
     /// </summary>
     public static class NumberToCompressibilityExtensions
     {
-        /// <inheritdoc cref="Compressibility.FromInverseAtmospheres(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Compressibility.FromInverseAtmospheres(OasysUnitsNet.QuantityValue)" />
         public static Compressibility InverseAtmospheres<T>(this T value) =>
             Compressibility.FromInverseAtmospheres(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Compressibility.FromInverseBars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Compressibility.FromInverseBars(OasysUnitsNet.QuantityValue)" />
         public static Compressibility InverseBars<T>(this T value) =>
             Compressibility.FromInverseBars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Compressibility.FromInverseKilopascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Compressibility.FromInverseKilopascals(OasysUnitsNet.QuantityValue)" />
         public static Compressibility InverseKilopascals<T>(this T value) =>
             Compressibility.FromInverseKilopascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Compressibility.FromInverseMegapascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Compressibility.FromInverseMegapascals(OasysUnitsNet.QuantityValue)" />
         public static Compressibility InverseMegapascals<T>(this T value) =>
             Compressibility.FromInverseMegapascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Compressibility.FromInverseMillibars(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Compressibility.FromInverseMillibars(OasysUnitsNet.QuantityValue)" />
         public static Compressibility InverseMillibars<T>(this T value) =>
             Compressibility.FromInverseMillibars(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Compressibility.FromInversePascals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Compressibility.FromInversePascals(OasysUnitsNet.QuantityValue)" />
         public static Compressibility InversePascals<T>(this T value) =>
             Compressibility.FromInversePascals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Compressibility.FromInversePoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Compressibility.FromInversePoundsForcePerSquareInch(OasysUnitsNet.QuantityValue)" />
         public static Compressibility InversePoundsForcePerSquareInch<T>(this T value) =>
             Compressibility.FromInversePoundsForcePerSquareInch(Convert.ToDouble(value));
 

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
 using System.Windows.Input;
-using UnitsNet.Samples.UnitConverter.Wpf.Properties;
+using OasysUnitsNet.Samples.UnitConverter.Wpf.Properties;
 
-namespace UnitsNet.Samples.UnitConverter.Wpf
+namespace OasysUnitsNet.Samples.UnitConverter.Wpf
 {
     /// <summary>
     ///     View model for <see cref="MainWindow" />. Provides quantities and units for listboxes and updates the conversion
@@ -131,7 +131,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         {
             if (SelectedFromUnit == null || SelectedToUnit == null) return;
 
-            double convertedValue = UnitsNet.UnitConverter.Convert(FromValue,
+            double convertedValue = OasysUnitsNet.UnitConverter.Convert(FromValue,
                 SelectedFromUnit.UnitEnumValue,
                 SelectedToUnit.UnitEnumValue);
 

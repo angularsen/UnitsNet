@@ -1,23 +1,23 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
-    internal class UnitsNetException : Exception
+    internal class OasysUnitsNetException : Exception
     {
-        public UnitsNetException()
+        public OasysUnitsNetException()
         {
             HResult = 1;
         }
 
-        public UnitsNetException(string message) : base(message)
+        public OasysUnitsNetException(string message) : base(message)
         {
             HResult = 1;
         }
 
-        public UnitsNetException(string message, Exception innerException) : base(message, innerException)
+        public OasysUnitsNetException(string message, Exception innerException) : base(message, innerException)
         {
             HResult = 1;
         }

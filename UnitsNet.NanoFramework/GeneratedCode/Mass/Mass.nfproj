@@ -12,8 +12,8 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>UnitsNet</RootNamespace>
-    <AssemblyName>UnitsNet.Mass</AssemblyName>
+    <RootNamespace>OasysUnitsNet</RootNamespace>
+    <AssemblyName>OasysUnitsNet.Mass</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>

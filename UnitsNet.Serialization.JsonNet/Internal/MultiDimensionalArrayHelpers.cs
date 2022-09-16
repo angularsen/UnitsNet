@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace UnitsNet.Serialization.JsonNet.Internal
+namespace OasysUnitsNet.Serialization.JsonNet.Internal
 {
 
     /// <summary>

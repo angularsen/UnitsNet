@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,40 +15,40 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToBendingStiffness
+namespace OasysUnitsNet.NumberExtensions.NumberToBendingStiffness
 {
     /// <summary>
     /// A number to BendingStiffness Extensions
     /// </summary>
     public static class NumberToBendingStiffnessExtensions
     {
-        /// <inheritdoc cref="BendingStiffness.FromKilonewtonSquareMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BendingStiffness.FromKilonewtonSquareMeters(OasysUnitsNet.QuantityValue)" />
         public static BendingStiffness KilonewtonSquareMeters<T>(this T value) =>
             BendingStiffness.FromKilonewtonSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BendingStiffness.FromKilonewtonSquareMillimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BendingStiffness.FromKilonewtonSquareMillimeters(OasysUnitsNet.QuantityValue)" />
         public static BendingStiffness KilonewtonSquareMillimeters<T>(this T value) =>
             BendingStiffness.FromKilonewtonSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BendingStiffness.FromNewtonSquareMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BendingStiffness.FromNewtonSquareMeters(OasysUnitsNet.QuantityValue)" />
         public static BendingStiffness NewtonSquareMeters<T>(this T value) =>
             BendingStiffness.FromNewtonSquareMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BendingStiffness.FromNewtonSquareMillimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BendingStiffness.FromNewtonSquareMillimeters(OasysUnitsNet.QuantityValue)" />
         public static BendingStiffness NewtonSquareMillimeters<T>(this T value) =>
             BendingStiffness.FromNewtonSquareMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BendingStiffness.FromPoundsForceSquareFeet(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BendingStiffness.FromPoundsForceSquareFeet(OasysUnitsNet.QuantityValue)" />
         public static BendingStiffness PoundsForceSquareFeet<T>(this T value) =>
             BendingStiffness.FromPoundsForceSquareFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BendingStiffness.FromPoundsForceSquareInches(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="BendingStiffness.FromPoundsForceSquareInches(OasysUnitsNet.QuantityValue)" />
         public static BendingStiffness PoundsForceSquareInches<T>(this T value) =>
             BendingStiffness.FromPoundsForceSquareInches(Convert.ToDouble(value));
 

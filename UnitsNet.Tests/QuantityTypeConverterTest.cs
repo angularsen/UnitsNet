@@ -1,14 +1,14 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.ComponentModel;
 using System.Globalization;
 using System.Reflection;
-using UnitsNet.Tests.Helpers;
+using OasysUnitsNet.Tests.Helpers;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {
     public class QuantityTypeConverterTest
     {

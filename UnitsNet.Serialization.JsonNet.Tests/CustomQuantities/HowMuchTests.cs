@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using UnitsNet.Serialization.JsonNet;
+using OasysUnitsNet.Serialization.JsonNet;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomQuantities
+namespace OasysUnitsNet.Tests.CustomQuantities
 {
     public class HowMuchTests
     {
@@ -10,7 +10,7 @@ namespace UnitsNet.Tests.CustomQuantities
         public static void SerializeAndDeserializeCreatesSameObjectForIQuantity()
         {
             var jsonSerializerSettings = new JsonSerializerSettings { Formatting = Formatting.Indented };
-            var quantityConverter = new UnitsNetIQuantityJsonConverter();
+            var quantityConverter = new OasysUnitsNetIQuantityJsonConverter();
             quantityConverter.RegisterCustomType(typeof(HowMuch), typeof(HowMuchUnit));
             jsonSerializerSettings.Converters.Add(quantityConverter);
 

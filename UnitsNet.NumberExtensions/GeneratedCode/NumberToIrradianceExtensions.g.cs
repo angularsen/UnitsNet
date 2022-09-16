@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,72 +15,72 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToIrradiance
+namespace OasysUnitsNet.NumberExtensions.NumberToIrradiance
 {
     /// <summary>
     /// A number to Irradiance Extensions
     /// </summary>
     public static class NumberToIrradianceExtensions
     {
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance KilowattsPerSquareCentimeter<T>(this T value) =>
             Irradiance.FromKilowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance KilowattsPerSquareMeter<T>(this T value) =>
             Irradiance.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance MegawattsPerSquareCentimeter<T>(this T value) =>
             Irradiance.FromMegawattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance MegawattsPerSquareMeter<T>(this T value) =>
             Irradiance.FromMegawattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance MicrowattsPerSquareCentimeter<T>(this T value) =>
             Irradiance.FromMicrowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance MicrowattsPerSquareMeter<T>(this T value) =>
             Irradiance.FromMicrowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance MilliwattsPerSquareCentimeter<T>(this T value) =>
             Irradiance.FromMilliwattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance MilliwattsPerSquareMeter<T>(this T value) =>
             Irradiance.FromMilliwattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance NanowattsPerSquareCentimeter<T>(this T value) =>
             Irradiance.FromNanowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance NanowattsPerSquareMeter<T>(this T value) =>
             Irradiance.FromNanowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance PicowattsPerSquareCentimeter<T>(this T value) =>
             Irradiance.FromPicowattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance PicowattsPerSquareMeter<T>(this T value) =>
             Irradiance.FromPicowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareCentimeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance WattsPerSquareCentimeter<T>(this T value) =>
             Irradiance.FromWattsPerSquareCentimeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(OasysUnitsNet.QuantityValue)" />
         public static Irradiance WattsPerSquareMeter<T>(this T value) =>
             Irradiance.FromWattsPerSquareMeter(Convert.ToDouble(value));
 

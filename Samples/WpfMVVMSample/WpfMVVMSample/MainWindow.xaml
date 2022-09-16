@@ -6,7 +6,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:conv="clr-namespace:WpfMVVMSample.Converters"
         xmlns:local="clr-namespace:WpfMVVMSample"
-        xmlns:units="clr-namespace:UnitsNet.Units;assembly=UnitsNet"
+        xmlns:units="clr-namespace:OasysUnitsNet.Units;assembly=OasysUnitsNet"
         prism:ViewModelLocator.AutoWireViewModel="True"
         
         mc:Ignorable="d"

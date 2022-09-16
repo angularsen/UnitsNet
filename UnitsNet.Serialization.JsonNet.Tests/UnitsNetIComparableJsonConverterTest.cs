@@ -1,38 +1,38 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using UnitsNet.Serialization.JsonNet.Tests.Infrastructure;
+using OasysUnitsNet.Serialization.JsonNet.Tests.Infrastructure;
 using Xunit;
 
-namespace UnitsNet.Serialization.JsonNet.Tests
+namespace OasysUnitsNet.Serialization.JsonNet.Tests
 {
-    public sealed class UnitsNetIComparableJsonConverterTest
+    public sealed class OasysUnitsNetIComparableJsonConverterTest
     {
-        private UnitsNetIComparableJsonConverter _sut;
+        private OasysUnitsNetIComparableJsonConverter _sut;
 
-        public UnitsNetIComparableJsonConverterTest()
+        public OasysUnitsNetIComparableJsonConverterTest()
         {
-            _sut = new UnitsNetIComparableJsonConverter();
+            _sut = new OasysUnitsNetIComparableJsonConverter();
         }
 
         [Fact]
-        public void UnitsNetIComparableJsonConverter_CanWrite_returns_false()
+        public void OasysUnitsNetIComparableJsonConverter_CanWrite_returns_false()
         {
             Assert.False(_sut.CanWrite);
         }
 
         [Fact]
-        public void UnitsNetIComparableJsonConverter_WriteJson_throws_NotImplementedException()
+        public void OasysUnitsNetIComparableJsonConverter_WriteJson_throws_NotImplementedException()
         {
             Assert.Throws<NotImplementedException>(() => _sut.WriteJson(null, null, null));
         }
 
         [Fact]
-        public void UnitsNetIComparableJsonConverter_CanRead_returns_true()
+        public void OasysUnitsNetIComparableJsonConverter_CanRead_returns_true()
         {
             Assert.True(_sut.CanRead);
         }
@@ -45,7 +45,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         [Theory]
         [MemberData(nameof(ReadJson_NullArguments))]
-        public void UnitsNetIComparableJsonConverter_ReadJson_throws_ArgumentNullException_when_arguments_are_null(JsonReader reader, JsonSerializer serializer, string paramName)
+        public void OasysUnitsNetIComparableJsonConverter_ReadJson_throws_ArgumentNullException_when_arguments_are_null(JsonReader reader, JsonSerializer serializer, string paramName)
         {
             var exception = Assert.Throws<ArgumentNullException>(() => _sut.ReadJson(reader, typeof(IQuantity), null, false, serializer));
 
@@ -53,7 +53,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIComparableJsonConverter_ReadJson_handles_NULL_values_correctly()
+        public void OasysUnitsNetIComparableJsonConverter_ReadJson_handles_NULL_values_correctly()
         {
             var json = "null";
 
@@ -67,7 +67,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIComparableJsonConverter_ReadJson_deserializes_as_concrete_type_when_objectType_not_IComparable()
+        public void OasysUnitsNetIComparableJsonConverter_ReadJson_deserializes_as_concrete_type_when_objectType_not_IComparable()
         {
             string json = "{ \"value\": 12345 }";
 
@@ -85,9 +85,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIComparableJsonConverter_ReadJson_falls_back_to_default_IComparable_deserialization_when_unable_to_deserialize_as_ValueUnit()
+        public void OasysUnitsNetIComparableJsonConverter_ReadJson_falls_back_to_default_IComparable_deserialization_when_unable_to_deserialize_as_ValueUnit()
         {
-            string json = "{ \"$type\": \"UnitsNet.Serialization.JsonNet.Tests.Infrastructure.TestObjectWithValueAsIComparable, UnitsNet.Serialization.JsonNet.Tests\", \"value\": 120 }";
+            string json = "{ \"$type\": \"OasysUnitsNet.Serialization.JsonNet.Tests.Infrastructure.TestObjectWithValueAsIComparable, OasysUnitsNet.Serialization.JsonNet.Tests\", \"value\": 120 }";
             IComparable result;
 
             using (var stringReader = new StringReader(json))
@@ -103,7 +103,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIComparableJsonConverter_ReadJson_works_as_expected()
+        public void OasysUnitsNetIComparableJsonConverter_ReadJson_works_as_expected()
         {
             string json = "{ \"value\": 120, \"unit\": \"PowerUnit.Watt\" }";
             IComparable result;

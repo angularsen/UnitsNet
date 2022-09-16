@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <TargetFrameworks>net5.0</TargetFrameworks>
-    <RootNamespace>UnitsNet.NumberExtensions.Tests</RootNamespace>
+    <RootNamespace>OasysUnitsNet.NumberExtensions.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <!-- Strong name signing -->
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>../OasysUnitsNet.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
-    <AssemblyName>UnitsNet.NumberExtensions.Tests</AssemblyName>
+    <AssemblyName>OasysUnitsNet.NumberExtensions.Tests</AssemblyName>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj" />
+    <ProjectReference Include="..\OasysUnitsNet.NumberExtensions\OasysUnitsNet.NumberExtensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

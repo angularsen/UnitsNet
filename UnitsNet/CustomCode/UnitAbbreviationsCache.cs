@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
@@ -7,13 +7,13 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 
-using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, UnitsNet.UnitValueAbbreviationLookup>;
+using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, OasysUnitsNet.UnitValueAbbreviationLookup>;
 
 // ReSharper disable once CheckNamespace
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     Cache of the mapping between unit enum values and unit abbreviation strings for one or more cultures.
@@ -65,7 +65,7 @@ namespace UnitsNet
 
         /// <summary>
         /// Adds one or more unit abbreviation for the given unit enum value.
-        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="UnitsNet.Units.LengthUnit"/> or to extend with third-party unit enums
+        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="OasysUnitsNet.Units.LengthUnit"/> or to extend with third-party unit enums
         /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
         /// </summary>
         /// <param name="unit">The unit enum value.</param>
@@ -79,7 +79,7 @@ namespace UnitsNet
 
         /// <summary>
         /// Adds a unit abbreviation for the given unit enum value and sets it as the default.
-        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="UnitsNet.Units.LengthUnit"/> or to extend with third-party unit enums
+        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="OasysUnitsNet.Units.LengthUnit"/> or to extend with third-party unit enums
         /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
         /// </summary>
         /// <param name="unit">The unit enum value.</param>

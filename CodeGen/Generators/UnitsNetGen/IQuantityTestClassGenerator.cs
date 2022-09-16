@@ -1,11 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetGen
+namespace CodeGen.Generators.OasysUnitsNetGen
 {
     // ReSharper disable once InconsistentNaming
     [SuppressMessage("ReSharper", "EnforceForeachStatementBraces")]
@@ -23,10 +23,10 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
 using System;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {{
     public partial class IQuantityTests
     {{

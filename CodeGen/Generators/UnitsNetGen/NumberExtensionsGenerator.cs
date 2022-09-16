@@ -1,7 +1,7 @@
 ﻿using System;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetGen
+namespace CodeGen.Generators.OasysUnitsNetGen
 {
     internal class NumberExtensionsGenerator : GeneratorBase
     {
@@ -27,7 +27,7 @@ using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
+namespace OasysUnitsNet.NumberExtensions.NumberTo{_quantityName}
 {{
     /// <summary>
     /// A number to {_quantityName} Extensions
@@ -41,7 +41,7 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
                     continue;
 
                 Writer.WL(2, $@"
-/// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(UnitsNet.QuantityValue)"" />");
+/// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(OasysUnitsNet.QuantityValue)"" />");
 
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
 

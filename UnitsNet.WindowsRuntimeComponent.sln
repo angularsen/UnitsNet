@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.WindowsRuntimeComponent", "UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.csproj", "{2DA428CA-BFE1-43FA-86D2-7CB42289D596}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OasysUnitsNet.WindowsRuntimeComponent", "OasysUnitsNet.WindowsRuntimeComponent\OasysUnitsNet.WindowsRuntimeComponent.csproj", "{2DA428CA-BFE1-43FA-86D2-7CB42289D596}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

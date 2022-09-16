@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {
     /// <summary>
     ///     Additional assert methods to XUnit's <see cref="Xunit.Assert" />.

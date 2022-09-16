@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
         internal partial class Quantity
     {
@@ -35,7 +35,7 @@ namespace UnitsNet
                 return quantity;
 
             throw new ArgumentException(
-                $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
+                $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like OasysUnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside OasysUnitsNet library?");
         }
     }
 }

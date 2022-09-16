@@ -1,12 +1,12 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Linq;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetGen
+namespace CodeGen.Generators.OasysUnitsNetGen
 {
     internal class QuantityGenerator : GeneratorBase
     {
@@ -49,14 +49,14 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {");
             Writer.WL($@"
     /// <inheritdoc />
@@ -248,13 +248,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of {_quantity.Name}
         /// </summary>
-        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
+        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/OasysUnitsNet/issues/848."")]
         public static {_quantity.Name} MaxValue {{ get; }}
 
         /// <summary>
         /// Represents the smallest possible value of {_quantity.Name}
         /// </summary>
-        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
+        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/OasysUnitsNet/issues/848."")]
         public static {_quantity.Name} MinValue {{ get; }}
 
         /// <summary>
@@ -505,9 +505,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse(""1 cup"") will throw, because it can refer to any of
         ///     <see cref=""VolumeUnit.MetricCup"" />, <see cref=""VolumeUnit.UsLegalCup"" /> and <see cref=""VolumeUnit.UsCustomaryCup"" />.
         /// </exception>
-        /// <exception cref=""UnitsNetException"">
+        /// <exception cref=""OasysUnitsNetException"">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref=""UnitsNetException"" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref=""OasysUnitsNetException"" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static {_quantity.Name} Parse(string str)
@@ -532,9 +532,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse(""1 cup"") will throw, because it can refer to any of
         ///     <see cref=""VolumeUnit.MetricCup"" />, <see cref=""VolumeUnit.UsLegalCup"" /> and <see cref=""VolumeUnit.UsCustomaryCup"" />.
         /// </exception>
-        /// <exception cref=""UnitsNetException"">
+        /// <exception cref=""OasysUnitsNetException"">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref=""UnitsNetException"" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref=""OasysUnitsNetException"" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
@@ -586,7 +586,7 @@ namespace UnitsNet
         ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
-        /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
+        /// <exception cref=""OasysUnitsNetException"">Error parsing string.</exception>
         public static {_unitEnumName} ParseUnit(string str)
         {{
             return ParseUnit(str, null);
@@ -601,13 +601,13 @@ namespace UnitsNet
         ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
-        /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
+        /// <exception cref=""OasysUnitsNetException"">Error parsing string.</exception>
         public static {_unitEnumName} ParseUnit(string str, IFormatProvider? provider)
         {{
             return UnitParser.Default.Parse<{_unitEnumName}>(str, provider);
         }}
 
-        /// <inheritdoc cref=""TryParseUnit(string,IFormatProvider,out UnitsNet.Units.{_unitEnumName})""/>
+        /// <inheritdoc cref=""TryParseUnit(string,IFormatProvider,out OasysUnitsNet.Units.{_unitEnumName})""/>
         public static bool TryParseUnit(string str, out {_unitEnumName} unit)
         {{
             return TryParseUnit(str, null, out unit);
@@ -878,7 +878,7 @@ namespace UnitsNet
             double thisValue = (double)this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            return OasysUnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }}
 
         /// <summary>

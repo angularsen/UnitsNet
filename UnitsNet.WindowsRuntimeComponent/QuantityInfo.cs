@@ -1,14 +1,14 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     Information about the quantity, such as names, unit values and zero quantity.
@@ -57,7 +57,7 @@ namespace UnitsNet
         public string Name { get; }
 
         /// <summary>
-        ///     Quantity type, such as <see cref="UnitsNet.QuantityType.Length" /> or <see cref="UnitsNet.QuantityType.Mass" />.
+        ///     Quantity type, such as <see cref="OasysUnitsNet.QuantityType.Length" /> or <see cref="OasysUnitsNet.QuantityType.Mass" />.
         /// </summary>
         public QuantityType QuantityType { get; }
 

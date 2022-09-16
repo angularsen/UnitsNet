@@ -1,7 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     public partial struct Acceleration
     {
@@ -10,7 +10,7 @@ namespace UnitsNet
         /// </summary>
         public static SpecificWeight operator *(Acceleration acceleration, Density density)
         {
-            return new SpecificWeight(acceleration.MetersPerSecondSquared * density.KilogramsPerCubicMeter, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
+            return new SpecificWeight(acceleration.MetersPerSecondSquared * density.KilogramsPerCubicMeter, OasysUnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
         }
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace UnitsNet
         /// </summary>
         public static Speed operator *(Acceleration acceleration, Duration duration)
         {
-            return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, UnitsNet.Units.SpeedUnit.MeterPerSecond);
+            return new Speed(acceleration.MetersPerSecondSquared * duration.Seconds, OasysUnitsNet.Units.SpeedUnit.MeterPerSecond);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace UnitsNet
         /// </summary>
         public static Jerk operator /(Acceleration acceleration, Duration duration)
         {
-            return new Jerk(acceleration.MetersPerSecondSquared / duration.Seconds, UnitsNet.Units.JerkUnit.MeterPerSecondCubed);
+            return new Jerk(acceleration.MetersPerSecondSquared / duration.Seconds, OasysUnitsNet.Units.JerkUnit.MeterPerSecondCubed);
         }
     }
 }

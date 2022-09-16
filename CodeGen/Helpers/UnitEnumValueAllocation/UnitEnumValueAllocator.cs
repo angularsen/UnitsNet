@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,8 @@ namespace CodeGen.Helpers.UnitEnumValueAllocation
     ///     Allocates unique enum values per quantity and persists the mapping to a JSON file to ensure the values do not
     ///     change when adding new units.
     ///     <br/><br/>
-    ///     Updating transitive UnitsNet dependency cause wrong unit · Issue #1068 · angularsen/UnitsNet
-    ///     https://github.com/angularsen/UnitsNet/issues/1068
+    ///     Updating transitive OasysUnitsNet dependency cause wrong unit · Issue #1068 · angularsen/OasysUnitsNet
+    ///     https://github.com/angularsen/OasysUnitsNet/issues/1068
     /// </summary>
     internal class UnitEnumValueAllocator
     {
@@ -86,7 +86,7 @@ namespace CodeGen.Helpers.UnitEnumValueAllocation
 
             if (duplicateErrorMessages.Any())
             {
-                throw new UnitsNetCodeGenException(
+                throw new OasysUnitsNetCodeGenException(
                     @$"One or more units have the same unit enum value. This typically happens when merging multiple pull requests adding units to the same quantity.
 Resolve this by manually editing the JSON file to assign unique unit enum values per quantity.
 
@@ -146,7 +146,7 @@ Conflicts:
 //------------------------------------------------------------------------------
 //
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 ");
 
             fileContentStringBuilder.AppendLine(JsonSerializer.Serialize(_quantityNameToUnitEnumValues, JsonOptions));

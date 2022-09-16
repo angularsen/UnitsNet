@@ -1,7 +1,7 @@
 ﻿using System;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetGen
+namespace CodeGen.Generators.OasysUnitsNetGen
 {
     internal class NumberExtensionsTestClassGenerator : GeneratorBase
     {
@@ -23,10 +23,10 @@ namespace CodeGen.Generators.UnitsNetGen
 
             Writer.WL(
 $@"
-using UnitsNet.NumberExtensions.NumberTo{_quantityName};
+using OasysUnitsNet.NumberExtensions.NumberTo{_quantityName};
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {{
     public class NumberTo{_quantityName}ExtensionsTests
     {{");

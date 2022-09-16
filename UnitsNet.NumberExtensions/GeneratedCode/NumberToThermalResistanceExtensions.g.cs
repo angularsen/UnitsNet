@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,40 +15,40 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToThermalResistance
+namespace OasysUnitsNet.NumberExtensions.NumberToThermalResistance
 {
     /// <summary>
     /// A number to ThermalResistance Extensions
     /// </summary>
     public static class NumberToThermalResistanceExtensions
     {
-        /// <inheritdoc cref="ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(OasysUnitsNet.QuantityValue)" />
         public static ThermalResistance HourSquareFeetDegreesFahrenheitPerBtu<T>(this T value) =>
             ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(OasysUnitsNet.QuantityValue)" />
         public static ThermalResistance SquareCentimeterHourDegreesCelsiusPerKilocalorie<T>(this T value) =>
             ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterKelvinsPerWatt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterKelvinsPerWatt(OasysUnitsNet.QuantityValue)" />
         public static ThermalResistance SquareCentimeterKelvinsPerWatt<T>(this T value) =>
             ThermalResistance.FromSquareCentimeterKelvinsPerWatt(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(OasysUnitsNet.QuantityValue)" />
         public static ThermalResistance SquareMeterDegreesCelsiusPerWatt<T>(this T value) =>
             ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerKilowatt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerKilowatt(OasysUnitsNet.QuantityValue)" />
         public static ThermalResistance SquareMeterKelvinsPerKilowatt<T>(this T value) =>
             ThermalResistance.FromSquareMeterKelvinsPerKilowatt(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerWatt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerWatt(OasysUnitsNet.QuantityValue)" />
         public static ThermalResistance SquareMeterKelvinsPerWatt<T>(this T value) =>
             ThermalResistance.FromSquareMeterKelvinsPerWatt(Convert.ToDouble(value));
 

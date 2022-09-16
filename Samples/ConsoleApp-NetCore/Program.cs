@@ -1,5 +1,5 @@
 ﻿using System;
-using UnitsNet;
+using OasysUnitsNet;
 
 namespace ConsoleApp1
 {

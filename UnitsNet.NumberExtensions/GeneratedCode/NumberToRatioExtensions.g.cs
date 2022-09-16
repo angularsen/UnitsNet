@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,40 +15,40 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToRatio
+namespace OasysUnitsNet.NumberExtensions.NumberToRatio
 {
     /// <summary>
     /// A number to Ratio Extensions
     /// </summary>
     public static class NumberToRatioExtensions
     {
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromDecimalFractions(OasysUnitsNet.QuantityValue)" />
         public static Ratio DecimalFractions<T>(this T value) =>
             Ratio.FromDecimalFractions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPartsPerBillion(OasysUnitsNet.QuantityValue)" />
         public static Ratio PartsPerBillion<T>(this T value) =>
             Ratio.FromPartsPerBillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPartsPerMillion(OasysUnitsNet.QuantityValue)" />
         public static Ratio PartsPerMillion<T>(this T value) =>
             Ratio.FromPartsPerMillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPartsPerThousand(OasysUnitsNet.QuantityValue)" />
         public static Ratio PartsPerThousand<T>(this T value) =>
             Ratio.FromPartsPerThousand(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(OasysUnitsNet.QuantityValue)" />
         public static Ratio PartsPerTrillion<T>(this T value) =>
             Ratio.FromPartsPerTrillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Ratio.FromPercent(OasysUnitsNet.QuantityValue)" />
         public static Ratio Percent<T>(this T value) =>
             Ratio.FromPercent(Convert.ToDouble(value));
 

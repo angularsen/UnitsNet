@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToApparentPower
+namespace OasysUnitsNet.NumberExtensions.NumberToApparentPower
 {
     /// <summary>
     /// A number to ApparentPower Extensions
     /// </summary>
     public static class NumberToApparentPowerExtensions
     {
-        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromGigavoltamperes(OasysUnitsNet.QuantityValue)" />
         public static ApparentPower Gigavoltamperes<T>(this T value) =>
             ApparentPower.FromGigavoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromKilovoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromKilovoltamperes(OasysUnitsNet.QuantityValue)" />
         public static ApparentPower Kilovoltamperes<T>(this T value) =>
             ApparentPower.FromKilovoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromMegavoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromMegavoltamperes(OasysUnitsNet.QuantityValue)" />
         public static ApparentPower Megavoltamperes<T>(this T value) =>
             ApparentPower.FromMegavoltamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentPower.FromVoltamperes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentPower.FromVoltamperes(OasysUnitsNet.QuantityValue)" />
         public static ApparentPower Voltamperes<T>(this T value) =>
             ApparentPower.FromVoltamperes(Convert.ToDouble(value));
 

@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
+namespace OasysUnitsNet.NumberExtensions.NumberToElectricCurrentGradient
 {
     /// <summary>
     /// A number to ElectricCurrentGradient Extensions
     /// </summary>
     public static class NumberToElectricCurrentGradientExtensions
     {
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMicrosecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMicrosecond(OasysUnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerMicrosecond<T>(this T value) =>
             ElectricCurrentGradient.FromAmperesPerMicrosecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(OasysUnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerMillisecond<T>(this T value) =>
             ElectricCurrentGradient.FromAmperesPerMillisecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(OasysUnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerNanosecond<T>(this T value) =>
             ElectricCurrentGradient.FromAmperesPerNanosecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(OasysUnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerSecond<T>(this T value) =>
             ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
 

@@ -1,28 +1,28 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System.IO;
 using System.Linq;
-using CodeGen.Generators.UnitsNetWrcGen;
+using CodeGen.Generators.OasysUnitsNetWrcGen;
 using CodeGen.JsonTypes;
 using Serilog;
 
 namespace CodeGen.Generators
 {
     /// <summary>
-    ///     Code generator for UnitsNet.WindowsRuntimeComponent project.
+    ///     Code generator for OasysUnitsNet.WindowsRuntimeComponent project.
     /// </summary>
-    internal static class UnitsNetWrcGenerator
+    internal static class OasysUnitsNetWrcGenerator
     {
         private const int AlignPad = 35;
 
         /// <summary>
-        ///     Generate source code for UnitsNet project for the given parsed quantities.
+        ///     Generate source code for OasysUnitsNet project for the given parsed quantities.
         ///     Outputs files relative to the given root dir to these locations:
         ///     <list type="bullet">
         ///         <item>
         ///             <description>
-        ///                 UnitsNet.WindowsRuntimeComponent/GeneratedCode (quantity and unit types, Quantity,
+        ///                 OasysUnitsNet.WindowsRuntimeComponent/GeneratedCode (quantity and unit types, Quantity,
         ///                 UnitAbbreviationCache)
         ///             </description>
         ///         </item>
@@ -37,7 +37,7 @@ namespace CodeGen.Generators
         /// </remarks>
         public static void Generate(string rootDir, Quantity[] quantities)
         {
-            var outputDir = $"{rootDir}/UnitsNet.WindowsRuntimeComponent/GeneratedCode";
+            var outputDir = $"{rootDir}/OasysUnitsNet.WindowsRuntimeComponent/GeneratedCode";
 
             // Ensure output directories exist
             Directory.CreateDirectory($"{outputDir}/Quantities");

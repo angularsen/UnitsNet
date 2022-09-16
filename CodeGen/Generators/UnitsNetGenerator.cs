@@ -1,9 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System.IO;
 using System.Linq;
-using CodeGen.Generators.UnitsNetGen;
+using CodeGen.Generators.OasysUnitsNetGen;
 using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 using Serilog;
@@ -11,22 +11,22 @@ using Serilog;
 namespace CodeGen.Generators
 {
     /// <summary>
-    ///     Code generator for UnitsNet and UnitsNet.Tests projects.
+    ///     Code generator for OasysUnitsNet and OasysUnitsNet.Tests projects.
     /// </summary>
-    internal static class UnitsNetGenerator
+    internal static class OasysUnitsNetGenerator
     {
         /// <summary>
-        ///     Generate source code for UnitsNet project for the given parsed quantities.
+        ///     Generate source code for OasysUnitsNet project for the given parsed quantities.
         ///     Outputs files relative to the given root dir to these locations:
         ///     <list type="bullet">
         ///         <item>
-        ///             <description>UnitsNet/GeneratedCode (quantity and unit types, Quantity, UnitAbbreviationCache)</description>
+        ///             <description>OasysUnitsNet/GeneratedCode (quantity and unit types, Quantity, UnitAbbreviationCache)</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.Tests/GeneratedCode (tests)</description>
+        ///             <description>OasysUnitsNet.Tests/GeneratedCode (tests)</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.Tests/CustomCode (test stubs, one for each quantity if not already created)</description>
+        ///             <description>OasysUnitsNet.Tests/CustomCode (test stubs, one for each quantity if not already created)</description>
         ///         </item>
         ///     </list>
         /// </summary>
@@ -35,10 +35,10 @@ namespace CodeGen.Generators
         /// <param name="quantityNameToUnitEnumValues">Allocated unit enum values for generating unit enum types.</param>
         public static void Generate(string rootDir, Quantity[] quantities, QuantityNameToUnitEnumValues quantityNameToUnitEnumValues)
         {
-            var outputDir = $"{rootDir}/UnitsNet/GeneratedCode";
-            var extensionsOutputDir = $"{rootDir}/UnitsNet.NumberExtensions/GeneratedCode";
-            var extensionsTestOutputDir = $"{rootDir}/UnitsNet.NumberExtensions.Tests/GeneratedCode";
-            var testProjectDir = $"{rootDir}/UnitsNet.Tests";
+            var outputDir = $"{rootDir}/OasysUnitsNet/GeneratedCode";
+            var extensionsOutputDir = $"{rootDir}/OasysUnitsNet.NumberExtensions/GeneratedCode";
+            var extensionsTestOutputDir = $"{rootDir}/OasysUnitsNet.NumberExtensions.Tests/GeneratedCode";
+            var testProjectDir = $"{rootDir}/OasysUnitsNet.Tests";
 
             // Ensure output directories exist
             Directory.CreateDirectory($"{outputDir}/Quantities");

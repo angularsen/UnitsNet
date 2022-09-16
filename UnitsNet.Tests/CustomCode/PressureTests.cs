@@ -1,12 +1,12 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
-using UnitsNet.CustomCode.Units;
-using UnitsNet.CustomCode.Wrappers;
+using OasysUnitsNet.CustomCode.Units;
+using OasysUnitsNet.CustomCode.Wrappers;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace OasysUnitsNet.Tests.CustomCode
 {
     public class PressureTests : PressureTestsBase
     {

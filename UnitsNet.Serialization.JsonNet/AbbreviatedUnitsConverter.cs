@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Newtonsoft.Json;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet.Serialization.JsonNet
+namespace OasysUnitsNet.Serialization.JsonNet
 {
     /// <summary>
-    ///     JSON.net converter for all <see cref="IQuantity" /> types (e.g. all units in UnitsNet)
-    ///     Use this converter to serialize and deserialize UnitsNet types to and from JSON using the unit abbreviation schema.
+    ///     JSON.net converter for all <see cref="IQuantity" /> types (e.g. all units in OasysUnitsNet)
+    ///     Use this converter to serialize and deserialize OasysUnitsNet types to and from JSON using the unit abbreviation schema.
     /// </summary>
     /// <example>
     /// <code>
@@ -314,12 +314,12 @@ namespace UnitsNet.Serialization.JsonNet
         ///     <value>false</value>
         ///     otherwise
         /// </returns>
-        /// <exception cref="UnitsNetException">Quantity not found exception is thrown if no match found</exception>
+        /// <exception cref="OasysUnitsNetException">Quantity not found exception is thrown if no match found</exception>
         protected QuantityInfo GetQuantityInfo(string quantityName)
         {
             if (!TryGetQuantity(quantityName, out var quantityInfo))
             {
-                throw new UnitsNetException($"Failed to find the quantity type: {quantityName}.") { Data = { ["type"] = quantityName } };
+                throw new OasysUnitsNetException($"Failed to find the quantity type: {quantityName}.") { Data = { ["type"] = quantityName } };
             }
 
             return quantityInfo;

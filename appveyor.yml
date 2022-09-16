@@ -77,7 +77,7 @@ after_test:
     .\codecov.exe "Artifacts/Coverage" -t $env:codecov_upload_token
 
 artifacts:
-- path: Artifacts\UnitsNet.zip
+- path: Artifacts\OasysUnitsNet.zip
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
 - path: Artifacts\Coverage
 

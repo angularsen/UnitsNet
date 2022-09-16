@@ -1,19 +1,19 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using Newtonsoft.Json;
 
-namespace UnitsNet.Serialization.JsonNet.Tests.Infrastructure
+namespace OasysUnitsNet.Serialization.JsonNet.Tests.Infrastructure
 {
-    public abstract class UnitsNetJsonBaseTest
+    public abstract class OasysUnitsNetJsonBaseTest
     {
         private readonly JsonSerializerSettings _jsonSerializerSettings;
 
-        protected UnitsNetJsonBaseTest()
+        protected OasysUnitsNetJsonBaseTest()
         {
             _jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-            _jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
-            _jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
+            _jsonSerializerSettings.Converters.Add(new OasysUnitsNetIQuantityJsonConverter());
+            _jsonSerializerSettings.Converters.Add(new OasysUnitsNetIComparableJsonConverter());
         }
 
         protected string SerializeObject(object obj, TypeNameHandling typeNameHandling = TypeNameHandling.None)

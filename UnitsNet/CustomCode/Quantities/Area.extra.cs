@@ -1,9 +1,9 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     public partial struct Area
     {
@@ -31,9 +31,9 @@ namespace UnitsNet
         public ReciprocalArea Inverse()
         {
             if (SquareMeters == 0.0)
-                return new ReciprocalArea(0.0, UnitsNet.Units.ReciprocalAreaUnit.InverseSquareMeter);
+                return new ReciprocalArea(0.0, OasysUnitsNet.Units.ReciprocalAreaUnit.InverseSquareMeter);
 
-            return new ReciprocalArea(1 / SquareMeters, UnitsNet.Units.ReciprocalAreaUnit.InverseSquareMeter);
+            return new ReciprocalArea(1 / SquareMeters, OasysUnitsNet.Units.ReciprocalAreaUnit.InverseSquareMeter);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Area"/> divided by <see cref="Length"/>.</summary>

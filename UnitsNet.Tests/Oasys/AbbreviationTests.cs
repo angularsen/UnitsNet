@@ -1,8 +1,8 @@
 ﻿using System.Globalization;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.Oasys
+namespace OasysUnitsNet.Tests.Oasys
 {
     public class AbbreviationTests
     {

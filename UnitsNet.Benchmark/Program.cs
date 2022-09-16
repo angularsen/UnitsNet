@@ -1,11 +1,11 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet.Benchmark
+namespace OasysUnitsNet.Benchmark
 {
     [MemoryDiagnoser]
-    public class UnitsNetBenchmarks
+    public class OasysUnitsNetBenchmarks
     {
         private Length length = Length.FromMeters(3.0);
         private IQuantity lengthIQuantity = Length.FromMeters(3.0);

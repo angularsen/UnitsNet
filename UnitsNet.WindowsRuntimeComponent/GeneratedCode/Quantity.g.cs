@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,15 +15,15 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     Dynamically parse or construct quantities when types are only known at runtime.
@@ -425,18 +425,18 @@ namespace UnitsNet
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
-        /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
+        /// <exception cref="ArgumentException">Type must be of type OasysUnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         internal static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
         {
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
-                throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
+                throw new ArgumentException($"Type {quantityType} must be of type OasysUnitsNet.IQuantity.");
 
             if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
 
             throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
         }
 
-        /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
+        /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out OasysUnitsNet.IQuantity)"/>
         internal static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
             TryParse(null, quantityType, quantityString, out quantity);
 
@@ -824,7 +824,7 @@ namespace UnitsNet
                 return parser.TryParse<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>(quantityString, formatProvider, WarpingMomentOfInertia.From, out quantity);
 
             throw new ArgumentException(
-                $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
+                $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside OasysUnitsNet library?");
         }
 
         internal static IEnumerable<Type> GetQuantityTypes()

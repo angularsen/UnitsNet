@@ -1,7 +1,7 @@
 #!/bin/bash
-# Increments version of nugets UnitNets, UnitsNet.NumberExtensions.
+# Increments version of nugets UnitNets, OasysUnitsNet.NumberExtensions.
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-set_version_script="$script_dir/set-version-UnitsNet.ps1"
+set_version_script="$script_dir/set-version-OasysUnitsNet.ps1"
 
 if [ $# -eq 1 ]; then
     powershell -NoProfile $set_version_script -setVersion $1

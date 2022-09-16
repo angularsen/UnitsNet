@@ -1,4 +1,4 @@
-﻿namespace UnitsNet.Tests.TestsBase
+﻿namespace OasysUnitsNet.Tests.TestsBase
 {
     public abstract class QuantityTestsBase
     {

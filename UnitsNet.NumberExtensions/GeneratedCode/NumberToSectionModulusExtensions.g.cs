@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,36 +15,36 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToSectionModulus
+namespace OasysUnitsNet.NumberExtensions.NumberToSectionModulus
 {
     /// <summary>
     /// A number to SectionModulus Extensions
     /// </summary>
     public static class NumberToSectionModulusExtensions
     {
-        /// <inheritdoc cref="SectionModulus.FromCubicCentimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SectionModulus.FromCubicCentimeters(OasysUnitsNet.QuantityValue)" />
         public static SectionModulus CubicCentimeters<T>(this T value) =>
             SectionModulus.FromCubicCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SectionModulus.FromCubicFeet(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SectionModulus.FromCubicFeet(OasysUnitsNet.QuantityValue)" />
         public static SectionModulus CubicFeet<T>(this T value) =>
             SectionModulus.FromCubicFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SectionModulus.FromCubicInches(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SectionModulus.FromCubicInches(OasysUnitsNet.QuantityValue)" />
         public static SectionModulus CubicInches<T>(this T value) =>
             SectionModulus.FromCubicInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SectionModulus.FromCubicMeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SectionModulus.FromCubicMeters(OasysUnitsNet.QuantityValue)" />
         public static SectionModulus CubicMeters<T>(this T value) =>
             SectionModulus.FromCubicMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SectionModulus.FromCubicMillimeters(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SectionModulus.FromCubicMillimeters(OasysUnitsNet.QuantityValue)" />
         public static SectionModulus CubicMillimeters<T>(this T value) =>
             SectionModulus.FromCubicMillimeters(Convert.ToDouble(value));
 

@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,28 +15,28 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion
+namespace OasysUnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion
 {
     /// <summary>
     /// A number to CoefficientOfThermalExpansion Extensions
     /// </summary>
     public static class NumberToCoefficientOfThermalExpansionExtensions
     {
-        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseDegreeCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseDegreeCelsius(OasysUnitsNet.QuantityValue)" />
         public static CoefficientOfThermalExpansion InverseDegreeCelsius<T>(this T value) =>
             CoefficientOfThermalExpansion.FromInverseDegreeCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(OasysUnitsNet.QuantityValue)" />
         public static CoefficientOfThermalExpansion InverseDegreeFahrenheit<T>(this T value) =>
             CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="CoefficientOfThermalExpansion.FromInverseKelvin(OasysUnitsNet.QuantityValue)" />
         public static CoefficientOfThermalExpansion InverseKelvin<T>(this T value) =>
             CoefficientOfThermalExpansion.FromInverseKelvin(Convert.ToDouble(value));
 

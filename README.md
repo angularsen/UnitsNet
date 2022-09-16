@@ -1,5 +1,5 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master)
-[![codecov](https://codecov.io/gh/angularsen/UnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/UnitsNet)
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/OasysUnitsNet/history/branch/master)
+[![codecov](https://codecov.io/gh/angularsen/OasysUnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/OasysUnitsNet)
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
 ## Units.NET
@@ -12,8 +12,8 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 ### Overview
 
 * [How to install](#how-to-install)
-* [100+ quantities with 1200+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
-* [8000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
+* [100+ quantities with 1200+ units](OasysUnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
+* [8000+ unit tests](https://ci.appveyor.com/project/angularsen/OasysUnitsNet) on conversions and localizations
 * Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
   * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
   * [Strong naming](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/get-started#strong-naming) to make the library available to all developers
@@ -33,9 +33,9 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 
 ### <a name="how-to-install"></a>How to install
 
-Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete release history.
+Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/OasysUnitsNet/) for the complete release history.
 
-![Install-Package UnitsNet](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_unitsnet.png "Install-Package UnitsNet")
+![Install-Package OasysUnitsNet](https://raw.githubusercontent.com/angularsen/OasysUnitsNet/master/Docs/Images/install_package_OasysUnitsNet.png "Install-Package OasysUnitsNet")
 
 
 #### Build Targets
@@ -128,9 +128,9 @@ Sometimes you need to work with quantities and units at runtime, such as parsing
 
 There are a handful of classes to help with this:
 
-- [Quantity](UnitsNet/CustomCode/Quantity.cs) for parsing and constructing quantities as well as looking up units, names and quantity information dynamically
-- [UnitConverter](UnitsNet/UnitConverter.cs) for converting values to a different unit, with only strings or enum values
-- [UnitParser](UnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings, such as `"cm"` to `LengthUnit.Centimeter`
+- [Quantity](OasysUnitsNet/CustomCode/Quantity.cs) for parsing and constructing quantities as well as looking up units, names and quantity information dynamically
+- [UnitConverter](OasysUnitsNet/UnitConverter.cs) for converting values to a different unit, with only strings or enum values
+- [UnitParser](OasysUnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings, such as `"cm"` to `LengthUnit.Centimeter`
 
 #### Enumerate quantities and units
 `Quantity` is the go-to class for looking up information about quantities at runtime.
@@ -182,7 +182,7 @@ if (Quantity.TryParse(typeof(Length), "3cm", out IQuantity quantity2)
 ```
 
 #### Parse unit
-[UnitParser](UnitsNet/CustomCode/UnitParser.cs) parses unit abbreviation strings to unit enum values.
+[UnitParser](OasysUnitsNet/CustomCode/UnitParser.cs) parses unit abbreviation strings to unit enum values.
 
 ```c#
 Enum unit = UnitParser.Default.Parse("cm", typeof(LengthUnit)); // LengthUnit.Centimeter
@@ -227,7 +227,7 @@ UnitConverter.ConvertByAbbreviation(1, "Length", "cm", "mm"); // 10 mm
 
 Units.NET allows you to add your own units and quantities at runtime, to represent as `IQuantity` and reusing Units.NET for parsing and converting between units.
 
-Read more at [Extending-with-Custom-Units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units).
+Read more at [Extending-with-Custom-Units](https://github.com/angularsen/OasysUnitsNet/wiki/Extending-with-Custom-Units).
 
 #### Map between unit enum values and unit abbreviations
 ```c#
@@ -254,8 +254,8 @@ Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
 
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app
-[Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
-[Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-11-09) (release 2018-11-09 for Windows)
+[Source code](https://github.com/angularsen/OasysUnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
+[Download](https://github.com/angularsen/OasysUnitsNet/releases/tag/UnitConverterWpf%2F2018-11-09) (release 2018-11-09 for Windows)
 
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 
@@ -295,7 +295,7 @@ double convertedValue = UnitConverter.Convert(
 
 ### Example: WPF app using IValueConverter to parse quantities from input
 
-Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/Samples/WpfMVVMSample)
+Src: [Samples/WpfMVVMSample](https://github.com/angularsen/OasysUnitsNet/tree/master/Samples/WpfMVVMSample)
 
 ![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
 
@@ -309,17 +309,17 @@ Units.NET was intended for convenience and ease of use, not highly accurate conv
 
 The tests accept an error up to 1E-5 for most units added so far. Exceptions include units like Teaspoon, where the base unit cubic meter is a lot bigger. In many usecases this is sufficient, but for others this may be a showstopper and something you need to be aware of.
 
-For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Precision).
+For more details, see [Precision](https://github.com/angularsen/OasysUnitsNet/wiki/Precision).
 
 
 ### <a name="serialization"></a>Serialization
 
-* `UnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/UnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
+* `OasysUnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/OasysUnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/OasysUnitsNet/tree/master/OasysUnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/OasysUnitsNet/tree/master/OasysUnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
 
 #### Example of JSON Serialization
 ```c#
 var jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-jsonSerializerSettings.Converters.Add(new UnitsNetIQuantityJsonConverter());
+jsonSerializerSettings.Converters.Add(new OasysUnitsNetIQuantityJsonConverter());
 
 string json = JsonConvert.SerializeObject(new { Name = "Raiden", Weight = Mass.FromKilograms(90) }, jsonSerializerSettings);
 
@@ -339,7 +339,7 @@ JSON output:
 
 If you need to support deserializing into properties/fields of type `IComparable` instead of type `IQuantity`, then you can add 
 ```c#
-jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
+jsonSerializerSettings.Converters.Add(new OasysUnitsNetIComparableJsonConverter());
 ```
 
 **Important!** 
@@ -350,19 +350,19 @@ The base unit of any unit should be treated as volatile as we have changed this 
 
 ### <a name="contribute"></a>Want To Contribute?
 
-- [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
-- Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/UnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/UnitsNet/discussions).
+- [Adding a New Unit](https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
+- Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/OasysUnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/OasysUnitsNet/discussions).
 
 ### <a name="ci"></a>Continuous Integration
 
-[AppVeyor](https://ci.appveyor.com/project/angularsen/unitsnet) performs the following:
+[AppVeyor](https://ci.appveyor.com/project/angularsen/OasysUnitsNet) performs the following:
 * Build and test all branches
 * Build and test pull requests, notifies on success or error
 * Deploy nugets on master branch, if nuspec versions changed
 
 ### <a name="who-are-using"></a>Who are Using This?
 
-It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/angularsen/UnitsNet/issues) or edit the [README.md](https://github.com/angularsen/UnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
+It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/angularsen/OasysUnitsNet/issues) or edit the [README.md](https://github.com/angularsen/OasysUnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
 
 ![Motion Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/MotionCatalyst_greenblack_35p.png "Motion Catalyst logo")
 
@@ -380,7 +380,7 @@ https://www.motioncatalyst.com (everything else)
 #### PK Sound, Canada
 > Award-winning performers and composers put everything they’ve got into their music. PK Sound makes sure their fans will hear it all – brilliantly, precisely, consistently.
 >
-> PK Sound uses UnitsNet in Kontrol - the remote control counterpart to Trinity, the world's only robotic line array solution.
+> PK Sound uses OasysUnitsNet in Kontrol - the remote control counterpart to Trinity, the world's only robotic line array solution.
 
 http://www.pksound.ca/pk-sound/announcing-the-official-release-of-kontrol/ (for an idea of what the Kontrol project is)<br>
 http://www.pksound.ca/trinity/ (the speakers that Kontrol currently controls)<br>
@@ -422,7 +422,7 @@ https://github.com/ebfortin/primoris.universe.stargen
 #### Harrington Hoists, Inc. (A Subsidiary of KITO Americas, Inc.)
 > Harrington Hoists, Inc. is located in Manheim, PA, Elizabethtown, PA, South Holland, IL and Corona, CA. Harrington is a leading manufacturer of manual, electric and air chain hoists as well as wire rope hoists and crane products serving the North American material handling industry.
 
-Harrington uses UnitsNet in their internal software to perform many different calculations related to crane dimensioning, girder strength, electrical safety verification, etc.
+Harrington uses OasysUnitsNet in their internal software to perform many different calculations related to crane dimensioning, girder strength, electrical safety verification, etc.
 
 https://www.harringtonhoists.com<br>
 https://kito.com
@@ -434,7 +434,7 @@ https://kito.com
 
 > The Structural Analysis Format (SAF) has been created to allow structural engineering applications to exchange data using a straight forward and simple to understand format.  
 > While inspired by IFC, SAF has its benefits that it's **easily modifyable** by the end-user _(it's an xlsx file)_, **well documented** and **easy to understand**.  
-> UnitsNet is used by the SDK provided by SCIA to facilitate import / export between metric & imperial systems
+> OasysUnitsNet is used by the SDK provided by SCIA to facilitate import / export between metric & imperial systems
 
 https://www.saf.guide  
 https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK

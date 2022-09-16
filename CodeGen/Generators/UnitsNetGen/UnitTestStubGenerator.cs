@@ -1,6 +1,6 @@
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetGen
+namespace CodeGen.Generators.OasysUnitsNetGen
 {
     internal class UnitTestStubGenerator : GeneratorBase
     {
@@ -17,7 +17,7 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL($@"
 using System;
 
-namespace UnitsNet.Tests.CustomCode
+namespace OasysUnitsNet.Tests.CustomCode
 {{
     public class {_quantity.Name}Tests : {_quantity.Name}TestsBase
     {{

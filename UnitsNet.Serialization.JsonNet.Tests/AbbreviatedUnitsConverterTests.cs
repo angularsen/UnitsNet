@@ -1,10 +1,10 @@
 ﻿using System.Globalization;
 using Newtonsoft.Json;
-using UnitsNet.Tests.Serialization;
-using UnitsNet.Units;
+using OasysUnitsNet.Tests.Serialization;
+using OasysUnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Serialization.JsonNet.Tests
+namespace OasysUnitsNet.Serialization.JsonNet.Tests
 {
     public class AbbreviatedUnitsConverterTests : JsonNetSerializationTestsBase
     {
@@ -130,11 +130,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetExceptionThrown_WhenDeserializing_FromUnknownQuantityType()
+        public void OasysUnitsNetExceptionThrown_WhenDeserializing_FromUnknownQuantityType()
         {
             var json = "{\"Value\":1.2,\"Unit\":\"mg\",\"Type\":\"invalid\"}";
 
-            Assert.Throws<UnitsNetException>(() => DeserializeObject<Mass>(json));
+            Assert.Throws<OasysUnitsNetException>(() => DeserializeObject<Mass>(json));
         }
 
         [Fact]

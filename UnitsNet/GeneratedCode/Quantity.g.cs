@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,18 +15,18 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 using System.Collections.Generic;
 
 #nullable enable
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     ///     Dynamically parse or construct quantities when types are only known at runtime.
@@ -34,7 +34,7 @@ namespace UnitsNet
     public static partial class Quantity
     {
         /// <summary>
-        /// All QuantityInfo instances mapped by quantity name that are present in UnitsNet by default.
+        /// All QuantityInfo instances mapped by quantity name that are present in OasysUnitsNet by default.
         /// </summary>
         public static readonly IDictionary<string, QuantityInfo> ByName = new Dictionary<string, QuantityInfo>
         {

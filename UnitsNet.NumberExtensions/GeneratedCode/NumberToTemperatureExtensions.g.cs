@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,56 +15,56 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToTemperature
+namespace OasysUnitsNet.NumberExtensions.NumberToTemperature
 {
     /// <summary>
     /// A number to Temperature Extensions
     /// </summary>
     public static class NumberToTemperatureExtensions
     {
-        /// <inheritdoc cref="Temperature.FromDegreesCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesCelsius(OasysUnitsNet.QuantityValue)" />
         public static Temperature DegreesCelsius<T>(this T value) =>
             Temperature.FromDegreesCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesDelisle(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesDelisle(OasysUnitsNet.QuantityValue)" />
         public static Temperature DegreesDelisle<T>(this T value) =>
             Temperature.FromDegreesDelisle(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(OasysUnitsNet.QuantityValue)" />
         public static Temperature DegreesFahrenheit<T>(this T value) =>
             Temperature.FromDegreesFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesNewton(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesNewton(OasysUnitsNet.QuantityValue)" />
         public static Temperature DegreesNewton<T>(this T value) =>
             Temperature.FromDegreesNewton(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesRankine(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesRankine(OasysUnitsNet.QuantityValue)" />
         public static Temperature DegreesRankine<T>(this T value) =>
             Temperature.FromDegreesRankine(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesReaumur(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesReaumur(OasysUnitsNet.QuantityValue)" />
         public static Temperature DegreesReaumur<T>(this T value) =>
             Temperature.FromDegreesReaumur(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesRoemer(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesRoemer(OasysUnitsNet.QuantityValue)" />
         public static Temperature DegreesRoemer<T>(this T value) =>
             Temperature.FromDegreesRoemer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromKelvins(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromKelvins(OasysUnitsNet.QuantityValue)" />
         public static Temperature Kelvins<T>(this T value) =>
             Temperature.FromKelvins(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(OasysUnitsNet.QuantityValue)" />
         public static Temperature MillidegreesCelsius<T>(this T value) =>
             Temperature.FromMillidegreesCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromSolarTemperatures(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromSolarTemperatures(OasysUnitsNet.QuantityValue)" />
         public static Temperature SolarTemperatures<T>(this T value) =>
             Temperature.FromSolarTemperatures(Convert.ToDouble(value));
 

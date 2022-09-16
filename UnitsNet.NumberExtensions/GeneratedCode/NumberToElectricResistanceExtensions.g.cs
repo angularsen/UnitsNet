@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,40 +15,40 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToElectricResistance
+namespace OasysUnitsNet.NumberExtensions.NumberToElectricResistance
 {
     /// <summary>
     /// A number to ElectricResistance Extensions
     /// </summary>
     public static class NumberToElectricResistanceExtensions
     {
-        /// <inheritdoc cref="ElectricResistance.FromGigaohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromGigaohms(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistance Gigaohms<T>(this T value) =>
             ElectricResistance.FromGigaohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromKiloohms(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistance Kiloohms<T>(this T value) =>
             ElectricResistance.FromKiloohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromMegaohms(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistance Megaohms<T>(this T value) =>
             ElectricResistance.FromMegaohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMicroohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromMicroohms(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistance Microohms<T>(this T value) =>
             ElectricResistance.FromMicroohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromMilliohms(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistance Milliohms<T>(this T value) =>
             ElectricResistance.FromMilliohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistance.FromOhms(OasysUnitsNet.QuantityValue)" />
         public static ElectricResistance Ohms<T>(this T value) =>
             ElectricResistance.FromOhms(Convert.ToDouble(value));
 

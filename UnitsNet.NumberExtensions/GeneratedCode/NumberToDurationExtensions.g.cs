@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,60 +15,60 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToDuration
+namespace OasysUnitsNet.NumberExtensions.NumberToDuration
 {
     /// <summary>
     /// A number to Duration Extensions
     /// </summary>
     public static class NumberToDurationExtensions
     {
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromDays(OasysUnitsNet.QuantityValue)" />
         public static Duration Days<T>(this T value) =>
             Duration.FromDays(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromHours(OasysUnitsNet.QuantityValue)" />
         public static Duration Hours<T>(this T value) =>
             Duration.FromHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromJulianYears(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromJulianYears(OasysUnitsNet.QuantityValue)" />
         public static Duration JulianYears<T>(this T value) =>
             Duration.FromJulianYears(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromMicroseconds(OasysUnitsNet.QuantityValue)" />
         public static Duration Microseconds<T>(this T value) =>
             Duration.FromMicroseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromMilliseconds(OasysUnitsNet.QuantityValue)" />
         public static Duration Milliseconds<T>(this T value) =>
             Duration.FromMilliseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromMinutes(OasysUnitsNet.QuantityValue)" />
         public static Duration Minutes<T>(this T value) =>
             Duration.FromMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromMonths30(OasysUnitsNet.QuantityValue)" />
         public static Duration Months30<T>(this T value) =>
             Duration.FromMonths30(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromNanoseconds(OasysUnitsNet.QuantityValue)" />
         public static Duration Nanoseconds<T>(this T value) =>
             Duration.FromNanoseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromSeconds(OasysUnitsNet.QuantityValue)" />
         public static Duration Seconds<T>(this T value) =>
             Duration.FromSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromWeeks(OasysUnitsNet.QuantityValue)" />
         public static Duration Weeks<T>(this T value) =>
             Duration.FromWeeks(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Duration.FromYears365(OasysUnitsNet.QuantityValue)" />
         public static Duration Years365<T>(this T value) =>
             Duration.FromYears365(Convert.ToDouble(value));
 

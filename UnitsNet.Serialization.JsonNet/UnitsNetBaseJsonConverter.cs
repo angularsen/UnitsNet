@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Concurrent;
@@ -9,14 +9,14 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace UnitsNet.Serialization.JsonNet
+namespace OasysUnitsNet.Serialization.JsonNet
 {
     /// <summary>
-    /// Base converter for serializing and deserializing UnitsNet types to and from JSON.
-    /// Contains shared functionality used by <see cref="UnitsNetIQuantityJsonConverter"/> and <see cref="UnitsNetIComparableJsonConverter"/>
+    /// Base converter for serializing and deserializing OasysUnitsNet types to and from JSON.
+    /// Contains shared functionality used by <see cref="OasysUnitsNetIQuantityJsonConverter"/> and <see cref="OasysUnitsNetIComparableJsonConverter"/>
     /// </summary>
     /// <typeparam name="T">The type being converted. Should either be <see cref="IQuantity"/> or <see cref="IComparable"/></typeparam>
-    public abstract class UnitsNetBaseJsonConverter<T> : JsonConverter<T>
+    public abstract class OasysUnitsNetBaseJsonConverter<T> : JsonConverter<T>
     {
         private ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
 
@@ -93,7 +93,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// Convert a <see cref="ValueUnit"/> to an <see cref="IQuantity"/>
         /// </summary>
         /// <param name="valueUnit">The value unit to convert</param>
-        /// <exception cref="UnitsNetException">Thrown when an invalid Unit has been provided</exception>
+        /// <exception cref="OasysUnitsNetException">Thrown when an invalid Unit has been provided</exception>
         /// <returns>An IQuantity</returns>
         protected IQuantity ConvertValueUnit(ValueUnit valueUnit)
         {
@@ -137,15 +137,15 @@ namespace UnitsNet.Serialization.JsonNet
 
             if (unitEnumType is null)
             {
-                // "UnitsNet.Units.MassUnit,UnitsNet"
-                var unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
+                // "OasysUnitsNet.Units.MassUnit,OasysUnitsNet"
+                var unitEnumTypeAssemblyQualifiedName = "OasysUnitsNet.Units." + unitEnumTypeName + ",OasysUnitsNet";
 
                 // -- see http://stackoverflow.com/a/6465096/1256096 for details
                 unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
 
                 if (unitEnumType is null)
                 {
-                    var ex = new UnitsNetException("Unable to find enum type.");
+                    var ex = new OasysUnitsNetException("Unable to find enum type.");
                     ex.Data["type"] = unitEnumTypeAssemblyQualifiedName;
                     throw ex;
                 }
@@ -161,7 +161,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             if (unitParts.Length != 2)
             {
-                var ex = new UnitsNetException($"\"{unit}\" is not a valid unit.");
+                var ex = new OasysUnitsNetException($"\"{unit}\" is not a valid unit.");
                 ex.Data["type"] = unit;
                 throw ex;
             }

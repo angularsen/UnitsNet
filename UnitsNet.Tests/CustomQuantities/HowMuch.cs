@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnitsNet.Tests.CustomQuantities
+namespace OasysUnitsNet.Tests.CustomQuantities
 {
     /// <inheritdoc cref="IQuantity"/>
     /// <summary>

@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
+namespace OasysUnitsNet.NumberExtensions.NumberToTemperatureGradient
 {
     /// <summary>
     /// A number to TemperatureGradient Extensions
     /// </summary>
     public static class NumberToTemperatureGradientExtensions
     {
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerKilometer(OasysUnitsNet.QuantityValue)" />
         public static TemperatureGradient DegreesCelciusPerKilometer<T>(this T value) =>
             TemperatureGradient.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesCelciusPerMeter(OasysUnitsNet.QuantityValue)" />
         public static TemperatureGradient DegreesCelciusPerMeter<T>(this T value) =>
             TemperatureGradient.FromDegreesCelciusPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(OasysUnitsNet.QuantityValue)" />
         public static TemperatureGradient DegreesFahrenheitPerFoot<T>(this T value) =>
             TemperatureGradient.FromDegreesFahrenheitPerFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(OasysUnitsNet.QuantityValue)" />
         public static TemperatureGradient KelvinsPerMeter<T>(this T value) =>
             TemperatureGradient.FromKelvinsPerMeter(Convert.ToDouble(value));
 

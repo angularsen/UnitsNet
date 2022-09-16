@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,96 +15,96 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
+namespace OasysUnitsNet.NumberExtensions.NumberToVolumeConcentration
 {
     /// <summary>
     /// A number to VolumeConcentration Extensions
     /// </summary>
     public static class NumberToVolumeConcentrationExtensions
     {
-        /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerLiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration CentilitersPerLiter<T>(this T value) =>
             VolumeConcentration.FromCentilitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerMililiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerMililiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration CentilitersPerMililiter<T>(this T value) =>
             VolumeConcentration.FromCentilitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerLiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration DecilitersPerLiter<T>(this T value) =>
             VolumeConcentration.FromDecilitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerMililiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerMililiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration DecilitersPerMililiter<T>(this T value) =>
             VolumeConcentration.FromDecilitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromDecimalFractions(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromDecimalFractions(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration DecimalFractions<T>(this T value) =>
             VolumeConcentration.FromDecimalFractions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromLitersPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromLitersPerLiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration LitersPerLiter<T>(this T value) =>
             VolumeConcentration.FromLitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromLitersPerMililiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromLitersPerMililiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration LitersPerMililiter<T>(this T value) =>
             VolumeConcentration.FromLitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerLiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration MicrolitersPerLiter<T>(this T value) =>
             VolumeConcentration.FromMicrolitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerMililiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerMililiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration MicrolitersPerMililiter<T>(this T value) =>
             VolumeConcentration.FromMicrolitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerLiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration MillilitersPerLiter<T>(this T value) =>
             VolumeConcentration.FromMillilitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerMililiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerMililiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration MillilitersPerMililiter<T>(this T value) =>
             VolumeConcentration.FromMillilitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerLiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration NanolitersPerLiter<T>(this T value) =>
             VolumeConcentration.FromNanolitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerMililiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerMililiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration NanolitersPerMililiter<T>(this T value) =>
             VolumeConcentration.FromNanolitersPerMililiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPartsPerBillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPartsPerBillion(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration PartsPerBillion<T>(this T value) =>
             VolumeConcentration.FromPartsPerBillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPartsPerMillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPartsPerMillion(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration PartsPerMillion<T>(this T value) =>
             VolumeConcentration.FromPartsPerMillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPartsPerThousand(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPartsPerThousand(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration PartsPerThousand<T>(this T value) =>
             VolumeConcentration.FromPartsPerThousand(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPartsPerTrillion(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration PartsPerTrillion<T>(this T value) =>
             VolumeConcentration.FromPartsPerTrillion(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPercent(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPercent(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration Percent<T>(this T value) =>
             VolumeConcentration.FromPercent(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerLiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration PicolitersPerLiter<T>(this T value) =>
             VolumeConcentration.FromPicolitersPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerMililiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerMililiter(OasysUnitsNet.QuantityValue)" />
         public static VolumeConcentration PicolitersPerMililiter<T>(this T value) =>
             VolumeConcentration.FromPicolitersPerMililiter(Convert.ToDouble(value));
 

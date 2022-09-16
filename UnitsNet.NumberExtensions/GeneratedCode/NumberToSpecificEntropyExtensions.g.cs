@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,52 +15,52 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToSpecificEntropy
+namespace OasysUnitsNet.NumberExtensions.NumberToSpecificEntropy
 {
     /// <summary>
     /// A number to SpecificEntropy Extensions
     /// </summary>
     public static class NumberToSpecificEntropyExtensions
     {
-        /// <inheritdoc cref="SpecificEntropy.FromBtusPerPoundFahrenheit(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromBtusPerPoundFahrenheit(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy BtusPerPoundFahrenheit<T>(this T value) =>
             SpecificEntropy.FromBtusPerPoundFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy CaloriesPerGramKelvin<T>(this T value) =>
             SpecificEntropy.FromCaloriesPerGramKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy JoulesPerKilogramDegreeCelsius<T>(this T value) =>
             SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy JoulesPerKilogramKelvin<T>(this T value) =>
             SpecificEntropy.FromJoulesPerKilogramKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy KilocaloriesPerGramKelvin<T>(this T value) =>
             SpecificEntropy.FromKilocaloriesPerGramKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy KilojoulesPerKilogramDegreeCelsius<T>(this T value) =>
             SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy KilojoulesPerKilogramKelvin<T>(this T value) =>
             SpecificEntropy.FromKilojoulesPerKilogramKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy MegajoulesPerKilogramDegreeCelsius<T>(this T value) =>
             SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(OasysUnitsNet.QuantityValue)" />
         public static SpecificEntropy MegajoulesPerKilogramKelvin<T>(this T value) =>
             SpecificEntropy.FromMegajoulesPerKilogramKelvin(Convert.ToDouble(value));
 

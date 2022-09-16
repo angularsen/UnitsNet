@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,76 +15,76 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToForce
+namespace OasysUnitsNet.NumberExtensions.NumberToForce
 {
     /// <summary>
     /// A number to Force Extensions
     /// </summary>
     public static class NumberToForceExtensions
     {
-        /// <inheritdoc cref="Force.FromDecanewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromDecanewtons(OasysUnitsNet.QuantityValue)" />
         public static Force Decanewtons<T>(this T value) =>
             Force.FromDecanewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromDyne(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromDyne(OasysUnitsNet.QuantityValue)" />
         public static Force Dyne<T>(this T value) =>
             Force.FromDyne(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromKilogramsForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromKilogramsForce(OasysUnitsNet.QuantityValue)" />
         public static Force KilogramsForce<T>(this T value) =>
             Force.FromKilogramsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromKilonewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromKilonewtons(OasysUnitsNet.QuantityValue)" />
         public static Force Kilonewtons<T>(this T value) =>
             Force.FromKilonewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromKiloPonds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromKiloPonds(OasysUnitsNet.QuantityValue)" />
         public static Force KiloPonds<T>(this T value) =>
             Force.FromKiloPonds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromKilopoundsForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromKilopoundsForce(OasysUnitsNet.QuantityValue)" />
         public static Force KilopoundsForce<T>(this T value) =>
             Force.FromKilopoundsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromMeganewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromMeganewtons(OasysUnitsNet.QuantityValue)" />
         public static Force Meganewtons<T>(this T value) =>
             Force.FromMeganewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromMicronewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromMicronewtons(OasysUnitsNet.QuantityValue)" />
         public static Force Micronewtons<T>(this T value) =>
             Force.FromMicronewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromMillinewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromMillinewtons(OasysUnitsNet.QuantityValue)" />
         public static Force Millinewtons<T>(this T value) =>
             Force.FromMillinewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromNewtons(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromNewtons(OasysUnitsNet.QuantityValue)" />
         public static Force Newtons<T>(this T value) =>
             Force.FromNewtons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromOunceForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromOunceForce(OasysUnitsNet.QuantityValue)" />
         public static Force OunceForce<T>(this T value) =>
             Force.FromOunceForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromPoundals(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromPoundals(OasysUnitsNet.QuantityValue)" />
         public static Force Poundals<T>(this T value) =>
             Force.FromPoundals(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromPoundsForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromPoundsForce(OasysUnitsNet.QuantityValue)" />
         public static Force PoundsForce<T>(this T value) =>
             Force.FromPoundsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromShortTonsForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromShortTonsForce(OasysUnitsNet.QuantityValue)" />
         public static Force ShortTonsForce<T>(this T value) =>
             Force.FromShortTonsForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromTonnesForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromTonnesForce(OasysUnitsNet.QuantityValue)" />
         public static Force TonnesForce<T>(this T value) =>
             Force.FromTonnesForce(Convert.ToDouble(value));
 

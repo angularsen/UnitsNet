@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,72 +15,72 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToAcceleration
+namespace OasysUnitsNet.NumberExtensions.NumberToAcceleration
 {
     /// <summary>
     /// A number to Acceleration Extensions
     /// </summary>
     public static class NumberToAccelerationExtensions
     {
-        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration CentimetersPerSecondSquared<T>(this T value) =>
             Acceleration.FromCentimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration DecimetersPerSecondSquared<T>(this T value) =>
             Acceleration.FromDecimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration FeetPerSecondSquared<T>(this T value) =>
             Acceleration.FromFeetPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration InchesPerSecondSquared<T>(this T value) =>
             Acceleration.FromInchesPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration KilometersPerSecondSquared<T>(this T value) =>
             Acceleration.FromKilometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(OasysUnitsNet.QuantityValue)" />
         public static Acceleration KnotsPerHour<T>(this T value) =>
             Acceleration.FromKnotsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(OasysUnitsNet.QuantityValue)" />
         public static Acceleration KnotsPerMinute<T>(this T value) =>
             Acceleration.FromKnotsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(OasysUnitsNet.QuantityValue)" />
         public static Acceleration KnotsPerSecond<T>(this T value) =>
             Acceleration.FromKnotsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration MetersPerSecondSquared<T>(this T value) =>
             Acceleration.FromMetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration MicrometersPerSecondSquared<T>(this T value) =>
             Acceleration.FromMicrometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration MillimetersPerSecondSquared<T>(this T value) =>
             Acceleration.FromMillimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMillistandardGravity(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromMillistandardGravity(OasysUnitsNet.QuantityValue)" />
         public static Acceleration MillistandardGravity<T>(this T value) =>
             Acceleration.FromMillistandardGravity(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(OasysUnitsNet.QuantityValue)" />
         public static Acceleration NanometersPerSecondSquared<T>(this T value) =>
             Acceleration.FromNanometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromStandardGravity(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Acceleration.FromStandardGravity(OasysUnitsNet.QuantityValue)" />
         public static Acceleration StandardGravity<T>(this T value) =>
             Acceleration.FromStandardGravity(Convert.ToDouble(value));
 

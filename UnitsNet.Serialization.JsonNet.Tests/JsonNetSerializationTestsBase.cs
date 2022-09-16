@@ -1,11 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System.Linq;
 using Newtonsoft.Json;
-using UnitsNet.Tests.Serialization;
+using OasysUnitsNet.Tests.Serialization;
 
-namespace UnitsNet.Serialization.JsonNet.Tests
+namespace OasysUnitsNet.Serialization.JsonNet.Tests
 {
     public abstract class JsonNetSerializationTestsBase : SerializationTestsBase<string>
     {

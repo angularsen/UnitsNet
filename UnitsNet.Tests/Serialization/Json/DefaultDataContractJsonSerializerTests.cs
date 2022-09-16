@@ -2,15 +2,15 @@
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.Serialization.Json
+namespace OasysUnitsNet.Tests.Serialization.Json
 {
     /// <summary>
     ///     These tests demonstrate the default behavior of the DataContractJsonSerializer when dealing with quantities
     ///     <remarks>
-    ///         <para>Note that the produced schema is different from the one generated using the UnitsNet.Json package</para>
+    ///         <para>Note that the produced schema is different from the one generated using the OasysUnitsNet.Json package</para>
     ///         <para>
     ///             The default schema can easily be modified using a converter, a.k.a. DataContractSurrogate (.NET Framework)
     ///         </para>
@@ -67,7 +67,7 @@ namespace UnitsNet.Tests.Serialization.Json
         public void InterfaceObject_IncludesTypeInformation()
         {
             var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
-            var expectedJson = "{\"Quantity\":{\"__type\":\"Information:#UnitsNet\",\"Value\":1.20,\"Unit\":4}}";
+            var expectedJson = "{\"Quantity\":{\"__type\":\"Information:#OasysUnitsNet\",\"Value\":1.20,\"Unit\":4}}";
 
             var json = SerializeObject(testObject);
 

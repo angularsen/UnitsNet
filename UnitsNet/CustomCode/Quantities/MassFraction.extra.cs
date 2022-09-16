@@ -1,6 +1,6 @@
-﻿using UnitsNet.Units;
+﻿using OasysUnitsNet.Units;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     public partial struct MassFraction
     {

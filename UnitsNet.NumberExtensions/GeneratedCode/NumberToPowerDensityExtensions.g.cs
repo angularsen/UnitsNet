@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,192 +15,192 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToPowerDensity
+namespace OasysUnitsNet.NumberExtensions.NumberToPowerDensity
 {
     /// <summary>
     /// A number to PowerDensity Extensions
     /// </summary>
     public static class NumberToPowerDensityExtensions
     {
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity DecawattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromDecawattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity DecawattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromDecawattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity DecawattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromDecawattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity DecawattsPerLiter<T>(this T value) =>
             PowerDensity.FromDecawattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity DeciwattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromDeciwattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity DeciwattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromDeciwattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity DeciwattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromDeciwattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity DeciwattsPerLiter<T>(this T value) =>
             PowerDensity.FromDeciwattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity GigawattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromGigawattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity GigawattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromGigawattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity GigawattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromGigawattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity GigawattsPerLiter<T>(this T value) =>
             PowerDensity.FromGigawattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity KilowattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromKilowattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity KilowattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromKilowattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity KilowattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromKilowattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity KilowattsPerLiter<T>(this T value) =>
             PowerDensity.FromKilowattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MegawattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromMegawattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MegawattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromMegawattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MegawattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromMegawattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MegawattsPerLiter<T>(this T value) =>
             PowerDensity.FromMegawattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MicrowattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromMicrowattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MicrowattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromMicrowattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MicrowattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromMicrowattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MicrowattsPerLiter<T>(this T value) =>
             PowerDensity.FromMicrowattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MilliwattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromMilliwattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MilliwattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromMilliwattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MilliwattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromMilliwattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity MilliwattsPerLiter<T>(this T value) =>
             PowerDensity.FromMilliwattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity NanowattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromNanowattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity NanowattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromNanowattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity NanowattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromNanowattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity NanowattsPerLiter<T>(this T value) =>
             PowerDensity.FromNanowattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity PicowattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromPicowattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity PicowattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromPicowattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity PicowattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromPicowattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity PicowattsPerLiter<T>(this T value) =>
             PowerDensity.FromPicowattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity TerawattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromTerawattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity TerawattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromTerawattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity TerawattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromTerawattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity TerawattsPerLiter<T>(this T value) =>
             PowerDensity.FromTerawattsPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity WattsPerCubicFoot<T>(this T value) =>
             PowerDensity.FromWattsPerCubicFoot(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity WattsPerCubicInch<T>(this T value) =>
             PowerDensity.FromWattsPerCubicInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity WattsPerCubicMeter<T>(this T value) =>
             PowerDensity.FromWattsPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(OasysUnitsNet.QuantityValue)" />
         public static PowerDensity WattsPerLiter<T>(this T value) =>
             PowerDensity.FromWattsPerLiter(Convert.ToDouble(value));
 

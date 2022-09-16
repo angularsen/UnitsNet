@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,80 +15,80 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToAngle
+namespace OasysUnitsNet.NumberExtensions.NumberToAngle
 {
     /// <summary>
     /// A number to Angle Extensions
     /// </summary>
     public static class NumberToAngleExtensions
     {
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromArcminutes(OasysUnitsNet.QuantityValue)" />
         public static Angle Arcminutes<T>(this T value) =>
             Angle.FromArcminutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromArcseconds(OasysUnitsNet.QuantityValue)" />
         public static Angle Arcseconds<T>(this T value) =>
             Angle.FromArcseconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromCentiradians(OasysUnitsNet.QuantityValue)" />
         public static Angle Centiradians<T>(this T value) =>
             Angle.FromCentiradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromDeciradians(OasysUnitsNet.QuantityValue)" />
         public static Angle Deciradians<T>(this T value) =>
             Angle.FromDeciradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromDegrees(OasysUnitsNet.QuantityValue)" />
         public static Angle Degrees<T>(this T value) =>
             Angle.FromDegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromGradians(OasysUnitsNet.QuantityValue)" />
         public static Angle Gradians<T>(this T value) =>
             Angle.FromGradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromMicrodegrees(OasysUnitsNet.QuantityValue)" />
         public static Angle Microdegrees<T>(this T value) =>
             Angle.FromMicrodegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromMicroradians(OasysUnitsNet.QuantityValue)" />
         public static Angle Microradians<T>(this T value) =>
             Angle.FromMicroradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromMillidegrees(OasysUnitsNet.QuantityValue)" />
         public static Angle Millidegrees<T>(this T value) =>
             Angle.FromMillidegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromMilliradians(OasysUnitsNet.QuantityValue)" />
         public static Angle Milliradians<T>(this T value) =>
             Angle.FromMilliradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromNanodegrees(OasysUnitsNet.QuantityValue)" />
         public static Angle Nanodegrees<T>(this T value) =>
             Angle.FromNanodegrees(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromNanoradians(OasysUnitsNet.QuantityValue)" />
         public static Angle Nanoradians<T>(this T value) =>
             Angle.FromNanoradians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromNatoMils(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromNatoMils(OasysUnitsNet.QuantityValue)" />
         public static Angle NatoMils<T>(this T value) =>
             Angle.FromNatoMils(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromRadians(OasysUnitsNet.QuantityValue)" />
         public static Angle Radians<T>(this T value) =>
             Angle.FromRadians(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromRevolutions(OasysUnitsNet.QuantityValue)" />
         public static Angle Revolutions<T>(this T value) =>
             Angle.FromRevolutions(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Angle.FromTilt(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromTilt(OasysUnitsNet.QuantityValue)" />
         public static Angle Tilt<T>(this T value) =>
             Angle.FromTilt(Convert.ToDouble(value));
 

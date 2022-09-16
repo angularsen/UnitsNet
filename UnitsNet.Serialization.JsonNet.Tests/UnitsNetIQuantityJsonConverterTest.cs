@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections;
@@ -9,19 +9,19 @@ using System.Text;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace UnitsNet.Serialization.JsonNet.Tests
+namespace OasysUnitsNet.Serialization.JsonNet.Tests
 {
-    public sealed class UnitsNetIQuantityJsonConverterTest
+    public sealed class OasysUnitsNetIQuantityJsonConverterTest
     {
-        private UnitsNetIQuantityJsonConverter _sut;
+        private OasysUnitsNetIQuantityJsonConverter _sut;
 
-        public UnitsNetIQuantityJsonConverterTest()
+        public OasysUnitsNetIQuantityJsonConverterTest()
         {
-            _sut = new UnitsNetIQuantityJsonConverter();
+            _sut = new OasysUnitsNetIQuantityJsonConverter();
         }
 
         [Fact]
-        public void UnitsNetIQuantityJsonConverter_CanWrite_returns_true()
+        public void OasysUnitsNetIQuantityJsonConverter_CanWrite_returns_true()
         {
             Assert.True(_sut.CanWrite);
         }
@@ -35,7 +35,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [Theory]
         [MemberData(nameof(WriteJson_NullArguments))]
         public void
-            UnitsNetIQuantityJsonConverter_WriteJson_throws_ArgumentNullException_when_arguments_are_null(JsonWriter writer, JsonSerializer serializer, string parameterName)
+            OasysUnitsNetIQuantityJsonConverter_WriteJson_throws_ArgumentNullException_when_arguments_are_null(JsonWriter writer, JsonSerializer serializer, string parameterName)
         {
             var exception = Assert.Throws<ArgumentNullException>(() => _sut.WriteJson(writer, Power.FromWatts(10D), serializer));
 
@@ -43,7 +43,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIQuantityJsonConverter_WriteJson_works_with_NULL_value()
+        public void OasysUnitsNetIQuantityJsonConverter_WriteJson_works_with_NULL_value()
         {
             var result = new StringBuilder();
             using(var stringWriter = new StringWriter(result))
@@ -56,7 +56,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIQuantityJsonConverter_WriteJson_works_with_double_quantity()
+        public void OasysUnitsNetIQuantityJsonConverter_WriteJson_works_with_double_quantity()
         {
             var result = new StringBuilder();
 
@@ -72,7 +72,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         [Theory]
         [InlineData(10.2365, "10.2365", "10.2365")]
         [InlineData(10, "10.0", "10")] // Json.NET adds .0
-        public void UnitsNetIQuantityJsonConverter_WriteJson_works_with_decimal_quantity(decimal value, string expectedValue, string expectedValueString)
+        public void OasysUnitsNetIQuantityJsonConverter_WriteJson_works_with_decimal_quantity(decimal value, string expectedValue, string expectedValueString)
         {
             var result = new StringBuilder();
 
@@ -87,7 +87,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIQuantityJsonConverter_CanRead_returns_true()
+        public void OasysUnitsNetIQuantityJsonConverter_CanRead_returns_true()
         {
             Assert.True(_sut.CanRead);
         }
@@ -100,7 +100,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         [Theory]
         [MemberData(nameof(ReadJson_NullArguments))]
-        public void UnitsNetIQuantityJsonConverter_ReadJson_throws_ArgumentNullException_when_arguments_are_null(JsonReader reader, JsonSerializer serializer, string paramName)
+        public void OasysUnitsNetIQuantityJsonConverter_ReadJson_throws_ArgumentNullException_when_arguments_are_null(JsonReader reader, JsonSerializer serializer, string paramName)
         {
             var exception = Assert.Throws<ArgumentNullException>(() => _sut.ReadJson(reader, typeof(IQuantity), null, false, serializer));
 
@@ -108,7 +108,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIQuantityJsonConverter_ReadJson_handles_NULL_values_correctly()
+        public void OasysUnitsNetIQuantityJsonConverter_ReadJson_handles_NULL_values_correctly()
         {
             var json = "null";
 
@@ -122,7 +122,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetIQuantityJsonConverter_ReadJson_works_as_expected()
+        public void OasysUnitsNetIQuantityJsonConverter_ReadJson_works_as_expected()
         {
             var json = "{ \"unit\": \"PowerUnit.Watt\", \"Value\": 10.3654}";
 

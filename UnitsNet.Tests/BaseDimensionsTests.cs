@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnitsNet.Tests
 {
     public class BaseDimensionsTests
     {

@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,28 +15,28 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToApparentEnergy
+namespace OasysUnitsNet.NumberExtensions.NumberToApparentEnergy
 {
     /// <summary>
     /// A number to ApparentEnergy Extensions
     /// </summary>
     public static class NumberToApparentEnergyExtensions
     {
-        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(OasysUnitsNet.QuantityValue)" />
         public static ApparentEnergy KilovoltampereHours<T>(this T value) =>
             ApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(OasysUnitsNet.QuantityValue)" />
         public static ApparentEnergy MegavoltampereHours<T>(this T value) =>
             ApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(OasysUnitsNet.QuantityValue)" />
         public static ApparentEnergy VoltampereHours<T>(this T value) =>
             ApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
 

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="UnitsNet" Version="4.7.0" />
+    <PackageReference Include="OasysUnitsNet" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>

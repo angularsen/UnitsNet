@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,21 +15,21 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <inheritdoc />
     /// <summary>
@@ -146,13 +146,13 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of ElectricPotentialChangeRate
         /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/OasysUnitsNet/issues/848.")]
         public static ElectricPotentialChangeRate MaxValue { get; }
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotentialChangeRate
         /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
+        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/OasysUnitsNet/issues/848.")]
         public static ElectricPotentialChangeRate MinValue { get; }
 
         /// <summary>
@@ -643,9 +643,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
-        /// <exception cref="UnitsNetException">
+        /// <exception cref="OasysUnitsNetException">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref="OasysUnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static ElectricPotentialChangeRate Parse(string str)
@@ -670,9 +670,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
         ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
         /// </exception>
-        /// <exception cref="UnitsNetException">
+        /// <exception cref="OasysUnitsNetException">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref="OasysUnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
@@ -724,7 +724,7 @@ namespace UnitsNet
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         public static ElectricPotentialChangeRateUnit ParseUnit(string str)
         {
             return ParseUnit(str, null);
@@ -739,13 +739,13 @@ namespace UnitsNet
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <exception cref="OasysUnitsNetException">Error parsing string.</exception>
         public static ElectricPotentialChangeRateUnit ParseUnit(string str, IFormatProvider? provider)
         {
             return UnitParser.Default.Parse<ElectricPotentialChangeRateUnit>(str, provider);
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricPotentialChangeRateUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out OasysUnitsNet.Units.ElectricPotentialChangeRateUnit)"/>
         public static bool TryParseUnit(string str, out ElectricPotentialChangeRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -934,7 +934,7 @@ namespace UnitsNet
             double thisValue = (double)this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            return OasysUnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>

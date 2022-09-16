@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Runtime.Serialization;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.Serialization.Xml
+namespace OasysUnitsNet.Tests.Serialization.Xml
 {
     /// <summary>
     ///     These tests demonstrate the behavior of the DataContractSerializer (the default WCF serializer) when dealing with
@@ -12,7 +12,7 @@ namespace UnitsNet.Tests.Serialization.Xml
     public class DataContractSerializerTests : SerializationTestsBase<string>
     {
         private const string XmlSchema = "xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\"";
-        private const string Namespace = "xmlns=\"http://schemas.datacontract.org/2004/07/UnitsNet\"";
+        private const string Namespace = "xmlns=\"http://schemas.datacontract.org/2004/07/OasysUnitsNet\"";
 
         protected override string SerializeObject(object obj)
         {
@@ -62,9 +62,9 @@ namespace UnitsNet.Tests.Serialization.Xml
         {
             var testObject = new TestInterfaceObject { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
 
-            var quantityNamespace = "xmlns:a=\"http://schemas.datacontract.org/2004/07/UnitsNet\""; // there is an extra 'a' compared to Namespace
+            var quantityNamespace = "xmlns:a=\"http://schemas.datacontract.org/2004/07/OasysUnitsNet\""; // there is an extra 'a' compared to Namespace
             var expectedQuantityXml = $"<Quantity i:type=\"a:Information\" {quantityNamespace}><a:Value>1.20</a:Value><a:Unit>Exabyte</a:Unit></Quantity>";
-            var expectedXml = $"<TestInterfaceObject xmlns=\"http://schemas.datacontract.org/2004/07/UnitsNet.Tests.Serialization\" {XmlSchema}>{expectedQuantityXml}</TestInterfaceObject>";
+            var expectedXml = $"<TestInterfaceObject xmlns=\"http://schemas.datacontract.org/2004/07/OasysUnitsNet.Tests.Serialization\" {XmlSchema}>{expectedQuantityXml}</TestInterfaceObject>";
 
             var xml = SerializeObject(testObject);
 

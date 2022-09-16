@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,32 +15,32 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToElectricInductance
+namespace OasysUnitsNet.NumberExtensions.NumberToElectricInductance
 {
     /// <summary>
     /// A number to ElectricInductance Extensions
     /// </summary>
     public static class NumberToElectricInductanceExtensions
     {
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricInductance.FromHenries(OasysUnitsNet.QuantityValue)" />
         public static ElectricInductance Henries<T>(this T value) =>
             ElectricInductance.FromHenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromMicrohenries(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricInductance.FromMicrohenries(OasysUnitsNet.QuantityValue)" />
         public static ElectricInductance Microhenries<T>(this T value) =>
             ElectricInductance.FromMicrohenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromMillihenries(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricInductance.FromMillihenries(OasysUnitsNet.QuantityValue)" />
         public static ElectricInductance Millihenries<T>(this T value) =>
             ElectricInductance.FromMillihenries(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricInductance.FromNanohenries(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="ElectricInductance.FromNanohenries(OasysUnitsNet.QuantityValue)" />
         public static ElectricInductance Nanohenries<T>(this T value) =>
             ElectricInductance.FromNanohenries(Convert.ToDouble(value));
 

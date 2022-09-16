@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using UnitToAbbreviationMap = System.Collections.Generic.Dictionary<int, System.
 using AbbreviationToUnitMap = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<int>>;
 
 // ReSharper disable once CheckNamespace
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     internal class UnitValueAbbreviationLookup
     {

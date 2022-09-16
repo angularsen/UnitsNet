@@ -1,12 +1,12 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Globalization;
 using System.Linq;
-using UnitsNet.Units;
+using OasysUnitsNet.Units;
 
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     /// <summary>
     /// The QuantityFormatter class is responsible for formatting a quantity using the given format string.
@@ -14,9 +14,9 @@ namespace UnitsNet
     public class QuantityFormatter
     {
         /// <summary>
-        /// The available UnitsNet custom format specifiers.
+        /// The available OasysUnitsNet custom format specifiers.
         /// </summary>
-        private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'G', 'g', 'Q', 'q', 'S', 's', 'U', 'u', 'V', 'v' };
+        private static readonly char[] OasysUnitsNetFormatSpecifiers = { 'A', 'a', 'G', 'g', 'Q', 'q', 'S', 's', 'U', 'u', 'V', 'v' };
 
         /// <summary>
         /// Formats a quantity using the given format string and format provider.
@@ -138,9 +138,9 @@ namespace UnitsNet
 
             char formatSpecifier = format[0];
 
-            if (UnitsNetFormatSpecifiers.Any(unitsNetFormatSpecifier => unitsNetFormatSpecifier == formatSpecifier))
+            if (OasysUnitsNetFormatSpecifiers.Any(OasysUnitsNetFormatSpecifier => OasysUnitsNetFormatSpecifier == formatSpecifier))
             {
-                // UnitsNet custom format string
+                // OasysUnitsNet custom format string
 
                 int precisionSpecifier = 0;
 

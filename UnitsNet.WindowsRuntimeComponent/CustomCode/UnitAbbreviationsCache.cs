@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 using System.Collections.Generic;
@@ -7,13 +7,13 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using OasysUnitsNet.InternalHelpers;
+using OasysUnitsNet.Units;
 
-using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, UnitsNet.UnitValueAbbreviationLookup>;
+using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, OasysUnitsNet.UnitValueAbbreviationLookup>;
 
 // ReSharper disable once CheckNamespace
-namespace UnitsNet
+namespace OasysUnitsNet
 {
     public sealed class UnitAbbreviationsCache
     {

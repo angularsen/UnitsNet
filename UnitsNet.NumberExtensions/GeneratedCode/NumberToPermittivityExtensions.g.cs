@@ -6,7 +6,7 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
 //     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
@@ -15,20 +15,20 @@
 //------------------------------------------------------------------------------
 
 // Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
 
 using System;
 
 #nullable enable
 
-namespace UnitsNet.NumberExtensions.NumberToPermittivity
+namespace OasysUnitsNet.NumberExtensions.NumberToPermittivity
 {
     /// <summary>
     /// A number to Permittivity Extensions
     /// </summary>
     public static class NumberToPermittivityExtensions
     {
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(OasysUnitsNet.QuantityValue)" />
         public static Permittivity FaradsPerMeter<T>(this T value) =>
             Permittivity.FromFaradsPerMeter(Convert.ToDouble(value));
 
