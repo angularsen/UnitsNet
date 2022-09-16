@@ -10,7 +10,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/arup-group/OasysUnitsNet</RepositoryUrl>
     <PackageIcon>logo-32.png</PackageIcon>
-    <PackageIconUrl>https://raw.githubusercontent.com/angularsen/OasysUnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/arup-group/OasysUnitsNet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>

@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Linq;
@@ -191,7 +191,7 @@ namespace OasysUnitsNet.Serialization.JsonNet
         ///     range than double.
         ///
         ///     Json: Support decimal precision #503
-        ///     https://github.com/angularsen/OasysUnitsNet/issues/503
+        ///     https://github.com/angularsen/UnitsNet/issues/503
         /// </remarks>
         private class ValueUnit
         {

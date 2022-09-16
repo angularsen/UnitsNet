@@ -7,11 +7,11 @@
     <authors>Andreas Gullberg Larsen</authors>
     <owners>Andreas Gullberg Larsen</owners>
     <license type="expression">MIT</license>
-    <projectUrl>https://github.com/angularsen/OasysUnitsNet</projectUrl>
+    <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>For C#/VB Universal Windows code (UWP), use OasysUnitsNet instead. This is a Windows Runtime Component with reduced functionality to support all UWP languages, such as JavaScript and C++, and other runtime components.</description>
     <summary>For C#/VB Universal Windows code (UWP), use OasysUnitsNet instead.</summary>
-    <iconUrl>https://raw.githubusercontent.com/angularsen/OasysUnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
     </releaseNotes>
     <copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</copyright>

@@ -10,7 +10,7 @@ namespace OasysUnitsNet.Tests
         // ICollectionFixture<> interfaces.
 
         // Apply this collection fixture to classes:
-        // 1. That rely on manipulating CultureInfo. See https://github.com/angularsen/OasysUnitsNet/issues/436
+        // 1. That rely on manipulating CultureInfo. See https://github.com/angularsen/UnitsNet/issues/436
         // 2. To avoid accessing static ToString/Parse from multiple tests where UnitAbbreviationsCache.Default is modified
     }
 }

@@ -1,5 +1,5 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
-// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/OasysUnitsNet.
+// Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
 using System.Linq;
@@ -248,13 +248,13 @@ namespace OasysUnitsNet
         /// <summary>
         /// Represents the largest possible value of {_quantity.Name}
         /// </summary>
-        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/OasysUnitsNet/issues/848."")]
+        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
         public static {_quantity.Name} MaxValue {{ get; }}
 
         /// <summary>
         /// Represents the smallest possible value of {_quantity.Name}
         /// </summary>
-        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/OasysUnitsNet/issues/848."")]
+        [Obsolete(""MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848."")]
         public static {_quantity.Name} MinValue {{ get; }}
 
         /// <summary>

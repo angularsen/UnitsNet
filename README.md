@@ -1,5 +1,5 @@
-﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/OasysUnitsNet/history/branch/master)
-[![codecov](https://codecov.io/gh/angularsen/OasysUnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/OasysUnitsNet)
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/UnitsNet/history/branch/master)
+[![codecov](https://codecov.io/gh/angularsen/UnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/UnitsNet)
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
 ## Units.NET
@@ -13,7 +13,7 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 
 * [How to install](#how-to-install)
 * [100+ quantities with 1200+ units](OasysUnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
-* [8000+ unit tests](https://ci.appveyor.com/project/angularsen/OasysUnitsNet) on conversions and localizations
+* [8000+ unit tests](https://ci.appveyor.com/project/angularsen/UnitsNet) on conversions and localizations
 * Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
   * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
   * [Strong naming](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/get-started#strong-naming) to make the library available to all developers
@@ -35,7 +35,7 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 
 Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/OasysUnitsNet/) for the complete release history.
 
-![Install-Package OasysUnitsNet](https://raw.githubusercontent.com/angularsen/OasysUnitsNet/master/Docs/Images/install_package_OasysUnitsNet.png "Install-Package OasysUnitsNet")
+![Install-Package OasysUnitsNet](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_OasysUnitsNet.png "Install-Package OasysUnitsNet")
 
 
 #### Build Targets
@@ -227,7 +227,7 @@ UnitConverter.ConvertByAbbreviation(1, "Length", "cm", "mm"); // 10 mm
 
 Units.NET allows you to add your own units and quantities at runtime, to represent as `IQuantity` and reusing Units.NET for parsing and converting between units.
 
-Read more at [Extending-with-Custom-Units](https://github.com/angularsen/OasysUnitsNet/wiki/Extending-with-Custom-Units).
+Read more at [Extending-with-Custom-Units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units).
 
 #### Map between unit enum values and unit abbreviations
 ```c#
@@ -254,8 +254,8 @@ Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
 
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app
-[Source code](https://github.com/angularsen/OasysUnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
-[Download](https://github.com/angularsen/OasysUnitsNet/releases/tag/UnitConverterWpf%2F2018-11-09) (release 2018-11-09 for Windows)
+[Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
+[Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-11-09) (release 2018-11-09 for Windows)
 
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 
@@ -295,7 +295,7 @@ double convertedValue = UnitConverter.Convert(
 
 ### Example: WPF app using IValueConverter to parse quantities from input
 
-Src: [Samples/WpfMVVMSample](https://github.com/angularsen/OasysUnitsNet/tree/master/Samples/WpfMVVMSample)
+Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/Samples/WpfMVVMSample)
 
 ![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
 
@@ -309,12 +309,12 @@ Units.NET was intended for convenience and ease of use, not highly accurate conv
 
 The tests accept an error up to 1E-5 for most units added so far. Exceptions include units like Teaspoon, where the base unit cubic meter is a lot bigger. In many usecases this is sufficient, but for others this may be a showstopper and something you need to be aware of.
 
-For more details, see [Precision](https://github.com/angularsen/OasysUnitsNet/wiki/Precision).
+For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Precision).
 
 
 ### <a name="serialization"></a>Serialization
 
-* `OasysUnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/OasysUnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/OasysUnitsNet/tree/master/OasysUnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/OasysUnitsNet/tree/master/OasysUnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
+* `OasysUnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/OasysUnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/UnitsNet/tree/master/OasysUnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/UnitsNet/tree/master/OasysUnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
 
 #### Example of JSON Serialization
 ```c#
@@ -350,19 +350,19 @@ The base unit of any unit should be treated as volatile as we have changed this 
 
 ### <a name="contribute"></a>Want To Contribute?
 
-- [Adding a New Unit](https://github.com/angularsen/OasysUnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
-- Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/OasysUnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/OasysUnitsNet/discussions).
+- [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
+- Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/UnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/UnitsNet/discussions).
 
 ### <a name="ci"></a>Continuous Integration
 
-[AppVeyor](https://ci.appveyor.com/project/angularsen/OasysUnitsNet) performs the following:
+[AppVeyor](https://ci.appveyor.com/project/angularsen/UnitsNet) performs the following:
 * Build and test all branches
 * Build and test pull requests, notifies on success or error
 * Deploy nugets on master branch, if nuspec versions changed
 
 ### <a name="who-are-using"></a>Who are Using This?
 
-It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/angularsen/OasysUnitsNet/issues) or edit the [README.md](https://github.com/angularsen/OasysUnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
+It would be awesome to know who are using this library. If you would like your project listed here, [create an issue](https://github.com/angularsen/UnitsNet/issues) or edit the [README.md](https://github.com/angularsen/UnitsNet/edit/master/README.md) and send a pull request. Max logo size is `300x35 pixels` and should be in `.png`, `.gif` or `.jpg` formats.
 
 ![Motion Catalyst logo](http://swingcatalyst.s3.amazonaws.com/images/logos/MotionCatalyst_greenblack_35p.png "Motion Catalyst logo")
 
