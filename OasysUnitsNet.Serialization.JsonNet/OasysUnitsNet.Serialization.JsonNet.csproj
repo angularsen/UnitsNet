@@ -3,15 +3,15 @@
   <PropertyGroup>
     <PackageId>OasysUnitsNet.Serialization.JsonNet</PackageId>
     <Version>4.6.0</Version>
-    <Authors>Andreas Gullberg Larsen</Authors>
-    <Title>Units.NET Serialization with Json.NET</Title>
+    <Authors>Andreas Gullberg Larsen; Oasys</Authors>
+    <Title>OasysUnits.NET Serialization with Json.NET</Title>
     <Description>A helper library for serializing and deserializing types in Units.NET using Json.NET.</Description>
     <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
+    <RepositoryUrl>https://github.com/arup-group/OasysUnitsNet</RepositoryUrl>
     <PackageIcon>logo-32.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/arup-group/OasysUnitsNet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
@@ -38,6 +38,7 @@
     <AssemblyOriginatorKeyFile>../OasysUnitsNet.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!-- NuGet references that work for both signed and unsigned -->
