@@ -8,10 +8,10 @@
     <Description>A helper library for serializing and deserializing types in OasysUnits using Json.NET.</Description>
     <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com), 2022 Oasys.</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <RepositoryUrl>https://github.com/arup-group/OasysUnits</RepositoryUrl>
+    <RepositoryUrl>https://github.com/arup-group/UnitsNet</RepositoryUrl>
     <PackageIcon>logo-32.png</PackageIcon>
     <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/arup-group/OasysUnits</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/arup-group/UnitsNet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>

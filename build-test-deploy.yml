@@ -112,14 +112,14 @@ steps:
 - task: GitHubRelease@1
   inputs:
     gitHubConnection: 'github.com_peterjgrainger'
-    repositoryName: 'arup-group/OasysUnits'
+    repositoryName: 'arup-group/UnitsNet'
     action: 'edit'
     target: '$(Build.SourceVersion)'
     tag: 'OasysUnits/$(dotSeparatedTag)'
     title: 'OasysUnits version $(dotSeparatedTag)'
     releaseNotesSource: 'inline'
     releaseNotesInline: |
-      Created from commit https://github.com/arup-group/OasysUnits/commit/$(Build.SourceVersion)
+      Created from commit https://github.com/arup-group/UnitsNet/commit/$(Build.SourceVersion)
     assets: |
       $(System.DefaultWorkingDirectory)/**/*.yak
       $(Build.ArtifactStagingDirectory)/**/*.nupkg
