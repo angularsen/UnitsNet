@@ -6,7 +6,7 @@ using System.Linq;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.OasysUnitsNetGen
+namespace CodeGen.Generators.OasysUnitsGen
 {
     internal class QuantityGenerator : GeneratorBase
     {
@@ -49,14 +49,14 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using JetBrains.Annotations;
-using OasysUnitsNet.InternalHelpers;
-using OasysUnitsNet.Units;
+using OasysUnits.InternalHelpers;
+using OasysUnits.Units;
 
 #nullable enable
 
 // ReSharper disable once CheckNamespace
 
-namespace OasysUnitsNet
+namespace OasysUnits
 {");
             Writer.WL($@"
     /// <inheritdoc />
@@ -505,9 +505,9 @@ namespace OasysUnitsNet
         ///     Example: Volume.Parse(""1 cup"") will throw, because it can refer to any of
         ///     <see cref=""VolumeUnit.MetricCup"" />, <see cref=""VolumeUnit.UsLegalCup"" /> and <see cref=""VolumeUnit.UsCustomaryCup"" />.
         /// </exception>
-        /// <exception cref=""OasysUnitsNetException"">
+        /// <exception cref=""OasysUnitsException"">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref=""OasysUnitsNetException"" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref=""OasysUnitsException"" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static {_quantity.Name} Parse(string str)
@@ -532,9 +532,9 @@ namespace OasysUnitsNet
         ///     Example: Volume.Parse(""1 cup"") will throw, because it can refer to any of
         ///     <see cref=""VolumeUnit.MetricCup"" />, <see cref=""VolumeUnit.UsLegalCup"" /> and <see cref=""VolumeUnit.UsCustomaryCup"" />.
         /// </exception>
-        /// <exception cref=""OasysUnitsNetException"">
+        /// <exception cref=""OasysUnitsException"">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref=""OasysUnitsNetException"" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref=""OasysUnitsException"" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name=""provider"">Format to use when parsing number and unit. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
@@ -586,7 +586,7 @@ namespace OasysUnitsNet
         ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
-        /// <exception cref=""OasysUnitsNetException"">Error parsing string.</exception>
+        /// <exception cref=""OasysUnitsException"">Error parsing string.</exception>
         public static {_unitEnumName} ParseUnit(string str)
         {{
             return ParseUnit(str, null);
@@ -601,13 +601,13 @@ namespace OasysUnitsNet
         ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
-        /// <exception cref=""OasysUnitsNetException"">Error parsing string.</exception>
+        /// <exception cref=""OasysUnitsException"">Error parsing string.</exception>
         public static {_unitEnumName} ParseUnit(string str, IFormatProvider? provider)
         {{
             return UnitParser.Default.Parse<{_unitEnumName}>(str, provider);
         }}
 
-        /// <inheritdoc cref=""TryParseUnit(string,IFormatProvider,out OasysUnitsNet.Units.{_unitEnumName})""/>
+        /// <inheritdoc cref=""TryParseUnit(string,IFormatProvider,out OasysUnits.Units.{_unitEnumName})""/>
         public static bool TryParseUnit(string str, out {_unitEnumName} unit)
         {{
             return TryParseUnit(str, null, out unit);
@@ -878,7 +878,7 @@ namespace OasysUnitsNet
             double thisValue = (double)this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
-            return OasysUnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            return OasysUnits.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }}
 
         /// <summary>

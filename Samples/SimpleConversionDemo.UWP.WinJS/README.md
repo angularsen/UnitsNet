@@ -1,6 +1,6 @@
 ## Test app: UWP WinJS and .NET 4.7.1
 
-Illustrates using `OasysUnitsNet.WindowsRuntimeComponent` from an UWP JavaScript app.
+Illustrates using `OasysUnits.WindowsRuntimeComponent` from an UWP JavaScript app.
 The Windows Runtime Component nuget can be consumed from C#, JavaScript and C++ UWP apps.
 
 

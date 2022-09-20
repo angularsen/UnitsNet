@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
-using OasysUnitsNet;
-using OasysUnitsNet.Units;
+using OasysUnits;
+using OasysUnits.Units;
 
 namespace UWP
 {

@@ -1,7 +1,7 @@
 ﻿using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.OasysUnitsNetWrcGen
+namespace CodeGen.Generators.OasysUnitsWrcGen
 {
     internal class StaticQuantityGenerator : GeneratorBase
     {
@@ -19,10 +19,10 @@ namespace CodeGen.Generators.OasysUnitsNetWrcGen
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using OasysUnitsNet.InternalHelpers;
-using OasysUnitsNet.Units;
+using OasysUnits.InternalHelpers;
+using OasysUnits.Units;
 
-namespace OasysUnitsNet
+namespace OasysUnits
 {
     /// <summary>
     ///     Dynamically parse or construct quantities when types are only known at runtime.
@@ -70,18 +70,18 @@ namespace OasysUnitsNet
         /// <param name=""quantityType"">Type of quantity, such as <see cref=""Length""/>.</param>
         /// <param name=""quantityString"">Quantity string representation, such as ""1.5 kg"". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
-        /// <exception cref=""ArgumentException"">Type must be of type OasysUnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
+        /// <exception cref=""ArgumentException"">Type must be of type OasysUnits.IQuantity -or- Type is not a known quantity type.</exception>
         internal static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
         {{
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
-                throw new ArgumentException($""Type {{quantityType}} must be of type OasysUnitsNet.IQuantity."");
+                throw new ArgumentException($""Type {{quantityType}} must be of type OasysUnits.IQuantity."");
 
             if (TryParse(formatProvider, quantityType, quantityString, out IQuantity quantity)) return quantity;
 
             throw new ArgumentException($""Quantity string could not be parsed to quantity {{quantityType}}."");
         }}
 
-        /// <inheritdoc cref=""TryParse(IFormatProvider,System.Type,string,out OasysUnitsNet.IQuantity)""/>
+        /// <inheritdoc cref=""TryParse(IFormatProvider,System.Type,string,out OasysUnits.IQuantity)""/>
         internal static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
             TryParse(null, quantityType, quantityString, out quantity);
 
@@ -112,7 +112,7 @@ namespace OasysUnitsNet
 
             Writer.WL($@"
             throw new ArgumentException(
-                $""Type {{quantityType}} is not a known quantity type. Did you pass in a third-party quantity type defined outside OasysUnitsNet library?"");
+                $""Type {{quantityType}} is not a known quantity type. Did you pass in a third-party quantity type defined outside OasysUnits library?"");
         }}
 
         internal static IEnumerable<Type> GetQuantityTypes()

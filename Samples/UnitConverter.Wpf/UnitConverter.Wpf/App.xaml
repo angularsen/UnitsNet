@@ -1,4 +1,4 @@
-﻿<Application x:Class="OasysUnitsNet.Samples.UnitConverter.Wpf.App"
+﻿<Application x:Class="OasysUnits.Samples.UnitConverter.Wpf.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">

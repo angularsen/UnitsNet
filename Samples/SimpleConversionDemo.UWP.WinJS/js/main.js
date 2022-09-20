@@ -41,8 +41,8 @@
 			args.setPromise(WinJS.UI.processAll());
         }
 
-        var t = OasysUnitsNet.Temperature.fromDegreesCelsius(100);
-        var unit = OasysUnitsNet.Units.TemperatureUnit;
+        var t = OasysUnits.Temperature.fromDegreesCelsius(100);
+        var unit = OasysUnits.Units.TemperatureUnit;
         document.getElementById('label').innerHTML = t.toUnit(unit.degreeCelsius).toString() + ' = ' + t.toUnit(unit.degreeFahrenheit).toString() + ' = ' + t.toUnit(unit.kelvin).toString();
 
 

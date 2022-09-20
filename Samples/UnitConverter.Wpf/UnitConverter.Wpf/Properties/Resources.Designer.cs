@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OasysUnitsNet.Samples.UnitConverter.Wpf.Properties {
+namespace OasysUnits.Samples.UnitConverter.Wpf.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace OasysUnitsNet.Samples.UnitConverter.Wpf.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OasysUnitsNet.Samples.UnitConverter.Wpf.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OasysUnits.Samples.UnitConverter.Wpf.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

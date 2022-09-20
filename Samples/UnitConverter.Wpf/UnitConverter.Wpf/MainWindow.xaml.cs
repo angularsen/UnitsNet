@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Controls;
 
-namespace OasysUnitsNet.Samples.UnitConverter.Wpf
+namespace OasysUnits.Samples.UnitConverter.Wpf
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

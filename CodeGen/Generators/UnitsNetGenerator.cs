@@ -3,7 +3,7 @@
 
 using System.IO;
 using System.Linq;
-using CodeGen.Generators.OasysUnitsNetGen;
+using CodeGen.Generators.OasysUnitsGen;
 using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 using Serilog;
@@ -11,22 +11,22 @@ using Serilog;
 namespace CodeGen.Generators
 {
     /// <summary>
-    ///     Code generator for OasysUnitsNet and OasysUnitsNet.Tests projects.
+    ///     Code generator for OasysUnits and OasysUnits.Tests projects.
     /// </summary>
-    internal static class OasysUnitsNetGenerator
+    internal static class OasysUnitsGenerator
     {
         /// <summary>
-        ///     Generate source code for OasysUnitsNet project for the given parsed quantities.
+        ///     Generate source code for OasysUnits project for the given parsed quantities.
         ///     Outputs files relative to the given root dir to these locations:
         ///     <list type="bullet">
         ///         <item>
-        ///             <description>OasysUnitsNet/GeneratedCode (quantity and unit types, Quantity, UnitAbbreviationCache)</description>
+        ///             <description>OasysUnits/GeneratedCode (quantity and unit types, Quantity, UnitAbbreviationCache)</description>
         ///         </item>
         ///         <item>
-        ///             <description>OasysUnitsNet.Tests/GeneratedCode (tests)</description>
+        ///             <description>OasysUnits.Tests/GeneratedCode (tests)</description>
         ///         </item>
         ///         <item>
-        ///             <description>OasysUnitsNet.Tests/CustomCode (test stubs, one for each quantity if not already created)</description>
+        ///             <description>OasysUnits.Tests/CustomCode (test stubs, one for each quantity if not already created)</description>
         ///         </item>
         ///     </list>
         /// </summary>
@@ -35,10 +35,10 @@ namespace CodeGen.Generators
         /// <param name="quantityNameToUnitEnumValues">Allocated unit enum values for generating unit enum types.</param>
         public static void Generate(string rootDir, Quantity[] quantities, QuantityNameToUnitEnumValues quantityNameToUnitEnumValues)
         {
-            var outputDir = $"{rootDir}/OasysUnitsNet/GeneratedCode";
-            var extensionsOutputDir = $"{rootDir}/OasysUnitsNet.NumberExtensions/GeneratedCode";
-            var extensionsTestOutputDir = $"{rootDir}/OasysUnitsNet.NumberExtensions.Tests/GeneratedCode";
-            var testProjectDir = $"{rootDir}/OasysUnitsNet.Tests";
+            var outputDir = $"{rootDir}/OasysUnits/GeneratedCode";
+            var extensionsOutputDir = $"{rootDir}/OasysUnits.NumberExtensions/GeneratedCode";
+            var extensionsTestOutputDir = $"{rootDir}/OasysUnits.NumberExtensions.Tests/GeneratedCode";
+            var testProjectDir = $"{rootDir}/OasysUnits.Tests";
 
             // Ensure output directories exist
             Directory.CreateDirectory($"{outputDir}/Quantities");

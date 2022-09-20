@@ -12,7 +12,7 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 ### Overview
 
 * [How to install](#how-to-install)
-* [100+ quantities with 1200+ units](OasysUnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
+* [100+ quantities with 1200+ units](OasysUnits/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
 * [8000+ unit tests](https://ci.appveyor.com/project/angularsen/UnitsNet) on conversions and localizations
 * Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
   * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
@@ -33,9 +33,9 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 
 ### <a name="how-to-install"></a>How to install
 
-Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/OasysUnitsNet/) for the complete release history.
+Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/OasysUnits/) for the complete release history.
 
-![Install-Package OasysUnitsNet](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_OasysUnitsNet.png "Install-Package OasysUnitsNet")
+![Install-Package OasysUnits](https://raw.githubusercontent.com/angularsen/UnitsNet/master/Docs/Images/install_package_OasysUnits.png "Install-Package OasysUnits")
 
 
 #### Build Targets
@@ -128,9 +128,9 @@ Sometimes you need to work with quantities and units at runtime, such as parsing
 
 There are a handful of classes to help with this:
 
-- [Quantity](OasysUnitsNet/CustomCode/Quantity.cs) for parsing and constructing quantities as well as looking up units, names and quantity information dynamically
-- [UnitConverter](OasysUnitsNet/UnitConverter.cs) for converting values to a different unit, with only strings or enum values
-- [UnitParser](OasysUnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings, such as `"cm"` to `LengthUnit.Centimeter`
+- [Quantity](OasysUnits/CustomCode/Quantity.cs) for parsing and constructing quantities as well as looking up units, names and quantity information dynamically
+- [UnitConverter](OasysUnits/UnitConverter.cs) for converting values to a different unit, with only strings or enum values
+- [UnitParser](OasysUnits/CustomCode/UnitParser.cs) for parsing unit abbreviation strings, such as `"cm"` to `LengthUnit.Centimeter`
 
 #### Enumerate quantities and units
 `Quantity` is the go-to class for looking up information about quantities at runtime.
@@ -182,7 +182,7 @@ if (Quantity.TryParse(typeof(Length), "3cm", out IQuantity quantity2)
 ```
 
 #### Parse unit
-[UnitParser](OasysUnitsNet/CustomCode/UnitParser.cs) parses unit abbreviation strings to unit enum values.
+[UnitParser](OasysUnits/CustomCode/UnitParser.cs) parses unit abbreviation strings to unit enum values.
 
 ```c#
 Enum unit = UnitParser.Default.Parse("cm", typeof(LengthUnit)); // LengthUnit.Centimeter
@@ -314,12 +314,12 @@ For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Pr
 
 ### <a name="serialization"></a>Serialization
 
-* `OasysUnitsNet.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/OasysUnitsNet.Serialization.JsonNet), [src](https://github.com/angularsen/UnitsNet/tree/master/OasysUnitsNet.Serialization.JsonNet), [tests](https://github.com/angularsen/UnitsNet/tree/master/OasysUnitsNet.Serialization.JsonNet.Tests)) for JSON.NET
+* `OasysUnits.Serialization.JsonNet` ([nuget](https://www.nuget.org/packages/OasysUnits.Serialization.JsonNet), [src](https://github.com/angularsen/UnitsNet/tree/master/OasysUnits.Serialization.JsonNet), [tests](https://github.com/angularsen/UnitsNet/tree/master/OasysUnits.Serialization.JsonNet.Tests)) for JSON.NET
 
 #### Example of JSON Serialization
 ```c#
 var jsonSerializerSettings = new JsonSerializerSettings {Formatting = Formatting.Indented};
-jsonSerializerSettings.Converters.Add(new OasysUnitsNetIQuantityJsonConverter());
+jsonSerializerSettings.Converters.Add(new OasysUnitsIQuantityJsonConverter());
 
 string json = JsonConvert.SerializeObject(new { Name = "Raiden", Weight = Mass.FromKilograms(90) }, jsonSerializerSettings);
 
@@ -339,7 +339,7 @@ JSON output:
 
 If you need to support deserializing into properties/fields of type `IComparable` instead of type `IQuantity`, then you can add 
 ```c#
-jsonSerializerSettings.Converters.Add(new OasysUnitsNetIComparableJsonConverter());
+jsonSerializerSettings.Converters.Add(new OasysUnitsIComparableJsonConverter());
 ```
 
 **Important!** 
@@ -380,7 +380,7 @@ https://www.motioncatalyst.com (everything else)
 #### PK Sound, Canada
 > Award-winning performers and composers put everything they’ve got into their music. PK Sound makes sure their fans will hear it all – brilliantly, precisely, consistently.
 >
-> PK Sound uses OasysUnitsNet in Kontrol - the remote control counterpart to Trinity, the world's only robotic line array solution.
+> PK Sound uses OasysUnits in Kontrol - the remote control counterpart to Trinity, the world's only robotic line array solution.
 
 http://www.pksound.ca/pk-sound/announcing-the-official-release-of-kontrol/ (for an idea of what the Kontrol project is)<br>
 http://www.pksound.ca/trinity/ (the speakers that Kontrol currently controls)<br>
@@ -422,7 +422,7 @@ https://github.com/ebfortin/primoris.universe.stargen
 #### Harrington Hoists, Inc. (A Subsidiary of KITO Americas, Inc.)
 > Harrington Hoists, Inc. is located in Manheim, PA, Elizabethtown, PA, South Holland, IL and Corona, CA. Harrington is a leading manufacturer of manual, electric and air chain hoists as well as wire rope hoists and crane products serving the North American material handling industry.
 
-Harrington uses OasysUnitsNet in their internal software to perform many different calculations related to crane dimensioning, girder strength, electrical safety verification, etc.
+Harrington uses OasysUnits in their internal software to perform many different calculations related to crane dimensioning, girder strength, electrical safety verification, etc.
 
 https://www.harringtonhoists.com<br>
 https://kito.com
@@ -434,7 +434,7 @@ https://kito.com
 
 > The Structural Analysis Format (SAF) has been created to allow structural engineering applications to exchange data using a straight forward and simple to understand format.  
 > While inspired by IFC, SAF has its benefits that it's **easily modifyable** by the end-user _(it's an xlsx file)_, **well documented** and **easy to understand**.  
-> OasysUnitsNet is used by the SDK provided by SCIA to facilitate import / export between metric & imperial systems
+> OasysUnits is used by the SDK provided by SCIA to facilitate import / export between metric & imperial systems
 
 https://www.saf.guide  
 https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK

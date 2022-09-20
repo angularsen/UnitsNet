@@ -1,7 +1,7 @@
 ﻿using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.OasysUnitsNetWrcGen
+namespace CodeGen.Generators.OasysUnitsWrcGen
 {
     internal class UnitTypeGenerator : GeneratorBase
     {
@@ -19,7 +19,7 @@ namespace CodeGen.Generators.OasysUnitsNetWrcGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
 // ReSharper disable once CheckNamespace
-namespace OasysUnitsNet.Units
+namespace OasysUnits.Units
 {{
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591

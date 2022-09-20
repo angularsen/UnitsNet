@@ -8,7 +8,7 @@ namespace CodeGen.Helpers.UnitEnumValueAllocation
     /// <summary>
     ///     Data structure to allocate unique unit enum values that are preserved when adding new units.
     ///     <br/><br/>
-    ///     Updating transitive OasysUnitsNet dependency cause wrong unit · Issue #1068 · angularsen/UnitsNet
+    ///     Updating transitive OasysUnits dependency cause wrong unit · Issue #1068 · angularsen/UnitsNet
     ///     https://github.com/angularsen/UnitsNet/issues/1068
     /// </summary>
     internal class QuantityNameToUnitEnumValues : Dictionary<string, UnitEnumNameToValue>

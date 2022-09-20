@@ -28,7 +28,7 @@ namespace CodeGen.Generators
         /// <summary>
         ///     Parses JSON files that define quantities and their units.
         /// </summary>
-        /// <param name="rootDir">Repository root directory, where you cloned the repo to such as "c:\dev\OasysUnitsNet".</param>
+        /// <param name="rootDir">Repository root directory, where you cloned the repo to such as "c:\dev\OasysUnits".</param>
         /// <returns>The parsed quantities and their units.</returns>
         public static Quantity[] ParseQuantities(string rootDir)
         {
@@ -45,7 +45,7 @@ namespace CodeGen.Generators
             try
             {
                 var quantity = JsonConvert.DeserializeObject<Quantity>(File.ReadAllText(jsonFileName), JsonSerializerSettings)
-                               ?? throw new OasysUnitsNetCodeGenException($"Unable to parse quantity from JSON file: {jsonFileName}");
+                               ?? throw new OasysUnitsCodeGenException($"Unable to parse quantity from JSON file: {jsonFileName}");
 
                 AddPrefixUnits(quantity);
                 FixConversionFunctionsForDecimalValueTypes(quantity);

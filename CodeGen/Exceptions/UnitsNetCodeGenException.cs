@@ -6,21 +6,21 @@ using System.Runtime.Serialization;
 
 namespace CodeGen.Exceptions
 {
-    internal class OasysUnitsNetCodeGenException : Exception
+    internal class OasysUnitsCodeGenException : Exception
     {
-        public OasysUnitsNetCodeGenException()
+        public OasysUnitsCodeGenException()
         {
         }
 
-        protected OasysUnitsNetCodeGenException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected OasysUnitsCodeGenException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
 
-        public OasysUnitsNetCodeGenException(string message) : base(message)
+        public OasysUnitsCodeGenException(string message) : base(message)
         {
         }
 
-        public OasysUnitsNetCodeGenException(string message, Exception innerException) : base(message, innerException)
+        public OasysUnitsCodeGenException(string message, Exception innerException) : base(message, innerException)
         {
         }
     }

@@ -16,11 +16,11 @@ flags:
   compatibility:
     carryforward: false
 ignore:
-  - "OasysUnitsNet.Tests"
-  - "OasysUnitsNet.NumberExtensions.Tests"
-  - "OasysUnitsNet.Serialization.JsonNet.CompatibilityTests"
-  - "OasysUnitsNet.Serialization.JsonNet.Tests"
-  - "Artifacts\OasysUnitsNet.Tests"
-  - "Artifacts\OasysUnitsNet.NumberExtensions.Tests"
-  - "Artifacts\OasysUnitsNet.Serialization.JsonNet.CompatibilityTests"
-  - "Artifacts\OasysUnitsNet.Serialization.JsonNet.Tests"
+  - "OasysUnits.Tests"
+  - "OasysUnits.NumberExtensions.Tests"
+  - "OasysUnits.Serialization.JsonNet.CompatibilityTests"
+  - "OasysUnits.Serialization.JsonNet.Tests"
+  - "Artifacts\OasysUnits.Tests"
+  - "Artifacts\OasysUnits.NumberExtensions.Tests"
+  - "Artifacts\OasysUnits.Serialization.JsonNet.CompatibilityTests"
+  - "Artifacts\OasysUnits.Serialization.JsonNet.Tests"

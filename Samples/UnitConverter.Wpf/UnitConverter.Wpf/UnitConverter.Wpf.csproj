@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D04EE35D-496A-4C83-A369-09B9B2BEAEEC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>OasysUnitsNet.Samples.UnitConverter.Wpf</RootNamespace>
+    <RootNamespace>OasysUnits.Samples.UnitConverter.Wpf</RootNamespace>
     <AssemblyName>UnitConverter.Wpf</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -61,8 +61,8 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="OasysUnitsNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\OasysUnitsNet.4.7.0\lib\net40\OasysUnitsNet.dll</HintPath>
+    <Reference Include="OasysUnits, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OasysUnits.4.7.0\lib\net40\OasysUnits.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />

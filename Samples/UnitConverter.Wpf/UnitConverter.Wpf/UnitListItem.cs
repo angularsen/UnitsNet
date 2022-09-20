@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OasysUnitsNet.Samples.UnitConverter.Wpf
+namespace OasysUnits.Samples.UnitConverter.Wpf
 {
     /// <summary>
     ///     Represents an item in the from/to unit listboxes.

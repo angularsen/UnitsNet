@@ -1,7 +1,7 @@
 ﻿using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.OasysUnitsNetGen
+namespace CodeGen.Generators.OasysUnitsGen
 {
     internal class StaticQuantityGenerator : GeneratorBase
     {
@@ -19,13 +19,13 @@ namespace CodeGen.Generators.OasysUnitsNetGen
 using System;
 using System.Globalization;
 using JetBrains.Annotations;
-using OasysUnitsNet.InternalHelpers;
-using OasysUnitsNet.Units;
+using OasysUnits.InternalHelpers;
+using OasysUnits.Units;
 using System.Collections.Generic;
 
 #nullable enable
 
-namespace OasysUnitsNet
+namespace OasysUnits
 {
     /// <summary>
     ///     Dynamically parse or construct quantities when types are only known at runtime.
@@ -33,7 +33,7 @@ namespace OasysUnitsNet
     public static partial class Quantity
     {
         /// <summary>
-        /// All QuantityInfo instances mapped by quantity name that are present in OasysUnitsNet by default.
+        /// All QuantityInfo instances mapped by quantity name that are present in OasysUnits by default.
         /// </summary>
         public static readonly IDictionary<string, QuantityInfo> ByName = new Dictionary<string, QuantityInfo>
         {");

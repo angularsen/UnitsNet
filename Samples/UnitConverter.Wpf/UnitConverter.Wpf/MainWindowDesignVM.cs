@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
-namespace OasysUnitsNet.Samples.UnitConverter.Wpf
+namespace OasysUnits.Samples.UnitConverter.Wpf
 {
     /// <summary>
     ///     Design-time view model for <see cref="MainWindow" />.

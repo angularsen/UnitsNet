@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using OasysUnitsNet.Samples.UnitConverter.Wpf.Properties;
+using OasysUnits.Samples.UnitConverter.Wpf.Properties;
 
-namespace OasysUnitsNet.Samples.UnitConverter.Wpf
+namespace OasysUnits.Samples.UnitConverter.Wpf
 {
     /// <summary>
     ///     This interface ensures that the view model and the design-time view model are consistent, since the XAML
