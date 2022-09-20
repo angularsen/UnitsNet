@@ -17,7 +17,7 @@ namespace CodeGen.Helpers.UnitEnumValueAllocation
     ///     Allocates unique enum values per quantity and persists the mapping to a JSON file to ensure the values do not
     ///     change when adding new units.
     ///     <br/><br/>
-    ///     Updating transitive UnitsNet dependency cause wrong unit · Issue #1068 · angularsen/UnitsNet
+    ///     Updating transitive OasysUnits dependency cause wrong unit · Issue #1068 · angularsen/UnitsNet
     ///     https://github.com/angularsen/UnitsNet/issues/1068
     /// </summary>
     internal class UnitEnumValueAllocator
@@ -86,7 +86,7 @@ namespace CodeGen.Helpers.UnitEnumValueAllocation
 
             if (duplicateErrorMessages.Any())
             {
-                throw new UnitsNetCodeGenException(
+                throw new OasysUnitsCodeGenException(
                     @$"One or more units have the same unit enum value. This typically happens when merging multiple pull requests adding units to the same quantity.
 Resolve this by manually editing the JSON file to assign unique unit enum values per quantity.
 

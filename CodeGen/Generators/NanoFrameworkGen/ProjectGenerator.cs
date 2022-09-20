@@ -30,8 +30,8 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileAlignment>512</FileAlignment>
-    <RootNamespace>UnitsNet</RootNamespace>
-    <AssemblyName>UnitsNet.{_quantity.Name}</AssemblyName>
+    <RootNamespace>OasysUnits</RootNamespace>
+    <AssemblyName>OasysUnits.{_quantity.Name}</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
     <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>

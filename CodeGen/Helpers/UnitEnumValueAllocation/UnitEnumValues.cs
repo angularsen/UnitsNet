@@ -12,7 +12,7 @@ namespace CodeGen.Helpers.UnitEnumValueAllocation
     /// <summary>
     ///     Data structure to map unit enum names to allocated unit enum values.
     ///     <br/><br/>
-    ///     Updating transitive UnitsNet dependency cause wrong unit · Issue #1068 · angularsen/UnitsNet
+    ///     Updating transitive OasysUnits dependency cause wrong unit · Issue #1068 · angularsen/UnitsNet
     ///     https://github.com/angularsen/UnitsNet/issues/1068
     /// </summary>
     internal class UnitEnumNameToValue : Dictionary<string, int>

@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetGen
+namespace CodeGen.Generators.OasysUnitsGen
 {
     // ReSharper disable once InconsistentNaming
     [SuppressMessage("ReSharper", "EnforceForeachStatementBraces")]
@@ -23,10 +23,10 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
 using System;
-using UnitsNet.Units;
+using OasysUnits.Units;
 using Xunit;
 
-namespace UnitsNet.Tests
+namespace OasysUnits.Tests
 {{
     public partial class IQuantityTests
     {{

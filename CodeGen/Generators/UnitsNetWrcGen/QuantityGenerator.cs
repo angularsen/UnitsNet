@@ -6,7 +6,7 @@ using System.Linq;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetWrcGen
+namespace CodeGen.Generators.OasysUnitsWrcGen
 {
     internal class QuantityGenerator : GeneratorBase
     {
@@ -48,12 +48,12 @@ using System;
 using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.Units;
-using UnitsNet.InternalHelpers;
+using OasysUnits.Units;
+using OasysUnits.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace OasysUnits
 {");
             Writer.WL($@"
     /// <summary>
@@ -396,9 +396,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse(""1 cup"") will throw, because it can refer to any of
         ///     <see cref=""VolumeUnit.MetricCup"" />, <see cref=""VolumeUnit.UsLegalCup"" /> and <see cref=""VolumeUnit.UsCustomaryCup"" />.
         /// </exception>
-        /// <exception cref=""UnitsNetException"">
+        /// <exception cref=""OasysUnitsException"">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref=""UnitsNetException"" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref=""OasysUnitsException"" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         public static {_quantity.Name} Parse(string str)
@@ -423,9 +423,9 @@ namespace UnitsNet
         ///     Example: Volume.Parse(""1 cup"") will throw, because it can refer to any of
         ///     <see cref=""VolumeUnit.MetricCup"" />, <see cref=""VolumeUnit.UsLegalCup"" /> and <see cref=""VolumeUnit.UsCustomaryCup"" />.
         /// </exception>
-        /// <exception cref=""UnitsNetException"">
+        /// <exception cref=""OasysUnitsException"">
         ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref=""UnitsNetException"" /> to allow you to distinguish
+        ///     We wrap exceptions in <see cref=""OasysUnitsException"" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
         /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use when parsing number and unit. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
@@ -479,7 +479,7 @@ namespace UnitsNet
         ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
-        /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
+        /// <exception cref=""OasysUnitsException"">Error parsing string.</exception>
         public static {_unitEnumName} ParseUnit(string str)
         {{
             return ParseUnit(str, null);
@@ -493,7 +493,7 @@ namespace UnitsNet
         ///     Length.ParseUnit(""m"", new CultureInfo(""en-US""));
         /// </example>
         /// <exception cref=""ArgumentNullException"">The value of 'str' cannot be null. </exception>
-        /// <exception cref=""UnitsNetException"">Error parsing string.</exception>
+        /// <exception cref=""OasysUnitsException"">Error parsing string.</exception>
         /// <param name=""cultureName"">Name of culture (ex: ""en-US"") to use when parsing number and unit. Defaults to <see cref=""GlobalConfiguration.DefaultCulture"" /> if null.</param>
         public static {_unitEnumName} ParseUnit(string str, [CanBeNull] string cultureName)
         {{
@@ -607,7 +607,7 @@ namespace UnitsNet
             double thisValue = (double)this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
-            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
+            return OasysUnits.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }}
 
         /// <summary>

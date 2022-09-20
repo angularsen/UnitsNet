@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace UnitsNet.Samples.UnitConverter.Wpf
+namespace OasysUnits.Samples.UnitConverter.Wpf
 {
     /// <summary>
     ///     Interaction logic for App.xaml

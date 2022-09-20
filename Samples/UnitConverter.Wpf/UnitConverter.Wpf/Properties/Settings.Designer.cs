@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UnitsNet.Samples.UnitConverter.Wpf.Properties {
+namespace OasysUnits.Samples.UnitConverter.Wpf.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

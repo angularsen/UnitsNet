@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Markup;
 using CommonServiceLocator;
-using UnitsNet;
+using OasysUnits;
 using WpfMVVMSample.Settings;
 
 namespace WpfMVVMSample.Converters
@@ -29,7 +29,7 @@ namespace WpfMVVMSample.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is IQuantity quantity))
-                throw new ArgumentException("Expected value of type UnitsNet.IQuantity.", nameof(value));
+                throw new ArgumentException("Expected value of type OasysUnits.IQuantity.", nameof(value));
 
             Enum unitEnumValue = _settings.GetDefaultUnit(quantity.QuantityInfo.UnitType);
             int significantDigits = _settings.SignificantDigits;
@@ -43,7 +43,7 @@ namespace WpfMVVMSample.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!typeof(IQuantity).IsAssignableFrom(targetType))
-                throw new ArgumentException("Expected targetType of type UnitsNet.IQuantity.", nameof(value));
+                throw new ArgumentException("Expected targetType of type OasysUnits.IQuantity.", nameof(value));
 
             if (value == null ||
                 !(value is string valueString) ||

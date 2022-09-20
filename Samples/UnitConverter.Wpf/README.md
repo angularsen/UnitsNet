@@ -1,6 +1,6 @@
 ﻿## Unit Converter WPF Sample App
 
-This is a simple sample showing how UnitsNet can be used to create a generic unit converter, using all the quantities and units available in the UnitsNet library.
+This is a simple sample showing how OasysUnits can be used to create a generic unit converter, using all the quantities and units available in the OasysUnits library.
 
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 

@@ -1,6 +1,6 @@
 ## Units.NET
 
-Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
+Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant.
 
 Stop littering your code with unnecessary calculations, Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.
 
@@ -12,8 +12,8 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 
 ### Overview
 
-* [50+ quantities with a total of 500+ units](UnitsNet/GeneratedCode/Enums) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts/GenerateUnits.ps1)
-* [1000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
+* [50+ quantities with a total of 500+ units](OasysUnits/GeneratedCode/Enums) generated from [JSON](OasysUnits/UnitDefinitions/) by [Powershell scripts](OasysUnits/Scripts/GenerateUnits.ps1)
+* [1000+ unit tests](https://ci.appveyor.com/project/angularsen/UnitsNet) on conversions and localizations
 * Quantities as immutable structs that implement `IEquatable`, `IComparable`
 * [Static typing](#static-typing) to avoid ambiguous quantities or units
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
@@ -29,8 +29,8 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 
 ### Installing
 
-Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/UnitsNet/) for the complete relase history.
+Run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) or go to the [NuGet site](https://www.nuget.org/packages/OasysUnits/) for the complete relase history.
 
 ```
-Install-Package UnitsNet
+Install-Package OasysUnits
 ```

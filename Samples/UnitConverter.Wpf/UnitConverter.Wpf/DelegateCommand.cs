@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 
-namespace UnitsNet.Samples.UnitConverter.Wpf
+namespace OasysUnits.Samples.UnitConverter.Wpf
 {
     /// <summary>
     ///     Simple <see cref="ICommand" /> implementation, that executes a callback upon executing the command, such as

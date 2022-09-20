@@ -12,7 +12,7 @@ This is to help grow the number of people that can contribute to the project and
 
 ## Coding Conventions
 * Match the existing code style, we generally stick to "Visual Studio defaults" and [.NET Foundation Coding Guidelines](https://github.com/dotnet/corefx/blob/master/Documentation/coding-guidelines/coding-style.md)
-* If you use ReSharper there is a [settings file](https://github.com/angularsen/UnitsNet/blob/master/UnitsNet.sln.DotSettings) that will take effect automatically
+* If you use ReSharper there is a [settings file](https://github.com/angularsen/UnitsNet/blob/master/OasysUnits.sln.DotSettings) that will take effect automatically
 * There is an [.editorconfig](https://github.com/angularsen/UnitsNet/blob/master/.editorconfig) to help configure whitespace and C# syntax for your editor if it supports it
 * Add the file header to new files you create
 

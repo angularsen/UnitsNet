@@ -24,15 +24,15 @@ namespace CodeGen.Generators.NanoFrameworkGen
             Writer.WL($@"<?xml version=""1.0"" encoding=""utf-8""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">
   <metadata>
-    <id>UnitsNet.nanoFramework.{_quantity.Name}</id>
+    <id>OasysUnits.nanoFramework.{_quantity.Name}</id>
     <version>4.145.0</version>
     <title>Units.NET {_quantity.Name} - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
-    <owners>UnitsNet</owners>
+    <owners>OasysUnits</owners>
     <license type=""expression"">MIT</license>
     <projectUrl>https://github.com/angularsen/UnitsNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Adds {_quantity.Name} units for Units.NET on .NET nanoFramework. For .NET or .NET Core, use UnitsNet instead.</description>
+    <description>Adds {_quantity.Name} units for Units.NET on .NET nanoFramework. For .NET or .NET Core, use OasysUnits instead.</description>
     <iconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</iconUrl>
     <releaseNotes>
     </releaseNotes>
@@ -52,7 +52,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     </dependencies>
   </metadata>
   <files>
-    <file src=""..\..\..\Artifacts\UnitsNet.NanoFramework\{_quantity.Name}\UnitsNet.*"" target=""lib"" />
+    <file src=""..\..\..\Artifacts\OasysUnits.NanoFramework\{_quantity.Name}\OasysUnits.*"" target=""lib"" />
   </files>
 </package>");
 

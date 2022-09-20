@@ -1,6 +1,6 @@
 ﻿using CodeGen.JsonTypes;
 
-namespace CodeGen.Generators.UnitsNetGen
+namespace CodeGen.Generators.OasysUnitsGen
 {
     internal class QuantityTypeGenerator : GeneratorBase
     {
@@ -19,7 +19,7 @@ namespace CodeGen.Generators.UnitsNetGen
 
 using System;
 
-namespace UnitsNet
+namespace OasysUnits
 {
     /// <summary>
     ///     Lists all generated quantities with the same name as the quantity struct type,
