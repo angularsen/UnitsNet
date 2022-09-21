@@ -121,9 +121,8 @@ steps:
     releaseNotesInline: |
       Created from commit https://github.com/arup-group/OasysUnits/commit/$(Build.SourceVersion)
     assets: |
-      $(System.DefaultWorkingDirectory)/**/*.yak
-      $(Build.ArtifactStagingDirectory)/**/*.nupkg
-      $(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg
+      $(System.DefaultWorkingDirectory)/**/*.nupkg
+      $(System.DefaultWorkingDirectory)/**/*.symbols.nupkg
     assetUploadMode: 'replace'
     isDraft: true
     isPreRelease: true
