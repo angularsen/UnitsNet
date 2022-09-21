@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!-- NuGet properties -->
   <PropertyGroup>
-    <PackageId>OasysUnits.Serialization.JsonNet</PackageId>
+    <PackageId>OasysUnits</PackageId>
     <Version>1.0.0</Version>
     <Authors>Andreas Gullberg Larsen, Oasys</Authors>
-    <Title>OasysUnits Serialization with Json.NET</Title>
-    <Description>A helper library for serializing and deserializing types in OasysUnits using Json.NET.</Description>
+    <Title>OasysUnits</Title>
+    <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
     <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com), 2022 Oasys.</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/arup-group/OasysUnits</RepositoryUrl>
@@ -14,16 +14,17 @@
     <PackageProjectUrl>https://github.com/arup-group/OasysUnits</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
-    <PackageReleaseNotes>This is a release of UnitsNet.Serialization.JsonNet 4.6.0 with additional support for Oasys units.</PackageReleaseNotes>
+    <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
+    <PackageReleaseNotes>This is a release of UnitsNet 4.145.0 with additional support for Oasys units.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
     <AssemblyVersion>1.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>latest</LangVersion>
-    <RootNamespace>OasysUnits.Serialization.JsonNet</RootNamespace>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <RootNamespace>OasysUnits</RootNamespace>
+    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
   </PropertyGroup>
 
   <!-- SourceLink -->
@@ -38,24 +39,32 @@
     <AssemblyOriginatorKeyFile>../OasysUnits.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
+    <AssemblyName>OasysUnits</AssemblyName>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Company>$(Authors)</Company>
   </PropertyGroup>
 
-  <!-- NuGet references that work for both signed and unsigned -->
+  <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
-  <!-- Project references, will also generate the corresponding nuget dependencies -->
+  <!-- System.ValueTuple is only required for net40 target. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+
+  <!-- Link in common unit definition .json files -->
   <ItemGroup>
-    <ProjectReference Include="..\OasysUnits\OasysUnits.csproj" />
+    <None Include="..\Common\**\*">
+      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
   </ItemGroup>
 
   <!-- Files to include in nuget package -->
   <ItemGroup>
-    <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
+    <None Include="..\Docs\Images\OasysUnits-32.png" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>

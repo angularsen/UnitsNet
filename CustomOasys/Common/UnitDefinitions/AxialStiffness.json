@@ -1,0 +1,150 @@
+{
+  "Name": "AxialStiffness",
+  "BaseUnit": "Newton",
+  "XmlDoc": ".",
+  "BaseDimensions": {
+    "L": 1,
+    "M": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "Dyn",
+      "PluralName": "Dyne",
+      "BaseUnits": {
+        "L": "Centimeter",
+        "M": "Gram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}/1e5",
+      "FromBaseToUnitFunc": "{x}*1e5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dyn" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilogramForce",
+      "PluralName": "KilogramsForce",
+      "FromUnitToBaseFunc": "{x}*9.80665002864",
+      "FromBaseToUnitFunc": "{x}/9.80665002864",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgf" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TonneForce",
+      "PluralName": "TonnesForce",
+      "FromUnitToBaseFunc": "{x}*9.80665002864e3",
+      "FromBaseToUnitFunc": "{x}/9.80665002864e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf", "Ton" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Newton",
+      "PluralName": "Newtons",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Micro", "Milli", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KiloPond",
+      "PluralName": "KiloPonds",
+      "FromUnitToBaseFunc": "{x}*9.80665002864",
+      "FromBaseToUnitFunc": "{x}/9.80665002864",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kp" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Poundal",
+      "PluralName": "Poundals",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}*0.13825502798973041652092282466083",
+      "FromBaseToUnitFunc": "{x}/0.13825502798973041652092282466083",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pdl" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundForce",
+      "PluralName": "PoundsForce",
+      "FromUnitToBaseFunc": "{x}*4.4482216152605095551842641431421",
+      "FromBaseToUnitFunc": "{x}/4.4482216152605095551842641431421",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OunceForce",
+      "PluralName": "OunceForce",
+      "FromUnitToBaseFunc": "{x}*2.780138509537812e-1",
+      "FromBaseToUnitFunc": "{x}/2.780138509537812e-1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ozf" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilopoundForce",
+      "PluralName": "KilopoundsForce",
+      "FromUnitToBaseFunc": "{x}*4448.2216152605095551842641431421",
+      "FromBaseToUnitFunc": "{x}/4448.2216152605095551842641431421",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf", "kip", "k" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ShortTonForce",
+      "PluralName": "ShortTonsForce",
+      "FromUnitToBaseFunc": "{x}*8.896443230521e3",
+      "FromBaseToUnitFunc": "{x}/8.896443230521e3",
+      "XmlDocSummary": "The short ton-force is a unit of force equal to 2,000 pounds-force (907.18474 kgf), that is most commonly used in the United States – known there simply as the ton or US ton.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ton-force#Short_ton-force",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tf (short)", "t (US)f", "short tons-force" ]
+        }
+      ]
+    }
+  ]
+}

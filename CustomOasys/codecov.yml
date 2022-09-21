@@ -1,0 +1,26 @@
+# https://docs.codecov.com/docs/codecov-yaml#default-yaml
+coverage:
+  precision: 0      # Default: 2
+  round: down       # Default: down
+  range: "80...100" # Default: 70...100
+codecov:
+    notify:
+        after_n_builds: 4
+flags:
+  unittests:
+    carryforward: false
+  numberExtensions:
+    carryforward: false
+  serialization:
+    carryforward: false
+  compatibility:
+    carryforward: false
+ignore:
+  - "OasysUnits.Tests"
+  - "OasysUnits.NumberExtensions.Tests"
+  - "OasysUnits.Serialization.JsonNet.CompatibilityTests"
+  - "OasysUnits.Serialization.JsonNet.Tests"
+  - "Artifacts\OasysUnits.Tests"
+  - "Artifacts\OasysUnits.NumberExtensions.Tests"
+  - "Artifacts\OasysUnits.Serialization.JsonNet.CompatibilityTests"
+  - "Artifacts\OasysUnits.Serialization.JsonNet.Tests"
