@@ -15,7 +15,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units measurement json Json.NET Newtonsoft serialize deserialize serialization deserialization</PackageTags>
-    <PackageReleaseNotes>Upgrade JSON.NET to 12.0.3. Support arrays.</PackageReleaseNotes>
+    <PackageReleaseNotes>This is a release of UnitsNet.Serialization.JsonNet 4.6.0 with additional support for Oasys units.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Assembly and msbuild properties -->

@@ -15,6 +15,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
+    <PackageReleaseNotes>This is a release of UnitsNet 4.145.0 with additional support for Oasys units.</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Assembly and msbuild properties -->
