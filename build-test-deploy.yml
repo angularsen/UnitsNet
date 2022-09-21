@@ -100,14 +100,14 @@ steps:
     workingDirectory: '$(System.DefaultWorkingDirectory)'
     ignoreLASTEXITCODE: true
 
-- task: NuGetCommand@2
-  inputs:
-    command: 'pack'
-    packagesToPack: 'OasysUnits/*.csproj'
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'dotSeparatedTag'
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
-  displayName: Package NuGet
+#- task: NuGetCommand@2
+#  inputs:
+#    command: 'pack'
+#    packagesToPack: 'OasysUnits/*.nuspec'
+#    versioningScheme: 'byEnvVar'
+#    versionEnvVar: 'dotSeparatedTag'
+#  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'), ne(variables.TAG_EXISTS, 'true'))
+#  displayName: Package NuGet
 
 - task: GitHubRelease@1
   inputs:
