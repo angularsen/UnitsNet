@@ -45,7 +45,7 @@
 
   <!-- Files to include in nuget package -->
   <ItemGroup>
-    <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
+    <None Include="..\Docs\Images\OasysUnits-32.png" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>
