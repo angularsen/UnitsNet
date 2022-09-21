@@ -37,6 +37,11 @@
     {
       "SingularName": "NewtonMeter",
       "PluralName": "NewtonMeters",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Prefixes": [ "Kilo", "Mega" ],

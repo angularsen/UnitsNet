@@ -9,6 +9,9 @@
     {
       "SingularName": "PerMeter",
       "PluralName": "PerMeters",
+      "BaseUnits": {
+        "L": "Meter"
+      },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
