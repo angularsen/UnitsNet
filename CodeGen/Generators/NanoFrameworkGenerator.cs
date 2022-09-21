@@ -62,7 +62,7 @@ namespace CodeGen.Generators
             Directory.CreateDirectory(outputUnits);
             Directory.CreateDirectory(outputProperties);
 
-            var lengthNuspecFile = Path.Combine(outputDir, "Length", "OasysUnits.NanoFramework.Length.nuspec");
+            var lengthNuspecFile = Path.Combine(outputDir, "Length", "UnitsNet.NanoFramework.Length.nuspec");
             var projectVersion = ParseVersion(File.ReadAllText(lengthNuspecFile),
                 new Regex(@"<version>(?<version>[\d\.]+)</version>", RegexOptions.IgnoreCase),
                 "projectVersion");
@@ -334,7 +334,7 @@ namespace CodeGen.Generators
             string mscorlibNuGetVersion,
             string mathNuGetVersion)
         {
-            string filePath = Path.Combine(projectPath, $"OasysUnits.NanoFramework.{quantity.Name}.nuspec");
+            string filePath = Path.Combine(projectPath, $"UnitsNet.NanoFramework.{quantity.Name}.nuspec");
 
             var content = new NuspecGenerator(
                 quantity,
