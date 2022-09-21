@@ -1,8 +1,8 @@
 ﻿## OasysUnits
 
-[Units.Net](https://github.com/angularsen/UnitsNet/blob/master/README.md) implementation with additional Oasys units.
+Official [Units.Net](https://github.com/angularsen/UnitsNet/blob/master/README.md) with additional Oasys units.
 
-### How to get up to date with main repository (https://github.com/angularsen/UnitsNet/)
+### How to get up to date with main repository
 
 * Check out the master branch from https://github.com/angularsen/UnitsNet/
 * Batch replace all occurences of ´UnitsNet´ with ´OasysUnits´
