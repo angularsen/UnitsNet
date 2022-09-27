@@ -440,3 +440,11 @@ https://www.saf.guide
 https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
 
 *- Dirk Schuermans, Software Engineer for [SCIA nv](https://www.scia.net)*
+
+## Units.NET on other platforms
+
+The powerful strong-typed unites based on Units.NET [unite definition](/Common/UnitDefinitions) is available on other platforms!
+
+- JavaScript / TypeScript
+  - Package on NPM registery https://www.npmjs.com/package/unitsnet-js
+  - Generate units source-code https://github.com/haimkastner/unitsnet-js
