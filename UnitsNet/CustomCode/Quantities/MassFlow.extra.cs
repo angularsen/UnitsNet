@@ -41,7 +41,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="MassFlow"/> divided by <see cref="Power"/>.</summary>
         public static BrakeSpecificFuelConsumption operator /(MassFlow massFlow, Power power)
         {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(massFlow.KilogramsPerSecond.ToQuantityValue() / power.Watts.ToQuantityValue());
+            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(massFlow.KilogramsPerSecond / (double)power.Watts);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="MassFlow"/> times <see cref="SpecificEnergy"/>.</summary>

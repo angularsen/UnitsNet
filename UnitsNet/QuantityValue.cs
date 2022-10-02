@@ -313,60 +313,6 @@ namespace UnitsNet
             }
         }
 
-        /// <summary>
-        /// Multiplication operator.
-        /// </summary>
-        /// <remarks>
-        /// This performs an operation on the numeric value of a quantity, there is no unit or conversions involved.
-        /// </remarks>
-        public static QuantityValue operator *(QuantityValue a, QuantityValue b)
-        {
-            if (a.IsDecimal && b.IsDecimal)
-            {
-                return new QuantityValue(a._decimalValue * b._decimalValue);
-            }
-            else if (a.IsDecimal)
-            {
-                return new QuantityValue(a._decimalValue * (decimal)b._doubleValue);
-            }
-            else if (b.IsDecimal)
-            {
-                return new QuantityValue((decimal)a._doubleValue * b._decimalValue);
-            }
-            else
-            {
-                // Both are double
-                return new QuantityValue(a._doubleValue * b._doubleValue);
-            }
-        }
-
-        /// <summary>
-        /// Division operator.
-        /// </summary>
-        /// <remarks>
-        /// This performs an operation on the numeric value of a quantity, there is no unit or conversions involved.
-        /// </remarks>
-        public static QuantityValue operator /(QuantityValue a, QuantityValue b)
-        {
-            if (a.IsDecimal && b.IsDecimal)
-            {
-                return new QuantityValue(a._decimalValue / b._decimalValue);
-            }
-            else if (a.IsDecimal)
-            {
-                return new QuantityValue(a._decimalValue / (decimal)b._doubleValue);
-            }
-            else if (b.IsDecimal)
-            {
-                return new QuantityValue((decimal)a._doubleValue / b._decimalValue);
-            }
-            else
-            {
-                // Both are double
-                return new QuantityValue(a._doubleValue / b._doubleValue);
-            }
-        }
-
         #endregion
 
         /// <summary>Returns the string representation of the numeric value.</summary>
