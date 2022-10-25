@@ -137,8 +137,16 @@ namespace UnitsNet.Tests
             Assert.Equal(Energy.FromMillijoules(2), 2.Millijoules());
 
         [Fact]
+        public void NumberToPetajoulesTest() =>
+            Assert.Equal(Energy.FromPetajoules(2), 2.Petajoules());
+
+        [Fact]
         public void NumberToTeraelectronVoltsTest() =>
             Assert.Equal(Energy.FromTeraelectronVolts(2), 2.TeraelectronVolts());
+
+        [Fact]
+        public void NumberToTerajoulesTest() =>
+            Assert.Equal(Energy.FromTerajoules(2), 2.Terajoules());
 
         [Fact]
         public void NumberToTerawattDaysTest() =>

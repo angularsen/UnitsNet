@@ -140,9 +140,17 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
         public static Energy Millijoules<T>(this T value) =>
             Energy.FromMillijoules(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Energy.FromPetajoules(UnitsNet.QuantityValue)" />
+        public static Energy Petajoules<T>(this T value) =>
+            Energy.FromPetajoules(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Energy.FromTeraelectronVolts(UnitsNet.QuantityValue)" />
         public static Energy TeraelectronVolts<T>(this T value) =>
             Energy.FromTeraelectronVolts(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Energy.FromTerajoules(UnitsNet.QuantityValue)" />
+        public static Energy Terajoules<T>(this T value) =>
+            Energy.FromTerajoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromTerawattDays(UnitsNet.QuantityValue)" />
         public static Energy TerawattDays<T>(this T value) =>
