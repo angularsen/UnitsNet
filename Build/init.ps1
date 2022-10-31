@@ -26,14 +26,14 @@ if (!(Test-Path "$msbuildPath/nanoFramework")) {
   $webClient.Headers.Add("User-Agent", "request")
   $webClient.Headers.Add("Accept", "application/vnd.github.v3+json")
 
-  $releaseList = $webClient.DownloadString('https://api.github.com/repos/nanoframework/nf-Visual-Studio-extension/tags')
+  $releaseList = $webClient.DownloadString('https://api.github.com/repos/nanoframework/nf-Visual-Studio-extension/releases?per_page=100')
 
-  if($releaseList -match '"(?<VS2022_version>v2022\.\d+\.\d+\.\d+)')
+  if($releaseList -match '\"(?<VS2022_version>v2022\.\d+\.\d+\.\d+)\"')
   {
       $vs2022Tag =  $Matches.VS2022_version
   }
 
-  if($releaseList -match '"(?<VS2019_version>v2019\.\d+\.\d+\.\d+)')
+  if($releaseList -match '\"(?<VS2019_version>v2019\.\d+\.\d+\.\d+)\"')
   {
       $vs2019Tag =  $Matches.VS2019_version
   }
