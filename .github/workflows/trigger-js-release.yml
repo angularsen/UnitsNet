@@ -12,9 +12,9 @@ jobs:
         env:
           UNITISNET_JS_WORKFLOW_TOKEN: ${{ secrets.UNITISNET_JS_WORKFLOW_TOKEN }}
         run: |
-          # Fetch all unitsnet-js jobs
-          jobs=$(curl --location --request GET "https://api.github.com/repos/haimkastner/unitsnet-js/actions/runs" --header "Accept: application/vnd.github+json" --header "Authorization: Bearer $UNITISNET_JS_WORKFLOW_TOKEN")
-          # Extract the latest master job id
-          latest_prod_job=$(echo $jobs | jq -r '.workflow_runs[] | select(.head_branch=="master") | .id' |  head -n 1)
-          # Re-run it, to re-generate and publish a new package version
-          curl --location --request POST "https://api.github.com/repos/haimkastner/unitsnet-js/actions/runs/$latest_prod_job/rerun" --header "Accept: application/vnd.github+json" --header "Authorization: Bearer $UNITISNET_JS_WORKFLOW_TOKEN"
+          # Trigger dispatches event to rebuild unitsnet-js package 
+          curl --location --request POST 'https://api.github.com/repos/haimkastner/unitsnet-js/actions/workflows/nodejs.yml/dispatches' \
+          --header 'Accept: application/vnd.github.everest-preview+json' \
+          --header 'Content-Type: application/json' \
+          --header "Authorization: Basic $UNITISNET_JS_WORKFLOW_TOKEN" \
+          --data-raw '{"ref": "master" }'
