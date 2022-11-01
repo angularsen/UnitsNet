@@ -10,11 +10,11 @@ jobs:
     steps:
       - name: Call re-run generate & publish job 
         env:
-          UNITISNET_JS_WORKFLOW_TOKEN: ${{ secrets.UNITISNET_JS_WORKFLOW_TOKEN }}
+          UNITSNET_JS_WORKFLOW_TOKEN: ${{ secrets.UNITSNET_JS_WORKFLOW_TOKEN }}
         run: |
           # Trigger dispatches event to rebuild unitsnet-js package 
           curl --location --request POST 'https://api.github.com/repos/haimkastner/unitsnet-js/actions/workflows/nodejs.yml/dispatches' \
           --header 'Accept: application/vnd.github.everest-preview+json' \
           --header 'Content-Type: application/json' \
-          --header "Authorization: Basic $UNITISNET_JS_WORKFLOW_TOKEN" \
+          --header "Authorization: Basic $UNITSNET_JS_WORKFLOW_TOKEN" \
           --data-raw '{"ref": "master" }'
