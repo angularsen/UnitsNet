@@ -29,7 +29,7 @@ using UnitsNet.InternalHelpers;
 namespace UnitsNet
 {
     /// <summary>
-    ///     The area density of a two-dimensional object is calculated as the mass per unit area.
+    ///     The area density of a two-dimensional object is calculated as the mass per unit area. For paper this is also called grammage.
     /// </summary>
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
@@ -164,9 +164,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.GramPerSquareMeter"/>
+        /// </summary>
+        public double GramsPerSquareMeter => As(AreaDensityUnit.GramPerSquareMeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>
+        /// </summary>
+        public double MilligramsPerSquareMeter => As(AreaDensityUnit.MilligramPerSquareMeter);
 
         #endregion
 
@@ -174,7 +184,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.GramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m²", "gsm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.KilogramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.MilligramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m²"});
         }
 
         /// <summary>
@@ -204,6 +216,17 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static AreaDensity FromGramsPerSquareMeter(double gramspersquaremeter)
+        {
+            double value = (double) gramspersquaremeter;
+            return new AreaDensity(value, AreaDensityUnit.GramPerSquareMeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -212,6 +235,17 @@ namespace UnitsNet
         {
             double value = (double) kilogramspersquaremeter;
             return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static AreaDensity FromMilligramsPerSquareMeter(double milligramspersquaremeter)
+        {
+            double value = (double) milligramspersquaremeter;
+            return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
         }
 
         /// <summary>
@@ -504,7 +538,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case AreaDensityUnit.GramPerSquareMeter: return _value / 1000;
                 case AreaDensityUnit.KilogramPerSquareMeter: return _value;
+                case AreaDensityUnit.MilligramPerSquareMeter: return _value / 1000000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -519,7 +555,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case AreaDensityUnit.GramPerSquareMeter: return baseUnitValue * 1000;
                 case AreaDensityUnit.KilogramPerSquareMeter: return baseUnitValue;
+                case AreaDensityUnit.MilligramPerSquareMeter: return baseUnitValue * 1000000;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
