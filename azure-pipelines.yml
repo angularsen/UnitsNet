@@ -17,7 +17,8 @@ steps:
   displayName: 'Build, test, pack'
   inputs:
     filePath: 'Build/build.ps1'
-    arguments: '-IncludeWindowsRuntimeComponent -IncludeNanoFramework'
+    arguments: '-IncludeNanoFramework'
+#    arguments: '-IncludeWindowsRuntimeComponent -IncludeNanoFramework'
     failOnStderr: true
     showWarnings: true
     pwsh: true
