@@ -13,13 +13,6 @@ variables:
 - group: common
 
 steps:
-- task: Bash@3
-  displayName: 'Generate code'
-  inputs:
-    targetType: 'inline'
-    script: 'dotnet run --project CodeGen'
-    workingDirectory: '$(Build.SourcesDirectory)'
-    failOnStderr: true
 - task: PowerShell@2
   displayName: 'Build, test, pack'
   inputs:
@@ -28,7 +21,7 @@ steps:
     failOnStderr: true
     showWarnings: true
     pwsh: true
-    workingDirectory: $(Build.SourcesDirectory)
+    workingDirectory: '$(Build.SourcesDirectory)'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
