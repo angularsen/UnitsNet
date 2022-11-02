@@ -3,6 +3,7 @@ name: trigger-js-package-release # Trigger JS package re-generate and publish to
 on: # Trigger re-generate JS units once a new relaese created
   release:
     types: [created]
+  workflow_dispatch: {}
 
 jobs:
   trigger:
