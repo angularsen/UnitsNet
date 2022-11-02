@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("VitaminA", quantityInfo.Name);
             Assert.Equal(QuantityType.VitaminA, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<VitaminAUnit>().Except(new[] {VitaminAUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<VitaminAUnit>().Except(new[] {VitaminAUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -256,6 +256,15 @@ namespace UnitsNet.Tests
                 fromUnit = VitaminA.BaseUnit;
 
             var quantity = VitaminA.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(VitaminAUnit unit)
+        {
+            var quantity = default(VitaminA);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.
     /// </summary>
     [DataContract]
-    public partial struct Energy : IQuantity<EnergyUnit>, IEquatable<Energy>, IComparable, IComparable<Energy>, IConvertible, IFormattable
+    public readonly partial struct Energy : IQuantity<EnergyUnit>, IEquatable<Energy>, IComparable, IComparable<Energy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -412,82 +412,82 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> EnergyUnit
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.BritishThermalUnit, quantity => new Energy(quantity.Value / 1055.05585262, EnergyUnit.BritishThermalUnit));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Calorie, quantity => new Energy(quantity.Value / 4.184, EnergyUnit.Calorie));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.DecathermEc, quantity => new Energy((quantity.Value / 1.05505585262e8) / 1e1d, EnergyUnit.DecathermEc));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.DecathermImperial, quantity => new Energy((quantity.Value / 1.05505585257348e8) / 1e1d, EnergyUnit.DecathermImperial));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.DecathermUs, quantity => new Energy((quantity.Value / 1.054804e8) / 1e1d, EnergyUnit.DecathermUs));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ElectronVolt, quantity => new Energy(quantity.Value / 1.602176565e-19, EnergyUnit.ElectronVolt));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Erg, quantity => new Energy(quantity.Value / 1e-7, EnergyUnit.Erg));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.FootPound, quantity => new Energy(quantity.Value / 1.355817948, EnergyUnit.FootPound));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.GigabritishThermalUnit, quantity => new Energy((quantity.Value / 1055.05585262) / 1e9d, EnergyUnit.GigabritishThermalUnit));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.GigaelectronVolt, quantity => new Energy((quantity.Value / 1.602176565e-19) / 1e9d, EnergyUnit.GigaelectronVolt));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Gigajoule, quantity => new Energy((quantity.Value) / 1e9d, EnergyUnit.Gigajoule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.GigawattDay, quantity => new Energy((quantity.Value / (24 * 3600d)) / 1e9d, EnergyUnit.GigawattDay));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.GigawattHour, quantity => new Energy((quantity.Value / 3600d) / 1e9d, EnergyUnit.GigawattHour));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.HorsepowerHour, quantity => new Energy(quantity.Value / 2.6845195377e6, EnergyUnit.HorsepowerHour));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.KilobritishThermalUnit, quantity => new Energy((quantity.Value / 1055.05585262) / 1e3d, EnergyUnit.KilobritishThermalUnit));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Kilocalorie, quantity => new Energy((quantity.Value / 4.184) / 1e3d, EnergyUnit.Kilocalorie));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.KiloelectronVolt, quantity => new Energy((quantity.Value / 1.602176565e-19) / 1e3d, EnergyUnit.KiloelectronVolt));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Kilojoule, quantity => new Energy((quantity.Value) / 1e3d, EnergyUnit.Kilojoule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.KilowattDay, quantity => new Energy((quantity.Value / (24 * 3600d)) / 1e3d, EnergyUnit.KilowattDay));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.KilowattHour, quantity => new Energy((quantity.Value / 3600d) / 1e3d, EnergyUnit.KilowattHour));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegabritishThermalUnit, quantity => new Energy((quantity.Value / 1055.05585262) / 1e6d, EnergyUnit.MegabritishThermalUnit));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Megacalorie, quantity => new Energy((quantity.Value / 4.184) / 1e6d, EnergyUnit.Megacalorie));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegaelectronVolt, quantity => new Energy((quantity.Value / 1.602176565e-19) / 1e6d, EnergyUnit.MegaelectronVolt));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Megajoule, quantity => new Energy((quantity.Value) / 1e6d, EnergyUnit.Megajoule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegawattDay, quantity => new Energy((quantity.Value / (24 * 3600d)) / 1e6d, EnergyUnit.MegawattDay));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegawattHour, quantity => new Energy((quantity.Value / 3600d) / 1e6d, EnergyUnit.MegawattHour));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Millijoule, quantity => new Energy((quantity.Value) / 1e-3d, EnergyUnit.Millijoule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TeraelectronVolt, quantity => new Energy((quantity.Value / 1.602176565e-19) / 1e12d, EnergyUnit.TeraelectronVolt));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TerawattDay, quantity => new Energy((quantity.Value / (24 * 3600d)) / 1e12d, EnergyUnit.TerawattDay));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TerawattHour, quantity => new Energy((quantity.Value / 3600d) / 1e12d, EnergyUnit.TerawattHour));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermEc, quantity => new Energy(quantity.Value / 1.05505585262e8, EnergyUnit.ThermEc));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermImperial, quantity => new Energy(quantity.Value / 1.05505585257348e8, EnergyUnit.ThermImperial));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermUs, quantity => new Energy(quantity.Value / 1.054804e8, EnergyUnit.ThermUs));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.WattDay, quantity => new Energy(quantity.Value / (24 * 3600d), EnergyUnit.WattDay));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.WattHour, quantity => new Energy(quantity.Value / 3600d, EnergyUnit.WattHour));
+            // Register in unit converter: EnergyUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.BritishThermalUnit, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Calorie, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.DecathermEc, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.DecathermImperial, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.DecathermUs, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.ElectronVolt, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Erg, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.FootPound, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigabritishThermalUnit, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigaelectronVolt, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Gigajoule, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigawattDay, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigawattHour, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.HorsepowerHour, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KilobritishThermalUnit, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Kilocalorie, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KiloelectronVolt, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Kilojoule, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KilowattDay, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KilowattHour, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegabritishThermalUnit, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Megacalorie, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegaelectronVolt, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Megajoule, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegawattDay, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegawattHour, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Millijoule, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.TeraelectronVolt, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.TerawattDay, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.TerawattHour, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermEc, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermImperial, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermUs, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.WattDay, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.WattHour, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Joule, quantity => quantity);
 
-            // Register in unit converter: EnergyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.BritishThermalUnit, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 1055.05585262, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Calorie, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 4.184, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.DecathermEc, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1.05505585262e8) * 1e1d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.DecathermImperial, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1.05505585257348e8) * 1e1d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.DecathermUs, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1.054804e8) * 1e1d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.ElectronVolt, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 1.602176565e-19, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Erg, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 1e-7, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.FootPound, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 1.355817948, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigabritishThermalUnit, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1055.05585262) * 1e9d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigaelectronVolt, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1.602176565e-19) * 1e9d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Gigajoule, EnergyUnit.Joule, quantity => new Energy((quantity.Value) * 1e9d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigawattDay, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 24 * 3600d) * 1e9d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.GigawattHour, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 3600d) * 1e9d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.HorsepowerHour, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 2.6845195377e6, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KilobritishThermalUnit, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1055.05585262) * 1e3d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Kilocalorie, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 4.184) * 1e3d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KiloelectronVolt, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1.602176565e-19) * 1e3d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Kilojoule, EnergyUnit.Joule, quantity => new Energy((quantity.Value) * 1e3d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KilowattDay, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 24 * 3600d) * 1e3d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.KilowattHour, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 3600d) * 1e3d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegabritishThermalUnit, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1055.05585262) * 1e6d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Megacalorie, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 4.184) * 1e6d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegaelectronVolt, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1.602176565e-19) * 1e6d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Megajoule, EnergyUnit.Joule, quantity => new Energy((quantity.Value) * 1e6d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegawattDay, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 24 * 3600d) * 1e6d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegawattHour, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 3600d) * 1e6d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Millijoule, EnergyUnit.Joule, quantity => new Energy((quantity.Value) * 1e-3d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.TeraelectronVolt, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 1.602176565e-19) * 1e12d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.TerawattDay, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 24 * 3600d) * 1e12d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.TerawattHour, EnergyUnit.Joule, quantity => new Energy((quantity.Value * 3600d) * 1e12d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermEc, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 1.05505585262e8, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermImperial, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 1.05505585257348e8, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermUs, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 1.054804e8, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.WattDay, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 24 * 3600d, EnergyUnit.Joule));
-            unitConverter.SetConversionFunction<Energy>(EnergyUnit.WattHour, EnergyUnit.Joule, quantity => new Energy(quantity.Value * 3600d, EnergyUnit.Joule));
+            // Register in unit converter: BaseUnit -> EnergyUnit
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.BritishThermalUnit, quantity => quantity.ToUnit(EnergyUnit.BritishThermalUnit));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Calorie, quantity => quantity.ToUnit(EnergyUnit.Calorie));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.DecathermEc, quantity => quantity.ToUnit(EnergyUnit.DecathermEc));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.DecathermImperial, quantity => quantity.ToUnit(EnergyUnit.DecathermImperial));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.DecathermUs, quantity => quantity.ToUnit(EnergyUnit.DecathermUs));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ElectronVolt, quantity => quantity.ToUnit(EnergyUnit.ElectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Erg, quantity => quantity.ToUnit(EnergyUnit.Erg));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.FootPound, quantity => quantity.ToUnit(EnergyUnit.FootPound));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.GigabritishThermalUnit, quantity => quantity.ToUnit(EnergyUnit.GigabritishThermalUnit));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.GigaelectronVolt, quantity => quantity.ToUnit(EnergyUnit.GigaelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Gigajoule, quantity => quantity.ToUnit(EnergyUnit.Gigajoule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.GigawattDay, quantity => quantity.ToUnit(EnergyUnit.GigawattDay));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.GigawattHour, quantity => quantity.ToUnit(EnergyUnit.GigawattHour));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.HorsepowerHour, quantity => quantity.ToUnit(EnergyUnit.HorsepowerHour));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.KilobritishThermalUnit, quantity => quantity.ToUnit(EnergyUnit.KilobritishThermalUnit));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Kilocalorie, quantity => quantity.ToUnit(EnergyUnit.Kilocalorie));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.KiloelectronVolt, quantity => quantity.ToUnit(EnergyUnit.KiloelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Kilojoule, quantity => quantity.ToUnit(EnergyUnit.Kilojoule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.KilowattDay, quantity => quantity.ToUnit(EnergyUnit.KilowattDay));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.KilowattHour, quantity => quantity.ToUnit(EnergyUnit.KilowattHour));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegabritishThermalUnit, quantity => quantity.ToUnit(EnergyUnit.MegabritishThermalUnit));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Megacalorie, quantity => quantity.ToUnit(EnergyUnit.Megacalorie));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegaelectronVolt, quantity => quantity.ToUnit(EnergyUnit.MegaelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Megajoule, quantity => quantity.ToUnit(EnergyUnit.Megajoule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegawattDay, quantity => quantity.ToUnit(EnergyUnit.MegawattDay));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegawattHour, quantity => quantity.ToUnit(EnergyUnit.MegawattHour));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Millijoule, quantity => quantity.ToUnit(EnergyUnit.Millijoule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TeraelectronVolt, quantity => quantity.ToUnit(EnergyUnit.TeraelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TerawattDay, quantity => quantity.ToUnit(EnergyUnit.TerawattDay));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TerawattHour, quantity => quantity.ToUnit(EnergyUnit.TerawattHour));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermEc, quantity => quantity.ToUnit(EnergyUnit.ThermEc));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermImperial, quantity => quantity.ToUnit(EnergyUnit.ThermImperial));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermUs, quantity => quantity.ToUnit(EnergyUnit.ThermUs));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.WattDay, quantity => quantity.ToUnit(EnergyUnit.WattDay));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.WattHour, quantity => quantity.ToUnit(EnergyUnit.WattHour));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -1104,13 +1104,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Energy"/> from adding two <see cref="Energy"/>.</summary>
         public static Energy operator +(Energy left, Energy right)
         {
-            return new Energy(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Energy(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from subtracting two <see cref="Energy"/>.</summary>
         public static Energy operator -(Energy left, Energy right)
         {
-            return new Energy(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Energy(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from multiplying value and <see cref="Energy"/>.</summary>
@@ -1144,25 +1144,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Energy left, Energy right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Energy left, Energy right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Energy left, Energy right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Energy left, Energy right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -1191,7 +1191,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Energy other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -1208,7 +1208,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Energy, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Energy other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1282,10 +1282,10 @@ namespace UnitsNet
         public double As(EnergyUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1323,34 +1323,130 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Energy to another Energy using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Energy"/> to another <see cref="Energy"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A Energy with the specified unit.</returns>
         public Energy ToUnit(EnergyUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(Energy), Unit, typeof(Energy), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Energy)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (Energy)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="Energy"/> to another <see cref="Energy"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="Energy"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(EnergyUnit unit, out Energy? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // EnergyUnit -> BaseUnit
+                (EnergyUnit.BritishThermalUnit, EnergyUnit.Joule) => new Energy(_value * 1055.05585262, EnergyUnit.Joule),
+                (EnergyUnit.Calorie, EnergyUnit.Joule) => new Energy(_value * 4.184, EnergyUnit.Joule),
+                (EnergyUnit.DecathermEc, EnergyUnit.Joule) => new Energy((_value * 1.05505585262e8) * 1e1d, EnergyUnit.Joule),
+                (EnergyUnit.DecathermImperial, EnergyUnit.Joule) => new Energy((_value * 1.05505585257348e8) * 1e1d, EnergyUnit.Joule),
+                (EnergyUnit.DecathermUs, EnergyUnit.Joule) => new Energy((_value * 1.054804e8) * 1e1d, EnergyUnit.Joule),
+                (EnergyUnit.ElectronVolt, EnergyUnit.Joule) => new Energy(_value * 1.602176565e-19, EnergyUnit.Joule),
+                (EnergyUnit.Erg, EnergyUnit.Joule) => new Energy(_value * 1e-7, EnergyUnit.Joule),
+                (EnergyUnit.FootPound, EnergyUnit.Joule) => new Energy(_value * 1.355817948, EnergyUnit.Joule),
+                (EnergyUnit.GigabritishThermalUnit, EnergyUnit.Joule) => new Energy((_value * 1055.05585262) * 1e9d, EnergyUnit.Joule),
+                (EnergyUnit.GigaelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e9d, EnergyUnit.Joule),
+                (EnergyUnit.Gigajoule, EnergyUnit.Joule) => new Energy((_value) * 1e9d, EnergyUnit.Joule),
+                (EnergyUnit.GigawattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e9d, EnergyUnit.Joule),
+                (EnergyUnit.GigawattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e9d, EnergyUnit.Joule),
+                (EnergyUnit.HorsepowerHour, EnergyUnit.Joule) => new Energy(_value * 2.6845195377e6, EnergyUnit.Joule),
+                (EnergyUnit.KilobritishThermalUnit, EnergyUnit.Joule) => new Energy((_value * 1055.05585262) * 1e3d, EnergyUnit.Joule),
+                (EnergyUnit.Kilocalorie, EnergyUnit.Joule) => new Energy((_value * 4.184) * 1e3d, EnergyUnit.Joule),
+                (EnergyUnit.KiloelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e3d, EnergyUnit.Joule),
+                (EnergyUnit.Kilojoule, EnergyUnit.Joule) => new Energy((_value) * 1e3d, EnergyUnit.Joule),
+                (EnergyUnit.KilowattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e3d, EnergyUnit.Joule),
+                (EnergyUnit.KilowattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e3d, EnergyUnit.Joule),
+                (EnergyUnit.MegabritishThermalUnit, EnergyUnit.Joule) => new Energy((_value * 1055.05585262) * 1e6d, EnergyUnit.Joule),
+                (EnergyUnit.Megacalorie, EnergyUnit.Joule) => new Energy((_value * 4.184) * 1e6d, EnergyUnit.Joule),
+                (EnergyUnit.MegaelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e6d, EnergyUnit.Joule),
+                (EnergyUnit.Megajoule, EnergyUnit.Joule) => new Energy((_value) * 1e6d, EnergyUnit.Joule),
+                (EnergyUnit.MegawattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e6d, EnergyUnit.Joule),
+                (EnergyUnit.MegawattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e6d, EnergyUnit.Joule),
+                (EnergyUnit.Millijoule, EnergyUnit.Joule) => new Energy((_value) * 1e-3d, EnergyUnit.Joule),
+                (EnergyUnit.TeraelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e12d, EnergyUnit.Joule),
+                (EnergyUnit.TerawattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e12d, EnergyUnit.Joule),
+                (EnergyUnit.TerawattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e12d, EnergyUnit.Joule),
+                (EnergyUnit.ThermEc, EnergyUnit.Joule) => new Energy(_value * 1.05505585262e8, EnergyUnit.Joule),
+                (EnergyUnit.ThermImperial, EnergyUnit.Joule) => new Energy(_value * 1.05505585257348e8, EnergyUnit.Joule),
+                (EnergyUnit.ThermUs, EnergyUnit.Joule) => new Energy(_value * 1.054804e8, EnergyUnit.Joule),
+                (EnergyUnit.WattDay, EnergyUnit.Joule) => new Energy(_value * 24 * 3600d, EnergyUnit.Joule),
+                (EnergyUnit.WattHour, EnergyUnit.Joule) => new Energy(_value * 3600d, EnergyUnit.Joule),
+
+                // BaseUnit -> EnergyUnit
+                (EnergyUnit.Joule, EnergyUnit.BritishThermalUnit) => new Energy(_value / 1055.05585262, EnergyUnit.BritishThermalUnit),
+                (EnergyUnit.Joule, EnergyUnit.Calorie) => new Energy(_value / 4.184, EnergyUnit.Calorie),
+                (EnergyUnit.Joule, EnergyUnit.DecathermEc) => new Energy((_value / 1.05505585262e8) / 1e1d, EnergyUnit.DecathermEc),
+                (EnergyUnit.Joule, EnergyUnit.DecathermImperial) => new Energy((_value / 1.05505585257348e8) / 1e1d, EnergyUnit.DecathermImperial),
+                (EnergyUnit.Joule, EnergyUnit.DecathermUs) => new Energy((_value / 1.054804e8) / 1e1d, EnergyUnit.DecathermUs),
+                (EnergyUnit.Joule, EnergyUnit.ElectronVolt) => new Energy(_value / 1.602176565e-19, EnergyUnit.ElectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Erg) => new Energy(_value / 1e-7, EnergyUnit.Erg),
+                (EnergyUnit.Joule, EnergyUnit.FootPound) => new Energy(_value / 1.355817948, EnergyUnit.FootPound),
+                (EnergyUnit.Joule, EnergyUnit.GigabritishThermalUnit) => new Energy((_value / 1055.05585262) / 1e9d, EnergyUnit.GigabritishThermalUnit),
+                (EnergyUnit.Joule, EnergyUnit.GigaelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e9d, EnergyUnit.GigaelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Gigajoule) => new Energy((_value) / 1e9d, EnergyUnit.Gigajoule),
+                (EnergyUnit.Joule, EnergyUnit.GigawattDay) => new Energy((_value / (24 * 3600d)) / 1e9d, EnergyUnit.GigawattDay),
+                (EnergyUnit.Joule, EnergyUnit.GigawattHour) => new Energy((_value / 3600d) / 1e9d, EnergyUnit.GigawattHour),
+                (EnergyUnit.Joule, EnergyUnit.HorsepowerHour) => new Energy(_value / 2.6845195377e6, EnergyUnit.HorsepowerHour),
+                (EnergyUnit.Joule, EnergyUnit.KilobritishThermalUnit) => new Energy((_value / 1055.05585262) / 1e3d, EnergyUnit.KilobritishThermalUnit),
+                (EnergyUnit.Joule, EnergyUnit.Kilocalorie) => new Energy((_value / 4.184) / 1e3d, EnergyUnit.Kilocalorie),
+                (EnergyUnit.Joule, EnergyUnit.KiloelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e3d, EnergyUnit.KiloelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Kilojoule) => new Energy((_value) / 1e3d, EnergyUnit.Kilojoule),
+                (EnergyUnit.Joule, EnergyUnit.KilowattDay) => new Energy((_value / (24 * 3600d)) / 1e3d, EnergyUnit.KilowattDay),
+                (EnergyUnit.Joule, EnergyUnit.KilowattHour) => new Energy((_value / 3600d) / 1e3d, EnergyUnit.KilowattHour),
+                (EnergyUnit.Joule, EnergyUnit.MegabritishThermalUnit) => new Energy((_value / 1055.05585262) / 1e6d, EnergyUnit.MegabritishThermalUnit),
+                (EnergyUnit.Joule, EnergyUnit.Megacalorie) => new Energy((_value / 4.184) / 1e6d, EnergyUnit.Megacalorie),
+                (EnergyUnit.Joule, EnergyUnit.MegaelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e6d, EnergyUnit.MegaelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Megajoule) => new Energy((_value) / 1e6d, EnergyUnit.Megajoule),
+                (EnergyUnit.Joule, EnergyUnit.MegawattDay) => new Energy((_value / (24 * 3600d)) / 1e6d, EnergyUnit.MegawattDay),
+                (EnergyUnit.Joule, EnergyUnit.MegawattHour) => new Energy((_value / 3600d) / 1e6d, EnergyUnit.MegawattHour),
+                (EnergyUnit.Joule, EnergyUnit.Millijoule) => new Energy((_value) / 1e-3d, EnergyUnit.Millijoule),
+                (EnergyUnit.Joule, EnergyUnit.TeraelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e12d, EnergyUnit.TeraelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.TerawattDay) => new Energy((_value / (24 * 3600d)) / 1e12d, EnergyUnit.TerawattDay),
+                (EnergyUnit.Joule, EnergyUnit.TerawattHour) => new Energy((_value / 3600d) / 1e12d, EnergyUnit.TerawattHour),
+                (EnergyUnit.Joule, EnergyUnit.ThermEc) => new Energy(_value / 1.05505585262e8, EnergyUnit.ThermEc),
+                (EnergyUnit.Joule, EnergyUnit.ThermImperial) => new Energy(_value / 1.05505585257348e8, EnergyUnit.ThermImperial),
+                (EnergyUnit.Joule, EnergyUnit.ThermUs) => new Energy(_value / 1.054804e8, EnergyUnit.ThermUs),
+                (EnergyUnit.Joule, EnergyUnit.WattDay) => new Energy(_value / (24 * 3600d), EnergyUnit.WattDay),
+                (EnergyUnit.Joule, EnergyUnit.WattHour) => new Energy(_value / 3600d, EnergyUnit.WattHour),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -1385,12 +1481,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<EnergyUnit> IQuantity<EnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(EnergyUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

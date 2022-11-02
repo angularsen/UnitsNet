@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.
     /// </summary>
     [DataContract]
-    public partial struct ThermalResistance : IQuantity<ThermalResistanceUnit>, IEquatable<ThermalResistance>, IComparable, IComparable<ThermalResistance>, IConvertible, IFormattable
+    public readonly partial struct ThermalResistance : IQuantity<ThermalResistanceUnit>, IEquatable<ThermalResistance>, IComparable, IComparable<ThermalResistance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -232,22 +232,22 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ThermalResistanceUnit
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, quantity => new ThermalResistance(quantity.Value / 176.1121482159839, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, quantity => new ThermalResistance(quantity.Value / 0.0859779507590433, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, quantity => new ThermalResistance(quantity.Value / 0.1, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity => new ThermalResistance(quantity.Value / 1000.0, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt, quantity => new ThermalResistance(quantity.Value / 1000, ThermalResistanceUnit.SquareMeterKelvinPerWatt));
+            // Register in unit converter: ThermalResistanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => quantity);
 
-            // Register in unit converter: ThermalResistanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => new ThermalResistance(quantity.Value * 176.1121482159839, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => new ThermalResistance(quantity.Value * 0.0859779507590433, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => new ThermalResistance(quantity.Value * 0.1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => new ThermalResistance(quantity.Value * 1000.0, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
-            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, quantity => new ThermalResistance(quantity.Value * 1000, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+            // Register in unit converter: BaseUnit -> ThermalResistanceUnit
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, quantity => quantity.ToUnit(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu));
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie));
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt));
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt));
+            unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerWatt));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -513,13 +513,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ThermalResistance"/> from adding two <see cref="ThermalResistance"/>.</summary>
         public static ThermalResistance operator +(ThermalResistance left, ThermalResistance right)
         {
-            return new ThermalResistance(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ThermalResistance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ThermalResistance"/> from subtracting two <see cref="ThermalResistance"/>.</summary>
         public static ThermalResistance operator -(ThermalResistance left, ThermalResistance right)
         {
-            return new ThermalResistance(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ThermalResistance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ThermalResistance"/> from multiplying value and <see cref="ThermalResistance"/>.</summary>
@@ -553,25 +553,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ThermalResistance left, ThermalResistance right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ThermalResistance left, ThermalResistance right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ThermalResistance left, ThermalResistance right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ThermalResistance left, ThermalResistance right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -600,7 +600,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ThermalResistance other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -617,7 +617,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ThermalResistance, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ThermalResistance other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -691,10 +691,10 @@ namespace UnitsNet
         public double As(ThermalResistanceUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -732,34 +732,70 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ThermalResistance to another ThermalResistance using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ThermalResistance"/> to another <see cref="ThermalResistance"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A ThermalResistance with the specified unit.</returns>
         public ThermalResistance ToUnit(ThermalResistanceUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(ThermalResistance), Unit, typeof(ThermalResistance), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ThermalResistance)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (ThermalResistance)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="ThermalResistance"/> to another <see cref="ThermalResistance"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="ThermalResistance"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(ThermalResistanceUnit unit, out ThermalResistance? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // ThermalResistanceUnit -> BaseUnit
+                (ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 176.1121482159839, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 0.0859779507590433, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 0.1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 1000.0, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
+                (ThermalResistanceUnit.SquareMeterKelvinPerWatt, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) => new ThermalResistance(_value * 1000, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt),
+
+                // BaseUnit -> ThermalResistanceUnit
+                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu) => new ThermalResistance(_value / 176.1121482159839, ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu),
+                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie) => new ThermalResistance(_value / 0.0859779507590433, ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie),
+                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt) => new ThermalResistance(_value / 0.1, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt),
+                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt) => new ThermalResistance(_value / 1000.0, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt),
+                (ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt) => new ThermalResistance(_value / 1000, ThermalResistanceUnit.SquareMeterKelvinPerWatt),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -794,12 +830,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ThermalResistanceUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("LapseRate", quantityInfo.Name);
             Assert.Equal(QuantityType.LapseRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LapseRateUnit>().Except(new[] {LapseRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -256,6 +256,15 @@ namespace UnitsNet.Tests
                 fromUnit = LapseRate.BaseUnit;
 
             var quantity = LapseRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(LapseRateUnit unit)
+        {
+            var quantity = default(LapseRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("BrakeSpecificFuelConsumption", quantityInfo.Name);
             Assert.Equal(QuantityType.BrakeSpecificFuelConsumption, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<BrakeSpecificFuelConsumptionUnit>().Except(new[] {BrakeSpecificFuelConsumptionUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<BrakeSpecificFuelConsumptionUnit>().Except(new[] {BrakeSpecificFuelConsumptionUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -324,6 +324,15 @@ namespace UnitsNet.Tests
                 fromUnit = BrakeSpecificFuelConsumption.BaseUnit;
 
             var quantity = BrakeSpecificFuelConsumption.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(BrakeSpecificFuelConsumptionUnit unit)
+        {
+            var quantity = default(BrakeSpecificFuelConsumption);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

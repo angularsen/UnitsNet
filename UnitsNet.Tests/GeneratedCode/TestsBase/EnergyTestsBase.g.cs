@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Energy", quantityInfo.Name);
             Assert.Equal(QuantityType.Energy, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<EnergyUnit>().Except(new[] {EnergyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<EnergyUnit>().Except(new[] {EnergyUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1928,6 +1928,15 @@ namespace UnitsNet.Tests
                 fromUnit = Energy.BaseUnit;
 
             var quantity = Energy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(EnergyUnit unit)
+        {
+            var quantity = default(Energy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

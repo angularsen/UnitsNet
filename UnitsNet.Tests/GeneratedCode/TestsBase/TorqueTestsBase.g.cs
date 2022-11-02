@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Torque", quantityInfo.Name);
             Assert.Equal(QuantityType.Torque, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<TorqueUnit>().Except(new[] {TorqueUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<TorqueUnit>().Except(new[] {TorqueUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1144,6 +1144,15 @@ namespace UnitsNet.Tests
                 fromUnit = Torque.BaseUnit;
 
             var quantity = Torque.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TorqueUnit unit)
+        {
+            var quantity = default(Torque);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -93,7 +93,9 @@
     "UsSurveySquareFoot": 14
   },
   "AreaDensity": {
-    "KilogramPerSquareMeter": 1
+    "KilogramPerSquareMeter": 1,
+    "GramPerSquareMeter": 6,
+    "MilligramPerSquareMeter": 10
   },
   "AreaMomentOfInertia": {
     "CentimeterToTheFourth": 1,
@@ -261,7 +263,10 @@
   "ElectricConductivity": {
     "SiemensPerFoot": 1,
     "SiemensPerInch": 2,
-    "SiemensPerMeter": 3
+    "SiemensPerMeter": 3,
+    "MicrosiemensPerCentimeter": 6,
+    "MillisiemensPerCentimeter": 12,
+    "SiemensPerCentimeter": 13
   },
   "ElectricCurrent": {
     "Ampere": 1,
@@ -1343,7 +1348,8 @@
     "UsSurveyFootPerSecond": 29,
     "YardPerHour": 30,
     "YardPerMinute": 31,
-    "YardPerSecond": 32
+    "YardPerSecond": 32,
+    "Mach": 42
   },
   "StandardVolumeFlow": {
     "StandardCubicCentimeterPerMinute": 1,
@@ -1636,5 +1642,17 @@
     "InchToTheSixth": 4,
     "MeterToTheSixth": 5,
     "MillimeterToTheSixth": 6
+  },
+  "Luminance": {
+    "CandelaPerSquareFoot": 10,
+    "CandelaPerSquareInch": 7,
+    "CandelaPerSquareMeter": 8,
+    "CenticandelaPerSquareMeter": 3,
+    "DecicandelaPerSquareMeter": 4,
+    "KilocandelaPerSquareMeter": 9,
+    "MicrocandelaPerSquareMeter": 6,
+    "MillicandelaPerSquareMeter": 2,
+    "NanocandelaPerSquareMeter": 1,
+    "Nit": 5
   }
 }

@@ -45,7 +45,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kPa⁻¹", "1/kPa" ]
+          "Abbreviations": [ "MPa⁻¹", "1/MPa" ]
         }
       ]
     },

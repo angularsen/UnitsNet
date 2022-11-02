@@ -203,6 +203,9 @@ namespace UnitsNet
                 case LinearPowerDensityUnit linearPowerDensityUnit:
                     quantity = LinearPowerDensity.From(value, linearPowerDensityUnit);
                     return true;
+                case LuminanceUnit luminanceUnit:
+                    quantity = Luminance.From(value, luminanceUnit);
+                    return true;
                 case LuminosityUnit luminosityUnit:
                     quantity = Luminosity.From(value, luminosityUnit);
                     return true;
@@ -598,6 +601,9 @@ namespace UnitsNet
             if (quantityType == typeof(LinearPowerDensity))
                 return parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity);
 
+            if (quantityType == typeof(Luminance))
+                return parser.TryParse<Luminance, LuminanceUnit>(quantityString, formatProvider, Luminance.From, out quantity);
+
             if (quantityType == typeof(Luminosity))
                 return parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity);
 
@@ -841,6 +847,7 @@ namespace UnitsNet
             yield return typeof(Level);
             yield return typeof(LinearDensity);
             yield return typeof(LinearPowerDensity);
+            yield return typeof(Luminance);
             yield return typeof(Luminosity);
             yield return typeof(LuminousFlux);
             yield return typeof(LuminousIntensity);

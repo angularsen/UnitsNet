@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The volumetric flow rate per area is the volume of fluid which passes through a given unit surface area per unit time.
     /// </summary>
     [DataContract]
-    public partial struct VolumeFlowPerArea : IQuantity<VolumeFlowPerAreaUnit>, IEquatable<VolumeFlowPerArea>, IComparable, IComparable<VolumeFlowPerArea>, IConvertible, IFormattable
+    public readonly partial struct VolumeFlowPerArea : IQuantity<VolumeFlowPerAreaUnit>, IEquatable<VolumeFlowPerArea>, IComparable, IComparable<VolumeFlowPerArea>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -208,14 +208,14 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> VolumeFlowPerAreaUnit
-            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => new VolumeFlowPerArea(quantity.Value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
+            // Register in unit converter: VolumeFlowPerAreaUnit -> BaseUnit
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity.ToUnit(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => quantity);
 
-            // Register in unit converter: VolumeFlowPerAreaUnit -> BaseUnit
-            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, quantity => new VolumeFlowPerArea(quantity.Value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter));
+            // Register in unit converter: BaseUnit -> VolumeFlowPerAreaUnit
+            unitConverter.SetConversionFunction<VolumeFlowPerArea>(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, quantity => quantity.ToUnit(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -437,13 +437,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from adding two <see cref="VolumeFlowPerArea"/>.</summary>
         public static VolumeFlowPerArea operator +(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
-            return new VolumeFlowPerArea(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new VolumeFlowPerArea(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from subtracting two <see cref="VolumeFlowPerArea"/>.</summary>
         public static VolumeFlowPerArea operator -(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
-            return new VolumeFlowPerArea(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new VolumeFlowPerArea(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from multiplying value and <see cref="VolumeFlowPerArea"/>.</summary>
@@ -477,25 +477,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -524,7 +524,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(VolumeFlowPerArea other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -541,7 +541,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(VolumeFlowPerArea, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(VolumeFlowPerArea other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -615,10 +615,10 @@ namespace UnitsNet
         public double As(VolumeFlowPerAreaUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -656,34 +656,62 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this VolumeFlowPerArea to another VolumeFlowPerArea using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="VolumeFlowPerArea"/> to another <see cref="VolumeFlowPerArea"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A VolumeFlowPerArea with the specified unit.</returns>
         public VolumeFlowPerArea ToUnit(VolumeFlowPerAreaUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(VolumeFlowPerArea), Unit, typeof(VolumeFlowPerArea), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (VolumeFlowPerArea)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (VolumeFlowPerArea)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="VolumeFlowPerArea"/> to another <see cref="VolumeFlowPerArea"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="VolumeFlowPerArea"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(VolumeFlowPerAreaUnit unit, out VolumeFlowPerArea? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // VolumeFlowPerAreaUnit -> BaseUnit
+                (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter) => new VolumeFlowPerArea(_value / 196.850394, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter),
+
+                // BaseUnit -> VolumeFlowPerAreaUnit
+                (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot) => new VolumeFlowPerArea(_value * 196.850394, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -718,12 +746,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(VolumeFlowPerAreaUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

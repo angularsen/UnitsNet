@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Angle", quantityInfo.Name);
             Assert.Equal(QuantityType.Angle, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<AngleUnit>().Except(new[] {AngleUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<AngleUnit>().Except(new[] {AngleUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1294,6 +1294,15 @@ namespace UnitsNet.Tests
                 fromUnit = Angle.BaseUnit;
 
             var quantity = Angle.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(AngleUnit unit)
+        {
+            var quantity = default(Angle);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

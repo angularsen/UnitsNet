@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.
     /// </summary>
     [DataContract]
-    public partial struct Length : IQuantity<LengthUnit>, IEquatable<Length>, IComparable, IComparable<Length>, IConvertible, IFormattable
+    public readonly partial struct Length : IQuantity<LengthUnit>, IEquatable<Length>, IComparable, IComparable<Length>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -412,82 +412,82 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> LengthUnit
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Angstrom, quantity => new Length(quantity.Value / 1e-10, LengthUnit.Angstrom));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.AstronomicalUnit, quantity => new Length(quantity.Value / 1.4959787070e11, LengthUnit.AstronomicalUnit));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Centimeter, quantity => new Length((quantity.Value) / 1e-2d, LengthUnit.Centimeter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Chain, quantity => new Length(quantity.Value / 20.1168, LengthUnit.Chain));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DataMile, quantity => new Length(quantity.Value / 1828.8, LengthUnit.DataMile));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decameter, quantity => new Length((quantity.Value) / 1e1d, LengthUnit.Decameter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decimeter, quantity => new Length((quantity.Value) / 1e-1d, LengthUnit.Decimeter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPica, quantity => new Length(quantity.Value * 236.220472441, LengthUnit.DtpPica));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPoint, quantity => new Length((quantity.Value / 2.54e-2) * 72, LengthUnit.DtpPoint));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Fathom, quantity => new Length(quantity.Value / 1.8288, LengthUnit.Fathom));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Foot, quantity => new Length(quantity.Value / 0.3048, LengthUnit.Foot));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hand, quantity => new Length(quantity.Value / 1.016e-1, LengthUnit.Hand));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hectometer, quantity => new Length((quantity.Value) / 1e2d, LengthUnit.Hectometer));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, quantity => new Length(quantity.Value / 2.54e-2, LengthUnit.Inch));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.KilolightYear, quantity => new Length((quantity.Value / 9.46073047258e15) / 1e3d, LengthUnit.KilolightYear));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kilometer, quantity => new Length((quantity.Value) / 1e3d, LengthUnit.Kilometer));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kiloparsec, quantity => new Length((quantity.Value / 3.08567758128e16) / 1e3d, LengthUnit.Kiloparsec));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.LightYear, quantity => new Length(quantity.Value / 9.46073047258e15, LengthUnit.LightYear));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.MegalightYear, quantity => new Length((quantity.Value / 9.46073047258e15) / 1e6d, LengthUnit.MegalightYear));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Megaparsec, quantity => new Length((quantity.Value / 3.08567758128e16) / 1e6d, LengthUnit.Megaparsec));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Microinch, quantity => new Length(quantity.Value / 2.54e-8, LengthUnit.Microinch));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Micrometer, quantity => new Length((quantity.Value) / 1e-6d, LengthUnit.Micrometer));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mil, quantity => new Length(quantity.Value / 2.54e-5, LengthUnit.Mil));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mile, quantity => new Length(quantity.Value / 1609.34, LengthUnit.Mile));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Millimeter, quantity => new Length((quantity.Value) / 1e-3d, LengthUnit.Millimeter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Nanometer, quantity => new Length((quantity.Value) / 1e-9d, LengthUnit.Nanometer));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.NauticalMile, quantity => new Length(quantity.Value / 1852, LengthUnit.NauticalMile));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Parsec, quantity => new Length(quantity.Value / 3.08567758128e16, LengthUnit.Parsec));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPica, quantity => new Length(quantity.Value * 237.106301584, LengthUnit.PrinterPica));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPoint, quantity => new Length((quantity.Value / 2.54e-2) * 72.27, LengthUnit.PrinterPoint));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Shackle, quantity => new Length(quantity.Value / 27.432, LengthUnit.Shackle));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.SolarRadius, quantity => new Length(quantity.Value / 6.95510000E+08, LengthUnit.SolarRadius));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Twip, quantity => new Length(quantity.Value * 56692.913385826, LengthUnit.Twip));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => new Length(quantity.Value * 3937 / 1200, LengthUnit.UsSurveyFoot));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => new Length(quantity.Value / 0.9144, LengthUnit.Yard));
+            // Register in unit converter: LengthUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Angstrom, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.AstronomicalUnit, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Centimeter, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DataMile, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Decameter, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Decimeter, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPica, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPoint, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Fathom, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Foot, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Hand, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Hectometer, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Inch, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.KilolightYear, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Kilometer, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Kiloparsec, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.LightYear, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.MegalightYear, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Megaparsec, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Microinch, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Micrometer, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Mil, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Mile, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Millimeter, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Nanometer, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.NauticalMile, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Parsec, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPica, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.SolarRadius, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.UsSurveyFoot, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Yard, LengthUnit.Meter, quantity => quantity.ToUnit(LengthUnit.Meter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Meter, quantity => quantity);
 
-            // Register in unit converter: LengthUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Angstrom, LengthUnit.Meter, quantity => new Length(quantity.Value * 1e-10, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.AstronomicalUnit, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.4959787070e11, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Centimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-2d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Chain, LengthUnit.Meter, quantity => new Length(quantity.Value * 20.1168, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.DataMile, LengthUnit.Meter, quantity => new Length(quantity.Value * 1828.8, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Decameter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e1d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Decimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-1d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPica, LengthUnit.Meter, quantity => new Length(quantity.Value / 236.220472441, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.DtpPoint, LengthUnit.Meter, quantity => new Length((quantity.Value / 72) * 2.54e-2, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Fathom, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.8288, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Foot, LengthUnit.Meter, quantity => new Length(quantity.Value * 0.3048, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Hand, LengthUnit.Meter, quantity => new Length(quantity.Value * 1.016e-1, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Hectometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e2d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Inch, LengthUnit.Meter, quantity => new Length(quantity.Value * 2.54e-2, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.KilolightYear, LengthUnit.Meter, quantity => new Length((quantity.Value * 9.46073047258e15) * 1e3d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Kilometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e3d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Kiloparsec, LengthUnit.Meter, quantity => new Length((quantity.Value * 3.08567758128e16) * 1e3d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.LightYear, LengthUnit.Meter, quantity => new Length(quantity.Value * 9.46073047258e15, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.MegalightYear, LengthUnit.Meter, quantity => new Length((quantity.Value * 9.46073047258e15) * 1e6d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Megaparsec, LengthUnit.Meter, quantity => new Length((quantity.Value * 3.08567758128e16) * 1e6d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Microinch, LengthUnit.Meter, quantity => new Length(quantity.Value * 2.54e-8, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Micrometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-6d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Mil, LengthUnit.Meter, quantity => new Length(quantity.Value * 2.54e-5, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Mile, LengthUnit.Meter, quantity => new Length(quantity.Value * 1609.34, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Millimeter, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-3d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Nanometer, LengthUnit.Meter, quantity => new Length((quantity.Value) * 1e-9d, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.NauticalMile, LengthUnit.Meter, quantity => new Length(quantity.Value * 1852, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Parsec, LengthUnit.Meter, quantity => new Length(quantity.Value * 3.08567758128e16, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPica, LengthUnit.Meter, quantity => new Length(quantity.Value / 237.106301584, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.PrinterPoint, LengthUnit.Meter, quantity => new Length((quantity.Value / 72.27) * 2.54e-2, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Shackle, LengthUnit.Meter, quantity => new Length(quantity.Value * 27.432, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.SolarRadius, LengthUnit.Meter, quantity => new Length(quantity.Value * 6.95510000E+08, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Twip, LengthUnit.Meter, quantity => new Length(quantity.Value / 56692.913385826, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.UsSurveyFoot, LengthUnit.Meter, quantity => new Length(quantity.Value * 1200 / 3937, LengthUnit.Meter));
-            unitConverter.SetConversionFunction<Length>(LengthUnit.Yard, LengthUnit.Meter, quantity => new Length(quantity.Value * 0.9144, LengthUnit.Meter));
+            // Register in unit converter: BaseUnit -> LengthUnit
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Angstrom, quantity => quantity.ToUnit(LengthUnit.Angstrom));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.AstronomicalUnit, quantity => quantity.ToUnit(LengthUnit.AstronomicalUnit));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Centimeter, quantity => quantity.ToUnit(LengthUnit.Centimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Chain, quantity => quantity.ToUnit(LengthUnit.Chain));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DataMile, quantity => quantity.ToUnit(LengthUnit.DataMile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decameter, quantity => quantity.ToUnit(LengthUnit.Decameter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Decimeter, quantity => quantity.ToUnit(LengthUnit.Decimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPica, quantity => quantity.ToUnit(LengthUnit.DtpPica));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.DtpPoint, quantity => quantity.ToUnit(LengthUnit.DtpPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Fathom, quantity => quantity.ToUnit(LengthUnit.Fathom));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Foot, quantity => quantity.ToUnit(LengthUnit.Foot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hand, quantity => quantity.ToUnit(LengthUnit.Hand));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Hectometer, quantity => quantity.ToUnit(LengthUnit.Hectometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, quantity => quantity.ToUnit(LengthUnit.Inch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.KilolightYear, quantity => quantity.ToUnit(LengthUnit.KilolightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kilometer, quantity => quantity.ToUnit(LengthUnit.Kilometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Kiloparsec, quantity => quantity.ToUnit(LengthUnit.Kiloparsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.LightYear, quantity => quantity.ToUnit(LengthUnit.LightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.MegalightYear, quantity => quantity.ToUnit(LengthUnit.MegalightYear));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Megaparsec, quantity => quantity.ToUnit(LengthUnit.Megaparsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Microinch, quantity => quantity.ToUnit(LengthUnit.Microinch));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Micrometer, quantity => quantity.ToUnit(LengthUnit.Micrometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mil, quantity => quantity.ToUnit(LengthUnit.Mil));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Mile, quantity => quantity.ToUnit(LengthUnit.Mile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Millimeter, quantity => quantity.ToUnit(LengthUnit.Millimeter));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Nanometer, quantity => quantity.ToUnit(LengthUnit.Nanometer));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.NauticalMile, quantity => quantity.ToUnit(LengthUnit.NauticalMile));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Parsec, quantity => quantity.ToUnit(LengthUnit.Parsec));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPica, quantity => quantity.ToUnit(LengthUnit.PrinterPica));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.PrinterPoint, quantity => quantity.ToUnit(LengthUnit.PrinterPoint));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Shackle, quantity => quantity.ToUnit(LengthUnit.Shackle));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.SolarRadius, quantity => quantity.ToUnit(LengthUnit.SolarRadius));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Twip, quantity => quantity.ToUnit(LengthUnit.Twip));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.UsSurveyFoot, quantity => quantity.ToUnit(LengthUnit.UsSurveyFoot));
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => quantity.ToUnit(LengthUnit.Yard));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -1115,13 +1115,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Length"/> from adding two <see cref="Length"/>.</summary>
         public static Length operator +(Length left, Length right)
         {
-            return new Length(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Length(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from subtracting two <see cref="Length"/>.</summary>
         public static Length operator -(Length left, Length right)
         {
-            return new Length(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Length(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
@@ -1155,25 +1155,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Length left, Length right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Length left, Length right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Length left, Length right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Length left, Length right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -1202,7 +1202,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Length other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -1219,7 +1219,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Length, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Length other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1293,10 +1293,10 @@ namespace UnitsNet
         public double As(LengthUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1334,34 +1334,130 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Length to another Length using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Length"/> to another <see cref="Length"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A Length with the specified unit.</returns>
         public Length ToUnit(LengthUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(Length), Unit, typeof(Length), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Length)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (Length)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="Length"/> to another <see cref="Length"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="Length"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(LengthUnit unit, out Length? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // LengthUnit -> BaseUnit
+                (LengthUnit.Angstrom, LengthUnit.Meter) => new Length(_value * 1e-10, LengthUnit.Meter),
+                (LengthUnit.AstronomicalUnit, LengthUnit.Meter) => new Length(_value * 1.4959787070e11, LengthUnit.Meter),
+                (LengthUnit.Centimeter, LengthUnit.Meter) => new Length((_value) * 1e-2d, LengthUnit.Meter),
+                (LengthUnit.Chain, LengthUnit.Meter) => new Length(_value * 20.1168, LengthUnit.Meter),
+                (LengthUnit.DataMile, LengthUnit.Meter) => new Length(_value * 1828.8, LengthUnit.Meter),
+                (LengthUnit.Decameter, LengthUnit.Meter) => new Length((_value) * 1e1d, LengthUnit.Meter),
+                (LengthUnit.Decimeter, LengthUnit.Meter) => new Length((_value) * 1e-1d, LengthUnit.Meter),
+                (LengthUnit.DtpPica, LengthUnit.Meter) => new Length(_value / 236.220472441, LengthUnit.Meter),
+                (LengthUnit.DtpPoint, LengthUnit.Meter) => new Length((_value / 72) * 2.54e-2, LengthUnit.Meter),
+                (LengthUnit.Fathom, LengthUnit.Meter) => new Length(_value * 1.8288, LengthUnit.Meter),
+                (LengthUnit.Foot, LengthUnit.Meter) => new Length(_value * 0.3048, LengthUnit.Meter),
+                (LengthUnit.Hand, LengthUnit.Meter) => new Length(_value * 1.016e-1, LengthUnit.Meter),
+                (LengthUnit.Hectometer, LengthUnit.Meter) => new Length((_value) * 1e2d, LengthUnit.Meter),
+                (LengthUnit.Inch, LengthUnit.Meter) => new Length(_value * 2.54e-2, LengthUnit.Meter),
+                (LengthUnit.KilolightYear, LengthUnit.Meter) => new Length((_value * 9.46073047258e15) * 1e3d, LengthUnit.Meter),
+                (LengthUnit.Kilometer, LengthUnit.Meter) => new Length((_value) * 1e3d, LengthUnit.Meter),
+                (LengthUnit.Kiloparsec, LengthUnit.Meter) => new Length((_value * 3.08567758128e16) * 1e3d, LengthUnit.Meter),
+                (LengthUnit.LightYear, LengthUnit.Meter) => new Length(_value * 9.46073047258e15, LengthUnit.Meter),
+                (LengthUnit.MegalightYear, LengthUnit.Meter) => new Length((_value * 9.46073047258e15) * 1e6d, LengthUnit.Meter),
+                (LengthUnit.Megaparsec, LengthUnit.Meter) => new Length((_value * 3.08567758128e16) * 1e6d, LengthUnit.Meter),
+                (LengthUnit.Microinch, LengthUnit.Meter) => new Length(_value * 2.54e-8, LengthUnit.Meter),
+                (LengthUnit.Micrometer, LengthUnit.Meter) => new Length((_value) * 1e-6d, LengthUnit.Meter),
+                (LengthUnit.Mil, LengthUnit.Meter) => new Length(_value * 2.54e-5, LengthUnit.Meter),
+                (LengthUnit.Mile, LengthUnit.Meter) => new Length(_value * 1609.34, LengthUnit.Meter),
+                (LengthUnit.Millimeter, LengthUnit.Meter) => new Length((_value) * 1e-3d, LengthUnit.Meter),
+                (LengthUnit.Nanometer, LengthUnit.Meter) => new Length((_value) * 1e-9d, LengthUnit.Meter),
+                (LengthUnit.NauticalMile, LengthUnit.Meter) => new Length(_value * 1852, LengthUnit.Meter),
+                (LengthUnit.Parsec, LengthUnit.Meter) => new Length(_value * 3.08567758128e16, LengthUnit.Meter),
+                (LengthUnit.PrinterPica, LengthUnit.Meter) => new Length(_value / 237.106301584, LengthUnit.Meter),
+                (LengthUnit.PrinterPoint, LengthUnit.Meter) => new Length((_value / 72.27) * 2.54e-2, LengthUnit.Meter),
+                (LengthUnit.Shackle, LengthUnit.Meter) => new Length(_value * 27.432, LengthUnit.Meter),
+                (LengthUnit.SolarRadius, LengthUnit.Meter) => new Length(_value * 6.95510000E+08, LengthUnit.Meter),
+                (LengthUnit.Twip, LengthUnit.Meter) => new Length(_value / 56692.913385826, LengthUnit.Meter),
+                (LengthUnit.UsSurveyFoot, LengthUnit.Meter) => new Length(_value * 1200 / 3937, LengthUnit.Meter),
+                (LengthUnit.Yard, LengthUnit.Meter) => new Length(_value * 0.9144, LengthUnit.Meter),
+
+                // BaseUnit -> LengthUnit
+                (LengthUnit.Meter, LengthUnit.Angstrom) => new Length(_value / 1e-10, LengthUnit.Angstrom),
+                (LengthUnit.Meter, LengthUnit.AstronomicalUnit) => new Length(_value / 1.4959787070e11, LengthUnit.AstronomicalUnit),
+                (LengthUnit.Meter, LengthUnit.Centimeter) => new Length((_value) / 1e-2d, LengthUnit.Centimeter),
+                (LengthUnit.Meter, LengthUnit.Chain) => new Length(_value / 20.1168, LengthUnit.Chain),
+                (LengthUnit.Meter, LengthUnit.DataMile) => new Length(_value / 1828.8, LengthUnit.DataMile),
+                (LengthUnit.Meter, LengthUnit.Decameter) => new Length((_value) / 1e1d, LengthUnit.Decameter),
+                (LengthUnit.Meter, LengthUnit.Decimeter) => new Length((_value) / 1e-1d, LengthUnit.Decimeter),
+                (LengthUnit.Meter, LengthUnit.DtpPica) => new Length(_value * 236.220472441, LengthUnit.DtpPica),
+                (LengthUnit.Meter, LengthUnit.DtpPoint) => new Length((_value / 2.54e-2) * 72, LengthUnit.DtpPoint),
+                (LengthUnit.Meter, LengthUnit.Fathom) => new Length(_value / 1.8288, LengthUnit.Fathom),
+                (LengthUnit.Meter, LengthUnit.Foot) => new Length(_value / 0.3048, LengthUnit.Foot),
+                (LengthUnit.Meter, LengthUnit.Hand) => new Length(_value / 1.016e-1, LengthUnit.Hand),
+                (LengthUnit.Meter, LengthUnit.Hectometer) => new Length((_value) / 1e2d, LengthUnit.Hectometer),
+                (LengthUnit.Meter, LengthUnit.Inch) => new Length(_value / 2.54e-2, LengthUnit.Inch),
+                (LengthUnit.Meter, LengthUnit.KilolightYear) => new Length((_value / 9.46073047258e15) / 1e3d, LengthUnit.KilolightYear),
+                (LengthUnit.Meter, LengthUnit.Kilometer) => new Length((_value) / 1e3d, LengthUnit.Kilometer),
+                (LengthUnit.Meter, LengthUnit.Kiloparsec) => new Length((_value / 3.08567758128e16) / 1e3d, LengthUnit.Kiloparsec),
+                (LengthUnit.Meter, LengthUnit.LightYear) => new Length(_value / 9.46073047258e15, LengthUnit.LightYear),
+                (LengthUnit.Meter, LengthUnit.MegalightYear) => new Length((_value / 9.46073047258e15) / 1e6d, LengthUnit.MegalightYear),
+                (LengthUnit.Meter, LengthUnit.Megaparsec) => new Length((_value / 3.08567758128e16) / 1e6d, LengthUnit.Megaparsec),
+                (LengthUnit.Meter, LengthUnit.Microinch) => new Length(_value / 2.54e-8, LengthUnit.Microinch),
+                (LengthUnit.Meter, LengthUnit.Micrometer) => new Length((_value) / 1e-6d, LengthUnit.Micrometer),
+                (LengthUnit.Meter, LengthUnit.Mil) => new Length(_value / 2.54e-5, LengthUnit.Mil),
+                (LengthUnit.Meter, LengthUnit.Mile) => new Length(_value / 1609.34, LengthUnit.Mile),
+                (LengthUnit.Meter, LengthUnit.Millimeter) => new Length((_value) / 1e-3d, LengthUnit.Millimeter),
+                (LengthUnit.Meter, LengthUnit.Nanometer) => new Length((_value) / 1e-9d, LengthUnit.Nanometer),
+                (LengthUnit.Meter, LengthUnit.NauticalMile) => new Length(_value / 1852, LengthUnit.NauticalMile),
+                (LengthUnit.Meter, LengthUnit.Parsec) => new Length(_value / 3.08567758128e16, LengthUnit.Parsec),
+                (LengthUnit.Meter, LengthUnit.PrinterPica) => new Length(_value * 237.106301584, LengthUnit.PrinterPica),
+                (LengthUnit.Meter, LengthUnit.PrinterPoint) => new Length((_value / 2.54e-2) * 72.27, LengthUnit.PrinterPoint),
+                (LengthUnit.Meter, LengthUnit.Shackle) => new Length(_value / 27.432, LengthUnit.Shackle),
+                (LengthUnit.Meter, LengthUnit.SolarRadius) => new Length(_value / 6.95510000E+08, LengthUnit.SolarRadius),
+                (LengthUnit.Meter, LengthUnit.Twip) => new Length(_value * 56692.913385826, LengthUnit.Twip),
+                (LengthUnit.Meter, LengthUnit.UsSurveyFoot) => new Length(_value * 3937 / 1200, LengthUnit.UsSurveyFoot),
+                (LengthUnit.Meter, LengthUnit.Yard) => new Length(_value / 0.9144, LengthUnit.Yard),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -1396,12 +1492,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(LengthUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

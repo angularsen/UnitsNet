@@ -198,7 +198,7 @@ namespace UnitsNet.Tests
             Assert.Equal("TorquePerLength", quantityInfo.Name);
             Assert.Equal(QuantityType.TorquePerLength, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<TorquePerLengthUnit>().Except(new[] {TorquePerLengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<TorquePerLengthUnit>().Except(new[] {TorquePerLengthUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1008,6 +1008,15 @@ namespace UnitsNet.Tests
                 fromUnit = TorquePerLength.BaseUnit;
 
             var quantity = TorquePerLength.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TorquePerLengthUnit unit)
+        {
+            var quantity = default(TorquePerLength);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

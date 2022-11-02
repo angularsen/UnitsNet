@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Equal("DynamicViscosity", quantityInfo.Name);
             Assert.Equal(QuantityType.DynamicViscosity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<DynamicViscosityUnit>().Except(new[] {DynamicViscosityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<DynamicViscosityUnit>().Except(new[] {DynamicViscosityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -634,6 +634,15 @@ namespace UnitsNet.Tests
                 fromUnit = DynamicViscosity.BaseUnit;
 
             var quantity = DynamicViscosity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(DynamicViscosityUnit unit)
+        {
+            var quantity = default(DynamicViscosity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

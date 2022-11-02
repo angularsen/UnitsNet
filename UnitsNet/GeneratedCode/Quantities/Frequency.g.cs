@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
     [DataContract]
-    public partial struct Frequency : IQuantity<FrequencyUnit>, IEquatable<Frequency>, IComparable, IComparable<Frequency>, IConvertible, IFormattable
+    public readonly partial struct Frequency : IQuantity<FrequencyUnit>, IEquatable<Frequency>, IComparable, IComparable<Frequency>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -262,32 +262,32 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> FrequencyUnit
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.BeatPerMinute, quantity => new Frequency(quantity.Value * 60, FrequencyUnit.BeatPerMinute));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.BUnit, quantity => new Frequency(quantity.Value * quantity.Value * 1e-3, FrequencyUnit.BUnit));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.CyclePerHour, quantity => new Frequency(quantity.Value * 3600, FrequencyUnit.CyclePerHour));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.CyclePerMinute, quantity => new Frequency(quantity.Value * 60, FrequencyUnit.CyclePerMinute));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Gigahertz, quantity => new Frequency((quantity.Value) / 1e9d, FrequencyUnit.Gigahertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Kilohertz, quantity => new Frequency((quantity.Value) / 1e3d, FrequencyUnit.Kilohertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Megahertz, quantity => new Frequency((quantity.Value) / 1e6d, FrequencyUnit.Megahertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.PerSecond, quantity => new Frequency(quantity.Value, FrequencyUnit.PerSecond));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond, quantity => new Frequency(quantity.Value * 6.2831853072, FrequencyUnit.RadianPerSecond));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Terahertz, quantity => new Frequency((quantity.Value) / 1e12d, FrequencyUnit.Terahertz));
+            // Register in unit converter: FrequencyUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.BeatPerMinute, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.BUnit, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerHour, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerMinute, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Gigahertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Kilohertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Megahertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.PerSecond, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Terahertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Hertz, quantity => quantity);
 
-            // Register in unit converter: FrequencyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.BeatPerMinute, FrequencyUnit.Hertz, quantity => new Frequency(quantity.Value / 60, FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.BUnit, FrequencyUnit.Hertz, quantity => new Frequency(Math.Sqrt(quantity.Value * 1e3), FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerHour, FrequencyUnit.Hertz, quantity => new Frequency(quantity.Value / 3600, FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.CyclePerMinute, FrequencyUnit.Hertz, quantity => new Frequency(quantity.Value / 60, FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Gigahertz, FrequencyUnit.Hertz, quantity => new Frequency((quantity.Value) * 1e9d, FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Kilohertz, FrequencyUnit.Hertz, quantity => new Frequency((quantity.Value) * 1e3d, FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Megahertz, FrequencyUnit.Hertz, quantity => new Frequency((quantity.Value) * 1e6d, FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.PerSecond, FrequencyUnit.Hertz, quantity => new Frequency(quantity.Value, FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz, quantity => new Frequency(quantity.Value / 6.2831853072, FrequencyUnit.Hertz));
-            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Terahertz, FrequencyUnit.Hertz, quantity => new Frequency((quantity.Value) * 1e12d, FrequencyUnit.Hertz));
+            // Register in unit converter: BaseUnit -> FrequencyUnit
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.BeatPerMinute, quantity => quantity.ToUnit(FrequencyUnit.BeatPerMinute));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.BUnit, quantity => quantity.ToUnit(FrequencyUnit.BUnit));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.CyclePerHour, quantity => quantity.ToUnit(FrequencyUnit.CyclePerHour));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.CyclePerMinute, quantity => quantity.ToUnit(FrequencyUnit.CyclePerMinute));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Gigahertz, quantity => quantity.ToUnit(FrequencyUnit.Gigahertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Kilohertz, quantity => quantity.ToUnit(FrequencyUnit.Kilohertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Megahertz, quantity => quantity.ToUnit(FrequencyUnit.Megahertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.PerSecond, quantity => quantity.ToUnit(FrequencyUnit.PerSecond));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond, quantity => quantity.ToUnit(FrequencyUnit.RadianPerSecond));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Terahertz, quantity => quantity.ToUnit(FrequencyUnit.Terahertz));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -615,13 +615,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Frequency"/> from adding two <see cref="Frequency"/>.</summary>
         public static Frequency operator +(Frequency left, Frequency right)
         {
-            return new Frequency(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Frequency(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Frequency"/> from subtracting two <see cref="Frequency"/>.</summary>
         public static Frequency operator -(Frequency left, Frequency right)
         {
-            return new Frequency(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Frequency(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Frequency"/> from multiplying value and <see cref="Frequency"/>.</summary>
@@ -655,25 +655,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Frequency left, Frequency right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Frequency left, Frequency right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Frequency left, Frequency right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Frequency left, Frequency right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -702,7 +702,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Frequency other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -719,7 +719,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Frequency, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Frequency other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -793,10 +793,10 @@ namespace UnitsNet
         public double As(FrequencyUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -834,34 +834,80 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Frequency to another Frequency using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Frequency"/> to another <see cref="Frequency"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A Frequency with the specified unit.</returns>
         public Frequency ToUnit(FrequencyUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(Frequency), Unit, typeof(Frequency), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Frequency)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (Frequency)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="Frequency"/> to another <see cref="Frequency"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="Frequency"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(FrequencyUnit unit, out Frequency? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // FrequencyUnit -> BaseUnit
+                (FrequencyUnit.BeatPerMinute, FrequencyUnit.Hertz) => new Frequency(_value / 60, FrequencyUnit.Hertz),
+                (FrequencyUnit.BUnit, FrequencyUnit.Hertz) => new Frequency(Math.Sqrt(_value * 1e3), FrequencyUnit.Hertz),
+                (FrequencyUnit.CyclePerHour, FrequencyUnit.Hertz) => new Frequency(_value / 3600, FrequencyUnit.Hertz),
+                (FrequencyUnit.CyclePerMinute, FrequencyUnit.Hertz) => new Frequency(_value / 60, FrequencyUnit.Hertz),
+                (FrequencyUnit.Gigahertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e9d, FrequencyUnit.Hertz),
+                (FrequencyUnit.Kilohertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e3d, FrequencyUnit.Hertz),
+                (FrequencyUnit.Megahertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e6d, FrequencyUnit.Hertz),
+                (FrequencyUnit.PerSecond, FrequencyUnit.Hertz) => new Frequency(_value, FrequencyUnit.Hertz),
+                (FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz) => new Frequency(_value / 6.2831853072, FrequencyUnit.Hertz),
+                (FrequencyUnit.Terahertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e12d, FrequencyUnit.Hertz),
+
+                // BaseUnit -> FrequencyUnit
+                (FrequencyUnit.Hertz, FrequencyUnit.BeatPerMinute) => new Frequency(_value * 60, FrequencyUnit.BeatPerMinute),
+                (FrequencyUnit.Hertz, FrequencyUnit.BUnit) => new Frequency(_value * _value * 1e-3, FrequencyUnit.BUnit),
+                (FrequencyUnit.Hertz, FrequencyUnit.CyclePerHour) => new Frequency(_value * 3600, FrequencyUnit.CyclePerHour),
+                (FrequencyUnit.Hertz, FrequencyUnit.CyclePerMinute) => new Frequency(_value * 60, FrequencyUnit.CyclePerMinute),
+                (FrequencyUnit.Hertz, FrequencyUnit.Gigahertz) => new Frequency((_value) / 1e9d, FrequencyUnit.Gigahertz),
+                (FrequencyUnit.Hertz, FrequencyUnit.Kilohertz) => new Frequency((_value) / 1e3d, FrequencyUnit.Kilohertz),
+                (FrequencyUnit.Hertz, FrequencyUnit.Megahertz) => new Frequency((_value) / 1e6d, FrequencyUnit.Megahertz),
+                (FrequencyUnit.Hertz, FrequencyUnit.PerSecond) => new Frequency(_value, FrequencyUnit.PerSecond),
+                (FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond) => new Frequency(_value * 6.2831853072, FrequencyUnit.RadianPerSecond),
+                (FrequencyUnit.Hertz, FrequencyUnit.Terahertz) => new Frequency((_value) / 1e12d, FrequencyUnit.Terahertz),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -896,12 +942,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(FrequencyUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Permittivity", quantityInfo.Name);
             Assert.Equal(QuantityType.Permittivity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<PermittivityUnit>().Except(new[] {PermittivityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PermittivityUnit>().Except(new[] {PermittivityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -256,6 +256,15 @@ namespace UnitsNet.Tests
                 fromUnit = Permittivity.BaseUnit;
 
             var quantity = Permittivity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PermittivityUnit unit)
+        {
+            var quantity = default(Permittivity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

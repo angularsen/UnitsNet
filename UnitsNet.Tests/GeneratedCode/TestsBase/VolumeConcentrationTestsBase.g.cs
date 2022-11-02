@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.Equal("VolumeConcentration", quantityInfo.Name);
             Assert.Equal(QuantityType.VolumeConcentration, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().Except(new[] {VolumeConcentrationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().Except(new[] {VolumeConcentrationUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -926,6 +926,15 @@ namespace UnitsNet.Tests
                 fromUnit = VolumeConcentration.BaseUnit;
 
             var quantity = VolumeConcentration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(VolumeConcentrationUnit unit)
+        {
+            var quantity = default(VolumeConcentration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

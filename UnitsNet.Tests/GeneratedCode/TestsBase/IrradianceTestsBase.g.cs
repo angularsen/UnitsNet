@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Irradiance", quantityInfo.Name);
             Assert.Equal(QuantityType.Irradiance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<IrradianceUnit>().Except(new[] {IrradianceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<IrradianceUnit>().Except(new[] {IrradianceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -654,6 +654,15 @@ namespace UnitsNet.Tests
                 fromUnit = Irradiance.BaseUnit;
 
             var quantity = Irradiance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(IrradianceUnit unit)
+        {
+            var quantity = default(Irradiance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

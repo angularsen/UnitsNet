@@ -194,7 +194,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricPotentialChangeRate", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricPotentialChangeRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricPotentialChangeRateUnit>().Except(new[] {ElectricPotentialChangeRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricPotentialChangeRateUnit>().Except(new[] {ElectricPotentialChangeRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -814,6 +814,15 @@ namespace UnitsNet.Tests
                 fromUnit = ElectricPotentialChangeRate.BaseUnit;
 
             var quantity = ElectricPotentialChangeRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricPotentialChangeRateUnit unit)
+        {
+            var quantity = default(ElectricPotentialChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

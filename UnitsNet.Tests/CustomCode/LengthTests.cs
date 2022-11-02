@@ -233,5 +233,31 @@ namespace UnitsNet.Tests.CustomCode
 
             Assert.Equal(expected, inverseLength.InverseMeters);
         }
+
+        [Theory]
+        [InlineData(3, 2.563, 16, "3' - 2 9/16\"")]
+        [InlineData(3, 2.563, 32, "3' - 2 9/16\"")]
+        [InlineData(3, 2, 16, "3' - 2\"")]
+        [InlineData(3, 2.5, 1, "3' - 2\"")]
+        [InlineData(0, 2, 32, "2\"")]
+        [InlineData(3, 2.6, 1, "3' - 3\"")]
+        [InlineData(3, 2.6, 2, "3' - 2 1/2\"")]
+        [InlineData(3, 2.6, 4, "3' - 2 1/2\"")]
+        [InlineData(3, 2.6, 8, "3' - 2 5/8\"")]
+        [InlineData(3, 2.6, 16, "3' - 2 5/8\"")]
+        [InlineData(3, 2.6, 32, "3' - 2 19/32\"")]
+        [InlineData(3, 2.6, 128, "3' - 2 77/128\"")]
+        public static void ToArchitecturalString_ReturnsFormatted(double ft, double inch, int fractionDenominator, string expected)
+        {
+            var length = Length.FromFeetInches(ft, inch);
+
+            Assert.Equal(expected, length.FeetInches.ToArchitecturalString(fractionDenominator));
+        }
+
+        [Fact]
+        public static void ToArchitecturalString_DenomLessThan1_ThrowsArgumentOutOfRangeException()
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Length.FromFeetInches(1, 2).FeetInches.ToArchitecturalString(0));
+        }
     }
 }

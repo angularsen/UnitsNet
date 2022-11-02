@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("TemperatureGradient", quantityInfo.Name);
             Assert.Equal(QuantityType.TemperatureGradient, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<TemperatureGradientUnit>().Except(new[] {TemperatureGradientUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<TemperatureGradientUnit>().Except(new[] {TemperatureGradientUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -358,6 +358,15 @@ namespace UnitsNet.Tests
                 fromUnit = TemperatureGradient.BaseUnit;
 
             var quantity = TemperatureGradient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TemperatureGradientUnit unit)
+        {
+            var quantity = default(TemperatureGradient);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

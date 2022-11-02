@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("LuminousFlux", quantityInfo.Name);
             Assert.Equal(QuantityType.LuminousFlux, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LuminousFluxUnit>().Except(new[] {LuminousFluxUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LuminousFluxUnit>().Except(new[] {LuminousFluxUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -256,6 +256,15 @@ namespace UnitsNet.Tests
                 fromUnit = LuminousFlux.BaseUnit;
 
             var quantity = LuminousFlux.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(LuminousFluxUnit unit)
+        {
+            var quantity = default(LuminousFlux);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

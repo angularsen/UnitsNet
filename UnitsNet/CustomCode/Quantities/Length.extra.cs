@@ -236,5 +236,82 @@ namespace UnitsNet
             // So inches are rounded when converting from base units to feet/inches.
             return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches), inchUnit);
         }
+
+        /// <summary>
+        ///     Outputs feet and inches on the format: {feetValue}' - {inchesValueIntegral}[ / {inchesValueFractional}]"
+        ///     The inches are rounded to the nearest fraction of the fractionDenominator argument and reduced over the greatest common divisor.
+        ///     The fractional inch value is omitted if the numerator is 0 after rounding, or if the provided denominator is 1.
+        /// </summary>
+        /// <param name="fractionDenominator">The maximum precision to express the rounded inch fraction part. Use 1 to round to nearest integer, with no fraction.</param>
+        /// <example>
+        /// <code>
+        /// var length = Length.FromFeetInches(3, 2.6);
+        /// length.ToArchitecturalString(1)   => 3' - 3"
+        /// length.ToArchitecturalString(2)   => 3' - 2 1/2"
+        /// length.ToArchitecturalString(4)   => 3' - 2 1/2"
+        /// length.ToArchitecturalString(8)   => 3' - 2 5/8"
+        /// length.ToArchitecturalString(16)  => 3' - 2 5/8"
+        /// length.ToArchitecturalString(32)  => 3' - 2 19/32"
+        /// length.ToArchitecturalString(128) => 3' - 2 77/128"
+        /// </code>
+        /// </example>
+        /// <exception cref="ArgumentOutOfRangeException">Denominator for fractional inch must be greater than zero.</exception>
+        public string ToArchitecturalString(int fractionDenominator)
+        {
+            if (fractionDenominator < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch must be greater than zero.");
+            }
+
+            var inchTrunc = (int)Math.Truncate(this.Inches);
+            var numerator = (int)Math.Round((this.Inches - inchTrunc) * fractionDenominator);
+
+            if (numerator == fractionDenominator)
+            {
+                inchTrunc++;
+                numerator = 0;
+            }
+
+            var inchPart = new System.Text.StringBuilder();
+
+            if (inchTrunc != 0 || numerator == 0)
+            {
+                inchPart.Append(inchTrunc);
+            }
+
+            if (numerator > 0)
+            {
+                int greatestCommonDivisor(int a, int b)
+                {
+                    while (a != 0 && b != 0)
+                    {
+                        if (a > b)
+                            a %= b;
+                        else
+                            b %= a;
+                    }
+
+                    return a | b;
+                }
+
+                int gcd = greatestCommonDivisor((int)Math.Abs(numerator), fractionDenominator);
+
+                if (inchPart.Length > 0)
+                {
+                    inchPart.Append(' ');
+                }
+
+                inchPart.Append($"{numerator / gcd}/{fractionDenominator / gcd}");
+            }
+
+            inchPart.Append('"');
+
+            if (this.Feet == 0)
+            {
+                return inchPart.ToString();
+            }
+
+            return $"{this.Feet}' - {inchPart}";
+        }
     }
 }

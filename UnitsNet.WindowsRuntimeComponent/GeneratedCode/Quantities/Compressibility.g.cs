@@ -207,7 +207,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseAtmosphere, new CultureInfo("en-US"), false, true, new string[]{"atm⁻¹", "1/atm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseBar, new CultureInfo("en-US"), false, true, new string[]{"bar⁻¹", "1/bar"});
             unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseKilopascal, new CultureInfo("en-US"), false, true, new string[]{"kPa⁻¹", "1/kPa"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseMegapascal, new CultureInfo("en-US"), false, true, new string[]{"kPa⁻¹", "1/kPa"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseMegapascal, new CultureInfo("en-US"), false, true, new string[]{"MPa⁻¹", "1/MPa"});
             unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InverseMillibar, new CultureInfo("en-US"), false, true, new string[]{"mbar⁻¹", "1/mbar"});
             unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InversePascal, new CultureInfo("en-US"), false, true, new string[]{"Pa⁻¹", "1/Pa"});
             unitAbbreviationsCache.PerformAbbreviationMapping(CompressibilityUnit.InversePoundForcePerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"psi⁻¹", "1/psi"});

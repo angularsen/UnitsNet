@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.WarpingMomentOfInertia</id>
-    <version>4.132.0</version>
+    <version>4.147.0</version>
     <title>Units.NET WarpingMomentOfInertia - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoFramework project contributors</authors>
     <owners>UnitsNet</owners>
@@ -18,7 +18,7 @@
     <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component warpingmomentofinertia</tags>
     <dependencies>
       <dependency id="nanoFramework.CoreLibrary" version="1.12.0" />
-      <dependency id="nanoFramework.System.Math" version="1.4.4" />
+      <dependency id="nanoFramework.System.Math" version="1.5.15" />
     </dependencies>
   </metadata>
   <files>

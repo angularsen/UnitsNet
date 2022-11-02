@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Information", quantityInfo.Name);
             Assert.Equal(QuantityType.Information, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<InformationUnit>().Except(new[] {InformationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<InformationUnit>().Except(new[] {InformationUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -795,6 +795,15 @@ namespace UnitsNet.Tests
                 fromUnit = Information.BaseUnit;
 
             var quantity = Information.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(InformationUnit unit)
+        {
+            var quantity = default(Information);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

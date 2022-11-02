@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricPotentialAc", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricPotentialAc, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricPotentialAcUnit>().Except(new[] {ElectricPotentialAcUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricPotentialAcUnit>().Except(new[] {ElectricPotentialAcUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -370,6 +370,15 @@ namespace UnitsNet.Tests
                 fromUnit = ElectricPotentialAc.BaseUnit;
 
             var quantity = ElectricPotentialAc.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricPotentialAcUnit unit)
+        {
+            var quantity = default(ElectricPotentialAc);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

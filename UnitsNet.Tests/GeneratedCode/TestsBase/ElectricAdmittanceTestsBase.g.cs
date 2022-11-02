@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricAdmittance", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricAdmittance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricAdmittanceUnit>().Except(new[] {ElectricAdmittanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricAdmittanceUnit>().Except(new[] {ElectricAdmittanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -358,6 +358,15 @@ namespace UnitsNet.Tests
                 fromUnit = ElectricAdmittance.BaseUnit;
 
             var quantity = ElectricAdmittance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricAdmittanceUnit unit)
+        {
+            var quantity = default(ElectricAdmittance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

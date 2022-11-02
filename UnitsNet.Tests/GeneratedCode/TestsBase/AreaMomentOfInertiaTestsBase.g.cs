@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
             Assert.Equal("AreaMomentOfInertia", quantityInfo.Name);
             Assert.Equal(QuantityType.AreaMomentOfInertia, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().Except(new[] {AreaMomentOfInertiaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<AreaMomentOfInertiaUnit>().Except(new[] {AreaMomentOfInertiaUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -570,6 +570,15 @@ namespace UnitsNet.Tests
                 fromUnit = AreaMomentOfInertia.BaseUnit;
 
             var quantity = AreaMomentOfInertia.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(AreaMomentOfInertiaUnit unit)
+        {
+            var quantity = default(AreaMomentOfInertia);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

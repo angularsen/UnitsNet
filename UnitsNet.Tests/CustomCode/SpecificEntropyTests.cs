@@ -22,6 +22,7 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -37,5 +38,19 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CaloriesPerGramKelvinInOneJoulePerKilogramKelvin => 2.390057e-4;
         protected override double KilocaloriesPerGramKelvinInOneJoulePerKilogramKelvin => 2.390057e-7;
         protected override double BtusPerPoundFahrenheitInOneJoulePerKilogramKelvin => 2.3884589662749594e-4;
+
+        [Fact]
+        public void SpecificEntropyTimesMassEqualsEntropy()
+        {
+            Entropy e = SpecificEntropy.FromJoulesPerKilogramKelvin(24) * Mass.FromKilograms(2);
+            Assert.Equal(Entropy.FromJoulesPerKelvin(48), e);
+        }
+
+        [Fact]
+        public void MassTimesSpecificEntropyEqualsEntropy()
+        {
+            Entropy e = Mass.FromKilograms(5) * SpecificEntropy.FromJoulesPerKilogramKelvin(7);
+            Assert.Equal(Entropy.FromJoulesPerKelvin(35), e);
+        }
     }
 }

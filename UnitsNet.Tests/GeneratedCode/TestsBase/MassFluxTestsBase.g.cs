@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
             Assert.Equal("MassFlux", quantityInfo.Name);
             Assert.Equal(QuantityType.MassFlux, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MassFluxUnit>().Except(new[] {MassFluxUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MassFluxUnit>().Except(new[] {MassFluxUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -630,6 +630,15 @@ namespace UnitsNet.Tests
                 fromUnit = MassFlux.BaseUnit;
 
             var quantity = MassFlux.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MassFluxUnit unit)
+        {
+            var quantity = default(MassFlux);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

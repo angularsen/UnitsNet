@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("SpecificVolume", quantityInfo.Name);
             Assert.Equal(QuantityType.SpecificVolume, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<SpecificVolumeUnit>().Except(new[] {SpecificVolumeUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificVolumeUnit>().Except(new[] {SpecificVolumeUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -324,6 +324,15 @@ namespace UnitsNet.Tests
                 fromUnit = SpecificVolume.BaseUnit;
 
             var quantity = SpecificVolume.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(SpecificVolumeUnit unit)
+        {
+            var quantity = default(SpecificVolume);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

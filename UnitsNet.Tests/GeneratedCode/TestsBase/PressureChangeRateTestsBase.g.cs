@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             Assert.Equal("PressureChangeRate", quantityInfo.Name);
             Assert.Equal(QuantityType.PressureChangeRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>().Except(new[] {PressureChangeRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PressureChangeRateUnit>().Except(new[] {PressureChangeRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1322,6 +1322,15 @@ namespace UnitsNet.Tests
                 fromUnit = PressureChangeRate.BaseUnit;
 
             var quantity = PressureChangeRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PressureChangeRateUnit unit)
+        {
+            var quantity = default(PressureChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

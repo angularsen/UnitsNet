@@ -41,6 +41,7 @@ namespace UnitsNet.Units
         KilometerPerMinute = 13,
         KilometerPerSecond = 14,
         Knot = 15,
+        Mach = 42,
         MeterPerHour = 16,
         MeterPerMinute = 17,
         MeterPerSecond = 18,

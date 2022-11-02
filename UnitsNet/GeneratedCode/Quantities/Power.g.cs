@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
     [DataContract]
-    public partial struct Power : IQuantity<PowerUnit>, IDecimalQuantity, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
+    public readonly partial struct Power : IQuantity<PowerUnit>, IDecimalQuantity, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -357,62 +357,62 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> PowerUnit
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.BoilerHorsepower, quantity => new Power(quantity.Value / 9812.5m, PowerUnit.BoilerHorsepower));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.BritishThermalUnitPerHour, quantity => new Power(quantity.Value / 0.293071m, PowerUnit.BritishThermalUnitPerHour));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Decawatt, quantity => new Power((quantity.Value) / 1e1m, PowerUnit.Decawatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Deciwatt, quantity => new Power((quantity.Value) / 1e-1m, PowerUnit.Deciwatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.ElectricalHorsepower, quantity => new Power(quantity.Value / 746m, PowerUnit.ElectricalHorsepower));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Femtowatt, quantity => new Power((quantity.Value) / 1e-15m, PowerUnit.Femtowatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.GigajoulePerHour, quantity => new Power((quantity.Value * 3600m) / 1e9m, PowerUnit.GigajoulePerHour));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Gigawatt, quantity => new Power((quantity.Value) / 1e9m, PowerUnit.Gigawatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.HydraulicHorsepower, quantity => new Power(quantity.Value / 745.69988145m, PowerUnit.HydraulicHorsepower));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.JoulePerHour, quantity => new Power(quantity.Value * 3600m, PowerUnit.JoulePerHour));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.KilobritishThermalUnitPerHour, quantity => new Power((quantity.Value / 0.293071m) / 1e3m, PowerUnit.KilobritishThermalUnitPerHour));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.KilojoulePerHour, quantity => new Power((quantity.Value * 3600m) / 1e3m, PowerUnit.KilojoulePerHour));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Kilowatt, quantity => new Power((quantity.Value) / 1e3m, PowerUnit.Kilowatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MechanicalHorsepower, quantity => new Power(quantity.Value / 745.69m, PowerUnit.MechanicalHorsepower));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MegabritishThermalUnitPerHour, quantity => new Power((quantity.Value / 0.293071m) / 1e6m, PowerUnit.MegabritishThermalUnitPerHour));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MegajoulePerHour, quantity => new Power((quantity.Value * 3600m) / 1e6m, PowerUnit.MegajoulePerHour));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Megawatt, quantity => new Power((quantity.Value) / 1e6m, PowerUnit.Megawatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MetricHorsepower, quantity => new Power(quantity.Value / 735.49875m, PowerUnit.MetricHorsepower));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Microwatt, quantity => new Power((quantity.Value) / 1e-6m, PowerUnit.Microwatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MillijoulePerHour, quantity => new Power((quantity.Value * 3600m) / 1e-3m, PowerUnit.MillijoulePerHour));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Milliwatt, quantity => new Power((quantity.Value) / 1e-3m, PowerUnit.Milliwatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Nanowatt, quantity => new Power((quantity.Value) / 1e-9m, PowerUnit.Nanowatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Petawatt, quantity => new Power((quantity.Value) / 1e15m, PowerUnit.Petawatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Picowatt, quantity => new Power((quantity.Value) / 1e-12m, PowerUnit.Picowatt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Terawatt, quantity => new Power((quantity.Value) / 1e12m, PowerUnit.Terawatt));
+            // Register in unit converter: PowerUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Power>(PowerUnit.BoilerHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.BritishThermalUnitPerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Decawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Deciwatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.ElectricalHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Femtowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.GigajoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Gigawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.HydraulicHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.JoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.KilobritishThermalUnitPerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.KilojoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Kilowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.MechanicalHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.MegabritishThermalUnitPerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.MegajoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Megawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.MetricHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Microwatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.MillijoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Milliwatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Nanowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Petawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Picowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Terawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Watt, quantity => quantity);
 
-            // Register in unit converter: PowerUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Power>(PowerUnit.BoilerHorsepower, PowerUnit.Watt, quantity => new Power(quantity.Value * 9812.5m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.BritishThermalUnitPerHour, PowerUnit.Watt, quantity => new Power(quantity.Value * 0.293071m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Decawatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e1m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Deciwatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e-1m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.ElectricalHorsepower, PowerUnit.Watt, quantity => new Power(quantity.Value * 746m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Femtowatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e-15m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.GigajoulePerHour, PowerUnit.Watt, quantity => new Power((quantity.Value / 3600m) * 1e9m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Gigawatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e9m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.HydraulicHorsepower, PowerUnit.Watt, quantity => new Power(quantity.Value * 745.69988145m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.JoulePerHour, PowerUnit.Watt, quantity => new Power(quantity.Value / 3600m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.KilobritishThermalUnitPerHour, PowerUnit.Watt, quantity => new Power((quantity.Value * 0.293071m) * 1e3m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.KilojoulePerHour, PowerUnit.Watt, quantity => new Power((quantity.Value / 3600m) * 1e3m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Kilowatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e3m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.MechanicalHorsepower, PowerUnit.Watt, quantity => new Power(quantity.Value * 745.69m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.MegabritishThermalUnitPerHour, PowerUnit.Watt, quantity => new Power((quantity.Value * 0.293071m) * 1e6m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.MegajoulePerHour, PowerUnit.Watt, quantity => new Power((quantity.Value / 3600m) * 1e6m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Megawatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e6m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.MetricHorsepower, PowerUnit.Watt, quantity => new Power(quantity.Value * 735.49875m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Microwatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e-6m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.MillijoulePerHour, PowerUnit.Watt, quantity => new Power((quantity.Value / 3600m) * 1e-3m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Milliwatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e-3m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Nanowatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e-9m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Petawatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e15m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Picowatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e-12m, PowerUnit.Watt));
-            unitConverter.SetConversionFunction<Power>(PowerUnit.Terawatt, PowerUnit.Watt, quantity => new Power((quantity.Value) * 1e12m, PowerUnit.Watt));
+            // Register in unit converter: BaseUnit -> PowerUnit
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.BoilerHorsepower, quantity => quantity.ToUnit(PowerUnit.BoilerHorsepower));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.BritishThermalUnitPerHour, quantity => quantity.ToUnit(PowerUnit.BritishThermalUnitPerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Decawatt, quantity => quantity.ToUnit(PowerUnit.Decawatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Deciwatt, quantity => quantity.ToUnit(PowerUnit.Deciwatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.ElectricalHorsepower, quantity => quantity.ToUnit(PowerUnit.ElectricalHorsepower));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Femtowatt, quantity => quantity.ToUnit(PowerUnit.Femtowatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.GigajoulePerHour, quantity => quantity.ToUnit(PowerUnit.GigajoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Gigawatt, quantity => quantity.ToUnit(PowerUnit.Gigawatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.HydraulicHorsepower, quantity => quantity.ToUnit(PowerUnit.HydraulicHorsepower));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.JoulePerHour, quantity => quantity.ToUnit(PowerUnit.JoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.KilobritishThermalUnitPerHour, quantity => quantity.ToUnit(PowerUnit.KilobritishThermalUnitPerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.KilojoulePerHour, quantity => quantity.ToUnit(PowerUnit.KilojoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Kilowatt, quantity => quantity.ToUnit(PowerUnit.Kilowatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MechanicalHorsepower, quantity => quantity.ToUnit(PowerUnit.MechanicalHorsepower));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MegabritishThermalUnitPerHour, quantity => quantity.ToUnit(PowerUnit.MegabritishThermalUnitPerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MegajoulePerHour, quantity => quantity.ToUnit(PowerUnit.MegajoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Megawatt, quantity => quantity.ToUnit(PowerUnit.Megawatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MetricHorsepower, quantity => quantity.ToUnit(PowerUnit.MetricHorsepower));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Microwatt, quantity => quantity.ToUnit(PowerUnit.Microwatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MillijoulePerHour, quantity => quantity.ToUnit(PowerUnit.MillijoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Milliwatt, quantity => quantity.ToUnit(PowerUnit.Milliwatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Nanowatt, quantity => quantity.ToUnit(PowerUnit.Nanowatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Petawatt, quantity => quantity.ToUnit(PowerUnit.Petawatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Picowatt, quantity => quantity.ToUnit(PowerUnit.Picowatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Terawatt, quantity => quantity.ToUnit(PowerUnit.Terawatt));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -898,13 +898,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Power"/> from adding two <see cref="Power"/>.</summary>
         public static Power operator +(Power left, Power right)
         {
-            return new Power(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Power(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Power"/> from subtracting two <see cref="Power"/>.</summary>
         public static Power operator -(Power left, Power right)
         {
-            return new Power(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Power(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Power"/> from multiplying value and <see cref="Power"/>.</summary>
@@ -938,25 +938,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Power left, Power right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Power left, Power right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Power left, Power right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Power left, Power right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -985,7 +985,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Power other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -1002,7 +1002,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(Power, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(Power other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1076,10 +1076,10 @@ namespace UnitsNet
         public double As(PowerUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1117,34 +1117,110 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Power to another Power using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Power"/> to another <see cref="Power"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A Power with the specified unit.</returns>
         public Power ToUnit(PowerUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(Power), Unit, typeof(Power), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Power)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (Power)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="Power"/> to another <see cref="Power"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="Power"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(PowerUnit unit, out Power? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // PowerUnit -> BaseUnit
+                (PowerUnit.BoilerHorsepower, PowerUnit.Watt) => new Power(_value * 9812.5m, PowerUnit.Watt),
+                (PowerUnit.BritishThermalUnitPerHour, PowerUnit.Watt) => new Power(_value * 0.293071m, PowerUnit.Watt),
+                (PowerUnit.Decawatt, PowerUnit.Watt) => new Power((_value) * 1e1m, PowerUnit.Watt),
+                (PowerUnit.Deciwatt, PowerUnit.Watt) => new Power((_value) * 1e-1m, PowerUnit.Watt),
+                (PowerUnit.ElectricalHorsepower, PowerUnit.Watt) => new Power(_value * 746m, PowerUnit.Watt),
+                (PowerUnit.Femtowatt, PowerUnit.Watt) => new Power((_value) * 1e-15m, PowerUnit.Watt),
+                (PowerUnit.GigajoulePerHour, PowerUnit.Watt) => new Power((_value / 3600m) * 1e9m, PowerUnit.Watt),
+                (PowerUnit.Gigawatt, PowerUnit.Watt) => new Power((_value) * 1e9m, PowerUnit.Watt),
+                (PowerUnit.HydraulicHorsepower, PowerUnit.Watt) => new Power(_value * 745.69988145m, PowerUnit.Watt),
+                (PowerUnit.JoulePerHour, PowerUnit.Watt) => new Power(_value / 3600m, PowerUnit.Watt),
+                (PowerUnit.KilobritishThermalUnitPerHour, PowerUnit.Watt) => new Power((_value * 0.293071m) * 1e3m, PowerUnit.Watt),
+                (PowerUnit.KilojoulePerHour, PowerUnit.Watt) => new Power((_value / 3600m) * 1e3m, PowerUnit.Watt),
+                (PowerUnit.Kilowatt, PowerUnit.Watt) => new Power((_value) * 1e3m, PowerUnit.Watt),
+                (PowerUnit.MechanicalHorsepower, PowerUnit.Watt) => new Power(_value * 745.69m, PowerUnit.Watt),
+                (PowerUnit.MegabritishThermalUnitPerHour, PowerUnit.Watt) => new Power((_value * 0.293071m) * 1e6m, PowerUnit.Watt),
+                (PowerUnit.MegajoulePerHour, PowerUnit.Watt) => new Power((_value / 3600m) * 1e6m, PowerUnit.Watt),
+                (PowerUnit.Megawatt, PowerUnit.Watt) => new Power((_value) * 1e6m, PowerUnit.Watt),
+                (PowerUnit.MetricHorsepower, PowerUnit.Watt) => new Power(_value * 735.49875m, PowerUnit.Watt),
+                (PowerUnit.Microwatt, PowerUnit.Watt) => new Power((_value) * 1e-6m, PowerUnit.Watt),
+                (PowerUnit.MillijoulePerHour, PowerUnit.Watt) => new Power((_value / 3600m) * 1e-3m, PowerUnit.Watt),
+                (PowerUnit.Milliwatt, PowerUnit.Watt) => new Power((_value) * 1e-3m, PowerUnit.Watt),
+                (PowerUnit.Nanowatt, PowerUnit.Watt) => new Power((_value) * 1e-9m, PowerUnit.Watt),
+                (PowerUnit.Petawatt, PowerUnit.Watt) => new Power((_value) * 1e15m, PowerUnit.Watt),
+                (PowerUnit.Picowatt, PowerUnit.Watt) => new Power((_value) * 1e-12m, PowerUnit.Watt),
+                (PowerUnit.Terawatt, PowerUnit.Watt) => new Power((_value) * 1e12m, PowerUnit.Watt),
+
+                // BaseUnit -> PowerUnit
+                (PowerUnit.Watt, PowerUnit.BoilerHorsepower) => new Power(_value / 9812.5m, PowerUnit.BoilerHorsepower),
+                (PowerUnit.Watt, PowerUnit.BritishThermalUnitPerHour) => new Power(_value / 0.293071m, PowerUnit.BritishThermalUnitPerHour),
+                (PowerUnit.Watt, PowerUnit.Decawatt) => new Power((_value) / 1e1m, PowerUnit.Decawatt),
+                (PowerUnit.Watt, PowerUnit.Deciwatt) => new Power((_value) / 1e-1m, PowerUnit.Deciwatt),
+                (PowerUnit.Watt, PowerUnit.ElectricalHorsepower) => new Power(_value / 746m, PowerUnit.ElectricalHorsepower),
+                (PowerUnit.Watt, PowerUnit.Femtowatt) => new Power((_value) / 1e-15m, PowerUnit.Femtowatt),
+                (PowerUnit.Watt, PowerUnit.GigajoulePerHour) => new Power((_value * 3600m) / 1e9m, PowerUnit.GigajoulePerHour),
+                (PowerUnit.Watt, PowerUnit.Gigawatt) => new Power((_value) / 1e9m, PowerUnit.Gigawatt),
+                (PowerUnit.Watt, PowerUnit.HydraulicHorsepower) => new Power(_value / 745.69988145m, PowerUnit.HydraulicHorsepower),
+                (PowerUnit.Watt, PowerUnit.JoulePerHour) => new Power(_value * 3600m, PowerUnit.JoulePerHour),
+                (PowerUnit.Watt, PowerUnit.KilobritishThermalUnitPerHour) => new Power((_value / 0.293071m) / 1e3m, PowerUnit.KilobritishThermalUnitPerHour),
+                (PowerUnit.Watt, PowerUnit.KilojoulePerHour) => new Power((_value * 3600m) / 1e3m, PowerUnit.KilojoulePerHour),
+                (PowerUnit.Watt, PowerUnit.Kilowatt) => new Power((_value) / 1e3m, PowerUnit.Kilowatt),
+                (PowerUnit.Watt, PowerUnit.MechanicalHorsepower) => new Power(_value / 745.69m, PowerUnit.MechanicalHorsepower),
+                (PowerUnit.Watt, PowerUnit.MegabritishThermalUnitPerHour) => new Power((_value / 0.293071m) / 1e6m, PowerUnit.MegabritishThermalUnitPerHour),
+                (PowerUnit.Watt, PowerUnit.MegajoulePerHour) => new Power((_value * 3600m) / 1e6m, PowerUnit.MegajoulePerHour),
+                (PowerUnit.Watt, PowerUnit.Megawatt) => new Power((_value) / 1e6m, PowerUnit.Megawatt),
+                (PowerUnit.Watt, PowerUnit.MetricHorsepower) => new Power(_value / 735.49875m, PowerUnit.MetricHorsepower),
+                (PowerUnit.Watt, PowerUnit.Microwatt) => new Power((_value) / 1e-6m, PowerUnit.Microwatt),
+                (PowerUnit.Watt, PowerUnit.MillijoulePerHour) => new Power((_value * 3600m) / 1e-3m, PowerUnit.MillijoulePerHour),
+                (PowerUnit.Watt, PowerUnit.Milliwatt) => new Power((_value) / 1e-3m, PowerUnit.Milliwatt),
+                (PowerUnit.Watt, PowerUnit.Nanowatt) => new Power((_value) / 1e-9m, PowerUnit.Nanowatt),
+                (PowerUnit.Watt, PowerUnit.Petawatt) => new Power((_value) / 1e15m, PowerUnit.Petawatt),
+                (PowerUnit.Watt, PowerUnit.Picowatt) => new Power((_value) / 1e-12m, PowerUnit.Picowatt),
+                (PowerUnit.Watt, PowerUnit.Terawatt) => new Power((_value) / 1e12m, PowerUnit.Terawatt),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -1179,12 +1255,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private decimal GetValueAs(PowerUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (decimal)converted.Value;
-        }
 
         #endregion
 

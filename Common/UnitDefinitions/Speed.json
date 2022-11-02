@@ -313,6 +313,22 @@
           "Abbreviations": [ "миль/ч" ]
         }
       ]
+    },
+    {
+      "SingularName": "Mach",
+      "PluralName": "Mach",
+      "FromUnitToBaseFunc": "{x} * 340.29",
+      "FromBaseToUnitFunc": "{x} / 340.29",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "M", "Ma", "MN", "MACH" ]
+        },
+		    {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мах" ]
+        }
+      ]
     }
   ]
 }

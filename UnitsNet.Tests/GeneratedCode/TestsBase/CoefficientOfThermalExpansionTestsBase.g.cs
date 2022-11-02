@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("CoefficientOfThermalExpansion", quantityInfo.Name);
             Assert.Equal(QuantityType.CoefficientOfThermalExpansion, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<CoefficientOfThermalExpansionUnit>().Except(new[] {CoefficientOfThermalExpansionUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<CoefficientOfThermalExpansionUnit>().Except(new[] {CoefficientOfThermalExpansionUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -396,6 +396,15 @@ namespace UnitsNet.Tests
                 fromUnit = CoefficientOfThermalExpansion.BaseUnit;
 
             var quantity = CoefficientOfThermalExpansion.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(CoefficientOfThermalExpansionUnit unit)
+        {
+            var quantity = default(CoefficientOfThermalExpansion);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
             Assert.Equal("MassMomentOfInertia", quantityInfo.Name);
             Assert.Equal(QuantityType.MassMomentOfInertia, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MassMomentOfInertiaUnit>().Except(new[] {MassMomentOfInertiaUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MassMomentOfInertiaUnit>().Except(new[] {MassMomentOfInertiaUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1174,6 +1174,15 @@ namespace UnitsNet.Tests
                 fromUnit = MassMomentOfInertia.BaseUnit;
 
             var quantity = MassMomentOfInertia.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MassMomentOfInertiaUnit unit)
+        {
+            var quantity = default(MassMomentOfInertia);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

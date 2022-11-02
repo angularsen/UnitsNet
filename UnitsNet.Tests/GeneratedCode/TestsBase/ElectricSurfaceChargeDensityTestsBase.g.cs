@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricSurfaceChargeDensity", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricSurfaceChargeDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>().Except(new[] {ElectricSurfaceChargeDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>().Except(new[] {ElectricSurfaceChargeDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -324,6 +324,15 @@ namespace UnitsNet.Tests
                 fromUnit = ElectricSurfaceChargeDensity.BaseUnit;
 
             var quantity = ElectricSurfaceChargeDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricSurfaceChargeDensityUnit unit)
+        {
+            var quantity = default(ElectricSurfaceChargeDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

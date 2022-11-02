@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Length", quantityInfo.Name);
             Assert.Equal(QuantityType.Length, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<LengthUnit>().Except(new[] {LengthUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -2250,6 +2250,15 @@ namespace UnitsNet.Tests
                 fromUnit = Length.BaseUnit;
 
             var quantity = Length.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(LengthUnit unit)
+        {
+            var quantity = default(Length);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

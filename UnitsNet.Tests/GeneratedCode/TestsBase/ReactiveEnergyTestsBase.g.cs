@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ReactiveEnergy", quantityInfo.Name);
             Assert.Equal(QuantityType.ReactiveEnergy, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ReactiveEnergyUnit>().Except(new[] {ReactiveEnergyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ReactiveEnergyUnit>().Except(new[] {ReactiveEnergyUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -324,6 +324,15 @@ namespace UnitsNet.Tests
                 fromUnit = ReactiveEnergy.BaseUnit;
 
             var quantity = ReactiveEnergy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ReactiveEnergyUnit unit)
+        {
+            var quantity = default(ReactiveEnergy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

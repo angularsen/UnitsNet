@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("ElectricCurrentDensity", quantityInfo.Name);
             Assert.Equal(QuantityType.ElectricCurrentDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ElectricCurrentDensityUnit>().Except(new[] {ElectricCurrentDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricCurrentDensityUnit>().Except(new[] {ElectricCurrentDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -324,6 +324,15 @@ namespace UnitsNet.Tests
                 fromUnit = ElectricCurrentDensity.BaseUnit;
 
             var quantity = ElectricCurrentDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricCurrentDensityUnit unit)
+        {
+            var quantity = default(ElectricCurrentDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

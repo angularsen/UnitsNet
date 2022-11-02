@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal("RotationalAcceleration", quantityInfo.Name);
             Assert.Equal(QuantityType.RotationalAcceleration, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<RotationalAccelerationUnit>().Except(new[] {RotationalAccelerationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<RotationalAccelerationUnit>().Except(new[] {RotationalAccelerationUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -382,6 +382,15 @@ namespace UnitsNet.Tests
                 fromUnit = RotationalAcceleration.BaseUnit;
 
             var quantity = RotationalAcceleration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(RotationalAccelerationUnit unit)
+        {
+            var quantity = default(RotationalAcceleration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

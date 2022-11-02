@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal("HeatTransferCoefficient", quantityInfo.Name);
             Assert.Equal(QuantityType.HeatTransferCoefficient, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<HeatTransferCoefficientUnit>().Except(new[] {HeatTransferCoefficientUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<HeatTransferCoefficientUnit>().Except(new[] {HeatTransferCoefficientUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -324,6 +324,15 @@ namespace UnitsNet.Tests
                 fromUnit = HeatTransferCoefficient.BaseUnit;
 
             var quantity = HeatTransferCoefficient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(HeatTransferCoefficientUnit unit)
+        {
+            var quantity = default(HeatTransferCoefficient);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

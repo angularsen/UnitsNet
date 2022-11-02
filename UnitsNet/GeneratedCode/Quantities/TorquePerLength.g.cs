@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The magnitude of torque per unit length.
     /// </summary>
     [DataContract]
-    public partial struct TorquePerLength : IQuantity<TorquePerLengthUnit>, IEquatable<TorquePerLength>, IComparable, IComparable<TorquePerLength>, IConvertible, IFormattable
+    public readonly partial struct TorquePerLength : IQuantity<TorquePerLengthUnit>, IEquatable<TorquePerLength>, IComparable, IComparable<TorquePerLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -322,52 +322,52 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> TorquePerLengthUnit
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceCentimeterPerMeter, quantity => new TorquePerLength(quantity.Value * 10.1971619222242, TorquePerLengthUnit.KilogramForceCentimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.101971619222242, TorquePerLengthUnit.KilogramForceMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMillimeterPerMeter, quantity => new TorquePerLength(quantity.Value * 101.971619222242, TorquePerLengthUnit.KilogramForceMillimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonCentimeterPerMeter, quantity => new TorquePerLength((quantity.Value * 100) / 1e3d, TorquePerLengthUnit.KilonewtonCentimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value) / 1e3d, TorquePerLengthUnit.KilonewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonMillimeterPerMeter, quantity => new TorquePerLength((quantity.Value * 1000) / 1e3d, TorquePerLengthUnit.KilonewtonMillimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceFootPerFoot, quantity => new TorquePerLength((quantity.Value / 4.44822161526) / 1e3d, TorquePerLengthUnit.KilopoundForceFootPerFoot));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceInchPerFoot, quantity => new TorquePerLength((quantity.Value / 0.370685147638) / 1e3d, TorquePerLengthUnit.KilopoundForceInchPerFoot));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonCentimeterPerMeter, quantity => new TorquePerLength((quantity.Value * 100) / 1e6d, TorquePerLengthUnit.MeganewtonCentimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value) / 1e6d, TorquePerLengthUnit.MeganewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonMillimeterPerMeter, quantity => new TorquePerLength((quantity.Value * 1000) / 1e6d, TorquePerLengthUnit.MeganewtonMillimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceFootPerFoot, quantity => new TorquePerLength((quantity.Value / 4.44822161526) / 1e6d, TorquePerLengthUnit.MegapoundForceFootPerFoot));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceInchPerFoot, quantity => new TorquePerLength((quantity.Value / 0.370685147638) / 1e6d, TorquePerLengthUnit.MegapoundForceInchPerFoot));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonCentimeterPerMeter, quantity => new TorquePerLength(quantity.Value * 100, TorquePerLengthUnit.NewtonCentimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonMillimeterPerMeter, quantity => new TorquePerLength(quantity.Value * 1000, TorquePerLengthUnit.NewtonMillimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceFootPerFoot, quantity => new TorquePerLength(quantity.Value / 4.44822161526, TorquePerLengthUnit.PoundForceFootPerFoot));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceInchPerFoot, quantity => new TorquePerLength(quantity.Value / 0.370685147638, TorquePerLengthUnit.PoundForceInchPerFoot));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceCentimeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.0101971619222242, TorquePerLengthUnit.TonneForceCentimeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.000101971619222242, TorquePerLengthUnit.TonneForceMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMillimeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.101971619222242, TorquePerLengthUnit.TonneForceMillimeterPerMeter));
+            // Register in unit converter: TorquePerLengthUnit -> BaseUnit
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilogramForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilogramForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilonewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilonewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilonewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilopoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilopoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MeganewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MeganewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MeganewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MegapoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MegapoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.PoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.PoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMeterPerMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => quantity);
 
-            // Register in unit converter: TorquePerLengthUnit -> BaseUnit
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.0980665019960652, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilogramForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 9.80665019960652, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilogramForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.00980665019960652, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilonewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value * 0.01) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilonewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilonewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value * 0.001) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilopoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value * 4.44822161526) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.KilopoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value * 0.370685147638) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MeganewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value * 0.01) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MeganewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MeganewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value * 0.001) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MegapoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value * 4.44822161526) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.MegapoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength((quantity.Value * 0.370685147638) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.01, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.001, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.PoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 4.44822161526, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.PoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 0.370685147638, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 98.0665019960652, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 9806.65019960653, TorquePerLengthUnit.NewtonMeterPerMeter));
-            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter, quantity => new TorquePerLength(quantity.Value * 9.80665019960652, TorquePerLengthUnit.NewtonMeterPerMeter));
+            // Register in unit converter: BaseUnit -> TorquePerLengthUnit
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceCentimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.KilogramForceCentimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.KilogramForceMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMillimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.KilogramForceMillimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonCentimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.KilonewtonCentimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.KilonewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonMillimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.KilonewtonMillimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceFootPerFoot, quantity => quantity.ToUnit(TorquePerLengthUnit.KilopoundForceFootPerFoot));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceInchPerFoot, quantity => quantity.ToUnit(TorquePerLengthUnit.KilopoundForceInchPerFoot));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonCentimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.MeganewtonCentimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.MeganewtonMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonMillimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.MeganewtonMillimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceFootPerFoot, quantity => quantity.ToUnit(TorquePerLengthUnit.MegapoundForceFootPerFoot));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceInchPerFoot, quantity => quantity.ToUnit(TorquePerLengthUnit.MegapoundForceInchPerFoot));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonCentimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonCentimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonMillimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.NewtonMillimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceFootPerFoot, quantity => quantity.ToUnit(TorquePerLengthUnit.PoundForceFootPerFoot));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceInchPerFoot, quantity => quantity.ToUnit(TorquePerLengthUnit.PoundForceInchPerFoot));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceCentimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.TonneForceCentimeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.TonneForceMeterPerMeter));
+            unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMillimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.TonneForceMillimeterPerMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -801,13 +801,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="TorquePerLength"/> from adding two <see cref="TorquePerLength"/>.</summary>
         public static TorquePerLength operator +(TorquePerLength left, TorquePerLength right)
         {
-            return new TorquePerLength(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new TorquePerLength(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="TorquePerLength"/> from subtracting two <see cref="TorquePerLength"/>.</summary>
         public static TorquePerLength operator -(TorquePerLength left, TorquePerLength right)
         {
-            return new TorquePerLength(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new TorquePerLength(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="TorquePerLength"/> from multiplying value and <see cref="TorquePerLength"/>.</summary>
@@ -841,25 +841,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(TorquePerLength left, TorquePerLength right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(TorquePerLength left, TorquePerLength right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(TorquePerLength left, TorquePerLength right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(TorquePerLength left, TorquePerLength right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -888,7 +888,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(TorquePerLength other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -905,7 +905,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(TorquePerLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(TorquePerLength other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -979,10 +979,10 @@ namespace UnitsNet
         public double As(TorquePerLengthUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1020,34 +1020,100 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this TorquePerLength to another TorquePerLength using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="TorquePerLength"/> to another <see cref="TorquePerLength"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A TorquePerLength with the specified unit.</returns>
         public TorquePerLength ToUnit(TorquePerLengthUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(TorquePerLength), Unit, typeof(TorquePerLength), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (TorquePerLength)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (TorquePerLength)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="TorquePerLength"/> to another <see cref="TorquePerLength"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="TorquePerLength"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(TorquePerLengthUnit unit, out TorquePerLength? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // TorquePerLengthUnit -> BaseUnit
+                (TorquePerLengthUnit.KilogramForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 0.0980665019960652, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilogramForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 9.80665019960652, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilogramForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 0.00980665019960652, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilonewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value * 0.01) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilonewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilonewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value * 0.001) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilopoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value * 4.44822161526) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.KilopoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value * 0.370685147638) * 1e3d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.MeganewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value * 0.01) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.MeganewtonMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.MeganewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value * 0.001) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.MegapoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value * 4.44822161526) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.MegapoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength((_value * 0.370685147638) * 1e6d, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.NewtonCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 0.01, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.NewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 0.001, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.PoundForceFootPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 4.44822161526, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.PoundForceInchPerFoot, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 0.370685147638, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.TonneForceCentimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 98.0665019960652, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.TonneForceMeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 9806.65019960653, TorquePerLengthUnit.NewtonMeterPerMeter),
+                (TorquePerLengthUnit.TonneForceMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter) => new TorquePerLength(_value * 9.80665019960652, TorquePerLengthUnit.NewtonMeterPerMeter),
+
+                // BaseUnit -> TorquePerLengthUnit
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceCentimeterPerMeter) => new TorquePerLength(_value * 10.1971619222242, TorquePerLengthUnit.KilogramForceCentimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMeterPerMeter) => new TorquePerLength(_value * 0.101971619222242, TorquePerLengthUnit.KilogramForceMeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilogramForceMillimeterPerMeter) => new TorquePerLength(_value * 101.971619222242, TorquePerLengthUnit.KilogramForceMillimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonCentimeterPerMeter) => new TorquePerLength((_value * 100) / 1e3d, TorquePerLengthUnit.KilonewtonCentimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonMeterPerMeter) => new TorquePerLength((_value) / 1e3d, TorquePerLengthUnit.KilonewtonMeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilonewtonMillimeterPerMeter) => new TorquePerLength((_value * 1000) / 1e3d, TorquePerLengthUnit.KilonewtonMillimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceFootPerFoot) => new TorquePerLength((_value / 4.44822161526) / 1e3d, TorquePerLengthUnit.KilopoundForceFootPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.KilopoundForceInchPerFoot) => new TorquePerLength((_value / 0.370685147638) / 1e3d, TorquePerLengthUnit.KilopoundForceInchPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonCentimeterPerMeter) => new TorquePerLength((_value * 100) / 1e6d, TorquePerLengthUnit.MeganewtonCentimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonMeterPerMeter) => new TorquePerLength((_value) / 1e6d, TorquePerLengthUnit.MeganewtonMeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MeganewtonMillimeterPerMeter) => new TorquePerLength((_value * 1000) / 1e6d, TorquePerLengthUnit.MeganewtonMillimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceFootPerFoot) => new TorquePerLength((_value / 4.44822161526) / 1e6d, TorquePerLengthUnit.MegapoundForceFootPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.MegapoundForceInchPerFoot) => new TorquePerLength((_value / 0.370685147638) / 1e6d, TorquePerLengthUnit.MegapoundForceInchPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonCentimeterPerMeter) => new TorquePerLength(_value * 100, TorquePerLengthUnit.NewtonCentimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonMillimeterPerMeter) => new TorquePerLength(_value * 1000, TorquePerLengthUnit.NewtonMillimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceFootPerFoot) => new TorquePerLength(_value / 4.44822161526, TorquePerLengthUnit.PoundForceFootPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.PoundForceInchPerFoot) => new TorquePerLength(_value / 0.370685147638, TorquePerLengthUnit.PoundForceInchPerFoot),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceCentimeterPerMeter) => new TorquePerLength(_value * 0.0101971619222242, TorquePerLengthUnit.TonneForceCentimeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMeterPerMeter) => new TorquePerLength(_value * 0.000101971619222242, TorquePerLengthUnit.TonneForceMeterPerMeter),
+                (TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMillimeterPerMeter) => new TorquePerLength(_value * 0.101971619222242, TorquePerLengthUnit.TonneForceMillimeterPerMeter),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -1082,12 +1148,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TorquePerLengthUnit> IQuantity<TorquePerLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(TorquePerLengthUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

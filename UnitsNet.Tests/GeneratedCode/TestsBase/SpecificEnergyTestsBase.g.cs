@@ -230,7 +230,7 @@ namespace UnitsNet.Tests
             Assert.Equal("SpecificEnergy", quantityInfo.Name);
             Assert.Equal(QuantityType.SpecificEnergy, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().Except(new[] {SpecificEnergyUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificEnergyUnit>().Except(new[] {SpecificEnergyUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1208,6 +1208,15 @@ namespace UnitsNet.Tests
                 fromUnit = SpecificEnergy.BaseUnit;
 
             var quantity = SpecificEnergy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(SpecificEnergyUnit unit)
+        {
+            var quantity = default(SpecificEnergy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

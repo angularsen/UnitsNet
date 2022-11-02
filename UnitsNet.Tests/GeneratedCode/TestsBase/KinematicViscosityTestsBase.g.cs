@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
             Assert.Equal("KinematicViscosity", quantityInfo.Name);
             Assert.Equal(QuantityType.KinematicViscosity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<KinematicViscosityUnit>().Except(new[] {KinematicViscosityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<KinematicViscosityUnit>().Except(new[] {KinematicViscosityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -720,6 +720,15 @@ namespace UnitsNet.Tests
                 fromUnit = KinematicViscosity.BaseUnit;
 
             var quantity = KinematicViscosity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(KinematicViscosityUnit unit)
+        {
+            var quantity = default(KinematicViscosity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

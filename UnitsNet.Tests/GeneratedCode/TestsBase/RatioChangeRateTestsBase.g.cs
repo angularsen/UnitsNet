@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal("RatioChangeRate", quantityInfo.Name);
             Assert.Equal(QuantityType.RatioChangeRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<RatioChangeRateUnit>().Except(new[] {RatioChangeRateUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<RatioChangeRateUnit>().Except(new[] {RatioChangeRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -290,6 +290,15 @@ namespace UnitsNet.Tests
                 fromUnit = RatioChangeRate.BaseUnit;
 
             var quantity = RatioChangeRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(RatioChangeRateUnit unit)
+        {
+            var quantity = default(RatioChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

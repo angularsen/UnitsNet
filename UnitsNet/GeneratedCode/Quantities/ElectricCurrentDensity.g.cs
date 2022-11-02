@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Current_density
     /// </remarks>
     [DataContract]
-    public partial struct ElectricCurrentDensity : IQuantity<ElectricCurrentDensityUnit>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
+    public readonly partial struct ElectricCurrentDensity : IQuantity<ElectricCurrentDensityUnit>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -217,16 +217,16 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ElectricCurrentDensityUnit
-            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot, quantity => new ElectricCurrentDensity(quantity.Value / 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareFoot));
-            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch, quantity => new ElectricCurrentDensity(quantity.Value / 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareInch));
+            // Register in unit converter: ElectricCurrentDensityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => quantity.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareMeter));
+            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => quantity.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => quantity);
 
-            // Register in unit converter: ElectricCurrentDensityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter));
-            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter, quantity => new ElectricCurrentDensity(quantity.Value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter));
+            // Register in unit converter: BaseUnit -> ElectricCurrentDensityUnit
+            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot, quantity => quantity.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareFoot));
+            unitConverter.SetConversionFunction<ElectricCurrentDensity>(ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch, quantity => quantity.ToUnit(ElectricCurrentDensityUnit.AmperePerSquareInch));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -459,13 +459,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from adding two <see cref="ElectricCurrentDensity"/>.</summary>
         public static ElectricCurrentDensity operator +(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return new ElectricCurrentDensity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricCurrentDensity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from subtracting two <see cref="ElectricCurrentDensity"/>.</summary>
         public static ElectricCurrentDensity operator -(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return new ElectricCurrentDensity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ElectricCurrentDensity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from multiplying value and <see cref="ElectricCurrentDensity"/>.</summary>
@@ -499,25 +499,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -546,7 +546,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ElectricCurrentDensity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -563,7 +563,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ElectricCurrentDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ElectricCurrentDensity other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -637,10 +637,10 @@ namespace UnitsNet
         public double As(ElectricCurrentDensityUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -678,34 +678,64 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ElectricCurrentDensity to another ElectricCurrentDensity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ElectricCurrentDensity"/> to another <see cref="ElectricCurrentDensity"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A ElectricCurrentDensity with the specified unit.</returns>
         public ElectricCurrentDensity ToUnit(ElectricCurrentDensityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(ElectricCurrentDensity), Unit, typeof(ElectricCurrentDensity), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ElectricCurrentDensity)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (ElectricCurrentDensity)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="ElectricCurrentDensity"/> to another <see cref="ElectricCurrentDensity"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="ElectricCurrentDensity"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(ElectricCurrentDensityUnit unit, out ElectricCurrentDensity? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // ElectricCurrentDensityUnit -> BaseUnit
+                (ElectricCurrentDensityUnit.AmperePerSquareFoot, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value * 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareMeter),
+                (ElectricCurrentDensityUnit.AmperePerSquareInch, ElectricCurrentDensityUnit.AmperePerSquareMeter) => new ElectricCurrentDensity(_value * 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareMeter),
+
+                // BaseUnit -> ElectricCurrentDensityUnit
+                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareFoot) => new ElectricCurrentDensity(_value / 1.0763910416709722e1, ElectricCurrentDensityUnit.AmperePerSquareFoot),
+                (ElectricCurrentDensityUnit.AmperePerSquareMeter, ElectricCurrentDensityUnit.AmperePerSquareInch) => new ElectricCurrentDensity(_value / 1.5500031000062000e3, ElectricCurrentDensityUnit.AmperePerSquareInch),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -740,12 +770,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ElectricCurrentDensityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

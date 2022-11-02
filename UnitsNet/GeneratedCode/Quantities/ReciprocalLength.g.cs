@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Reciprocal_length
     /// </remarks>
     [DataContract]
-    public partial struct ReciprocalLength : IQuantity<ReciprocalLengthUnit>, IEquatable<ReciprocalLength>, IComparable, IComparable<ReciprocalLength>, IConvertible, IFormattable
+    public readonly partial struct ReciprocalLength : IQuantity<ReciprocalLengthUnit>, IEquatable<ReciprocalLength>, IComparable, IComparable<ReciprocalLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -259,30 +259,30 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> ReciprocalLengthUnit
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseCentimeter, quantity => new ReciprocalLength(quantity.Value / 1e2, ReciprocalLengthUnit.InverseCentimeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseFoot, quantity => new ReciprocalLength(quantity.Value * 0.3048, ReciprocalLengthUnit.InverseFoot));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseInch, quantity => new ReciprocalLength(quantity.Value * 2.54e-2, ReciprocalLengthUnit.InverseInch));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMicroinch, quantity => new ReciprocalLength(quantity.Value * 2.54e-8, ReciprocalLengthUnit.InverseMicroinch));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMil, quantity => new ReciprocalLength(quantity.Value * 2.54e-5, ReciprocalLengthUnit.InverseMil));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMile, quantity => new ReciprocalLength(quantity.Value * 1609.34, ReciprocalLengthUnit.InverseMile));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMillimeter, quantity => new ReciprocalLength(quantity.Value / 1e3, ReciprocalLengthUnit.InverseMillimeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseUsSurveyFoot, quantity => new ReciprocalLength(quantity.Value * 1200 / 3937, ReciprocalLengthUnit.InverseUsSurveyFoot));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseYard, quantity => new ReciprocalLength(quantity.Value * 0.9144, ReciprocalLengthUnit.InverseYard));
+            // Register in unit converter: ReciprocalLengthUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseCentimeter, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseFoot, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseInch, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMicroinch, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMil, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMile, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMillimeter, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseUsSurveyFoot, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMeter, quantity => quantity);
 
-            // Register in unit converter: ReciprocalLengthUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseCentimeter, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value * 1e2, ReciprocalLengthUnit.InverseMeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseFoot, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value / 0.3048, ReciprocalLengthUnit.InverseMeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseInch, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value / 2.54e-2, ReciprocalLengthUnit.InverseMeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMicroinch, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value / 2.54e-8, ReciprocalLengthUnit.InverseMeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMil, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value / 2.54e-5, ReciprocalLengthUnit.InverseMeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMile, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value / 1609.34, ReciprocalLengthUnit.InverseMeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMillimeter, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value * 1e3, ReciprocalLengthUnit.InverseMeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseUsSurveyFoot, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value * 3937 / 1200, ReciprocalLengthUnit.InverseMeter));
-            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter, quantity => new ReciprocalLength(quantity.Value / 0.9144, ReciprocalLengthUnit.InverseMeter));
+            // Register in unit converter: BaseUnit -> ReciprocalLengthUnit
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseCentimeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseCentimeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseFoot, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseFoot));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseInch, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseInch));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMicroinch, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMicroinch));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMil, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMil));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMile, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMile));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMillimeter, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseMillimeter));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseUsSurveyFoot, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseUsSurveyFoot));
+            unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseYard, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseYard));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -592,13 +592,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="ReciprocalLength"/> from adding two <see cref="ReciprocalLength"/>.</summary>
         public static ReciprocalLength operator +(ReciprocalLength left, ReciprocalLength right)
         {
-            return new ReciprocalLength(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new ReciprocalLength(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from subtracting two <see cref="ReciprocalLength"/>.</summary>
         public static ReciprocalLength operator -(ReciprocalLength left, ReciprocalLength right)
         {
-            return new ReciprocalLength(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new ReciprocalLength(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalLength"/> from multiplying value and <see cref="ReciprocalLength"/>.</summary>
@@ -632,25 +632,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ReciprocalLength left, ReciprocalLength right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ReciprocalLength left, ReciprocalLength right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ReciprocalLength left, ReciprocalLength right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ReciprocalLength left, ReciprocalLength right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -679,7 +679,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(ReciprocalLength other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(ReciprocalLength, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(ReciprocalLength other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -770,10 +770,10 @@ namespace UnitsNet
         public double As(ReciprocalLengthUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -811,34 +811,78 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this ReciprocalLength to another ReciprocalLength using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="ReciprocalLength"/> to another <see cref="ReciprocalLength"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A ReciprocalLength with the specified unit.</returns>
         public ReciprocalLength ToUnit(ReciprocalLengthUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(ReciprocalLength), Unit, typeof(ReciprocalLength), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (ReciprocalLength)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (ReciprocalLength)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="ReciprocalLength"/> to another <see cref="ReciprocalLength"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="ReciprocalLength"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(ReciprocalLengthUnit unit, out ReciprocalLength? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // ReciprocalLengthUnit -> BaseUnit
+                (ReciprocalLengthUnit.InverseCentimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 1e2, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 0.3048, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseInch, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 2.54e-2, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMicroinch, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 2.54e-8, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMil, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 2.54e-5, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMile, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 1609.34, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseMillimeter, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 1e3, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseUsSurveyFoot, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value * 3937 / 1200, ReciprocalLengthUnit.InverseMeter),
+                (ReciprocalLengthUnit.InverseYard, ReciprocalLengthUnit.InverseMeter) => new ReciprocalLength(_value / 0.9144, ReciprocalLengthUnit.InverseMeter),
+
+                // BaseUnit -> ReciprocalLengthUnit
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseCentimeter) => new ReciprocalLength(_value / 1e2, ReciprocalLengthUnit.InverseCentimeter),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseFoot) => new ReciprocalLength(_value * 0.3048, ReciprocalLengthUnit.InverseFoot),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseInch) => new ReciprocalLength(_value * 2.54e-2, ReciprocalLengthUnit.InverseInch),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMicroinch) => new ReciprocalLength(_value * 2.54e-8, ReciprocalLengthUnit.InverseMicroinch),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMil) => new ReciprocalLength(_value * 2.54e-5, ReciprocalLengthUnit.InverseMil),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMile) => new ReciprocalLength(_value * 1609.34, ReciprocalLengthUnit.InverseMile),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseMillimeter) => new ReciprocalLength(_value / 1e3, ReciprocalLengthUnit.InverseMillimeter),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseUsSurveyFoot) => new ReciprocalLength(_value * 1200 / 3937, ReciprocalLengthUnit.InverseUsSurveyFoot),
+                (ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseYard) => new ReciprocalLength(_value * 0.9144, ReciprocalLengthUnit.InverseYard),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -873,12 +917,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<ReciprocalLengthUnit> IQuantity<ReciprocalLengthUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(ReciprocalLengthUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

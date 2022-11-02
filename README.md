@@ -350,15 +350,8 @@ The base unit of any unit should be treated as volatile as we have changed this 
 
 ### <a name="contribute"></a>Want To Contribute?
 
-This project is still early and many units and conversions are not yet covered. If you are missing something, please help by contributing or [ask for it](https://github.com/angularsen/UnitsNet/issues) by creating an issue.
-
-Please read the wiki on [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit).
-
-Generally adding a unit involves adding or modifying [Common/UnitDefinitions/*.json](Common/UnitDefinitions/) files and running [generate-code.bat](generate-code.bat) to regenerate the source code and test code stubs, then manually implementing the new unit conversion constants in the test code.
-
-  * [Fork the repo](https://help.github.com/articles/fork-a-repo)
-  * Do work on branches such as **feature/add-myunit** and **fix/34**
-  * [Create a pull request](https://help.github.com/articles/using-pull-requests)
+- [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
+- Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/UnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/UnitsNet/discussions).
 
 ### <a name="ci"></a>Continuous Integration
 
@@ -424,7 +417,7 @@ Stargen is a decades old software to create realistic planets and satellites fro
 
 https://github.com/ebfortin/primoris.universe.stargen
 
-<img src="https://www.harringtonhoists.com/images/harrington_logo3.png" height="35">
+<img src="https://cdn.harringtonhoists.com/assets/harringtonhoists/logo-60629cc144429045d4c85740ab225e219add75b2c5c1e2c444ffa9500347a414.png" height="35">
 
 #### Harrington Hoists, Inc. (A Subsidiary of KITO Americas, Inc.)
 > Harrington Hoists, Inc. is located in Manheim, PA, Elizabethtown, PA, South Holland, IL and Corona, CA. Harrington is a leading manufacturer of manual, electric and air chain hoists as well as wire rope hoists and crane products serving the North American material handling industry.
@@ -447,3 +440,11 @@ https://www.saf.guide
 https://github.com/StructuralAnalysisFormat/StructuralAnalysisFormat-SDK
 
 *- Dirk Schuermans, Software Engineer for [SCIA nv](https://www.scia.net)*
+
+## Units.NET on other platforms
+
+The powerful strong-typed unites based on Units.NET [unite definition](/Common/UnitDefinitions) is available on other platforms!
+
+- JavaScript / TypeScript
+  - Package on NPM registery https://www.npmjs.com/package/unitsnet-js
+  - Generate units source-code https://github.com/haimkastner/unitsnet-js

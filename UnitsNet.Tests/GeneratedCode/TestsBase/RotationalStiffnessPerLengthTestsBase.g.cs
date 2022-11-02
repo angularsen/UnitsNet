@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
             Assert.Equal("RotationalStiffnessPerLength", quantityInfo.Name);
             Assert.Equal(QuantityType.RotationalStiffnessPerLength, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<RotationalStiffnessPerLengthUnit>().Except(new[] {RotationalStiffnessPerLengthUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<RotationalStiffnessPerLengthUnit>().Except(new[] {RotationalStiffnessPerLengthUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -584,6 +584,15 @@ namespace UnitsNet.Tests
                 fromUnit = RotationalStiffnessPerLength.BaseUnit;
 
             var quantity = RotationalStiffnessPerLength.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(RotationalStiffnessPerLengthUnit unit)
+        {
+            var quantity = default(RotationalStiffnessPerLength);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

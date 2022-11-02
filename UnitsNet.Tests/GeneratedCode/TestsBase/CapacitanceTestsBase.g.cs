@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Capacitance", quantityInfo.Name);
             Assert.Equal(QuantityType.Capacitance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<CapacitanceUnit>().Except(new[] {CapacitanceUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<CapacitanceUnit>().Except(new[] {CapacitanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -438,6 +438,15 @@ namespace UnitsNet.Tests
                 fromUnit = Capacitance.BaseUnit;
 
             var quantity = Capacitance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(CapacitanceUnit unit)
+        {
+            var quantity = default(Capacitance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

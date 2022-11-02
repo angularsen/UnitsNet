@@ -167,6 +167,21 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>
+        /// </summary>
+        public double MicrosiemensPerCentimeter => As(ElectricConductivityUnit.MicrosiemensPerCentimeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>
+        /// </summary>
+        public double MillisiemensPerCentimeter => As(ElectricConductivityUnit.MillisiemensPerCentimeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>
+        /// </summary>
+        public double SiemensPerCentimeter => As(ElectricConductivityUnit.SiemensPerCentimeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/>
         /// </summary>
         public double SiemensPerFoot => As(ElectricConductivityUnit.SiemensPerFoot);
@@ -187,6 +202,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.MicrosiemensPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µS/cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.MillisiemensPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mS/cm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"S/cm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerFoot, new CultureInfo("en-US"), false, true, new string[]{"S/ft"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerInch, new CultureInfo("en-US"), false, true, new string[]{"S/in"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductivityUnit.SiemensPerMeter, new CultureInfo("en-US"), false, true, new string[]{"S/m"});
@@ -217,6 +235,39 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricConductivity FromMicrosiemensPerCentimeter(double microsiemenspercentimeter)
+        {
+            double value = (double) microsiemenspercentimeter;
+            return new ElectricConductivity(value, ElectricConductivityUnit.MicrosiemensPerCentimeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricConductivity FromMillisiemensPerCentimeter(double millisiemenspercentimeter)
+        {
+            double value = (double) millisiemenspercentimeter;
+            return new ElectricConductivity(value, ElectricConductivityUnit.MillisiemensPerCentimeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricConductivity FromSiemensPerCentimeter(double siemenspercentimeter)
+        {
+            double value = (double) siemenspercentimeter;
+            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerCentimeter);
+        }
 
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
@@ -541,6 +592,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ElectricConductivityUnit.MicrosiemensPerCentimeter: return (_value * 1e2) * 1e-6d;
+                case ElectricConductivityUnit.MillisiemensPerCentimeter: return (_value * 1e2) * 1e-3d;
+                case ElectricConductivityUnit.SiemensPerCentimeter: return _value * 1e2;
                 case ElectricConductivityUnit.SiemensPerFoot: return _value * 3.2808398950131234;
                 case ElectricConductivityUnit.SiemensPerInch: return _value * 3.937007874015748e1;
                 case ElectricConductivityUnit.SiemensPerMeter: return _value;
@@ -558,6 +612,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ElectricConductivityUnit.MicrosiemensPerCentimeter: return (baseUnitValue / 1e2) / 1e-6d;
+                case ElectricConductivityUnit.MillisiemensPerCentimeter: return (baseUnitValue / 1e2) / 1e-3d;
+                case ElectricConductivityUnit.SiemensPerCentimeter: return baseUnitValue / 1e2;
                 case ElectricConductivityUnit.SiemensPerFoot: return baseUnitValue / 3.2808398950131234;
                 case ElectricConductivityUnit.SiemensPerInch: return baseUnitValue / 3.937007874015748e1;
                 case ElectricConductivityUnit.SiemensPerMeter: return baseUnitValue;

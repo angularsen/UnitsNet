@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Scalar", quantityInfo.Name);
             Assert.Equal(QuantityType.Scalar, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ScalarUnit>().Except(new[] {ScalarUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<ScalarUnit>().Except(new[] {ScalarUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -256,6 +256,15 @@ namespace UnitsNet.Tests
                 fromUnit = Scalar.BaseUnit;
 
             var quantity = Scalar.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ScalarUnit unit)
+        {
+            var quantity = default(Scalar);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

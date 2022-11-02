@@ -239,6 +239,11 @@ namespace UnitsNet
         public double Knots => As(SpeedUnit.Knot);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.Mach"/>
+        /// </summary>
+        public double Mach => As(SpeedUnit.Mach);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerHour"/>
         /// </summary>
         public double MetersPerHour => As(SpeedUnit.MeterPerHour);
@@ -356,6 +361,8 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"км/с"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("en-US"), false, true, new string[]{"kn", "kt", "knot", "knots"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("ru-RU"), false, true, new string[]{"уз."});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("en-US"), false, true, new string[]{"M", "Ma", "MN", "MACH"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("ru-RU"), false, true, new string[]{"мах"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"m/h"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"м/ч"});
             unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"m/min"});
@@ -575,6 +582,17 @@ namespace UnitsNet
         {
             double value = (double) knots;
             return new Speed(value, SpeedUnit.Knot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Mach"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Speed FromMach(double mach)
+        {
+            double value = (double) mach;
+            return new Speed(value, SpeedUnit.Mach);
         }
 
         /// <summary>
@@ -1069,6 +1087,7 @@ namespace UnitsNet
                 case SpeedUnit.KilometerPerMinute: return (_value / 60) * 1e3d;
                 case SpeedUnit.KilometerPerSecond: return (_value) * 1e3d;
                 case SpeedUnit.Knot: return _value * 0.514444;
+                case SpeedUnit.Mach: return _value * 340.29;
                 case SpeedUnit.MeterPerHour: return _value / 3600;
                 case SpeedUnit.MeterPerMinute: return _value / 60;
                 case SpeedUnit.MeterPerSecond: return _value;
@@ -1115,6 +1134,7 @@ namespace UnitsNet
                 case SpeedUnit.KilometerPerMinute: return (baseUnitValue * 60) / 1e3d;
                 case SpeedUnit.KilometerPerSecond: return (baseUnitValue) / 1e3d;
                 case SpeedUnit.Knot: return baseUnitValue / 0.514444;
+                case SpeedUnit.Mach: return baseUnitValue / 340.29;
                 case SpeedUnit.MeterPerHour: return baseUnitValue * 3600;
                 case SpeedUnit.MeterPerMinute: return baseUnitValue * 60;
                 case SpeedUnit.MeterPerSecond: return baseUnitValue;

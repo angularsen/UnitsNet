@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Permeability_(Earth_sciences)
     /// </remarks>
     [DataContract]
-    public partial struct PorousMediumPermeability : IQuantity<PorousMediumPermeabilityUnit>, IEquatable<PorousMediumPermeability>, IComparable, IComparable<PorousMediumPermeability>, IConvertible, IFormattable
+    public readonly partial struct PorousMediumPermeability : IQuantity<PorousMediumPermeabilityUnit>, IEquatable<PorousMediumPermeability>, IComparable, IComparable<PorousMediumPermeability>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -229,20 +229,20 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> PorousMediumPermeabilityUnit
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Darcy, quantity => new PorousMediumPermeability(quantity.Value / 9.869233e-13, PorousMediumPermeabilityUnit.Darcy));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Microdarcy, quantity => new PorousMediumPermeability((quantity.Value / 9.869233e-13) / 1e-6d, PorousMediumPermeabilityUnit.Microdarcy));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Millidarcy, quantity => new PorousMediumPermeability((quantity.Value / 9.869233e-13) / 1e-3d, PorousMediumPermeabilityUnit.Millidarcy));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareCentimeter, quantity => new PorousMediumPermeability(quantity.Value / 1e-4, PorousMediumPermeabilityUnit.SquareCentimeter));
+            // Register in unit converter: PorousMediumPermeabilityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Darcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareMeter));
+            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Microdarcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareMeter));
+            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Millidarcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareMeter));
+            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareCentimeter, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity);
 
-            // Register in unit converter: PorousMediumPermeabilityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Darcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => new PorousMediumPermeability(quantity.Value * 9.869233e-13, PorousMediumPermeabilityUnit.SquareMeter));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Microdarcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => new PorousMediumPermeability((quantity.Value * 9.869233e-13) * 1e-6d, PorousMediumPermeabilityUnit.SquareMeter));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Millidarcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => new PorousMediumPermeability((quantity.Value * 9.869233e-13) * 1e-3d, PorousMediumPermeabilityUnit.SquareMeter));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareCentimeter, PorousMediumPermeabilityUnit.SquareMeter, quantity => new PorousMediumPermeability(quantity.Value * 1e-4, PorousMediumPermeabilityUnit.SquareMeter));
+            // Register in unit converter: BaseUnit -> PorousMediumPermeabilityUnit
+            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Darcy, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.Darcy));
+            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Microdarcy, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.Microdarcy));
+            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Millidarcy, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.Millidarcy));
+            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareCentimeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareCentimeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -497,13 +497,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="PorousMediumPermeability"/> from adding two <see cref="PorousMediumPermeability"/>.</summary>
         public static PorousMediumPermeability operator +(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return new PorousMediumPermeability(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new PorousMediumPermeability(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from subtracting two <see cref="PorousMediumPermeability"/>.</summary>
         public static PorousMediumPermeability operator -(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return new PorousMediumPermeability(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new PorousMediumPermeability(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from multiplying value and <see cref="PorousMediumPermeability"/>.</summary>
@@ -537,25 +537,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if exactly equal.</summary>
@@ -584,7 +584,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(PorousMediumPermeability other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <inheritdoc />
@@ -601,7 +601,7 @@ namespace UnitsNet
         /// <remarks>Consider using <see cref="Equals(PorousMediumPermeability, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
         public bool Equals(PorousMediumPermeability other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -675,10 +675,10 @@ namespace UnitsNet
         public double As(PorousMediumPermeabilityUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return (double)Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            var converted = ToUnit(unit);
+            return (double)converted.Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -716,34 +716,68 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this PorousMediumPermeability to another PorousMediumPermeability using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="PorousMediumPermeability"/> to another <see cref="PorousMediumPermeability"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A PorousMediumPermeability with the specified unit.</returns>
         public PorousMediumPermeability ToUnit(PorousMediumPermeabilityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(PorousMediumPermeability), Unit, typeof(PorousMediumPermeability), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (PorousMediumPermeability)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (PorousMediumPermeability)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="PorousMediumPermeability"/> to another <see cref="PorousMediumPermeability"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="PorousMediumPermeability"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(PorousMediumPermeabilityUnit unit, out PorousMediumPermeability? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // PorousMediumPermeabilityUnit -> BaseUnit
+                (PorousMediumPermeabilityUnit.Darcy, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability(_value * 9.869233e-13, PorousMediumPermeabilityUnit.SquareMeter),
+                (PorousMediumPermeabilityUnit.Microdarcy, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability((_value * 9.869233e-13) * 1e-6d, PorousMediumPermeabilityUnit.SquareMeter),
+                (PorousMediumPermeabilityUnit.Millidarcy, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability((_value * 9.869233e-13) * 1e-3d, PorousMediumPermeabilityUnit.SquareMeter),
+                (PorousMediumPermeabilityUnit.SquareCentimeter, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability(_value * 1e-4, PorousMediumPermeabilityUnit.SquareMeter),
+
+                // BaseUnit -> PorousMediumPermeabilityUnit
+                (PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Darcy) => new PorousMediumPermeability(_value / 9.869233e-13, PorousMediumPermeabilityUnit.Darcy),
+                (PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Microdarcy) => new PorousMediumPermeability((_value / 9.869233e-13) / 1e-6d, PorousMediumPermeabilityUnit.Microdarcy),
+                (PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Millidarcy) => new PorousMediumPermeability((_value / 9.869233e-13) / 1e-3d, PorousMediumPermeabilityUnit.Millidarcy),
+                (PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareCentimeter) => new PorousMediumPermeability(_value / 1e-4, PorousMediumPermeabilityUnit.SquareCentimeter),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -778,12 +812,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PorousMediumPermeabilityUnit> IQuantity<PorousMediumPermeabilityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(PorousMediumPermeabilityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

@@ -290,7 +290,7 @@ namespace UnitsNet.Tests
             Assert.Equal("PowerDensity", quantityInfo.Name);
             Assert.Equal(QuantityType.PowerDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<PowerDensityUnit>().Except(new[] {PowerDensityUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<PowerDensityUnit>().Except(new[] {PowerDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1630,6 +1630,15 @@ namespace UnitsNet.Tests
                 fromUnit = PowerDensity.BaseUnit;
 
             var quantity = PowerDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PowerDensityUnit unit)
+        {
+            var quantity = default(PowerDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
             Assert.Equal("Duration", quantityInfo.Name);
             Assert.Equal(QuantityType.Duration, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<DurationUnit>().Except(new[] {DurationUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -1772,6 +1772,15 @@ namespace UnitsNet.Tests
                 fromUnit = Duration.BaseUnit;
 
             var quantity = Duration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(DurationUnit unit)
+        {
+            var quantity = default(Duration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal("MagneticFlux", quantityInfo.Name);
             Assert.Equal(QuantityType.MagneticFlux, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<MagneticFluxUnit>().Except(new[] {MagneticFluxUnit.Undefined}).ToArray();
+            var units = EnumUtils.GetEnumValues<MagneticFluxUnit>().Except(new[] {MagneticFluxUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
 
             // Obsolete members
@@ -256,6 +256,15 @@ namespace UnitsNet.Tests
                 fromUnit = MagneticFlux.BaseUnit;
 
             var quantity = MagneticFlux.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MagneticFluxUnit unit)
+        {
+            var quantity = default(MagneticFlux);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
