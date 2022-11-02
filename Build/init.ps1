@@ -18,6 +18,11 @@ $VsWherePath = "${env:PROGRAMFILES(X86)}\Microsoft Visual Studio\Installer\vswhe
 $VsPath = $(&$VsWherePath -latest -property installationPath)
 $msbuildPath = Join-Path -Path $VsPath -ChildPath "\MSBuild"
 
+# Install dotnet CLI tools declared in /.config/dotnet-tools.json
+pushd $root
+dotnet tool install
+popd
+
 # Install .NET nanoFramework build components
 if (!(Test-Path "$msbuildPath/nanoFramework")) {
   Write-Host "Installing .NET nanoFramework VS extension..."
