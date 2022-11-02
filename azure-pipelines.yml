@@ -13,10 +13,12 @@ variables:
 - group: common
 
 steps:
-- checkout:
-  lfs: true
+- checkout: self
   fetchDepth: 1
-  fetchTags: false  
+  clean: false
+  lfs: true
+  submodules: false
+  fetchTags: false
 - task: PowerShell@2
   displayName: 'Build, test, pack'
   inputs:
