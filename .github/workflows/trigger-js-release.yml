@@ -1,8 +1,9 @@
 name: trigger-js-package-release # Trigger JS package re-generate and publish to NPM (https://github.com/haimkastner/unitsnet-js)
 
-on: # Trigger re-generate JS units once a new relaese created
-  release:
-    types: [created]
+# on: # Trigger re-generate JS units once a new relaese created
+#   release:
+#     types: [created]
+on: workflow_dispatch
 
 jobs:
   trigger:
