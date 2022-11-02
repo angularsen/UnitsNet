@@ -20,7 +20,7 @@ $msbuildPath = Join-Path -Path $VsPath -ChildPath "\MSBuild"
 
 # Install dotnet CLI tools declared in /.config/dotnet-tools.json
 pushd $root
-dotnet tool install
+dotnet tool restore
 popd
 
 # Install .NET nanoFramework build components
