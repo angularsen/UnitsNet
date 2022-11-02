@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: windows-latest
 
+variables:
+- group: common
+
 steps:
 - task: Bash@3
   displayName: 'Generate code'
@@ -16,6 +19,7 @@ steps:
     targetType: 'inline'
     script: 'dotnet run CodeGen'
     failOnStderr: true
+    workingDirectory: $(Build.SourcesDirectory)
 - task: PowerShell@2
   displayName: 'Build, test, pack'
   inputs:
@@ -24,12 +28,14 @@ steps:
     failOnStderr: true
     showWarnings: true
     pwsh: true
+    workingDirectory: $(Build.SourcesDirectory)
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     failOnStderr: true
     showWarnings: true
     pwsh: true
+    workingDirectory: $(Build.SourcesDirectory)
     script: |
       $ProgressPreference = 'SilentlyContinue'
       Invoke-WebRequest -Uri https://keybase.io/codecovsecurity/pgp_keys.asc -OutFile codecov.asc
