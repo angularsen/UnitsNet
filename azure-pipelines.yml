@@ -17,9 +17,9 @@ steps:
   displayName: 'Generate code'
   inputs:
     targetType: 'inline'
-    script: 'dotnet run CodeGen'
+    script: 'dotnet run --project CodeGen'
+    workingDirectory: '$(Build.SourcesDirectory)'
     failOnStderr: true
-    workingDirectory: $(Build.SourcesDirectory)
 - task: PowerShell@2
   displayName: 'Build, test, pack'
   inputs:
