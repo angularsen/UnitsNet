@@ -13,7 +13,7 @@ jobs:
           UNITSNET_JS_WORKFLOW_TOKEN: ${{ secrets.UNITSNET_JS_WORKFLOW_TOKEN }}
         run: |
           # Trigger dispatches event to rebuild unitsnet-js package 
-          curl --location --request POST 'https://api.github.com/repos/haimkastner/unitsnet-js/actions/workflows/nodejs.yml/dispatches' \
+          curl --fail --location --request POST 'https://api.github.com/repos/haimkastner/unitsnet-js/actions/workflows/nodejs.yml/dispatches' \
           --header 'Accept: application/vnd.github.everest-preview+json' \
           --header 'Content-Type: application/json' \
           --header "Authorization: Basic $UNITSNET_JS_WORKFLOW_TOKEN" \
