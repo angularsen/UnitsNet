@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Volumetric_heat_capacity
     /// </remarks>
     [DataContract]
-    public partial struct VolumetricHeatCapacity : IQuantity<VolumetricHeatCapacityUnit>, IEquatable<VolumetricHeatCapacity>, IComparable, IComparable<VolumetricHeatCapacity>, IConvertible, IFormattable
+    public readonly partial struct VolumetricHeatCapacity : IQuantity<VolumetricHeatCapacityUnit>, IEquatable<VolumetricHeatCapacity>, IComparable, IComparable<VolumetricHeatCapacity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

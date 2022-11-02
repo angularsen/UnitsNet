@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Brake specific fuel consumption (BSFC) is a measure of the fuel efficiency of any prime mover that burns fuel and produces rotational, or shaft, power. It is typically used for comparing the efficiency of internal combustion engines with a shaft output.
     /// </summary>
     [DataContract]
-    public partial struct BrakeSpecificFuelConsumption : IQuantity<BrakeSpecificFuelConsumptionUnit>, IEquatable<BrakeSpecificFuelConsumption>, IComparable, IComparable<BrakeSpecificFuelConsumption>, IConvertible, IFormattable
+    public readonly partial struct BrakeSpecificFuelConsumption : IQuantity<BrakeSpecificFuelConsumptionUnit>, IEquatable<BrakeSpecificFuelConsumption>, IComparable, IComparable<BrakeSpecificFuelConsumption>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

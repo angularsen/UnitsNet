@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Irradiance is the intensity of ultraviolet (UV) or visible light incident on a surface.
     /// </summary>
     [DataContract]
-    public partial struct Irradiance : IQuantity<IrradianceUnit>, IEquatable<Irradiance>, IComparable, IComparable<Irradiance>, IConvertible, IFormattable
+    public readonly partial struct Irradiance : IQuantity<IrradianceUnit>, IEquatable<Irradiance>, IComparable, IComparable<Irradiance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

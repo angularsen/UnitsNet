@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electric_field
     /// </remarks>
     [DataContract]
-    public partial struct ElectricField : IQuantity<ElectricFieldUnit>, IEquatable<ElectricField>, IComparable, IComparable<ElectricField>, IConvertible, IFormattable
+    public readonly partial struct ElectricField : IQuantity<ElectricFieldUnit>, IEquatable<ElectricField>, IComparable, IComparable<ElectricField>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

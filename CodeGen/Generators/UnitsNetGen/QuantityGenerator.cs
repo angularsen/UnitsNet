@@ -72,7 +72,7 @@ namespace UnitsNet
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
             Writer.W(@$"
     [DataContract]
-    public partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
+    public readonly partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
             if (_quantity.BaseType == "decimal")
             {
                 Writer.W("IDecimalQuantity, ");

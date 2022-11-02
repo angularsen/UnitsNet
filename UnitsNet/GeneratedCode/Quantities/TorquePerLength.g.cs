@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The magnitude of torque per unit length.
     /// </summary>
     [DataContract]
-    public partial struct TorquePerLength : IQuantity<TorquePerLengthUnit>, IEquatable<TorquePerLength>, IComparable, IComparable<TorquePerLength>, IConvertible, IFormattable
+    public readonly partial struct TorquePerLength : IQuantity<TorquePerLengthUnit>, IEquatable<TorquePerLength>, IComparable, IComparable<TorquePerLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

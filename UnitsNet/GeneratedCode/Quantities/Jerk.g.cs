@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Jerk or Jolt, in physics, is the rate at which the acceleration of an object changes over time. The SI unit for jerk is the Meter per second cubed (m/s³). Jerks are vector quantities (they have magnitude and direction) and add according to the parallelogram law.
     /// </summary>
     [DataContract]
-    public partial struct Jerk : IQuantity<JerkUnit>, IEquatable<Jerk>, IComparable, IComparable<Jerk>, IConvertible, IFormattable
+    public readonly partial struct Jerk : IQuantity<JerkUnit>, IEquatable<Jerk>, IComparable, IComparable<Jerk>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

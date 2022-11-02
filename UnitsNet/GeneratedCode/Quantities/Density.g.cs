@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Density
     /// </remarks>
     [DataContract]
-    public partial struct Density : IQuantity<DensityUnit>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible, IFormattable
+    public readonly partial struct Density : IQuantity<DensityUnit>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

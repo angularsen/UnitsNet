@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Thermal_Conductivity
     /// </remarks>
     [DataContract]
-    public partial struct ThermalConductivity : IQuantity<ThermalConductivityUnit>, IEquatable<ThermalConductivity>, IComparable, IComparable<ThermalConductivity>, IConvertible, IFormattable
+    public readonly partial struct ThermalConductivity : IQuantity<ThermalConductivityUnit>, IEquatable<ThermalConductivity>, IComparable, IComparable<ThermalConductivity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

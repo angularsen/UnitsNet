@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Angular acceleration is the rate of change of rotational speed.
     /// </summary>
     [DataContract]
-    public partial struct RotationalAcceleration : IQuantity<RotationalAccelerationUnit>, IEquatable<RotationalAcceleration>, IComparable, IComparable<RotationalAcceleration>, IConvertible, IFormattable
+    public readonly partial struct RotationalAcceleration : IQuantity<RotationalAccelerationUnit>, IEquatable<RotationalAcceleration>, IComparable, IComparable<RotationalAcceleration>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

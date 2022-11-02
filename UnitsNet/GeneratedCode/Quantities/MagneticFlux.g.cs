@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Magnetic_flux
     /// </remarks>
     [DataContract]
-    public partial struct MagneticFlux : IQuantity<MagneticFluxUnit>, IEquatable<MagneticFlux>, IComparable, IComparable<MagneticFlux>, IConvertible, IFormattable
+    public readonly partial struct MagneticFlux : IQuantity<MagneticFluxUnit>, IEquatable<MagneticFlux>, IComparable, IComparable<MagneticFlux>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

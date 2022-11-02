@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Concentration#Volume_concentration
     /// </remarks>
     [DataContract]
-    public partial struct VolumeConcentration : IQuantity<VolumeConcentrationUnit>, IEquatable<VolumeConcentration>, IComparable, IComparable<VolumeConcentration>, IConvertible, IFormattable
+    public readonly partial struct VolumeConcentration : IQuantity<VolumeConcentrationUnit>, IEquatable<VolumeConcentration>, IComparable, IComparable<VolumeConcentration>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

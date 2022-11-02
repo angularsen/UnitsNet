@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.
     /// </summary>
     [DataContract]
-    public partial struct RelativeHumidity : IQuantity<RelativeHumidityUnit>, IEquatable<RelativeHumidity>, IComparable, IComparable<RelativeHumidity>, IConvertible, IFormattable
+    public readonly partial struct RelativeHumidity : IQuantity<RelativeHumidityUnit>, IEquatable<RelativeHumidity>, IComparable, IComparable<RelativeHumidity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

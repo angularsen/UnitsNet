@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     In chemistry, the molar mass M is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance.
     /// </summary>
     [DataContract]
-    public partial struct MolarMass : IQuantity<MolarMassUnit>, IEquatable<MolarMass>, IComparable, IComparable<MolarMass>, IConvertible, IFormattable
+    public readonly partial struct MolarMass : IQuantity<MolarMassUnit>, IEquatable<MolarMass>, IComparable, IComparable<MolarMass>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Molar energy is the amount of energy stored in 1 mole of a substance.
     /// </summary>
     [DataContract]
-    public partial struct MolarEnergy : IQuantity<MolarEnergyUnit>, IEquatable<MolarEnergy>, IComparable, IComparable<MolarEnergy>, IConvertible, IFormattable
+    public readonly partial struct MolarEnergy : IQuantity<MolarEnergyUnit>, IEquatable<MolarEnergy>, IComparable, IComparable<MolarEnergy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

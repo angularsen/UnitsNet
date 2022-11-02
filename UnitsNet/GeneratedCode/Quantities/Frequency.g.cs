@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
     [DataContract]
-    public partial struct Frequency : IQuantity<FrequencyUnit>, IEquatable<Frequency>, IComparable, IComparable<Frequency>, IConvertible, IFormattable
+    public readonly partial struct Frequency : IQuantity<FrequencyUnit>, IEquatable<Frequency>, IComparable, IComparable<Frequency>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

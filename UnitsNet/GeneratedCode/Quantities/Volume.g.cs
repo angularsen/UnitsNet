@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.
     /// </summary>
     [DataContract]
-    public partial struct Volume : IQuantity<VolumeUnit>, IEquatable<Volume>, IComparable, IComparable<Volume>, IConvertible, IFormattable
+    public readonly partial struct Volume : IQuantity<VolumeUnit>, IEquatable<Volume>, IComparable, IComparable<Volume>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
