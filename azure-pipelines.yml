@@ -18,6 +18,8 @@ steps:
   lfs: true
   submodules: false
   fetchTags: false
+- task: InstallNanoMSBuildComponents@1
+  displayName: Install .NET nanoFramework MSBuild components  
 - task: PowerShell@2
   displayName: 'Build, test, pack'
   inputs:

@@ -14,6 +14,8 @@ if (-not (Test-Path "$root/Tools/reportgenerator.exe")) {
   Write-Host -Foreground Green "Download dotnet-reportgenerator-globaltool...OK."
 }
 
+###################################################
+## TODO: OK to remove after moving to AZDO pipeline
 $VsWherePath = "${env:PROGRAMFILES(X86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 $VsPath = $(&$VsWherePath -latest -property installationPath)
 $msbuildPath = Join-Path -Path $VsPath -ChildPath "\MSBuild"
@@ -82,6 +84,7 @@ if (!(Test-Path "$msbuildPath/nanoFramework")) {
 
   Write-Host "Installed VS extension $extensionVersion"
 }
+###################################################
 
 # Cleanup
 [system.io.Directory]::Delete($tempDir, $true) | out-null
