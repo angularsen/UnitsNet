@@ -30,6 +30,7 @@ steps:
     showWarnings: true
     pwsh: true
     workingDirectory: '$(Build.SourcesDirectory)'
+
 - task: PowerShell@2
   env:
     CODECOV_TOKEN: $(CODECOV_TOKEN)
@@ -40,8 +41,14 @@ steps:
     pwsh: true
     workingDirectory: $(Build.SourcesDirectory)
     script: |
-      [IO.Directory]::CreateDirectory('~/.gnupg')
+      # Avoid stderr on creating directory.
+      [IO.Directory]::CreateDirectory("$HOME/.gnupg")
+      
+      # No powershell progress bar.
       $ProgressPreference = 'SilentlyContinue'
+
+      Write-Host -Foreground Green "Downloading codecov binaries..."
+
       Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc 
       gpg.exe --import codecov.asc
 
@@ -52,5 +59,9 @@ steps:
       gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
       If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
 
+      Write-Host -Foreground Green "Uploading to codecov..."
+
       .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --sha "$(Build.SourceVersion)"
+      
+      Write-Host -Foreground Green "✅ Uploaded to codecov."
 
