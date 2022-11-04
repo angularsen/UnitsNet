@@ -31,6 +31,8 @@ steps:
     pwsh: true
     workingDirectory: '$(Build.SourcesDirectory)'
 - task: PowerShell@2
+  env:
+    CODECOV_UPLOAD_TOKEN: $(CODECOV_UPLOAD_TOKEN)
   inputs:
     targetType: 'inline'
     failOnStderr: true
@@ -49,5 +51,5 @@ steps:
       gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
       If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
 
-      .\codecov.exe "Artifacts/Coverage" -t $env:codecov_upload_token
+      .\codecov.exe "Artifacts/Coverage" -t $env:CODECOV_UPLOAD_TOKEN
 
