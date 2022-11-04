@@ -32,36 +32,39 @@ steps:
     workingDirectory: '$(Build.SourcesDirectory)'
 
 - task: PowerShell@2
+  displayName: Upload to codecov.io
   env:
     CODECOV_TOKEN: $(CODECOV_TOKEN)
   inputs:
     targetType: 'inline'
-    failOnStderr: true
-    showWarnings: true
-    pwsh: true
-    workingDirectory: $(Build.SourcesDirectory)
     script: |
-      # Avoid stderr on creating directory.
-      [IO.Directory]::CreateDirectory("$HOME/.gnupg")
       
-      # No powershell progress bar.
-      $ProgressPreference = 'SilentlyContinue'
+      # Avoid stderr on creating directory.
+      # [IO.Directory]::CreateDirectory("$HOME/.gnupg")
 
       Write-Host -Foreground Green "Downloading codecov binaries..."
-
+      
       Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc 
       gpg.exe --import codecov.asc
-
+      
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
-
+      
       gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
       If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
-
+      
       Write-Host -Foreground Green "Uploading to codecov..."
-
-      .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --sha "$(Build.SourceVersion)"
+      
+      # .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --sha "$(Build.SourceVersion)" --verbose
+      .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --verbose
       
       Write-Host -Foreground Green "✅ Uploaded to codecov."
-
+    pwsh: true
+# - task: PowerShell@2
+#   env:
+#     CODECOV_TOKEN: $(CODECOV_TOKEN)
+#   inputs:
+#     targetType: 'inline'
+#     script: '.\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --verbose'
+#     workingDirectory: '$(Build.SourcesDirectory)'
