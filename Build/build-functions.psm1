@@ -71,8 +71,7 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolea
     # msbuild does not auto-restore nugets for this project type
     & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
     # now build
-    # & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"  $fileLoggerArg $appVeyorLoggerArg
-    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"  $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
