@@ -32,7 +32,7 @@ steps:
     workingDirectory: '$(Build.SourcesDirectory)'
 - task: PowerShell@2
   env:
-    CODECOV_UPLOAD_TOKEN: $(CODECOV_UPLOAD_TOKEN)
+    CODECOV_TOKEN: $(CODECOV_TOKEN)
   inputs:
     targetType: 'inline'
     failOnStderr: true
@@ -40,8 +40,9 @@ steps:
     pwsh: true
     workingDirectory: $(Build.SourcesDirectory)
     script: |
+      [IO.Directory]::CreateDirectory('~/.gnupg')
       $ProgressPreference = 'SilentlyContinue'
-      Invoke-WebRequest -Uri https://keybase.io/codecovsecurity/pgp_keys.asc -OutFile codecov.asc
+      Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc 
       gpg.exe --import codecov.asc
 
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
@@ -51,5 +52,5 @@ steps:
       gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
       If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
 
-      .\codecov.exe "Artifacts/Coverage" -t $env:CODECOV_UPLOAD_TOKEN
+      .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --sha "$(Build.SourceVersion)"
 
