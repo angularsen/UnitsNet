@@ -71,6 +71,7 @@ steps:
   artifact: 'Artifacts'
 
 - task: CopyFiles@2
+  displayName: Copy nugets to staging
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/Artifacts'
     Contents: |
@@ -83,14 +84,16 @@ steps:
     ignoreMakeDirErrors: true
 
 - task: NuGetCommand@2
+  displayName: Push to internal NuGet feed
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: '3c66fe1c-9fb6-4a96-b168-9a0291dab0c6'
+    publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
     allowPackageConflicts: true
 
 - task: NuGetCommand@2
+  displayName: Push to nuget.org
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/'
