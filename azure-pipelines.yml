@@ -7,6 +7,10 @@ trigger:
   branches:
     include:
       - master
+  paths:
+    exclude:
+      - '**/*.png'
+      - '**/*.md'
 
 pool:
   vmImage: windows-latest
@@ -57,7 +61,38 @@ steps:
       
       Write-Host -Foreground Green "Uploading to codecov..."
       
-      .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)"
+      .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" --build "$(Build.BuildNumber)"
       
       Write-Host -Foreground Green "✅ Uploaded to codecov."
     pwsh: true
+
+- publish: $(Build.SourcesDirectory)/Artifacts
+  displayName: 'Publish Artifacts'
+  artifact: 'Artifacts'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/Artifacts'
+    Contents: |
+      **/*.nupkg
+      **/*.symbols.nupkg
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
+    preserveTimestamp: true
+    retryCount: '3'
+    ignoreMakeDirErrors: true
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '3c66fe1c-9fb6-4a96-b168-9a0291dab0c6'
+    allowPackageConflicts: true
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'nuget.org (UnitsNet)'
