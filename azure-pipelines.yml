@@ -99,3 +99,4 @@ steps:
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'nuget.org (UnitsNet)'
+    allowPackageConflicts: true
