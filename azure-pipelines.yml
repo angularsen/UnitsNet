@@ -21,8 +21,10 @@ steps:
   lfs: true
   submodules: false
   fetchTags: false
+
 - task: InstallNanoMSBuildComponents@1
   displayName: Install .NET nanoFramework MSBuild components  
+
 - task: PowerShell@2
   displayName: 'Build, test, pack'
   inputs:
@@ -41,10 +43,6 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      
-      # Avoid stderr on creating directory.
-      # [IO.Directory]::CreateDirectory("$HOME/.gnupg")
-
       Write-Host -Foreground Green "Downloading codecov binaries..."
       
       Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc 
@@ -59,15 +57,7 @@ steps:
       
       Write-Host -Foreground Green "Uploading to codecov..."
       
-      # .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --sha "$(Build.SourceVersion)" --verbose
-      .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --verbose
+      .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)"
       
       Write-Host -Foreground Green "✅ Uploaded to codecov."
     pwsh: true
-# - task: PowerShell@2
-#   env:
-#     CODECOV_TOKEN: $(CODECOV_TOKEN)
-#   inputs:
-#     targetType: 'inline'
-#     script: '.\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" -b "$(Build.BuildNumber)" --verbose'
-#     workingDirectory: '$(Build.SourcesDirectory)'
