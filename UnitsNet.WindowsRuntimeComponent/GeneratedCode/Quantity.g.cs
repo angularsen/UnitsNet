@@ -146,6 +146,9 @@ namespace UnitsNet
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
                     return true;
+                case EnergyDensityUnit energyDensityUnit:
+                    quantity = EnergyDensity.From(value, energyDensityUnit);
+                    return true;
                 case EntropyUnit entropyUnit:
                     quantity = Entropy.From(value, entropyUnit);
                     return true;
@@ -544,6 +547,9 @@ namespace UnitsNet
             if (quantityType == typeof(Energy))
                 return parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity);
 
+            if (quantityType == typeof(EnergyDensity))
+                return parser.TryParse<EnergyDensity, EnergyDensityUnit>(quantityString, formatProvider, EnergyDensity.From, out quantity);
+
             if (quantityType == typeof(Entropy))
                 return parser.TryParse<Entropy, EntropyUnit>(quantityString, formatProvider, Entropy.From, out quantity);
 
@@ -828,6 +834,7 @@ namespace UnitsNet
             yield return typeof(ElectricResistivity);
             yield return typeof(ElectricSurfaceChargeDensity);
             yield return typeof(Energy);
+            yield return typeof(EnergyDensity);
             yield return typeof(Entropy);
             yield return typeof(Force);
             yield return typeof(ForceChangeRate);

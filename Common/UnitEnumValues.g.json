@@ -1654,5 +1654,19 @@
     "MillicandelaPerSquareMeter": 2,
     "NanocandelaPerSquareMeter": 1,
     "Nit": 5
+  },
+  "EnergyDensity": {
+    "GigajoulePerCubicMeter": 6,
+    "GigawattHourPerCubicMeter": 8,
+    "JoulePerCubicMeter": 3,
+    "KilojoulePerCubicMeter": 5,
+    "KilowattHourPerCubicMeter": 2,
+    "MegajoulePerCubicMeter": 9,
+    "MegawattHourPerCubicMeter": 7,
+    "PetajoulePerCubicMeter": 4,
+    "PetawattHourPerCubicMeter": 1,
+    "TerajoulePerCubicMeter": 10,
+    "TerawattHourPerCubicMeter": 12,
+    "WattHourPerCubicMeter": 14
   }
 }
