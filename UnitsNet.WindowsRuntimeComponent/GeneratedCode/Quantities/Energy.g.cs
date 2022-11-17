@@ -304,9 +304,19 @@ namespace UnitsNet
         public double Millijoules => As(EnergyUnit.Millijoule);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Petajoule"/>
+        /// </summary>
+        public double Petajoules => As(EnergyUnit.Petajoule);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TeraelectronVolt"/>
         /// </summary>
         public double TeraelectronVolts => As(EnergyUnit.TeraelectronVolt);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Terajoule"/>
+        /// </summary>
+        public double Terajoules => As(EnergyUnit.Terajoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattDay"/>
@@ -390,8 +400,10 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegawattHour, new CultureInfo("en-US"), false, true, new string[]{"MWh"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegawattHour, new CultureInfo("ru-RU"), false, true, new string[]{"МВт/ч"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Millijoule, new CultureInfo("en-US"), false, true, new string[]{"mJ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Petajoule, new CultureInfo("en-US"), false, true, new string[]{"PJ"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TeraelectronVolt, new CultureInfo("en-US"), false, true, new string[]{"TeV"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TeraelectronVolt, new CultureInfo("ru-RU"), false, true, new string[]{"ТэВ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Terajoule, new CultureInfo("en-US"), false, true, new string[]{"TJ"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattDay, new CultureInfo("en-US"), false, true, new string[]{"TWd"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattDay, new CultureInfo("ru-RU"), false, true, new string[]{"ТВт/д"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattHour, new CultureInfo("en-US"), false, true, new string[]{"TWh"});
@@ -743,6 +755,17 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Petajoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromPetajoules(double petajoules)
+        {
+            double value = (double) petajoules;
+            return new Energy(value, EnergyUnit.Petajoule);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TeraelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -751,6 +774,17 @@ namespace UnitsNet
         {
             double value = (double) teraelectronvolts;
             return new Energy(value, EnergyUnit.TeraelectronVolt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Terajoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Energy FromTerajoules(double terajoules)
+        {
+            double value = (double) terajoules;
+            return new Energy(value, EnergyUnit.Terajoule);
         }
 
         /// <summary>
@@ -1148,7 +1182,9 @@ namespace UnitsNet
                 case EnergyUnit.MegawattDay: return (_value * 24 * 3600d) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value * 3600d) * 1e6d;
                 case EnergyUnit.Millijoule: return (_value) * 1e-3d;
+                case EnergyUnit.Petajoule: return (_value) * 1e15d;
                 case EnergyUnit.TeraelectronVolt: return (_value * 1.602176565e-19) * 1e12d;
+                case EnergyUnit.Terajoule: return (_value) * 1e12d;
                 case EnergyUnit.TerawattDay: return (_value * 24 * 3600d) * 1e12d;
                 case EnergyUnit.TerawattHour: return (_value * 3600d) * 1e12d;
                 case EnergyUnit.ThermEc: return _value * 1.05505585262e8;
@@ -1198,7 +1234,9 @@ namespace UnitsNet
                 case EnergyUnit.MegawattDay: return (baseUnitValue / (24 * 3600d)) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue / 3600d) / 1e6d;
                 case EnergyUnit.Millijoule: return (baseUnitValue) / 1e-3d;
+                case EnergyUnit.Petajoule: return (baseUnitValue) / 1e15d;
                 case EnergyUnit.TeraelectronVolt: return (baseUnitValue / 1.602176565e-19) / 1e12d;
+                case EnergyUnit.Terajoule: return (baseUnitValue) / 1e12d;
                 case EnergyUnit.TerawattDay: return (baseUnitValue / (24 * 3600d)) / 1e12d;
                 case EnergyUnit.TerawattHour: return (baseUnitValue / 3600d) / 1e12d;
                 case EnergyUnit.ThermEc: return baseUnitValue / 1.05505585262e8;

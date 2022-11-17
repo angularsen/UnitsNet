@@ -90,7 +90,9 @@ namespace UnitsNet
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegawattDay, "MegawattDays", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.MegawattHour, "MegawattHours", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.Millijoule, "Millijoules", BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Petajoule, "Petajoules", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.TeraelectronVolt, "TeraelectronVolts", BaseUnits.Undefined),
+                    new UnitInfo<EnergyUnit>(EnergyUnit.Terajoule, "Terajoules", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.TerawattDay, "TerawattDays", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.TerawattHour, "TerawattHours", BaseUnits.Undefined),
                     new UnitInfo<EnergyUnit>(EnergyUnit.ThermEc, "ThermsEc", BaseUnits.Undefined),
@@ -363,9 +365,19 @@ namespace UnitsNet
         public double Millijoules => As(EnergyUnit.Millijoule);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Petajoule"/>
+        /// </summary>
+        public double Petajoules => As(EnergyUnit.Petajoule);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TeraelectronVolt"/>
         /// </summary>
         public double TeraelectronVolts => As(EnergyUnit.TeraelectronVolt);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Terajoule"/>
+        /// </summary>
+        public double Terajoules => As(EnergyUnit.Terajoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattDay"/>
@@ -440,7 +452,9 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegawattDay, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.MegawattHour, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Millijoule, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Petajoule, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.TeraelectronVolt, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Terajoule, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.TerawattDay, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.TerawattHour, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.ThermEc, EnergyUnit.Joule, quantity => quantity.ToUnit(EnergyUnit.Joule));
@@ -480,7 +494,9 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegawattDay, quantity => quantity.ToUnit(EnergyUnit.MegawattDay));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.MegawattHour, quantity => quantity.ToUnit(EnergyUnit.MegawattHour));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Millijoule, quantity => quantity.ToUnit(EnergyUnit.Millijoule));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Petajoule, quantity => quantity.ToUnit(EnergyUnit.Petajoule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TeraelectronVolt, quantity => quantity.ToUnit(EnergyUnit.TeraelectronVolt));
+            unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.Terajoule, quantity => quantity.ToUnit(EnergyUnit.Terajoule));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TerawattDay, quantity => quantity.ToUnit(EnergyUnit.TerawattDay));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.TerawattHour, quantity => quantity.ToUnit(EnergyUnit.TerawattHour));
             unitConverter.SetConversionFunction<Energy>(EnergyUnit.Joule, EnergyUnit.ThermEc, quantity => quantity.ToUnit(EnergyUnit.ThermEc));
@@ -533,8 +549,10 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegawattHour, new CultureInfo("en-US"), false, true, new string[]{"MWh"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.MegawattHour, new CultureInfo("ru-RU"), false, true, new string[]{"МВт/ч"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Millijoule, new CultureInfo("en-US"), false, true, new string[]{"mJ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Petajoule, new CultureInfo("en-US"), false, true, new string[]{"PJ"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TeraelectronVolt, new CultureInfo("en-US"), false, true, new string[]{"TeV"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TeraelectronVolt, new CultureInfo("ru-RU"), false, true, new string[]{"ТэВ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.Terajoule, new CultureInfo("en-US"), false, true, new string[]{"TJ"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattDay, new CultureInfo("en-US"), false, true, new string[]{"TWd"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattDay, new CultureInfo("ru-RU"), false, true, new string[]{"ТВт/д"});
             unitAbbreviationsCache.PerformAbbreviationMapping(EnergyUnit.TerawattHour, new CultureInfo("en-US"), false, true, new string[]{"TWh"});
@@ -857,6 +875,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Petajoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromPetajoules(QuantityValue petajoules)
+        {
+            double value = (double) petajoules;
+            return new Energy(value, EnergyUnit.Petajoule);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TeraelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -864,6 +892,16 @@ namespace UnitsNet
         {
             double value = (double) teraelectronvolts;
             return new Energy(value, EnergyUnit.TeraelectronVolt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Terajoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromTerajoules(QuantityValue terajoules)
+        {
+            double value = (double) terajoules;
+            return new Energy(value, EnergyUnit.Terajoule);
         }
 
         /// <summary>
@@ -1397,7 +1435,9 @@ namespace UnitsNet
                 (EnergyUnit.MegawattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e6d, EnergyUnit.Joule),
                 (EnergyUnit.MegawattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e6d, EnergyUnit.Joule),
                 (EnergyUnit.Millijoule, EnergyUnit.Joule) => new Energy((_value) * 1e-3d, EnergyUnit.Joule),
+                (EnergyUnit.Petajoule, EnergyUnit.Joule) => new Energy((_value) * 1e15d, EnergyUnit.Joule),
                 (EnergyUnit.TeraelectronVolt, EnergyUnit.Joule) => new Energy((_value * 1.602176565e-19) * 1e12d, EnergyUnit.Joule),
+                (EnergyUnit.Terajoule, EnergyUnit.Joule) => new Energy((_value) * 1e12d, EnergyUnit.Joule),
                 (EnergyUnit.TerawattDay, EnergyUnit.Joule) => new Energy((_value * 24 * 3600d) * 1e12d, EnergyUnit.Joule),
                 (EnergyUnit.TerawattHour, EnergyUnit.Joule) => new Energy((_value * 3600d) * 1e12d, EnergyUnit.Joule),
                 (EnergyUnit.ThermEc, EnergyUnit.Joule) => new Energy(_value * 1.05505585262e8, EnergyUnit.Joule),
@@ -1434,7 +1474,9 @@ namespace UnitsNet
                 (EnergyUnit.Joule, EnergyUnit.MegawattDay) => new Energy((_value / (24 * 3600d)) / 1e6d, EnergyUnit.MegawattDay),
                 (EnergyUnit.Joule, EnergyUnit.MegawattHour) => new Energy((_value / 3600d) / 1e6d, EnergyUnit.MegawattHour),
                 (EnergyUnit.Joule, EnergyUnit.Millijoule) => new Energy((_value) / 1e-3d, EnergyUnit.Millijoule),
+                (EnergyUnit.Joule, EnergyUnit.Petajoule) => new Energy((_value) / 1e15d, EnergyUnit.Petajoule),
                 (EnergyUnit.Joule, EnergyUnit.TeraelectronVolt) => new Energy((_value / 1.602176565e-19) / 1e12d, EnergyUnit.TeraelectronVolt),
+                (EnergyUnit.Joule, EnergyUnit.Terajoule) => new Energy((_value) / 1e12d, EnergyUnit.Terajoule),
                 (EnergyUnit.Joule, EnergyUnit.TerawattDay) => new Energy((_value / (24 * 3600d)) / 1e12d, EnergyUnit.TerawattDay),
                 (EnergyUnit.Joule, EnergyUnit.TerawattHour) => new Energy((_value / 3600d) / 1e12d, EnergyUnit.TerawattHour),
                 (EnergyUnit.Joule, EnergyUnit.ThermEc) => new Energy(_value / 1.05505585262e8, EnergyUnit.ThermEc),

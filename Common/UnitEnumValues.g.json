@@ -406,7 +406,9 @@
     "ThermImperial": 33,
     "ThermUs": 34,
     "WattDay": 35,
-    "WattHour": 36
+    "WattHour": 36,
+    "Petajoule": 43,
+    "Terajoule": 37
   },
   "Entropy": {
     "CaloriePerKelvin": 1,
