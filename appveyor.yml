@@ -1,6 +1,12 @@
 version: '{build}'
 image: Visual Studio 2019
 
+# Disable AppVeyor builds on all branches.
+# We switched to https://dev.azure.com/unitsnet/Units.NET.
+branches:
+  only:
+    - no-more-appveyor-builds-use-devops-instead
+
 # Don't build PR commits twice
 skip_branch_with_pr: true
 
