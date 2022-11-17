@@ -73,6 +73,7 @@ namespace UnitsNet
             { "ElectricResistivity", ElectricResistivity.Info },
             { "ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.Info },
             { "Energy", Energy.Info },
+            { "EnergyDensity", EnergyDensity.Info },
             { "Entropy", Entropy.Info },
             { "Force", Force.Info },
             { "ForceChangeRate", ForceChangeRate.Info },
@@ -202,6 +203,7 @@ namespace UnitsNet
                 QuantityType.ElectricResistivity => ElectricResistivity.From(value, ElectricResistivity.BaseUnit),
                 QuantityType.ElectricSurfaceChargeDensity => ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit),
                 QuantityType.Energy => Energy.From(value, Energy.BaseUnit),
+                QuantityType.EnergyDensity => EnergyDensity.From(value, EnergyDensity.BaseUnit),
                 QuantityType.Entropy => Entropy.From(value, Entropy.BaseUnit),
                 QuantityType.Force => Force.From(value, Force.BaseUnit),
                 QuantityType.ForceChangeRate => ForceChangeRate.From(value, ForceChangeRate.BaseUnit),
@@ -332,6 +334,7 @@ namespace UnitsNet
                 "ElectricResistivity" => ElectricResistivity.From(value, ElectricResistivity.BaseUnit),
                 "ElectricSurfaceChargeDensity" => ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit),
                 "Energy" => Energy.From(value, Energy.BaseUnit),
+                "EnergyDensity" => EnergyDensity.From(value, EnergyDensity.BaseUnit),
                 "Entropy" => Entropy.From(value, Entropy.BaseUnit),
                 "Force" => Force.From(value, Force.BaseUnit),
                 "ForceChangeRate" => ForceChangeRate.From(value, ForceChangeRate.BaseUnit),
@@ -532,6 +535,9 @@ namespace UnitsNet
                     return true;
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
+                    return true;
+                case EnergyDensityUnit energyDensityUnit:
+                    quantity = EnergyDensity.From(value, energyDensityUnit);
                     return true;
                 case EntropyUnit entropyUnit:
                     quantity = Entropy.From(value, entropyUnit);
@@ -838,6 +844,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(ElectricResistivity) => parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricSurfaceChargeDensity) => parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity),
                 Type _ when quantityType == typeof(Energy) => parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity),
+                Type _ when quantityType == typeof(EnergyDensity) => parser.TryParse<EnergyDensity, EnergyDensityUnit>(quantityString, formatProvider, EnergyDensity.From, out quantity),
                 Type _ when quantityType == typeof(Entropy) => parser.TryParse<Entropy, EntropyUnit>(quantityString, formatProvider, Entropy.From, out quantity),
                 Type _ when quantityType == typeof(Force) => parser.TryParse<Force, ForceUnit>(quantityString, formatProvider, Force.From, out quantity),
                 Type _ when quantityType == typeof(ForceChangeRate) => parser.TryParse<ForceChangeRate, ForceChangeRateUnit>(quantityString, formatProvider, ForceChangeRate.From, out quantity),
@@ -960,6 +967,7 @@ namespace UnitsNet
             yield return typeof(ElectricResistivity);
             yield return typeof(ElectricSurfaceChargeDensity);
             yield return typeof(Energy);
+            yield return typeof(EnergyDensity);
             yield return typeof(Entropy);
             yield return typeof(Force);
             yield return typeof(ForceChangeRate);

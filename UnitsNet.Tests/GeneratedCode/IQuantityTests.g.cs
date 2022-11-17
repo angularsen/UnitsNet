@@ -69,6 +69,7 @@ namespace UnitsNet.Tests
             Assertion(3, ElectricResistivityUnit.PicoohmMeter, Quantity.From(3, ElectricResistivityUnit.PicoohmMeter));
             Assertion(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, Quantity.From(3, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter));
             Assertion(3, EnergyUnit.WattHour, Quantity.From(3, EnergyUnit.WattHour));
+            Assertion(3, EnergyDensityUnit.WattHourPerCubicMeter, Quantity.From(3, EnergyDensityUnit.WattHourPerCubicMeter));
             Assertion(3, EntropyUnit.MegajoulePerKelvin, Quantity.From(3, EntropyUnit.MegajoulePerKelvin));
             Assertion(3, ForceUnit.TonneForce, Quantity.From(3, ForceUnit.TonneForce));
             Assertion(3, ForceChangeRateUnit.PoundForcePerSecond, Quantity.From(3, ForceChangeRateUnit.PoundForcePerSecond));
@@ -192,6 +193,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricResistivity.Info, ElectricResistivity.Zero);
             Assertion(ElectricSurfaceChargeDensity.Info, ElectricSurfaceChargeDensity.Zero);
             Assertion(Energy.Info, Energy.Zero);
+            Assertion(EnergyDensity.Info, EnergyDensity.Zero);
             Assertion(Entropy.Info, Entropy.Zero);
             Assertion(Force.Info, Force.Zero);
             Assertion(ForceChangeRate.Info, ForceChangeRate.Zero);
@@ -315,6 +317,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricResistivity.QuantityType, ElectricResistivity.Zero);
             Assertion(ElectricSurfaceChargeDensity.QuantityType, ElectricSurfaceChargeDensity.Zero);
             Assertion(Energy.QuantityType, Energy.Zero);
+            Assertion(EnergyDensity.QuantityType, EnergyDensity.Zero);
             Assertion(Entropy.QuantityType, Entropy.Zero);
             Assertion(Force.QuantityType, Force.Zero);
             Assertion(ForceChangeRate.QuantityType, ForceChangeRate.Zero);
@@ -438,6 +441,7 @@ namespace UnitsNet.Tests
             Assertion(ElectricResistivity.BaseDimensions, ElectricResistivity.Zero);
             Assertion(ElectricSurfaceChargeDensity.BaseDimensions, ElectricSurfaceChargeDensity.Zero);
             Assertion(Energy.BaseDimensions, Energy.Zero);
+            Assertion(EnergyDensity.BaseDimensions, EnergyDensity.Zero);
             Assertion(Entropy.BaseDimensions, Entropy.Zero);
             Assertion(Force.BaseDimensions, Force.Zero);
             Assertion(ForceChangeRate.BaseDimensions, ForceChangeRate.Zero);
