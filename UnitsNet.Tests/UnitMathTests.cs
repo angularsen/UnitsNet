@@ -318,5 +318,40 @@ namespace UnitsNet.Tests
             Assert.Equal(150, sum.Value);
             Assert.Equal(LengthUnit.Centimeter, sum.Unit);
         }
+
+        [Fact]
+        public void ClampCalculatesCorrectly()
+        {
+            var min = Length.FromMeters(-1);
+            var max = Length.FromCentimeters(150);
+
+            var value1 = Length.FromMillimeters(33);
+
+            Length clampedValue = UnitMath.Clamp(value1, min, max);
+            Assert.Equal(33, clampedValue.Value);
+            Assert.Equal(LengthUnit.Millimeter, clampedValue.Unit);
+
+            var value2 = Length.FromMillimeters(-1500);
+
+            Length clampedMin = UnitMath.Clamp(value2, min, max);
+            Assert.Equal(-1, clampedMin.Value);
+            Assert.Equal(LengthUnit.Meter, clampedMin.Unit);
+
+            var value3 = Length.FromMillimeters(2000);
+
+            Length clampedMax = UnitMath.Clamp(value3, min, max);
+            Assert.Equal(150, clampedMax.Value);
+            Assert.Equal(LengthUnit.Centimeter, clampedMax.Unit);
+        }
+
+        [Fact]
+        public void ClampMinGreaterThanMaxThrowsException()
+        {
+            var min = Length.FromMeters(2);
+            var max = Length.FromCentimeters(150);
+            var value = Length.FromMillimeters(33);
+
+            Assert.Throws<ArgumentException>(() => UnitMath.Clamp(value, min, max));
+        }
     }
 }
