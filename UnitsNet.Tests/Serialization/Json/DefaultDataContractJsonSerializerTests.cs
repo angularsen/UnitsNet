@@ -144,7 +144,7 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DecimalQuantity_DeserializedFromDecimalValueAndunitInt()
+        public void DecimalQuantity_DeserializedFromDecimalValueAndUnitInt()
         {
             var expectedUnit = InformationUnit.Exabyte;
             var unitInt = (int)expectedUnit;
@@ -166,7 +166,7 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DecimalQuantity_DeserializedFromQuotedDecimalValueAndunitInt()
+        public void DecimalQuantity_DeserializedFromQuotedDecimalValueAndUnitInt()
         {
             var expectedUnit = InformationUnit.Exabyte;
             var unitInt = (int)expectedUnit;
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests.Serialization.Json
         }
 
         [Fact]
-        public void DecimalZeroQuantity_DeserializedFromunitIntAndNoValue()
+        public void DecimalZeroQuantity_DeserializedFromUnitIntAndNoValue()
         {
             var expectedUnit = InformationUnit.Exabyte;
             var unitInt = (int)expectedUnit;
