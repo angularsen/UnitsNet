@@ -46,7 +46,7 @@ namespace UnitsNet
         /// <summary>
         ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
-        double Value { get; }
+        QuantityValue Value { get; }
 
         /// <summary>
         ///     Converts this <see cref="IQuantity"/> to an <see cref="IQuantity"/> in the given <paramref name="unit"/>.

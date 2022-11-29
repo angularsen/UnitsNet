@@ -161,7 +161,8 @@ namespace UnitsNet
         /// </summary>
         public decimal Value => _value;
 
-        double IQuantity.Value => (double) _value;
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         /// <inheritdoc cref="IDecimalQuantity.Value"/>
         decimal IDecimalQuantity.Value => _value;
@@ -187,134 +188,134 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Bit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Bit"/>
         /// </summary>
-        public double Bits => As(InformationUnit.Bit);
+        public decimal Bits => As(InformationUnit.Bit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Byte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Byte"/>
         /// </summary>
-        public double Bytes => As(InformationUnit.Byte);
+        public decimal Bytes => As(InformationUnit.Byte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Exabit"/>
         /// </summary>
-        public double Exabits => As(InformationUnit.Exabit);
+        public decimal Exabits => As(InformationUnit.Exabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Exabyte"/>
         /// </summary>
-        public double Exabytes => As(InformationUnit.Exabyte);
+        public decimal Exabytes => As(InformationUnit.Exabyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
         /// </summary>
-        public double Exbibits => As(InformationUnit.Exbibit);
+        public decimal Exbibits => As(InformationUnit.Exbibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
         /// </summary>
-        public double Exbibytes => As(InformationUnit.Exbibyte);
+        public decimal Exbibytes => As(InformationUnit.Exbibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
         /// </summary>
-        public double Gibibits => As(InformationUnit.Gibibit);
+        public decimal Gibibits => As(InformationUnit.Gibibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Gibibyte"/>
         /// </summary>
-        public double Gibibytes => As(InformationUnit.Gibibyte);
+        public decimal Gibibytes => As(InformationUnit.Gibibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
         /// </summary>
-        public double Gigabits => As(InformationUnit.Gigabit);
+        public decimal Gigabits => As(InformationUnit.Gigabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
         /// </summary>
-        public double Gigabytes => As(InformationUnit.Gigabyte);
+        public decimal Gigabytes => As(InformationUnit.Gigabyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
         /// </summary>
-        public double Kibibits => As(InformationUnit.Kibibit);
+        public decimal Kibibits => As(InformationUnit.Kibibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Kibibyte"/>
         /// </summary>
-        public double Kibibytes => As(InformationUnit.Kibibyte);
+        public decimal Kibibytes => As(InformationUnit.Kibibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
         /// </summary>
-        public double Kilobits => As(InformationUnit.Kilobit);
+        public decimal Kilobits => As(InformationUnit.Kilobit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
         /// </summary>
-        public double Kilobytes => As(InformationUnit.Kilobyte);
+        public decimal Kilobytes => As(InformationUnit.Kilobyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
         /// </summary>
-        public double Mebibits => As(InformationUnit.Mebibit);
+        public decimal Mebibits => As(InformationUnit.Mebibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Mebibyte"/>
         /// </summary>
-        public double Mebibytes => As(InformationUnit.Mebibyte);
+        public decimal Mebibytes => As(InformationUnit.Mebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
         /// </summary>
-        public double Megabits => As(InformationUnit.Megabit);
+        public decimal Megabits => As(InformationUnit.Megabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
         /// </summary>
-        public double Megabytes => As(InformationUnit.Megabyte);
+        public decimal Megabytes => As(InformationUnit.Megabyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
         /// </summary>
-        public double Pebibits => As(InformationUnit.Pebibit);
+        public decimal Pebibits => As(InformationUnit.Pebibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Pebibyte"/>
         /// </summary>
-        public double Pebibytes => As(InformationUnit.Pebibyte);
+        public decimal Pebibytes => As(InformationUnit.Pebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
         /// </summary>
-        public double Petabits => As(InformationUnit.Petabit);
+        public decimal Petabits => As(InformationUnit.Petabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
         /// </summary>
-        public double Petabytes => As(InformationUnit.Petabyte);
+        public decimal Petabytes => As(InformationUnit.Petabyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
         /// </summary>
-        public double Tebibits => As(InformationUnit.Tebibit);
+        public decimal Tebibits => As(InformationUnit.Tebibit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Tebibyte"/>
         /// </summary>
-        public double Tebibytes => As(InformationUnit.Tebibyte);
+        public decimal Tebibytes => As(InformationUnit.Tebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
         /// </summary>
-        public double Terabits => As(InformationUnit.Terabit);
+        public decimal Terabits => As(InformationUnit.Terabit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
         /// </summary>
-        public double Terabytes => As(InformationUnit.Terabyte);
+        public decimal Terabytes => As(InformationUnit.Terabyte);
 
         #endregion
 
@@ -895,7 +896,7 @@ namespace UnitsNet
         }
 
         /// <summary>Get ratio value from dividing <see cref="Information"/> by <see cref="Information"/>.</summary>
-        public static double operator /(Information left, Information right)
+        public static decimal operator /(Information left, Information right)
         {
             return left.Bits / right.Bits;
         }
@@ -983,13 +984,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Information other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(Information other, decimal tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            decimal thisValue = this.Value;
+            decimal otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -1011,17 +1012,21 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(InformationUnit unit)
+        public decimal As(InformationUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
+        }
+
+        double IQuantity<InformationUnit>.As(InformationUnit unit)
+        {
+            return (double)As(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public decimal As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1035,13 +1040,19 @@ namespace UnitsNet
             return As(firstUnitInfo.Value);
         }
 
+         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        double IQuantity.As(UnitSystem unitSystem)
+        {
+            return (double)As(unitSystem);
+        }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is InformationUnit unitAsInformationUnit))
+            if (!(unit is InformationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(InformationUnit)} is supported.", nameof(unit));
 
-            return As(unitAsInformationUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -1088,10 +1099,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is InformationUnit unitAsInformationUnit))
+            if (!(unit is InformationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(InformationUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsInformationUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>

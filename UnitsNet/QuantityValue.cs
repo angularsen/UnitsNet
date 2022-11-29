@@ -5,6 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Globalization;
 using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
@@ -28,8 +29,13 @@ namespace UnitsNet
     /// </remarks>
     [StructLayout(LayoutKind.Explicit)]
     [DebuggerDisplay("{GetDebugRepresentation()}")]
-    public readonly struct QuantityValue
+    public readonly struct QuantityValue : IFormattable, IEquatable<QuantityValue>, IComparable<QuantityValue>, IComparable
     {
+        /// <summary>
+        /// The value 0
+        /// </summary>
+        public static readonly QuantityValue Zero = new QuantityValue(0, 0);
+
         /// <summary>
         ///     Value assigned when implicitly casting from all numeric types except <see cref="decimal" />, since
         ///     <see cref="double" /> has the greatest range.
@@ -63,6 +69,25 @@ namespace UnitsNet
             _decimalValue = val;
             Type = UnderlyingDataType.Decimal;
         }
+
+        private QuantityValue(double value, decimal valueDecimal) : this()
+        {
+            if (valueDecimal != 0)
+            {
+                _decimalValue = valueDecimal;
+                Type = UnderlyingDataType.Decimal;
+            }
+            else
+            {
+                _doubleValue = value;
+                Type = UnderlyingDataType.Double;
+            }
+        }
+
+        /// <summary>
+        /// Returns true if the underlying value is stored as a decimal
+        /// </summary>
+        public bool IsDecimal => Type == UnderlyingDataType.Decimal;
 
         #region To QuantityValue
 
@@ -103,11 +128,141 @@ namespace UnitsNet
         /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="decimal"/>.</summary>
         public static explicit operator decimal(QuantityValue number)
             => number.Type switch
+        {
+            UnderlyingDataType.Decimal => number._decimalValue,
+            UnderlyingDataType.Double => (decimal)number._doubleValue,
+            _ => throw new NotImplementedException()
+        };
+
+        #endregion
+
+        #region Operators and Comparators
+
+        /// <inheritdoc />
+        public override bool Equals(object other)
+        {
+            if (other is QuantityValue qv)
             {
-                UnderlyingDataType.Decimal => number._decimalValue,
-                UnderlyingDataType.Double => (decimal)number._doubleValue,
-                _ => throw new NotImplementedException()
-            };
+                return Equals(qv);
+            }
+
+            return false;
+        }
+
+        /// <inheritdoc />
+        public override int GetHashCode()
+        {
+            if (IsDecimal)
+            {
+                return _decimalValue.GetHashCode();
+            }
+            else
+            {
+                return _doubleValue.GetHashCode();
+            }
+        }
+
+        /// <summary>
+        /// Performs an equality comparison on two instances of <see cref="QuantityValue"/>.
+        /// Note that rounding might occur if the two values don't use the same base type.
+        /// </summary>
+        /// <param name="other">The value to compare to</param>
+        /// <returns>True on exact equality, false otherwise</returns>
+        public bool Equals(QuantityValue other)
+        {
+            return CompareTo(other) == 0;
+        }
+
+        /// <summary>Equality comparator</summary>
+        public static bool operator ==(QuantityValue a, QuantityValue b)
+        {
+            return a.CompareTo(b) == 0;
+        }
+
+        /// <summary>Inequality comparator</summary>
+        public static bool operator !=(QuantityValue a, QuantityValue b)
+        {
+            return a.CompareTo(b) != 0;
+        }
+
+        /// <summary>
+        /// Greater-than operator
+        /// </summary>
+        public static bool operator >(QuantityValue a, QuantityValue b)
+        {
+            return a.CompareTo(b) > 0;
+        }
+
+        /// <summary>
+        /// Less-than operator
+        /// </summary>
+        public static bool operator <(QuantityValue a, QuantityValue b)
+        {
+            return a.CompareTo(b) < 0;
+        }
+
+        /// <summary>
+        /// Greater-than-or-equal operator
+        /// </summary>
+        public static bool operator >=(QuantityValue a, QuantityValue b)
+        {
+            return a.CompareTo(b) >= 0;
+        }
+
+        /// <summary>
+        /// Less-than-or-equal operator
+        /// </summary>
+        public static bool operator <=(QuantityValue a, QuantityValue b)
+        {
+            return a.CompareTo(b) <= 0;
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(QuantityValue other)
+        {
+            if (IsDecimal && other.IsDecimal)
+            {
+                return _decimalValue.CompareTo(other._decimalValue);
+            }
+            else if (IsDecimal)
+            {
+                return _decimalValue.CompareTo((decimal)other._doubleValue);
+            }
+            else if (other.IsDecimal)
+            {
+                return ((decimal)_doubleValue).CompareTo(other._decimalValue);
+            }
+            else
+            {
+                return _doubleValue.CompareTo(other._doubleValue);
+            }
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(object obj)
+        {
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is QuantityValue other)) throw new ArgumentException("Expected type QuantityValue.", nameof(obj));
+
+            return CompareTo(other);
+        }
+
+        /// <summary>
+        /// Returns the negated value of the operand
+        /// </summary>
+        /// <param name="v">Value to negate</param>
+        /// <returns>-v</returns>
+        public static QuantityValue operator -(QuantityValue v)
+        {
+            if (v.IsDecimal)
+            {
+                return new QuantityValue(-v._decimalValue);
+            }
+            else
+            {
+                return new QuantityValue(-v._doubleValue);
+            }
+        }
 
         #endregion
 
@@ -131,6 +286,44 @@ namespace UnitsNet
             }
 
             return builder.ToString();
+        }
+
+        /// <summary>
+        /// Returns the string representation of the numeric value, formatted using the given standard numeric format string
+        /// </summary>
+        /// <param name="format">A standard numeric format string (must be valid for either double or decimal, depending on the base type)</param>
+        /// <returns>The string representation</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// Returns the string representation of the numeric value, formatted using the given standard numeric format string
+        /// </summary>
+        /// <param name="formatProvider">The culture to use</param>
+        /// <returns>The string representation</returns>
+        public string ToString(IFormatProvider formatProvider)
+        {
+            return ToString(string.Empty, formatProvider);
+        }
+
+        /// <summary>
+        /// Returns the string representation of the underlying value
+        /// </summary>
+        /// <param name="format">Standard format specifiers. Because the underlying value can be double or decimal, the meaning can vary</param>
+        /// <param name="formatProvider">Culture specific settings</param>
+        /// <returns>A string representation of the number</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (IsDecimal)
+            {
+                return _decimalValue.ToString(format, formatProvider);
+            }
+            else
+            {
+                return _doubleValue.ToString(format, formatProvider);
+            }
         }
 
         /// <summary>

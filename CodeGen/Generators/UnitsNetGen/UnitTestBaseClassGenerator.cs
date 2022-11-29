@@ -102,7 +102,7 @@ namespace UnitsNet.Tests
                     continue;
 
                 Writer.WL($@"
-        protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
+        protected abstract {_quantity.ValueType} {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
             }
 
             Writer.WL("");
@@ -114,12 +114,12 @@ namespace UnitsNet.Tests
                     continue;
 
                 Writer.WL($@"
-        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}");
+        protected virtual {_quantity.ValueType} {unit.PluralName}Tolerance {{ get {{ return { (_quantity.ValueType == "decimal" ? "1e-9m" : "1e-5") }; }} }}");
             }
         Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor({_unitEnumName} unit)
+        protected ({_quantity.ValueType} UnitsInBaseUnit, {_quantity.ValueType} Tolerence) GetConversionFactor({_unitEnumName} unit)
         {{
             return unit switch
             {{");
@@ -355,7 +355,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }}
 

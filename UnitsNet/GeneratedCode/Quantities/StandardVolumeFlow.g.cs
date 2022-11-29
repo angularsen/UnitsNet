@@ -144,6 +144,9 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
+
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -660,7 +663,7 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
+            double thisValue = this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
@@ -686,10 +689,9 @@ namespace UnitsNet
         public double As(StandardVolumeFlowUnit unit)
         {
             if (Unit == unit)
-                return Convert.ToDouble(Value);
+                return Value;
 
-            var converted = GetValueAs(unit);
-            return Convert.ToDouble(converted);
+            return GetValueAs(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -710,10 +712,10 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is StandardVolumeFlowUnit unitAsStandardVolumeFlowUnit))
+            if (!(unit is StandardVolumeFlowUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(StandardVolumeFlowUnit)} is supported.", nameof(unit));
 
-            return As(unitAsStandardVolumeFlowUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -760,10 +762,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is StandardVolumeFlowUnit unitAsStandardVolumeFlowUnit))
+            if (!(unit is StandardVolumeFlowUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(StandardVolumeFlowUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsStandardVolumeFlowUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>

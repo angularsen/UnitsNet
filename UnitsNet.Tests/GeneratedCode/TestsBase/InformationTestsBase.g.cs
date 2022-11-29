@@ -38,63 +38,63 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class InformationTestsBase : QuantityTestsBase
     {
-        protected abstract double BitsInOneBit { get; }
-        protected abstract double BytesInOneBit { get; }
-        protected abstract double ExabitsInOneBit { get; }
-        protected abstract double ExabytesInOneBit { get; }
-        protected abstract double ExbibitsInOneBit { get; }
-        protected abstract double ExbibytesInOneBit { get; }
-        protected abstract double GibibitsInOneBit { get; }
-        protected abstract double GibibytesInOneBit { get; }
-        protected abstract double GigabitsInOneBit { get; }
-        protected abstract double GigabytesInOneBit { get; }
-        protected abstract double KibibitsInOneBit { get; }
-        protected abstract double KibibytesInOneBit { get; }
-        protected abstract double KilobitsInOneBit { get; }
-        protected abstract double KilobytesInOneBit { get; }
-        protected abstract double MebibitsInOneBit { get; }
-        protected abstract double MebibytesInOneBit { get; }
-        protected abstract double MegabitsInOneBit { get; }
-        protected abstract double MegabytesInOneBit { get; }
-        protected abstract double PebibitsInOneBit { get; }
-        protected abstract double PebibytesInOneBit { get; }
-        protected abstract double PetabitsInOneBit { get; }
-        protected abstract double PetabytesInOneBit { get; }
-        protected abstract double TebibitsInOneBit { get; }
-        protected abstract double TebibytesInOneBit { get; }
-        protected abstract double TerabitsInOneBit { get; }
-        protected abstract double TerabytesInOneBit { get; }
+        protected abstract decimal BitsInOneBit { get; }
+        protected abstract decimal BytesInOneBit { get; }
+        protected abstract decimal ExabitsInOneBit { get; }
+        protected abstract decimal ExabytesInOneBit { get; }
+        protected abstract decimal ExbibitsInOneBit { get; }
+        protected abstract decimal ExbibytesInOneBit { get; }
+        protected abstract decimal GibibitsInOneBit { get; }
+        protected abstract decimal GibibytesInOneBit { get; }
+        protected abstract decimal GigabitsInOneBit { get; }
+        protected abstract decimal GigabytesInOneBit { get; }
+        protected abstract decimal KibibitsInOneBit { get; }
+        protected abstract decimal KibibytesInOneBit { get; }
+        protected abstract decimal KilobitsInOneBit { get; }
+        protected abstract decimal KilobytesInOneBit { get; }
+        protected abstract decimal MebibitsInOneBit { get; }
+        protected abstract decimal MebibytesInOneBit { get; }
+        protected abstract decimal MegabitsInOneBit { get; }
+        protected abstract decimal MegabytesInOneBit { get; }
+        protected abstract decimal PebibitsInOneBit { get; }
+        protected abstract decimal PebibytesInOneBit { get; }
+        protected abstract decimal PetabitsInOneBit { get; }
+        protected abstract decimal PetabytesInOneBit { get; }
+        protected abstract decimal TebibitsInOneBit { get; }
+        protected abstract decimal TebibytesInOneBit { get; }
+        protected abstract decimal TerabitsInOneBit { get; }
+        protected abstract decimal TerabytesInOneBit { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BitsTolerance { get { return 1e-5; } }
-        protected virtual double BytesTolerance { get { return 1e-5; } }
-        protected virtual double ExabitsTolerance { get { return 1e-5; } }
-        protected virtual double ExabytesTolerance { get { return 1e-5; } }
-        protected virtual double ExbibitsTolerance { get { return 1e-5; } }
-        protected virtual double ExbibytesTolerance { get { return 1e-5; } }
-        protected virtual double GibibitsTolerance { get { return 1e-5; } }
-        protected virtual double GibibytesTolerance { get { return 1e-5; } }
-        protected virtual double GigabitsTolerance { get { return 1e-5; } }
-        protected virtual double GigabytesTolerance { get { return 1e-5; } }
-        protected virtual double KibibitsTolerance { get { return 1e-5; } }
-        protected virtual double KibibytesTolerance { get { return 1e-5; } }
-        protected virtual double KilobitsTolerance { get { return 1e-5; } }
-        protected virtual double KilobytesTolerance { get { return 1e-5; } }
-        protected virtual double MebibitsTolerance { get { return 1e-5; } }
-        protected virtual double MebibytesTolerance { get { return 1e-5; } }
-        protected virtual double MegabitsTolerance { get { return 1e-5; } }
-        protected virtual double MegabytesTolerance { get { return 1e-5; } }
-        protected virtual double PebibitsTolerance { get { return 1e-5; } }
-        protected virtual double PebibytesTolerance { get { return 1e-5; } }
-        protected virtual double PetabitsTolerance { get { return 1e-5; } }
-        protected virtual double PetabytesTolerance { get { return 1e-5; } }
-        protected virtual double TebibitsTolerance { get { return 1e-5; } }
-        protected virtual double TebibytesTolerance { get { return 1e-5; } }
-        protected virtual double TerabitsTolerance { get { return 1e-5; } }
-        protected virtual double TerabytesTolerance { get { return 1e-5; } }
+        protected virtual decimal BitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal BytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExabytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExbibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExbibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal GibibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal GibibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal GigabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal GigabytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal KibibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal KibibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal KilobitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal KilobytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal MebibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal MebibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal MegabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal MegabytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal PebibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal PebibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal PetabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal PetabytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal TebibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal TebibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal TerabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal TerabytesTolerance { get { return 1e-9m; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(InformationUnit unit)
+        protected (decimal UnitsInBaseUnit, decimal Tolerence) GetConversionFactor(InformationUnit unit)
         {
             return unit switch
             {
@@ -758,7 +758,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 

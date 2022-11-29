@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -40,7 +41,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="MassFlow"/> divided by <see cref="Power"/>.</summary>
         public static BrakeSpecificFuelConsumption operator /(MassFlow massFlow, Power power)
         {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(massFlow.KilogramsPerSecond / power.Watts);
+            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(massFlow.KilogramsPerSecond / (double)power.Watts);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="MassFlow"/> times <see cref="SpecificEnergy"/>.</summary>
