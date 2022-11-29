@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricInductance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricInductance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricInductanceUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricInductanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -342,6 +342,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricInductance.Units.Where(u => u != ElectricInductance.BaseUnit).DefaultIfEmpty(ElectricInductance.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricInductance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricInductanceUnit unit)
+        {
+            var quantity = default(ElectricInductance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

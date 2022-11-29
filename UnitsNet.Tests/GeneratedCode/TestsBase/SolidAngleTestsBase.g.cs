@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
             Assert.Equal("SolidAngle", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SolidAngleUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<SolidAngleUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -240,6 +240,15 @@ namespace UnitsNet.Tests
             var fromUnit = SolidAngle.Units.Where(u => u != SolidAngle.BaseUnit).DefaultIfEmpty(SolidAngle.BaseUnit).FirstOrDefault();
 
             var quantity = SolidAngle.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(SolidAngleUnit unit)
+        {
+            var quantity = default(SolidAngle);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

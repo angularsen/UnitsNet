@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureChangeRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TemperatureChangeRateUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -546,6 +546,15 @@ namespace UnitsNet.Tests
             var fromUnit = TemperatureChangeRate.Units.Where(u => u != TemperatureChangeRate.BaseUnit).DefaultIfEmpty(TemperatureChangeRate.BaseUnit).FirstOrDefault();
 
             var quantity = TemperatureChangeRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TemperatureChangeRateUnit unit)
+        {
+            var quantity = default(TemperatureChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

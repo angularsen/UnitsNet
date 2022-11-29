@@ -354,7 +354,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlow.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeFlow", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumeFlowUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<VolumeFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -3976,6 +3976,15 @@ namespace UnitsNet.Tests
             var fromUnit = VolumeFlow.Units.Where(u => u != VolumeFlow.BaseUnit).DefaultIfEmpty(VolumeFlow.BaseUnit).FirstOrDefault();
 
             var quantity = VolumeFlow.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(VolumeFlowUnit unit)
+        {
+            var quantity = default(VolumeFlow);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

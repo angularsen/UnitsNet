@@ -32,10 +32,10 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The area density of a two-dimensional object is calculated as the mass per unit area.
+    ///     The area density of a two-dimensional object is calculated as the mass per unit area. For paper this is also called grammage.
     /// </summary>
     [DataContract]
-    public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IComparable, IComparable<AreaDensity>, IConvertible, IFormattable
+    public readonly partial struct AreaDensity : IQuantity<AreaDensityUnit>, IComparable, IComparable<AreaDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -58,7 +58,9 @@ namespace UnitsNet
             Info = new QuantityInfo<AreaDensityUnit>("AreaDensity",
                 new UnitInfo<AreaDensityUnit>[]
                 {
+                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.GramPerSquareMeter, "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram)),
                     new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram)),
+                    new UnitInfo<AreaDensityUnit>(AreaDensityUnit.MilligramPerSquareMeter, "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram)),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -160,9 +162,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.GramPerSquareMeter"/>
+        /// </summary>
+        public double GramsPerSquareMeter => As(AreaDensityUnit.GramPerSquareMeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>
+        /// </summary>
+        public double MilligramsPerSquareMeter => As(AreaDensityUnit.MilligramPerSquareMeter);
 
         #endregion
 
@@ -174,17 +186,23 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> AreaDensityUnit
+            // Register in unit converter: AreaDensityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.GramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.KilogramPerSquareMeter));
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.MilligramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.KilogramPerSquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity);
 
-            // Register in unit converter: AreaDensityUnit -> BaseUnit
+            // Register in unit converter: BaseUnit -> AreaDensityUnit
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.GramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.GramPerSquareMeter));
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.MilligramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.MilligramPerSquareMeter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.GramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m²", "gsm"});
             unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.KilogramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m²"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(AreaDensityUnit.MilligramPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m²"});
         }
 
         /// <summary>
@@ -213,6 +231,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AreaDensity FromGramsPerSquareMeter(QuantityValue gramspersquaremeter)
+        {
+            double value = (double) gramspersquaremeter;
+            return new AreaDensity(value, AreaDensityUnit.GramPerSquareMeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -220,6 +248,16 @@ namespace UnitsNet
         {
             double value = (double) kilogramspersquaremeter;
             return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AreaDensity FromMilligramsPerSquareMeter(QuantityValue milligramspersquaremeter)
+        {
+            double value = (double) milligramspersquaremeter;
+            return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
         }
 
         /// <summary>
@@ -390,13 +428,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="AreaDensity"/> from adding two <see cref="AreaDensity"/>.</summary>
         public static AreaDensity operator +(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new AreaDensity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from subtracting two <see cref="AreaDensity"/>.</summary>
         public static AreaDensity operator -(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new AreaDensity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
@@ -430,25 +468,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(AreaDensity left, AreaDensity right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(AreaDensity left, AreaDensity right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(AreaDensity left, AreaDensity right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(AreaDensity left, AreaDensity right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <inheritdoc />
@@ -463,7 +501,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(AreaDensity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -539,7 +577,7 @@ namespace UnitsNet
             if (Unit == unit)
                 return Value;
 
-            return GetValueAs(unit);
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -577,34 +615,64 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this AreaDensity to another AreaDensity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="AreaDensity"/> to another <see cref="AreaDensity"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A AreaDensity with the specified unit.</returns>
         public AreaDensity ToUnit(AreaDensityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(AreaDensity), Unit, typeof(AreaDensity), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (AreaDensity)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (AreaDensity)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="AreaDensity"/> to another <see cref="AreaDensity"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="AreaDensity"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(AreaDensityUnit unit, out AreaDensity? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // AreaDensityUnit -> BaseUnit
+                (AreaDensityUnit.GramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value / 1000, AreaDensityUnit.KilogramPerSquareMeter),
+                (AreaDensityUnit.MilligramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value / 1000000, AreaDensityUnit.KilogramPerSquareMeter),
+
+                // BaseUnit -> AreaDensityUnit
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.GramPerSquareMeter) => new AreaDensity(_value * 1000, AreaDensityUnit.GramPerSquareMeter),
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.MilligramPerSquareMeter) => new AreaDensity(_value * 1000000, AreaDensityUnit.MilligramPerSquareMeter),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -639,12 +707,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(AreaDensityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificWeight.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificWeight", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificWeightUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -784,6 +784,15 @@ namespace UnitsNet.Tests
             var fromUnit = SpecificWeight.Units.Where(u => u != SpecificWeight.BaseUnit).DefaultIfEmpty(SpecificWeight.BaseUnit).FirstOrDefault();
 
             var quantity = SpecificWeight.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(SpecificWeightUnit unit)
+        {
+            var quantity = default(SpecificWeight);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

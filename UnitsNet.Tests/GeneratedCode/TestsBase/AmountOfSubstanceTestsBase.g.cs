@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AmountOfSubstance.Zero, quantityInfo.Zero);
             Assert.Equal("AmountOfSubstance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AmountOfSubstanceUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<AmountOfSubstanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -694,6 +694,15 @@ namespace UnitsNet.Tests
             var fromUnit = AmountOfSubstance.Units.Where(u => u != AmountOfSubstance.BaseUnit).DefaultIfEmpty(AmountOfSubstance.BaseUnit).FirstOrDefault();
 
             var quantity = AmountOfSubstance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(AmountOfSubstanceUnit unit)
+        {
+            var quantity = default(AmountOfSubstance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

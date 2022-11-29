@@ -5,9 +5,10 @@ $testReportDir = "$root\Artifacts\Logs"
 $testCoverageDir = "$root\Artifacts\Coverage"
 $nuget = "$root\Tools\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-$msbuild = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
-if ($msbuild) {
-  $msbuild = join-path $msbuild 'MSBuild\Current\Bin\amd64\MSBuild.exe'
+$msbuildPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+if ($msbuildPath) {
+  $msbuild = join-path $msbuildPath 'MSBuild\Current\Bin\MSBuild.exe'
+  $msbuildx64 = join-path $msbuildPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'
 }
 
 import-module $PSScriptRoot\build-pack-nano-nugets.psm1
@@ -52,7 +53,7 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
     # msbuild does not auto-restore nugets for this project type
     & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
     # now build
-    & "$msbuild" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
+    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"  $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 

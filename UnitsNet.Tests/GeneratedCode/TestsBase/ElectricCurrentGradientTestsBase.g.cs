@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentGradient.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrentGradient", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricCurrentGradientUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricCurrentGradientUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -342,6 +342,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricCurrentGradient.Units.Where(u => u != ElectricCurrentGradient.BaseUnit).DefaultIfEmpty(ElectricCurrentGradient.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricCurrentGradient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricCurrentGradientUnit unit)
+        {
+            var quantity = default(ElectricCurrentGradient);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

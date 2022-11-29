@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Force.Zero, quantityInfo.Zero);
             Assert.Equal("Force", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ForceUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ForceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1130,6 +1130,15 @@ namespace UnitsNet.Tests
             var fromUnit = Force.Units.Where(u => u != Force.BaseUnit).DefaultIfEmpty(Force.BaseUnit).FirstOrDefault();
 
             var quantity = Force.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ForceUnit unit)
+        {
+            var quantity = default(Force);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

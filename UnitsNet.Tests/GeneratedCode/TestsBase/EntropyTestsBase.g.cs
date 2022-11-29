@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Entropy.Zero, quantityInfo.Zero);
             Assert.Equal("Entropy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<EntropyUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<EntropyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -444,6 +444,15 @@ namespace UnitsNet.Tests
             var fromUnit = Entropy.Units.Where(u => u != Entropy.BaseUnit).DefaultIfEmpty(Entropy.BaseUnit).FirstOrDefault();
 
             var quantity = Entropy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(EntropyUnit unit)
+        {
+            var quantity = default(Entropy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

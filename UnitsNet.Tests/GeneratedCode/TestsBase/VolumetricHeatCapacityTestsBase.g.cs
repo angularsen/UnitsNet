@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumetricHeatCapacity.Zero, quantityInfo.Zero);
             Assert.Equal("VolumetricHeatCapacity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumetricHeatCapacityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -512,6 +512,15 @@ namespace UnitsNet.Tests
             var fromUnit = VolumetricHeatCapacity.Units.Where(u => u != VolumetricHeatCapacity.BaseUnit).DefaultIfEmpty(VolumetricHeatCapacity.BaseUnit).FirstOrDefault();
 
             var quantity = VolumetricHeatCapacity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(VolumetricHeatCapacityUnit unit)
+        {
+            var quantity = default(VolumetricHeatCapacity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

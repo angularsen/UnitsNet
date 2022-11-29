@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MagneticField.Zero, quantityInfo.Zero);
             Assert.Equal("MagneticField", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MagneticFieldUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MagneticFieldUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -410,6 +410,15 @@ namespace UnitsNet.Tests
             var fromUnit = MagneticField.Units.Where(u => u != MagneticField.BaseUnit).DefaultIfEmpty(MagneticField.BaseUnit).FirstOrDefault();
 
             var quantity = MagneticField.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MagneticFieldUnit unit)
+        {
+            var quantity = default(MagneticField);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

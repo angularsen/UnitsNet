@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(BrakeSpecificFuelConsumption.Zero, quantityInfo.Zero);
             Assert.Equal("BrakeSpecificFuelConsumption", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<BrakeSpecificFuelConsumptionUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<BrakeSpecificFuelConsumptionUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -308,6 +308,15 @@ namespace UnitsNet.Tests
             var fromUnit = BrakeSpecificFuelConsumption.Units.Where(u => u != BrakeSpecificFuelConsumption.BaseUnit).DefaultIfEmpty(BrakeSpecificFuelConsumption.BaseUnit).FirstOrDefault();
 
             var quantity = BrakeSpecificFuelConsumption.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(BrakeSpecificFuelConsumptionUnit unit)
+        {
+            var quantity = default(BrakeSpecificFuelConsumption);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

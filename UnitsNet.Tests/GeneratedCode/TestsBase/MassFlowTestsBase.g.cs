@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFlow.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlow", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MassFlowUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1570,6 +1570,15 @@ namespace UnitsNet.Tests
             var fromUnit = MassFlow.Units.Where(u => u != MassFlow.BaseUnit).DefaultIfEmpty(MassFlow.BaseUnit).FirstOrDefault();
 
             var quantity = MassFlow.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MassFlowUnit unit)
+        {
+            var quantity = default(MassFlow);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

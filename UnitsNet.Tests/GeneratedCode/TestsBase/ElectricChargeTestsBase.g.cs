@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCharge.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCharge", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricChargeUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricChargeUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -428,6 +428,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricCharge.Units.Where(u => u != ElectricCharge.BaseUnit).DefaultIfEmpty(ElectricCharge.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricCharge.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricChargeUnit unit)
+        {
+            var quantity = default(ElectricCharge);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

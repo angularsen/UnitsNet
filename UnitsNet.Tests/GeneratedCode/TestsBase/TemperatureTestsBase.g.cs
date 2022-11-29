@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Temperature.Zero, quantityInfo.Zero);
             Assert.Equal("Temperature", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TemperatureUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<TemperatureUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -546,6 +546,15 @@ namespace UnitsNet.Tests
             var fromUnit = Temperature.Units.Where(u => u != Temperature.BaseUnit).DefaultIfEmpty(Temperature.BaseUnit).FirstOrDefault();
 
             var quantity = Temperature.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TemperatureUnit unit)
+        {
+            var quantity = default(Temperature);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -282,7 +282,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("PowerDensity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PowerDensityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<PowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1614,6 +1614,15 @@ namespace UnitsNet.Tests
             var fromUnit = PowerDensity.Units.Where(u => u != PowerDensity.BaseUnit).DefaultIfEmpty(PowerDensity.BaseUnit).FirstOrDefault();
 
             var quantity = PowerDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PowerDensityUnit unit)
+        {
+            var quantity = default(PowerDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

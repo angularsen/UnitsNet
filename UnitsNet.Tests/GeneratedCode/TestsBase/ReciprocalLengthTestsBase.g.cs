@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalLength.Zero, quantityInfo.Zero);
             Assert.Equal("ReciprocalLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ReciprocalLengthUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -786,6 +786,15 @@ namespace UnitsNet.Tests
             var fromUnit = ReciprocalLength.Units.Where(u => u != ReciprocalLength.BaseUnit).DefaultIfEmpty(ReciprocalLength.BaseUnit).FirstOrDefault();
 
             var quantity = ReciprocalLength.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ReciprocalLengthUnit unit)
+        {
+            var quantity = default(ReciprocalLength);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

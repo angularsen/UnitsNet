@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricAdmittance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricAdmittance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricAdmittanceUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricAdmittanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -342,6 +342,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricAdmittance.Units.Where(u => u != ElectricAdmittance.BaseUnit).DefaultIfEmpty(ElectricAdmittance.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricAdmittance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricAdmittanceUnit unit)
+        {
+            var quantity = default(ElectricAdmittance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

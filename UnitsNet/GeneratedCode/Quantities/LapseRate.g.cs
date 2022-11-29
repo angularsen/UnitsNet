@@ -36,7 +36,7 @@ namespace UnitsNet
     /// </summary>
     [Obsolete("Use TemperatureGradient instead.")]
     [DataContract]
-    public partial struct LapseRate : IQuantity<LapseRateUnit>, IComparable, IComparable<LapseRate>, IConvertible, IFormattable
+    public readonly partial struct LapseRate : IQuantity<LapseRateUnit>, IComparable, IComparable<LapseRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -175,12 +175,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> LapseRateUnit
+            // Register in unit converter: LapseRateUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<LapseRate>(LapseRateUnit.DegreeCelsiusPerKilometer, LapseRateUnit.DegreeCelsiusPerKilometer, quantity => quantity);
 
-            // Register in unit converter: LapseRateUnit -> BaseUnit
+            // Register in unit converter: BaseUnit -> LapseRateUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -391,13 +391,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="LapseRate"/> from adding two <see cref="LapseRate"/>.</summary>
         public static LapseRate operator +(LapseRate left, LapseRate right)
         {
-            return new LapseRate(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new LapseRate(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="LapseRate"/> from subtracting two <see cref="LapseRate"/>.</summary>
         public static LapseRate operator -(LapseRate left, LapseRate right)
         {
-            return new LapseRate(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new LapseRate(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="LapseRate"/> from multiplying value and <see cref="LapseRate"/>.</summary>
@@ -431,25 +431,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(LapseRate left, LapseRate right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(LapseRate left, LapseRate right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(LapseRate left, LapseRate right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(LapseRate left, LapseRate right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <inheritdoc />
@@ -464,7 +464,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(LapseRate other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -540,7 +540,7 @@ namespace UnitsNet
             if (Unit == unit)
                 return Value;
 
-            return GetValueAs(unit);
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -578,34 +578,60 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this LapseRate to another LapseRate using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="LapseRate"/> to another <see cref="LapseRate"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A LapseRate with the specified unit.</returns>
         public LapseRate ToUnit(LapseRateUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(LapseRate), Unit, typeof(LapseRate), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (LapseRate)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (LapseRate)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="LapseRate"/> to another <see cref="LapseRate"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="LapseRate"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(LapseRateUnit unit, out LapseRate? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // LapseRateUnit -> BaseUnit
+
+                // BaseUnit -> LapseRateUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -640,12 +666,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(LapseRateUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

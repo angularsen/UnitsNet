@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public partial struct TemperatureGradient : IQuantity<TemperatureGradientUnit>, IComparable, IComparable<TemperatureGradient>, IConvertible, IFormattable
+    public readonly partial struct TemperatureGradient : IQuantity<TemperatureGradientUnit>, IComparable, IComparable<TemperatureGradient>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -192,18 +192,18 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> TemperatureGradientUnit
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity => new TemperatureGradient(quantity.Value * 1e3, TemperatureGradientUnit.DegreeCelsiusPerKilometer));
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity => new TemperatureGradient(quantity.Value, TemperatureGradientUnit.DegreeCelsiusPerMeter));
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity => new TemperatureGradient((quantity.Value * 0.3048) * 9 / 5, TemperatureGradientUnit.DegreeFahrenheitPerFoot));
+            // Register in unit converter: TemperatureGradientUnit -> BaseUnit
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity.ToUnit(TemperatureGradientUnit.KelvinPerMeter));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity.ToUnit(TemperatureGradientUnit.KelvinPerMeter));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity.ToUnit(TemperatureGradientUnit.KelvinPerMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.KelvinPerMeter, quantity => quantity);
 
-            // Register in unit converter: TemperatureGradientUnit -> BaseUnit
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter, quantity => new TemperatureGradient(quantity.Value / 1e3, TemperatureGradientUnit.KelvinPerMeter));
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradientUnit.KelvinPerMeter, quantity => new TemperatureGradient(quantity.Value, TemperatureGradientUnit.KelvinPerMeter));
-            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter, quantity => new TemperatureGradient((quantity.Value / 0.3048) * 5 / 9, TemperatureGradientUnit.KelvinPerMeter));
+            // Register in unit converter: BaseUnit -> TemperatureGradientUnit
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerKilometer));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeCelsiusPerMeter));
+            unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -447,13 +447,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="TemperatureGradient"/> from adding two <see cref="TemperatureGradient"/>.</summary>
         public static TemperatureGradient operator +(TemperatureGradient left, TemperatureGradient right)
         {
-            return new TemperatureGradient(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new TemperatureGradient(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from subtracting two <see cref="TemperatureGradient"/>.</summary>
         public static TemperatureGradient operator -(TemperatureGradient left, TemperatureGradient right)
         {
-            return new TemperatureGradient(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new TemperatureGradient(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureGradient"/> from multiplying value and <see cref="TemperatureGradient"/>.</summary>
@@ -487,25 +487,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(TemperatureGradient left, TemperatureGradient right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(TemperatureGradient left, TemperatureGradient right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(TemperatureGradient left, TemperatureGradient right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(TemperatureGradient left, TemperatureGradient right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <inheritdoc />
@@ -520,7 +520,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(TemperatureGradient other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -596,7 +596,7 @@ namespace UnitsNet
             if (Unit == unit)
                 return Value;
 
-            return GetValueAs(unit);
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -634,34 +634,66 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this TemperatureGradient to another TemperatureGradient using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="TemperatureGradient"/> to another <see cref="TemperatureGradient"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A TemperatureGradient with the specified unit.</returns>
         public TemperatureGradient ToUnit(TemperatureGradientUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(TemperatureGradient), Unit, typeof(TemperatureGradient), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (TemperatureGradient)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (TemperatureGradient)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="TemperatureGradient"/> to another <see cref="TemperatureGradient"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="TemperatureGradient"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(TemperatureGradientUnit unit, out TemperatureGradient? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // TemperatureGradientUnit -> BaseUnit
+                (TemperatureGradientUnit.DegreeCelsiusPerKilometer, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value / 1e3, TemperatureGradientUnit.KelvinPerMeter),
+                (TemperatureGradientUnit.DegreeCelsiusPerMeter, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient(_value, TemperatureGradientUnit.KelvinPerMeter),
+                (TemperatureGradientUnit.DegreeFahrenheitPerFoot, TemperatureGradientUnit.KelvinPerMeter) => new TemperatureGradient((_value / 0.3048) * 5 / 9, TemperatureGradientUnit.KelvinPerMeter),
+
+                // BaseUnit -> TemperatureGradientUnit
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerKilometer) => new TemperatureGradient(_value * 1e3, TemperatureGradientUnit.DegreeCelsiusPerKilometer),
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeCelsiusPerMeter) => new TemperatureGradient(_value, TemperatureGradientUnit.DegreeCelsiusPerMeter),
+                (TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot) => new TemperatureGradient((_value * 0.3048) * 9 / 5, TemperatureGradientUnit.DegreeFahrenheitPerFoot),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -696,12 +728,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(TemperatureGradientUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

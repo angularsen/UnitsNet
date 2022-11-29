@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureDelta.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureDelta", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TemperatureDeltaUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -512,6 +512,15 @@ namespace UnitsNet.Tests
             var fromUnit = TemperatureDelta.Units.Where(u => u != TemperatureDelta.BaseUnit).DefaultIfEmpty(TemperatureDelta.BaseUnit).FirstOrDefault();
 
             var quantity = TemperatureDelta.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TemperatureDeltaUnit unit)
+        {
+            var quantity = default(TemperatureDelta);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

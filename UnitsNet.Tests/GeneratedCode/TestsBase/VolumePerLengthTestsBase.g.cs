@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("VolumePerLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumePerLengthUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<VolumePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -444,6 +444,15 @@ namespace UnitsNet.Tests
             var fromUnit = VolumePerLength.Units.Where(u => u != VolumePerLength.BaseUnit).DefaultIfEmpty(VolumePerLength.BaseUnit).FirstOrDefault();
 
             var quantity = VolumePerLength.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(VolumePerLengthUnit unit)
+        {
+            var quantity = default(VolumePerLength);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

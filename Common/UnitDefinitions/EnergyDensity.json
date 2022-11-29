@@ -1,0 +1,44 @@
+{
+  "Name": "EnergyDensity",
+  "BaseUnit": "JoulePerCubicMeter",
+  "XmlDoc": "Energy density is the amount of energy stored in a substance per unit volume and is measured in J/m³. It is sometimes confused with energy per unit mass which is properly called specific energy.",
+  "BaseDimensions": {
+    "M": 1,
+    "L": -1,
+    "T": -2
+  },
+
+  "Units": [
+    {
+      "SingularName": "JoulePerCubicMeter",
+      "PluralName": "JoulesPerCubicMeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "L": "Meter",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattHourPerCubicMeter",
+      "PluralName": "WattHoursPerCubicMeter",
+      "FromUnitToBaseFunc": "{x} * 3.6e+3",
+      "FromBaseToUnitFunc": "{x} / 3.6e+3",
+      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Wh/m³" ]
+        }
+      ]
+    }
+  ]
+}

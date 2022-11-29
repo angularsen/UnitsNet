@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
     [DataContract]
-    public partial struct Capacitance : IQuantity<CapacitanceUnit>, IComparable, IComparable<Capacitance>, IConvertible, IFormattable
+    public readonly partial struct Capacitance : IQuantity<CapacitanceUnit>, IComparable, IComparable<Capacitance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -213,24 +213,24 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> CapacitanceUnit
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Kilofarad, quantity => new Capacitance((quantity.Value) / 1e3d, CapacitanceUnit.Kilofarad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Megafarad, quantity => new Capacitance((quantity.Value) / 1e6d, CapacitanceUnit.Megafarad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Microfarad, quantity => new Capacitance((quantity.Value) / 1e-6d, CapacitanceUnit.Microfarad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Millifarad, quantity => new Capacitance((quantity.Value) / 1e-3d, CapacitanceUnit.Millifarad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Nanofarad, quantity => new Capacitance((quantity.Value) / 1e-9d, CapacitanceUnit.Nanofarad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Picofarad, quantity => new Capacitance((quantity.Value) / 1e-12d, CapacitanceUnit.Picofarad));
+            // Register in unit converter: CapacitanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Kilofarad, CapacitanceUnit.Farad, quantity => quantity.ToUnit(CapacitanceUnit.Farad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Megafarad, CapacitanceUnit.Farad, quantity => quantity.ToUnit(CapacitanceUnit.Farad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Microfarad, CapacitanceUnit.Farad, quantity => quantity.ToUnit(CapacitanceUnit.Farad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Millifarad, CapacitanceUnit.Farad, quantity => quantity.ToUnit(CapacitanceUnit.Farad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Nanofarad, CapacitanceUnit.Farad, quantity => quantity.ToUnit(CapacitanceUnit.Farad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Picofarad, CapacitanceUnit.Farad, quantity => quantity.ToUnit(CapacitanceUnit.Farad));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Farad, quantity => quantity);
 
-            // Register in unit converter: CapacitanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Kilofarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e3d, CapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Megafarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e6d, CapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Microfarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e-6d, CapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Millifarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e-3d, CapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Nanofarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e-9d, CapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Picofarad, CapacitanceUnit.Farad, quantity => new Capacitance((quantity.Value) * 1e-12d, CapacitanceUnit.Farad));
+            // Register in unit converter: BaseUnit -> CapacitanceUnit
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Kilofarad, quantity => quantity.ToUnit(CapacitanceUnit.Kilofarad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Megafarad, quantity => quantity.ToUnit(CapacitanceUnit.Megafarad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Microfarad, quantity => quantity.ToUnit(CapacitanceUnit.Microfarad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Millifarad, quantity => quantity.ToUnit(CapacitanceUnit.Millifarad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Nanofarad, quantity => quantity.ToUnit(CapacitanceUnit.Nanofarad));
+            unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Picofarad, quantity => quantity.ToUnit(CapacitanceUnit.Picofarad));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -507,13 +507,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Capacitance"/> from adding two <see cref="Capacitance"/>.</summary>
         public static Capacitance operator +(Capacitance left, Capacitance right)
         {
-            return new Capacitance(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Capacitance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Capacitance"/> from subtracting two <see cref="Capacitance"/>.</summary>
         public static Capacitance operator -(Capacitance left, Capacitance right)
         {
-            return new Capacitance(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Capacitance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Capacitance"/> from multiplying value and <see cref="Capacitance"/>.</summary>
@@ -547,25 +547,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Capacitance left, Capacitance right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Capacitance left, Capacitance right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Capacitance left, Capacitance right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Capacitance left, Capacitance right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <inheritdoc />
@@ -580,7 +580,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Capacitance other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -656,7 +656,7 @@ namespace UnitsNet
             if (Unit == unit)
                 return Value;
 
-            return GetValueAs(unit);
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -694,34 +694,72 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Capacitance to another Capacitance using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Capacitance"/> to another <see cref="Capacitance"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A Capacitance with the specified unit.</returns>
         public Capacitance ToUnit(CapacitanceUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(Capacitance), Unit, typeof(Capacitance), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Capacitance)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (Capacitance)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="Capacitance"/> to another <see cref="Capacitance"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="Capacitance"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(CapacitanceUnit unit, out Capacitance? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // CapacitanceUnit -> BaseUnit
+                (CapacitanceUnit.Kilofarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e3d, CapacitanceUnit.Farad),
+                (CapacitanceUnit.Megafarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e6d, CapacitanceUnit.Farad),
+                (CapacitanceUnit.Microfarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e-6d, CapacitanceUnit.Farad),
+                (CapacitanceUnit.Millifarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e-3d, CapacitanceUnit.Farad),
+                (CapacitanceUnit.Nanofarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e-9d, CapacitanceUnit.Farad),
+                (CapacitanceUnit.Picofarad, CapacitanceUnit.Farad) => new Capacitance((_value) * 1e-12d, CapacitanceUnit.Farad),
+
+                // BaseUnit -> CapacitanceUnit
+                (CapacitanceUnit.Farad, CapacitanceUnit.Kilofarad) => new Capacitance((_value) / 1e3d, CapacitanceUnit.Kilofarad),
+                (CapacitanceUnit.Farad, CapacitanceUnit.Megafarad) => new Capacitance((_value) / 1e6d, CapacitanceUnit.Megafarad),
+                (CapacitanceUnit.Farad, CapacitanceUnit.Microfarad) => new Capacitance((_value) / 1e-6d, CapacitanceUnit.Microfarad),
+                (CapacitanceUnit.Farad, CapacitanceUnit.Millifarad) => new Capacitance((_value) / 1e-3d, CapacitanceUnit.Millifarad),
+                (CapacitanceUnit.Farad, CapacitanceUnit.Nanofarad) => new Capacitance((_value) / 1e-9d, CapacitanceUnit.Nanofarad),
+                (CapacitanceUnit.Farad, CapacitanceUnit.Picofarad) => new Capacitance((_value) / 1e-12d, CapacitanceUnit.Picofarad),
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -756,12 +794,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(CapacitanceUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarMass.Zero, quantityInfo.Zero);
             Assert.Equal("MolarMass", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MolarMassUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MolarMassUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -902,6 +902,15 @@ namespace UnitsNet.Tests
             var fromUnit = MolarMass.Units.Where(u => u != MolarMass.BaseUnit).DefaultIfEmpty(MolarMass.BaseUnit).FirstOrDefault();
 
             var quantity = MolarMass.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MolarMassUnit unit)
+        {
+            var quantity = default(MolarMass);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

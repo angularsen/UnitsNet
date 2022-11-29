@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(AmplitudeRatio.Zero, quantityInfo.Zero);
             Assert.Equal("AmplitudeRatio", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AmplitudeRatioUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<AmplitudeRatioUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -342,6 +342,15 @@ namespace UnitsNet.Tests
             var fromUnit = AmplitudeRatio.Units.Where(u => u != AmplitudeRatio.BaseUnit).DefaultIfEmpty(AmplitudeRatio.BaseUnit).FirstOrDefault();
 
             var quantity = AmplitudeRatio.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(AmplitudeRatioUnit unit)
+        {
+            var quantity = default(AmplitudeRatio);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

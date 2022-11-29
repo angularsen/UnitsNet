@@ -310,7 +310,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Density.Zero, quantityInfo.Zero);
             Assert.Equal("Density", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<DensityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<DensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -2036,6 +2036,15 @@ namespace UnitsNet.Tests
             var fromUnit = Density.Units.Where(u => u != Density.BaseUnit).DefaultIfEmpty(Density.BaseUnit).FirstOrDefault();
 
             var quantity = Density.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(DensityUnit unit)
+        {
+            var quantity = default(Density);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

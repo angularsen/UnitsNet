@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCurrentDensity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricCurrentDensity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricCurrentDensityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -308,6 +308,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricCurrentDensity.Units.Where(u => u != ElectricCurrentDensity.BaseUnit).DefaultIfEmpty(ElectricCurrentDensity.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricCurrentDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricCurrentDensityUnit unit)
+        {
+            var quantity = default(ElectricCurrentDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

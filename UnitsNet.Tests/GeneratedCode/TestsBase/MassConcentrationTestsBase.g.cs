@@ -302,7 +302,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("MassConcentration", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MassConcentrationUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MassConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1968,6 +1968,15 @@ namespace UnitsNet.Tests
             var fromUnit = MassConcentration.Units.Where(u => u != MassConcentration.BaseUnit).DefaultIfEmpty(MassConcentration.BaseUnit).FirstOrDefault();
 
             var quantity = MassConcentration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MassConcentrationUnit unit)
+        {
+            var quantity = default(MassConcentration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

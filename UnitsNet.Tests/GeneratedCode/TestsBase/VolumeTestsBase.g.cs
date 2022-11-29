@@ -314,7 +314,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.Zero, quantityInfo.Zero);
             Assert.Equal("Volume", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumeUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<VolumeUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -2970,6 +2970,15 @@ namespace UnitsNet.Tests
             var fromUnit = Volume.Units.Where(u => u != Volume.BaseUnit).DefaultIfEmpty(Volume.BaseUnit).FirstOrDefault();
 
             var quantity = Volume.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(VolumeUnit unit)
+        {
+            var quantity = default(Volume);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

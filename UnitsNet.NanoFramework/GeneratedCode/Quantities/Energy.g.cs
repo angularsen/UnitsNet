@@ -220,9 +220,19 @@ namespace UnitsNet
         public double Millijoules => As(EnergyUnit.Millijoule);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Petajoule"/>
+        /// </summary>
+        public double Petajoules => As(EnergyUnit.Petajoule);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TeraelectronVolt"/>
         /// </summary>
         public double TeraelectronVolts => As(EnergyUnit.TeraelectronVolt);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Terajoule"/>
+        /// </summary>
+        public double Terajoules => As(EnergyUnit.Terajoule);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattDay"/>
@@ -432,10 +442,22 @@ namespace UnitsNet
         public static Energy FromMillijoules(double millijoules) => new Energy(millijoules, EnergyUnit.Millijoule);
 
         /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Petajoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromPetajoules(double petajoules) => new Energy(petajoules, EnergyUnit.Petajoule);
+
+        /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TeraelectronVolt"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Energy FromTeraelectronVolts(double teraelectronvolts) => new Energy(teraelectronvolts, EnergyUnit.TeraelectronVolt);
+
+        /// <summary>
+        ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Terajoule"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromTerajoules(double terajoules) => new Energy(terajoules, EnergyUnit.Terajoule);
 
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattDay"/>.
@@ -547,7 +569,9 @@ namespace UnitsNet
                         EnergyUnit.MegawattDay => (_value * 24 * 3600d) * 1e6d,
                         EnergyUnit.MegawattHour => (_value * 3600d) * 1e6d,
                         EnergyUnit.Millijoule => (_value) * 1e-3d,
+                        EnergyUnit.Petajoule => (_value) * 1e15d,
                         EnergyUnit.TeraelectronVolt => (_value * 1.602176565e-19) * 1e12d,
+                        EnergyUnit.Terajoule => (_value) * 1e12d,
                         EnergyUnit.TerawattDay => (_value * 24 * 3600d) * 1e12d,
                         EnergyUnit.TerawattHour => (_value * 3600d) * 1e12d,
                         EnergyUnit.ThermEc => _value * 1.05505585262e8,
@@ -596,7 +620,9 @@ namespace UnitsNet
                         EnergyUnit.MegawattDay => (baseUnitValue / (24 * 3600d)) / 1e6d,
                         EnergyUnit.MegawattHour => (baseUnitValue / 3600d) / 1e6d,
                         EnergyUnit.Millijoule => (baseUnitValue) / 1e-3d,
+                        EnergyUnit.Petajoule => (baseUnitValue) / 1e15d,
                         EnergyUnit.TeraelectronVolt => (baseUnitValue / 1.602176565e-19) / 1e12d,
+                        EnergyUnit.Terajoule => (baseUnitValue) / 1e12d,
                         EnergyUnit.TerawattDay => (baseUnitValue / (24 * 3600d)) / 1e12d,
                         EnergyUnit.TerawattHour => (baseUnitValue / 3600d) / 1e12d,
                         EnergyUnit.ThermEc => baseUnitValue / 1.05505585262e8,

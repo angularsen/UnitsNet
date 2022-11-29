@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarEntropy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEntropy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MolarEntropyUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MolarEntropyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -308,6 +308,15 @@ namespace UnitsNet.Tests
             var fromUnit = MolarEntropy.Units.Where(u => u != MolarEntropy.BaseUnit).DefaultIfEmpty(MolarEntropy.BaseUnit).FirstOrDefault();
 
             var quantity = MolarEntropy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MolarEntropyUnit unit)
+        {
+            var quantity = default(MolarEntropy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

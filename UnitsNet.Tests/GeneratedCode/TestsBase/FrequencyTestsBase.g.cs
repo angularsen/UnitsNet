@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Frequency.Zero, quantityInfo.Zero);
             Assert.Equal("Frequency", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<FrequencyUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<FrequencyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -748,6 +748,15 @@ namespace UnitsNet.Tests
             var fromUnit = Frequency.Units.Where(u => u != Frequency.BaseUnit).DefaultIfEmpty(Frequency.BaseUnit).FirstOrDefault();
 
             var quantity = Frequency.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(FrequencyUnit unit)
+        {
+            var quantity = default(Frequency);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

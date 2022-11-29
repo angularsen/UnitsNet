@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Turbidity.Zero, quantityInfo.Zero);
             Assert.Equal("Turbidity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TurbidityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<TurbidityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -240,6 +240,15 @@ namespace UnitsNet.Tests
             var fromUnit = Turbidity.Units.Where(u => u != Turbidity.BaseUnit).DefaultIfEmpty(Turbidity.BaseUnit).FirstOrDefault();
 
             var quantity = Turbidity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TurbidityUnit unit)
+        {
+            var quantity = default(Turbidity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

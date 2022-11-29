@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricField.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricField", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricFieldUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricFieldUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -240,6 +240,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricField.Units.Where(u => u != ElectricField.BaseUnit).DefaultIfEmpty(ElectricField.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricField.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricFieldUnit unit)
+        {
+            var quantity = default(ElectricField);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Magnetization.Zero, quantityInfo.Zero);
             Assert.Equal("Magnetization", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MagnetizationUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MagnetizationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -240,6 +240,15 @@ namespace UnitsNet.Tests
             var fromUnit = Magnetization.Units.Where(u => u != Magnetization.BaseUnit).DefaultIfEmpty(Magnetization.BaseUnit).FirstOrDefault();
 
             var quantity = Magnetization.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MagnetizationUnit unit)
+        {
+            var quantity = default(Magnetization);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

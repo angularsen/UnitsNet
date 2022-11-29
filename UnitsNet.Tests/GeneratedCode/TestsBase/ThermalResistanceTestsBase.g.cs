@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalResistance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalResistance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ThermalResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -410,6 +410,15 @@ namespace UnitsNet.Tests
             var fromUnit = ThermalResistance.Units.Where(u => u != ThermalResistance.BaseUnit).DefaultIfEmpty(ThermalResistance.BaseUnit).FirstOrDefault();
 
             var quantity = ThermalResistance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ThermalResistanceUnit unit)
+        {
+            var quantity = default(ThermalResistance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

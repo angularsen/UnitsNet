@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PowerRatio.Zero, quantityInfo.Zero);
             Assert.Equal("PowerRatio", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PowerRatioUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<PowerRatioUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -298,6 +298,15 @@ namespace UnitsNet.Tests
             var fromUnit = PowerRatio.Units.Where(u => u != PowerRatio.BaseUnit).DefaultIfEmpty(PowerRatio.BaseUnit).FirstOrDefault();
 
             var quantity = PowerRatio.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PowerRatioUnit unit)
+        {
+            var quantity = default(PowerRatio);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

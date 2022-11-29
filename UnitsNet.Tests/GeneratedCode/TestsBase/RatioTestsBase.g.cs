@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Ratio.Zero, quantityInfo.Zero);
             Assert.Equal("Ratio", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RatioUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<RatioUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -410,6 +410,15 @@ namespace UnitsNet.Tests
             var fromUnit = Ratio.Units.Where(u => u != Ratio.BaseUnit).DefaultIfEmpty(Ratio.BaseUnit).FirstOrDefault();
 
             var quantity = Ratio.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(RatioUnit unit)
+        {
+            var quantity = default(Ratio);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlowPerArea.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeFlowPerArea", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumeFlowPerAreaUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<VolumeFlowPerAreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -274,6 +274,15 @@ namespace UnitsNet.Tests
             var fromUnit = VolumeFlowPerArea.Units.Where(u => u != VolumeFlowPerArea.BaseUnit).DefaultIfEmpty(VolumeFlowPerArea.BaseUnit).FirstOrDefault();
 
             var quantity = VolumeFlowPerArea.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(VolumeFlowPerAreaUnit unit)
+        {
+            var quantity = default(VolumeFlowPerArea);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricResistance.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricResistance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricResistanceUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -388,6 +388,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricResistance.Units.Where(u => u != ElectricResistance.BaseUnit).DefaultIfEmpty(ElectricResistance.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricResistance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricResistanceUnit unit)
+        {
+            var quantity = default(ElectricResistance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

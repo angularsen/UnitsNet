@@ -3,42 +3,102 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger: none
+trigger: 
+  branches:
+    include:
+      - master
+      - release/*
+  paths:
+    exclude:
+      - '**/*.png'
+      - '**/*.md'
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
-- task: Bash@3
-  displayName: 'Generate code'
-  inputs:
-    targetType: 'inline'
-    script: 'dotnet run CodeGen'
-    failOnStderr: true
+variables:
+- group: common
+
+steps:
+- checkout: self
+  fetchDepth: 1
+  clean: false
+  lfs: true
+  submodules: false
+  fetchTags: false
+
+- task: InstallNanoMSBuildComponents@1
+  displayName: Install .NET nanoFramework MSBuild components  
+
 - task: PowerShell@2
   displayName: 'Build, test, pack'
   inputs:
     filePath: 'Build/build.ps1'
-    arguments: '-IncludeWindowsRuntimeComponent -IncludeNanoFramework'
+    arguments: '-IncludeNanoFramework'
+#    arguments: '-IncludeWindowsRuntimeComponent -IncludeNanoFramework'
     failOnStderr: true
     showWarnings: true
     pwsh: true
+    workingDirectory: '$(Build.SourcesDirectory)'
+
 - task: PowerShell@2
+  displayName: Upload to codecov.io
+  env:
+    CODECOV_TOKEN: $(CODECOV_TOKEN)
   inputs:
     targetType: 'inline'
-    failOnStderr: true
-    showWarnings: true
-    pwsh: true
     script: |
-      $ProgressPreference = 'SilentlyContinue'
-      Invoke-WebRequest -Uri https://keybase.io/codecovsecurity/pgp_keys.asc -OutFile codecov.asc
+      Write-Host -Foreground Green "Downloading codecov binaries..."
+      
+      Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc 
       gpg.exe --import codecov.asc
-
+      
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
-
+      
       gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
       If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
+      
+      Write-Host -Foreground Green "Uploading to codecov..."
+      
+      .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" --build "$(Build.BuildNumber)"
+      
+      Write-Host -Foreground Green "✅ Uploaded to codecov."
+    pwsh: true
 
-      .\codecov.exe "Artifacts/Coverage" -t $env:codecov_upload_token
+- publish: $(Build.SourcesDirectory)/Artifacts
+  displayName: 'Publish Artifacts'
+  artifact: 'Artifacts'
 
+- task: CopyFiles@2
+  displayName: Copy nugets to staging
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/Artifacts'
+    Contents: |
+      **/*.nupkg
+      **/*.symbols.nupkg
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
+    preserveTimestamp: true
+    retryCount: '3'
+    ignoreMakeDirErrors: true
+
+- task: NuGetCommand@2
+  displayName: Push to internal NuGet feed
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
+    allowPackageConflicts: true
+
+- task: NuGetCommand@2
+  displayName: Push to nuget.org
+  continueOnError: true # allowPackageConflicts option does not work with external feeds 🤷
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'nuget.org (UnitsNet)'
+    allowPackageConflicts: true    

@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Permittivity.Zero, quantityInfo.Zero);
             Assert.Equal("Permittivity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PermittivityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<PermittivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -240,6 +240,15 @@ namespace UnitsNet.Tests
             var fromUnit = Permittivity.Units.Where(u => u != Permittivity.BaseUnit).DefaultIfEmpty(Permittivity.BaseUnit).FirstOrDefault();
 
             var quantity = Permittivity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PermittivityUnit unit)
+        {
+            var quantity = default(Permittivity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEnergy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MolarEnergyUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MolarEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -308,6 +308,15 @@ namespace UnitsNet.Tests
             var fromUnit = MolarEnergy.Units.Where(u => u != MolarEnergy.BaseUnit).DefaultIfEmpty(MolarEnergy.BaseUnit).FirstOrDefault();
 
             var quantity = MolarEnergy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MolarEnergyUnit unit)
+        {
+            var quantity = default(MolarEnergy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

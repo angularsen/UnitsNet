@@ -85,6 +85,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Speed.FromKnots(2), 2.Knots());
 
         [Fact]
+        public void NumberToMachTest() =>
+            Assert.Equal(Speed.FromMach(2), 2.Mach());
+
+        [Fact]
         public void NumberToMetersPerHourTest() =>
             Assert.Equal(Speed.FromMetersPerHour(2), 2.MetersPerHour());
 

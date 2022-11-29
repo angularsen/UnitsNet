@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Jerk.Zero, quantityInfo.Zero);
             Assert.Equal("Jerk", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<JerkUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -844,6 +844,15 @@ namespace UnitsNet.Tests
             var fromUnit = Jerk.Units.Where(u => u != Jerk.BaseUnit).DefaultIfEmpty(Jerk.BaseUnit).FirstOrDefault();
 
             var quantity = Jerk.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(JerkUnit unit)
+        {
+            var quantity = default(Jerk);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

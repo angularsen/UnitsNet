@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.
     /// </summary>
     [DataContract]
-    public partial struct VitaminA : IQuantity<VitaminAUnit>, IComparable, IComparable<VitaminA>, IConvertible, IFormattable
+    public readonly partial struct VitaminA : IQuantity<VitaminAUnit>, IComparable, IComparable<VitaminA>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -174,12 +174,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> VitaminAUnit
+            // Register in unit converter: VitaminAUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<VitaminA>(VitaminAUnit.InternationalUnit, VitaminAUnit.InternationalUnit, quantity => quantity);
 
-            // Register in unit converter: VitaminAUnit -> BaseUnit
+            // Register in unit converter: BaseUnit -> VitaminAUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -390,13 +390,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="VitaminA"/> from adding two <see cref="VitaminA"/>.</summary>
         public static VitaminA operator +(VitaminA left, VitaminA right)
         {
-            return new VitaminA(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new VitaminA(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from subtracting two <see cref="VitaminA"/>.</summary>
         public static VitaminA operator -(VitaminA left, VitaminA right)
         {
-            return new VitaminA(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new VitaminA(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
@@ -430,25 +430,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VitaminA left, VitaminA right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VitaminA left, VitaminA right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(VitaminA left, VitaminA right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VitaminA left, VitaminA right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <inheritdoc />
@@ -463,7 +463,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(VitaminA other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -539,7 +539,7 @@ namespace UnitsNet
             if (Unit == unit)
                 return Value;
 
-            return GetValueAs(unit);
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -577,34 +577,60 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this VitaminA to another VitaminA using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="VitaminA"/> to another <see cref="VitaminA"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A VitaminA with the specified unit.</returns>
         public VitaminA ToUnit(VitaminAUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(VitaminA), Unit, typeof(VitaminA), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (VitaminA)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (VitaminA)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="VitaminA"/> to another <see cref="VitaminA"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="VitaminA"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(VitaminAUnit unit, out VitaminA? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // VitaminAUnit -> BaseUnit
+
+                // BaseUnit -> VitaminAUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -639,12 +665,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(VitaminAUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

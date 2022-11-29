@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ForceChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ForceChangeRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ForceChangeRateUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ForceChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -812,6 +812,15 @@ namespace UnitsNet.Tests
             var fromUnit = ForceChangeRate.Units.Where(u => u != ForceChangeRate.BaseUnit).DefaultIfEmpty(ForceChangeRate.BaseUnit).FirstOrDefault();
 
             var quantity = ForceChangeRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ForceChangeRateUnit unit)
+        {
+            var quantity = default(ForceChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

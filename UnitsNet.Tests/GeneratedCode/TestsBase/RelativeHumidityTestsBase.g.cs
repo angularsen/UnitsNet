@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RelativeHumidity.Zero, quantityInfo.Zero);
             Assert.Equal("RelativeHumidity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RelativeHumidityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<RelativeHumidityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -240,6 +240,15 @@ namespace UnitsNet.Tests
             var fromUnit = RelativeHumidity.Units.Where(u => u != RelativeHumidity.BaseUnit).DefaultIfEmpty(RelativeHumidity.BaseUnit).FirstOrDefault();
 
             var quantity = RelativeHumidity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(RelativeHumidityUnit unit)
+        {
+            var quantity = default(RelativeHumidity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

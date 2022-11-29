@@ -79,5 +79,12 @@ namespace UnitsNet.Tests.CustomCode
             double value = SpecificEnergy.FromJoulesPerKilogram(10.0) * BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20.0);
             Assert.Equal(200d, value);
         }
+
+        [Fact]
+        public void SpecificEnergyDividedByTemperatureDeltaEqualsSpecificEntropy()
+        {
+            SpecificEntropy specificEntropy = SpecificEnergy.FromJoulesPerKilogram(4) / TemperatureDelta.FromKelvins(0.5);
+            Assert.Equal(SpecificEntropy.FromJoulesPerKilogramKelvin(8), specificEntropy);
+        }
     }
 }

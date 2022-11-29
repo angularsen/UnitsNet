@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalSpeed.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalSpeed", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<RotationalSpeedUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<RotationalSpeedUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1080,6 +1080,15 @@ namespace UnitsNet.Tests
             var fromUnit = RotationalSpeed.Units.Where(u => u != RotationalSpeed.BaseUnit).DefaultIfEmpty(RotationalSpeed.BaseUnit).FirstOrDefault();
 
             var quantity = RotationalSpeed.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(RotationalSpeedUnit unit)
+        {
+            var quantity = default(RotationalSpeed);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

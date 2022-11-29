@@ -18,7 +18,7 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
+      "Prefixes": [ "Milli", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
       "Localization": [
         {
           "Culture": "en-US",

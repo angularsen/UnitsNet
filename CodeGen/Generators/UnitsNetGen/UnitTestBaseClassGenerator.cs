@@ -197,7 +197,7 @@ namespace UnitsNet.Tests
             Assert.Equal({_quantity.Name}.Zero, quantityInfo.Zero);
             Assert.Equal(""{_quantity.Name}"", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<{_unitEnumName}>().ToArray();
+            var units = EnumUtils.GetEnumValues<{_unitEnumName}>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }}
 
@@ -376,6 +376,15 @@ namespace UnitsNet.Tests
             var fromUnit = {_quantity.Name}.Units.Where(u => u != {_quantity.Name}.BaseUnit).DefaultIfEmpty({_quantity.Name}.BaseUnit).FirstOrDefault();
 
             var quantity = {_quantity.Name}.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }}
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit({_unitEnumName} unit)
+        {{
+            var quantity = default({_quantity.Name});
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }}

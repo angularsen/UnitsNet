@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricPotentialChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricPotentialChangeRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricPotentialChangeRateUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -798,6 +798,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricPotentialChangeRate.Units.Where(u => u != ElectricPotentialChangeRate.BaseUnit).DefaultIfEmpty(ElectricPotentialChangeRate.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricPotentialChangeRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricPotentialChangeRateUnit unit)
+        {
+            var quantity = default(ElectricPotentialChangeRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

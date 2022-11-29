@@ -71,6 +71,7 @@ namespace UnitsNet
             { "ElectricResistivity", ElectricResistivity.Info },
             { "ElectricSurfaceChargeDensity", ElectricSurfaceChargeDensity.Info },
             { "Energy", Energy.Info },
+            { "EnergyDensity", EnergyDensity.Info },
             { "Entropy", Entropy.Info },
             { "Force", Force.Info },
             { "ForceChangeRate", ForceChangeRate.Info },
@@ -90,6 +91,7 @@ namespace UnitsNet
             { "Level", Level.Info },
             { "LinearDensity", LinearDensity.Info },
             { "LinearPowerDensity", LinearPowerDensity.Info },
+            { "Luminance", Luminance.Info },
             { "Luminosity", Luminosity.Info },
             { "LuminousFlux", LuminousFlux.Info },
             { "LuminousIntensity", LuminousIntensity.Info },
@@ -198,6 +200,7 @@ namespace UnitsNet
                 "ElectricResistivity" => ElectricResistivity.From(value, ElectricResistivity.BaseUnit),
                 "ElectricSurfaceChargeDensity" => ElectricSurfaceChargeDensity.From(value, ElectricSurfaceChargeDensity.BaseUnit),
                 "Energy" => Energy.From(value, Energy.BaseUnit),
+                "EnergyDensity" => EnergyDensity.From(value, EnergyDensity.BaseUnit),
                 "Entropy" => Entropy.From(value, Entropy.BaseUnit),
                 "Force" => Force.From(value, Force.BaseUnit),
                 "ForceChangeRate" => ForceChangeRate.From(value, ForceChangeRate.BaseUnit),
@@ -217,6 +220,7 @@ namespace UnitsNet
                 "Level" => Level.From(value, Level.BaseUnit),
                 "LinearDensity" => LinearDensity.From(value, LinearDensity.BaseUnit),
                 "LinearPowerDensity" => LinearPowerDensity.From(value, LinearPowerDensity.BaseUnit),
+                "Luminance" => Luminance.From(value, Luminance.BaseUnit),
                 "Luminosity" => Luminosity.From(value, Luminosity.BaseUnit),
                 "LuminousFlux" => LuminousFlux.From(value, LuminousFlux.BaseUnit),
                 "LuminousIntensity" => LuminousIntensity.From(value, LuminousIntensity.BaseUnit),
@@ -398,6 +402,9 @@ namespace UnitsNet
                 case EnergyUnit energyUnit:
                     quantity = Energy.From(value, energyUnit);
                     return true;
+                case EnergyDensityUnit energyDensityUnit:
+                    quantity = EnergyDensity.From(value, energyDensityUnit);
+                    return true;
                 case EntropyUnit entropyUnit:
                     quantity = Entropy.From(value, entropyUnit);
                     return true;
@@ -454,6 +461,9 @@ namespace UnitsNet
                     return true;
                 case LinearPowerDensityUnit linearPowerDensityUnit:
                     quantity = LinearPowerDensity.From(value, linearPowerDensityUnit);
+                    return true;
+                case LuminanceUnit luminanceUnit:
+                    quantity = Luminance.From(value, luminanceUnit);
                     return true;
                 case LuminosityUnit luminosityUnit:
                     quantity = Luminosity.From(value, luminosityUnit);
@@ -700,6 +710,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(ElectricResistivity) => parser.TryParse<ElectricResistivity, ElectricResistivityUnit>(quantityString, formatProvider, ElectricResistivity.From, out quantity),
                 Type _ when quantityType == typeof(ElectricSurfaceChargeDensity) => parser.TryParse<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>(quantityString, formatProvider, ElectricSurfaceChargeDensity.From, out quantity),
                 Type _ when quantityType == typeof(Energy) => parser.TryParse<Energy, EnergyUnit>(quantityString, formatProvider, Energy.From, out quantity),
+                Type _ when quantityType == typeof(EnergyDensity) => parser.TryParse<EnergyDensity, EnergyDensityUnit>(quantityString, formatProvider, EnergyDensity.From, out quantity),
                 Type _ when quantityType == typeof(Entropy) => parser.TryParse<Entropy, EntropyUnit>(quantityString, formatProvider, Entropy.From, out quantity),
                 Type _ when quantityType == typeof(Force) => parser.TryParse<Force, ForceUnit>(quantityString, formatProvider, Force.From, out quantity),
                 Type _ when quantityType == typeof(ForceChangeRate) => parser.TryParse<ForceChangeRate, ForceChangeRateUnit>(quantityString, formatProvider, ForceChangeRate.From, out quantity),
@@ -719,6 +730,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Level) => parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity),
                 Type _ when quantityType == typeof(LinearDensity) => parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity),
                 Type _ when quantityType == typeof(LinearPowerDensity) => parser.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(quantityString, formatProvider, LinearPowerDensity.From, out quantity),
+                Type _ when quantityType == typeof(Luminance) => parser.TryParse<Luminance, LuminanceUnit>(quantityString, formatProvider, Luminance.From, out quantity),
                 Type _ when quantityType == typeof(Luminosity) => parser.TryParse<Luminosity, LuminosityUnit>(quantityString, formatProvider, Luminosity.From, out quantity),
                 Type _ when quantityType == typeof(LuminousFlux) => parser.TryParse<LuminousFlux, LuminousFluxUnit>(quantityString, formatProvider, LuminousFlux.From, out quantity),
                 Type _ when quantityType == typeof(LuminousIntensity) => parser.TryParse<LuminousIntensity, LuminousIntensityUnit>(quantityString, formatProvider, LuminousIntensity.From, out quantity),
@@ -821,6 +833,7 @@ namespace UnitsNet
             yield return typeof(ElectricResistivity);
             yield return typeof(ElectricSurfaceChargeDensity);
             yield return typeof(Energy);
+            yield return typeof(EnergyDensity);
             yield return typeof(Entropy);
             yield return typeof(Force);
             yield return typeof(ForceChangeRate);
@@ -840,6 +853,7 @@ namespace UnitsNet
             yield return typeof(Level);
             yield return typeof(LinearDensity);
             yield return typeof(LinearPowerDensity);
+            yield return typeof(Luminance);
             yield return typeof(Luminosity);
             yield return typeof(LuminousFlux);
             yield return typeof(LuminousIntensity);

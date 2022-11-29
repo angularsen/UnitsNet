@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
             Assert.Equal(WarpingMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("WarpingMomentOfInertia", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<WarpingMomentOfInertiaUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -554,6 +554,15 @@ namespace UnitsNet.Tests
             var fromUnit = WarpingMomentOfInertia.Units.Where(u => u != WarpingMomentOfInertia.BaseUnit).DefaultIfEmpty(WarpingMomentOfInertia.BaseUnit).FirstOrDefault();
 
             var quantity = WarpingMomentOfInertia.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(WarpingMomentOfInertiaUnit unit)
+        {
+            var quantity = default(WarpingMomentOfInertia);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

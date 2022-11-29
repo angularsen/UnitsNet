@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatTransferCoefficient.Zero, quantityInfo.Zero);
             Assert.Equal("HeatTransferCoefficient", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<HeatTransferCoefficientUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -308,6 +308,15 @@ namespace UnitsNet.Tests
             var fromUnit = HeatTransferCoefficient.Units.Where(u => u != HeatTransferCoefficient.BaseUnit).DefaultIfEmpty(HeatTransferCoefficient.BaseUnit).FirstOrDefault();
 
             var quantity = HeatTransferCoefficient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(HeatTransferCoefficientUnit unit)
+        {
+            var quantity = default(HeatTransferCoefficient);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

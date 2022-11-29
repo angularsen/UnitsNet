@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Angle.Zero, quantityInfo.Zero);
             Assert.Equal("Angle", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AngleUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<AngleUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1278,6 +1278,15 @@ namespace UnitsNet.Tests
             var fromUnit = Angle.Units.Where(u => u != Angle.BaseUnit).DefaultIfEmpty(Angle.BaseUnit).FirstOrDefault();
 
             var quantity = Angle.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(AngleUnit unit)
+        {
+            var quantity = default(Angle);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

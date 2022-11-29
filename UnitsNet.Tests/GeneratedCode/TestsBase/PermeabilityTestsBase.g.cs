@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Permeability.Zero, quantityInfo.Zero);
             Assert.Equal("Permeability", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PermeabilityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<PermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -240,6 +240,15 @@ namespace UnitsNet.Tests
             var fromUnit = Permeability.Units.Where(u => u != Permeability.BaseUnit).DefaultIfEmpty(Permeability.BaseUnit).FirstOrDefault();
 
             var quantity = Permeability.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PermeabilityUnit unit)
+        {
+            var quantity = default(Permeability);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

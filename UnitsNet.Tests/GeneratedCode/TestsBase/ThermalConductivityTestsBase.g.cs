@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalConductivity.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalConductivity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ThermalConductivityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ThermalConductivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -274,6 +274,15 @@ namespace UnitsNet.Tests
             var fromUnit = ThermalConductivity.Units.Where(u => u != ThermalConductivity.BaseUnit).DefaultIfEmpty(ThermalConductivity.BaseUnit).FirstOrDefault();
 
             var quantity = ThermalConductivity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ThermalConductivityUnit unit)
+        {
+            var quantity = default(ThermalConductivity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

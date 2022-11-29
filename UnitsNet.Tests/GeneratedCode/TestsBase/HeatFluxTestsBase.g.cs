@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatFlux.Zero, quantityInfo.Zero);
             Assert.Equal("HeatFlux", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<HeatFluxUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<HeatFluxUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -842,6 +842,15 @@ namespace UnitsNet.Tests
             var fromUnit = HeatFlux.Units.Where(u => u != HeatFlux.BaseUnit).DefaultIfEmpty(HeatFlux.BaseUnit).FirstOrDefault();
 
             var quantity = HeatFlux.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(HeatFluxUnit unit)
+        {
+            var quantity = default(HeatFlux);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeConcentration", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -910,6 +910,15 @@ namespace UnitsNet.Tests
             var fromUnit = VolumeConcentration.Units.Where(u => u != VolumeConcentration.BaseUnit).DefaultIfEmpty(VolumeConcentration.BaseUnit).FirstOrDefault();
 
             var quantity = VolumeConcentration.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(VolumeConcentrationUnit unit)
+        {
+            var quantity = default(VolumeConcentration);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

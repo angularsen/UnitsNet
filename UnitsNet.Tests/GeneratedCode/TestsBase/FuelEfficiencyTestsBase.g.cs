@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(FuelEfficiency.Zero, quantityInfo.Zero);
             Assert.Equal("FuelEfficiency", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<FuelEfficiencyUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<FuelEfficiencyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -342,6 +342,15 @@ namespace UnitsNet.Tests
             var fromUnit = FuelEfficiency.Units.Where(u => u != FuelEfficiency.BaseUnit).DefaultIfEmpty(FuelEfficiency.BaseUnit).FirstOrDefault();
 
             var quantity = FuelEfficiency.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(FuelEfficiencyUnit unit)
+        {
+            var quantity = default(FuelEfficiency);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

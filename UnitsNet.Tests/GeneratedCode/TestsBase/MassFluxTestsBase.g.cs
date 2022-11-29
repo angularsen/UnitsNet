@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFlux.Zero, quantityInfo.Zero);
             Assert.Equal("MassFlux", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MassFluxUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MassFluxUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -614,6 +614,15 @@ namespace UnitsNet.Tests
             var fromUnit = MassFlux.Units.Where(u => u != MassFlux.BaseUnit).DefaultIfEmpty(MassFlux.BaseUnit).FirstOrDefault();
 
             var quantity = MassFlux.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MassFluxUnit unit)
+        {
+            var quantity = default(MassFlux);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -22,5 +22,17 @@ namespace UnitsNet
         {
             return specificEntropy * temperatureDelta;
         }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="Entropy"/> times <see cref="TemperatureDelta"/>.</summary>
+        public static Energy operator *(Entropy entropy, TemperatureDelta temperatureDelta)
+        {
+            return Energy.FromJoules(entropy.JoulesPerKelvin * temperatureDelta.Kelvins);
+        }
+        
+        /// <summary>Get <see cref="Energy"/> from <see cref="TemperatureDelta"/> times <see cref="Entropy"/>.</summary>
+        public static Energy operator *(TemperatureDelta temperatureDelta, Entropy entropy)
+        {
+            return Energy.FromJoules(entropy.JoulesPerKelvin * temperatureDelta.Kelvins);
+        }
     }
 }

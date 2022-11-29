@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Luminosity.Zero, quantityInfo.Zero);
             Assert.Equal("Luminosity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<LuminosityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<LuminosityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -638,6 +638,15 @@ namespace UnitsNet.Tests
             var fromUnit = Luminosity.Units.Where(u => u != Luminosity.BaseUnit).DefaultIfEmpty(Luminosity.BaseUnit).FirstOrDefault();
 
             var quantity = Luminosity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(LuminosityUnit unit)
+        {
+            var quantity = default(Luminosity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureGradient.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureGradient", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<TemperatureGradientUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<TemperatureGradientUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -342,6 +342,15 @@ namespace UnitsNet.Tests
             var fromUnit = TemperatureGradient.Units.Where(u => u != TemperatureGradient.BaseUnit).DefaultIfEmpty(TemperatureGradient.BaseUnit).FirstOrDefault();
 
             var quantity = TemperatureGradient.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(TemperatureGradientUnit unit)
+        {
+            var quantity = default(TemperatureGradient);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

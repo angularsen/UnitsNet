@@ -198,7 +198,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.Zero, quantityInfo.Zero);
             Assert.Equal("Power", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PowerUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1071,6 +1071,15 @@ namespace UnitsNet.Tests
             var fromUnit = Power.Units.Where(u => u != Power.BaseUnit).DefaultIfEmpty(Power.BaseUnit).FirstOrDefault();
 
             var quantity = Power.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PowerUnit unit)
+        {
+            var quantity = default(Power);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

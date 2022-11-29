@@ -202,7 +202,7 @@ namespace UnitsNet.Tests
             Assert.Equal(MassFraction.Zero, quantityInfo.Zero);
             Assert.Equal("MassFraction", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<MassFractionUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<MassFractionUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1046,6 +1046,15 @@ namespace UnitsNet.Tests
             var fromUnit = MassFraction.Units.Where(u => u != MassFraction.BaseUnit).DefaultIfEmpty(MassFraction.BaseUnit).FirstOrDefault();
 
             var quantity = MassFraction.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(MassFractionUnit unit)
+        {
+            var quantity = default(MassFraction);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

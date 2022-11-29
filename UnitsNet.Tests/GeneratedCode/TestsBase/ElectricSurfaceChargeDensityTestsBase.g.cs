@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricSurfaceChargeDensity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricSurfaceChargeDensity", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ElectricSurfaceChargeDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -308,6 +308,15 @@ namespace UnitsNet.Tests
             var fromUnit = ElectricSurfaceChargeDensity.Units.Where(u => u != ElectricSurfaceChargeDensity.BaseUnit).DefaultIfEmpty(ElectricSurfaceChargeDensity.BaseUnit).FirstOrDefault();
 
             var quantity = ElectricSurfaceChargeDensity.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ElectricSurfaceChargeDensityUnit unit)
+        {
+            var quantity = default(ElectricSurfaceChargeDensity);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

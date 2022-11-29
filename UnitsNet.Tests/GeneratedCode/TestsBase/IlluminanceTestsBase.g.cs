@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Illuminance.Zero, quantityInfo.Zero);
             Assert.Equal("Illuminance", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<IlluminanceUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<IlluminanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -320,6 +320,15 @@ namespace UnitsNet.Tests
             var fromUnit = Illuminance.Units.Where(u => u != Illuminance.BaseUnit).DefaultIfEmpty(Illuminance.BaseUnit).FirstOrDefault();
 
             var quantity = Illuminance.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(IlluminanceUnit unit)
+        {
+            var quantity = default(Illuminance);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

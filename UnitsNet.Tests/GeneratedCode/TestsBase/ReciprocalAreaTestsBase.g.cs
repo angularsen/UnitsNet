@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReciprocalArea.Zero, quantityInfo.Zero);
             Assert.Equal("ReciprocalArea", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ReciprocalAreaUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -580,6 +580,15 @@ namespace UnitsNet.Tests
             var fromUnit = ReciprocalArea.Units.Where(u => u != ReciprocalArea.BaseUnit).DefaultIfEmpty(ReciprocalArea.BaseUnit).FirstOrDefault();
 
             var quantity = ReciprocalArea.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ReciprocalAreaUnit unit)
+        {
+            var quantity = default(ReciprocalArea);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

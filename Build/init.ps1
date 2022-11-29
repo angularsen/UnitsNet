@@ -14,9 +14,16 @@ if (-not (Test-Path "$root/Tools/reportgenerator.exe")) {
   Write-Host -Foreground Green "Download dotnet-reportgenerator-globaltool...OK."
 }
 
+###################################################
+## TODO: OK to remove after moving to AZDO pipeline
 $VsWherePath = "${env:PROGRAMFILES(X86)}\Microsoft Visual Studio\Installer\vswhere.exe"
 $VsPath = $(&$VsWherePath -latest -property installationPath)
 $msbuildPath = Join-Path -Path $VsPath -ChildPath "\MSBuild"
+
+# Install dotnet CLI tools declared in /.config/dotnet-tools.json
+pushd $root
+dotnet tool restore
+popd
 
 # Install .NET nanoFramework build components
 if (!(Test-Path "$msbuildPath/nanoFramework")) {
@@ -26,14 +33,14 @@ if (!(Test-Path "$msbuildPath/nanoFramework")) {
   $webClient.Headers.Add("User-Agent", "request")
   $webClient.Headers.Add("Accept", "application/vnd.github.v3+json")
 
-  $releaseList = $webClient.DownloadString('https://api.github.com/repos/nanoframework/nf-Visual-Studio-extension/tags')
+  $releaseList = $webClient.DownloadString('https://api.github.com/repos/nanoframework/nf-Visual-Studio-extension/releases?per_page=100')
 
-  if($releaseList -match '"(?<VS2022_version>v2022\.\d+\.\d+\.\d+)')
+  if($releaseList -match '\"(?<VS2022_version>v2022\.\d+\.\d+\.\d+)\"')
   {
       $vs2022Tag =  $Matches.VS2022_version
   }
 
-  if($releaseList -match '"(?<VS2019_version>v2019\.\d+\.\d+\.\d+)')
+  if($releaseList -match '\"(?<VS2019_version>v2019\.\d+\.\d+\.\d+)\"')
   {
       $vs2019Tag =  $Matches.VS2019_version
   }
@@ -82,6 +89,7 @@ if (!(Test-Path "$msbuildPath/nanoFramework")) {
 
   Write-Host "Installed VS extension $extensionVersion"
 }
+###################################################
 
 # Cleanup
 [system.io.Directory]::Delete($tempDir, $true) | out-null

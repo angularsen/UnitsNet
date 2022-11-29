@@ -198,7 +198,7 @@ namespace UnitsNet.Tests
             Assert.Equal(BitRate.Zero, quantityInfo.Zero);
             Assert.Equal("BitRate", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<BitRateUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<BitRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1377,6 +1377,15 @@ namespace UnitsNet.Tests
             var fromUnit = BitRate.Units.Where(u => u != BitRate.BaseUnit).DefaultIfEmpty(BitRate.BaseUnit).FirstOrDefault();
 
             var quantity = BitRate.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(BitRateUnit unit)
+        {
+            var quantity = default(BitRate);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

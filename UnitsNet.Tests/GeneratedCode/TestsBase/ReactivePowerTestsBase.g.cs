@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ReactivePower.Zero, quantityInfo.Zero);
             Assert.Equal("ReactivePower", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ReactivePowerUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ReactivePowerUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -342,6 +342,15 @@ namespace UnitsNet.Tests
             var fromUnit = ReactivePower.Units.Where(u => u != ReactivePower.BaseUnit).DefaultIfEmpty(ReactivePower.BaseUnit).FirstOrDefault();
 
             var quantity = ReactivePower.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ReactivePowerUnit unit)
+        {
+            var quantity = default(ReactivePower);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

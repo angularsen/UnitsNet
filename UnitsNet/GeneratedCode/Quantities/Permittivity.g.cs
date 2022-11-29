@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Permittivity
     /// </remarks>
     [DataContract]
-    public partial struct Permittivity : IQuantity<PermittivityUnit>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
+    public readonly partial struct Permittivity : IQuantity<PermittivityUnit>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -177,12 +177,12 @@ namespace UnitsNet
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
-            // Register in unit converter: BaseUnit -> PermittivityUnit
+            // Register in unit converter: PermittivityUnit -> BaseUnit
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<Permittivity>(PermittivityUnit.FaradPerMeter, PermittivityUnit.FaradPerMeter, quantity => quantity);
 
-            // Register in unit converter: PermittivityUnit -> BaseUnit
+            // Register in unit converter: BaseUnit -> PermittivityUnit
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -393,13 +393,13 @@ namespace UnitsNet
         /// <summary>Get <see cref="Permittivity"/> from adding two <see cref="Permittivity"/>.</summary>
         public static Permittivity operator +(Permittivity left, Permittivity right)
         {
-            return new Permittivity(left.Value + right.GetValueAs(left.Unit), left.Unit);
+            return new Permittivity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Permittivity"/> from subtracting two <see cref="Permittivity"/>.</summary>
         public static Permittivity operator -(Permittivity left, Permittivity right)
         {
-            return new Permittivity(left.Value - right.GetValueAs(left.Unit), left.Unit);
+            return new Permittivity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
         }
 
         /// <summary>Get <see cref="Permittivity"/> from multiplying value and <see cref="Permittivity"/>.</summary>
@@ -433,25 +433,25 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Permittivity left, Permittivity right)
         {
-            return left.Value <= right.GetValueAs(left.Unit);
+            return left.Value <= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Permittivity left, Permittivity right)
         {
-            return left.Value >= right.GetValueAs(left.Unit);
+            return left.Value >= right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Permittivity left, Permittivity right)
         {
-            return left.Value < right.GetValueAs(left.Unit);
+            return left.Value < right.ToUnit(left.Unit).Value;
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Permittivity left, Permittivity right)
         {
-            return left.Value > right.GetValueAs(left.Unit);
+            return left.Value > right.ToUnit(left.Unit).Value;
         }
 
         /// <inheritdoc />
@@ -466,7 +466,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public int CompareTo(Permittivity other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -542,7 +542,7 @@ namespace UnitsNet
             if (Unit == unit)
                 return Value;
 
-            return GetValueAs(unit);
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -580,34 +580,60 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts this Permittivity to another Permittivity using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
+        ///     Converts this <see cref="Permittivity"/> to another <see cref="Permittivity"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <param name="unit">The unit to convert to.</param>
         /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
         /// <returns>A Permittivity with the specified unit.</returns>
         public Permittivity ToUnit(PermittivityUnit unit, UnitConverter unitConverter)
         {
-            if (Unit == unit)
+            if (TryToUnit(unit, out var converted))
             {
-                // Already in requested units.
-                return this;
+                // Try to convert using the auto-generated conversion methods.
+                return converted!.Value;
             }
             else if (unitConverter.TryGetConversionFunction((typeof(Permittivity), Unit, typeof(Permittivity), unit), out var conversionFunction))
             {
-                // Direct conversion to requested unit found. Return the converted quantity.
-                var converted = conversionFunction(this);
-                return (Permittivity)converted;
+                // See if the unit converter has an extensibility conversion registered.
+                return (Permittivity)conversionFunction(this);
             }
             else if (Unit != BaseUnit)
             {
-                // Direct conversion to requested unit NOT found. Convert to BaseUnit, and then from BaseUnit to requested unit.
+                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
                 var inBaseUnits = ToUnit(BaseUnit);
                 return inBaseUnits.ToUnit(unit);
             }
             else
             {
+                // No possible conversion
                 throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        /// <summary>
+        ///     Attempts to convert this <see cref="Permittivity"/> to another <see cref="Permittivity"/> with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <param name="unit">The unit to convert to.</param>
+        /// <param name="converted">The converted <see cref="Permittivity"/> in <paramref name="unit"/>, if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        private bool TryToUnit(PermittivityUnit unit, out Permittivity? converted)
+        {
+            if (Unit == unit)
+            {
+                converted = this;
+                return true;
+            }
+
+            converted = (Unit, unit) switch
+            {
+                // PermittivityUnit -> BaseUnit
+
+                // BaseUnit -> PermittivityUnit
+
+                _ => null!
+            };
+
+            return converted != null;
         }
 
         /// <inheritdoc />
@@ -642,12 +668,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        private double GetValueAs(PermittivityUnit unit)
-        {
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
-        }
 
         #endregion
 

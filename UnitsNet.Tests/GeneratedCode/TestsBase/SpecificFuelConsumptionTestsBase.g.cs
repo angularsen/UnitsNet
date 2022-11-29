@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificFuelConsumption.Zero, quantityInfo.Zero);
             Assert.Equal("SpecificFuelConsumption", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<SpecificFuelConsumptionUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<SpecificFuelConsumptionUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -342,6 +342,15 @@ namespace UnitsNet.Tests
             var fromUnit = SpecificFuelConsumption.Units.Where(u => u != SpecificFuelConsumption.BaseUnit).DefaultIfEmpty(SpecificFuelConsumption.BaseUnit).FirstOrDefault();
 
             var quantity = SpecificFuelConsumption.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(SpecificFuelConsumptionUnit unit)
+        {
+            var quantity = default(SpecificFuelConsumption);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

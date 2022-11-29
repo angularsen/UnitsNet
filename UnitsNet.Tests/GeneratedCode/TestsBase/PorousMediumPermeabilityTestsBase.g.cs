@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
             Assert.Equal(PorousMediumPermeability.Zero, quantityInfo.Zero);
             Assert.Equal("PorousMediumPermeability", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PorousMediumPermeabilityUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -376,6 +376,15 @@ namespace UnitsNet.Tests
             var fromUnit = PorousMediumPermeability.Units.Where(u => u != PorousMediumPermeability.BaseUnit).DefaultIfEmpty(PorousMediumPermeability.BaseUnit).FirstOrDefault();
 
             var quantity = PorousMediumPermeability.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PorousMediumPermeabilityUnit unit)
+        {
+            var quantity = default(PorousMediumPermeability);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

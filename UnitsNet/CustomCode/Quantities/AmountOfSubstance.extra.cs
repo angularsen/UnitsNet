@@ -30,8 +30,8 @@ namespace UnitsNet
         /// <returns>The number of particles (atoms or molecules) in this amount of substance.</returns>
         public double NumberOfParticles()
         {
-            var moles = GetValueAs(AmountOfSubstanceUnit.Mole);
-            return AvogadroConstant * moles;
+            var moles = ToUnit(AmountOfSubstanceUnit.Mole);
+            return AvogadroConstant * moles.Value;
         }
 
         /// <summary>Get <see cref="AmountOfSubstance" /> from <see cref="Mass" /> and a given <see cref="MolarMass" />.</summary>

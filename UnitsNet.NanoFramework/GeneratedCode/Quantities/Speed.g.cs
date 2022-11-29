@@ -155,6 +155,11 @@ namespace UnitsNet
         public double Knots => As(SpeedUnit.Knot);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.Mach"/>
+        /// </summary>
+        public double Mach => As(SpeedUnit.Mach);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpeedUnit.MeterPerHour"/>
         /// </summary>
         public double MetersPerHour => As(SpeedUnit.MeterPerHour);
@@ -334,6 +339,12 @@ namespace UnitsNet
         public static Speed FromKnots(double knots) => new Speed(knots, SpeedUnit.Knot);
 
         /// <summary>
+        ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.Mach"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMach(double mach) => new Speed(mach, SpeedUnit.Mach);
+
+        /// <summary>
         ///     Creates a <see cref="Speed"/> from <see cref="SpeedUnit.MeterPerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -490,6 +501,7 @@ namespace UnitsNet
                         SpeedUnit.KilometerPerMinute => (_value / 60) * 1e3d,
                         SpeedUnit.KilometerPerSecond => (_value) * 1e3d,
                         SpeedUnit.Knot => _value * 0.514444,
+                        SpeedUnit.Mach => _value * 340.29,
                         SpeedUnit.MeterPerHour => _value / 3600,
                         SpeedUnit.MeterPerMinute => _value / 60,
                         SpeedUnit.MeterPerSecond => _value,
@@ -535,6 +547,7 @@ namespace UnitsNet
                         SpeedUnit.KilometerPerMinute => (baseUnitValue * 60) / 1e3d,
                         SpeedUnit.KilometerPerSecond => (baseUnitValue) / 1e3d,
                         SpeedUnit.Knot => baseUnitValue / 0.514444,
+                        SpeedUnit.Mach => baseUnitValue / 340.29,
                         SpeedUnit.MeterPerHour => baseUnitValue * 3600,
                         SpeedUnit.MeterPerMinute => baseUnitValue * 60,
                         SpeedUnit.MeterPerSecond => baseUnitValue,

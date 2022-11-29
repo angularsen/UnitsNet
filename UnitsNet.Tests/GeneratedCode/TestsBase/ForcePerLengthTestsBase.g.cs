@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ForcePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("ForcePerLength", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ForcePerLengthUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ForcePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1672,6 +1672,15 @@ namespace UnitsNet.Tests
             var fromUnit = ForcePerLength.Units.Where(u => u != ForcePerLength.BaseUnit).DefaultIfEmpty(ForcePerLength.BaseUnit).FirstOrDefault();
 
             var quantity = ForcePerLength.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ForcePerLengthUnit unit)
+        {
+            var quantity = default(ForcePerLength);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

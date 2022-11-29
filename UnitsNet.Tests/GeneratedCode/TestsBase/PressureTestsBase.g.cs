@@ -294,7 +294,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.Zero, quantityInfo.Zero);
             Assert.Equal("Pressure", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<PressureUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -2654,6 +2654,15 @@ namespace UnitsNet.Tests
             var fromUnit = Pressure.Units.Where(u => u != Pressure.BaseUnit).DefaultIfEmpty(Pressure.BaseUnit).FirstOrDefault();
 
             var quantity = Pressure.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(PressureUnit unit)
+        {
+            var quantity = default(Pressure);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

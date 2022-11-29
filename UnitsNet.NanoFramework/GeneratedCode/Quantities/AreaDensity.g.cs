@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The area density of a two-dimensional object is calculated as the mass per unit area.
+    ///     The area density of a two-dimensional object is calculated as the mass per unit area. For paper this is also called grammage.
     /// </summary>
     public struct  AreaDensity
     {
@@ -80,19 +80,41 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.GramPerSquareMeter"/>
+        /// </summary>
+        public double GramsPerSquareMeter => As(AreaDensityUnit.GramPerSquareMeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
         /// </summary>
         public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>
+        /// </summary>
+        public double MilligramsPerSquareMeter => As(AreaDensityUnit.MilligramPerSquareMeter);
 
         #endregion
 
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AreaDensity FromGramsPerSquareMeter(double gramspersquaremeter) => new AreaDensity(gramspersquaremeter, AreaDensityUnit.GramPerSquareMeter);
+
+        /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static AreaDensity FromKilogramsPerSquareMeter(double kilogramspersquaremeter) => new AreaDensity(kilogramspersquaremeter, AreaDensityUnit.KilogramPerSquareMeter);
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AreaDensity FromMilligramsPerSquareMeter(double milligramspersquaremeter) => new AreaDensity(milligramspersquaremeter, AreaDensityUnit.MilligramPerSquareMeter);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaDensityUnit" /> to <see cref="AreaDensity" />.
@@ -134,7 +156,9 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
+                        AreaDensityUnit.GramPerSquareMeter => _value / 1000,
                         AreaDensityUnit.KilogramPerSquareMeter => _value,
+                        AreaDensityUnit.MilligramPerSquareMeter => _value / 1000000,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -148,7 +172,9 @@ namespace UnitsNet
 
                     return unit switch
                     {
+                        AreaDensityUnit.GramPerSquareMeter => baseUnitValue * 1000,
                         AreaDensityUnit.KilogramPerSquareMeter => baseUnitValue,
+                        AreaDensityUnit.MilligramPerSquareMeter => baseUnitValue * 1000000,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

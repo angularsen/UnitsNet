@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
             Assert.Equal(Area.Zero, quantityInfo.Zero);
             Assert.Equal("Area", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<AreaUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<AreaUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -1308,6 +1308,15 @@ namespace UnitsNet.Tests
             var fromUnit = Area.Units.Where(u => u != Area.BaseUnit).DefaultIfEmpty(Area.BaseUnit).FirstOrDefault();
 
             var quantity = Area.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(AreaUnit unit)
+        {
+            var quantity = default(Area);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }

@@ -76,6 +76,18 @@ namespace UnitsNet
             return AmountOfSubstance.FromMoles(mass.Kilograms / molarMass.KilogramsPerMole);
         }
 
+        /// <summary>Get <see cref="AreaDensity" /> from <see cref="Mass" /> divided by <see cref="Area" />.</summary>
+        public static AreaDensity operator /(Mass mass, Area area)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(mass.Kilograms / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Area" /> from <see cref="Mass" /> divided by <see cref="AreaDensity" />.</summary>
+        public static Area operator /(Mass mass, AreaDensity areaDensity)
+        {
+            return Area.FromSquareMeters(mass.Kilograms / areaDensity.KilogramsPerSquareMeter);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Mass"/> times <see cref="Acceleration"/>.</summary>
         public static Force operator *(Mass mass, Acceleration acceleration)
         {

@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ApparentEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("ApparentEnergy", quantityInfo.Name);
 
-            var units = EnumUtils.GetEnumValues<ApparentEnergyUnit>().ToArray();
+            var units = EnumUtils.GetEnumValues<ApparentEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
         }
 
@@ -308,6 +308,15 @@ namespace UnitsNet.Tests
             var fromUnit = ApparentEnergy.Units.Where(u => u != ApparentEnergy.BaseUnit).DefaultIfEmpty(ApparentEnergy.BaseUnit).FirstOrDefault();
 
             var quantity = ApparentEnergy.From(3.0, fromUnit);
+            var converted = quantity.ToUnit(unit);
+            Assert.Equal(converted.Unit, unit);
+        }
+
+        [Theory]
+        [MemberData(nameof(UnitTypes))]
+        public virtual void ToUnit_FromDefaultQuantity_ReturnsQuantityWithGivenUnit(ApparentEnergyUnit unit)
+        {
+            var quantity = default(ApparentEnergy);
             var converted = quantity.ToUnit(unit);
             Assert.Equal(converted.Unit, unit);
         }
