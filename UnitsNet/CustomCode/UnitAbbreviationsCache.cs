@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, UnitsNet.UnitValueAbbreviationLookup>;
@@ -32,7 +30,7 @@ namespace UnitsNet
         ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>
-        private static readonly CultureInfo FallbackCulture = new CultureInfo("en-US");
+        internal static readonly CultureInfo FallbackCulture = new("en-US");
 
         /// <summary>
         ///     The static instance used internally for ToString() and Parse() of quantities and units.
@@ -71,10 +69,9 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        [PublicAPI]
         public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : Enum
         {
-            PerformAbbreviationMapping(unit, CultureInfo.CurrentUICulture, false, true, abbreviations);
+            PerformAbbreviationMapping(unit, CultureInfo.CurrentCulture, false, true, abbreviations);
         }
 
         /// <summary>
@@ -87,7 +84,7 @@ namespace UnitsNet
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, string abbreviation) where TUnitType : Enum
         {
-            PerformAbbreviationMapping(unit, CultureInfo.CurrentUICulture, true, true, abbreviation);
+            PerformAbbreviationMapping(unit, CultureInfo.CurrentCulture, true, true, abbreviation);
         }
 
         /// <summary>
@@ -96,11 +93,10 @@ namespace UnitsNet
         /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
         /// </summary>
         /// <param name="unit">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        [PublicAPI]
-        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
+        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, params string[] abbreviations) where TUnitType : Enum
         {
             PerformAbbreviationMapping(unit, formatProvider, false, true, abbreviations);
         }
@@ -111,11 +107,10 @@ namespace UnitsNet
         /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
         /// </summary>
         /// <param name="unit">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        [PublicAPI]
-        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, string abbreviation) where TUnitType : Enum
+        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider, string abbreviation) where TUnitType : Enum
         {
             PerformAbbreviationMapping(unit, formatProvider, true, true, abbreviation);
         }
@@ -127,10 +122,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitType">The unit enum type.</param>
         /// <param name="unitValue">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
-        [PublicAPI]
-        public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
+        public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider, params string[] abbreviations)
         {
             var enumValue = (Enum)Enum.ToObject(unitType, unitValue);
             PerformAbbreviationMapping(enumValue, formatProvider, false, true, abbreviations);
@@ -143,21 +137,20 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitType">The unit enum type.</param>
         /// <param name="unitValue">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
-        [PublicAPI]
-        public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] string abbreviation)
+        public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider, string abbreviation)
         {
             var enumValue = (Enum)Enum.ToObject(unitType, unitValue);
             PerformAbbreviationMapping(enumValue, formatProvider, true, true, abbreviation);
         }
 
-        internal void PerformAbbreviationMapping(Enum unitValue, IFormatProvider formatProvider, bool setAsDefault, bool allowAbbreviationLookup, [NotNull] params string[] abbreviations)
+        internal void PerformAbbreviationMapping(Enum unitValue, IFormatProvider? formatProvider, bool setAsDefault, bool allowAbbreviationLookup, params string[] abbreviations)
         {
             if (abbreviations == null)
                 throw new ArgumentNullException(nameof(abbreviations));
 
-            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
@@ -178,29 +171,26 @@ namespace UnitsNet
         /// Example: GetDefaultAbbreviation&lt;LengthUnit&gt;(LengthUnit.Kilometer) => "km"
         /// </summary>
         /// <param name="unit">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         /// <returns>The default unit abbreviation string.</returns>
-        [PublicAPI]
         public string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum
         {
             var unitType = typeof(TUnitType);
 
             if (!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
             {
-                if (formatProvider != FallbackCulture)
-                    return GetDefaultAbbreviation(unit, FallbackCulture);
-                else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetDefaultAbbreviation(unit, FallbackCulture)
+                    : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
             }
 
             var abbreviations = lookup!.GetAbbreviationsForUnit(unit);
             if (abbreviations.Count == 0)
             {
-                if (formatProvider != FallbackCulture)
-                    return GetDefaultAbbreviation(unit, FallbackCulture);
-                else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetDefaultAbbreviation(unit, FallbackCulture)
+                    : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
             }
 
             return abbreviations.First();
@@ -213,26 +203,23 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitType">The unit enum type.</param>
         /// <param name="unitValue">The unit enum value.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>The default unit abbreviation string.</returns>
-        [PublicAPI]
         public string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
             if (!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
             {
-                if (formatProvider != FallbackCulture)
-                    return GetDefaultAbbreviation(unitType, unitValue, FallbackCulture);
-                else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{Enum.GetName(unitType, unitValue)}.");
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetDefaultAbbreviation(unitType, unitValue, FallbackCulture)
+                    : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
             }
 
             var abbreviations = lookup!.GetAbbreviationsForUnit(unitValue);
             if (abbreviations.Count == 0)
             {
-                if (formatProvider != FallbackCulture)
-                    return GetDefaultAbbreviation(unitType, unitValue, FallbackCulture);
-                else
-                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{Enum.GetName(unitType, unitValue)}.");
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetDefaultAbbreviation(unitType, unitValue, FallbackCulture)
+                    : throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
             }
 
             return abbreviations.First();
@@ -243,9 +230,8 @@ namespace UnitsNet
         /// </summary>
         /// <typeparam name="TUnitType">Enum type for units.</typeparam>
         /// <param name="unit">Enum value for unit.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        [PublicAPI]
         public string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider? formatProvider = null) where TUnitType : Enum
         {
             return GetUnitAbbreviations(typeof(TUnitType), Convert.ToInt32(unit), formatProvider);
@@ -256,19 +242,26 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitType">Enum type for unit.</param>
         /// <param name="unitValue">Enum value for unit.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        [PublicAPI]
         public string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
-            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if (!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
-                return formatProvider != FallbackCulture ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
+            {
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture)
+                    : new string[] { };
+            }
 
             var abbreviations = lookup!.GetAbbreviationsForUnit(unitValue);
             if (abbreviations.Count == 0)
-                return formatProvider != FallbackCulture ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
+            {
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture)
+                    : new string[] { };
+            }
 
             return abbreviations.ToArray();
         }
@@ -277,15 +270,18 @@ namespace UnitsNet
         ///     Get all abbreviations for all units of a quantity.
         /// </summary>
         /// <param name="unitEnumType">Enum type for unit.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        [PublicAPI]
         public string[] GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
-            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if (!TryGetUnitValueAbbreviationLookup(unitEnumType, formatProvider, out var lookup))
-                return formatProvider != FallbackCulture ? GetAllUnitAbbreviationsForQuantity(unitEnumType, FallbackCulture) : new string[] { };
+            {
+                return !Equals(formatProvider, FallbackCulture)
+                    ? GetAllUnitAbbreviationsForQuantity(unitEnumType, FallbackCulture)
+                    : new string[] { };
+            }
 
             return lookup!.GetAllUnitAbbreviationsForQuantity();
         }
@@ -294,13 +290,19 @@ namespace UnitsNet
         {
             unitToAbbreviations = null;
 
-            formatProvider = formatProvider ?? CultureInfo.CurrentUICulture;
+            formatProvider ??= CultureInfo.CurrentCulture;
 
             if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
-                return formatProvider != FallbackCulture ? TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations) : false;
+            {
+                return !Equals(formatProvider, FallbackCulture) &&
+                       TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations);
+            }
 
             if (!quantitiesForProvider.TryGetValue(unitType, out unitToAbbreviations))
-                return formatProvider != FallbackCulture ? TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations) : false;
+            {
+                return !Equals(formatProvider, FallbackCulture) &&
+                       TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations);
+            }
 
             return true;
         }

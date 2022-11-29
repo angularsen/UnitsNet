@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ForceChangeRateUnit
     {
-        Undefined = 0,
         CentinewtonPerSecond = 1,
         DecanewtonPerMinute = 2,
         DecanewtonPerSecond = 3,

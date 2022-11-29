@@ -5,7 +5,6 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -59,7 +58,7 @@ namespace UnitsNet
         /// <param name="str"></param>
         /// <param name="formatProvider">Optionally specify the culture format numbers and localize unit abbreviations. Defaults to thread's culture.</param>
         /// <returns>Parsed length.</returns>
-        public static Length ParseFeetInches([NotNull] string str, IFormatProvider? formatProvider = null)
+        public static Length ParseFeetInches(string str, IFormatProvider? formatProvider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             if (!TryParseFeetInches(str, out Length result, formatProvider))
@@ -223,11 +222,11 @@ namespace UnitsNet
         /// <example>Length.FromFeetInches(3,2).FeetInches.ToString() outputs: "3 ft 2 in"</example>
         /// <param name="cultureInfo">
         ///     Optional culture to format number and localize unit abbreviations.
-        ///     If null, defaults to <see cref="Thread.CurrentUICulture"/>.
+        ///     If null, defaults to <see cref="Thread.CurrentCulture"/>.
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
 
             var footUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Foot, cultureInfo);
             var inchUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Inch, cultureInfo);

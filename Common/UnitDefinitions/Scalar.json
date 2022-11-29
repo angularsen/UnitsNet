@@ -1,7 +1,7 @@
 {
   "Name": "Scalar",
   "BaseUnit": "Amount",
-  "XmlDoc": "A way of representing a number of items.",
+  "XmlDocSummary": "A way of representing a number of items.",
   "Units": [
     {
       "SingularName": "Amount",

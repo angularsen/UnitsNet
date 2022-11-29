@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum VitaminAUnit
     {
-        Undefined = 0,
         InternationalUnit = 1,
     }
 

@@ -21,7 +21,6 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -39,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
     [DataContract]
-    public readonly partial struct BitRate : IQuantity<BitRateUnit>, IDecimalQuantity, IEquatable<BitRate>, IComparable, IComparable<BitRate>, IConvertible, IFormattable
+    public readonly partial struct BitRate : IQuantity<BitRateUnit>, IDecimalQuantity, IComparable, IComparable<BitRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -57,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
             BaseUnit = BitRateUnit.BitPerSecond;
-            MaxValue = new BitRate(decimal.MaxValue, BaseUnit);
-            MinValue = new BitRate(decimal.MinValue, BaseUnit);
-            QuantityType = QuantityType.BitRate;
-            Units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().ToArray();
             Zero = new BitRate(0, BaseUnit);
             Info = new QuantityInfo<BitRateUnit>("BitRate",
                 new UnitInfo<BitRateUnit>[]
@@ -92,7 +88,7 @@ namespace UnitsNet
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabitPerSecond, "TerabitsPerSecond", BaseUnits.Undefined),
                     new UnitInfo<BitRateUnit>(BitRateUnit.TerabytePerSecond, "TerabytesPerSecond", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.BitRate);
+                BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
@@ -106,9 +102,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public BitRate(decimal value, BitRateUnit unit)
         {
-            if (unit == BitRateUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = value;
             _unit = unit;
         }
@@ -153,24 +146,6 @@ namespace UnitsNet
         public static BitRateUnit BaseUnit { get; }
 
         /// <summary>
-        /// Represents the largest possible value of BitRate
-        /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BitRate MaxValue { get; }
-
-        /// <summary>
-        /// Represents the smallest possible value of BitRate
-        /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static BitRate MinValue { get; }
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; }
-
-        /// <summary>
         ///     All units of measurement for the BitRate quantity.
         /// </summary>
         public static BitRateUnit[] Units { get; }
@@ -189,7 +164,8 @@ namespace UnitsNet
         /// </summary>
         public decimal Value => _value;
 
-        double IQuantity.Value => (double) _value;
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
 
         /// <inheritdoc cref="IDecimalQuantity.Value"/>
         decimal IDecimalQuantity.Value => _value;
@@ -206,12 +182,6 @@ namespace UnitsNet
         QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public QuantityType Type => QuantityType.BitRate;
-
-        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public BaseDimensions Dimensions => BitRate.BaseDimensions;
@@ -221,134 +191,134 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.BitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.BitPerSecond"/>
         /// </summary>
-        public double BitsPerSecond => As(BitRateUnit.BitPerSecond);
+        public decimal BitsPerSecond => As(BitRateUnit.BitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.BytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.BytePerSecond"/>
         /// </summary>
-        public double BytesPerSecond => As(BitRateUnit.BytePerSecond);
+        public decimal BytesPerSecond => As(BitRateUnit.BytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExabitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.ExabitPerSecond"/>
         /// </summary>
-        public double ExabitsPerSecond => As(BitRateUnit.ExabitPerSecond);
+        public decimal ExabitsPerSecond => As(BitRateUnit.ExabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExabytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.ExabytePerSecond"/>
         /// </summary>
-        public double ExabytesPerSecond => As(BitRateUnit.ExabytePerSecond);
+        public decimal ExabytesPerSecond => As(BitRateUnit.ExabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExbibitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.ExbibitPerSecond"/>
         /// </summary>
-        public double ExbibitsPerSecond => As(BitRateUnit.ExbibitPerSecond);
+        public decimal ExbibitsPerSecond => As(BitRateUnit.ExbibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExbibytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.ExbibytePerSecond"/>
         /// </summary>
-        public double ExbibytesPerSecond => As(BitRateUnit.ExbibytePerSecond);
+        public decimal ExbibytesPerSecond => As(BitRateUnit.ExbibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GibibitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.GibibitPerSecond"/>
         /// </summary>
-        public double GibibitsPerSecond => As(BitRateUnit.GibibitPerSecond);
+        public decimal GibibitsPerSecond => As(BitRateUnit.GibibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GibibytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.GibibytePerSecond"/>
         /// </summary>
-        public double GibibytesPerSecond => As(BitRateUnit.GibibytePerSecond);
+        public decimal GibibytesPerSecond => As(BitRateUnit.GibibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GigabitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.GigabitPerSecond"/>
         /// </summary>
-        public double GigabitsPerSecond => As(BitRateUnit.GigabitPerSecond);
+        public decimal GigabitsPerSecond => As(BitRateUnit.GigabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GigabytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.GigabytePerSecond"/>
         /// </summary>
-        public double GigabytesPerSecond => As(BitRateUnit.GigabytePerSecond);
+        public decimal GigabytesPerSecond => As(BitRateUnit.GigabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KibibitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.KibibitPerSecond"/>
         /// </summary>
-        public double KibibitsPerSecond => As(BitRateUnit.KibibitPerSecond);
+        public decimal KibibitsPerSecond => As(BitRateUnit.KibibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KibibytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.KibibytePerSecond"/>
         /// </summary>
-        public double KibibytesPerSecond => As(BitRateUnit.KibibytePerSecond);
+        public decimal KibibytesPerSecond => As(BitRateUnit.KibibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KilobitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.KilobitPerSecond"/>
         /// </summary>
-        public double KilobitsPerSecond => As(BitRateUnit.KilobitPerSecond);
+        public decimal KilobitsPerSecond => As(BitRateUnit.KilobitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KilobytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.KilobytePerSecond"/>
         /// </summary>
-        public double KilobytesPerSecond => As(BitRateUnit.KilobytePerSecond);
+        public decimal KilobytesPerSecond => As(BitRateUnit.KilobytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MebibitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.MebibitPerSecond"/>
         /// </summary>
-        public double MebibitsPerSecond => As(BitRateUnit.MebibitPerSecond);
+        public decimal MebibitsPerSecond => As(BitRateUnit.MebibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MebibytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.MebibytePerSecond"/>
         /// </summary>
-        public double MebibytesPerSecond => As(BitRateUnit.MebibytePerSecond);
+        public decimal MebibytesPerSecond => As(BitRateUnit.MebibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MegabitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.MegabitPerSecond"/>
         /// </summary>
-        public double MegabitsPerSecond => As(BitRateUnit.MegabitPerSecond);
+        public decimal MegabitsPerSecond => As(BitRateUnit.MegabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MegabytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.MegabytePerSecond"/>
         /// </summary>
-        public double MegabytesPerSecond => As(BitRateUnit.MegabytePerSecond);
+        public decimal MegabytesPerSecond => As(BitRateUnit.MegabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PebibitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.PebibitPerSecond"/>
         /// </summary>
-        public double PebibitsPerSecond => As(BitRateUnit.PebibitPerSecond);
+        public decimal PebibitsPerSecond => As(BitRateUnit.PebibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PebibytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.PebibytePerSecond"/>
         /// </summary>
-        public double PebibytesPerSecond => As(BitRateUnit.PebibytePerSecond);
+        public decimal PebibytesPerSecond => As(BitRateUnit.PebibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PetabitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.PetabitPerSecond"/>
         /// </summary>
-        public double PetabitsPerSecond => As(BitRateUnit.PetabitPerSecond);
+        public decimal PetabitsPerSecond => As(BitRateUnit.PetabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PetabytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.PetabytePerSecond"/>
         /// </summary>
-        public double PetabytesPerSecond => As(BitRateUnit.PetabytePerSecond);
+        public decimal PetabytesPerSecond => As(BitRateUnit.PetabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TebibitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.TebibitPerSecond"/>
         /// </summary>
-        public double TebibitsPerSecond => As(BitRateUnit.TebibitPerSecond);
+        public decimal TebibitsPerSecond => As(BitRateUnit.TebibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TebibytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.TebibytePerSecond"/>
         /// </summary>
-        public double TebibytesPerSecond => As(BitRateUnit.TebibytePerSecond);
+        public decimal TebibytesPerSecond => As(BitRateUnit.TebibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TerabitPerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.TerabitPerSecond"/>
         /// </summary>
-        public double TerabitsPerSecond => As(BitRateUnit.TerabitPerSecond);
+        public decimal TerabitsPerSecond => As(BitRateUnit.TerabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TerabytePerSecond"/>
+        ///     Gets a <see cref="decimal"/> value of this quantity converted into <see cref="BitRateUnit.TerabytePerSecond"/>
         /// </summary>
-        public double TerabytesPerSecond => As(BitRateUnit.TerabytePerSecond);
+        public decimal TerabytesPerSecond => As(BitRateUnit.TerabytePerSecond);
 
         #endregion
 
@@ -463,7 +433,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(BitRateUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -797,7 +767,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static BitRate Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<BitRate, BitRateUnit>(
@@ -828,7 +798,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out BitRate result)
         {
             return QuantityParser.Default.TryParse<BitRate, BitRateUnit>(
@@ -856,7 +826,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -882,7 +852,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out BitRateUnit unit)
         {
             return UnitParser.Default.TryParse<BitRateUnit>(str, provider, out unit);
@@ -929,7 +899,7 @@ namespace UnitsNet
         }
 
         /// <summary>Get ratio value from dividing <see cref="BitRate"/> by <see cref="BitRate"/>.</summary>
-        public static double operator /(BitRate left, BitRate right)
+        public static decimal operator /(BitRate left, BitRate right)
         {
             return left.BitsPerSecond / right.BitsPerSecond;
         }
@@ -962,20 +932,6 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(BitRate left, BitRate right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(BitRate left, BitRate right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -989,23 +945,6 @@ namespace UnitsNet
         public int CompareTo(BitRate other)
         {
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is BitRate objBitRate))
-                return false;
-
-            return Equals(objBitRate);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(BitRate, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(BitRate other)
-        {
-            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1048,13 +987,13 @@ namespace UnitsNet
         /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(BitRate other, double tolerance, ComparisonType comparisonType)
+        public bool Equals(BitRate other, decimal tolerance, ComparisonType comparisonType)
         {
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
-            double otherValueInThisUnits = other.As(this.Unit);
+            decimal thisValue = this.Value;
+            decimal otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
@@ -1076,17 +1015,21 @@ namespace UnitsNet
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        public double As(BitRateUnit unit)
+        public decimal As(BitRateUnit unit)
         {
             if (Unit == unit)
-                return (double)Value;
+                return Value;
 
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return ToUnit(unit).Value;
+        }
+
+        double IQuantity<BitRateUnit>.As(BitRateUnit unit)
+        {
+            return (double)As(unit);
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        public decimal As(UnitSystem unitSystem)
         {
             if (unitSystem is null)
                 throw new ArgumentNullException(nameof(unitSystem));
@@ -1100,13 +1043,19 @@ namespace UnitsNet
             return As(firstUnitInfo.Value);
         }
 
+         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
+        double IQuantity.As(UnitSystem unitSystem)
+        {
+            return (double)As(unitSystem);
+        }
+
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is BitRateUnit unitAsBitRateUnit))
+            if (!(unit is BitRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
 
-            return As(unitAsBitRateUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -1229,10 +1178,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is BitRateUnit unitAsBitRateUnit))
+            if (!(unit is BitRateUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsBitRateUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1276,63 +1225,29 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
-        {
-            var value = Convert.ToDouble(Value);
-            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(provider, format);
-        }
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
-        {
-            if (format == null) throw new ArgumentNullException(nameof(format));
-            if (args == null) throw new ArgumentNullException(nameof(args));
-
-            provider = provider ?? CultureInfo.CurrentUICulture;
-
-            var value = Convert.ToDouble(Value);
-            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
-            return string.Format(provider, format, formatArgs);
-        }
-
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentUICulture);
+            return ToString(format, CultureInfo.CurrentCulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -1414,8 +1329,6 @@ namespace UnitsNet
                 return this;
             else if (conversionType == typeof(BitRateUnit))
                 return Unit;
-            else if (conversionType == typeof(QuantityType))
-                return BitRate.QuantityType;
             else if (conversionType == typeof(QuantityInfo))
                 return BitRate.Info;
             else if (conversionType == typeof(BaseDimensions))

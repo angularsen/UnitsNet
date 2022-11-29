@@ -3,7 +3,6 @@ using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.NanoFrameworkGen
-
 {
     internal class UnitTypeGenerator : GeneratorBase
     {
@@ -18,7 +17,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _unitEnumName = $"{quantity.Name}Unit";
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
@@ -29,9 +28,7 @@ namespace UnitsNet.Units
     #pragma warning disable 1591
 
     public enum {_unitEnumName}
-    {{
-        Undefined = 0,");
-
+    {{");
             foreach (var unit in _quantity.Units)
             {
                 if (unit.XmlDocSummary.HasText())

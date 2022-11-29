@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum VolumeUnit
     {
-        Undefined = 0,
         AcreFoot = 1,
         AuTablespoon = 2,
         BoardFoot = 3,

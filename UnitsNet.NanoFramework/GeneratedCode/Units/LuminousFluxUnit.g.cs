@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum LuminousFluxUnit
     {
-        Undefined = 0,
         Lumen = 1,
     }
 

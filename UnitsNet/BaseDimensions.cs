@@ -30,7 +30,7 @@ namespace UnitsNet
         /// <returns>True if the dimensions represent a base quantity, otherwise false.</returns>
         public bool IsBaseQuantity()
         {
-            var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
+            var dimensionsArray = new[] { Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity };
             bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
             return onlyOneEqualsOne;
         }
@@ -54,20 +54,18 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is BaseDimensions))
+            if (obj is not BaseDimensions other)
                 return false;
 
-            var other = (BaseDimensions)obj;
-
             return Length == other.Length &&
-                Mass == other.Mass &&
-                Time == other.Time &&
-                Current == other.Current &&
-                Temperature == other.Temperature &&
-                Amount == other.Amount &&
-                LuminousIntensity == other.LuminousIntensity;
+                   Mass == other.Mass &&
+                   Time == other.Time &&
+                   Current == other.Current &&
+                   Temperature == other.Temperature &&
+                   Amount == other.Amount &&
+                   LuminousIntensity == other.LuminousIntensity;
         }
 
         /// <inheritdoc />
@@ -83,7 +81,7 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public BaseDimensions Multiply(BaseDimensions right)
         {
-            if (right is null)
+            if(right is null)
                 throw new ArgumentNullException(nameof(right));
 
             return new BaseDimensions(
@@ -103,7 +101,7 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public BaseDimensions Divide(BaseDimensions right)
         {
-            if (right is null)
+            if(right is null)
                 throw new ArgumentNullException(nameof(right));
 
             return new BaseDimensions(
@@ -122,9 +120,9 @@ namespace UnitsNet
         /// <param name="left">Left.</param>
         /// <param name="right">Right.</param>
         /// <returns>True if equal.</returns>
-        public static bool operator ==(BaseDimensions left, BaseDimensions right)
+        public static bool operator ==(BaseDimensions? left, BaseDimensions? right)
         {
-            return left is null ? right is null : left.Equals(right);
+            return left?.Equals(right!) ?? right is null;
         }
 
         /// <summary>
@@ -146,10 +144,8 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public static BaseDimensions operator *(BaseDimensions left, BaseDimensions right)
         {
-            if (left is null)
-                throw new ArgumentNullException(nameof(left));
-            else if (right is null)
-                throw new ArgumentNullException(nameof(right));
+            if (left is null) throw new ArgumentNullException(nameof(left));
+            if (right is null) throw new ArgumentNullException(nameof(right));
 
             return left.Multiply(right);
         }
@@ -162,10 +158,8 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
         {
-            if (left is null)
-                throw new ArgumentNullException(nameof(left));
-            else if (right is null)
-                throw new ArgumentNullException(nameof(right));
+            if (left is null) throw new ArgumentNullException(nameof(left));
+            if (right is null) throw new ArgumentNullException(nameof(right));
 
             return left.Divide(right);
         }
@@ -190,11 +184,11 @@ namespace UnitsNet
         {
             var absoluteValue = Math.Abs(value);
 
-            if (absoluteValue > 0)
+            if(absoluteValue > 0)
             {
                 sb.AppendFormat("[{0}]", name);
 
-                if (absoluteValue > 1)
+                if(absoluteValue > 1)
                     sb.AppendFormat("^{0}", value);
             }
         }

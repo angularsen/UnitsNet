@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -13,7 +12,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public sealed class UnitsNetIQuantityJsonConverterTest
     {
-        private UnitsNetIQuantityJsonConverter _sut;
+        private readonly UnitsNetIQuantityJsonConverter _sut;
 
         public UnitsNetIQuantityJsonConverterTest()
         {
@@ -136,7 +135,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.NotNull(result);
             Assert.IsType<Power>(result);
-            Assert.Equal(10.3654D, ((Power)result).Watts);
+            Assert.Equal(10.3654M, ((Power)result).Watts);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Luminance is a photometric measure of the luminous intensity per unit area of light travelling in a given direction.
+    ///     
     /// </summary>
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Luminance
@@ -209,71 +209,71 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LuminanceUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(LuminanceUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Luminance ToUnit(LuminanceUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Luminance(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Luminance ToUnit(LuminanceUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Luminance(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                LuminanceUnit.CandelaPerSquareFoot => _value* 1.07639e1,
-                LuminanceUnit.CandelaPerSquareInch => _value* 1.5500031e3,
-                LuminanceUnit.CandelaPerSquareMeter => _value,
-                LuminanceUnit.CenticandelaPerSquareMeter => (_value) * 1e-2d,
-                LuminanceUnit.DecicandelaPerSquareMeter => (_value) * 1e-1d,
-                LuminanceUnit.KilocandelaPerSquareMeter => (_value) * 1e3d,
-                LuminanceUnit.MicrocandelaPerSquareMeter => (_value) * 1e-6d,
-                LuminanceUnit.MillicandelaPerSquareMeter => (_value) * 1e-3d,
-                LuminanceUnit.NanocandelaPerSquareMeter => (_value) * 1e-9d,
-                LuminanceUnit.Nit => _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        LuminanceUnit.CandelaPerSquareFoot => _value* 1.07639e1,
+                        LuminanceUnit.CandelaPerSquareInch => _value* 1.5500031e3,
+                        LuminanceUnit.CandelaPerSquareMeter => _value,
+                        LuminanceUnit.CenticandelaPerSquareMeter => (_value) * 1e-2d,
+                        LuminanceUnit.DecicandelaPerSquareMeter => (_value) * 1e-1d,
+                        LuminanceUnit.KilocandelaPerSquareMeter => (_value) * 1e3d,
+                        LuminanceUnit.MicrocandelaPerSquareMeter => (_value) * 1e-6d,
+                        LuminanceUnit.MillicandelaPerSquareMeter => (_value) * 1e-3d,
+                        LuminanceUnit.NanocandelaPerSquareMeter => (_value) * 1e-9d,
+                        LuminanceUnit.Nit => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(LuminanceUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(LuminanceUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                LuminanceUnit.CandelaPerSquareFoot => baseUnitValue/ 1.07639e1,
-                LuminanceUnit.CandelaPerSquareInch => baseUnitValue/ 1.5500031e3,
-                LuminanceUnit.CandelaPerSquareMeter => baseUnitValue,
-                LuminanceUnit.CenticandelaPerSquareMeter => (baseUnitValue) / 1e-2d,
-                LuminanceUnit.DecicandelaPerSquareMeter => (baseUnitValue) / 1e-1d,
-                LuminanceUnit.KilocandelaPerSquareMeter => (baseUnitValue) / 1e3d,
-                LuminanceUnit.MicrocandelaPerSquareMeter => (baseUnitValue) / 1e-6d,
-                LuminanceUnit.MillicandelaPerSquareMeter => (baseUnitValue) / 1e-3d,
-                LuminanceUnit.NanocandelaPerSquareMeter => (baseUnitValue) / 1e-9d,
-                LuminanceUnit.Nit => baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        LuminanceUnit.CandelaPerSquareFoot => baseUnitValue/ 1.07639e1,
+                        LuminanceUnit.CandelaPerSquareInch => baseUnitValue/ 1.5500031e3,
+                        LuminanceUnit.CandelaPerSquareMeter => baseUnitValue,
+                        LuminanceUnit.CenticandelaPerSquareMeter => (baseUnitValue) / 1e-2d,
+                        LuminanceUnit.DecicandelaPerSquareMeter => (baseUnitValue) / 1e-1d,
+                        LuminanceUnit.KilocandelaPerSquareMeter => (baseUnitValue) / 1e3d,
+                        LuminanceUnit.MicrocandelaPerSquareMeter => (baseUnitValue) / 1e-6d,
+                        LuminanceUnit.MillicandelaPerSquareMeter => (baseUnitValue) / 1e-3d,
+                        LuminanceUnit.NanocandelaPerSquareMeter => (baseUnitValue) / 1e-9d,
+                        LuminanceUnit.Nit => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

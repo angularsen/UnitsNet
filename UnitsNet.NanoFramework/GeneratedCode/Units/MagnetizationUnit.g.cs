@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MagnetizationUnit
     {
-        Undefined = 0,
         AmperePerMeter = 1,
     }
 

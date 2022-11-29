@@ -18,7 +18,7 @@ namespace CodeGen.Generators.UnitsNetGen
             _quantities = quantities;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL($@"
@@ -59,16 +59,6 @@ namespace UnitsNet.Tests
 ");
             foreach (var quantity in _quantities) Writer.WL($@"
             Assertion({quantity.Name}.Info, {quantity.Name}.Zero);");
-            Writer.WL($@"
-        }}
-
-        [Fact]
-        public void Type_EqualsStaticQuantityTypeProperty()
-        {{
-            void Assertion(QuantityType expected, IQuantity quantity) => Assert.Equal(expected, quantity.Type);
-");
-            foreach (var quantity in _quantities) Writer.WL($@"
-            Assertion({quantity.Name}.QuantityType, {quantity.Name}.Zero);");
             Writer.WL($@"
         }}
 

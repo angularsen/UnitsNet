@@ -28,7 +28,7 @@ function Update-GeneratedCode {
   write-host -foreground blue "Generate code...END`n"
 }
 
-function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolean] $IncludeNanoFramework = $false) {
+function Start-Build([boolean] $IncludeNanoFramework = $false) {
   write-host -foreground blue "Start-Build...`n---"
 
   $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
@@ -39,24 +39,6 @@ function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false, [boolea
 
   dotnet build --configuration Release "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
-
-  if (-not $IncludeWindowsRuntimeComponent)
-  {
-    write-host -foreground yellow "Skipping WindowsRuntimeComponent build."
-  }
-  else
-  {
-    write-host -foreground green "Build WindowsRuntimeComponent."
-    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.WindowsRuntimeComponent.msbuild.log"
-    $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
-
-    # dontnet CLI does not support WindowsRuntimeComponent project type yet
-    # msbuild does not auto-restore nugets for this project type
-    write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
-    if ($lastexitcode -ne 0) { exit 1 }
-  }
 
   if (-not $IncludeNanoFramework)
   {
@@ -82,8 +64,7 @@ function Start-Tests {
   $projectPaths = @(
     "UnitsNet.Tests\UnitsNet.Tests.csproj",
     "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj"
+    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj"
     )
 
   # Parent dir must exist before xunit tries to write files to it
@@ -129,20 +110,12 @@ function Start-PackNugets {
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
-  if (-not $IncludeWindowsRuntimeComponent) {
-    write-host -foreground yellow "Skipping WindowsRuntimeComponent nuget pack."
-  } else {
-    write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
-    & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
-  }
-
   if (-not $IncludeNanoFramework) {
     write-host -foreground yellow "Skipping nanoFramework nuget pack."
   } else {
     write-host -foreground yellow "nanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
-    Invoke-Build-NanoNugets
+    Invoke-BuildNanoNugets
   }
-
 
   write-host -foreground blue "Pack nugets...END`n"
 }

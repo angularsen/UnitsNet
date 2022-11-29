@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum PermeabilityUnit
     {
-        Undefined = 0,
         HenryPerMeter = 1,
     }
 

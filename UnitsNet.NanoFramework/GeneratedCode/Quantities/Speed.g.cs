@@ -459,117 +459,117 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(SpeedUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(SpeedUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Speed ToUnit(SpeedUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Speed(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Speed ToUnit(SpeedUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Speed(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                SpeedUnit.CentimeterPerHour => (_value / 3600) * 1e-2d,
-                SpeedUnit.CentimeterPerMinute => (_value / 60) * 1e-2d,
-                SpeedUnit.CentimeterPerSecond => (_value) * 1e-2d,
-                SpeedUnit.DecimeterPerMinute => (_value / 60) * 1e-1d,
-                SpeedUnit.DecimeterPerSecond => (_value) * 1e-1d,
-                SpeedUnit.FootPerHour => _value * 0.3048 / 3600,
-                SpeedUnit.FootPerMinute => _value * 0.3048 / 60,
-                SpeedUnit.FootPerSecond => _value * 0.3048,
-                SpeedUnit.InchPerHour => (_value / 3600) * 2.54e-2,
-                SpeedUnit.InchPerMinute => (_value / 60) * 2.54e-2,
-                SpeedUnit.InchPerSecond => _value * 2.54e-2,
-                SpeedUnit.KilometerPerHour => (_value / 3600) * 1e3d,
-                SpeedUnit.KilometerPerMinute => (_value / 60) * 1e3d,
-                SpeedUnit.KilometerPerSecond => (_value) * 1e3d,
-                SpeedUnit.Knot => _value * 0.514444,
-                SpeedUnit.Mach => _value * 340.29,
-                SpeedUnit.MeterPerHour => _value / 3600,
-                SpeedUnit.MeterPerMinute => _value / 60,
-                SpeedUnit.MeterPerSecond => _value,
-                SpeedUnit.MicrometerPerMinute => (_value / 60) * 1e-6d,
-                SpeedUnit.MicrometerPerSecond => (_value) * 1e-6d,
-                SpeedUnit.MilePerHour => _value * 0.44704,
-                SpeedUnit.MillimeterPerHour => (_value / 3600) * 1e-3d,
-                SpeedUnit.MillimeterPerMinute => (_value / 60) * 1e-3d,
-                SpeedUnit.MillimeterPerSecond => (_value) * 1e-3d,
-                SpeedUnit.NanometerPerMinute => (_value / 60) * 1e-9d,
-                SpeedUnit.NanometerPerSecond => (_value) * 1e-9d,
-                SpeedUnit.UsSurveyFootPerHour => (_value * 1200 / 3937) / 3600,
-                SpeedUnit.UsSurveyFootPerMinute => (_value * 1200 / 3937) / 60,
-                SpeedUnit.UsSurveyFootPerSecond => _value * 1200 / 3937,
-                SpeedUnit.YardPerHour => _value * 0.9144 / 3600,
-                SpeedUnit.YardPerMinute => _value * 0.9144 / 60,
-                SpeedUnit.YardPerSecond => _value * 0.9144,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        SpeedUnit.CentimeterPerHour => (_value / 3600) * 1e-2d,
+                        SpeedUnit.CentimeterPerMinute => (_value / 60) * 1e-2d,
+                        SpeedUnit.CentimeterPerSecond => (_value) * 1e-2d,
+                        SpeedUnit.DecimeterPerMinute => (_value / 60) * 1e-1d,
+                        SpeedUnit.DecimeterPerSecond => (_value) * 1e-1d,
+                        SpeedUnit.FootPerHour => _value * 0.3048 / 3600,
+                        SpeedUnit.FootPerMinute => _value * 0.3048 / 60,
+                        SpeedUnit.FootPerSecond => _value * 0.3048,
+                        SpeedUnit.InchPerHour => (_value / 3600) * 2.54e-2,
+                        SpeedUnit.InchPerMinute => (_value / 60) * 2.54e-2,
+                        SpeedUnit.InchPerSecond => _value * 2.54e-2,
+                        SpeedUnit.KilometerPerHour => (_value / 3600) * 1e3d,
+                        SpeedUnit.KilometerPerMinute => (_value / 60) * 1e3d,
+                        SpeedUnit.KilometerPerSecond => (_value) * 1e3d,
+                        SpeedUnit.Knot => _value * 0.514444,
+                        SpeedUnit.Mach => _value * 340.29,
+                        SpeedUnit.MeterPerHour => _value / 3600,
+                        SpeedUnit.MeterPerMinute => _value / 60,
+                        SpeedUnit.MeterPerSecond => _value,
+                        SpeedUnit.MicrometerPerMinute => (_value / 60) * 1e-6d,
+                        SpeedUnit.MicrometerPerSecond => (_value) * 1e-6d,
+                        SpeedUnit.MilePerHour => _value * 0.44704,
+                        SpeedUnit.MillimeterPerHour => (_value / 3600) * 1e-3d,
+                        SpeedUnit.MillimeterPerMinute => (_value / 60) * 1e-3d,
+                        SpeedUnit.MillimeterPerSecond => (_value) * 1e-3d,
+                        SpeedUnit.NanometerPerMinute => (_value / 60) * 1e-9d,
+                        SpeedUnit.NanometerPerSecond => (_value) * 1e-9d,
+                        SpeedUnit.UsSurveyFootPerHour => (_value * 1200 / 3937) / 3600,
+                        SpeedUnit.UsSurveyFootPerMinute => (_value * 1200 / 3937) / 60,
+                        SpeedUnit.UsSurveyFootPerSecond => _value * 1200 / 3937,
+                        SpeedUnit.YardPerHour => _value * 0.9144 / 3600,
+                        SpeedUnit.YardPerMinute => _value * 0.9144 / 60,
+                        SpeedUnit.YardPerSecond => _value * 0.9144,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(SpeedUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(SpeedUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                SpeedUnit.CentimeterPerHour => (baseUnitValue * 3600) / 1e-2d,
-                SpeedUnit.CentimeterPerMinute => (baseUnitValue * 60) / 1e-2d,
-                SpeedUnit.CentimeterPerSecond => (baseUnitValue) / 1e-2d,
-                SpeedUnit.DecimeterPerMinute => (baseUnitValue * 60) / 1e-1d,
-                SpeedUnit.DecimeterPerSecond => (baseUnitValue) / 1e-1d,
-                SpeedUnit.FootPerHour => baseUnitValue / 0.3048 * 3600,
-                SpeedUnit.FootPerMinute => baseUnitValue / 0.3048 * 60,
-                SpeedUnit.FootPerSecond => baseUnitValue / 0.3048,
-                SpeedUnit.InchPerHour => (baseUnitValue / 2.54e-2) * 3600,
-                SpeedUnit.InchPerMinute => (baseUnitValue / 2.54e-2) * 60,
-                SpeedUnit.InchPerSecond => baseUnitValue / 2.54e-2,
-                SpeedUnit.KilometerPerHour => (baseUnitValue * 3600) / 1e3d,
-                SpeedUnit.KilometerPerMinute => (baseUnitValue * 60) / 1e3d,
-                SpeedUnit.KilometerPerSecond => (baseUnitValue) / 1e3d,
-                SpeedUnit.Knot => baseUnitValue / 0.514444,
-                SpeedUnit.Mach => baseUnitValue / 340.29,
-                SpeedUnit.MeterPerHour => baseUnitValue * 3600,
-                SpeedUnit.MeterPerMinute => baseUnitValue * 60,
-                SpeedUnit.MeterPerSecond => baseUnitValue,
-                SpeedUnit.MicrometerPerMinute => (baseUnitValue * 60) / 1e-6d,
-                SpeedUnit.MicrometerPerSecond => (baseUnitValue) / 1e-6d,
-                SpeedUnit.MilePerHour => baseUnitValue / 0.44704,
-                SpeedUnit.MillimeterPerHour => (baseUnitValue * 3600) / 1e-3d,
-                SpeedUnit.MillimeterPerMinute => (baseUnitValue * 60) / 1e-3d,
-                SpeedUnit.MillimeterPerSecond => (baseUnitValue) / 1e-3d,
-                SpeedUnit.NanometerPerMinute => (baseUnitValue * 60) / 1e-9d,
-                SpeedUnit.NanometerPerSecond => (baseUnitValue) / 1e-9d,
-                SpeedUnit.UsSurveyFootPerHour => (baseUnitValue * 3937 / 1200) * 3600,
-                SpeedUnit.UsSurveyFootPerMinute => (baseUnitValue * 3937 / 1200) * 60,
-                SpeedUnit.UsSurveyFootPerSecond => baseUnitValue * 3937 / 1200,
-                SpeedUnit.YardPerHour => baseUnitValue / 0.9144 * 3600,
-                SpeedUnit.YardPerMinute => baseUnitValue / 0.9144 * 60,
-                SpeedUnit.YardPerSecond => baseUnitValue / 0.9144,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        SpeedUnit.CentimeterPerHour => (baseUnitValue * 3600) / 1e-2d,
+                        SpeedUnit.CentimeterPerMinute => (baseUnitValue * 60) / 1e-2d,
+                        SpeedUnit.CentimeterPerSecond => (baseUnitValue) / 1e-2d,
+                        SpeedUnit.DecimeterPerMinute => (baseUnitValue * 60) / 1e-1d,
+                        SpeedUnit.DecimeterPerSecond => (baseUnitValue) / 1e-1d,
+                        SpeedUnit.FootPerHour => baseUnitValue / 0.3048 * 3600,
+                        SpeedUnit.FootPerMinute => baseUnitValue / 0.3048 * 60,
+                        SpeedUnit.FootPerSecond => baseUnitValue / 0.3048,
+                        SpeedUnit.InchPerHour => (baseUnitValue / 2.54e-2) * 3600,
+                        SpeedUnit.InchPerMinute => (baseUnitValue / 2.54e-2) * 60,
+                        SpeedUnit.InchPerSecond => baseUnitValue / 2.54e-2,
+                        SpeedUnit.KilometerPerHour => (baseUnitValue * 3600) / 1e3d,
+                        SpeedUnit.KilometerPerMinute => (baseUnitValue * 60) / 1e3d,
+                        SpeedUnit.KilometerPerSecond => (baseUnitValue) / 1e3d,
+                        SpeedUnit.Knot => baseUnitValue / 0.514444,
+                        SpeedUnit.Mach => baseUnitValue / 340.29,
+                        SpeedUnit.MeterPerHour => baseUnitValue * 3600,
+                        SpeedUnit.MeterPerMinute => baseUnitValue * 60,
+                        SpeedUnit.MeterPerSecond => baseUnitValue,
+                        SpeedUnit.MicrometerPerMinute => (baseUnitValue * 60) / 1e-6d,
+                        SpeedUnit.MicrometerPerSecond => (baseUnitValue) / 1e-6d,
+                        SpeedUnit.MilePerHour => baseUnitValue / 0.44704,
+                        SpeedUnit.MillimeterPerHour => (baseUnitValue * 3600) / 1e-3d,
+                        SpeedUnit.MillimeterPerMinute => (baseUnitValue * 60) / 1e-3d,
+                        SpeedUnit.MillimeterPerSecond => (baseUnitValue) / 1e-3d,
+                        SpeedUnit.NanometerPerMinute => (baseUnitValue * 60) / 1e-9d,
+                        SpeedUnit.NanometerPerSecond => (baseUnitValue) / 1e-9d,
+                        SpeedUnit.UsSurveyFootPerHour => (baseUnitValue * 3937 / 1200) * 3600,
+                        SpeedUnit.UsSurveyFootPerMinute => (baseUnitValue * 3937 / 1200) * 60,
+                        SpeedUnit.UsSurveyFootPerSecond => baseUnitValue * 3937 / 1200,
+                        SpeedUnit.YardPerHour => baseUnitValue / 0.9144 * 3600,
+                        SpeedUnit.YardPerMinute => baseUnitValue / 0.9144 * 60,
+                        SpeedUnit.YardPerSecond => baseUnitValue / 0.9144,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

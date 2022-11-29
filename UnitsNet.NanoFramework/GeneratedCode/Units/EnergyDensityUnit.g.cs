@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum EnergyDensityUnit
     {
-        Undefined = 0,
         GigajoulePerCubicMeter = 6,
         GigawattHourPerCubicMeter = 8,
         JoulePerCubicMeter = 3,

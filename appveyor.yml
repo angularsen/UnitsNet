@@ -1,5 +1,5 @@
 version: '{build}'
-image: Visual Studio 2019
+image: Visual Studio 2022
 
 # Disable AppVeyor builds on all branches.
 # We switched to https://dev.azure.com/unitsnet/Units.NET.
@@ -48,7 +48,7 @@ cache:
 build_script:
 - ps: |
     # Build, test, pack and push nugets
-    .\\build-with-wrc.bat
+    .\\build-all-targets.bat
     $BuildExitCode = $LASTEXITCODE
 
     # Upload test results to AppVeyor
@@ -87,15 +87,15 @@ artifacts:
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
 - path: Artifacts\Coverage
 
-deploy:
-- provider: NuGet
-  api_key:
-    secure: 3xzXMX5mWxAOcNOdbAPQ+xuVGoeLuBQ89G+HTpJAoF137XFC9+p1VWiupSEsHs2c
-  on:
-    branch: master
+for:
+  -
+    branches:
+      only:
+        - master
+        - /release\/.+/
+        - /support\/.+/
 
-- provider: NuGet
-  api_key:
-    secure: 3xzXMX5mWxAOcNOdbAPQ+xuVGoeLuBQ89G+HTpJAoF137XFC9+p1VWiupSEsHs2c
-  on:
-    branch: release/*
+    deploy:
+      - provider: NuGet
+        api_key:
+          secure: 3xzXMX5mWxAOcNOdbAPQ+xuVGoeLuBQ89G+HTpJAoF137XFC9+p1VWiupSEsHs2c

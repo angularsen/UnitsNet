@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricFieldUnit
     {
-        Undefined = 0,
         VoltPerMeter = 1,
     }
 

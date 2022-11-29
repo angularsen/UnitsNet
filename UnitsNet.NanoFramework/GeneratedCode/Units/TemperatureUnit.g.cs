@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum TemperatureUnit
     {
-        Undefined = 0,
         DegreeCelsius = 1,
         DegreeDelisle = 2,
         DegreeFahrenheit = 3,

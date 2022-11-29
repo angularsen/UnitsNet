@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum CapacitanceUnit
     {
-        Undefined = 0,
         Farad = 1,
         Kilofarad = 2,
         Megafarad = 3,

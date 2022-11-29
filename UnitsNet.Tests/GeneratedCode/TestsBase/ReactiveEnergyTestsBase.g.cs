@@ -67,19 +67,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new ReactiveEnergy((double)0.0, ReactiveEnergyUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new ReactiveEnergy();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(ReactiveEnergyUnit.VoltampereReactiveHour, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -124,14 +117,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(ReactiveEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("ReactiveEnergy", quantityInfo.Name);
-            Assert.Equal(QuantityType.ReactiveEnergy, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<ReactiveEnergyUnit>().Except(new[] {ReactiveEnergyUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
+            var units = EnumUtils.GetEnumValues<ReactiveEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -299,7 +287,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -316,12 +304,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReactiveEnergyUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = ReactiveEnergy.Units.FirstOrDefault(u => u != ReactiveEnergy.BaseUnit && u != ReactiveEnergyUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == ReactiveEnergyUnit.Undefined)
-                fromUnit = ReactiveEnergy.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = ReactiveEnergy.Units.Where(u => u != ReactiveEnergy.BaseUnit).DefaultIfEmpty(ReactiveEnergy.BaseUnit).FirstOrDefault();
 
             var quantity = ReactiveEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -400,49 +384,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualityOperators()
-        {
-            var a = ReactiveEnergy.FromVoltampereReactiveHours(1);
-            var b = ReactiveEnergy.FromVoltampereReactiveHours(2);
-
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
-
-            Assert.True(a == a);
-            Assert.False(a != a);
-
-            Assert.True(a != b);
-            Assert.False(a == b);
-
-            Assert.False(a == null);
-            Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = ReactiveEnergy.FromVoltampereReactiveHours(1);
-            var b = ReactiveEnergy.FromVoltampereReactiveHours(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = ReactiveEnergy.FromVoltampereReactiveHours(1);
-            object b = ReactiveEnergy.FromVoltampereReactiveHours(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
-        }
-
-        [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = ReactiveEnergy.FromVoltampereReactiveHours(1);
@@ -472,20 +413,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(ReactiveEnergyUnit.Undefined, ReactiveEnergy.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>();
             foreach(var unit in units)
             {
-                if (unit == ReactiveEnergyUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -499,8 +431,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 kvarh", new ReactiveEnergy(1, ReactiveEnergyUnit.KilovoltampereReactiveHour).ToString());
                 Assert.Equal("1 Mvarh", new ReactiveEnergy(1, ReactiveEnergyUnit.MegavoltampereReactiveHour).ToString());
@@ -508,7 +440,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -526,10 +458,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s1"));
                 Assert.Equal("0.12 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s2"));
                 Assert.Equal("0.123 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s3"));
@@ -537,7 +469,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -551,28 +483,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 varh", new ReactiveEnergy(0.123456, ReactiveEnergyUnit.VoltampereReactiveHour).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = ReactiveEnergy.FromVoltampereReactiveHours(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = ReactiveEnergy.FromVoltampereReactiveHours(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = ReactiveEnergy.FromVoltampereReactiveHours(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -691,13 +622,6 @@ namespace UnitsNet.Tests
         {
             var quantity = ReactiveEnergy.FromVoltampereReactiveHours(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(ReactiveEnergyUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = ReactiveEnergy.FromVoltampereReactiveHours(1.0);
-            Assert.Equal(QuantityType.ReactiveEnergy, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

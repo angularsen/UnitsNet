@@ -10,7 +10,10 @@ using Serilog.Events;
 
 namespace CodeGen
 {
-    internal class Program
+    /// <summary>
+    ///     Code generator for Units.NET.
+    /// </summary>
+    public class Program
     {
         /// <summary>
         ///     Code generator for Units.NET.
@@ -20,19 +23,16 @@ namespace CodeGen
         ///             <description>Quantity types (Length, Mass, ...)</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.QuantityType enum type (QuantityType.Length, QuantityType.Mass, ...)</description>
+        ///             <description>Unit enum types (LengthUnit, MassUnit, ...)</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.Quantity type</description>
+        ///             <description>UnitsNet.Quantity class.</description>
         ///         </item>
         ///         <item>
-        ///             <description>UnitsNet.UnitAbbreviationsCache</description>
+        ///             <description>UnitsNet.UnitAbbreviationsCache class.</description>
         ///         </item>
         ///         <item>
         ///             <description>Test stubs for testing conversion functions of all units, to be fleshed out by a human later</description>
-        ///         </item>
-        ///         <item>
-        ///             <description>Unit enum types (LengthUnit, MassUnit, ...)</description>
         ///         </item>
         ///     </list>
         /// </summary>
@@ -43,10 +43,9 @@ namespace CodeGen
         /// </remarks>
         /// <param name="verbose">Verbose output? Defaults to false.</param>
         /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
-        /// <param name="skipWrc">Skip generate UnitsNet.WindowsRuntimeComponent? Defaults to false.</param>
         /// <param name="skipNanoFramework">Skip generate nanoFramework Units? Defaults to false</param>
         /// <param name="updateNanoFrameworkDependencies">Update nanoFramework nuget dependencies? Defaults to false.</param>
-        public static int Main(bool verbose = false, DirectoryInfo? repositoryRoot = null, bool skipWrc = false, bool skipNanoFramework = false, bool updateNanoFrameworkDependencies = false)
+        public static int Main(bool verbose = false, DirectoryInfo? repositoryRoot = null, bool skipNanoFramework = false, bool updateNanoFrameworkDependencies = false)
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
@@ -71,11 +70,6 @@ namespace CodeGen
                 QuantityNameToUnitEnumValues quantityNameToUnitEnumValues = UnitEnumValueAllocator.AllocateNewUnitEnumValues($"{rootDir}/Common/UnitEnumValues.g.json", quantities);
 
                 UnitsNetGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
-
-                if (!skipWrc)
-                {
-                    UnitsNetWrcGenerator.Generate(rootDir, quantities);
-                }
 
                 if (updateNanoFrameworkDependencies)
                 {

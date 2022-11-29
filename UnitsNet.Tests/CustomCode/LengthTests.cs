@@ -155,18 +155,6 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void MaxValueIsCorrectForUnitWithBaseTypeDouble()
-        {
-            Assert.Equal(double.MaxValue, Length.MaxValue.Meters);
-        }
-
-        [Fact]
-        public void MinValueIsCorrectForUnitWithBaseTypeDouble()
-        {
-            Assert.Equal(double.MinValue, Length.MinValue.Meters);
-        }
-
-        [Fact]
         public void NegativeLengthToStonePoundsReturnsCorrectValues()
         {
             var negativeLength = Length.FromInches(-1.0);

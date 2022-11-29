@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ScalarUnit
     {
-        Undefined = 0,
         Amount = 1,
     }
 

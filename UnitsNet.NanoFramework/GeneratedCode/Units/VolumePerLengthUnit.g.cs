@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum VolumePerLengthUnit
     {
-        Undefined = 0,
         CubicMeterPerMeter = 1,
         CubicYardPerFoot = 2,
         CubicYardPerUsSurveyFoot = 3,

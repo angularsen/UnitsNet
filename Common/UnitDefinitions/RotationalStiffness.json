@@ -1,7 +1,7 @@
 {
   "Name": "RotationalStiffness",
   "BaseUnit": "NewtonMeterPerRadian",
-  "XmlDoc": "https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness",
+  "XmlDocSummary": "https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness",
   "BaseDimensions": {
     "L": 2,
     "M": 1,

@@ -198,85 +198,85 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MolarityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(MolarityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Molarity ToUnit(MolarityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Molarity(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Molarity ToUnit(MolarityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Molarity(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                MolarityUnit.CentimolePerLiter => (_value / 1e-3) * 1e-2d,
-                MolarityUnit.CentimolesPerLiter => (_value / 1e-3) * 1e-2d,
-                MolarityUnit.DecimolePerLiter => (_value / 1e-3) * 1e-1d,
-                MolarityUnit.DecimolesPerLiter => (_value / 1e-3) * 1e-1d,
-                MolarityUnit.FemtomolePerLiter => (_value / 1e-3) * 1e-15d,
-                MolarityUnit.MicromolePerLiter => (_value / 1e-3) * 1e-6d,
-                MolarityUnit.MicromolesPerLiter => (_value / 1e-3) * 1e-6d,
-                MolarityUnit.MillimolePerLiter => (_value / 1e-3) * 1e-3d,
-                MolarityUnit.MillimolesPerLiter => (_value / 1e-3) * 1e-3d,
-                MolarityUnit.MolePerCubicMeter => _value,
-                MolarityUnit.MolePerLiter => _value / 1e-3,
-                MolarityUnit.MolesPerCubicMeter => _value,
-                MolarityUnit.MolesPerLiter => _value / 1e-3,
-                MolarityUnit.NanomolePerLiter => (_value / 1e-3) * 1e-9d,
-                MolarityUnit.NanomolesPerLiter => (_value / 1e-3) * 1e-9d,
-                MolarityUnit.PicomolePerLiter => (_value / 1e-3) * 1e-12d,
-                MolarityUnit.PicomolesPerLiter => (_value / 1e-3) * 1e-12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        MolarityUnit.CentimolePerLiter => (_value / 1e-3) * 1e-2d,
+                        MolarityUnit.CentimolesPerLiter => (_value / 1e-3) * 1e-2d,
+                        MolarityUnit.DecimolePerLiter => (_value / 1e-3) * 1e-1d,
+                        MolarityUnit.DecimolesPerLiter => (_value / 1e-3) * 1e-1d,
+                        MolarityUnit.FemtomolePerLiter => (_value / 1e-3) * 1e-15d,
+                        MolarityUnit.MicromolePerLiter => (_value / 1e-3) * 1e-6d,
+                        MolarityUnit.MicromolesPerLiter => (_value / 1e-3) * 1e-6d,
+                        MolarityUnit.MillimolePerLiter => (_value / 1e-3) * 1e-3d,
+                        MolarityUnit.MillimolesPerLiter => (_value / 1e-3) * 1e-3d,
+                        MolarityUnit.MolePerCubicMeter => _value,
+                        MolarityUnit.MolePerLiter => _value / 1e-3,
+                        MolarityUnit.MolesPerCubicMeter => _value,
+                        MolarityUnit.MolesPerLiter => _value / 1e-3,
+                        MolarityUnit.NanomolePerLiter => (_value / 1e-3) * 1e-9d,
+                        MolarityUnit.NanomolesPerLiter => (_value / 1e-3) * 1e-9d,
+                        MolarityUnit.PicomolePerLiter => (_value / 1e-3) * 1e-12d,
+                        MolarityUnit.PicomolesPerLiter => (_value / 1e-3) * 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(MolarityUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(MolarityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                MolarityUnit.CentimolePerLiter => (baseUnitValue * 1e-3) / 1e-2d,
-                MolarityUnit.CentimolesPerLiter => (baseUnitValue * 1e-3) / 1e-2d,
-                MolarityUnit.DecimolePerLiter => (baseUnitValue * 1e-3) / 1e-1d,
-                MolarityUnit.DecimolesPerLiter => (baseUnitValue * 1e-3) / 1e-1d,
-                MolarityUnit.FemtomolePerLiter => (baseUnitValue * 1e-3) / 1e-15d,
-                MolarityUnit.MicromolePerLiter => (baseUnitValue * 1e-3) / 1e-6d,
-                MolarityUnit.MicromolesPerLiter => (baseUnitValue * 1e-3) / 1e-6d,
-                MolarityUnit.MillimolePerLiter => (baseUnitValue * 1e-3) / 1e-3d,
-                MolarityUnit.MillimolesPerLiter => (baseUnitValue * 1e-3) / 1e-3d,
-                MolarityUnit.MolePerCubicMeter => baseUnitValue,
-                MolarityUnit.MolePerLiter => baseUnitValue * 1e-3,
-                MolarityUnit.MolesPerCubicMeter => baseUnitValue,
-                MolarityUnit.MolesPerLiter => baseUnitValue * 1e-3,
-                MolarityUnit.NanomolePerLiter => (baseUnitValue * 1e-3) / 1e-9d,
-                MolarityUnit.NanomolesPerLiter => (baseUnitValue * 1e-3) / 1e-9d,
-                MolarityUnit.PicomolePerLiter => (baseUnitValue * 1e-3) / 1e-12d,
-                MolarityUnit.PicomolesPerLiter => (baseUnitValue * 1e-3) / 1e-12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        MolarityUnit.CentimolePerLiter => (baseUnitValue * 1e-3) / 1e-2d,
+                        MolarityUnit.CentimolesPerLiter => (baseUnitValue * 1e-3) / 1e-2d,
+                        MolarityUnit.DecimolePerLiter => (baseUnitValue * 1e-3) / 1e-1d,
+                        MolarityUnit.DecimolesPerLiter => (baseUnitValue * 1e-3) / 1e-1d,
+                        MolarityUnit.FemtomolePerLiter => (baseUnitValue * 1e-3) / 1e-15d,
+                        MolarityUnit.MicromolePerLiter => (baseUnitValue * 1e-3) / 1e-6d,
+                        MolarityUnit.MicromolesPerLiter => (baseUnitValue * 1e-3) / 1e-6d,
+                        MolarityUnit.MillimolePerLiter => (baseUnitValue * 1e-3) / 1e-3d,
+                        MolarityUnit.MillimolesPerLiter => (baseUnitValue * 1e-3) / 1e-3d,
+                        MolarityUnit.MolePerCubicMeter => baseUnitValue,
+                        MolarityUnit.MolePerLiter => baseUnitValue * 1e-3,
+                        MolarityUnit.MolesPerCubicMeter => baseUnitValue,
+                        MolarityUnit.MolesPerLiter => baseUnitValue * 1e-3,
+                        MolarityUnit.NanomolePerLiter => (baseUnitValue * 1e-3) / 1e-9d,
+                        MolarityUnit.NanomolesPerLiter => (baseUnitValue * 1e-3) / 1e-9d,
+                        MolarityUnit.PicomolePerLiter => (baseUnitValue * 1e-3) / 1e-12d,
+                        MolarityUnit.PicomolesPerLiter => (baseUnitValue * 1e-3) / 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

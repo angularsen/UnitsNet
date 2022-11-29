@@ -54,7 +54,7 @@ namespace CodeGen.Generators.UnitsNetGen
             _unitEnumName = $"{quantity.Name}Unit";
             _baseUnitEnglishAbbreviation = GetEnglishAbbreviation(_baseUnit);
             _baseUnitFullName = $"{_unitEnumName}.{_baseUnit.SingularName}";
-            _numberSuffix = quantity.BaseType == "decimal" ? "m" : "";
+            _numberSuffix = quantity.ValueType == "decimal" ? "m" : "";
         }
 
         private string GetUnitFullName(Unit unit) => $"{_unitEnumName}.{unit.SingularName}";
@@ -69,7 +69,7 @@ namespace CodeGen.Generators.UnitsNetGen
             return string.IsNullOrEmpty(unitAbbreviation) ? "" : $" {unitAbbreviation}";
         }
 
-        public override string Generate()
+        public string Generate()
         {
             var baseUnitVariableName = _baseUnit.SingularName.ToLowerInvariant();
 
@@ -102,7 +102,7 @@ namespace UnitsNet.Tests
                     continue;
 
                 Writer.WL($@"
-        protected abstract double {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
+        protected abstract {_quantity.ValueType} {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
             }
 
             Writer.WL("");
@@ -114,12 +114,12 @@ namespace UnitsNet.Tests
                     continue;
 
                 Writer.WL($@"
-        protected virtual double {unit.PluralName}Tolerance {{ get {{ return 1e-5; }} }}");
+        protected virtual {_quantity.ValueType} {unit.PluralName}Tolerance {{ get {{ return { (_quantity.ValueType == "decimal" ? "1e-9m" : "1e-5") }; }} }}");
             }
         Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor({_unitEnumName} unit)
+        protected ({_quantity.ValueType} UnitsInBaseUnit, {_quantity.ValueType} Tolerence) GetConversionFactor({_unitEnumName} unit)
         {{
             return unit switch
             {{");
@@ -141,24 +141,17 @@ namespace UnitsNet.Tests
         }};
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {{
-            Assert.Throws<ArgumentException>(() => new {_quantity.Name}(({_quantity.BaseType})0.0, {_unitEnumName}.Undefined));
-        }}
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {{
             var quantity = new {_quantity.Name}();
             Assert.Equal(0, quantity.Value);");
-            if (_quantity.BaseType == "decimal") Writer.WL($@"
+            if (_quantity.ValueType == "decimal") Writer.WL($@"
             Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
             Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
-
 ");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+            if (_quantity.ValueType == "double") Writer.WL($@"
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -203,14 +196,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal({_quantity.Name}.Zero, quantityInfo.Zero);
             Assert.Equal(""{_quantity.Name}"", quantityInfo.Name);
-            Assert.Equal(QuantityType.{_quantity.Name}, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<{_unitEnumName}>().Except(new[] {{{_unitEnumName}.Undefined}}).OrderBy(x => x.ToString()).ToArray();
+            var units = EnumUtils.GetEnumValues<{_unitEnumName}>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }}
 
         [Fact]
@@ -240,7 +228,7 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 ");
-            if (_quantity.BaseType == "double") Writer.WL($@"
+            if (_quantity.ValueType == "double") Writer.WL($@"
         [Fact]
         public void From{_baseUnit.PluralName}_WithInfinityValue_ThrowsArgumentException()
         {{
@@ -367,7 +355,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }}
 
@@ -384,12 +372,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit({_unitEnumName} unit)
         {{
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = {_quantity.Name}.Units.FirstOrDefault(u => u != {_quantity.Name}.BaseUnit && u != {_unitEnumName}.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == {_unitEnumName}.Undefined)
-                fromUnit = {_quantity.Name}.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = {_quantity.Name}.Units.Where(u => u != {_quantity.Name}.BaseUnit).DefaultIfEmpty({_quantity.Name}.BaseUnit).FirstOrDefault();
 
             var quantity = {_quantity.Name}.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -500,49 +484,6 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void EqualityOperators()
-        {{
-            var a = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            var b = {_quantity.Name}.From{_baseUnit.PluralName}(2);
-
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
-
-            Assert.True(a == a);
-            Assert.False(a != a);
-
-            Assert.True(a != b);
-            Assert.False(a == b);
-
-            Assert.False(a == null);
-            Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }}
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {{
-            var a = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            var b = {_quantity.Name}.From{_baseUnit.PluralName}(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }}
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {{
-            object a = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            object b = {_quantity.Name}.From{_baseUnit.PluralName}(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
-        }}
-
-        [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {{
             var v = {_quantity.Name}.From{_baseUnit.PluralName}(1);
@@ -572,20 +513,11 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {{
-            Assert.DoesNotContain({_unitEnumName}.Undefined, {_quantity.Name}.Units);
-        }}
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {{
             var units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>();
             foreach(var unit in units)
             {{
-                if (unit == {_unitEnumName}.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }}
         }}
@@ -599,8 +531,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {{
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(""en-US"");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(""en-US"");
             try {{");
             foreach (var unit in _quantity.Units)
             {
@@ -611,7 +543,7 @@ namespace UnitsNet.Tests
             }}
             finally
             {{
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }}
         }}
 
@@ -632,10 +564,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {{
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {{
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s1""));
                 Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s2""));
                 Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s3""));
@@ -643,7 +575,7 @@ namespace UnitsNet.Tests
             }}
             finally
             {{
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }}
         }}
 
@@ -657,28 +589,27 @@ namespace UnitsNet.Tests
             Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456{_numberSuffix}, {_baseUnitFullName}).ToString(""s4"", culture));
         }}
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData(""en-US"")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString(""g"", formatProvider), quantity.ToString(null, formatProvider));
         }}
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData(""g"")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, ""g"", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }}
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {{
-            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, ""g""), quantity.ToString(null, ""g""));
-        }}
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -797,13 +728,6 @@ namespace UnitsNet.Tests
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof({_unitEnumName})));
-        }}
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {{
-            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Equal(QuantityType.{_quantity.Name}, Convert.ChangeType(quantity, typeof(QuantityType)));
         }}
 
         [Fact]

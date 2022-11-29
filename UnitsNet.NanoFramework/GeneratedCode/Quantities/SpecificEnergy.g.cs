@@ -418,109 +418,109 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(SpecificEnergyUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(SpecificEnergyUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public SpecificEnergy ToUnit(SpecificEnergyUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new SpecificEnergy(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public SpecificEnergy ToUnit(SpecificEnergyUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new SpecificEnergy(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                SpecificEnergyUnit.BtuPerPound => _value * 2326.000075362,
-                SpecificEnergyUnit.CaloriePerGram => _value * 4.184e3,
-                SpecificEnergyUnit.GigawattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e9d,
-                SpecificEnergyUnit.GigawattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e9d,
-                SpecificEnergyUnit.GigawattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e9d,
-                SpecificEnergyUnit.GigawattHourPerKilogram => (_value * 3.6e3) * 1e9d,
-                SpecificEnergyUnit.GigawattHourPerPound => (_value * 7.93664e3) * 1e9d,
-                SpecificEnergyUnit.JoulePerKilogram => _value,
-                SpecificEnergyUnit.KilocaloriePerGram => (_value * 4.184e3) * 1e3d,
-                SpecificEnergyUnit.KilojoulePerKilogram => (_value) * 1e3d,
-                SpecificEnergyUnit.KilowattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e3d,
-                SpecificEnergyUnit.KilowattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e3d,
-                SpecificEnergyUnit.KilowattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e3d,
-                SpecificEnergyUnit.KilowattHourPerKilogram => (_value * 3.6e3) * 1e3d,
-                SpecificEnergyUnit.KilowattHourPerPound => (_value * 7.93664e3) * 1e3d,
-                SpecificEnergyUnit.MegajoulePerKilogram => (_value) * 1e6d,
-                SpecificEnergyUnit.MegawattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e6d,
-                SpecificEnergyUnit.MegawattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e6d,
-                SpecificEnergyUnit.MegawattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e6d,
-                SpecificEnergyUnit.MegawattHourPerKilogram => (_value * 3.6e3) * 1e6d,
-                SpecificEnergyUnit.MegawattHourPerPound => (_value * 7.93664e3) * 1e6d,
-                SpecificEnergyUnit.TerawattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e12d,
-                SpecificEnergyUnit.TerawattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e12d,
-                SpecificEnergyUnit.TerawattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e12d,
-                SpecificEnergyUnit.WattDayPerKilogram => _value * (24 * 3.6e3),
-                SpecificEnergyUnit.WattDayPerShortTon => _value * ((24 * 3.6e3) / 9.0718474e2),
-                SpecificEnergyUnit.WattDayPerTonne => _value * ((24 * 3.6e3) / 1e3),
-                SpecificEnergyUnit.WattHourPerKilogram => _value * 3.6e3,
-                SpecificEnergyUnit.WattHourPerPound => _value * 7.93664e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        SpecificEnergyUnit.BtuPerPound => _value * 2326.000075362,
+                        SpecificEnergyUnit.CaloriePerGram => _value * 4.184e3,
+                        SpecificEnergyUnit.GigawattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e9d,
+                        SpecificEnergyUnit.GigawattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e9d,
+                        SpecificEnergyUnit.GigawattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e9d,
+                        SpecificEnergyUnit.GigawattHourPerKilogram => (_value * 3.6e3) * 1e9d,
+                        SpecificEnergyUnit.GigawattHourPerPound => (_value * 7.93664e3) * 1e9d,
+                        SpecificEnergyUnit.JoulePerKilogram => _value,
+                        SpecificEnergyUnit.KilocaloriePerGram => (_value * 4.184e3) * 1e3d,
+                        SpecificEnergyUnit.KilojoulePerKilogram => (_value) * 1e3d,
+                        SpecificEnergyUnit.KilowattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e3d,
+                        SpecificEnergyUnit.KilowattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e3d,
+                        SpecificEnergyUnit.KilowattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e3d,
+                        SpecificEnergyUnit.KilowattHourPerKilogram => (_value * 3.6e3) * 1e3d,
+                        SpecificEnergyUnit.KilowattHourPerPound => (_value * 7.93664e3) * 1e3d,
+                        SpecificEnergyUnit.MegajoulePerKilogram => (_value) * 1e6d,
+                        SpecificEnergyUnit.MegawattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e6d,
+                        SpecificEnergyUnit.MegawattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e6d,
+                        SpecificEnergyUnit.MegawattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e6d,
+                        SpecificEnergyUnit.MegawattHourPerKilogram => (_value * 3.6e3) * 1e6d,
+                        SpecificEnergyUnit.MegawattHourPerPound => (_value * 7.93664e3) * 1e6d,
+                        SpecificEnergyUnit.TerawattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e12d,
+                        SpecificEnergyUnit.TerawattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e12d,
+                        SpecificEnergyUnit.TerawattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e12d,
+                        SpecificEnergyUnit.WattDayPerKilogram => _value * (24 * 3.6e3),
+                        SpecificEnergyUnit.WattDayPerShortTon => _value * ((24 * 3.6e3) / 9.0718474e2),
+                        SpecificEnergyUnit.WattDayPerTonne => _value * ((24 * 3.6e3) / 1e3),
+                        SpecificEnergyUnit.WattHourPerKilogram => _value * 3.6e3,
+                        SpecificEnergyUnit.WattHourPerPound => _value * 7.93664e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(SpecificEnergyUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(SpecificEnergyUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                SpecificEnergyUnit.BtuPerPound => baseUnitValue / 2326.000075362,
-                SpecificEnergyUnit.CaloriePerGram => baseUnitValue / 4.184e3,
-                SpecificEnergyUnit.GigawattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e9d,
-                SpecificEnergyUnit.GigawattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e9d,
-                SpecificEnergyUnit.GigawattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e9d,
-                SpecificEnergyUnit.GigawattHourPerKilogram => (baseUnitValue / 3.6e3) / 1e9d,
-                SpecificEnergyUnit.GigawattHourPerPound => (baseUnitValue / 7.93664e3) / 1e9d,
-                SpecificEnergyUnit.JoulePerKilogram => baseUnitValue,
-                SpecificEnergyUnit.KilocaloriePerGram => (baseUnitValue / 4.184e3) / 1e3d,
-                SpecificEnergyUnit.KilojoulePerKilogram => (baseUnitValue) / 1e3d,
-                SpecificEnergyUnit.KilowattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e3d,
-                SpecificEnergyUnit.KilowattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e3d,
-                SpecificEnergyUnit.KilowattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e3d,
-                SpecificEnergyUnit.KilowattHourPerKilogram => (baseUnitValue / 3.6e3) / 1e3d,
-                SpecificEnergyUnit.KilowattHourPerPound => (baseUnitValue / 7.93664e3) / 1e3d,
-                SpecificEnergyUnit.MegajoulePerKilogram => (baseUnitValue) / 1e6d,
-                SpecificEnergyUnit.MegawattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e6d,
-                SpecificEnergyUnit.MegawattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e6d,
-                SpecificEnergyUnit.MegawattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e6d,
-                SpecificEnergyUnit.MegawattHourPerKilogram => (baseUnitValue / 3.6e3) / 1e6d,
-                SpecificEnergyUnit.MegawattHourPerPound => (baseUnitValue / 7.93664e3) / 1e6d,
-                SpecificEnergyUnit.TerawattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e12d,
-                SpecificEnergyUnit.TerawattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e12d,
-                SpecificEnergyUnit.TerawattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e12d,
-                SpecificEnergyUnit.WattDayPerKilogram => baseUnitValue / (24 * 3.6e3),
-                SpecificEnergyUnit.WattDayPerShortTon => baseUnitValue / ((24 * 3.6e3) / 9.0718474e2),
-                SpecificEnergyUnit.WattDayPerTonne => baseUnitValue / ((24 * 3.6e3) / 1e3),
-                SpecificEnergyUnit.WattHourPerKilogram => baseUnitValue / 3.6e3,
-                SpecificEnergyUnit.WattHourPerPound => baseUnitValue / 7.93664e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        SpecificEnergyUnit.BtuPerPound => baseUnitValue / 2326.000075362,
+                        SpecificEnergyUnit.CaloriePerGram => baseUnitValue / 4.184e3,
+                        SpecificEnergyUnit.GigawattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e9d,
+                        SpecificEnergyUnit.GigawattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e9d,
+                        SpecificEnergyUnit.GigawattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e9d,
+                        SpecificEnergyUnit.GigawattHourPerKilogram => (baseUnitValue / 3.6e3) / 1e9d,
+                        SpecificEnergyUnit.GigawattHourPerPound => (baseUnitValue / 7.93664e3) / 1e9d,
+                        SpecificEnergyUnit.JoulePerKilogram => baseUnitValue,
+                        SpecificEnergyUnit.KilocaloriePerGram => (baseUnitValue / 4.184e3) / 1e3d,
+                        SpecificEnergyUnit.KilojoulePerKilogram => (baseUnitValue) / 1e3d,
+                        SpecificEnergyUnit.KilowattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e3d,
+                        SpecificEnergyUnit.KilowattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e3d,
+                        SpecificEnergyUnit.KilowattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e3d,
+                        SpecificEnergyUnit.KilowattHourPerKilogram => (baseUnitValue / 3.6e3) / 1e3d,
+                        SpecificEnergyUnit.KilowattHourPerPound => (baseUnitValue / 7.93664e3) / 1e3d,
+                        SpecificEnergyUnit.MegajoulePerKilogram => (baseUnitValue) / 1e6d,
+                        SpecificEnergyUnit.MegawattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e6d,
+                        SpecificEnergyUnit.MegawattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e6d,
+                        SpecificEnergyUnit.MegawattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e6d,
+                        SpecificEnergyUnit.MegawattHourPerKilogram => (baseUnitValue / 3.6e3) / 1e6d,
+                        SpecificEnergyUnit.MegawattHourPerPound => (baseUnitValue / 7.93664e3) / 1e6d,
+                        SpecificEnergyUnit.TerawattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e12d,
+                        SpecificEnergyUnit.TerawattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e12d,
+                        SpecificEnergyUnit.TerawattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e12d,
+                        SpecificEnergyUnit.WattDayPerKilogram => baseUnitValue / (24 * 3.6e3),
+                        SpecificEnergyUnit.WattDayPerShortTon => baseUnitValue / ((24 * 3.6e3) / 9.0718474e2),
+                        SpecificEnergyUnit.WattDayPerTonne => baseUnitValue / ((24 * 3.6e3) / 1e3),
+                        SpecificEnergyUnit.WattHourPerKilogram => baseUnitValue / 3.6e3,
+                        SpecificEnergyUnit.WattHourPerPound => baseUnitValue / 7.93664e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

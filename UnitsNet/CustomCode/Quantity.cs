@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using UnitsNet.InternalHelpers;
 
 namespace UnitsNet
 {
@@ -14,7 +13,6 @@ namespace UnitsNet
         static Quantity()
         {
             ICollection<QuantityInfo> quantityInfos = ByName.Values;
-            Types = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Except(new[] { QuantityType.Undefined }).ToArray();
             Names = quantityInfos.Select(qt => qt.Name).ToArray();
 
             InfosLazy = new Lazy<QuantityInfo[]>(() => quantityInfos
@@ -31,12 +29,6 @@ namespace UnitsNet
                     .ToDictionary(x => x.Key, x => x.Value);
             });
         }
-
-        /// <summary>
-        /// All enum values of <see cref="QuantityType"/>, such as <see cref="QuantityType.Length"/> and <see cref="QuantityType.Mass"/>.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use Infos property instead.")]
-        public static QuantityType[] Types { get; }
 
         /// <summary>
         /// All enum value names of <see cref="Infos"/>, such as "Length" and "Mass".
@@ -95,14 +87,14 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically parse a quantity string representation.
         /// </summary>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         public static IQuantity Parse(IFormatProvider? formatProvider, Type quantityType, string quantityString)
         {
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
 
             if (TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
@@ -114,17 +106,6 @@ namespace UnitsNet
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
         public static bool TryParse(Type quantityType, string quantityString, out IQuantity? quantity) =>
             TryParse(null, quantityType, quantityString, out quantity);
-
-        /// <summary>
-        ///     Get information about the given quantity type.
-        /// </summary>
-        /// <param name="quantityType">The quantity type enum value.</param>
-        /// <returns>Information about the quantity and its units.</returns>
-        [Obsolete("QuantityType will be removed in the future.")]
-        public static QuantityInfo GetInfo(QuantityType quantityType)
-        {
-            return Infos.First(qi => qi.QuantityType == quantityType);
-        }
 
         /// <summary>
         ///     Get a list of quantities that has the given base dimensions.

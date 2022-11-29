@@ -7,7 +7,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
-using JetBrains.Annotations;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
@@ -29,7 +28,7 @@ namespace UnitsNet
 
         public static QuantityParser Default { get; }
 
-        public QuantityParser(UnitAbbreviationsCache unitAbbreviationsCache)
+        public QuantityParser(UnitAbbreviationsCache? unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
             _unitParser = new UnitParser(_unitAbbreviationsCache);
@@ -41,21 +40,14 @@ namespace UnitsNet
         }
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal TQuantity Parse<TQuantity, TUnitType>([NotNull] string str,
+        internal TQuantity Parse<TQuantity, TUnitType>(string str,
             IFormatProvider? formatProvider,
-            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate)
+            QuantityFromDelegate<TQuantity, TUnitType> fromDelegate)
             where TQuantity : IQuantity
             where TUnitType : Enum
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
             str = str.Trim();
-
-            var numFormat = formatProvider != null
-                ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
-                : NumberFormatInfo.CurrentInfo;
-
-            if (numFormat == null)
-                throw new InvalidOperationException($"No number format was found for the given format provider: {formatProvider}");
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
@@ -72,38 +64,29 @@ namespace UnitsNet
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
         internal bool TryParse<TQuantity, TUnitType>(string? str,
             IFormatProvider? formatProvider,
-            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out TQuantity result)
             where TQuantity : struct, IQuantity
             where TUnitType : struct, Enum
         {
             result = default;
 
-            if (string.IsNullOrWhiteSpace(str)) return false;
+            if(string.IsNullOrWhiteSpace(str)) return false;
             str = str!.Trim();
-
-            var numFormat = formatProvider != null
-                ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
-                : NumberFormatInfo.CurrentInfo;
-
-            if (numFormat == null)
-                return false;
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
-            if (!TryExtractValueAndUnit(regex, str, out var valueString, out var unitString))
-                return false;
-
-            return TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
+            return TryExtractValueAndUnit(regex, str, out var valueString, out var unitString) &&
+                   TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
         }
 
         /// <summary>
         ///     Workaround for C# not allowing to pass on 'out' param from type Length to IQuantity, even though the are compatible.
         /// </summary>
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
+        internal bool TryParse<TQuantity, TUnitType>(string str,
             IFormatProvider? formatProvider,
-            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out IQuantity? result)
             where TQuantity : struct, IQuantity
             where TUnitType : struct, Enum
@@ -187,7 +170,7 @@ namespace UnitsNet
             // the regex coming in contains all allowed units as strings.
             // That means if the unit in str is not formatted right
             // the regex.Match will ether put str or string.empty into Groups[0] and Groups[1]
-            // Therefor a mismatch can be detected by comparing the values of this two groups.
+            // Therefore a mismatch can be detected by comparing the values of this two groups.
             if (match.Groups[0].Value == match.Groups[1].Value)
             {
                 str = UnitParser.NormalizeUnitString(str);

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MassMomentOfInertiaUnit
     {
-        Undefined = 0,
         GramSquareCentimeter = 1,
         GramSquareDecimeter = 2,
         GramSquareMeter = 3,

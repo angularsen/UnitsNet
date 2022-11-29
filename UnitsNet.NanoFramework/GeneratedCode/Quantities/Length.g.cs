@@ -492,123 +492,123 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LengthUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(LengthUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Length ToUnit(LengthUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Length(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Length ToUnit(LengthUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Length(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                LengthUnit.Angstrom => _value * 1e-10,
-                LengthUnit.AstronomicalUnit => _value * 1.4959787070e11,
-                LengthUnit.Centimeter => (_value) * 1e-2d,
-                LengthUnit.Chain => _value * 20.1168,
-                LengthUnit.DataMile => _value * 1828.8,
-                LengthUnit.Decameter => (_value) * 1e1d,
-                LengthUnit.Decimeter => (_value) * 1e-1d,
-                LengthUnit.DtpPica => _value / 236.220472441,
-                LengthUnit.DtpPoint => (_value / 72) * 2.54e-2,
-                LengthUnit.Fathom => _value * 1.8288,
-                LengthUnit.Foot => _value * 0.3048,
-                LengthUnit.Hand => _value * 1.016e-1,
-                LengthUnit.Hectometer => (_value) * 1e2d,
-                LengthUnit.Inch => _value * 2.54e-2,
-                LengthUnit.KilolightYear => (_value * 9.46073047258e15) * 1e3d,
-                LengthUnit.Kilometer => (_value) * 1e3d,
-                LengthUnit.Kiloparsec => (_value * 3.08567758128e16) * 1e3d,
-                LengthUnit.LightYear => _value * 9.46073047258e15,
-                LengthUnit.MegalightYear => (_value * 9.46073047258e15) * 1e6d,
-                LengthUnit.Megaparsec => (_value * 3.08567758128e16) * 1e6d,
-                LengthUnit.Meter => _value,
-                LengthUnit.Microinch => _value * 2.54e-8,
-                LengthUnit.Micrometer => (_value) * 1e-6d,
-                LengthUnit.Mil => _value * 2.54e-5,
-                LengthUnit.Mile => _value * 1609.34,
-                LengthUnit.Millimeter => (_value) * 1e-3d,
-                LengthUnit.Nanometer => (_value) * 1e-9d,
-                LengthUnit.NauticalMile => _value * 1852,
-                LengthUnit.Parsec => _value * 3.08567758128e16,
-                LengthUnit.PrinterPica => _value / 237.106301584,
-                LengthUnit.PrinterPoint => (_value / 72.27) * 2.54e-2,
-                LengthUnit.Shackle => _value * 27.432,
-                LengthUnit.SolarRadius => _value * 6.95510000E+08,
-                LengthUnit.Twip => _value / 56692.913385826,
-                LengthUnit.UsSurveyFoot => _value * 1200 / 3937,
-                LengthUnit.Yard => _value * 0.9144,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        LengthUnit.Angstrom => _value * 1e-10,
+                        LengthUnit.AstronomicalUnit => _value * 1.4959787070e11,
+                        LengthUnit.Centimeter => (_value) * 1e-2d,
+                        LengthUnit.Chain => _value * 20.1168,
+                        LengthUnit.DataMile => _value * 1828.8,
+                        LengthUnit.Decameter => (_value) * 1e1d,
+                        LengthUnit.Decimeter => (_value) * 1e-1d,
+                        LengthUnit.DtpPica => _value / 236.220472441,
+                        LengthUnit.DtpPoint => (_value / 72) * 2.54e-2,
+                        LengthUnit.Fathom => _value * 1.8288,
+                        LengthUnit.Foot => _value * 0.3048,
+                        LengthUnit.Hand => _value * 1.016e-1,
+                        LengthUnit.Hectometer => (_value) * 1e2d,
+                        LengthUnit.Inch => _value * 2.54e-2,
+                        LengthUnit.KilolightYear => (_value * 9.46073047258e15) * 1e3d,
+                        LengthUnit.Kilometer => (_value) * 1e3d,
+                        LengthUnit.Kiloparsec => (_value * 3.08567758128e16) * 1e3d,
+                        LengthUnit.LightYear => _value * 9.46073047258e15,
+                        LengthUnit.MegalightYear => (_value * 9.46073047258e15) * 1e6d,
+                        LengthUnit.Megaparsec => (_value * 3.08567758128e16) * 1e6d,
+                        LengthUnit.Meter => _value,
+                        LengthUnit.Microinch => _value * 2.54e-8,
+                        LengthUnit.Micrometer => (_value) * 1e-6d,
+                        LengthUnit.Mil => _value * 2.54e-5,
+                        LengthUnit.Mile => _value * 1609.34,
+                        LengthUnit.Millimeter => (_value) * 1e-3d,
+                        LengthUnit.Nanometer => (_value) * 1e-9d,
+                        LengthUnit.NauticalMile => _value * 1852,
+                        LengthUnit.Parsec => _value * 3.08567758128e16,
+                        LengthUnit.PrinterPica => _value / 237.106301584,
+                        LengthUnit.PrinterPoint => (_value / 72.27) * 2.54e-2,
+                        LengthUnit.Shackle => _value * 27.432,
+                        LengthUnit.SolarRadius => _value * 6.95510000E+08,
+                        LengthUnit.Twip => _value / 56692.913385826,
+                        LengthUnit.UsSurveyFoot => _value * 1200 / 3937,
+                        LengthUnit.Yard => _value * 0.9144,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(LengthUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(LengthUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                LengthUnit.Angstrom => baseUnitValue / 1e-10,
-                LengthUnit.AstronomicalUnit => baseUnitValue / 1.4959787070e11,
-                LengthUnit.Centimeter => (baseUnitValue) / 1e-2d,
-                LengthUnit.Chain => baseUnitValue / 20.1168,
-                LengthUnit.DataMile => baseUnitValue / 1828.8,
-                LengthUnit.Decameter => (baseUnitValue) / 1e1d,
-                LengthUnit.Decimeter => (baseUnitValue) / 1e-1d,
-                LengthUnit.DtpPica => baseUnitValue * 236.220472441,
-                LengthUnit.DtpPoint => (baseUnitValue / 2.54e-2) * 72,
-                LengthUnit.Fathom => baseUnitValue / 1.8288,
-                LengthUnit.Foot => baseUnitValue / 0.3048,
-                LengthUnit.Hand => baseUnitValue / 1.016e-1,
-                LengthUnit.Hectometer => (baseUnitValue) / 1e2d,
-                LengthUnit.Inch => baseUnitValue / 2.54e-2,
-                LengthUnit.KilolightYear => (baseUnitValue / 9.46073047258e15) / 1e3d,
-                LengthUnit.Kilometer => (baseUnitValue) / 1e3d,
-                LengthUnit.Kiloparsec => (baseUnitValue / 3.08567758128e16) / 1e3d,
-                LengthUnit.LightYear => baseUnitValue / 9.46073047258e15,
-                LengthUnit.MegalightYear => (baseUnitValue / 9.46073047258e15) / 1e6d,
-                LengthUnit.Megaparsec => (baseUnitValue / 3.08567758128e16) / 1e6d,
-                LengthUnit.Meter => baseUnitValue,
-                LengthUnit.Microinch => baseUnitValue / 2.54e-8,
-                LengthUnit.Micrometer => (baseUnitValue) / 1e-6d,
-                LengthUnit.Mil => baseUnitValue / 2.54e-5,
-                LengthUnit.Mile => baseUnitValue / 1609.34,
-                LengthUnit.Millimeter => (baseUnitValue) / 1e-3d,
-                LengthUnit.Nanometer => (baseUnitValue) / 1e-9d,
-                LengthUnit.NauticalMile => baseUnitValue / 1852,
-                LengthUnit.Parsec => baseUnitValue / 3.08567758128e16,
-                LengthUnit.PrinterPica => baseUnitValue * 237.106301584,
-                LengthUnit.PrinterPoint => (baseUnitValue / 2.54e-2) * 72.27,
-                LengthUnit.Shackle => baseUnitValue / 27.432,
-                LengthUnit.SolarRadius => baseUnitValue / 6.95510000E+08,
-                LengthUnit.Twip => baseUnitValue * 56692.913385826,
-                LengthUnit.UsSurveyFoot => baseUnitValue * 3937 / 1200,
-                LengthUnit.Yard => baseUnitValue / 0.9144,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        LengthUnit.Angstrom => baseUnitValue / 1e-10,
+                        LengthUnit.AstronomicalUnit => baseUnitValue / 1.4959787070e11,
+                        LengthUnit.Centimeter => (baseUnitValue) / 1e-2d,
+                        LengthUnit.Chain => baseUnitValue / 20.1168,
+                        LengthUnit.DataMile => baseUnitValue / 1828.8,
+                        LengthUnit.Decameter => (baseUnitValue) / 1e1d,
+                        LengthUnit.Decimeter => (baseUnitValue) / 1e-1d,
+                        LengthUnit.DtpPica => baseUnitValue * 236.220472441,
+                        LengthUnit.DtpPoint => (baseUnitValue / 2.54e-2) * 72,
+                        LengthUnit.Fathom => baseUnitValue / 1.8288,
+                        LengthUnit.Foot => baseUnitValue / 0.3048,
+                        LengthUnit.Hand => baseUnitValue / 1.016e-1,
+                        LengthUnit.Hectometer => (baseUnitValue) / 1e2d,
+                        LengthUnit.Inch => baseUnitValue / 2.54e-2,
+                        LengthUnit.KilolightYear => (baseUnitValue / 9.46073047258e15) / 1e3d,
+                        LengthUnit.Kilometer => (baseUnitValue) / 1e3d,
+                        LengthUnit.Kiloparsec => (baseUnitValue / 3.08567758128e16) / 1e3d,
+                        LengthUnit.LightYear => baseUnitValue / 9.46073047258e15,
+                        LengthUnit.MegalightYear => (baseUnitValue / 9.46073047258e15) / 1e6d,
+                        LengthUnit.Megaparsec => (baseUnitValue / 3.08567758128e16) / 1e6d,
+                        LengthUnit.Meter => baseUnitValue,
+                        LengthUnit.Microinch => baseUnitValue / 2.54e-8,
+                        LengthUnit.Micrometer => (baseUnitValue) / 1e-6d,
+                        LengthUnit.Mil => baseUnitValue / 2.54e-5,
+                        LengthUnit.Mile => baseUnitValue / 1609.34,
+                        LengthUnit.Millimeter => (baseUnitValue) / 1e-3d,
+                        LengthUnit.Nanometer => (baseUnitValue) / 1e-9d,
+                        LengthUnit.NauticalMile => baseUnitValue / 1852,
+                        LengthUnit.Parsec => baseUnitValue / 3.08567758128e16,
+                        LengthUnit.PrinterPica => baseUnitValue * 237.106301584,
+                        LengthUnit.PrinterPoint => (baseUnitValue / 2.54e-2) * 72.27,
+                        LengthUnit.Shackle => baseUnitValue / 27.432,
+                        LengthUnit.SolarRadius => baseUnitValue / 6.95510000E+08,
+                        LengthUnit.Twip => baseUnitValue * 56692.913385826,
+                        LengthUnit.UsSurveyFoot => baseUnitValue * 3937 / 1200,
+                        LengthUnit.Yard => baseUnitValue / 0.9144,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

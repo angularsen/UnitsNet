@@ -21,7 +21,6 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -39,7 +38,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Linear_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct LinearPowerDensity : IQuantity<LinearPowerDensityUnit>, IEquatable<LinearPowerDensity>, IComparable, IComparable<LinearPowerDensity>, IConvertible, IFormattable
+    public readonly partial struct LinearPowerDensity : IQuantity<LinearPowerDensityUnit>, IComparable, IComparable<LinearPowerDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -57,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
             BaseUnit = LinearPowerDensityUnit.WattPerMeter;
-            MaxValue = new LinearPowerDensity(double.MaxValue, BaseUnit);
-            MinValue = new LinearPowerDensity(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.LinearPowerDensity;
-            Units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>().Except(new LinearPowerDensityUnit[]{ LinearPowerDensityUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>().ToArray();
             Zero = new LinearPowerDensity(0, BaseUnit);
             Info = new QuantityInfo<LinearPowerDensityUnit>("LinearPowerDensity",
                 new UnitInfo<LinearPowerDensityUnit>[]
@@ -91,7 +87,7 @@ namespace UnitsNet
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMeter, "WattsPerMeter", BaseUnits.Undefined),
                     new UnitInfo<LinearPowerDensityUnit>(LinearPowerDensityUnit.WattPerMillimeter, "WattsPerMillimeter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.LinearPowerDensity);
+                BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
@@ -105,9 +101,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public LinearPowerDensity(double value, LinearPowerDensityUnit unit)
         {
-            if (unit == LinearPowerDensityUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -152,24 +145,6 @@ namespace UnitsNet
         public static LinearPowerDensityUnit BaseUnit { get; }
 
         /// <summary>
-        /// Represents the largest possible value of LinearPowerDensity
-        /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LinearPowerDensity MaxValue { get; }
-
-        /// <summary>
-        /// Represents the smallest possible value of LinearPowerDensity
-        /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static LinearPowerDensity MinValue { get; }
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; }
-
-        /// <summary>
         ///     All units of measurement for the LinearPowerDensity quantity.
         /// </summary>
         public static LinearPowerDensityUnit[] Units { get; }
@@ -188,6 +163,9 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
+
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -198,12 +176,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public QuantityType Type => QuantityType.LinearPowerDensity;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -449,7 +421,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(LinearPowerDensityUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -773,7 +745,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static LinearPowerDensity Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<LinearPowerDensity, LinearPowerDensityUnit>(
@@ -804,7 +776,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out LinearPowerDensity result)
         {
             return QuantityParser.Default.TryParse<LinearPowerDensity, LinearPowerDensityUnit>(
@@ -832,7 +804,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -858,7 +830,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out LinearPowerDensityUnit unit)
         {
             return UnitParser.Default.TryParse<LinearPowerDensityUnit>(str, provider, out unit);
@@ -938,20 +910,6 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(LinearPowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator ==(LinearPowerDensity left, LinearPowerDensity right)
-        {
-            return left.Equals(right);
-        }
-
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(LinearPowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public static bool operator !=(LinearPowerDensity left, LinearPowerDensity right)
-        {
-            return !(left == right);
-        }
-
         /// <inheritdoc />
         public int CompareTo(object obj)
         {
@@ -965,23 +923,6 @@ namespace UnitsNet
         public int CompareTo(LinearPowerDensity other)
         {
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(LinearPowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is LinearPowerDensity objLinearPowerDensity))
-                return false;
-
-            return Equals(objLinearPowerDensity);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(LinearPowerDensity, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(LinearPowerDensity other)
-        {
-            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -1029,7 +970,7 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
+            double thisValue = this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
@@ -1055,10 +996,9 @@ namespace UnitsNet
         public double As(LinearPowerDensityUnit unit)
         {
             if (Unit == unit)
-                return (double)Value;
+                return Value;
 
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -1079,10 +1019,10 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is LinearPowerDensityUnit unitAsLinearPowerDensityUnit))
+            if (!(unit is LinearPowerDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearPowerDensityUnit)} is supported.", nameof(unit));
 
-            return As(unitAsLinearPowerDensityUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -1203,10 +1143,10 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is LinearPowerDensityUnit unitAsLinearPowerDensityUnit))
+            if (!(unit is LinearPowerDensityUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearPowerDensityUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsLinearPowerDensityUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1250,63 +1190,29 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
-        {
-            var value = Convert.ToDouble(Value);
-            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(provider, format);
-        }
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
-        {
-            if (format == null) throw new ArgumentNullException(nameof(format));
-            if (args == null) throw new ArgumentNullException(nameof(args));
-
-            provider = provider ?? CultureInfo.CurrentUICulture;
-
-            var value = Convert.ToDouble(Value);
-            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
-            return string.Format(provider, format, formatArgs);
-        }
-
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentUICulture);
+            return ToString(format, CultureInfo.CurrentCulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -1388,8 +1294,6 @@ namespace UnitsNet
                 return this;
             else if (conversionType == typeof(LinearPowerDensityUnit))
                 return Unit;
-            else if (conversionType == typeof(QuantityType))
-                return LinearPowerDensity.QuantityType;
             else if (conversionType == typeof(QuantityInfo))
                 return LinearPowerDensity.Info;
             else if (conversionType == typeof(BaseDimensions))

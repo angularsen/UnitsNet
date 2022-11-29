@@ -103,19 +103,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new EnergyDensity((double)0.0, EnergyDensityUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new EnergyDensity();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(EnergyDensityUnit.JoulePerCubicMeter, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -160,14 +153,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(EnergyDensity.Zero, quantityInfo.Zero);
             Assert.Equal("EnergyDensity", quantityInfo.Name);
-            Assert.Equal(QuantityType.EnergyDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<EnergyDensityUnit>().Except(new[] {EnergyDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
+            var units = EnumUtils.GetEnumValues<EnergyDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -605,7 +593,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -622,12 +610,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(EnergyDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = EnergyDensity.Units.FirstOrDefault(u => u != EnergyDensity.BaseUnit && u != EnergyDensityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == EnergyDensityUnit.Undefined)
-                fromUnit = EnergyDensity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = EnergyDensity.Units.Where(u => u != EnergyDensity.BaseUnit).DefaultIfEmpty(EnergyDensity.BaseUnit).FirstOrDefault();
 
             var quantity = EnergyDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -715,49 +699,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualityOperators()
-        {
-            var a = EnergyDensity.FromJoulesPerCubicMeter(1);
-            var b = EnergyDensity.FromJoulesPerCubicMeter(2);
-
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
-
-            Assert.True(a == a);
-            Assert.False(a != a);
-
-            Assert.True(a != b);
-            Assert.False(a == b);
-
-            Assert.False(a == null);
-            Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = EnergyDensity.FromJoulesPerCubicMeter(1);
-            var b = EnergyDensity.FromJoulesPerCubicMeter(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = EnergyDensity.FromJoulesPerCubicMeter(1);
-            object b = EnergyDensity.FromJoulesPerCubicMeter(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
-        }
-
-        [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = EnergyDensity.FromJoulesPerCubicMeter(1);
@@ -787,20 +728,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(EnergyDensityUnit.Undefined, EnergyDensity.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(EnergyDensityUnit)).Cast<EnergyDensityUnit>();
             foreach(var unit in units)
             {
-                if (unit == EnergyDensityUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -814,8 +746,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 GJ/m³", new EnergyDensity(1, EnergyDensityUnit.GigajoulePerCubicMeter).ToString());
                 Assert.Equal("1 GWh/m³", new EnergyDensity(1, EnergyDensityUnit.GigawattHourPerCubicMeter).ToString());
@@ -832,7 +764,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -859,10 +791,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s1"));
                 Assert.Equal("0.12 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s2"));
                 Assert.Equal("0.123 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s3"));
@@ -870,7 +802,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -884,28 +816,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 J/m³", new EnergyDensity(0.123456, EnergyDensityUnit.JoulePerCubicMeter).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -1024,13 +955,6 @@ namespace UnitsNet.Tests
         {
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(EnergyDensityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
-            Assert.Equal(QuantityType.EnergyDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MolarityUnit
     {
-        Undefined = 0,
         CentimolePerLiter = 1,
         [System.Obsolete("Use the singular unit instead.")]
         CentimolesPerLiter = 2,

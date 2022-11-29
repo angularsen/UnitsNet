@@ -12,14 +12,12 @@ namespace CodeGen.Generators.UnitsNetGen
             _quantities = quantities;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
 using System;
 using System.Globalization;
-using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 using System.Collections.Generic;
 
@@ -44,29 +42,6 @@ namespace UnitsNet
         };
 
         /// <summary>
-        /// Dynamically constructs a quantity of the given <see cref=""QuantityType""/> with the value in the quantity's base units.
-        /// </summary>
-        /// <param name=""quantityType"">The <see cref=""QuantityType""/> of the quantity to create.</param>
-        /// <param name=""value"">The value to construct the quantity with.</param>
-        /// <returns>The created quantity.</returns>
-        [Obsolete(""QuantityType will be removed. Use FromQuantityInfo(QuantityInfo, QuantityValue) instead."")]
-        public static IQuantity FromQuantityType(QuantityType quantityType, QuantityValue value)
-        {
-            return quantityType switch
-            {");
-            foreach (var quantity in _quantities)
-            {
-                var quantityName = quantity.Name;
-                Writer.WL($@"
-                QuantityType.{quantityName} => {quantityName}.From(value, {quantityName}.BaseUnit),");
-            }
-
-            Writer.WL(@"
-                _ => throw new ArgumentException($""{quantityType} is not a supported quantity type."")
-            };
-        }
-
-        /// <summary>
         /// Dynamically constructs a quantity of the given <see cref=""QuantityInfo""/> with the value in the quantity's base units.
         /// </summary>
         /// <param name=""quantityInfo"">The <see cref=""QuantityInfo""/> of the quantity to create.</param>
@@ -86,7 +61,7 @@ namespace UnitsNet
             Writer.WL(@"
                 _ => throw new ArgumentException($""{quantityInfo.Name} is not a supported quantity."")
             };
-        }
+            }
 
         /// <summary>
         ///     Try to dynamically construct a quantity.
@@ -122,7 +97,7 @@ namespace UnitsNet
         /// <summary>
         ///     Try to dynamically parse a quantity string representation.
         /// </summary>
-        /// <param name=""formatProvider"">The format provider to use for lookup. Defaults to <see cref=""CultureInfo.CurrentUICulture"" /> if null.</param>
+        /// <param name=""formatProvider"">The format provider to use for lookup. Defaults to <see cref=""CultureInfo.CurrentCulture"" /> if null.</param>
         /// <param name=""quantityType"">Type of quantity, such as <see cref=""Length""/>.</param>
         /// <param name=""quantityString"">Quantity string representation, such as ""1.5 kg"". Must be compatible with given quantity type.</param>
         /// <param name=""quantity"">The resulting quantity if successful, otherwise <c>default</c>.</param>
@@ -131,7 +106,7 @@ namespace UnitsNet
         {
             quantity = default(IQuantity);
 
-            if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
+            if (!typeof(IQuantity).IsAssignableFrom(quantityType))
                 return false;
 
             var parser = QuantityParser.Default;
@@ -148,7 +123,7 @@ namespace UnitsNet
             Writer.WL(@"
                 _ => false
             };
-        }
+            }
 
         internal static IEnumerable<Type> GetQuantityTypes()
         {");

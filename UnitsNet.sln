@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.Json
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.CompatibilityTests", "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj", "{21F2FFAC-BF39-487F-9ADE-37100162F955}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Benchmark", "UnitsNet.Benchmark\UnitsNet.Benchmark.csproj", "{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeGen", "CodeGen\CodeGen.csproj", "{078E3D44-4F60-46B3-9099-91A7CBF0B213}"
@@ -28,7 +26,7 @@ ProjectSection(SolutionItems) = preProject
 	.gitignore = .gitignore
 	appveyor.yml = appveyor.yml
 	build.bat = build.bat
-	build-with-wrc.bat = build-with-wrc.bat
+	build-all-targets.bat = build-all-targets.bat
 	clean.bat = clean.bat
 	CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 	CONTRIBUTING.md = CONTRIBUTING.md
@@ -66,10 +64,6 @@ Global
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76B9C7C8-E3D3-4FA7-B782-78E4BA1D0AD8}.Release|Any CPU.ActiveCfg = Release|Any CPU

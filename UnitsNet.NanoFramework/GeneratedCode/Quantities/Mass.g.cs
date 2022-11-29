@@ -371,101 +371,101 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(MassUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Mass ToUnit(MassUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new Mass(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public Mass ToUnit(MassUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new Mass(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                MassUnit.Centigram => (_value / 1e3) * 1e-2d,
-                MassUnit.Decagram => (_value / 1e3) * 1e1d,
-                MassUnit.Decigram => (_value / 1e3) * 1e-1d,
-                MassUnit.EarthMass => _value * 5.9722E+24,
-                MassUnit.Grain => _value / 15432.358352941431,
-                MassUnit.Gram => _value / 1e3,
-                MassUnit.Hectogram => (_value / 1e3) * 1e2d,
-                MassUnit.Kilogram => (_value / 1e3) * 1e3d,
-                MassUnit.Kilopound => (_value * 0.45359237) * 1e3d,
-                MassUnit.Kilotonne => (_value * 1e3) * 1e3d,
-                MassUnit.LongHundredweight => _value / 0.01968413055222121,
-                MassUnit.LongTon => _value * 1.0160469088e3,
-                MassUnit.Megapound => (_value * 0.45359237) * 1e6d,
-                MassUnit.Megatonne => (_value * 1e3) * 1e6d,
-                MassUnit.Microgram => (_value / 1e3) * 1e-6d,
-                MassUnit.Milligram => (_value / 1e3) * 1e-3d,
-                MassUnit.Nanogram => (_value / 1e3) * 1e-9d,
-                MassUnit.Ounce => _value / 35.2739619,
-                MassUnit.Pound => _value * 0.45359237,
-                MassUnit.ShortHundredweight => _value / 0.022046226218487758,
-                MassUnit.ShortTon => _value * 9.0718474e2,
-                MassUnit.Slug => _value / 6.852176556196105e-2,
-                MassUnit.SolarMass => _value * 1.98947e30,
-                MassUnit.Stone => _value / 0.1574731728702698,
-                MassUnit.Tonne => _value * 1e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        MassUnit.Centigram => (_value / 1e3) * 1e-2d,
+                        MassUnit.Decagram => (_value / 1e3) * 1e1d,
+                        MassUnit.Decigram => (_value / 1e3) * 1e-1d,
+                        MassUnit.EarthMass => _value * 5.9722E+24,
+                        MassUnit.Grain => _value / 15432.358352941431,
+                        MassUnit.Gram => _value / 1e3,
+                        MassUnit.Hectogram => (_value / 1e3) * 1e2d,
+                        MassUnit.Kilogram => (_value / 1e3) * 1e3d,
+                        MassUnit.Kilopound => (_value * 0.45359237) * 1e3d,
+                        MassUnit.Kilotonne => (_value * 1e3) * 1e3d,
+                        MassUnit.LongHundredweight => _value / 0.01968413055222121,
+                        MassUnit.LongTon => _value * 1.0160469088e3,
+                        MassUnit.Megapound => (_value * 0.45359237) * 1e6d,
+                        MassUnit.Megatonne => (_value * 1e3) * 1e6d,
+                        MassUnit.Microgram => (_value / 1e3) * 1e-6d,
+                        MassUnit.Milligram => (_value / 1e3) * 1e-3d,
+                        MassUnit.Nanogram => (_value / 1e3) * 1e-9d,
+                        MassUnit.Ounce => _value / 35.2739619,
+                        MassUnit.Pound => _value * 0.45359237,
+                        MassUnit.ShortHundredweight => _value / 0.022046226218487758,
+                        MassUnit.ShortTon => _value * 9.0718474e2,
+                        MassUnit.Slug => _value / 6.852176556196105e-2,
+                        MassUnit.SolarMass => _value * 1.98947e30,
+                        MassUnit.Stone => _value / 0.1574731728702698,
+                        MassUnit.Tonne => _value * 1e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(MassUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(MassUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                MassUnit.Centigram => (baseUnitValue * 1e3) / 1e-2d,
-                MassUnit.Decagram => (baseUnitValue * 1e3) / 1e1d,
-                MassUnit.Decigram => (baseUnitValue * 1e3) / 1e-1d,
-                MassUnit.EarthMass => baseUnitValue / 5.9722E+24,
-                MassUnit.Grain => baseUnitValue * 15432.358352941431,
-                MassUnit.Gram => baseUnitValue * 1e3,
-                MassUnit.Hectogram => (baseUnitValue * 1e3) / 1e2d,
-                MassUnit.Kilogram => (baseUnitValue * 1e3) / 1e3d,
-                MassUnit.Kilopound => (baseUnitValue / 0.45359237) / 1e3d,
-                MassUnit.Kilotonne => (baseUnitValue / 1e3) / 1e3d,
-                MassUnit.LongHundredweight => baseUnitValue * 0.01968413055222121,
-                MassUnit.LongTon => baseUnitValue / 1.0160469088e3,
-                MassUnit.Megapound => (baseUnitValue / 0.45359237) / 1e6d,
-                MassUnit.Megatonne => (baseUnitValue / 1e3) / 1e6d,
-                MassUnit.Microgram => (baseUnitValue * 1e3) / 1e-6d,
-                MassUnit.Milligram => (baseUnitValue * 1e3) / 1e-3d,
-                MassUnit.Nanogram => (baseUnitValue * 1e3) / 1e-9d,
-                MassUnit.Ounce => baseUnitValue * 35.2739619,
-                MassUnit.Pound => baseUnitValue / 0.45359237,
-                MassUnit.ShortHundredweight => baseUnitValue * 0.022046226218487758,
-                MassUnit.ShortTon => baseUnitValue / 9.0718474e2,
-                MassUnit.Slug => baseUnitValue * 6.852176556196105e-2,
-                MassUnit.SolarMass => baseUnitValue / 1.98947e30,
-                MassUnit.Stone => baseUnitValue * 0.1574731728702698,
-                MassUnit.Tonne => baseUnitValue / 1e3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        MassUnit.Centigram => (baseUnitValue * 1e3) / 1e-2d,
+                        MassUnit.Decagram => (baseUnitValue * 1e3) / 1e1d,
+                        MassUnit.Decigram => (baseUnitValue * 1e3) / 1e-1d,
+                        MassUnit.EarthMass => baseUnitValue / 5.9722E+24,
+                        MassUnit.Grain => baseUnitValue * 15432.358352941431,
+                        MassUnit.Gram => baseUnitValue * 1e3,
+                        MassUnit.Hectogram => (baseUnitValue * 1e3) / 1e2d,
+                        MassUnit.Kilogram => (baseUnitValue * 1e3) / 1e3d,
+                        MassUnit.Kilopound => (baseUnitValue / 0.45359237) / 1e3d,
+                        MassUnit.Kilotonne => (baseUnitValue / 1e3) / 1e3d,
+                        MassUnit.LongHundredweight => baseUnitValue * 0.01968413055222121,
+                        MassUnit.LongTon => baseUnitValue / 1.0160469088e3,
+                        MassUnit.Megapound => (baseUnitValue / 0.45359237) / 1e6d,
+                        MassUnit.Megatonne => (baseUnitValue / 1e3) / 1e6d,
+                        MassUnit.Microgram => (baseUnitValue * 1e3) / 1e-6d,
+                        MassUnit.Milligram => (baseUnitValue * 1e3) / 1e-3d,
+                        MassUnit.Nanogram => (baseUnitValue * 1e3) / 1e-9d,
+                        MassUnit.Ounce => baseUnitValue * 35.2739619,
+                        MassUnit.Pound => baseUnitValue / 0.45359237,
+                        MassUnit.ShortHundredweight => baseUnitValue * 0.022046226218487758,
+                        MassUnit.ShortTon => baseUnitValue / 9.0718474e2,
+                        MassUnit.Slug => baseUnitValue * 6.852176556196105e-2,
+                        MassUnit.SolarMass => baseUnitValue / 1.98947e30,
+                        MassUnit.Stone => baseUnitValue * 0.1574731728702698,
+                        MassUnit.Tonne => baseUnitValue / 1e3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

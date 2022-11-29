@@ -70,7 +70,6 @@ namespace CodeGen.Generators
 
             Log.Information("");
             GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
-            GenerateQuantityType(quantities, $"{outputDir}/QuantityType.g.cs");
             GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
@@ -123,13 +122,6 @@ namespace CodeGen.Generators
             var content = new IQuantityTestClassGenerator(quantities).Generate();
             File.WriteAllText(filePath, content);
             Log.Information("✅ IQuantityTests.g.cs");
-        }
-
-        private static void GenerateQuantityType(Quantity[] quantities, string filePath)
-        {
-            var content = new QuantityTypeGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content);
-            Log.Information("✅ QuantityType.g.cs");
         }
 
         private static void GenerateStaticQuantity(Quantity[] quantities, string filePath)

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ReactiveEnergyUnit
     {
-        Undefined = 0,
         KilovoltampereReactiveHour = 1,
         MegavoltampereReactiveHour = 2,
         VoltampereReactiveHour = 3,

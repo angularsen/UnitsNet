@@ -45,7 +45,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double GigawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-11;
         protected override double TerawattDaysPerTonneInOneJoulePerKilogram => 1.15740741E-14;
 
-
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()
         {
@@ -71,7 +70,7 @@ namespace UnitsNet.Tests.CustomCode
         public void SpecificEnergyTimesMassFlowEqualsPower()
         {
             Power power = SpecificEnergy.FromJoulesPerKilogram(10.0) * MassFlow.FromKilogramsPerSecond(20.0);
-            Assert.Equal(200d, power.Watts);
+            Assert.Equal(200m, power.Watts);
         }
 
         [Fact]

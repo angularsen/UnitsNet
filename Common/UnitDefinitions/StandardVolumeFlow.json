@@ -1,7 +1,7 @@
 {
   "Name": "StandardVolumeFlow",
   "BaseUnit": "StandardCubicMeterPerSecond",
-  "XmlDoc": "The molar flow rate of a gas corrected to standardized conditions of temperature and pressure thus representing a fixed number of moles of gas regardless of composition and actual flow conditions.",
+  "XmlDocSummary": "The molar flow rate of a gas corrected to standardized conditions of temperature and pressure thus representing a fixed number of moles of gas regardless of composition and actual flow conditions.",
   "BaseDimensions": {
     "M": 1,
     "T": -1

@@ -222,15 +222,14 @@ namespace UnitsNet.Tests
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
             var oldCurrentCulture = CultureInfo.CurrentCulture;
-            var oldCurrentUICulture = CultureInfo.CurrentUICulture;
 
             try
             {
                 // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
-                // CurrentUICulture affects localization, in this case the abbreviation.
+                // CurrentCulture affects localization, in this case the abbreviation.
                 // Zulu (South Africa)
                 var zuluCulture = new CultureInfo("zu-ZA");
-                CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
+                CultureInfo.CurrentCulture = zuluCulture;
 
                 var abbreviationsCache = new UnitAbbreviationsCache();
                 abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
@@ -244,7 +243,6 @@ namespace UnitsNet.Tests
             finally
             {
                 CultureInfo.CurrentCulture = oldCurrentCulture;
-                CultureInfo.CurrentUICulture = oldCurrentUICulture;
             }
         }
 

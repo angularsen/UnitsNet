@@ -38,63 +38,63 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class BitRateTestsBase : QuantityTestsBase
     {
-        protected abstract double BitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double BytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double ExabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double ExabytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double ExbibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double ExbibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double GibibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double GibibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double GigabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double GigabytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double KibibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double KibibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double KilobitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double KilobytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double MebibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double MebibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double MegabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double MegabytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double PebibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double PebibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double PetabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double PetabytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double TebibitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double TebibytesPerSecondInOneBitPerSecond { get; }
-        protected abstract double TerabitsPerSecondInOneBitPerSecond { get; }
-        protected abstract double TerabytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal BitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal BytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal ExabitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal ExabytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal ExbibitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal ExbibytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal GibibitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal GibibytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal GigabitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal GigabytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal KibibitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal KibibytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal KilobitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal KilobytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal MebibitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal MebibytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal MegabitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal MegabytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal PebibitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal PebibytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal PetabitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal PetabytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal TebibitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal TebibytesPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal TerabitsPerSecondInOneBitPerSecond { get; }
+        protected abstract decimal TerabytesPerSecondInOneBitPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double BytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double ExabitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double ExabytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double ExbibitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double ExbibytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double GibibitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double GibibytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double GigabitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double GigabytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KibibitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KibibytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilobitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double KilobytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MebibitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MebibytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MegabitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MegabytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double PebibitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double PebibytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double PetabitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double PetabytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double TebibitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double TebibytesPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double TerabitsPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double TerabytesPerSecondTolerance { get { return 1e-5; } }
+        protected virtual decimal BitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal BytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExabytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExbibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExbibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal GibibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal GibibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal GigabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal GigabytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal KibibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal KibibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal KilobitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal KilobytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal MebibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal MebibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal MegabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal MegabytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal PebibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal PebibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal PetabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal PetabytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal TebibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal TebibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal TerabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal TerabytesPerSecondTolerance { get { return 1e-9m; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
-        protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(BitRateUnit unit)
+        protected (decimal UnitsInBaseUnit, decimal Tolerence) GetConversionFactor(BitRateUnit unit)
         {
             return unit switch
             {
@@ -159,12 +159,6 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new BitRate((decimal)0.0, BitRateUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new BitRate();
@@ -172,7 +166,6 @@ namespace UnitsNet.Tests
             Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);
             Assert.Equal(BitRateUnit.BitPerSecond, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_NullAsUnitSystem_ThrowsArgumentNullException()
@@ -204,14 +197,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(BitRate.Zero, quantityInfo.Zero);
             Assert.Equal("BitRate", quantityInfo.Name);
-            Assert.Equal(QuantityType.BitRate, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<BitRateUnit>().Except(new[] {BitRateUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
+            var units = EnumUtils.GetEnumValues<BitRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -1368,7 +1356,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -1385,12 +1373,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(BitRateUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = BitRate.Units.FirstOrDefault(u => u != BitRate.BaseUnit && u != BitRateUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == BitRateUnit.Undefined)
-                fromUnit = BitRate.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = BitRate.Units.Where(u => u != BitRate.BaseUnit).DefaultIfEmpty(BitRate.BaseUnit).FirstOrDefault();
 
             var quantity = BitRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1492,49 +1476,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void EqualityOperators()
-        {
-            var a = BitRate.FromBitsPerSecond(1);
-            var b = BitRate.FromBitsPerSecond(2);
-
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
-
-            Assert.True(a == a);
-            Assert.False(a != a);
-
-            Assert.True(a != b);
-            Assert.False(a == b);
-
-            Assert.False(a == null);
-            Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = BitRate.FromBitsPerSecond(1);
-            var b = BitRate.FromBitsPerSecond(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = BitRate.FromBitsPerSecond(1);
-            object b = BitRate.FromBitsPerSecond(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
-        }
-
-        [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
             var v = BitRate.FromBitsPerSecond(1);
@@ -1564,20 +1505,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(BitRateUnit.Undefined, BitRate.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>();
             foreach(var unit in units)
             {
-                if (unit == BitRateUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -1591,8 +1523,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 bit/s", new BitRate(1, BitRateUnit.BitPerSecond).ToString());
                 Assert.Equal("1 B/s", new BitRate(1, BitRateUnit.BytePerSecond).ToString());
@@ -1623,7 +1555,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -1664,10 +1596,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 bit/s", new BitRate(0.123456m, BitRateUnit.BitPerSecond).ToString("s1"));
                 Assert.Equal("0.12 bit/s", new BitRate(0.123456m, BitRateUnit.BitPerSecond).ToString("s2"));
                 Assert.Equal("0.123 bit/s", new BitRate(0.123456m, BitRateUnit.BitPerSecond).ToString("s3"));
@@ -1675,7 +1607,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -1689,28 +1621,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 bit/s", new BitRate(0.123456m, BitRateUnit.BitPerSecond).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = BitRate.FromBitsPerSecond(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = BitRate.FromBitsPerSecond(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = BitRate.FromBitsPerSecond(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -1829,13 +1760,6 @@ namespace UnitsNet.Tests
         {
             var quantity = BitRate.FromBitsPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(BitRateUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = BitRate.FromBitsPerSecond(1.0);
-            Assert.Equal(QuantityType.BitRate, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

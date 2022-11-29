@@ -261,81 +261,81 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ForceChangeRateUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ForceChangeRateUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ForceChangeRate ToUnit(ForceChangeRateUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ForceChangeRate(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ForceChangeRate ToUnit(ForceChangeRateUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ForceChangeRate(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ForceChangeRateUnit.CentinewtonPerSecond => (_value) * 1e-2d,
-                ForceChangeRateUnit.DecanewtonPerMinute => (_value / 60) * 1e1d,
-                ForceChangeRateUnit.DecanewtonPerSecond => (_value) * 1e1d,
-                ForceChangeRateUnit.DecinewtonPerSecond => (_value) * 1e-1d,
-                ForceChangeRateUnit.KilonewtonPerMinute => (_value / 60) * 1e3d,
-                ForceChangeRateUnit.KilonewtonPerSecond => (_value) * 1e3d,
-                ForceChangeRateUnit.KilopoundForcePerMinute => (_value * 4.4482216152605095551842641431421 / 60) * 1e3d,
-                ForceChangeRateUnit.KilopoundForcePerSecond => (_value * 4.4482216152605095551842641431421) * 1e3d,
-                ForceChangeRateUnit.MicronewtonPerSecond => (_value) * 1e-6d,
-                ForceChangeRateUnit.MillinewtonPerSecond => (_value) * 1e-3d,
-                ForceChangeRateUnit.NanonewtonPerSecond => (_value) * 1e-9d,
-                ForceChangeRateUnit.NewtonPerMinute => _value / 60,
-                ForceChangeRateUnit.NewtonPerSecond => _value,
-                ForceChangeRateUnit.PoundForcePerMinute => _value * 4.4482216152605095551842641431421 / 60,
-                ForceChangeRateUnit.PoundForcePerSecond => _value * 4.4482216152605095551842641431421,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ForceChangeRateUnit.CentinewtonPerSecond => (_value) * 1e-2d,
+                        ForceChangeRateUnit.DecanewtonPerMinute => (_value / 60) * 1e1d,
+                        ForceChangeRateUnit.DecanewtonPerSecond => (_value) * 1e1d,
+                        ForceChangeRateUnit.DecinewtonPerSecond => (_value) * 1e-1d,
+                        ForceChangeRateUnit.KilonewtonPerMinute => (_value / 60) * 1e3d,
+                        ForceChangeRateUnit.KilonewtonPerSecond => (_value) * 1e3d,
+                        ForceChangeRateUnit.KilopoundForcePerMinute => (_value * 4.4482216152605095551842641431421 / 60) * 1e3d,
+                        ForceChangeRateUnit.KilopoundForcePerSecond => (_value * 4.4482216152605095551842641431421) * 1e3d,
+                        ForceChangeRateUnit.MicronewtonPerSecond => (_value) * 1e-6d,
+                        ForceChangeRateUnit.MillinewtonPerSecond => (_value) * 1e-3d,
+                        ForceChangeRateUnit.NanonewtonPerSecond => (_value) * 1e-9d,
+                        ForceChangeRateUnit.NewtonPerMinute => _value / 60,
+                        ForceChangeRateUnit.NewtonPerSecond => _value,
+                        ForceChangeRateUnit.PoundForcePerMinute => _value * 4.4482216152605095551842641431421 / 60,
+                        ForceChangeRateUnit.PoundForcePerSecond => _value * 4.4482216152605095551842641431421,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ForceChangeRateUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ForceChangeRateUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ForceChangeRateUnit.CentinewtonPerSecond => (baseUnitValue) / 1e-2d,
-                ForceChangeRateUnit.DecanewtonPerMinute => (baseUnitValue * 60) / 1e1d,
-                ForceChangeRateUnit.DecanewtonPerSecond => (baseUnitValue) / 1e1d,
-                ForceChangeRateUnit.DecinewtonPerSecond => (baseUnitValue) / 1e-1d,
-                ForceChangeRateUnit.KilonewtonPerMinute => (baseUnitValue * 60) / 1e3d,
-                ForceChangeRateUnit.KilonewtonPerSecond => (baseUnitValue) / 1e3d,
-                ForceChangeRateUnit.KilopoundForcePerMinute => (baseUnitValue / 4.4482216152605095551842641431421 * 60) / 1e3d,
-                ForceChangeRateUnit.KilopoundForcePerSecond => (baseUnitValue / 4.4482216152605095551842641431421) / 1e3d,
-                ForceChangeRateUnit.MicronewtonPerSecond => (baseUnitValue) / 1e-6d,
-                ForceChangeRateUnit.MillinewtonPerSecond => (baseUnitValue) / 1e-3d,
-                ForceChangeRateUnit.NanonewtonPerSecond => (baseUnitValue) / 1e-9d,
-                ForceChangeRateUnit.NewtonPerMinute => baseUnitValue * 60,
-                ForceChangeRateUnit.NewtonPerSecond => baseUnitValue,
-                ForceChangeRateUnit.PoundForcePerMinute => baseUnitValue / 4.4482216152605095551842641431421 * 60,
-                ForceChangeRateUnit.PoundForcePerSecond => baseUnitValue / 4.4482216152605095551842641431421,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ForceChangeRateUnit.CentinewtonPerSecond => (baseUnitValue) / 1e-2d,
+                        ForceChangeRateUnit.DecanewtonPerMinute => (baseUnitValue * 60) / 1e1d,
+                        ForceChangeRateUnit.DecanewtonPerSecond => (baseUnitValue) / 1e1d,
+                        ForceChangeRateUnit.DecinewtonPerSecond => (baseUnitValue) / 1e-1d,
+                        ForceChangeRateUnit.KilonewtonPerMinute => (baseUnitValue * 60) / 1e3d,
+                        ForceChangeRateUnit.KilonewtonPerSecond => (baseUnitValue) / 1e3d,
+                        ForceChangeRateUnit.KilopoundForcePerMinute => (baseUnitValue / 4.4482216152605095551842641431421 * 60) / 1e3d,
+                        ForceChangeRateUnit.KilopoundForcePerSecond => (baseUnitValue / 4.4482216152605095551842641431421) / 1e3d,
+                        ForceChangeRateUnit.MicronewtonPerSecond => (baseUnitValue) / 1e-6d,
+                        ForceChangeRateUnit.MillinewtonPerSecond => (baseUnitValue) / 1e-3d,
+                        ForceChangeRateUnit.NanonewtonPerSecond => (baseUnitValue) / 1e-9d,
+                        ForceChangeRateUnit.NewtonPerMinute => baseUnitValue * 60,
+                        ForceChangeRateUnit.NewtonPerSecond => baseUnitValue,
+                        ForceChangeRateUnit.PoundForcePerMinute => baseUnitValue / 4.4482216152605095551842641431421 * 60,
+                        ForceChangeRateUnit.PoundForcePerSecond => baseUnitValue / 4.4482216152605095551842641431421,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

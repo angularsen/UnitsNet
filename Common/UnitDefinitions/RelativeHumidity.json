@@ -1,7 +1,7 @@
 {
   "Name": "RelativeHumidity",
   "BaseUnit": "Percent",
-  "XmlDoc": "Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.",
+  "XmlDocSummary": "Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.",
   "Units": [
     {
       "SingularName": "Percent",

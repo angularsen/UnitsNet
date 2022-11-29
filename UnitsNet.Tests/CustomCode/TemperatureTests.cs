@@ -121,8 +121,6 @@ namespace UnitsNet.Tests.CustomCode
                 new object[] { Temperature.FromDegreesFahrenheit(-10), TemperatureDelta.FromDegreesFahrenheit(20), Temperature.FromDegreesFahrenheit(10) }
             };
 
-
-
         [Theory]
         [MemberData(nameof(TemperaturePlusTemperatureDeltaEqualsTemperatureData))]
         public void TemperaturePlusTemperatureDeltaEqualsTemperature(Temperature temperature, TemperatureDelta delta, Temperature expected)

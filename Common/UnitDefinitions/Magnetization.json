@@ -1,7 +1,7 @@
 {
   "Name": "Magnetization",
   "BaseUnit": "AmperePerMeter",
-  "XmlDoc": "In classical electromagnetism, magnetization is the vector field that expresses the density of permanent or induced magnetic dipole moments in a magnetic material.",
+  "XmlDocSummary": "In classical electromagnetism, magnetization is the vector field that expresses the density of permanent or induced magnetic dipole moments in a magnetic material.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Magnetization",
   "BaseDimensions": {
     "L": -1,

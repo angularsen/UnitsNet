@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum LengthUnit
     {
-        Undefined = 0,
 
         /// <summary>
         ///     Angstrom is a metric unit of length equal to 1e-10 meter

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MassFractionUnit
     {
-        Undefined = 0,
         CentigramPerGram = 1,
         CentigramPerKilogram = 2,
         DecagramPerGram = 3,
