@@ -733,7 +733,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(FrequencyUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Value;
 
             return GetValueAs(unit);

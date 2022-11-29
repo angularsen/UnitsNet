@@ -841,7 +841,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public {_quantity.ValueType} As({_unitEnumName} unit)
         {{
-            if(Unit == unit)
+            if (Unit == unit)
                 return Value;
 
             return GetValueAs(unit);

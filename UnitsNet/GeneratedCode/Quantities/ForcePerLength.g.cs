@@ -1245,7 +1245,7 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ForcePerLengthUnit unit)
         {
-            if(Unit == unit)
+            if (Unit == unit)
                 return Value;
 
             return GetValueAs(unit);
