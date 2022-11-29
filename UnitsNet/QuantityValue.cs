@@ -29,7 +29,7 @@ namespace UnitsNet
     /// </remarks>
     [StructLayout(LayoutKind.Explicit)]
     [DebuggerDisplay("{GetDebugRepresentation()}")]
-    public readonly struct QuantityValue : IFormattable, IEquatable<QuantityValue>
+    public readonly struct QuantityValue : IFormattable, IEquatable<QuantityValue>, IComparable<QuantityValue>, IComparable
     {
         /// <summary>
         /// The value 0
@@ -87,7 +87,7 @@ namespace UnitsNet
         /// <summary>
         /// Returns true if the underlying value is stored as a decimal
         /// </summary>
-        public bool IsDecimal =>  Type == UnderlyingDataType.Decimal;
+        public bool IsDecimal => Type == UnderlyingDataType.Decimal;
 
         #region To QuantityValue
 
@@ -115,11 +115,11 @@ namespace UnitsNet
         /// <summary>Explicit cast from <see cref="QuantityValue"/> to <see cref="double"/>.</summary>
         public static explicit operator double(QuantityValue number)
             => number.Type switch
-        {
-            UnderlyingDataType.Decimal => (double)number._decimalValue,
-            UnderlyingDataType.Double => number._doubleValue,
-            _ => throw new NotImplementedException()
-        };
+            {
+                UnderlyingDataType.Decimal => (double)number._decimalValue,
+                UnderlyingDataType.Double => number._doubleValue,
+                _ => throw new NotImplementedException()
+            };
 
         #endregion
 
@@ -170,34 +170,19 @@ namespace UnitsNet
         /// <returns>True on exact equality, false otherwise</returns>
         public bool Equals(QuantityValue other)
         {
-            if (IsDecimal && other.IsDecimal)
-            {
-                return _decimalValue == other._decimalValue;
-            }
-            else if (IsDecimal)
-            {
-                return _decimalValue == (decimal)other._doubleValue;
-            }
-            else if (other.IsDecimal)
-            {
-                return (decimal)_doubleValue == other._decimalValue;
-            }
-            else
-            {
-                return _doubleValue == other._doubleValue;
-            }
+            return CompareTo(other) == 0;
         }
 
         /// <summary>Equality comparator</summary>
         public static bool operator ==(QuantityValue a, QuantityValue b)
         {
-            return a.Equals(b);
+            return a.CompareTo(b) == 0;
         }
 
         /// <summary>Inequality comparator</summary>
         public static bool operator !=(QuantityValue a, QuantityValue b)
         {
-            return !a.Equals(b);
+            return a.CompareTo(b) != 0;
         }
 
         /// <summary>
@@ -205,23 +190,7 @@ namespace UnitsNet
         /// </summary>
         public static bool operator >(QuantityValue a, QuantityValue b)
         {
-            if (a.IsDecimal && b.IsDecimal)
-            {
-                return a._decimalValue > b._decimalValue;
-            }
-            else if (a.IsDecimal)
-            {
-                return a._decimalValue > (decimal)b._doubleValue;
-            }
-            else if (b.IsDecimal)
-            {
-                return (decimal)a._doubleValue > b._decimalValue;
-            }
-            else
-            {
-                // Both are double
-                return a._doubleValue > b._doubleValue;
-            }
+            return a.CompareTo(b) > 0;
         }
 
         /// <summary>
@@ -229,23 +198,7 @@ namespace UnitsNet
         /// </summary>
         public static bool operator <(QuantityValue a, QuantityValue b)
         {
-            if (a.IsDecimal && b.IsDecimal)
-            {
-                return a._decimalValue < b._decimalValue;
-            }
-            else if (a.IsDecimal)
-            {
-                return a._decimalValue < (decimal)b._doubleValue;
-            }
-            else if (b.IsDecimal)
-            {
-                return (decimal)a._doubleValue < b._decimalValue;
-            }
-            else
-            {
-                // Both are double
-                return a._doubleValue < b._doubleValue;
-            }
+            return a.CompareTo(b) < 0;
         }
 
         /// <summary>
@@ -253,23 +206,7 @@ namespace UnitsNet
         /// </summary>
         public static bool operator >=(QuantityValue a, QuantityValue b)
         {
-            if (a.IsDecimal && b.IsDecimal)
-            {
-                return a._decimalValue >= b._decimalValue;
-            }
-            else if (a.IsDecimal)
-            {
-                return a._decimalValue >= (decimal)b._doubleValue;
-            }
-            else if (b.IsDecimal)
-            {
-                return (decimal)a._doubleValue >= b._decimalValue;
-            }
-            else
-            {
-                // Both are double
-                return a._doubleValue >= b._doubleValue;
-            }
+            return a.CompareTo(b) >= 0;
         }
 
         /// <summary>
@@ -277,23 +214,37 @@ namespace UnitsNet
         /// </summary>
         public static bool operator <=(QuantityValue a, QuantityValue b)
         {
-            if (a.IsDecimal && b.IsDecimal)
+            return a.CompareTo(b) <= 0;
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(QuantityValue other)
+        {
+            if (IsDecimal && other.IsDecimal)
             {
-                return a._decimalValue <= b._decimalValue;
+                return _decimalValue.CompareTo(other._decimalValue);
             }
-            else if (a.IsDecimal)
+            else if (IsDecimal)
             {
-                return a._decimalValue <= (decimal)b._doubleValue;
+                return _decimalValue.CompareTo((decimal)other._doubleValue);
             }
-            else if (b.IsDecimal)
+            else if (other.IsDecimal)
             {
-                return (decimal)a._doubleValue <= b._decimalValue;
+                return ((decimal)_doubleValue).CompareTo(other._decimalValue);
             }
             else
             {
-                // Both are double
-                return a._doubleValue <= b._doubleValue;
+                return _doubleValue.CompareTo(other._doubleValue);
             }
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(object obj)
+        {
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is QuantityValue other)) throw new ArgumentException("Expected type QuantityValue.", nameof(obj));
+
+            return CompareTo(other);
         }
 
         /// <summary>
@@ -318,11 +269,11 @@ namespace UnitsNet
         /// <summary>Returns the string representation of the numeric value.</summary>
         public override string ToString()
             => Type switch
-        {
-            UnderlyingDataType.Decimal => _decimalValue.ToString(),
-            UnderlyingDataType.Double => _doubleValue.ToString(),
-            _ => throw new NotImplementedException()
-        };
+            {
+                UnderlyingDataType.Decimal => _decimalValue.ToString(),
+                UnderlyingDataType.Double => _doubleValue.ToString(),
+                _ => throw new NotImplementedException()
+            };
 
         private string GetDebugRepresentation()
         {
