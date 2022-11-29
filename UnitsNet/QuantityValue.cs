@@ -79,7 +79,7 @@ namespace UnitsNet
             }
             else
             {
-                _doubleValue = 0;
+                _doubleValue = value;
                 Type = UnderlyingDataType.Double;
             }
         }
