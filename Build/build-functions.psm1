@@ -64,8 +64,7 @@ function Start-Tests {
   $projectPaths = @(
     "UnitsNet.Tests\UnitsNet.Tests.csproj",
     "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj"
+    "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj"
     )
 
   # Parent dir must exist before xunit tries to write files to it
