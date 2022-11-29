@@ -51,17 +51,17 @@ namespace UnitsNet.Tests
         protected abstract double InverseUsSurveySquareFeetInOneInverseSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double InverseSquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareFeetTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareInchesTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareKilometersTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareMetersTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareMicrometersTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareMilesTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double InverseSquareYardsTolerance { get { return 1E-5; } }
-        protected virtual double InverseUsSurveySquareFeetTolerance { get { return 1E-5; } }
+        protected virtual double InverseSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareFeetTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareInchesTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareKilometersTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareMicrometersTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareMilesTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double InverseSquareYardsTolerance { get { return 1e-5; } }
+        protected virtual double InverseUsSurveySquareFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ReciprocalAreaUnit unit)

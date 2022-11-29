@@ -42,8 +42,8 @@ namespace UnitsNet.Tests
         protected abstract double PercentsPerSecondInOneDecimalFractionPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DecimalFractionsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double PercentsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double DecimalFractionsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double PercentsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RatioChangeRateUnit unit)

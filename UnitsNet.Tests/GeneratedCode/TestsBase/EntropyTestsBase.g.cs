@@ -47,13 +47,13 @@ namespace UnitsNet.Tests
         protected abstract double MegajoulesPerKelvinInOneJoulePerKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CaloriesPerKelvinTolerance { get { return 1E-5; } }
-        protected virtual double JoulesPerDegreeCelsiusTolerance { get { return 1E-5; } }
-        protected virtual double JoulesPerKelvinTolerance { get { return 1E-5; } }
-        protected virtual double KilocaloriesPerKelvinTolerance { get { return 1E-5; } }
-        protected virtual double KilojoulesPerDegreeCelsiusTolerance { get { return 1E-5; } }
-        protected virtual double KilojoulesPerKelvinTolerance { get { return 1E-5; } }
-        protected virtual double MegajoulesPerKelvinTolerance { get { return 1E-5; } }
+        protected virtual double CaloriesPerKelvinTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerDegreeCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerKelvinTolerance { get { return 1e-5; } }
+        protected virtual double KilocaloriesPerKelvinTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerDegreeCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerKelvinTolerance { get { return 1e-5; } }
+        protected virtual double MegajoulesPerKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(EntropyUnit unit)

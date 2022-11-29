@@ -45,11 +45,11 @@ namespace UnitsNet.Tests
         protected abstract double SquareMetersInOneSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DarcysTolerance { get { return 1E-5; } }
-        protected virtual double MicrodarcysTolerance { get { return 1E-5; } }
-        protected virtual double MillidarcysTolerance { get { return 1E-5; } }
-        protected virtual double SquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double SquareMetersTolerance { get { return 1E-5; } }
+        protected virtual double DarcysTolerance { get { return 1e-5; } }
+        protected virtual double MicrodarcysTolerance { get { return 1e-5; } }
+        protected virtual double MillidarcysTolerance { get { return 1e-5; } }
+        protected virtual double SquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double SquareMetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PorousMediumPermeabilityUnit unit)

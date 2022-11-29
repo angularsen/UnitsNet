@@ -58,24 +58,24 @@ namespace UnitsNet.Tests
         protected abstract double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BtusPerHourSquareFootTolerance { get { return 1E-5; } }
-        protected virtual double BtusPerMinuteSquareFootTolerance { get { return 1E-5; } }
-        protected virtual double BtusPerSecondSquareFootTolerance { get { return 1E-5; } }
-        protected virtual double BtusPerSecondSquareInchTolerance { get { return 1E-5; } }
-        protected virtual double CaloriesPerSecondSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double CentiwattsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double DeciwattsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilocaloriesPerHourSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilocaloriesPerSecondSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilowattsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double MicrowattsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double MilliwattsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double NanowattsPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForcePerFootSecondTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerSquareFootTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerSquareInchTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerSquareMeterTolerance { get { return 1E-5; } }
+        protected virtual double BtusPerHourSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double BtusPerMinuteSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double BtusPerSecondSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double BtusPerSecondSquareInchTolerance { get { return 1e-5; } }
+        protected virtual double CaloriesPerSecondSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double CentiwattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double DeciwattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilocaloriesPerHourSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilocaloriesPerSecondSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double MicrowattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double NanowattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerFootSecondTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerSquareInchTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(HeatFluxUnit unit)

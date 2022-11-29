@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         protected abstract double PercentInOnePercent { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double PercentTolerance { get { return 1E-5; } }
+        protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RelativeHumidityUnit unit)

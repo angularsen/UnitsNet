@@ -46,12 +46,12 @@ namespace UnitsNet.Tests
         protected abstract double TeslasInOneTesla { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GaussesTolerance { get { return 1E-5; } }
-        protected virtual double MicroteslasTolerance { get { return 1E-5; } }
-        protected virtual double MilligaussesTolerance { get { return 1E-5; } }
-        protected virtual double MilliteslasTolerance { get { return 1E-5; } }
-        protected virtual double NanoteslasTolerance { get { return 1E-5; } }
-        protected virtual double TeslasTolerance { get { return 1E-5; } }
+        protected virtual double GaussesTolerance { get { return 1e-5; } }
+        protected virtual double MicroteslasTolerance { get { return 1e-5; } }
+        protected virtual double MilligaussesTolerance { get { return 1e-5; } }
+        protected virtual double MilliteslasTolerance { get { return 1e-5; } }
+        protected virtual double NanoteslasTolerance { get { return 1e-5; } }
+        protected virtual double TeslasTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MagneticFieldUnit unit)

@@ -47,13 +47,13 @@ namespace UnitsNet.Tests
         protected abstract double WattHoursPerSquareMeterInOneJoulePerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double JoulesPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double JoulesPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double JoulesPerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilojoulesPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilowattHoursPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double MillijoulesPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double WattHoursPerSquareMeterTolerance { get { return 1E-5; } }
+        protected virtual double JoulesPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilowattHoursPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double MillijoulesPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double WattHoursPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(IrradiationUnit unit)

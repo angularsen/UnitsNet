@@ -44,10 +44,10 @@ namespace UnitsNet.Tests
         protected abstract double PoundsMassPerPoundForceHourInOneGramPerKiloNewtonSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GramsPerKiloNewtonSecondTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerKilogramForceHourTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerKiloNewtonSecondTolerance { get { return 1E-5; } }
-        protected virtual double PoundsMassPerPoundForceHourTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerKiloNewtonSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerKilogramForceHourTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerKiloNewtonSecondTolerance { get { return 1e-5; } }
+        protected virtual double PoundsMassPerPoundForceHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificFuelConsumptionUnit unit)

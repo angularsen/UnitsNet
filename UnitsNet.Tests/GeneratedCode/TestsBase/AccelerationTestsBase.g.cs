@@ -54,20 +54,20 @@ namespace UnitsNet.Tests
         protected abstract double StandardGravityInOneMeterPerSecondSquared { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentimetersPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double DecimetersPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double FeetPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double InchesPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double KilometersPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double KnotsPerHourTolerance { get { return 1E-5; } }
-        protected virtual double KnotsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double KnotsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MetersPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double MicrometersPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double MillistandardGravityTolerance { get { return 1E-5; } }
-        protected virtual double NanometersPerSecondSquaredTolerance { get { return 1E-5; } }
-        protected virtual double StandardGravityTolerance { get { return 1E-5; } }
+        protected virtual double CentimetersPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double DecimetersPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double FeetPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double InchesPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double KilometersPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double KnotsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KnotsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double KnotsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MetersPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double MicrometersPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double MillistandardGravityTolerance { get { return 1e-5; } }
+        protected virtual double NanometersPerSecondSquaredTolerance { get { return 1e-5; } }
+        protected virtual double StandardGravityTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AccelerationUnit unit)

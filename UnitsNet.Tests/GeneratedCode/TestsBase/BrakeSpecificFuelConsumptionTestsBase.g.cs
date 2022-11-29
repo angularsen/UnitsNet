@@ -43,9 +43,9 @@ namespace UnitsNet.Tests
         protected abstract double PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GramsPerKiloWattHourTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerJouleTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerMechanicalHorsepowerHourTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerKiloWattHourTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerJouleTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerMechanicalHorsepowerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(BrakeSpecificFuelConsumptionUnit unit)

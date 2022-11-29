@@ -52,18 +52,18 @@ namespace UnitsNet.Tests
         protected abstract double KilogramsPerSecondPerSquareMillimeterInOneKilogramPerSecondPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GramsPerHourPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerHourPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerHourPerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerSecondPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerSecondPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerSecondPerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerHourPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerHourPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerHourPerSquareMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerSecondPerSquareCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerSecondPerSquareMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerSecondPerSquareMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerHourPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerHourPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerHourPerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerSecondPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerSecondPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerSecondPerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerHourPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerHourPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerHourPerSquareMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerSecondPerSquareCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerSecondPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerSecondPerSquareMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFluxUnit unit)

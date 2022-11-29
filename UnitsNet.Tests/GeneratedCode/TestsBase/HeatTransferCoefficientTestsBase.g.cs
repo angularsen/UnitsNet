@@ -43,9 +43,9 @@ namespace UnitsNet.Tests
         protected abstract double WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BtusPerSquareFootDegreeFahrenheitTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerSquareMeterCelsiusTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerSquareMeterKelvinTolerance { get { return 1E-5; } }
+        protected virtual double BtusPerSquareFootDegreeFahrenheitTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerSquareMeterCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerSquareMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(HeatTransferCoefficientUnit unit)

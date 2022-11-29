@@ -54,20 +54,20 @@ namespace UnitsNet.Tests
         protected abstract double WattsInOneWatt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DecawattsTolerance { get { return 1E-5; } }
-        protected virtual double DeciwattsTolerance { get { return 1E-5; } }
-        protected virtual double FemtowattsTolerance { get { return 1E-5; } }
-        protected virtual double GigawattsTolerance { get { return 1E-5; } }
-        protected virtual double KilowattsTolerance { get { return 1E-5; } }
-        protected virtual double MegawattsTolerance { get { return 1E-5; } }
-        protected virtual double MicrowattsTolerance { get { return 1E-5; } }
-        protected virtual double MilliwattsTolerance { get { return 1E-5; } }
-        protected virtual double NanowattsTolerance { get { return 1E-5; } }
-        protected virtual double PetawattsTolerance { get { return 1E-5; } }
-        protected virtual double PicowattsTolerance { get { return 1E-5; } }
-        protected virtual double SolarLuminositiesTolerance { get { return 1E-5; } }
-        protected virtual double TerawattsTolerance { get { return 1E-5; } }
-        protected virtual double WattsTolerance { get { return 1E-5; } }
+        protected virtual double DecawattsTolerance { get { return 1e-5; } }
+        protected virtual double DeciwattsTolerance { get { return 1e-5; } }
+        protected virtual double FemtowattsTolerance { get { return 1e-5; } }
+        protected virtual double GigawattsTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsTolerance { get { return 1e-5; } }
+        protected virtual double MegawattsTolerance { get { return 1e-5; } }
+        protected virtual double MicrowattsTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsTolerance { get { return 1e-5; } }
+        protected virtual double NanowattsTolerance { get { return 1e-5; } }
+        protected virtual double PetawattsTolerance { get { return 1e-5; } }
+        protected virtual double PicowattsTolerance { get { return 1e-5; } }
+        protected virtual double SolarLuminositiesTolerance { get { return 1e-5; } }
+        protected virtual double TerawattsTolerance { get { return 1e-5; } }
+        protected virtual double WattsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LuminosityUnit unit)

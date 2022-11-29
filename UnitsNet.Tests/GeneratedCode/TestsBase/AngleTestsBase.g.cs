@@ -56,22 +56,22 @@ namespace UnitsNet.Tests
         protected abstract double TiltInOneDegree { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double ArcminutesTolerance { get { return 1E-5; } }
-        protected virtual double ArcsecondsTolerance { get { return 1E-5; } }
-        protected virtual double CentiradiansTolerance { get { return 1E-5; } }
-        protected virtual double DeciradiansTolerance { get { return 1E-5; } }
-        protected virtual double DegreesTolerance { get { return 1E-5; } }
-        protected virtual double GradiansTolerance { get { return 1E-5; } }
-        protected virtual double MicrodegreesTolerance { get { return 1E-5; } }
-        protected virtual double MicroradiansTolerance { get { return 1E-5; } }
-        protected virtual double MillidegreesTolerance { get { return 1E-5; } }
-        protected virtual double MilliradiansTolerance { get { return 1E-5; } }
-        protected virtual double NanodegreesTolerance { get { return 1E-5; } }
-        protected virtual double NanoradiansTolerance { get { return 1E-5; } }
-        protected virtual double NatoMilsTolerance { get { return 1E-5; } }
-        protected virtual double RadiansTolerance { get { return 1E-5; } }
-        protected virtual double RevolutionsTolerance { get { return 1E-5; } }
-        protected virtual double TiltTolerance { get { return 1E-5; } }
+        protected virtual double ArcminutesTolerance { get { return 1e-5; } }
+        protected virtual double ArcsecondsTolerance { get { return 1e-5; } }
+        protected virtual double CentiradiansTolerance { get { return 1e-5; } }
+        protected virtual double DeciradiansTolerance { get { return 1e-5; } }
+        protected virtual double DegreesTolerance { get { return 1e-5; } }
+        protected virtual double GradiansTolerance { get { return 1e-5; } }
+        protected virtual double MicrodegreesTolerance { get { return 1e-5; } }
+        protected virtual double MicroradiansTolerance { get { return 1e-5; } }
+        protected virtual double MillidegreesTolerance { get { return 1e-5; } }
+        protected virtual double MilliradiansTolerance { get { return 1e-5; } }
+        protected virtual double NanodegreesTolerance { get { return 1e-5; } }
+        protected virtual double NanoradiansTolerance { get { return 1e-5; } }
+        protected virtual double NatoMilsTolerance { get { return 1e-5; } }
+        protected virtual double RadiansTolerance { get { return 1e-5; } }
+        protected virtual double RevolutionsTolerance { get { return 1e-5; } }
+        protected virtual double TiltTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AngleUnit unit)

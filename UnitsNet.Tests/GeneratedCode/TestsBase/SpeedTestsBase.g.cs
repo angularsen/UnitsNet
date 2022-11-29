@@ -72,38 +72,38 @@ namespace UnitsNet.Tests
         protected abstract double YardsPerSecondInOneMeterPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentimetersPerHourTolerance { get { return 1E-5; } }
-        protected virtual double CentimetersPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double CentimetersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double DecimetersPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double DecimetersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double FeetPerHourTolerance { get { return 1E-5; } }
-        protected virtual double FeetPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double FeetPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double InchesPerHourTolerance { get { return 1E-5; } }
-        protected virtual double InchesPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double InchesPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double KilometersPerHourTolerance { get { return 1E-5; } }
-        protected virtual double KilometersPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double KilometersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double KnotsTolerance { get { return 1E-5; } }
-        protected virtual double MetersPerHourTolerance { get { return 1E-5; } }
-        protected virtual double MetersPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double MetersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MicrometersPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double MicrometersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MilesPerHourTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersPerHourTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double NanometersPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double NanometersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double UsSurveyFeetPerHourTolerance { get { return 1E-5; } }
-        protected virtual double UsSurveyFeetPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double UsSurveyFeetPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double YardsPerHourTolerance { get { return 1E-5; } }
-        protected virtual double YardsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double YardsPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CentimetersPerHourTolerance { get { return 1e-5; } }
+        protected virtual double CentimetersPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double CentimetersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecimetersPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double DecimetersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double FeetPerHourTolerance { get { return 1e-5; } }
+        protected virtual double FeetPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double FeetPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double InchesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double InchesPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double InchesPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilometersPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilometersPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double KilometersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KnotsTolerance { get { return 1e-5; } }
+        protected virtual double MetersPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MetersPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double MetersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MicrometersPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double MicrometersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MilesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double NanometersPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double NanometersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double UsSurveyFeetPerHourTolerance { get { return 1e-5; } }
+        protected virtual double UsSurveyFeetPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double UsSurveyFeetPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double YardsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double YardsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double YardsPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpeedUnit unit)

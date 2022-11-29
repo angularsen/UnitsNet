@@ -44,10 +44,10 @@ namespace UnitsNet.Tests
         protected abstract double MilesPerUsGallonInOneLiterPer100Kilometers { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilometersPerLitersTolerance { get { return 1E-5; } }
-        protected virtual double LitersPer100KilometersTolerance { get { return 1E-5; } }
-        protected virtual double MilesPerUkGallonTolerance { get { return 1E-5; } }
-        protected virtual double MilesPerUsGallonTolerance { get { return 1E-5; } }
+        protected virtual double KilometersPerLitersTolerance { get { return 1e-5; } }
+        protected virtual double LitersPer100KilometersTolerance { get { return 1e-5; } }
+        protected virtual double MilesPerUkGallonTolerance { get { return 1e-5; } }
+        protected virtual double MilesPerUsGallonTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(FuelEfficiencyUnit unit)

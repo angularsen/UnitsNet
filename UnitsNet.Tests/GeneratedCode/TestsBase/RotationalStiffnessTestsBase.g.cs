@@ -73,39 +73,39 @@ namespace UnitsNet.Tests
         protected abstract double PoundForceFeetPerDegreesInOneNewtonMeterPerRadian { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentinewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double CentinewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double CentinewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double DecanewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double DecanewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double DecanewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double DecinewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double DecinewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double DecinewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonMetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundForceFeetPerDegreesTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonMetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double MicronewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double MicronewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double MicronewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double MillinewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double MillinewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double MillinewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double NanonewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double NanonewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double NanonewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double NewtonMetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double NewtonMetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double NewtonMillimetersPerDegreeTolerance { get { return 1E-5; } }
-        protected virtual double NewtonMillimetersPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double PoundForceFeetPerRadianTolerance { get { return 1E-5; } }
-        protected virtual double PoundForceFeetPerDegreesTolerance { get { return 1E-5; } }
+        protected virtual double CentinewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double CentinewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double CentinewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double DecanewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double DecanewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double DecanewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double DecinewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double DecinewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double DecinewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonMetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundForceFeetPerDegreesTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonMetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double MicronewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double MicronewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double MicronewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double MillinewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double MillinewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double MillinewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double NanonewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double NanonewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double NanonewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double NewtonMetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double NewtonMetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double NewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
+        protected virtual double NewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double PoundForceFeetPerRadianTolerance { get { return 1e-5; } }
+        protected virtual double PoundForceFeetPerDegreesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalStiffnessUnit unit)

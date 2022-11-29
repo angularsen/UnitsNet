@@ -44,10 +44,10 @@ namespace UnitsNet.Tests
         protected abstract double AmperesPerSecondInOneAmperePerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double AmperesPerMicrosecondTolerance { get { return 1E-5; } }
-        protected virtual double AmperesPerMillisecondTolerance { get { return 1E-5; } }
-        protected virtual double AmperesPerNanosecondTolerance { get { return 1E-5; } }
-        protected virtual double AmperesPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double AmperesPerMicrosecondTolerance { get { return 1e-5; } }
+        protected virtual double AmperesPerMillisecondTolerance { get { return 1e-5; } }
+        protected virtual double AmperesPerNanosecondTolerance { get { return 1e-5; } }
+        protected virtual double AmperesPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricCurrentGradientUnit unit)

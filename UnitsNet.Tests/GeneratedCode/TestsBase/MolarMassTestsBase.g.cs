@@ -52,18 +52,18 @@ namespace UnitsNet.Tests
         protected abstract double PoundsPerMoleInOneKilogramPerMole { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentigramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double DecagramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double DecigramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double HectogramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double MegapoundsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double NanogramsPerMoleTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerMoleTolerance { get { return 1E-5; } }
+        protected virtual double CentigramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerMoleTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarMassUnit unit)

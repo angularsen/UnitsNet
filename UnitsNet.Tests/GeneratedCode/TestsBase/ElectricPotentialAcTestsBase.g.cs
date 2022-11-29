@@ -45,11 +45,11 @@ namespace UnitsNet.Tests
         protected abstract double VoltsAcInOneVoltAc { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilovoltsAcTolerance { get { return 1E-5; } }
-        protected virtual double MegavoltsAcTolerance { get { return 1E-5; } }
-        protected virtual double MicrovoltsAcTolerance { get { return 1E-5; } }
-        protected virtual double MillivoltsAcTolerance { get { return 1E-5; } }
-        protected virtual double VoltsAcTolerance { get { return 1E-5; } }
+        protected virtual double KilovoltsAcTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltsAcTolerance { get { return 1e-5; } }
+        protected virtual double MicrovoltsAcTolerance { get { return 1e-5; } }
+        protected virtual double MillivoltsAcTolerance { get { return 1e-5; } }
+        protected virtual double VoltsAcTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricPotentialAcUnit unit)

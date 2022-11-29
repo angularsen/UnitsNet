@@ -46,12 +46,12 @@ namespace UnitsNet.Tests
         protected abstract double MillimetersToTheFourthInOneMeterToTheFourth { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentimetersToTheFourthTolerance { get { return 1E-5; } }
-        protected virtual double DecimetersToTheFourthTolerance { get { return 1E-5; } }
-        protected virtual double FeetToTheFourthTolerance { get { return 1E-5; } }
-        protected virtual double InchesToTheFourthTolerance { get { return 1E-5; } }
-        protected virtual double MetersToTheFourthTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersToTheFourthTolerance { get { return 1E-5; } }
+        protected virtual double CentimetersToTheFourthTolerance { get { return 1e-5; } }
+        protected virtual double DecimetersToTheFourthTolerance { get { return 1e-5; } }
+        protected virtual double FeetToTheFourthTolerance { get { return 1e-5; } }
+        protected virtual double InchesToTheFourthTolerance { get { return 1e-5; } }
+        protected virtual double MetersToTheFourthTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersToTheFourthTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(AreaMomentOfInertiaUnit unit)

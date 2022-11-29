@@ -55,21 +55,21 @@ namespace UnitsNet.Tests
         protected abstract double TonnesForceInOneNewton { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DecanewtonsTolerance { get { return 1E-5; } }
-        protected virtual double DyneTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsForceTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsTolerance { get { return 1E-5; } }
-        protected virtual double KiloPondsTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsForceTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonsTolerance { get { return 1E-5; } }
-        protected virtual double MicronewtonsTolerance { get { return 1E-5; } }
-        protected virtual double MillinewtonsTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsTolerance { get { return 1E-5; } }
-        protected virtual double OunceForceTolerance { get { return 1E-5; } }
-        protected virtual double PoundalsTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForceTolerance { get { return 1E-5; } }
-        protected virtual double ShortTonsForceTolerance { get { return 1E-5; } }
-        protected virtual double TonnesForceTolerance { get { return 1E-5; } }
+        protected virtual double DecanewtonsTolerance { get { return 1e-5; } }
+        protected virtual double DyneTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForceTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsTolerance { get { return 1e-5; } }
+        protected virtual double KiloPondsTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForceTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonsTolerance { get { return 1e-5; } }
+        protected virtual double MicronewtonsTolerance { get { return 1e-5; } }
+        protected virtual double MillinewtonsTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsTolerance { get { return 1e-5; } }
+        protected virtual double OunceForceTolerance { get { return 1e-5; } }
+        protected virtual double PoundalsTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForceTolerance { get { return 1e-5; } }
+        protected virtual double ShortTonsForceTolerance { get { return 1e-5; } }
+        protected virtual double TonnesForceTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ForceUnit unit)

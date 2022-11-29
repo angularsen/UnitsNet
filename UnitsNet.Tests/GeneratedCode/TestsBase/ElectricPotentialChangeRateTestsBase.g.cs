@@ -60,26 +60,26 @@ namespace UnitsNet.Tests
         protected abstract double VoltsPerSecondsInOneVoltPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilovoltsPerHoursTolerance { get { return 1E-5; } }
-        protected virtual double KilovoltsPerMicrosecondsTolerance { get { return 1E-5; } }
-        protected virtual double KilovoltsPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double KilovoltsPerSecondsTolerance { get { return 1E-5; } }
-        protected virtual double MegavoltsPerHoursTolerance { get { return 1E-5; } }
-        protected virtual double MegavoltsPerMicrosecondsTolerance { get { return 1E-5; } }
-        protected virtual double MegavoltsPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double MegavoltsPerSecondsTolerance { get { return 1E-5; } }
-        protected virtual double MicrovoltsPerHoursTolerance { get { return 1E-5; } }
-        protected virtual double MicrovoltsPerMicrosecondsTolerance { get { return 1E-5; } }
-        protected virtual double MicrovoltsPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double MicrovoltsPerSecondsTolerance { get { return 1E-5; } }
-        protected virtual double MillivoltsPerHoursTolerance { get { return 1E-5; } }
-        protected virtual double MillivoltsPerMicrosecondsTolerance { get { return 1E-5; } }
-        protected virtual double MillivoltsPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double MillivoltsPerSecondsTolerance { get { return 1E-5; } }
-        protected virtual double VoltsPerHoursTolerance { get { return 1E-5; } }
-        protected virtual double VoltsPerMicrosecondsTolerance { get { return 1E-5; } }
-        protected virtual double VoltsPerMinutesTolerance { get { return 1E-5; } }
-        protected virtual double VoltsPerSecondsTolerance { get { return 1E-5; } }
+        protected virtual double KilovoltsPerHoursTolerance { get { return 1e-5; } }
+        protected virtual double KilovoltsPerMicrosecondsTolerance { get { return 1e-5; } }
+        protected virtual double KilovoltsPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double KilovoltsPerSecondsTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltsPerHoursTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltsPerMicrosecondsTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltsPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltsPerSecondsTolerance { get { return 1e-5; } }
+        protected virtual double MicrovoltsPerHoursTolerance { get { return 1e-5; } }
+        protected virtual double MicrovoltsPerMicrosecondsTolerance { get { return 1e-5; } }
+        protected virtual double MicrovoltsPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double MicrovoltsPerSecondsTolerance { get { return 1e-5; } }
+        protected virtual double MillivoltsPerHoursTolerance { get { return 1e-5; } }
+        protected virtual double MillivoltsPerMicrosecondsTolerance { get { return 1e-5; } }
+        protected virtual double MillivoltsPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double MillivoltsPerSecondsTolerance { get { return 1e-5; } }
+        protected virtual double VoltsPerHoursTolerance { get { return 1e-5; } }
+        protected virtual double VoltsPerMicrosecondsTolerance { get { return 1e-5; } }
+        protected virtual double VoltsPerMinutesTolerance { get { return 1e-5; } }
+        protected virtual double VoltsPerSecondsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricPotentialChangeRateUnit unit)

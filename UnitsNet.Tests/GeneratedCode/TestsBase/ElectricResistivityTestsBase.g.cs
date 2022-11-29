@@ -54,20 +54,20 @@ namespace UnitsNet.Tests
         protected abstract double PicoohmMetersInOneOhmMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KiloohmsCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KiloohmMetersTolerance { get { return 1E-5; } }
-        protected virtual double MegaohmsCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double MegaohmMetersTolerance { get { return 1E-5; } }
-        protected virtual double MicroohmsCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double MicroohmMetersTolerance { get { return 1E-5; } }
-        protected virtual double MilliohmsCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double MilliohmMetersTolerance { get { return 1E-5; } }
-        protected virtual double NanoohmsCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double NanoohmMetersTolerance { get { return 1E-5; } }
-        protected virtual double OhmsCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double OhmMetersTolerance { get { return 1E-5; } }
-        protected virtual double PicoohmsCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double PicoohmMetersTolerance { get { return 1E-5; } }
+        protected virtual double KiloohmsCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KiloohmMetersTolerance { get { return 1e-5; } }
+        protected virtual double MegaohmsCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double MegaohmMetersTolerance { get { return 1e-5; } }
+        protected virtual double MicroohmsCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double MicroohmMetersTolerance { get { return 1e-5; } }
+        protected virtual double MilliohmsCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double MilliohmMetersTolerance { get { return 1e-5; } }
+        protected virtual double NanoohmsCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double NanoohmMetersTolerance { get { return 1e-5; } }
+        protected virtual double OhmsCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double OhmMetersTolerance { get { return 1e-5; } }
+        protected virtual double PicoohmsCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double PicoohmMetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricResistivityUnit unit)

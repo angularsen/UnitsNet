@@ -64,30 +64,30 @@ namespace UnitsNet.Tests
         protected abstract double PercentInOneDecimalFraction { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentigramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double CentigramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double DecagramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double DecagramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double DecigramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double DecigramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double DecimalFractionsTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double HectogramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double HectogramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double NanogramsPerGramTolerance { get { return 1E-5; } }
-        protected virtual double NanogramsPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerBillionTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerMillionTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerThousandTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerTrillionTolerance { get { return 1E-5; } }
-        protected virtual double PercentTolerance { get { return 1E-5; } }
+        protected virtual double CentigramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double CentigramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double DecimalFractionsTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerGramTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerBillionTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerMillionTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerThousandTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerTrillionTolerance { get { return 1e-5; } }
+        protected virtual double PercentTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFractionUnit unit)

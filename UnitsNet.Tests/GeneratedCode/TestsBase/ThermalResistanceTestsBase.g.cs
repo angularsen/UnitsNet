@@ -46,12 +46,12 @@ namespace UnitsNet.Tests
         protected abstract double SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double HourSquareFeetDegreesFahrenheitPerBtuTolerance { get { return 1E-5; } }
-        protected virtual double SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance { get { return 1E-5; } }
-        protected virtual double SquareCentimeterKelvinsPerWattTolerance { get { return 1E-5; } }
-        protected virtual double SquareMeterDegreesCelsiusPerWattTolerance { get { return 1E-5; } }
-        protected virtual double SquareMeterKelvinsPerKilowattTolerance { get { return 1E-5; } }
-        protected virtual double SquareMeterKelvinsPerWattTolerance { get { return 1E-5; } }
+        protected virtual double HourSquareFeetDegreesFahrenheitPerBtuTolerance { get { return 1e-5; } }
+        protected virtual double SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance { get { return 1e-5; } }
+        protected virtual double SquareCentimeterKelvinsPerWattTolerance { get { return 1e-5; } }
+        protected virtual double SquareMeterDegreesCelsiusPerWattTolerance { get { return 1e-5; } }
+        protected virtual double SquareMeterKelvinsPerKilowattTolerance { get { return 1e-5; } }
+        protected virtual double SquareMeterKelvinsPerWattTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ThermalResistanceUnit unit)

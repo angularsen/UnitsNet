@@ -65,31 +65,31 @@ namespace UnitsNet.Tests
         protected abstract double TonneForceMillimetersInOneNewtonMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GramForceCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double GramForceMetersTolerance { get { return 1E-5; } }
-        protected virtual double GramForceMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilogramForceCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilogramForceMetersTolerance { get { return 1E-5; } }
-        protected virtual double KilogramForceMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonMetersTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundForceFeetTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundForceInchesTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonMetersTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double MegapoundForceFeetTolerance { get { return 1E-5; } }
-        protected virtual double MegapoundForceInchesTolerance { get { return 1E-5; } }
-        protected virtual double NewtonCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double NewtonMetersTolerance { get { return 1E-5; } }
-        protected virtual double NewtonMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double PoundalFeetTolerance { get { return 1E-5; } }
-        protected virtual double PoundForceFeetTolerance { get { return 1E-5; } }
-        protected virtual double PoundForceInchesTolerance { get { return 1E-5; } }
-        protected virtual double TonneForceCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double TonneForceMetersTolerance { get { return 1E-5; } }
-        protected virtual double TonneForceMillimetersTolerance { get { return 1E-5; } }
+        protected virtual double GramForceCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double GramForceMetersTolerance { get { return 1e-5; } }
+        protected virtual double GramForceMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilogramForceCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilogramForceMetersTolerance { get { return 1e-5; } }
+        protected virtual double KilogramForceMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonMetersTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundForceFeetTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundForceInchesTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonMetersTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundForceFeetTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundForceInchesTolerance { get { return 1e-5; } }
+        protected virtual double NewtonCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double NewtonMetersTolerance { get { return 1e-5; } }
+        protected virtual double NewtonMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double PoundalFeetTolerance { get { return 1e-5; } }
+        protected virtual double PoundForceFeetTolerance { get { return 1e-5; } }
+        protected virtual double PoundForceInchesTolerance { get { return 1e-5; } }
+        protected virtual double TonneForceCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double TonneForceMetersTolerance { get { return 1e-5; } }
+        protected virtual double TonneForceMillimetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TorqueUnit unit)

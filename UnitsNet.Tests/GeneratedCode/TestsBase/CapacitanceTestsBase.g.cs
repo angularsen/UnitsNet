@@ -47,13 +47,13 @@ namespace UnitsNet.Tests
         protected abstract double PicofaradsInOneFarad { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double FaradsTolerance { get { return 1E-5; } }
-        protected virtual double KilofaradsTolerance { get { return 1E-5; } }
-        protected virtual double MegafaradsTolerance { get { return 1E-5; } }
-        protected virtual double MicrofaradsTolerance { get { return 1E-5; } }
-        protected virtual double MillifaradsTolerance { get { return 1E-5; } }
-        protected virtual double NanofaradsTolerance { get { return 1E-5; } }
-        protected virtual double PicofaradsTolerance { get { return 1E-5; } }
+        protected virtual double FaradsTolerance { get { return 1e-5; } }
+        protected virtual double KilofaradsTolerance { get { return 1e-5; } }
+        protected virtual double MegafaradsTolerance { get { return 1e-5; } }
+        protected virtual double MicrofaradsTolerance { get { return 1e-5; } }
+        protected virtual double MillifaradsTolerance { get { return 1e-5; } }
+        protected virtual double NanofaradsTolerance { get { return 1e-5; } }
+        protected virtual double PicofaradsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(CapacitanceUnit unit)

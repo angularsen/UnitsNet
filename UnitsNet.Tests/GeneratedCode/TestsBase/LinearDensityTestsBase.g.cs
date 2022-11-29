@@ -54,20 +54,20 @@ namespace UnitsNet.Tests
         protected abstract double PoundsPerInchInOneKilogramPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GramsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerFootTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerInchTolerance { get { return 1E-5; } }
+        protected virtual double GramsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerFootTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerInchTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LinearDensityUnit unit)

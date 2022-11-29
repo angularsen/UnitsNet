@@ -66,32 +66,32 @@ namespace UnitsNet.Tests
         protected abstract decimal TerabytesPerSecondInOneBitPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual decimal BitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal BytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal ExabitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal ExabytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal ExbibitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal ExbibytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal GibibitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal GibibytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal GigabitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal GigabytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal KibibitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal KibibytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal KilobitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal KilobytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal MebibitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal MebibytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal MegabitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal MegabytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal PebibitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal PebibytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal PetabitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal PetabytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal TebibitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal TebibytesPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal TerabitsPerSecondTolerance { get { return 1E-9m; } }
-        protected virtual decimal TerabytesPerSecondTolerance { get { return 1E-9m; } }
+        protected virtual decimal BitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal BytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExabytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExbibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExbibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal GibibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal GibibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal GigabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal GigabytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal KibibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal KibibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal KilobitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal KilobytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal MebibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal MebibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal MegabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal MegabytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal PebibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal PebibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal PetabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal PetabytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal TebibitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal TebibytesPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal TerabitsPerSecondTolerance { get { return 1e-9m; } }
+        protected virtual decimal TerabytesPerSecondTolerance { get { return 1e-9m; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (decimal UnitsInBaseUnit, decimal Tolerence) GetConversionFactor(BitRateUnit unit)

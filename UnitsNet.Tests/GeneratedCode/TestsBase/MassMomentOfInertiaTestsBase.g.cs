@@ -68,34 +68,34 @@ namespace UnitsNet.Tests
         protected abstract double TonneSquareMilimetersInOneKilogramSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GramSquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double GramSquareDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double GramSquareMetersTolerance { get { return 1E-5; } }
-        protected virtual double GramSquareMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilogramSquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilogramSquareDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilogramSquareMetersTolerance { get { return 1E-5; } }
-        protected virtual double KilogramSquareMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilotonneSquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilotonneSquareDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double KilotonneSquareMetersTolerance { get { return 1E-5; } }
-        protected virtual double KilotonneSquareMilimetersTolerance { get { return 1E-5; } }
-        protected virtual double MegatonneSquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double MegatonneSquareDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double MegatonneSquareMetersTolerance { get { return 1E-5; } }
-        protected virtual double MegatonneSquareMilimetersTolerance { get { return 1E-5; } }
-        protected virtual double MilligramSquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double MilligramSquareDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double MilligramSquareMetersTolerance { get { return 1E-5; } }
-        protected virtual double MilligramSquareMillimetersTolerance { get { return 1E-5; } }
-        protected virtual double PoundSquareFeetTolerance { get { return 1E-5; } }
-        protected virtual double PoundSquareInchesTolerance { get { return 1E-5; } }
-        protected virtual double SlugSquareFeetTolerance { get { return 1E-5; } }
-        protected virtual double SlugSquareInchesTolerance { get { return 1E-5; } }
-        protected virtual double TonneSquareCentimetersTolerance { get { return 1E-5; } }
-        protected virtual double TonneSquareDecimetersTolerance { get { return 1E-5; } }
-        protected virtual double TonneSquareMetersTolerance { get { return 1E-5; } }
-        protected virtual double TonneSquareMilimetersTolerance { get { return 1E-5; } }
+        protected virtual double GramSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double GramSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double GramSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double GramSquareMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilogramSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilogramSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilogramSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double KilogramSquareMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilotonneSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilotonneSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double KilotonneSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double KilotonneSquareMilimetersTolerance { get { return 1e-5; } }
+        protected virtual double MegatonneSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double MegatonneSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double MegatonneSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double MegatonneSquareMilimetersTolerance { get { return 1e-5; } }
+        protected virtual double MilligramSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double MilligramSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double MilligramSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double MilligramSquareMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double PoundSquareFeetTolerance { get { return 1e-5; } }
+        protected virtual double PoundSquareInchesTolerance { get { return 1e-5; } }
+        protected virtual double SlugSquareFeetTolerance { get { return 1e-5; } }
+        protected virtual double SlugSquareInchesTolerance { get { return 1e-5; } }
+        protected virtual double TonneSquareCentimetersTolerance { get { return 1e-5; } }
+        protected virtual double TonneSquareDecimetersTolerance { get { return 1e-5; } }
+        protected virtual double TonneSquareMetersTolerance { get { return 1e-5; } }
+        protected virtual double TonneSquareMilimetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassMomentOfInertiaUnit unit)

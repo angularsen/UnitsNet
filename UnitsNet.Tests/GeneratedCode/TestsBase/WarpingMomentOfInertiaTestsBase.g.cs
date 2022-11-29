@@ -46,12 +46,12 @@ namespace UnitsNet.Tests
         protected abstract double MillimetersToTheSixthInOneMeterToTheSixth { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentimetersToTheSixthTolerance { get { return 1E-5; } }
-        protected virtual double DecimetersToTheSixthTolerance { get { return 1E-5; } }
-        protected virtual double FeetToTheSixthTolerance { get { return 1E-5; } }
-        protected virtual double InchesToTheSixthTolerance { get { return 1E-5; } }
-        protected virtual double MetersToTheSixthTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersToTheSixthTolerance { get { return 1E-5; } }
+        protected virtual double CentimetersToTheSixthTolerance { get { return 1e-5; } }
+        protected virtual double DecimetersToTheSixthTolerance { get { return 1e-5; } }
+        protected virtual double FeetToTheSixthTolerance { get { return 1e-5; } }
+        protected virtual double InchesToTheSixthTolerance { get { return 1e-5; } }
+        protected virtual double MetersToTheSixthTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersToTheSixthTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(WarpingMomentOfInertiaUnit unit)

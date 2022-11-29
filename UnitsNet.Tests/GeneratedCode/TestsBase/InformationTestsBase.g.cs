@@ -66,32 +66,32 @@ namespace UnitsNet.Tests
         protected abstract decimal TerabytesInOneBit { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual decimal BitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal BytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal ExabitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal ExabytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal ExbibitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal ExbibytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal GibibitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal GibibytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal GigabitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal GigabytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal KibibitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal KibibytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal KilobitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal KilobytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal MebibitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal MebibytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal MegabitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal MegabytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal PebibitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal PebibytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal PetabitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal PetabytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal TebibitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal TebibytesTolerance { get { return 1E-9m; } }
-        protected virtual decimal TerabitsTolerance { get { return 1E-9m; } }
-        protected virtual decimal TerabytesTolerance { get { return 1E-9m; } }
+        protected virtual decimal BitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal BytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExabytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExbibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal ExbibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal GibibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal GibibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal GigabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal GigabytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal KibibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal KibibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal KilobitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal KilobytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal MebibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal MebibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal MegabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal MegabytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal PebibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal PebibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal PetabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal PetabytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal TebibitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal TebibytesTolerance { get { return 1e-9m; } }
+        protected virtual decimal TerabitsTolerance { get { return 1e-9m; } }
+        protected virtual decimal TerabytesTolerance { get { return 1e-9m; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (decimal UnitsInBaseUnit, decimal Tolerence) GetConversionFactor(InformationUnit unit)

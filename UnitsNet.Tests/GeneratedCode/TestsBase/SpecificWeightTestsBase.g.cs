@@ -57,23 +57,23 @@ namespace UnitsNet.Tests
         protected abstract double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilogramsForcePerCubicCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsForcePerCubicMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsForcePerCubicMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsPerCubicCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsPerCubicMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsPerCubicMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsForcePerCubicFootTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsForcePerCubicInchTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonsPerCubicMeterTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerCubicCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerCubicMeterTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerCubicMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForcePerCubicFootTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForcePerCubicInchTolerance { get { return 1E-5; } }
-        protected virtual double TonnesForcePerCubicCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double TonnesForcePerCubicMeterTolerance { get { return 1E-5; } }
-        protected virtual double TonnesForcePerCubicMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double KilogramsForcePerCubicCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForcePerCubicMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsForcePerCubicMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerCubicCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerCubicMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerCubicMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerCubicFootTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerCubicInchTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonsPerCubicMeterTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerCubicCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerCubicMeterTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerCubicMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerCubicFootTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerCubicInchTolerance { get { return 1e-5; } }
+        protected virtual double TonnesForcePerCubicCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double TonnesForcePerCubicMeterTolerance { get { return 1e-5; } }
+        protected virtual double TonnesForcePerCubicMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificWeightUnit unit)

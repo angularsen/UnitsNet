@@ -49,15 +49,15 @@ namespace UnitsNet.Tests
         protected abstract double MegajoulesPerKilogramKelvinInOneJoulePerKilogramKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BtusPerPoundFahrenheitTolerance { get { return 1E-5; } }
-        protected virtual double CaloriesPerGramKelvinTolerance { get { return 1E-5; } }
-        protected virtual double JoulesPerKilogramDegreeCelsiusTolerance { get { return 1E-5; } }
-        protected virtual double JoulesPerKilogramKelvinTolerance { get { return 1E-5; } }
-        protected virtual double KilocaloriesPerGramKelvinTolerance { get { return 1E-5; } }
-        protected virtual double KilojoulesPerKilogramDegreeCelsiusTolerance { get { return 1E-5; } }
-        protected virtual double KilojoulesPerKilogramKelvinTolerance { get { return 1E-5; } }
-        protected virtual double MegajoulesPerKilogramDegreeCelsiusTolerance { get { return 1E-5; } }
-        protected virtual double MegajoulesPerKilogramKelvinTolerance { get { return 1E-5; } }
+        protected virtual double BtusPerPoundFahrenheitTolerance { get { return 1e-5; } }
+        protected virtual double CaloriesPerGramKelvinTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerKilogramDegreeCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double JoulesPerKilogramKelvinTolerance { get { return 1e-5; } }
+        protected virtual double KilocaloriesPerGramKelvinTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerKilogramDegreeCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double KilojoulesPerKilogramKelvinTolerance { get { return 1e-5; } }
+        protected virtual double MegajoulesPerKilogramDegreeCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double MegajoulesPerKilogramKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificEntropyUnit unit)

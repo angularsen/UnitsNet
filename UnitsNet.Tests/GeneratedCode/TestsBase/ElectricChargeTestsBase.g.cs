@@ -45,11 +45,11 @@ namespace UnitsNet.Tests
         protected abstract double MilliampereHoursInOneCoulomb { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double AmpereHoursTolerance { get { return 1E-5; } }
-        protected virtual double CoulombsTolerance { get { return 1E-5; } }
-        protected virtual double KiloampereHoursTolerance { get { return 1E-5; } }
-        protected virtual double MegaampereHoursTolerance { get { return 1E-5; } }
-        protected virtual double MilliampereHoursTolerance { get { return 1E-5; } }
+        protected virtual double AmpereHoursTolerance { get { return 1e-5; } }
+        protected virtual double CoulombsTolerance { get { return 1e-5; } }
+        protected virtual double KiloampereHoursTolerance { get { return 1e-5; } }
+        protected virtual double MegaampereHoursTolerance { get { return 1e-5; } }
+        protected virtual double MilliampereHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricChargeUnit unit)

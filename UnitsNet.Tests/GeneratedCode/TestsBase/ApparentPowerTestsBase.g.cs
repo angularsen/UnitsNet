@@ -44,10 +44,10 @@ namespace UnitsNet.Tests
         protected abstract double VoltamperesInOneVoltampere { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GigavoltamperesTolerance { get { return 1E-5; } }
-        protected virtual double KilovoltamperesTolerance { get { return 1E-5; } }
-        protected virtual double MegavoltamperesTolerance { get { return 1E-5; } }
-        protected virtual double VoltamperesTolerance { get { return 1E-5; } }
+        protected virtual double GigavoltamperesTolerance { get { return 1e-5; } }
+        protected virtual double KilovoltamperesTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltamperesTolerance { get { return 1e-5; } }
+        protected virtual double VoltamperesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ApparentPowerUnit unit)

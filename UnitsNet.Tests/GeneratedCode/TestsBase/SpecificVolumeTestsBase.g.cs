@@ -43,9 +43,9 @@ namespace UnitsNet.Tests
         protected abstract double MillicubicMetersPerKilogramInOneCubicMeterPerKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CubicFeetPerPoundTolerance { get { return 1E-5; } }
-        protected virtual double CubicMetersPerKilogramTolerance { get { return 1E-5; } }
-        protected virtual double MillicubicMetersPerKilogramTolerance { get { return 1E-5; } }
+        protected virtual double CubicFeetPerPoundTolerance { get { return 1e-5; } }
+        protected virtual double CubicMetersPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double MillicubicMetersPerKilogramTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificVolumeUnit unit)

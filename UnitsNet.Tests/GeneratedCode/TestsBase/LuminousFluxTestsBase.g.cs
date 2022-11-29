@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         protected abstract double LumensInOneLumen { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double LumensTolerance { get { return 1E-5; } }
+        protected virtual double LumensTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LuminousFluxUnit unit)

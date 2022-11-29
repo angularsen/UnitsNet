@@ -46,12 +46,12 @@ namespace UnitsNet.Tests
         protected abstract double OhmsInOneOhm { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GigaohmsTolerance { get { return 1E-5; } }
-        protected virtual double KiloohmsTolerance { get { return 1E-5; } }
-        protected virtual double MegaohmsTolerance { get { return 1E-5; } }
-        protected virtual double MicroohmsTolerance { get { return 1E-5; } }
-        protected virtual double MilliohmsTolerance { get { return 1E-5; } }
-        protected virtual double OhmsTolerance { get { return 1E-5; } }
+        protected virtual double GigaohmsTolerance { get { return 1e-5; } }
+        protected virtual double KiloohmsTolerance { get { return 1e-5; } }
+        protected virtual double MegaohmsTolerance { get { return 1e-5; } }
+        protected virtual double MicroohmsTolerance { get { return 1e-5; } }
+        protected virtual double MilliohmsTolerance { get { return 1e-5; } }
+        protected virtual double OhmsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricResistanceUnit unit)

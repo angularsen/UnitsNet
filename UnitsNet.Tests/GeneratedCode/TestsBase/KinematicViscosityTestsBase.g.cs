@@ -49,15 +49,15 @@ namespace UnitsNet.Tests
         protected abstract double StokesInOneSquareMeterPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentistokesTolerance { get { return 1E-5; } }
-        protected virtual double DecistokesTolerance { get { return 1E-5; } }
-        protected virtual double KilostokesTolerance { get { return 1E-5; } }
-        protected virtual double MicrostokesTolerance { get { return 1E-5; } }
-        protected virtual double MillistokesTolerance { get { return 1E-5; } }
-        protected virtual double NanostokesTolerance { get { return 1E-5; } }
-        protected virtual double SquareFeetPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double SquareMetersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double StokesTolerance { get { return 1E-5; } }
+        protected virtual double CentistokesTolerance { get { return 1e-5; } }
+        protected virtual double DecistokesTolerance { get { return 1e-5; } }
+        protected virtual double KilostokesTolerance { get { return 1e-5; } }
+        protected virtual double MicrostokesTolerance { get { return 1e-5; } }
+        protected virtual double MillistokesTolerance { get { return 1e-5; } }
+        protected virtual double NanostokesTolerance { get { return 1e-5; } }
+        protected virtual double SquareFeetPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double SquareMetersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double StokesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(KinematicViscosityUnit unit)

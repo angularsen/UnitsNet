@@ -73,39 +73,39 @@ namespace UnitsNet.Tests
         protected abstract double TonnesPerHourInOneGramPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentigramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double CentigramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double DecagramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double DecagramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double DecigramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double DecigramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerHourTolerance { get { return 1E-5; } }
-        protected virtual double GramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double HectogramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double HectogramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerHourTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double KilogramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MegagramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double MegapoundsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double MegapoundsPerHourTolerance { get { return 1E-5; } }
-        protected virtual double MegapoundsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double MegapoundsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double MicrogramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double MilligramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double NanogramsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double NanogramsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerDayTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerHourTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double PoundsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double ShortTonsPerHourTolerance { get { return 1E-5; } }
-        protected virtual double TonnesPerDayTolerance { get { return 1E-5; } }
-        protected virtual double TonnesPerHourTolerance { get { return 1E-5; } }
+        protected virtual double CentigramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double CentigramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double DecagramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double DecigramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double HectogramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MegagramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double MicrogramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double MilligramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double NanogramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double ShortTonsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double TonnesPerDayTolerance { get { return 1e-5; } }
+        protected virtual double TonnesPerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MassFlowUnit unit)

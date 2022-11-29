@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         protected abstract double FaradsPerMeterInOneFaradPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double FaradsPerMeterTolerance { get { return 1E-5; } }
+        protected virtual double FaradsPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(PermittivityUnit unit)

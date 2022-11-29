@@ -60,26 +60,26 @@ namespace UnitsNet.Tests
         protected abstract double PicolitersPerMililiterInOneDecimalFraction { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentilitersPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double CentilitersPerMililiterTolerance { get { return 1E-5; } }
-        protected virtual double DecilitersPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double DecilitersPerMililiterTolerance { get { return 1E-5; } }
-        protected virtual double DecimalFractionsTolerance { get { return 1E-5; } }
-        protected virtual double LitersPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double LitersPerMililiterTolerance { get { return 1E-5; } }
-        protected virtual double MicrolitersPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double MicrolitersPerMililiterTolerance { get { return 1E-5; } }
-        protected virtual double MillilitersPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double MillilitersPerMililiterTolerance { get { return 1E-5; } }
-        protected virtual double NanolitersPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double NanolitersPerMililiterTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerBillionTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerMillionTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerThousandTolerance { get { return 1E-5; } }
-        protected virtual double PartsPerTrillionTolerance { get { return 1E-5; } }
-        protected virtual double PercentTolerance { get { return 1E-5; } }
-        protected virtual double PicolitersPerLiterTolerance { get { return 1E-5; } }
-        protected virtual double PicolitersPerMililiterTolerance { get { return 1E-5; } }
+        protected virtual double CentilitersPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double CentilitersPerMililiterTolerance { get { return 1e-5; } }
+        protected virtual double DecilitersPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double DecilitersPerMililiterTolerance { get { return 1e-5; } }
+        protected virtual double DecimalFractionsTolerance { get { return 1e-5; } }
+        protected virtual double LitersPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double LitersPerMililiterTolerance { get { return 1e-5; } }
+        protected virtual double MicrolitersPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double MicrolitersPerMililiterTolerance { get { return 1e-5; } }
+        protected virtual double MillilitersPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double MillilitersPerMililiterTolerance { get { return 1e-5; } }
+        protected virtual double NanolitersPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double NanolitersPerMililiterTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerBillionTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerMillionTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerThousandTolerance { get { return 1e-5; } }
+        protected virtual double PartsPerTrillionTolerance { get { return 1e-5; } }
+        protected virtual double PercentTolerance { get { return 1e-5; } }
+        protected virtual double PicolitersPerLiterTolerance { get { return 1e-5; } }
+        protected virtual double PicolitersPerMililiterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumeConcentrationUnit unit)

@@ -47,13 +47,13 @@ namespace UnitsNet.Tests
         protected abstract double InversePoundsForcePerSquareInchInOneInversePascal { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double InverseAtmospheresTolerance { get { return 1E-5; } }
-        protected virtual double InverseBarsTolerance { get { return 1E-5; } }
-        protected virtual double InverseKilopascalsTolerance { get { return 1E-5; } }
-        protected virtual double InverseMegapascalsTolerance { get { return 1E-5; } }
-        protected virtual double InverseMillibarsTolerance { get { return 1E-5; } }
-        protected virtual double InversePascalsTolerance { get { return 1E-5; } }
-        protected virtual double InversePoundsForcePerSquareInchTolerance { get { return 1E-5; } }
+        protected virtual double InverseAtmospheresTolerance { get { return 1e-5; } }
+        protected virtual double InverseBarsTolerance { get { return 1e-5; } }
+        protected virtual double InverseKilopascalsTolerance { get { return 1e-5; } }
+        protected virtual double InverseMegapascalsTolerance { get { return 1e-5; } }
+        protected virtual double InverseMillibarsTolerance { get { return 1e-5; } }
+        protected virtual double InversePascalsTolerance { get { return 1e-5; } }
+        protected virtual double InversePoundsForcePerSquareInchTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(CompressibilityUnit unit)

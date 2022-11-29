@@ -51,17 +51,17 @@ namespace UnitsNet.Tests
         protected abstract double Years365InOneSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double DaysTolerance { get { return 1E-5; } }
-        protected virtual double HoursTolerance { get { return 1E-5; } }
-        protected virtual double JulianYearsTolerance { get { return 1E-5; } }
-        protected virtual double MicrosecondsTolerance { get { return 1E-5; } }
-        protected virtual double MillisecondsTolerance { get { return 1E-5; } }
-        protected virtual double MinutesTolerance { get { return 1E-5; } }
-        protected virtual double Months30Tolerance { get { return 1E-5; } }
-        protected virtual double NanosecondsTolerance { get { return 1E-5; } }
-        protected virtual double SecondsTolerance { get { return 1E-5; } }
-        protected virtual double WeeksTolerance { get { return 1E-5; } }
-        protected virtual double Years365Tolerance { get { return 1E-5; } }
+        protected virtual double DaysTolerance { get { return 1e-5; } }
+        protected virtual double HoursTolerance { get { return 1e-5; } }
+        protected virtual double JulianYearsTolerance { get { return 1e-5; } }
+        protected virtual double MicrosecondsTolerance { get { return 1e-5; } }
+        protected virtual double MillisecondsTolerance { get { return 1e-5; } }
+        protected virtual double MinutesTolerance { get { return 1e-5; } }
+        protected virtual double Months30Tolerance { get { return 1e-5; } }
+        protected virtual double NanosecondsTolerance { get { return 1e-5; } }
+        protected virtual double SecondsTolerance { get { return 1e-5; } }
+        protected virtual double WeeksTolerance { get { return 1e-5; } }
+        protected virtual double Years365Tolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(DurationUnit unit)

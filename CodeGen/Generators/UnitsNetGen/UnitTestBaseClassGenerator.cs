@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
                     continue;
 
                 Writer.WL($@"
-        protected virtual {_quantity.ValueType} {unit.PluralName}Tolerance {{ get {{ return { (_quantity.ValueType == "decimal" ? "1E-9m" : "1E-5") }; }} }}");
+        protected virtual {_quantity.ValueType} {unit.PluralName}Tolerance {{ get {{ return { (_quantity.ValueType == "decimal" ? "1e-9m" : "1e-5") }; }} }}");
             }
         Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global

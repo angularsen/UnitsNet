@@ -51,17 +51,17 @@ namespace UnitsNet.Tests
         protected abstract double TerahertzInOneHertz { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BeatsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double BUnitsTolerance { get { return 1E-5; } }
-        protected virtual double CyclesPerHourTolerance { get { return 1E-5; } }
-        protected virtual double CyclesPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double GigahertzTolerance { get { return 1E-5; } }
-        protected virtual double HertzTolerance { get { return 1E-5; } }
-        protected virtual double KilohertzTolerance { get { return 1E-5; } }
-        protected virtual double MegahertzTolerance { get { return 1E-5; } }
-        protected virtual double PerSecondTolerance { get { return 1E-5; } }
-        protected virtual double RadiansPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double TerahertzTolerance { get { return 1E-5; } }
+        protected virtual double BeatsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double BUnitsTolerance { get { return 1e-5; } }
+        protected virtual double CyclesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double CyclesPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double GigahertzTolerance { get { return 1e-5; } }
+        protected virtual double HertzTolerance { get { return 1e-5; } }
+        protected virtual double KilohertzTolerance { get { return 1e-5; } }
+        protected virtual double MegahertzTolerance { get { return 1e-5; } }
+        protected virtual double PerSecondTolerance { get { return 1e-5; } }
+        protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double TerahertzTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(FrequencyUnit unit)

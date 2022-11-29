@@ -65,31 +65,31 @@ namespace UnitsNet.Tests
         protected abstract double WattsPerMillimeterInOneWattPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double GigawattsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double GigawattsPerFootTolerance { get { return 1E-5; } }
-        protected virtual double GigawattsPerInchTolerance { get { return 1E-5; } }
-        protected virtual double GigawattsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double GigawattsPerMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilowattsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double KilowattsPerFootTolerance { get { return 1E-5; } }
-        protected virtual double KilowattsPerInchTolerance { get { return 1E-5; } }
-        protected virtual double KilowattsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilowattsPerMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double MegawattsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double MegawattsPerFootTolerance { get { return 1E-5; } }
-        protected virtual double MegawattsPerInchTolerance { get { return 1E-5; } }
-        protected virtual double MegawattsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double MegawattsPerMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double MilliwattsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double MilliwattsPerFootTolerance { get { return 1E-5; } }
-        protected virtual double MilliwattsPerInchTolerance { get { return 1E-5; } }
-        protected virtual double MilliwattsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double MilliwattsPerMillimeterTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerCentimeterTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerFootTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerInchTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double WattsPerMillimeterTolerance { get { return 1E-5; } }
+        protected virtual double GigawattsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double GigawattsPerFootTolerance { get { return 1e-5; } }
+        protected virtual double GigawattsPerInchTolerance { get { return 1e-5; } }
+        protected virtual double GigawattsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double GigawattsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerFootTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerInchTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double MegawattsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double MegawattsPerFootTolerance { get { return 1e-5; } }
+        protected virtual double MegawattsPerInchTolerance { get { return 1e-5; } }
+        protected virtual double MegawattsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MegawattsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsPerFootTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsPerInchTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsPerMillimeterTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerCentimeterTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerFootTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerInchTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(LinearPowerDensityUnit unit)

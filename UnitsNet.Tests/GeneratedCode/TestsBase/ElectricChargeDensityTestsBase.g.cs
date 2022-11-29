@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         protected abstract double CoulombsPerCubicMeterInOneCoulombPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CoulombsPerCubicMeterTolerance { get { return 1E-5; } }
+        protected virtual double CoulombsPerCubicMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricChargeDensityUnit unit)

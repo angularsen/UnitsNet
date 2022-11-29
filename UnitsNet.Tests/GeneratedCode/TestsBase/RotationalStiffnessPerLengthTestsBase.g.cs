@@ -45,11 +45,11 @@ namespace UnitsNet.Tests
         protected abstract double PoundForceFeetPerDegreesPerFeetInOneNewtonMeterPerRadianPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilonewtonMetersPerRadianPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundForceFeetPerDegreesPerFeetTolerance { get { return 1E-5; } }
-        protected virtual double MeganewtonMetersPerRadianPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double NewtonMetersPerRadianPerMeterTolerance { get { return 1E-5; } }
-        protected virtual double PoundForceFeetPerDegreesPerFeetTolerance { get { return 1E-5; } }
+        protected virtual double KilonewtonMetersPerRadianPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundForceFeetPerDegreesPerFeetTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonMetersPerRadianPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double NewtonMetersPerRadianPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double PoundForceFeetPerDegreesPerFeetTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(RotationalStiffnessPerLengthUnit unit)

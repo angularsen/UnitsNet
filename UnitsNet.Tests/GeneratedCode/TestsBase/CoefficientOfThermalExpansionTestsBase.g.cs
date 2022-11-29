@@ -43,9 +43,9 @@ namespace UnitsNet.Tests
         protected abstract double InverseKelvinInOneInverseKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double InverseDegreeCelsiusTolerance { get { return 1E-5; } }
-        protected virtual double InverseDegreeFahrenheitTolerance { get { return 1E-5; } }
-        protected virtual double InverseKelvinTolerance { get { return 1E-5; } }
+        protected virtual double InverseDegreeCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double InverseDegreeFahrenheitTolerance { get { return 1e-5; } }
+        protected virtual double InverseKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(CoefficientOfThermalExpansionUnit unit)

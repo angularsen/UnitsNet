@@ -44,10 +44,10 @@ namespace UnitsNet.Tests
         protected abstract double NanohenriesInOneHenry { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double HenriesTolerance { get { return 1E-5; } }
-        protected virtual double MicrohenriesTolerance { get { return 1E-5; } }
-        protected virtual double MillihenriesTolerance { get { return 1E-5; } }
-        protected virtual double NanohenriesTolerance { get { return 1E-5; } }
+        protected virtual double HenriesTolerance { get { return 1e-5; } }
+        protected virtual double MicrohenriesTolerance { get { return 1e-5; } }
+        protected virtual double MillihenriesTolerance { get { return 1e-5; } }
+        protected virtual double NanohenriesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricInductanceUnit unit)

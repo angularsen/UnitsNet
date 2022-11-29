@@ -43,9 +43,9 @@ namespace UnitsNet.Tests
         protected abstract double VoltampereReactiveHoursInOneVoltampereReactiveHour { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KilovoltampereReactiveHoursTolerance { get { return 1E-5; } }
-        protected virtual double MegavoltampereReactiveHoursTolerance { get { return 1E-5; } }
-        protected virtual double VoltampereReactiveHoursTolerance { get { return 1E-5; } }
+        protected virtual double KilovoltampereReactiveHoursTolerance { get { return 1e-5; } }
+        protected virtual double MegavoltampereReactiveHoursTolerance { get { return 1e-5; } }
+        protected virtual double VoltampereReactiveHoursTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ReactiveEnergyUnit unit)

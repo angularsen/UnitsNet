@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         protected abstract double NTUInOneNTU { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double NTUTolerance { get { return 1E-5; } }
+        protected virtual double NTUTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(TurbidityUnit unit)

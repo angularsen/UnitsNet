@@ -51,17 +51,17 @@ namespace UnitsNet.Tests
         protected abstract double StandardGravitiesPerSecondInOneMeterPerSecondCubed { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentimetersPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double DecimetersPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double FeetPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double InchesPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double KilometersPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double MetersPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double MicrometersPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double MillimetersPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double MillistandardGravitiesPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double NanometersPerSecondCubedTolerance { get { return 1E-5; } }
-        protected virtual double StandardGravitiesPerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CentimetersPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double DecimetersPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double FeetPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double InchesPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double KilometersPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double MetersPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double MicrometersPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double MillimetersPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double MillistandardGravitiesPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double NanometersPerSecondCubedTolerance { get { return 1e-5; } }
+        protected virtual double StandardGravitiesPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(JerkUnit unit)

@@ -49,15 +49,15 @@ namespace UnitsNet.Tests
         protected abstract double StandardLitersPerMinuteInOneStandardCubicMeterPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double StandardCubicCentimetersPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double StandardCubicFeetPerHourTolerance { get { return 1E-5; } }
-        protected virtual double StandardCubicFeetPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double StandardCubicFeetPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double StandardCubicMetersPerDayTolerance { get { return 1E-5; } }
-        protected virtual double StandardCubicMetersPerHourTolerance { get { return 1E-5; } }
-        protected virtual double StandardCubicMetersPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double StandardCubicMetersPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double StandardLitersPerMinuteTolerance { get { return 1E-5; } }
+        protected virtual double StandardCubicCentimetersPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicFeetPerHourTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicFeetPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicFeetPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicMetersPerDayTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicMetersPerHourTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicMetersPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double StandardCubicMetersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double StandardLitersPerMinuteTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(StandardVolumeFlowUnit unit)

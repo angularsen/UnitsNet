@@ -55,21 +55,21 @@ namespace UnitsNet.Tests
         protected abstract double PoundsForcePerSecondInOneNewtonPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CentinewtonsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double DecanewtonsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double DecanewtonsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double DecinewtonsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double KilonewtonsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsForcePerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double KilopoundsForcePerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MicronewtonsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double MillinewtonsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double NanonewtonsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double NewtonsPerSecondTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForcePerMinuteTolerance { get { return 1E-5; } }
-        protected virtual double PoundsForcePerSecondTolerance { get { return 1E-5; } }
+        protected virtual double CentinewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecanewtonsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double DecanewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double DecinewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double KilonewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundsForcePerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MicronewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MillinewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double NanonewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double NewtonsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ForceChangeRateUnit unit)
