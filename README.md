@@ -13,8 +13,8 @@ No more magic constants found on Stack Overflow, no more second-guessing the uni
 ### Overview
 
 * [How to install](#how-to-install)
-* [100+ quantities with 1300+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
-* [8000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
+* [100+ quantities with 1400+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [C# CLI app](CodeGen)
+* [30k unit tests](https://dev.azure.com/unitsnet/Units.NET/_build?definitionId=1)
 * [Statically typed quantities and units](#static-typing) to avoid mistakes and communicate intent
 * Immutable structs
 * [Operator overloads](#operator-overloads) for arithmetic
