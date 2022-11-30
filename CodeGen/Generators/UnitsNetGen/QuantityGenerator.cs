@@ -752,17 +752,21 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }}
 
+        // We use obsolete attribute to communicate the preferred equality members to use.
+        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
+        #pragma warning disable CS0809
+
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete(""Consider using Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
         public static bool operator ==({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.Equals(right);
         }}
 
         /// <summary>Indicates strict inequality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete(""Consider using Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
         public static bool operator !=({_quantity.Name} left, {_quantity.Name} right)
         {{
             return !(left == right);
@@ -770,8 +774,8 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete(""Consider using Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
         public override bool Equals(object obj)
         {{
             if (obj is null || !(obj is {_quantity.Name} otherQuantity))
@@ -782,12 +786,14 @@ namespace UnitsNet
 
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete(""Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, {_valueType}, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete(""Consider using Equals(Angle, {_valueType}, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance."")]
         public bool Equals({_quantity.Name} other)
         {{
             return new {{ Value, Unit }}.Equals(new {{ other.Value, other.Unit }});
         }}
+
+        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref=""{_quantity.Name}""/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name=""obj"">An object to compare with this instance.</param>
@@ -858,7 +864,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating-point operations and using System.Double internally.
+        ///     of floating-point operations and using {_valueType} internally.
         ///     </para>
         /// </summary>
         /// <param name=""other"">The other quantity to compare to.</param>

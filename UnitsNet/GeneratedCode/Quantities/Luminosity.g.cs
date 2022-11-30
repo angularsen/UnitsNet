@@ -701,6 +701,10 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
+        // We use obsolete attribute to communicate the preferred equality members to use.
+        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
+        #pragma warning disable CS0809
+
         /// <summary>Indicates strict equality of two <see cref="Luminosity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Luminosity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
@@ -737,6 +741,8 @@ namespace UnitsNet
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
         }
+
+        #pragma warning restore CS0809
 
         /// <summary>Compares the current <see cref="Luminosity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
@@ -807,7 +813,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating-point operations and using System.Double internally.
+        ///     of floating-point operations and using double internally.
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>
