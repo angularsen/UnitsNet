@@ -39,7 +39,7 @@ namespace UnitsNet.Tests.CustomCode
         public void ForceDividedByAreaEqualsPressure()
         {
             Pressure pressure = Force.FromNewtons(90)/Area.FromSquareMeters(9);
-            Assert.Equal(pressure, Pressure.FromNewtonsPerSquareMeter(10));
+            Assert.Equal(10, pressure.NewtonsPerSquareMeter);
         }
 
         [Fact]
