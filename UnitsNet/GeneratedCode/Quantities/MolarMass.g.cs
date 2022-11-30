@@ -937,7 +937,7 @@ namespace UnitsNet
                 _ => null!
             };
 
-            return converted != null;
+            return converted is not null;
         }
 
         /// <inheritdoc />
