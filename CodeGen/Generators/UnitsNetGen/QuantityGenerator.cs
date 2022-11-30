@@ -753,14 +753,14 @@ namespace UnitsNet
         }}
 
         /// <summary>Returns true if both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for comparing floating-point values with rounding error tolerances.</remarks>
         public static bool operator ==({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.Equals(right);
         }}
 
         /// <summary>Returns true if either <see cref=""Value"" /> or <see cref=""Unit"" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for comparing floating-point values with rounding error tolerances.</remarks>
         public static bool operator !=({_quantity.Name} left, {_quantity.Name} right)
         {{
             return !(left == right);
@@ -782,9 +782,9 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {{
             if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is {_quantity.Name} obj{_quantity.Name})) throw new ArgumentException(""Expected type {_quantity.Name}."", nameof(obj));
+            if (!(obj is {_quantity.Name} otherQuantity)) throw new ArgumentException(""Expected type {_quantity.Name}."", nameof(obj));
 
-            return CompareTo(obj{_quantity.Name});
+            return CompareTo(otherQuantity);
         }}
 
         /// <summary>Compares the current <see cref=""{_quantity.Name}""/> with another <see cref=""{_quantity.Name}""/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -803,19 +803,19 @@ namespace UnitsNet
         }}
 
         /// <inheritdoc />
-        /// <summary>Returns true if either <see cref=""Value"" /> or <see cref=""Unit"" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         public override bool Equals(object obj)
         {{
-            if(obj is null || !(obj is {_quantity.Name} obj{_quantity.Name}))
+            if (obj is null || !(obj is {_quantity.Name} otherQuantity))
                 return false;
 
-            return Equals(obj{_quantity.Name});
+            return Equals(otherQuantity);
         }}
 
         /// <inheritdoc />
-        /// <summary>Returns true if either <see cref=""Value"" /> or <see cref=""Unit"" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities, where both <see cref=""Value"" /> and <see cref=""Unit"" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref=""Equals({_quantity.Name}, double, ComparisonType)""/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         public bool Equals({_quantity.Name} other)
         {{
             return new {{ Value, Unit }}.Equals(new {{ other.Value, other.Unit }});
@@ -854,7 +854,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
+        ///     of floating-point operations and using System.Double internally.
         ///     </para>
         /// </summary>
         /// <param name=""other"">The other quantity to compare to.</param>

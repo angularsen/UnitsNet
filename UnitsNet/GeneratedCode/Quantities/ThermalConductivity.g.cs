@@ -474,14 +474,14 @@ namespace UnitsNet
         }
 
         /// <summary>Returns true if both <see cref="Value" /> and <see cref="Unit" /> are exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for comparing floating-point values with rounding error tolerances.</remarks>
         public static bool operator ==(ThermalConductivity left, ThermalConductivity right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for comparing floating-point values with rounding error tolerances.</remarks>
         public static bool operator !=(ThermalConductivity left, ThermalConductivity right)
         {
             return !(left == right);
@@ -503,9 +503,9 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is ThermalConductivity objThermalConductivity)) throw new ArgumentException("Expected type ThermalConductivity.", nameof(obj));
+            if (!(obj is ThermalConductivity otherQuantity)) throw new ArgumentException("Expected type ThermalConductivity.", nameof(obj));
 
-            return CompareTo(objThermalConductivity);
+            return CompareTo(otherQuantity);
         }
 
         /// <summary>Compares the current <see cref="ThermalConductivity"/> with another <see cref="ThermalConductivity"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -524,19 +524,19 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <summary>Indicates strict equality of two <see cref="ThermalConductivity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ThermalConductivity objThermalConductivity))
+            if (obj is null || !(obj is ThermalConductivity otherQuantity))
                 return false;
 
-            return Equals(objThermalConductivity);
+            return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <summary>Indicates strict equality of two <see cref="ThermalConductivity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ThermalConductivity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         public bool Equals(ThermalConductivity other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -575,7 +575,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
+        ///     of floating-point operations and using System.Double internally.
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>

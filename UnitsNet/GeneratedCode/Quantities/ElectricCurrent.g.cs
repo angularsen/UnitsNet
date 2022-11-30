@@ -585,14 +585,14 @@ namespace UnitsNet
         }
 
         /// <summary>Returns true if both <see cref="Value" /> and <see cref="Unit" /> are exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for comparing floating-point values with rounding error tolerances.</remarks>
         public static bool operator ==(ElectricCurrent left, ElectricCurrent right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for comparing floating-point values with rounding error tolerances.</remarks>
         public static bool operator !=(ElectricCurrent left, ElectricCurrent right)
         {
             return !(left == right);
@@ -614,9 +614,9 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is ElectricCurrent objElectricCurrent)) throw new ArgumentException("Expected type ElectricCurrent.", nameof(obj));
+            if (!(obj is ElectricCurrent otherQuantity)) throw new ArgumentException("Expected type ElectricCurrent.", nameof(obj));
 
-            return CompareTo(objElectricCurrent);
+            return CompareTo(otherQuantity);
         }
 
         /// <summary>Compares the current <see cref="ElectricCurrent"/> with another <see cref="ElectricCurrent"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -635,19 +635,19 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <summary>Indicates strict equality of two <see cref="ElectricCurrent"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is ElectricCurrent objElectricCurrent))
+            if (obj is null || !(obj is ElectricCurrent otherQuantity))
                 return false;
 
-            return Equals(objElectricCurrent);
+            return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <summary>Indicates strict equality of two <see cref="ElectricCurrent"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricCurrent, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         public bool Equals(ElectricCurrent other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -686,7 +686,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
+        ///     of floating-point operations and using System.Double internally.
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>

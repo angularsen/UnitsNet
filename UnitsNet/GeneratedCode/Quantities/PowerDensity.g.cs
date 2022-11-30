@@ -1269,14 +1269,14 @@ namespace UnitsNet
         }
 
         /// <summary>Returns true if both <see cref="Value" /> and <see cref="Unit" /> are exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for comparing floating-point values with rounding error tolerances.</remarks>
         public static bool operator ==(PowerDensity left, PowerDensity right)
         {
             return left.Equals(right);
         }
 
         /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for comparing floating-point values with rounding error tolerances.</remarks>
         public static bool operator !=(PowerDensity left, PowerDensity right)
         {
             return !(left == right);
@@ -1298,9 +1298,9 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is PowerDensity objPowerDensity)) throw new ArgumentException("Expected type PowerDensity.", nameof(obj));
+            if (!(obj is PowerDensity otherQuantity)) throw new ArgumentException("Expected type PowerDensity.", nameof(obj));
 
-            return CompareTo(objPowerDensity);
+            return CompareTo(otherQuantity);
         }
 
         /// <summary>Compares the current <see cref="PowerDensity"/> with another <see cref="PowerDensity"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
@@ -1319,19 +1319,19 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <summary>Indicates strict equality of two <see cref="PowerDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is PowerDensity objPowerDensity))
+            if (obj is null || !(obj is PowerDensity otherQuantity))
                 return false;
 
-            return Equals(objPowerDensity);
+            return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Returns true if either <see cref="Value" /> or <see cref="Unit" /> are not exactly equal for both quantities.</summary>
-        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> for comparing floating point values with rounding error tolerances.</remarks>
+        /// <summary>Indicates strict equality of two <see cref="PowerDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(PowerDensity, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
         public bool Equals(PowerDensity other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -1370,7 +1370,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
+        ///     of floating-point operations and using System.Double internally.
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>
