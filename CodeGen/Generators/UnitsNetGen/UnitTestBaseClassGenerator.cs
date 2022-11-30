@@ -368,12 +368,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }}
 
-        [Theory]
+        [Theory{(_quantity.Units.Length == 1 ? "(Skip = \"Multiple units required\")" : string.Empty)}]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit({_unitEnumName} unit)
         {{
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = {_quantity.Name}.Units.Where(u => u != {_quantity.Name}.BaseUnit).DefaultIfEmpty({_quantity.Name}.BaseUnit).First();
+            var fromUnit = {_quantity.Name}.Units.First(u => u != {_quantity.Name}.BaseUnit);
 
             var quantity = {_quantity.Name}.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

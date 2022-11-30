@@ -600,7 +600,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Molarity.Units.Where(u => u != Molarity.BaseUnit).DefaultIfEmpty(Molarity.BaseUnit).First();
+            var fromUnit = Molarity.Units.First(u => u != Molarity.BaseUnit);
 
             var quantity = Molarity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

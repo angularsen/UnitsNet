@@ -783,7 +783,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReciprocalLengthUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ReciprocalLength.Units.Where(u => u != ReciprocalLength.BaseUnit).DefaultIfEmpty(ReciprocalLength.BaseUnit).First();
+            var fromUnit = ReciprocalLength.Units.First(u => u != ReciprocalLength.BaseUnit);
 
             var quantity = ReciprocalLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

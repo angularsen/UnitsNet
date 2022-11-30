@@ -1015,7 +1015,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AccelerationUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Acceleration.Units.Where(u => u != Acceleration.BaseUnit).DefaultIfEmpty(Acceleration.BaseUnit).First();
+            var fromUnit = Acceleration.Units.First(u => u != Acceleration.BaseUnit);
 
             var quantity = Acceleration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

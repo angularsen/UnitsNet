@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LapseRateUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = LapseRate.Units.Where(u => u != LapseRate.BaseUnit).DefaultIfEmpty(LapseRate.BaseUnit).First();
+            var fromUnit = LapseRate.Units.First(u => u != LapseRate.BaseUnit);
 
             var quantity = LapseRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

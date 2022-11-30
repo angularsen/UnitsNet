@@ -1155,7 +1155,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassMomentOfInertiaUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MassMomentOfInertia.Units.Where(u => u != MassMomentOfInertia.BaseUnit).DefaultIfEmpty(MassMomentOfInertia.BaseUnit).First();
+            var fromUnit = MassMomentOfInertia.Units.First(u => u != MassMomentOfInertia.BaseUnit);
 
             var quantity = MassMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

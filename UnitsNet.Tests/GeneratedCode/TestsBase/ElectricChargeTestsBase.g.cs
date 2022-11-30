@@ -425,7 +425,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricChargeUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricCharge.Units.Where(u => u != ElectricCharge.BaseUnit).DefaultIfEmpty(ElectricCharge.BaseUnit).First();
+            var fromUnit = ElectricCharge.Units.First(u => u != ElectricCharge.BaseUnit);
 
             var quantity = ElectricCharge.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

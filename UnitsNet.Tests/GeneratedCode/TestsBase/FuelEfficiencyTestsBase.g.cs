@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(FuelEfficiencyUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = FuelEfficiency.Units.Where(u => u != FuelEfficiency.BaseUnit).DefaultIfEmpty(FuelEfficiency.BaseUnit).First();
+            var fromUnit = FuelEfficiency.Units.First(u => u != FuelEfficiency.BaseUnit);
 
             var quantity = FuelEfficiency.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

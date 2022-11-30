@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LuminousFluxUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = LuminousFlux.Units.Where(u => u != LuminousFlux.BaseUnit).DefaultIfEmpty(LuminousFlux.BaseUnit).First();
+            var fromUnit = LuminousFlux.Units.First(u => u != LuminousFlux.BaseUnit);
 
             var quantity = LuminousFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

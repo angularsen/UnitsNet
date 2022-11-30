@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RelativeHumidityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RelativeHumidity.Units.Where(u => u != RelativeHumidity.BaseUnit).DefaultIfEmpty(RelativeHumidity.BaseUnit).First();
+            var fromUnit = RelativeHumidity.Units.First(u => u != RelativeHumidity.BaseUnit);
 
             var quantity = RelativeHumidity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

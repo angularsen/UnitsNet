@@ -373,7 +373,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PorousMediumPermeabilityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = PorousMediumPermeability.Units.Where(u => u != PorousMediumPermeability.BaseUnit).DefaultIfEmpty(PorousMediumPermeability.BaseUnit).First();
+            var fromUnit = PorousMediumPermeability.Units.First(u => u != PorousMediumPermeability.BaseUnit);
 
             var quantity = PorousMediumPermeability.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

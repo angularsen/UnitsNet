@@ -691,7 +691,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AmountOfSubstanceUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = AmountOfSubstance.Units.Where(u => u != AmountOfSubstance.BaseUnit).DefaultIfEmpty(AmountOfSubstance.BaseUnit).First();
+            var fromUnit = AmountOfSubstance.Units.First(u => u != AmountOfSubstance.BaseUnit);
 
             var quantity = AmountOfSubstance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

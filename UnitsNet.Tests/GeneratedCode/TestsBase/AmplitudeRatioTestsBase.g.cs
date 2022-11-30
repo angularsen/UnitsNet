@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AmplitudeRatioUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = AmplitudeRatio.Units.Where(u => u != AmplitudeRatio.BaseUnit).DefaultIfEmpty(AmplitudeRatio.BaseUnit).First();
+            var fromUnit = AmplitudeRatio.Units.First(u => u != AmplitudeRatio.BaseUnit);
 
             var quantity = AmplitudeRatio.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

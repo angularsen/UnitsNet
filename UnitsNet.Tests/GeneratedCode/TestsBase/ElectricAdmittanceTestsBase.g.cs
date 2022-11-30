@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricAdmittanceUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricAdmittance.Units.Where(u => u != ElectricAdmittance.BaseUnit).DefaultIfEmpty(ElectricAdmittance.BaseUnit).First();
+            var fromUnit = ElectricAdmittance.Units.First(u => u != ElectricAdmittance.BaseUnit);
 
             var quantity = ElectricAdmittance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

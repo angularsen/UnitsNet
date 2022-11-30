@@ -1977,7 +1977,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(EnergyUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Energy.Units.Where(u => u != Energy.BaseUnit).DefaultIfEmpty(Energy.BaseUnit).First();
+            var fromUnit = Energy.Units.First(u => u != Energy.BaseUnit);
 
             var quantity = Energy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

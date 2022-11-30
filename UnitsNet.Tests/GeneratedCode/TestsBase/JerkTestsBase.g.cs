@@ -841,7 +841,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(JerkUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Jerk.Units.Where(u => u != Jerk.BaseUnit).DefaultIfEmpty(Jerk.BaseUnit).First();
+            var fromUnit = Jerk.Units.First(u => u != Jerk.BaseUnit);
 
             var quantity = Jerk.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

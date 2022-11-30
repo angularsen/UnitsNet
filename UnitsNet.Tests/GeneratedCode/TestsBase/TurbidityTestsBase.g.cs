@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TurbidityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Turbidity.Units.Where(u => u != Turbidity.BaseUnit).DefaultIfEmpty(Turbidity.BaseUnit).First();
+            var fromUnit = Turbidity.Units.First(u => u != Turbidity.BaseUnit);
 
             var quantity = Turbidity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

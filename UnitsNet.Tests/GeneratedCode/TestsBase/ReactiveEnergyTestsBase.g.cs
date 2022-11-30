@@ -305,7 +305,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReactiveEnergyUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ReactiveEnergy.Units.Where(u => u != ReactiveEnergy.BaseUnit).DefaultIfEmpty(ReactiveEnergy.BaseUnit).First();
+            var fromUnit = ReactiveEnergy.Units.First(u => u != ReactiveEnergy.BaseUnit);
 
             var quantity = ReactiveEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

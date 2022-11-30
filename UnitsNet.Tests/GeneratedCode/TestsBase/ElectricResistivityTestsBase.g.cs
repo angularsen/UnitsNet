@@ -635,7 +635,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricResistivityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricResistivity.Units.Where(u => u != ElectricResistivity.BaseUnit).DefaultIfEmpty(ElectricResistivity.BaseUnit).First();
+            var fromUnit = ElectricResistivity.Units.First(u => u != ElectricResistivity.BaseUnit);
 
             var quantity = ElectricResistivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

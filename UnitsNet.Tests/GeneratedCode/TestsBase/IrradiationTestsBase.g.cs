@@ -441,7 +441,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(IrradiationUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Irradiation.Units.Where(u => u != Irradiation.BaseUnit).DefaultIfEmpty(Irradiation.BaseUnit).First();
+            var fromUnit = Irradiation.Units.First(u => u != Irradiation.BaseUnit);
 
             var quantity = Irradiation.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

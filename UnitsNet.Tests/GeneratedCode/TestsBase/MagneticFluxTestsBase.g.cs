@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagneticFluxUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MagneticFlux.Units.Where(u => u != MagneticFlux.BaseUnit).DefaultIfEmpty(MagneticFlux.BaseUnit).First();
+            var fromUnit = MagneticFlux.Units.First(u => u != MagneticFlux.BaseUnit);
 
             var quantity = MagneticFlux.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

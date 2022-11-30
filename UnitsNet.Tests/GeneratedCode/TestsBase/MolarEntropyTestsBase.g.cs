@@ -305,7 +305,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarEntropyUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MolarEntropy.Units.Where(u => u != MolarEntropy.BaseUnit).DefaultIfEmpty(MolarEntropy.BaseUnit).First();
+            var fromUnit = MolarEntropy.Units.First(u => u != MolarEntropy.BaseUnit);
 
             var quantity = MolarEntropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

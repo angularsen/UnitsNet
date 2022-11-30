@@ -2045,7 +2045,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpeedUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Speed.Units.Where(u => u != Speed.BaseUnit).DefaultIfEmpty(Speed.BaseUnit).First();
+            var fromUnit = Speed.Units.First(u => u != Speed.BaseUnit);
 
             var quantity = Speed.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

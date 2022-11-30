@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricCurrentGradientUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricCurrentGradient.Units.Where(u => u != ElectricCurrentGradient.BaseUnit).DefaultIfEmpty(ElectricCurrentGradient.BaseUnit).First();
+            var fromUnit = ElectricCurrentGradient.Units.First(u => u != ElectricCurrentGradient.BaseUnit);
 
             var quantity = ElectricCurrentGradient.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

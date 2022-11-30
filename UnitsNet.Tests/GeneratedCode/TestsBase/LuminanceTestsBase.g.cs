@@ -543,7 +543,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LuminanceUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Luminance.Units.Where(u => u != Luminance.BaseUnit).DefaultIfEmpty(Luminance.BaseUnit).First();
+            var fromUnit = Luminance.Units.First(u => u != Luminance.BaseUnit);
 
             var quantity = Luminance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

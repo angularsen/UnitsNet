@@ -509,7 +509,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumetricHeatCapacityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VolumetricHeatCapacity.Units.Where(u => u != VolumetricHeatCapacity.BaseUnit).DefaultIfEmpty(VolumetricHeatCapacity.BaseUnit).First();
+            var fromUnit = VolumetricHeatCapacity.Units.First(u => u != VolumetricHeatCapacity.BaseUnit);
 
             var quantity = VolumetricHeatCapacity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

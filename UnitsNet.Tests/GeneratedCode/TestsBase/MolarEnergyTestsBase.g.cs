@@ -305,7 +305,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarEnergyUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MolarEnergy.Units.Where(u => u != MolarEnergy.BaseUnit).DefaultIfEmpty(MolarEnergy.BaseUnit).First();
+            var fromUnit = MolarEnergy.Units.First(u => u != MolarEnergy.BaseUnit);
 
             var quantity = MolarEnergy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

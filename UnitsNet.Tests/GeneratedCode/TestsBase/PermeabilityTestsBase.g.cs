@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PermeabilityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Permeability.Units.Where(u => u != Permeability.BaseUnit).DefaultIfEmpty(Permeability.BaseUnit).First();
+            var fromUnit = Permeability.Units.First(u => u != Permeability.BaseUnit);
 
             var quantity = Permeability.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -776,7 +776,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(InformationUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Information.Units.Where(u => u != Information.BaseUnit).DefaultIfEmpty(Information.BaseUnit).First();
+            var fromUnit = Information.Units.First(u => u != Information.BaseUnit);
 
             var quantity = Information.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

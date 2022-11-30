@@ -615,7 +615,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DynamicViscosityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = DynamicViscosity.Units.Where(u => u != DynamicViscosity.BaseUnit).DefaultIfEmpty(DynamicViscosity.BaseUnit).First();
+            var fromUnit = DynamicViscosity.Units.First(u => u != DynamicViscosity.BaseUnit);
 
             var quantity = DynamicViscosity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

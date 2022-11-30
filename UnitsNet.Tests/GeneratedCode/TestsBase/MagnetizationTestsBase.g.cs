@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagnetizationUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Magnetization.Units.Where(u => u != Magnetization.BaseUnit).DefaultIfEmpty(Magnetization.BaseUnit).First();
+            var fromUnit = Magnetization.Units.First(u => u != Magnetization.BaseUnit);
 
             var quantity = Magnetization.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

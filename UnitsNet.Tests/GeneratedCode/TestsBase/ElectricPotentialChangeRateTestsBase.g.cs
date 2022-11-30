@@ -795,7 +795,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricPotentialChangeRateUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricPotentialChangeRate.Units.Where(u => u != ElectricPotentialChangeRate.BaseUnit).DefaultIfEmpty(ElectricPotentialChangeRate.BaseUnit).First();
+            var fromUnit = ElectricPotentialChangeRate.Units.First(u => u != ElectricPotentialChangeRate.BaseUnit);
 
             var quantity = ElectricPotentialChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

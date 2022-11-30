@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ScalarUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Scalar.Units.Where(u => u != Scalar.BaseUnit).DefaultIfEmpty(Scalar.BaseUnit).First();
+            var fromUnit = Scalar.Units.First(u => u != Scalar.BaseUnit);
 
             var quantity = Scalar.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

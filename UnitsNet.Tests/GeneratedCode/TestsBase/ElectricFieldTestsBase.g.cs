@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricFieldUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricField.Units.Where(u => u != ElectricField.BaseUnit).DefaultIfEmpty(ElectricField.BaseUnit).First();
+            var fromUnit = ElectricField.Units.First(u => u != ElectricField.BaseUnit);
 
             var quantity = ElectricField.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

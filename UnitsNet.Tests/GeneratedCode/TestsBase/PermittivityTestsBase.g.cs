@@ -232,12 +232,12 @@ namespace UnitsNet.Tests
             Assert.Equal(quantity, toUnitWithSameUnit);
         }
 
-        [Theory]
+        [Theory(Skip = "Multiple units required")]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PermittivityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Permittivity.Units.Where(u => u != Permittivity.BaseUnit).DefaultIfEmpty(Permittivity.BaseUnit).First();
+            var fromUnit = Permittivity.Units.First(u => u != Permittivity.BaseUnit);
 
             var quantity = Permittivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
