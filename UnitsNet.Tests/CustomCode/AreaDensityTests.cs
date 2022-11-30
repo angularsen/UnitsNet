@@ -40,7 +40,7 @@ namespace UnitsNet.Tests.CustomCode
         public void AreaDensityTimesAreaEqualsMass()
         {
             Mass massOfOneA4Paper = AreaDensity.FromGramsPerSquareMeter(120) * Area.FromSquareCentimeters(625);
-            Assert.Equal(Mass.FromGrams(7.5), massOfOneA4Paper);
+            Assert.Equal(7.5, massOfOneA4Paper.Grams);
         }
     }
 }
