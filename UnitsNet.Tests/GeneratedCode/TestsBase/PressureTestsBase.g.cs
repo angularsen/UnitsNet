@@ -2651,7 +2651,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PressureUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Pressure.Units.Where(u => u != Pressure.BaseUnit).DefaultIfEmpty(Pressure.BaseUnit).FirstOrDefault();
+            var fromUnit = Pressure.Units.Where(u => u != Pressure.BaseUnit).DefaultIfEmpty(Pressure.BaseUnit).First();
 
             var quantity = Pressure.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VitaminAUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VitaminA.Units.Where(u => u != VitaminA.BaseUnit).DefaultIfEmpty(VitaminA.BaseUnit).FirstOrDefault();
+            var fromUnit = VitaminA.Units.Where(u => u != VitaminA.BaseUnit).DefaultIfEmpty(VitaminA.BaseUnit).First();
 
             var quantity = VitaminA.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

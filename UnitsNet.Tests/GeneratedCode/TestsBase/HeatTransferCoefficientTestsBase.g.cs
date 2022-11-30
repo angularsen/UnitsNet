@@ -305,7 +305,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(HeatTransferCoefficientUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = HeatTransferCoefficient.Units.Where(u => u != HeatTransferCoefficient.BaseUnit).DefaultIfEmpty(HeatTransferCoefficient.BaseUnit).FirstOrDefault();
+            var fromUnit = HeatTransferCoefficient.Units.Where(u => u != HeatTransferCoefficient.BaseUnit).DefaultIfEmpty(HeatTransferCoefficient.BaseUnit).First();
 
             var quantity = HeatTransferCoefficient.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

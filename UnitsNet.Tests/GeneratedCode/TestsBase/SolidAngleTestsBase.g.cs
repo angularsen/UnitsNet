@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SolidAngleUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = SolidAngle.Units.Where(u => u != SolidAngle.BaseUnit).DefaultIfEmpty(SolidAngle.BaseUnit).FirstOrDefault();
+            var fromUnit = SolidAngle.Units.Where(u => u != SolidAngle.BaseUnit).DefaultIfEmpty(SolidAngle.BaseUnit).First();
 
             var quantity = SolidAngle.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

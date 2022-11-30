@@ -809,7 +809,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ForceChangeRateUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ForceChangeRate.Units.Where(u => u != ForceChangeRate.BaseUnit).DefaultIfEmpty(ForceChangeRate.BaseUnit).FirstOrDefault();
+            var fromUnit = ForceChangeRate.Units.Where(u => u != ForceChangeRate.BaseUnit).DefaultIfEmpty(ForceChangeRate.BaseUnit).First();
 
             var quantity = ForceChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

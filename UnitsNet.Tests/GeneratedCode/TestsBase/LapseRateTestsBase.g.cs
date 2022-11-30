@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LapseRateUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = LapseRate.Units.Where(u => u != LapseRate.BaseUnit).DefaultIfEmpty(LapseRate.BaseUnit).FirstOrDefault();
+            var fromUnit = LapseRate.Units.Where(u => u != LapseRate.BaseUnit).DefaultIfEmpty(LapseRate.BaseUnit).First();
 
             var quantity = LapseRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

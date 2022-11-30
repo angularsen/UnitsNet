@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureGradientUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = TemperatureGradient.Units.Where(u => u != TemperatureGradient.BaseUnit).DefaultIfEmpty(TemperatureGradient.BaseUnit).FirstOrDefault();
+            var fromUnit = TemperatureGradient.Units.Where(u => u != TemperatureGradient.BaseUnit).DefaultIfEmpty(TemperatureGradient.BaseUnit).First();
 
             var quantity = TemperatureGradient.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

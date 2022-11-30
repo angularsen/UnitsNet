@@ -1753,7 +1753,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DurationUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Duration.Units.Where(u => u != Duration.BaseUnit).DefaultIfEmpty(Duration.BaseUnit).FirstOrDefault();
+            var fromUnit = Duration.Units.Where(u => u != Duration.BaseUnit).DefaultIfEmpty(Duration.BaseUnit).First();
 
             var quantity = Duration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

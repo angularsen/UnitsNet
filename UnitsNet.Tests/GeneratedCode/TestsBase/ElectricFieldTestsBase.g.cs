@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricFieldUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricField.Units.Where(u => u != ElectricField.BaseUnit).DefaultIfEmpty(ElectricField.BaseUnit).FirstOrDefault();
+            var fromUnit = ElectricField.Units.Where(u => u != ElectricField.BaseUnit).DefaultIfEmpty(ElectricField.BaseUnit).First();
 
             var quantity = ElectricField.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

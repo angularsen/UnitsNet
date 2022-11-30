@@ -305,7 +305,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificVolumeUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = SpecificVolume.Units.Where(u => u != SpecificVolume.BaseUnit).DefaultIfEmpty(SpecificVolume.BaseUnit).FirstOrDefault();
+            var fromUnit = SpecificVolume.Units.Where(u => u != SpecificVolume.BaseUnit).DefaultIfEmpty(SpecificVolume.BaseUnit).First();
 
             var quantity = SpecificVolume.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

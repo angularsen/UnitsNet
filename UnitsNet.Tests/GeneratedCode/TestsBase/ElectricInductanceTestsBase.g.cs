@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricInductanceUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricInductance.Units.Where(u => u != ElectricInductance.BaseUnit).DefaultIfEmpty(ElectricInductance.BaseUnit).FirstOrDefault();
+            var fromUnit = ElectricInductance.Units.Where(u => u != ElectricInductance.BaseUnit).DefaultIfEmpty(ElectricInductance.BaseUnit).First();
 
             var quantity = ElectricInductance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

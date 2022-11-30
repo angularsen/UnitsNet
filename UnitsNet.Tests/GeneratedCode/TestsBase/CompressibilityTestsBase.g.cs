@@ -609,7 +609,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(CompressibilityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Compressibility.Units.Where(u => u != Compressibility.BaseUnit).DefaultIfEmpty(Compressibility.BaseUnit).FirstOrDefault();
+            var fromUnit = Compressibility.Units.Where(u => u != Compressibility.BaseUnit).DefaultIfEmpty(Compressibility.BaseUnit).First();
 
             var quantity = Compressibility.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

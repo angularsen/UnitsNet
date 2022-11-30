@@ -441,7 +441,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumePerLengthUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VolumePerLength.Units.Where(u => u != VolumePerLength.BaseUnit).DefaultIfEmpty(VolumePerLength.BaseUnit).FirstOrDefault();
+            var fromUnit = VolumePerLength.Units.Where(u => u != VolumePerLength.BaseUnit).DefaultIfEmpty(VolumePerLength.BaseUnit).First();
 
             var quantity = VolumePerLength.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

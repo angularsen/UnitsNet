@@ -3973,7 +3973,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeFlowUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = VolumeFlow.Units.Where(u => u != VolumeFlow.BaseUnit).DefaultIfEmpty(VolumeFlow.BaseUnit).FirstOrDefault();
+            var fromUnit = VolumeFlow.Units.Where(u => u != VolumeFlow.BaseUnit).DefaultIfEmpty(VolumeFlow.BaseUnit).First();
 
             var quantity = VolumeFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

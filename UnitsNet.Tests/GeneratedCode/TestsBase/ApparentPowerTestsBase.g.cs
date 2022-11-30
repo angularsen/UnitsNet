@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ApparentPowerUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ApparentPower.Units.Where(u => u != ApparentPower.BaseUnit).DefaultIfEmpty(ApparentPower.BaseUnit).FirstOrDefault();
+            var fromUnit = ApparentPower.Units.Where(u => u != ApparentPower.BaseUnit).DefaultIfEmpty(ApparentPower.BaseUnit).First();
 
             var quantity = ApparentPower.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

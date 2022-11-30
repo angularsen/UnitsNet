@@ -305,7 +305,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ElectricSurfaceChargeDensityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ElectricSurfaceChargeDensity.Units.Where(u => u != ElectricSurfaceChargeDensity.BaseUnit).DefaultIfEmpty(ElectricSurfaceChargeDensity.BaseUnit).FirstOrDefault();
+            var fromUnit = ElectricSurfaceChargeDensity.Units.Where(u => u != ElectricSurfaceChargeDensity.BaseUnit).DefaultIfEmpty(ElectricSurfaceChargeDensity.BaseUnit).First();
 
             var quantity = ElectricSurfaceChargeDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

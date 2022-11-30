@@ -2033,7 +2033,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(DensityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Density.Units.Where(u => u != Density.BaseUnit).DefaultIfEmpty(Density.BaseUnit).FirstOrDefault();
+            var fromUnit = Density.Units.Where(u => u != Density.BaseUnit).DefaultIfEmpty(Density.BaseUnit).First();
 
             var quantity = Density.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

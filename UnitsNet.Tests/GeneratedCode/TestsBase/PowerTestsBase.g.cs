@@ -1068,7 +1068,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PowerUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Power.Units.Where(u => u != Power.BaseUnit).DefaultIfEmpty(Power.BaseUnit).FirstOrDefault();
+            var fromUnit = Power.Units.Where(u => u != Power.BaseUnit).DefaultIfEmpty(Power.BaseUnit).First();
 
             var quantity = Power.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

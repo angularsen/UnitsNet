@@ -899,7 +899,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MolarMassUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MolarMass.Units.Where(u => u != MolarMass.BaseUnit).DefaultIfEmpty(MolarMass.BaseUnit).FirstOrDefault();
+            var fromUnit = MolarMass.Units.Where(u => u != MolarMass.BaseUnit).DefaultIfEmpty(MolarMass.BaseUnit).First();
 
             var quantity = MolarMass.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

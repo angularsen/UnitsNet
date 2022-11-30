@@ -271,7 +271,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RatioChangeRateUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RatioChangeRate.Units.Where(u => u != RatioChangeRate.BaseUnit).DefaultIfEmpty(RatioChangeRate.BaseUnit).FirstOrDefault();
+            var fromUnit = RatioChangeRate.Units.Where(u => u != RatioChangeRate.BaseUnit).DefaultIfEmpty(RatioChangeRate.BaseUnit).First();
 
             var quantity = RatioChangeRate.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

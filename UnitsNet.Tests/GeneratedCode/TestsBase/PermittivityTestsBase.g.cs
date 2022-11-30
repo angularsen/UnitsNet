@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PermittivityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Permittivity.Units.Where(u => u != Permittivity.BaseUnit).DefaultIfEmpty(Permittivity.BaseUnit).FirstOrDefault();
+            var fromUnit = Permittivity.Units.Where(u => u != Permittivity.BaseUnit).DefaultIfEmpty(Permittivity.BaseUnit).First();
 
             var quantity = Permittivity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

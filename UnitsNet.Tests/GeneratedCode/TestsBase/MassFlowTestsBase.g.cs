@@ -1567,7 +1567,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFlowUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MassFlow.Units.Where(u => u != MassFlow.BaseUnit).DefaultIfEmpty(MassFlow.BaseUnit).FirstOrDefault();
+            var fromUnit = MassFlow.Units.Where(u => u != MassFlow.BaseUnit).DefaultIfEmpty(MassFlow.BaseUnit).First();
 
             var quantity = MassFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

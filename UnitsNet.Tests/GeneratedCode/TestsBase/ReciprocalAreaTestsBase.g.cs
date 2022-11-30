@@ -577,7 +577,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(ReciprocalAreaUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = ReciprocalArea.Units.Where(u => u != ReciprocalArea.BaseUnit).DefaultIfEmpty(ReciprocalArea.BaseUnit).FirstOrDefault();
+            var fromUnit = ReciprocalArea.Units.Where(u => u != ReciprocalArea.BaseUnit).DefaultIfEmpty(ReciprocalArea.BaseUnit).First();
 
             var quantity = ReciprocalArea.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -551,7 +551,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(AreaMomentOfInertiaUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = AreaMomentOfInertia.Units.Where(u => u != AreaMomentOfInertia.BaseUnit).DefaultIfEmpty(AreaMomentOfInertia.BaseUnit).FirstOrDefault();
+            var fromUnit = AreaMomentOfInertia.Units.Where(u => u != AreaMomentOfInertia.BaseUnit).DefaultIfEmpty(AreaMomentOfInertia.BaseUnit).First();
 
             var quantity = AreaMomentOfInertia.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

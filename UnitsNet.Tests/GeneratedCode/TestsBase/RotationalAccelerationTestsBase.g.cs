@@ -363,7 +363,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalAccelerationUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RotationalAcceleration.Units.Where(u => u != RotationalAcceleration.BaseUnit).DefaultIfEmpty(RotationalAcceleration.BaseUnit).FirstOrDefault();
+            var fromUnit = RotationalAcceleration.Units.Where(u => u != RotationalAcceleration.BaseUnit).DefaultIfEmpty(RotationalAcceleration.BaseUnit).First();
 
             var quantity = RotationalAcceleration.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

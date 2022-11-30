@@ -781,7 +781,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificWeightUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = SpecificWeight.Units.Where(u => u != SpecificWeight.BaseUnit).DefaultIfEmpty(SpecificWeight.BaseUnit).FirstOrDefault();
+            var fromUnit = SpecificWeight.Units.Where(u => u != SpecificWeight.BaseUnit).DefaultIfEmpty(SpecificWeight.BaseUnit).First();
 
             var quantity = SpecificWeight.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

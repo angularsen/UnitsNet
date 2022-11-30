@@ -407,7 +407,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RatioUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Ratio.Units.Where(u => u != Ratio.BaseUnit).DefaultIfEmpty(Ratio.BaseUnit).FirstOrDefault();
+            var fromUnit = Ratio.Units.Where(u => u != Ratio.BaseUnit).DefaultIfEmpty(Ratio.BaseUnit).First();
 
             var quantity = Ratio.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

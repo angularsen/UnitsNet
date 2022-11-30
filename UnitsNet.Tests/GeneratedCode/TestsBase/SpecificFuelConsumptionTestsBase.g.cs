@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(SpecificFuelConsumptionUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = SpecificFuelConsumption.Units.Where(u => u != SpecificFuelConsumption.BaseUnit).DefaultIfEmpty(SpecificFuelConsumption.BaseUnit).FirstOrDefault();
+            var fromUnit = SpecificFuelConsumption.Units.Where(u => u != SpecificFuelConsumption.BaseUnit).DefaultIfEmpty(SpecificFuelConsumption.BaseUnit).First();
 
             var quantity = SpecificFuelConsumption.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

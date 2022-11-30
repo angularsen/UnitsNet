@@ -441,7 +441,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(EntropyUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Entropy.Units.Where(u => u != Entropy.BaseUnit).DefaultIfEmpty(Entropy.BaseUnit).FirstOrDefault();
+            var fromUnit = Entropy.Units.Where(u => u != Entropy.BaseUnit).DefaultIfEmpty(Entropy.BaseUnit).First();
 
             var quantity = Entropy.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

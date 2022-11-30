@@ -611,7 +611,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(EnergyDensityUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = EnergyDensity.Units.Where(u => u != EnergyDensity.BaseUnit).DefaultIfEmpty(EnergyDensity.BaseUnit).FirstOrDefault();
+            var fromUnit = EnergyDensity.Units.Where(u => u != EnergyDensity.BaseUnit).DefaultIfEmpty(EnergyDensity.BaseUnit).First();
 
             var quantity = EnergyDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

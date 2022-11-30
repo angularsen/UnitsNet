@@ -407,7 +407,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MagneticFieldUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MagneticField.Units.Where(u => u != MagneticField.BaseUnit).DefaultIfEmpty(MagneticField.BaseUnit).FirstOrDefault();
+            var fromUnit = MagneticField.Units.Where(u => u != MagneticField.BaseUnit).DefaultIfEmpty(MagneticField.BaseUnit).First();
 
             var quantity = MagneticField.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

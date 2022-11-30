@@ -373,7 +373,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit({_unitEnumName} unit)
         {{
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = {_quantity.Name}.Units.Where(u => u != {_quantity.Name}.BaseUnit).DefaultIfEmpty({_quantity.Name}.BaseUnit).FirstOrDefault();
+            var fromUnit = {_quantity.Name}.Units.Where(u => u != {_quantity.Name}.BaseUnit).DefaultIfEmpty({_quantity.Name}.BaseUnit).First();
 
             var quantity = {_quantity.Name}.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

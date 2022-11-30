@@ -543,7 +543,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(TemperatureUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = Temperature.Units.Where(u => u != Temperature.BaseUnit).DefaultIfEmpty(Temperature.BaseUnit).FirstOrDefault();
+            var fromUnit = Temperature.Units.Where(u => u != Temperature.BaseUnit).DefaultIfEmpty(Temperature.BaseUnit).First();
 
             var quantity = Temperature.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

@@ -1043,7 +1043,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(MassFractionUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = MassFraction.Units.Where(u => u != MassFraction.BaseUnit).DefaultIfEmpty(MassFraction.BaseUnit).FirstOrDefault();
+            var fromUnit = MassFraction.Units.Where(u => u != MassFraction.BaseUnit).DefaultIfEmpty(MassFraction.BaseUnit).First();
 
             var quantity = MassFraction.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);

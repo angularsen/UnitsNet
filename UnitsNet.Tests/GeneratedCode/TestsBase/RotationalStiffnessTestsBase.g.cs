@@ -2809,7 +2809,7 @@ namespace UnitsNet.Tests
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(RotationalStiffnessUnit unit)
         {
             // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
-            var fromUnit = RotationalStiffness.Units.Where(u => u != RotationalStiffness.BaseUnit).DefaultIfEmpty(RotationalStiffness.BaseUnit).FirstOrDefault();
+            var fromUnit = RotationalStiffness.Units.Where(u => u != RotationalStiffness.BaseUnit).DefaultIfEmpty(RotationalStiffness.BaseUnit).First();
 
             var quantity = RotationalStiffness.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
