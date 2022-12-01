@@ -418,6 +418,47 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => voltamperereactive.CompareTo(null));
         }
 
+        [Theory]
+        [InlineData(1, ReactivePowerUnit.VoltampereReactive, 1, ReactivePowerUnit.VoltampereReactive, true)]  // Same value and unit.
+        [InlineData(1, ReactivePowerUnit.VoltampereReactive, 2, ReactivePowerUnit.VoltampereReactive, false)] // Different value.
+        [InlineData(2, ReactivePowerUnit.VoltampereReactive, 1, ReactivePowerUnit.GigavoltampereReactive, false)] // Different value and unit.
+        [InlineData(1, ReactivePowerUnit.VoltampereReactive, 1, ReactivePowerUnit.GigavoltampereReactive, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ReactivePowerUnit unitA, double valueB, ReactivePowerUnit unitB, bool expectEqual)
+        {
+            var a = new ReactivePower(valueA, unitA);
+            var b = new ReactivePower(valueB, unitB);
+
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
+
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
+
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
+
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = ReactivePower.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
+            Assert.False(a == null);
+            Assert.False(null == a);
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
+        }
+
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {

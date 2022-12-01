@@ -418,6 +418,47 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => gramperkilonewtonsecond.CompareTo(null));
         }
 
+        [Theory]
+        [InlineData(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, 1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, true)]  // Same value and unit.
+        [InlineData(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, 2, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, false)] // Different value.
+        [InlineData(2, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, 1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, false)] // Different value and unit.
+        [InlineData(1, SpecificFuelConsumptionUnit.GramPerKiloNewtonSecond, 1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, SpecificFuelConsumptionUnit unitA, double valueB, SpecificFuelConsumptionUnit unitB, bool expectEqual)
+        {
+            var a = new SpecificFuelConsumption(valueA, unitA);
+            var b = new SpecificFuelConsumption(valueB, unitB);
+
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
+
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
+
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
+
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = SpecificFuelConsumption.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
+            Assert.False(a == null);
+            Assert.False(null == a);
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
+        }
+
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {

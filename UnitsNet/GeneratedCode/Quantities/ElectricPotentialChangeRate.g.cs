@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     ElectricPotential change rate is the ratio of the electric potential change to the time during which the change occurred (value of electric potential changes per unit time).
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricPotentialChangeRate : IQuantity<ElectricPotentialChangeRateUnit>, IComparable, IComparable<ElectricPotentialChangeRate>, IConvertible, IFormattable
+    public readonly partial struct ElectricPotentialChangeRate : IQuantity<ElectricPotentialChangeRateUnit>, IEquatable<ElectricPotentialChangeRate>, IComparable, IComparable<ElectricPotentialChangeRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -812,16 +812,80 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        /// <inheritdoc />
-        public int CompareTo(object obj)
-        {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is ElectricPotentialChangeRate objElectricPotentialChangeRate)) throw new ArgumentException("Expected type ElectricPotentialChangeRate.", nameof(obj));
+        // We use obsolete attribute to communicate the preferred equality members to use.
+        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
+        #pragma warning disable CS0809
 
-            return CompareTo(objElectricPotentialChangeRate);
+        /// <summary>Indicates strict equality of two <see cref="ElectricPotentialChangeRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricPotentialChangeRate, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public static bool operator ==(ElectricPotentialChangeRate left, ElectricPotentialChangeRate right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Indicates strict inequality of two <see cref="ElectricPotentialChangeRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricPotentialChangeRate, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public static bool operator !=(ElectricPotentialChangeRate left, ElectricPotentialChangeRate right)
+        {
+            return !(left == right);
         }
 
         /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="ElectricPotentialChangeRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricPotentialChangeRate, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is ElectricPotentialChangeRate otherQuantity))
+                return false;
+
+            return Equals(otherQuantity);
+        }
+
+        /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="ElectricPotentialChangeRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(ElectricPotentialChangeRate, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public bool Equals(ElectricPotentialChangeRate other)
+        {
+            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+        }
+
+        #pragma warning restore CS0809
+
+        /// <summary>Compares the current <see cref="ElectricPotentialChangeRate"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="obj">An object to compare with this instance.</param>
+        /// <exception cref="T:System.ArgumentException">
+        ///    <paramref name="obj" /> is not the same type as this instance.
+        /// </exception>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is ElectricPotentialChangeRate otherQuantity)) throw new ArgumentException("Expected type ElectricPotentialChangeRate.", nameof(obj));
+
+            return CompareTo(otherQuantity);
+        }
+
+        /// <summary>Compares the current <see cref="ElectricPotentialChangeRate"/> with another <see cref="ElectricPotentialChangeRate"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="other">A quantity to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
         public int CompareTo(ElectricPotentialChangeRate other)
         {
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
@@ -860,7 +924,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
+        ///     of floating-point operations and using double internally.
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>
@@ -1029,7 +1093,7 @@ namespace UnitsNet
                 _ => null!
             };
 
-            return converted != null;
+            return converted is not null;
         }
 
         /// <inheritdoc />

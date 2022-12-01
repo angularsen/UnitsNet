@@ -5,6 +5,7 @@
     <RootNamespace>UnitsNet.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
+    <NoWarn>CS0618</NoWarn>
   </PropertyGroup>
 
   <!-- Strong name signing -->

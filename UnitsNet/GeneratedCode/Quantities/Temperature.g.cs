@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     A temperature is a numerical measure of hot or cold. Its measurement is by detection of heat radiation or particle velocity or kinetic energy, or by the bulk behavior of a thermometric material. It may be calibrated in any of various temperature scales, Celsius, Fahrenheit, Kelvin, etc. The fundamental physical definition of temperature is provided by thermodynamics.
     /// </summary>
     [DataContract]
-    public readonly partial struct Temperature : IQuantity<TemperatureUnit>, IComparable, IComparable<Temperature>, IConvertible, IFormattable
+    public readonly partial struct Temperature : IQuantity<TemperatureUnit>, IEquatable<Temperature>, IComparable, IComparable<Temperature>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -576,16 +576,80 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        /// <inheritdoc />
-        public int CompareTo(object obj)
-        {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is Temperature objTemperature)) throw new ArgumentException("Expected type Temperature.", nameof(obj));
+        // We use obsolete attribute to communicate the preferred equality members to use.
+        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
+        #pragma warning disable CS0809
 
-            return CompareTo(objTemperature);
+        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public static bool operator ==(Temperature left, Temperature right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Indicates strict inequality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public static bool operator !=(Temperature left, Temperature right)
+        {
+            return !(left == right);
         }
 
         /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is Temperature otherQuantity))
+                return false;
+
+            return Equals(otherQuantity);
+        }
+
+        /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public bool Equals(Temperature other)
+        {
+            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+        }
+
+        #pragma warning restore CS0809
+
+        /// <summary>Compares the current <see cref="Temperature"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="obj">An object to compare with this instance.</param>
+        /// <exception cref="T:System.ArgumentException">
+        ///    <paramref name="obj" /> is not the same type as this instance.
+        /// </exception>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is Temperature otherQuantity)) throw new ArgumentException("Expected type Temperature.", nameof(obj));
+
+            return CompareTo(otherQuantity);
+        }
+
+        /// <summary>Compares the current <see cref="Temperature"/> with another <see cref="Temperature"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="other">A quantity to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
         public int CompareTo(Temperature other)
         {
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
@@ -624,7 +688,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
+        ///     of floating-point operations and using double internally.
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>
@@ -773,7 +837,7 @@ namespace UnitsNet
                 _ => null!
             };
 
-            return converted != null;
+            return converted is not null;
         }
 
         /// <inheritdoc />

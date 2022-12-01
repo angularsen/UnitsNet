@@ -724,6 +724,47 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => ohmmeter.CompareTo(null));
         }
 
+        [Theory]
+        [InlineData(1, ElectricResistivityUnit.OhmMeter, 1, ElectricResistivityUnit.OhmMeter, true)]  // Same value and unit.
+        [InlineData(1, ElectricResistivityUnit.OhmMeter, 2, ElectricResistivityUnit.OhmMeter, false)] // Different value.
+        [InlineData(2, ElectricResistivityUnit.OhmMeter, 1, ElectricResistivityUnit.KiloohmCentimeter, false)] // Different value and unit.
+        [InlineData(1, ElectricResistivityUnit.OhmMeter, 1, ElectricResistivityUnit.KiloohmCentimeter, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricResistivityUnit unitA, double valueB, ElectricResistivityUnit unitB, bool expectEqual)
+        {
+            var a = new ElectricResistivity(valueA, unitA);
+            var b = new ElectricResistivity(valueB, unitB);
+
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
+
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
+
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
+
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = ElectricResistivity.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
+            Assert.False(a == null);
+            Assert.False(null == a);
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
+        }
+
         [Fact]
         public void Equals_RelativeTolerance_IsImplemented()
         {
