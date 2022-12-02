@@ -29,7 +29,7 @@ namespace UnitsNet
         internal List<string> GetAbbreviationsForUnit(int unit)
         {
             if (!_unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
-                _unitToAbbreviationMap[unit] = abbreviations = new List<string>();
+                return new List<string>(0);
 
             return abbreviations.Distinct().ToList();
         }
@@ -41,7 +41,7 @@ namespace UnitsNet
             var map = ignoreCase ? _lowerCaseAbbreviationToUnitMap : _abbreviationToUnitMap;
 
             if (!map.TryGetValue(key, out List<int> units))
-                map[key] = units = new List<int>();
+                return new List<int>(0);
 
             return units.Distinct().ToList();
         }
