@@ -54,7 +54,7 @@ namespace UnitsNet
 
         private void LoadGeneratedAbbreviations()
         {
-            foreach(var quantity in Quantity.GetQuantityTypes())
+            foreach (Type quantity in Quantity.GetQuantityTypes())
             {
                 var mapGeneratedLocalizationsMethod = quantity.GetMethod(nameof(Length.MapGeneratedLocalizations), BindingFlags.NonPublic | BindingFlags.Static);
                 mapGeneratedLocalizationsMethod?.Invoke(null, new object[]{this});
@@ -272,7 +272,7 @@ namespace UnitsNet
         /// <param name="unitEnumType">Enum type for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
-        public string[] GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
+        public IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider? formatProvider = null)
         {
             formatProvider ??= CultureInfo.CurrentCulture;
 
@@ -292,7 +292,7 @@ namespace UnitsNet
 
             formatProvider ??= CultureInfo.CurrentCulture;
 
-            if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
+            if (!_lookupsForCulture.TryGetValue(formatProvider, out UnitTypeToLookup? quantitiesForProvider))
             {
                 return !Equals(formatProvider, FallbackCulture) &&
                        TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations);
