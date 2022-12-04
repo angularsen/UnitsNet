@@ -207,29 +207,32 @@ namespace UnitsNet
         ///
         ///   -or-
         ///
-        ///   <paramref name="min" /> if <paramref name="value" /> &lt; <paramref name="min" />.
+        ///   <paramref name="min" /> (converted to value.Unit) if <paramref name="value" /> &lt; <paramref name="min" />.
         ///
         ///   -or-
         ///
-        ///   <paramref name="max" /> if <paramref name="max" /> &lt; <paramref name="value" />.
+        ///   <paramref name="max" /> (converted to value.Unit) if <paramref name="max" /> &lt; <paramref name="value" />.
         /// </returns>
         /// <exception cref="ArgumentException">
         ///     <paramref name="min" /> cannot be greater than <paramref name="max" />.
         /// </exception>
         public static TQuantity Clamp<TQuantity>(TQuantity value, TQuantity min, TQuantity max) where TQuantity : IComparable, IQuantity
         {
-            if (min.CompareTo(max) == 1)
+            var minValue = (TQuantity)min.ToUnit(value.Unit);
+            var maxValue = (TQuantity)max.ToUnit(value.Unit);
+            
+            if (minValue.CompareTo(maxValue) == 1)
             {
                 throw new ArgumentException($"min ({min}) cannot be greater than max ({max})");
             }
 
-            if (min.CompareTo(value) == 1)
+            if (minValue.CompareTo(value) == 1)
             {
-                return min;
+                return minValue;
             }
-            else if (value.CompareTo(max) == 1)
+            else if (value.CompareTo(maxValue) == 1)
             {
-                return max;
+                return maxValue;
             }
 
             return value;

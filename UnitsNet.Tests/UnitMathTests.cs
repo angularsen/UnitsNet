@@ -334,14 +334,14 @@ namespace UnitsNet.Tests
             var value2 = Length.FromMillimeters(-1500);
 
             Length clampedMin = UnitMath.Clamp(value2, min, max);
-            Assert.Equal(-1, clampedMin.Value);
-            Assert.Equal(LengthUnit.Meter, clampedMin.Unit);
+            Assert.Equal(-1000, clampedMin.Value);
+            Assert.Equal(LengthUnit.Millimeter, clampedMin.Unit);
 
             var value3 = Length.FromMillimeters(2000);
 
             Length clampedMax = UnitMath.Clamp(value3, min, max);
-            Assert.Equal(150, clampedMax.Value);
-            Assert.Equal(LengthUnit.Centimeter, clampedMax.Unit);
+            Assert.Equal(1500, clampedMax.Value);
+            Assert.Equal(LengthUnit.Millimeter, clampedMax.Unit);
         }
 
         [Fact]
