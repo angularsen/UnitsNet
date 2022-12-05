@@ -64,7 +64,7 @@ namespace CodeGen.Generators
 
             var lengthNuspecFile = Path.Combine(outputDir, "Length", "UnitsNet.NanoFramework.Length.nuspec");
             var projectVersion = ParseVersion(File.ReadAllText(lengthNuspecFile),
-                new Regex(@"<version>(?<version>[\d\.]+)</version>", RegexOptions.IgnoreCase),
+                new Regex(@"<version>(?<version>[\d.]+)(?<suffix>-[a-z\d]+)?<\/version>", RegexOptions.IgnoreCase),
                 "projectVersion");
 
             foreach (var quantity in quantities)
@@ -91,7 +91,7 @@ namespace CodeGen.Generators
                 GenerateProject(quantity, Path.Combine(projectPath, $"{quantity.Name}.nfproj"), versions);
 
                 // Convert decimal based units to floats; decimals are not supported by nanoFramework
-                if (quantity.BaseType == "decimal")
+                if (quantity.ValueType == "decimal")
                 {
                     var replacements = new Dictionary<string, string>
                     {
@@ -396,8 +396,7 @@ namespace CodeGen.Generators
 <packages>
   <package id=""nanoFramework.CoreLibrary"" version=""{mscorlibNuGetVersion}"" targetFramework=""netnanoframework10"" />");
 
-
-            if (NanoFrameworkGenerator.ProjectsRequiringMath.Contains(quantityName))
+            if (ProjectsRequiringMath.Contains(quantityName))
             {
                 writer.WL($@"
   <package id=""nanoFramework.System.Math"" version=""{mathNuGetVersion}"" targetFramework=""netnanoframework10"" />");

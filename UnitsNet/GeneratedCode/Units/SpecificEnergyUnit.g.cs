@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum SpecificEnergyUnit
     {
-        Undefined = 0,
         BtuPerPound = 1,
         CaloriePerGram = 2,
         GigawattDayPerKilogram = 3,

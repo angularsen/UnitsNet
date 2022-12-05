@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricCurrentGradientUnit
     {
-        Undefined = 0,
         AmperePerMicrosecond = 1,
         AmperePerMillisecond = 2,
         AmperePerNanosecond = 3,

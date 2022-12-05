@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricPotentialUnit
     {
-        Undefined = 0,
         Kilovolt = 1,
         Megavolt = 2,
         Microvolt = 3,

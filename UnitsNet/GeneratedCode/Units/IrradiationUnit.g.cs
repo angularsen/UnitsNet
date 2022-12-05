@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum IrradiationUnit
     {
-        Undefined = 0,
         JoulePerSquareCentimeter = 1,
         JoulePerSquareMeter = 2,
         JoulePerSquareMillimeter = 3,

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum TorqueUnit
     {
-        Undefined = 0,
         GramForceCentimeter = 1,
         GramForceMeter = 2,
         GramForceMillimeter = 3,

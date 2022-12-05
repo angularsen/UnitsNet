@@ -2,81 +2,93 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
-using UnitToAbbreviationMap = System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<string>>;
-using AbbreviationToUnitMap = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<int>>;
-
 namespace UnitsNet
 {
+    internal class UnitToAbbreviationMap : ConcurrentDictionary<int, IReadOnlyList<string>> { }
+    internal class AbbreviationToUnitMap : ConcurrentDictionary<string, IReadOnlyList<int>> { }
+
     internal class UnitValueAbbreviationLookup
     {
-        private readonly UnitToAbbreviationMap unitToAbbreviationMap = new UnitToAbbreviationMap();
-        private readonly AbbreviationToUnitMap abbreviationToUnitMap = new AbbreviationToUnitMap();
-        private readonly AbbreviationToUnitMap lowerCaseAbbreviationToUnitMap = new AbbreviationToUnitMap();
+        private readonly UnitToAbbreviationMap _unitToAbbreviationMap = new();
+        private readonly AbbreviationToUnitMap _abbreviationToUnitMap = new();
+        private readonly AbbreviationToUnitMap _lowerCaseAbbreviationToUnitMap = new();
+        private Lazy<string[]> _allUnitAbbreviationsLazy;
+        private readonly object _syncRoot = new();
 
-        internal string[] GetAllUnitAbbreviationsForQuantity()
+        public UnitValueAbbreviationLookup()
         {
-            return unitToAbbreviationMap.Values.SelectMany((abbreviations) =>
-            {
-                return abbreviations;
-            } ).Distinct().ToArray();
+            _allUnitAbbreviationsLazy = new Lazy<string[]>(ComputeAllUnitAbbreviationsValue);
         }
 
-        internal List<string> GetAbbreviationsForUnit<UnitType>(UnitType unit) where UnitType : Enum
+        internal IReadOnlyList<string> GetAllUnitAbbreviationsForQuantity()
+        {
+            return _allUnitAbbreviationsLazy.Value;
+        }
+
+        internal IReadOnlyList<string> GetAbbreviationsForUnit<TUnitType>(TUnitType unit) where TUnitType : Enum
         {
             return GetAbbreviationsForUnit(Convert.ToInt32(unit));
         }
 
-        internal List<string> GetAbbreviationsForUnit(int unit)
+        internal IReadOnlyList<string> GetAbbreviationsForUnit(int unit)
         {
-            if (!unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
-                unitToAbbreviationMap[unit] = abbreviations = new List<string>();
+            if (!_unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
+                return new List<string>(0);
 
-            return abbreviations.Distinct().ToList();
+            return abbreviations.ToList();
         }
 
-        internal List<int> GetUnitsForAbbreviation(string abbreviation, bool ignoreCase)
+        internal IReadOnlyList<int> GetUnitsForAbbreviation(string abbreviation, bool ignoreCase)
         {
             var lowerCaseAbbreviation = abbreviation.ToLower();
             var key = ignoreCase ? lowerCaseAbbreviation : abbreviation;
-            var map = ignoreCase ? lowerCaseAbbreviationToUnitMap : abbreviationToUnitMap;
+            var map = ignoreCase ? _lowerCaseAbbreviationToUnitMap : _abbreviationToUnitMap;
 
-            if (!map.TryGetValue(key, out List<int> units))
-                map[key] = units = new List<int>();
+            if (!map.TryGetValue(key, out IReadOnlyList<int> units))
+                return new List<int>(0);
 
-            return units.Distinct().ToList();
+            return units.ToList();
         }
 
         internal void Add(int unit, string abbreviation, bool setAsDefault = false, bool allowAbbreviationLookup = true)
         {
-            var lowerCaseAbbreviation = abbreviation.ToLower();
-
-            if (!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
-                abbreviationsForUnit = unitToAbbreviationMap[unit] = new List<string>();
-
-            if (allowAbbreviationLookup)
+            // Restrict concurrency on writes.
+            // By using ConcurrencyDictionary and immutable IReadOnlyList instances, we don't need to lock on reads.
+            lock (_syncRoot)
             {
-                if (!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
-                    abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
+                var lowerCaseAbbreviation = abbreviation.ToLower();
 
-                if (!lowerCaseAbbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForLowerCaseAbbreviation))
-                    lowerCaseAbbreviationToUnitMap[lowerCaseAbbreviation] = unitsForLowerCaseAbbreviation = new List<int>();
+                if (allowAbbreviationLookup)
+                {
+                    _abbreviationToUnitMap.AddOrUpdate(abbreviation,
+                        addValueFactory: _ => new List<int> { unit },
+                        updateValueFactory: (_, existing) => existing.Append(unit).Distinct().ToList());
 
-                unitsForLowerCaseAbbreviation.Remove(unit);
-                unitsForLowerCaseAbbreviation.Add(unit);
+                    _lowerCaseAbbreviationToUnitMap.AddOrUpdate(lowerCaseAbbreviation,
+                        addValueFactory: _ => new List<int> { unit },
+                        updateValueFactory: (_, existing) => existing.Append(unit).Distinct().ToList());
+                }
 
-                unitsForAbbreviation.Remove(unit);
-                unitsForAbbreviation.Add(unit);
+                _unitToAbbreviationMap.AddOrUpdate(unit,
+                    addValueFactory: _ => new List<string> { abbreviation },
+                    updateValueFactory: (_, existing) =>
+                    {
+                        return setAsDefault
+                            ? existing.Where(x => x != abbreviation).Prepend(abbreviation).ToList()
+                            : existing.Where(x => x != abbreviation).Append(abbreviation).ToList();
+                    });
+
+                _allUnitAbbreviationsLazy = new Lazy<string[]>(ComputeAllUnitAbbreviationsValue);
             }
+        }
 
-            abbreviationsForUnit.Remove(abbreviation);
-
-            if (setAsDefault)
-                abbreviationsForUnit.Insert(0, abbreviation);
-            else
-                abbreviationsForUnit.Add(abbreviation);
+        private string[] ComputeAllUnitAbbreviationsValue()
+        {
+            return _unitToAbbreviationMap.Values.SelectMany(abbreviations => abbreviations).Distinct().ToArray();
         }
     }
 }

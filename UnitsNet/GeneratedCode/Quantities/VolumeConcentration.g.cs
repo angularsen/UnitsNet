@@ -21,7 +21,6 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -57,10 +56,7 @@ namespace UnitsNet
         {
             BaseDimensions = BaseDimensions.Dimensionless;
             BaseUnit = VolumeConcentrationUnit.DecimalFraction;
-            MaxValue = new VolumeConcentration(double.MaxValue, BaseUnit);
-            MinValue = new VolumeConcentration(double.MinValue, BaseUnit);
-            QuantityType = QuantityType.VolumeConcentration;
-            Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().Except(new VolumeConcentrationUnit[]{ VolumeConcentrationUnit.Undefined }).ToArray();
+            Units = Enum.GetValues(typeof(VolumeConcentrationUnit)).Cast<VolumeConcentrationUnit>().ToArray();
             Zero = new VolumeConcentration(0, BaseUnit);
             Info = new QuantityInfo<VolumeConcentrationUnit>("VolumeConcentration",
                 new UnitInfo<VolumeConcentrationUnit>[]
@@ -86,7 +82,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerLiter, "PicolitersPerLiter", BaseUnits.Undefined),
                     new UnitInfo<VolumeConcentrationUnit>(VolumeConcentrationUnit.PicolitersPerMililiter, "PicolitersPerMililiter", BaseUnits.Undefined),
                 },
-                BaseUnit, Zero, BaseDimensions, QuantityType.VolumeConcentration);
+                BaseUnit, Zero, BaseDimensions);
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
@@ -100,9 +96,6 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public VolumeConcentration(double value, VolumeConcentrationUnit unit)
         {
-            if (unit == VolumeConcentrationUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
             _value = Guard.EnsureValidNumber(value, nameof(value));
             _unit = unit;
         }
@@ -147,24 +140,6 @@ namespace UnitsNet
         public static VolumeConcentrationUnit BaseUnit { get; }
 
         /// <summary>
-        /// Represents the largest possible value of VolumeConcentration
-        /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeConcentration MaxValue { get; }
-
-        /// <summary>
-        /// Represents the smallest possible value of VolumeConcentration
-        /// </summary>
-        [Obsolete("MaxValue and MinValue will be removed. Choose your own value or use nullability for unbounded lower/upper range checks. See discussion in https://github.com/angularsen/UnitsNet/issues/848.")]
-        public static VolumeConcentration MinValue { get; }
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public static QuantityType QuantityType { get; }
-
-        /// <summary>
         ///     All units of measurement for the VolumeConcentration quantity.
         /// </summary>
         public static VolumeConcentrationUnit[] Units { get; }
@@ -183,6 +158,9 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc />
+        QuantityValue IQuantity.Value => _value;
+
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -193,12 +171,6 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        [Obsolete("QuantityType will be removed in the future. Use the Info property instead.")]
-        public QuantityType Type => QuantityType.VolumeConcentration;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -404,7 +376,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(VolumeConcentrationUnit unit, IFormatProvider? provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -678,7 +650,7 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static VolumeConcentration Parse(string str, IFormatProvider? provider)
         {
             return QuantityParser.Default.Parse<VolumeConcentration, VolumeConcentrationUnit>(
@@ -709,7 +681,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse(string? str, IFormatProvider? provider, out VolumeConcentration result)
         {
             return QuantityParser.Default.TryParse<VolumeConcentration, VolumeConcentrationUnit>(
@@ -737,7 +709,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -763,7 +735,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider? provider, out VolumeConcentrationUnit unit)
         {
             return UnitParser.Default.TryParse<VolumeConcentrationUnit>(str, provider, out unit);
@@ -843,50 +815,83 @@ namespace UnitsNet
             return left.Value > right.ToUnit(left.Unit).Value;
         }
 
-        /// <summary>Returns true if exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        // We use obsolete attribute to communicate the preferred equality members to use.
+        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
+        #pragma warning disable CS0809
+
+        /// <summary>Indicates strict equality of two <see cref="VolumeConcentration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(VolumeConcentration left, VolumeConcentration right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Returns true if not exactly equal.</summary>
-        /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
+        /// <summary>Indicates strict inequality of two <see cref="VolumeConcentration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(VolumeConcentration left, VolumeConcentration right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="VolumeConcentration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public override bool Equals(object obj)
+        {
+            if (obj is null || !(obj is VolumeConcentration otherQuantity))
+                return false;
+
+            return Equals(otherQuantity);
+        }
+
+        /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="VolumeConcentration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
+        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        public bool Equals(VolumeConcentration other)
+        {
+            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+        }
+
+        #pragma warning restore CS0809
+
+        /// <summary>Compares the current <see cref="VolumeConcentration"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="obj">An object to compare with this instance.</param>
+        /// <exception cref="T:System.ArgumentException">
+        ///    <paramref name="obj" /> is not the same type as this instance.
+        /// </exception>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
         public int CompareTo(object obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is VolumeConcentration objVolumeConcentration)) throw new ArgumentException("Expected type VolumeConcentration.", nameof(obj));
+            if (!(obj is VolumeConcentration otherQuantity)) throw new ArgumentException("Expected type VolumeConcentration.", nameof(obj));
 
-            return CompareTo(objVolumeConcentration);
+            return CompareTo(otherQuantity);
         }
 
-        /// <inheritdoc />
+        /// <summary>Compares the current <see cref="VolumeConcentration"/> with another <see cref="VolumeConcentration"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <param name="other">A quantity to compare with this instance.</param>
+        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
+        ///     <list type="table">
+        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
+        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="other" /> in the sort order.</description></item>
+        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="other" />.</description></item>
+        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="other" /> in the sort order.</description></item>
+        ///     </list>
+        /// </returns>
         public int CompareTo(VolumeConcentration other)
         {
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public override bool Equals(object obj)
-        {
-            if (obj is null || !(obj is VolumeConcentration objVolumeConcentration))
-                return false;
-
-            return Equals(objVolumeConcentration);
-        }
-
-        /// <inheritdoc />
-        /// <remarks>Consider using <see cref="Equals(VolumeConcentration, double, ComparisonType)"/> for safely comparing floating point values.</remarks>
-        public bool Equals(VolumeConcentration other)
-        {
-            return _value.Equals(other.ToUnit(this.Unit).Value);
         }
 
         /// <summary>
@@ -922,7 +927,7 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
+        ///     of floating-point operations and using double internally.
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>
@@ -934,7 +939,7 @@ namespace UnitsNet
             if (tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
-            double thisValue = (double)this.Value;
+            double thisValue = this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
@@ -960,10 +965,9 @@ namespace UnitsNet
         public double As(VolumeConcentrationUnit unit)
         {
             if (Unit == unit)
-                return (double)Value;
+                return Value;
 
-            var converted = ToUnit(unit);
-            return (double)converted.Value;
+            return ToUnit(unit).Value;
         }
 
         /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
@@ -984,10 +988,10 @@ namespace UnitsNet
         /// <inheritdoc />
         double IQuantity.As(Enum unit)
         {
-            if (!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
+            if (!(unit is VolumeConcentrationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
 
-            return As(unitAsVolumeConcentrationUnit);
+            return (double)As(typedUnit);
         }
 
         /// <summary>
@@ -1092,16 +1096,16 @@ namespace UnitsNet
                 _ => null!
             };
 
-            return converted != null;
+            return converted is not null;
         }
 
         /// <inheritdoc />
         IQuantity IQuantity.ToUnit(Enum unit)
         {
-            if (!(unit is VolumeConcentrationUnit unitAsVolumeConcentrationUnit))
+            if (!(unit is VolumeConcentrationUnit typedUnit))
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
 
-            return ToUnit(unitAsVolumeConcentrationUnit, DefaultConversionFunctions);
+            return ToUnit(typedUnit, DefaultConversionFunctions);
         }
 
         /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
@@ -1145,63 +1149,29 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public string ToString(IFormatProvider? provider)
         {
             return ToString("g", provider);
         }
 
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete(@"This method is deprecated and will be removed at a future release. Please use ToString(""s2"") or ToString(""s2"", provider) where 2 is an example of the number passed to significantDigitsAfterRadix.")]
-        public string ToString(IFormatProvider? provider, int significantDigitsAfterRadix)
-        {
-            var value = Convert.ToDouble(Value);
-            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(provider, format);
-        }
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implicitly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
-        [Obsolete("This method is deprecated and will be removed at a future release. Please use string.Format().")]
-        public string ToString(IFormatProvider? provider, [NotNull] string format, [NotNull] params object[] args)
-        {
-            if (format == null) throw new ArgumentNullException(nameof(format));
-            if (args == null) throw new ArgumentNullException(nameof(args));
-
-            provider = provider ?? CultureInfo.CurrentUICulture;
-
-            var value = Convert.ToDouble(Value);
-            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
-            return string.Format(provider, format, formatArgs);
-        }
-
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentUICulture" />.
+        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format)
         {
-            return ToString(format, CultureInfo.CurrentUICulture);
+            return ToString(format, CultureInfo.CurrentCulture);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
-        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentUICulture" /> if null.
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>
         /// <param name="format">The format string.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentUICulture" /> if null.</param>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>The string representation.</returns>
         public string ToString(string format, IFormatProvider? provider)
         {
@@ -1283,8 +1253,6 @@ namespace UnitsNet
                 return this;
             else if (conversionType == typeof(VolumeConcentrationUnit))
                 return Unit;
-            else if (conversionType == typeof(QuantityType))
-                return VolumeConcentration.QuantityType;
             else if (conversionType == typeof(QuantityInfo))
                 return VolumeConcentration.Info;
             else if (conversionType == typeof(BaseDimensions))

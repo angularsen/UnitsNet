@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum RotationalStiffnessUnit
     {
-        Undefined = 0,
         CentinewtonMeterPerDegree = 1,
         CentinewtonMillimeterPerDegree = 2,
         CentinewtonMillimeterPerRadian = 3,

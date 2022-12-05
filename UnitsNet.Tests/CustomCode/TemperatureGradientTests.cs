@@ -45,7 +45,7 @@ namespace UnitsNet.Tests.CustomCode
         public void TemperatureDeltaDividedByLengthEqualsTemperatureGradient()
         {
             TemperatureGradient temperatureGradient = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
-            Assert.Equal(temperatureGradient, TemperatureGradient.FromDegreesCelciusPerKilometer(5));
+            Assert.Equal(5, temperatureGradient.DegreesCelciusPerKilometer);
         }
 
         [Fact]

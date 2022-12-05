@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
-    <Version>4.149.0</Version>
+    <Version>5.0.0-rc003</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
     <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
@@ -15,15 +15,16 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
+    <AssemblyVersion>5.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
-    <TargetFrameworks>netstandard2.0;net40;net47</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <!-- SourceLink -->
@@ -43,13 +44,7 @@
 
   <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
   <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-  </ItemGroup>
-
-  <!-- System.ValueTuple is only required for net40 target. -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
   <!-- Link in common unit definition .json files -->
@@ -62,6 +57,7 @@
   <!-- Files to include in nuget package -->
   <ItemGroup>
     <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
+    <None Include="../README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 
 </Project>

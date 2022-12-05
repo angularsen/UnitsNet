@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ForceUnit
     {
-        Undefined = 0,
         Decanewton = 1,
         Dyn = 2,
         KilogramForce = 3,

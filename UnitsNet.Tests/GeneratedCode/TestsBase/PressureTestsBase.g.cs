@@ -243,19 +243,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Pressure((double)0.0, PressureUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Pressure();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(PressureUnit.Pascal, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -300,14 +293,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Pressure.Zero, quantityInfo.Zero);
             Assert.Equal("Pressure", quantityInfo.Name);
-            Assert.Equal(QuantityType.Pressure, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<PressureUnit>().Except(new[] {PressureUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
+            var units = EnumUtils.GetEnumValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -2645,7 +2633,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -2662,12 +2650,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(PressureUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Pressure.Units.FirstOrDefault(u => u != Pressure.BaseUnit && u != PressureUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == PressureUnit.Undefined)
-                fromUnit = Pressure.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Pressure.Units.First(u => u != Pressure.BaseUnit);
 
             var quantity = Pressure.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -2789,47 +2773,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => pascal.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, PressureUnit.Pascal, 1, PressureUnit.Pascal, true)]  // Same value and unit.
+        [InlineData(1, PressureUnit.Pascal, 2, PressureUnit.Pascal, false)] // Different value.
+        [InlineData(2, PressureUnit.Pascal, 1, PressureUnit.Atmosphere, false)] // Different value and unit.
+        [InlineData(1, PressureUnit.Pascal, 1, PressureUnit.Atmosphere, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PressureUnit unitA, double valueB, PressureUnit unitB, bool expectEqual)
         {
-            var a = Pressure.FromPascals(1);
-            var b = Pressure.FromPascals(2);
+            var a = new Pressure(valueA, unitA);
+            var b = new Pressure(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = Pressure.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = Pressure.FromPascals(1);
-            var b = Pressure.FromPascals(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = Pressure.FromPascals(1);
-            object b = Pressure.FromPascals(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -2862,20 +2844,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(PressureUnit.Undefined, Pressure.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>();
             foreach(var unit in units)
             {
-                if (unit == PressureUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -2889,8 +2862,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 atm", new Pressure(1, PressureUnit.Atmosphere).ToString());
                 Assert.Equal("1 bar", new Pressure(1, PressureUnit.Bar).ToString());
@@ -2942,7 +2915,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -3004,10 +2977,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s1"));
                 Assert.Equal("0.12 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s2"));
                 Assert.Equal("0.123 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s3"));
@@ -3015,7 +2988,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -3029,28 +3002,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = Pressure.FromPascals(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = Pressure.FromPascals(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = Pressure.FromPascals(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -3169,13 +3141,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Pressure.FromPascals(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(PressureUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Pressure.FromPascals(1.0);
-            Assert.Equal(QuantityType.Pressure, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

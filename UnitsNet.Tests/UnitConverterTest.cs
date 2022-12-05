@@ -112,8 +112,8 @@ namespace UnitsNet.Tests
         {
             // Intentionally don't map conversion Some->Some, it is not necessary
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.ATon, x => new HowMuch(x.Value * 2, HowMuchUnit.ATon));
-            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.AShitTon, x => new HowMuch(x.Value * 10, HowMuchUnit.AShitTon));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.ATon, x => new HowMuch((double)x.Value * 2, HowMuchUnit.ATon));
+            unitConverter.SetConversionFunction<HowMuch>(HowMuchUnit.Some, HowMuchUnit.AShitTon, x => new HowMuch((double)x.Value * 10, HowMuchUnit.AShitTon));
 
             var foundConversionFunction = unitConverter.GetConversionFunction<HowMuch>(fromUnit, toUnit);
             var converted = foundConversionFunction(new HowMuch(fromValue, fromUnit));

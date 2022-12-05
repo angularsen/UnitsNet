@@ -136,7 +136,6 @@ namespace UnitsNet.Tests.CustomCode
             AssertEx.EqualTolerance(expectedMassValue, massComponent.As(expectedMassUnit), tolerance);
         }
 
-
         [Fact(Skip = "No BaseUnit defined: see https://github.com/angularsen/UnitsNet/issues/651")]
         public void DefaultSIUnitIsKgPerCubicMeter()
         {

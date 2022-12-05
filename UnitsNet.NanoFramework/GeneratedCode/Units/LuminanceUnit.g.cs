@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum LuminanceUnit
     {
-        Undefined = 0,
         CandelaPerSquareFoot = 10,
         CandelaPerSquareInch = 7,
         CandelaPerSquareMeter = 8,

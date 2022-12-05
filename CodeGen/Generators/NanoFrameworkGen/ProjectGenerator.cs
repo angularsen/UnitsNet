@@ -14,7 +14,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _versions = versions;
         }
 
-        public override string Generate()
+        public string Generate()
         {
             Writer.WL($@"<?xml version=""1.0"" encoding=""utf-8""?>
 <Project ToolsVersion=""15.0"" DefaultTargets=""Build"" xmlns=""http://schemas.microsoft.com/developer/msbuild/2003"">

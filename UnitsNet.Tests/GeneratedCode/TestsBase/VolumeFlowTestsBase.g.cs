@@ -215,7 +215,7 @@ namespace UnitsNet.Tests
                 VolumeFlowUnit.MilliliterPerHour => (MillilitersPerHourInOneCubicMeterPerSecond, MillilitersPerHourTolerance),
                 VolumeFlowUnit.MilliliterPerMinute => (MillilitersPerMinuteInOneCubicMeterPerSecond, MillilitersPerMinuteTolerance),
                 VolumeFlowUnit.MilliliterPerSecond => (MillilitersPerSecondInOneCubicMeterPerSecond, MillilitersPerSecondTolerance),
-                VolumeFlowUnit.MillionUsGallonsPerDay => (MillionUsGallonsPerDayInOneCubicMeterPerSecond, MillionUsGallonsPerDayTolerance),
+                VolumeFlowUnit.MillionUsGallonPerDay => (MillionUsGallonsPerDayInOneCubicMeterPerSecond, MillionUsGallonsPerDayTolerance),
                 VolumeFlowUnit.NanoliterPerDay => (NanolitersPerDayInOneCubicMeterPerSecond, NanolitersPerDayTolerance),
                 VolumeFlowUnit.NanoliterPerHour => (NanolitersPerHourInOneCubicMeterPerSecond, NanolitersPerHourTolerance),
                 VolumeFlowUnit.NanoliterPerMinute => (NanolitersPerMinuteInOneCubicMeterPerSecond, NanolitersPerMinuteTolerance),
@@ -283,7 +283,7 @@ namespace UnitsNet.Tests
             new object[] { VolumeFlowUnit.MilliliterPerHour },
             new object[] { VolumeFlowUnit.MilliliterPerMinute },
             new object[] { VolumeFlowUnit.MilliliterPerSecond },
-            new object[] { VolumeFlowUnit.MillionUsGallonsPerDay },
+            new object[] { VolumeFlowUnit.MillionUsGallonPerDay },
             new object[] { VolumeFlowUnit.NanoliterPerDay },
             new object[] { VolumeFlowUnit.NanoliterPerHour },
             new object[] { VolumeFlowUnit.NanoliterPerMinute },
@@ -303,19 +303,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new VolumeFlow((double)0.0, VolumeFlowUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new VolumeFlow();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(VolumeFlowUnit.CubicMeterPerSecond, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -360,14 +353,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(VolumeFlow.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeFlow", quantityInfo.Name);
-            Assert.Equal(QuantityType.VolumeFlow, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<VolumeFlowUnit>().Except(new[] {VolumeFlowUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
+            var units = EnumUtils.GetEnumValues<VolumeFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -621,9 +609,9 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity44.MillilitersPerSecond, MillilitersPerSecondTolerance);
             Assert.Equal(VolumeFlowUnit.MilliliterPerSecond, quantity44.Unit);
 
-            var quantity45 = VolumeFlow.From(1, VolumeFlowUnit.MillionUsGallonsPerDay);
+            var quantity45 = VolumeFlow.From(1, VolumeFlowUnit.MillionUsGallonPerDay);
             AssertEx.EqualTolerance(1, quantity45.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
-            Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, quantity45.Unit);
+            Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, quantity45.Unit);
 
             var quantity46 = VolumeFlow.From(1, VolumeFlowUnit.NanoliterPerDay);
             AssertEx.EqualTolerance(1, quantity46.NanolitersPerDay, NanolitersPerDayTolerance);
@@ -753,7 +741,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillilitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerHour), MillilitersPerHourTolerance);
             AssertEx.EqualTolerance(MillilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerMinute), MillilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(MillilitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MilliliterPerSecond), MillilitersPerSecondTolerance);
-            AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MillionUsGallonsPerDay), MillionUsGallonsPerDayTolerance);
+            AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.MillionUsGallonPerDay), MillionUsGallonsPerDayTolerance);
             AssertEx.EqualTolerance(NanolitersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerDay), NanolitersPerDayTolerance);
             AssertEx.EqualTolerance(NanolitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerHour), NanolitersPerHourTolerance);
             AssertEx.EqualTolerance(NanolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.NanoliterPerMinute), NanolitersPerMinuteTolerance);
@@ -1524,7 +1512,7 @@ namespace UnitsNet.Tests
             {
                 var parsed = VolumeFlow.Parse("1 MGD", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
-                Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, parsed.Unit);
+                Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -2326,7 +2314,7 @@ namespace UnitsNet.Tests
             {
                 Assert.True(VolumeFlow.TryParse("1 MGD", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MillionUsGallonsPerDay, MillionUsGallonsPerDayTolerance);
-                Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, parsed.Unit);
+                Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, parsed.Unit);
             }
 
             {
@@ -3135,7 +3123,7 @@ namespace UnitsNet.Tests
             try
             {
                 var parsedUnit = VolumeFlow.ParseUnit("MGD", CultureInfo.GetCultureInfo("en-US"));
-                Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, parsedUnit);
+                Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
             try
@@ -3809,7 +3797,7 @@ namespace UnitsNet.Tests
 
             {
                 Assert.True(VolumeFlow.TryParseUnit("MGD", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
-                Assert.Equal(VolumeFlowUnit.MillionUsGallonsPerDay, parsedUnit);
+                Assert.Equal(VolumeFlowUnit.MillionUsGallonPerDay, parsedUnit);
             }
 
             {
@@ -3967,7 +3955,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -3984,12 +3972,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(VolumeFlowUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = VolumeFlow.Units.FirstOrDefault(u => u != VolumeFlow.BaseUnit && u != VolumeFlowUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == VolumeFlowUnit.Undefined)
-                fromUnit = VolumeFlow.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = VolumeFlow.Units.First(u => u != VolumeFlow.BaseUnit);
 
             var quantity = VolumeFlow.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -4126,47 +4110,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => cubicmeterpersecond.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, VolumeFlowUnit.CubicMeterPerSecond, 1, VolumeFlowUnit.CubicMeterPerSecond, true)]  // Same value and unit.
+        [InlineData(1, VolumeFlowUnit.CubicMeterPerSecond, 2, VolumeFlowUnit.CubicMeterPerSecond, false)] // Different value.
+        [InlineData(2, VolumeFlowUnit.CubicMeterPerSecond, 1, VolumeFlowUnit.AcreFootPerDay, false)] // Different value and unit.
+        [InlineData(1, VolumeFlowUnit.CubicMeterPerSecond, 1, VolumeFlowUnit.AcreFootPerDay, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, VolumeFlowUnit unitA, double valueB, VolumeFlowUnit unitB, bool expectEqual)
         {
-            var a = VolumeFlow.FromCubicMetersPerSecond(1);
-            var b = VolumeFlow.FromCubicMetersPerSecond(2);
+            var a = new VolumeFlow(valueA, unitA);
+            var b = new VolumeFlow(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = VolumeFlow.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = VolumeFlow.FromCubicMetersPerSecond(1);
-            var b = VolumeFlow.FromCubicMetersPerSecond(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = VolumeFlow.FromCubicMetersPerSecond(1);
-            object b = VolumeFlow.FromCubicMetersPerSecond(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -4199,20 +4181,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(VolumeFlowUnit.Undefined, VolumeFlow.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>();
             foreach(var unit in units)
             {
-                if (unit == VolumeFlowUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -4226,8 +4199,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 af/d", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerDay).ToString());
                 Assert.Equal("1 af/h", new VolumeFlow(1, VolumeFlowUnit.AcreFootPerHour).ToString());
@@ -4274,7 +4247,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mL/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString());
                 Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString());
                 Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString());
-                Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonsPerDay).ToString());
+                Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonPerDay).ToString());
                 Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString());
                 Assert.Equal("1 nL/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString());
                 Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString());
@@ -4294,7 +4267,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -4349,7 +4322,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 mL/h", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerHour).ToString(swedishCulture));
             Assert.Equal("1 mL/min", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 mL/s", new VolumeFlow(1, VolumeFlowUnit.MilliliterPerSecond).ToString(swedishCulture));
-            Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonsPerDay).ToString(swedishCulture));
+            Assert.Equal("1 MGD", new VolumeFlow(1, VolumeFlowUnit.MillionUsGallonPerDay).ToString(swedishCulture));
             Assert.Equal("1 nl/day", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerDay).ToString(swedishCulture));
             Assert.Equal("1 nL/h", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerHour).ToString(swedishCulture));
             Assert.Equal("1 nL/min", new VolumeFlow(1, VolumeFlowUnit.NanoliterPerMinute).ToString(swedishCulture));
@@ -4371,10 +4344,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s1"));
                 Assert.Equal("0.12 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s2"));
                 Assert.Equal("0.123 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s3"));
@@ -4382,7 +4355,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -4396,28 +4369,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -4536,13 +4508,6 @@ namespace UnitsNet.Tests
         {
             var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(VolumeFlowUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = VolumeFlow.FromCubicMetersPerSecond(1.0);
-            Assert.Equal(QuantityType.VolumeFlow, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

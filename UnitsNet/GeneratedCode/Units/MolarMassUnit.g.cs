@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MolarMassUnit
     {
-        Undefined = 0,
         CentigramPerMole = 1,
         DecagramPerMole = 2,
         DecigramPerMole = 3,

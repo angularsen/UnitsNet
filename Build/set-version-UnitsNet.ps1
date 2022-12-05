@@ -55,8 +55,6 @@ $projFile = "$root\UnitsNet\UnitsNet.csproj"
 $numberExtensionsProjFile = "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
 $nanoFrameworkNuspecGeneratorFile = "$root\CodeGen\Generators\NanoFrameworkGen\NuspecGenerator.cs"
 $nanoFrameworkAssemblyInfoFile = "$root\UnitsNet.NanoFramework\GeneratedCode\Properties\AssemblyInfo.cs"
-$winrtAssemblyInfoFile = "$root\UnitsNet.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
-$winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec"
 
 # Use UnitsNet.Common.props version as base if bumping major/minor/patch
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
@@ -68,14 +66,8 @@ $didStash = Invoke-StashPush
 Set-ProjectVersion $projFile $newVersion
 Set-ProjectVersion $numberExtensionsProjFile $newVersion
 
-# Update AssemblyInfo.cs files
-Set-AssemblyInfoVersion $winrtAssemblyInfoFile $newVersion
-
 # Update AssemblyInfo.cs file for .NET nanoFramework
 Set-AssemblyInfoVersion $nanoFrameworkAssemblyInfoFile $newVersion
-
-# Update .nuspec files
-Set-NuspecVersion $winrtNuspecFile $newVersion
 
 # Update codegen and .nuspec files for nanoFramework
 Set-NuspecVersion $nanoFrameworkNuspecGeneratorFile $newVersion

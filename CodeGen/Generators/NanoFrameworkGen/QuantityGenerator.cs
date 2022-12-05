@@ -17,7 +17,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
             _unitEnumName = $"{quantity.Name}Unit";
         }
 
-        public override string Generate()
+        public string Generate()
         {
             // Auto generated header
             Writer.WL(GeneratedFileHeader);
@@ -30,7 +30,7 @@ namespace UnitsNet
             Writer.WL($@"
     /// <inheritdoc />
     /// <summary>
-    ///     {_quantity.XmlDoc}
+    ///     {_quantity.XmlDocSummary}
     /// </summary>");
 
             Writer.WLCondition(_quantity.XmlDocRemarks.HasText(), $@"
@@ -44,7 +44,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly {_quantity.BaseType} _value;
+        private readonly {_quantity.ValueType} _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -54,7 +54,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        public {_quantity.BaseType} Value => _value;
+        public {_quantity.ValueType} Value => _value;
 
         /// <inheritdoc />
         public {_unitEnumName} Unit => _unit;
@@ -67,7 +67,7 @@ namespace UnitsNet
         /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>
-        public {_quantity.Name}({_quantity.BaseType} value, {_unitEnumName} unit)
+        public {_quantity.Name}({_quantity.ValueType} value, {_unitEnumName} unit)
         {{
             _value = value;
             _unit = unit;
@@ -83,17 +83,17 @@ namespace UnitsNet
         /// </summary>");
 
             // Non decimal
-            Writer.WLCondition(_quantity.BaseType != "decimal", $@"
-        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.BaseType}.MaxValue, BaseUnit);
+            Writer.WLCondition(_quantity.ValueType != "decimal", $@"
+        public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.BaseType}.MinValue, BaseUnit);
+        public static {_quantity.Name} MinValue {{ get; }} = new {_quantity.Name}({_quantity.ValueType}.MinValue, BaseUnit);
 ");
 
             // Decimal MaxValue = 79228162514264337593543950335M
-            Writer.WLCondition(_quantity.BaseType == "decimal", $@"
+            Writer.WLCondition(_quantity.ValueType == "decimal", $@"
         public static {_quantity.Name} MaxValue {{ get; }} = new {_quantity.Name}(79228162514264337593543950335M, BaseUnit);
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace UnitsNet
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public {_quantity.BaseType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
+        public {_quantity.ValueType} {unit.PluralName} => As({_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -164,7 +164,7 @@ namespace UnitsNet
         /// <exception cref=""ArgumentException"">If value is NaN or Infinity.</exception>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}({_quantity.BaseType} {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
+        public static {_quantity.Name} From{unit.PluralName}({_quantity.ValueType} {valueParamName}) => new {_quantity.Name}({valueParamName}, {_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -175,7 +175,7 @@ namespace UnitsNet
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
         /// <returns>{_quantity.Name} unit value.</returns>
-        public static {_quantity.Name} From({_quantity.BaseType} value, {_unitEnumName} fromUnit)
+        public static {_quantity.Name} From({_quantity.ValueType} value, {_unitEnumName} fromUnit)
         {{
             return new {_quantity.Name}(value, fromUnit);
         }}
@@ -187,67 +187,67 @@ namespace UnitsNet
         private void GenerateConversionMethods()
         {
             Writer.WL($@"
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name=""unit"" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public {_quantity.BaseType} As({_unitEnumName} unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name=""unit"" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public {_quantity.ValueType} As({_unitEnumName} unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name=""unit"" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public {_quantity.Name} ToUnit({_unitEnumName} unit)
-        {{
-            var convertedValue = GetValueAs(unit);
-            return new {_quantity.Name}(convertedValue, unit);
-        }}
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name=""unit"" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public {_quantity.Name} ToUnit({_unitEnumName} unit)
+                {{
+                    var convertedValue = GetValueAs(unit);
+                    return new {_quantity.Name}(convertedValue, unit);
+                }}
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private {_quantity.BaseType} GetValueInBaseUnit()
-        {{
-            return Unit switch
-            {{");
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private {_quantity.ValueType} GetValueInBaseUnit()
+                {{
+                    return Unit switch
+                    {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
-                {_unitEnumName}.{unit.SingularName} => {func},");
+                        {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL($@"
-                _ => throw new NotImplementedException($""Can not convert {{Unit}} to base units."")
-            }};
-        }}
+                        _ => throw new NotImplementedException($""Can not convert {{Unit}} to base units."")
+                    }};
+                    }}
 
-        private {_quantity.BaseType} GetValueAs({_unitEnumName} unit)
-        {{
-            if (Unit == unit)
-                return _value;
+                private {_quantity.ValueType} GetValueAs({_unitEnumName} unit)
+                {{
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {{");
+                    return unit switch
+                    {{");
             foreach (var unit in _quantity.Units)
             {
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "baseUnitValue");
                 Writer.WL($@"
-                {_unitEnumName}.{unit.SingularName} => {func},");
+                        {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL(@"
-                _ => throw new NotImplementedException($""Can not convert {Unit} to {unit}."")
-            };
-        }
+                        _ => throw new NotImplementedException($""Can not convert {Unit} to {unit}."")
+                    };
+                    }
 
-        #endregion");
+                #endregion");
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
@@ -263,5 +263,6 @@ namespace UnitsNet
         private static string? GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
             ? null
             : $"[Obsolete(\"{obsoleteText}\")]";
+
     }
 }

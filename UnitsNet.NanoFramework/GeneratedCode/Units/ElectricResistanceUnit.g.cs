@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricResistanceUnit
     {
-        Undefined = 0,
         Gigaohm = 1,
         Kiloohm = 2,
         Megaohm = 3,

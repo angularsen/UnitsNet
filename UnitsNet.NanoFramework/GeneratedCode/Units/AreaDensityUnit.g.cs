@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum AreaDensityUnit
     {
-        Undefined = 0,
 
         /// <summary>
         ///     Also known as grammage for paper industry. In fiber industry used with abbreviation 'gsm'.

@@ -220,73 +220,73 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ReciprocalAreaUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ReciprocalAreaUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ReciprocalArea ToUnit(ReciprocalAreaUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ReciprocalArea(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ReciprocalArea ToUnit(ReciprocalAreaUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ReciprocalArea(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ReciprocalAreaUnit.InverseSquareCentimeter => _value / 1e-4,
-                ReciprocalAreaUnit.InverseSquareDecimeter => _value / 1e-2,
-                ReciprocalAreaUnit.InverseSquareFoot => _value / 0.092903,
-                ReciprocalAreaUnit.InverseSquareInch => _value / 0.00064516,
-                ReciprocalAreaUnit.InverseSquareKilometer => _value / 1e6,
-                ReciprocalAreaUnit.InverseSquareMeter => _value,
-                ReciprocalAreaUnit.InverseSquareMicrometer => _value / 1e-12,
-                ReciprocalAreaUnit.InverseSquareMile => _value / 2.59e6,
-                ReciprocalAreaUnit.InverseSquareMillimeter => _value / 1e-6,
-                ReciprocalAreaUnit.InverseSquareYard => _value / 0.836127,
-                ReciprocalAreaUnit.InverseUsSurveySquareFoot => _value / 0.09290341161,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ReciprocalAreaUnit.InverseSquareCentimeter => _value / 1e-4,
+                        ReciprocalAreaUnit.InverseSquareDecimeter => _value / 1e-2,
+                        ReciprocalAreaUnit.InverseSquareFoot => _value / 0.092903,
+                        ReciprocalAreaUnit.InverseSquareInch => _value / 0.00064516,
+                        ReciprocalAreaUnit.InverseSquareKilometer => _value / 1e6,
+                        ReciprocalAreaUnit.InverseSquareMeter => _value,
+                        ReciprocalAreaUnit.InverseSquareMicrometer => _value / 1e-12,
+                        ReciprocalAreaUnit.InverseSquareMile => _value / 2.59e6,
+                        ReciprocalAreaUnit.InverseSquareMillimeter => _value / 1e-6,
+                        ReciprocalAreaUnit.InverseSquareYard => _value / 0.836127,
+                        ReciprocalAreaUnit.InverseUsSurveySquareFoot => _value / 0.09290341161,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ReciprocalAreaUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ReciprocalAreaUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ReciprocalAreaUnit.InverseSquareCentimeter => baseUnitValue * 1e-4,
-                ReciprocalAreaUnit.InverseSquareDecimeter => baseUnitValue * 1e-2,
-                ReciprocalAreaUnit.InverseSquareFoot => baseUnitValue * 0.092903,
-                ReciprocalAreaUnit.InverseSquareInch => baseUnitValue * 0.00064516,
-                ReciprocalAreaUnit.InverseSquareKilometer => baseUnitValue * 1e6,
-                ReciprocalAreaUnit.InverseSquareMeter => baseUnitValue,
-                ReciprocalAreaUnit.InverseSquareMicrometer => baseUnitValue * 1e-12,
-                ReciprocalAreaUnit.InverseSquareMile => baseUnitValue * 2.59e6,
-                ReciprocalAreaUnit.InverseSquareMillimeter => baseUnitValue * 1e-6,
-                ReciprocalAreaUnit.InverseSquareYard => baseUnitValue * 0.836127,
-                ReciprocalAreaUnit.InverseUsSurveySquareFoot => baseUnitValue * 0.09290341161,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ReciprocalAreaUnit.InverseSquareCentimeter => baseUnitValue * 1e-4,
+                        ReciprocalAreaUnit.InverseSquareDecimeter => baseUnitValue * 1e-2,
+                        ReciprocalAreaUnit.InverseSquareFoot => baseUnitValue * 0.092903,
+                        ReciprocalAreaUnit.InverseSquareInch => baseUnitValue * 0.00064516,
+                        ReciprocalAreaUnit.InverseSquareKilometer => baseUnitValue * 1e6,
+                        ReciprocalAreaUnit.InverseSquareMeter => baseUnitValue,
+                        ReciprocalAreaUnit.InverseSquareMicrometer => baseUnitValue * 1e-12,
+                        ReciprocalAreaUnit.InverseSquareMile => baseUnitValue * 2.59e6,
+                        ReciprocalAreaUnit.InverseSquareMillimeter => baseUnitValue * 1e-6,
+                        ReciprocalAreaUnit.InverseSquareYard => baseUnitValue * 0.836127,
+                        ReciprocalAreaUnit.InverseUsSurveySquareFoot => baseUnitValue * 0.09290341161,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

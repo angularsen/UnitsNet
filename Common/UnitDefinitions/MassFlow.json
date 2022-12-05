@@ -1,7 +1,7 @@
 {
   "Name": "MassFlow",
   "BaseUnit": "GramPerSecond",
-  "XmlDoc": "Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).",
+  "XmlDocSummary": "Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).",
   "BaseDimensions": {
     "M": 1,
     "T": -1

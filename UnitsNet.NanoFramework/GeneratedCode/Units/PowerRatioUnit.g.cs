@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum PowerRatioUnit
     {
-        Undefined = 0,
         DecibelMilliwatt = 1,
         DecibelWatt = 2,
     }

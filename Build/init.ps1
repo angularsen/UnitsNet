@@ -68,19 +68,24 @@ if (!(Test-Path "$msbuildPath/nanoFramework")) {
       $extensionVersion = $vs2019Tag
   }
 
-  Write-Output "Downloading visx..." -NoNewline
+  Write-Output "Downloading visx..."
 
   # download VS extension
-  Write-Debug "Download VSIX file from $extensionUrl to $vsixPath"
+  Write-Host "Download VSIX file from $extensionUrl to $vsixPath"
   $webClient.DownloadFile($extensionUrl, $vsixPath)
 
   $outputPath = "$tempDir\nf-extension"
 
   $vsixPath = Join-Path -Path $tempDir -ChildPath "nf-extension.zip"
-  $webClient.DownloadFile($extensionUrl,$vsixPath)
-  Expand-Archive -LiteralPath $vsixPath -DestinationPath $outputPath | Write-Host
+  $webClient.DownloadFile($extensionUrl, $vsixPath)
 
-  Copy-Item -Path "$outputPath\`$MSBuild\nanoFramework" -Destination $msbuildPath -Recurse
+  Write-Host "Extract VSIX file to $outputPath"
+  Expand-Archive -LiteralPath $vsixPath -DestinationPath $outputPath -Force | Write-Host
+
+  $copyFrom = "$outputPath\`$MSBuild\nanoFramework"
+
+  Write-Host "Copy from $copyFrom to $msbuildPath"
+  Copy-Item -Path "$copyFrom" -Destination $msbuildPath -Recurse
 
   Write-Host "Installed VS extension $extensionVersion"
 }

@@ -3,7 +3,7 @@
 
 using System;
 using UnitsNet.CustomCode.Units;
-using UnitsNet.CustomCode.Wrappers;
+using UnitsNet.Wrappers;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -215,12 +215,6 @@ namespace UnitsNet.Tests.CustomCode
         {
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
             Equals(PressureReference.Absolute, refPressure.Reference);
-        }
-
-        [Fact]
-        public void ReferencesDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(PressureReference.Undefined, ReferencePressure.References);
         }
 
         [Fact]

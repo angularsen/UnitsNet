@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum HeatFluxUnit
     {
-        Undefined = 0,
         BtuPerHourSquareFoot = 1,
         BtuPerMinuteSquareFoot = 2,
         BtuPerSecondSquareFoot = 3,

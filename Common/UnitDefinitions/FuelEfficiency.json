@@ -1,7 +1,7 @@
 {
     "Name": "FuelEfficiency",
     "BaseUnit": "LiterPer100Kilometers",
-    "XmlDoc": "Fuel efficiency is a form of thermal efficiency, meaning the ratio from effort to result of a process that converts chemical potential energy contained in a carrier (fuel) into kinetic energy or work. Fuel economy is stated as \"fuel consumption\" in liters per 100 kilometers (L/100 km). In countries using non-metric system, fuel economy is expressed in miles per gallon (mpg) (imperial galon or US galon).",
+    "XmlDocSummary": "Fuel efficiency is a form of thermal efficiency, meaning the ratio from effort to result of a process that converts chemical potential energy contained in a carrier (fuel) into kinetic energy or work. Fuel economy is stated as \"fuel consumption\" in liters per 100 kilometers (L/100 km). In countries using non-metric system, fuel economy is expressed in miles per gallon (mpg) (imperial galon or US galon).",
     "XmlDocRemarks": "https://en.wikipedia.org/wiki/Fuel_efficiency",
     "Units": [{
         "SingularName": "LiterPer100Kilometers",

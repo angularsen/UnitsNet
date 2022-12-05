@@ -150,7 +150,7 @@ namespace UnitsNet.Tests.CustomCode
         public void DensityTimesAreaEqualsLinearDensity()
         {
             LinearDensity linearDensity = Density.FromGramsPerCubicCentimeter(10) * Area.FromSquareCentimeters(2);
-            Assert.Equal(LinearDensity.FromGramsPerCentimeter(20), linearDensity);
+            Assert.Equal(20, linearDensity.GramsPerCentimeter);
         }
     }
 }

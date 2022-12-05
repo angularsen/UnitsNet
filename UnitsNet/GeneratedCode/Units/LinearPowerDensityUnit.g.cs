@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum LinearPowerDensityUnit
     {
-        Undefined = 0,
         GigawattPerCentimeter = 1,
         GigawattPerFoot = 2,
         GigawattPerInch = 3,

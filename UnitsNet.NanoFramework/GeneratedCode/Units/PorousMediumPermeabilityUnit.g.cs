@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum PorousMediumPermeabilityUnit
     {
-        Undefined = 0,
         Darcy = 1,
         Microdarcy = 2,
         Millidarcy = 3,

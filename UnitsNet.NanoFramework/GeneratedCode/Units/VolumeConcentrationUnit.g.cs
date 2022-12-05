@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum VolumeConcentrationUnit
     {
-        Undefined = 0,
         CentilitersPerLiter = 1,
         CentilitersPerMililiter = 2,
         DecilitersPerLiter = 3,

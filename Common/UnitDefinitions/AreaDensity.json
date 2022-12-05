@@ -1,7 +1,7 @@
 {
   "Name": "AreaDensity",
   "BaseUnit": "KilogramPerSquareMeter",
-  "XmlDoc": "The area density of a two-dimensional object is calculated as the mass per unit area. For paper this is also called grammage.",
+  "XmlDocSummary": "The area density of a two-dimensional object is calculated as the mass per unit area. For paper this is also called grammage.",
   "BaseDimensions": {
     "L": -2,
     "M": 1

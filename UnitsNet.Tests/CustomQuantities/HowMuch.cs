@@ -17,16 +17,15 @@ namespace UnitsNet.Tests.CustomQuantities
         Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
-        public double Value { get; }
+        public QuantityValue Value { get; }
 
         #region IQuantity
 
         private static readonly HowMuch Zero = new HowMuch(0, HowMuchUnit.Some);
 
-        public QuantityType Type => QuantityType.Undefined;
         public BaseDimensions Dimensions => BaseDimensions.Dimensionless;
 
-        public QuantityInfo QuantityInfo => new QuantityInfo(
+        public QuantityInfo QuantityInfo => new(
             nameof(HowMuch),
             typeof(HowMuchUnit),
             new UnitInfo[]

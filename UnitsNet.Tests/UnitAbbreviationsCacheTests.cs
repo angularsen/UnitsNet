@@ -2,9 +2,8 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
+using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
 using Xunit.Abstractions;
@@ -222,15 +221,14 @@ namespace UnitsNet.Tests
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
             var oldCurrentCulture = CultureInfo.CurrentCulture;
-            var oldCurrentUICulture = CultureInfo.CurrentUICulture;
 
             try
             {
                 // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
-                // CurrentUICulture affects localization, in this case the abbreviation.
+                // CurrentCulture affects localization, in this case the abbreviation.
                 // Zulu (South Africa)
                 var zuluCulture = new CultureInfo("zu-ZA");
-                CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
+                CultureInfo.CurrentCulture = zuluCulture;
 
                 var abbreviationsCache = new UnitAbbreviationsCache();
                 abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
@@ -244,7 +242,6 @@ namespace UnitsNet.Tests
             finally
             {
                 CultureInfo.CurrentCulture = oldCurrentCulture;
-                CultureInfo.CurrentUICulture = oldCurrentUICulture;
             }
         }
 
@@ -274,6 +271,33 @@ namespace UnitsNet.Tests
             UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
 
             Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
+        }
+
+        [Fact]
+        public void MapUnitToAbbreviation_DoesNotInsertDuplicates()
+        {
+            var cache = new UnitAbbreviationsCache();
+
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+
+            Assert.Equal("soome", cache.GetDefaultAbbreviation(HowMuchUnit.Some));
+            Assert.Equal(new[] { "soome" }, cache.GetUnitAbbreviations(HowMuchUnit.Some));
+            Assert.Equal(new[] { "soome" }, cache.GetAllUnitAbbreviationsForQuantity(typeof(HowMuchUnit)));
+        }
+
+        [Fact]
+        public void MapUnitToDefaultAbbreviation_Twice_SetsNewDefaultAndKeepsOrderOfExistingAbbreviations()
+        {
+            var cache = new UnitAbbreviationsCache();
+
+            cache.MapUnitToAbbreviation(HowMuchUnit.Some, "soome");
+            cache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "1st default");
+            cache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "2nd default");
+
+            Assert.Equal("2nd default", cache.GetDefaultAbbreviation(HowMuchUnit.Some));
+            Assert.Equal(new[] { "2nd default", "1st default", "soome" }, cache.GetUnitAbbreviations(HowMuchUnit.Some));
         }
 
         /// <summary>

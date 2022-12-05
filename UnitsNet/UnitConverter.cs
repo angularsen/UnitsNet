@@ -4,9 +4,8 @@
 using System;
 using System.Collections.Concurrent;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using JetBrains.Annotations;
+using System.Linq;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -33,7 +32,6 @@ namespace UnitsNet
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
-    [PublicAPI]
     public sealed class UnitConverter
     {
         /// <summary>
@@ -45,7 +43,6 @@ namespace UnitsNet
         static UnitConverter()
         {
             Default = new UnitConverter();
-
             RegisterDefaultConversions(Default);
         }
 
@@ -468,7 +465,7 @@ namespace UnitsNet
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentCulture : new CultureInfo(culture!);
 
             var fromUnit = UnitParser.Default.Parse(fromUnitAbbrev, unitType!, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
             var fromQuantity = Quantity.From(fromValue, fromUnit);
@@ -545,7 +542,7 @@ namespace UnitsNet
             if (!TryGetUnitType(quantityName, out Type? unitType))
                 return false;
 
-            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentUICulture : new CultureInfo(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture) ? CultureInfo.CurrentCulture : new CultureInfo(culture!);
 
             if (!UnitParser.Default.TryParse(fromUnitAbbrev, unitType!, cultureInfo, out Enum? fromUnit)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
@@ -571,17 +568,17 @@ namespace UnitsNet
         {
             unitValue = null;
             var eNames = Enum.GetNames(unitType);
-            unitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.OrdinalIgnoreCase));
-            if (unitName == null)
+            var matchedUnitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.OrdinalIgnoreCase));
+            if (matchedUnitName == null)
                 return false;
 
-            unitValue = (Enum) Enum.Parse(unitType, unitName);
+            unitValue = (Enum) Enum.Parse(unitType, matchedUnitName);
             return true;
         }
 
         private static bool TryGetUnitType(string quantityName, out Type? unitType)
         {
-            var quantityInfo = Quantity.Infos.FirstOrDefault((info) => info.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
+            var quantityInfo = Quantity.Infos.FirstOrDefault(info => info.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
 
             unitType = quantityInfo?.UnitType;
             return quantityInfo != null;

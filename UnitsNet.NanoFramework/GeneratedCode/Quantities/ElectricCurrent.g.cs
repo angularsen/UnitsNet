@@ -184,67 +184,67 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricCurrentUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(ElectricCurrentUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public ElectricCurrent ToUnit(ElectricCurrentUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new ElectricCurrent(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public ElectricCurrent ToUnit(ElectricCurrentUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new ElectricCurrent(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                ElectricCurrentUnit.Ampere => _value,
-                ElectricCurrentUnit.Centiampere => (_value) * 1e-2d,
-                ElectricCurrentUnit.Kiloampere => (_value) * 1e3d,
-                ElectricCurrentUnit.Megaampere => (_value) * 1e6d,
-                ElectricCurrentUnit.Microampere => (_value) * 1e-6d,
-                ElectricCurrentUnit.Milliampere => (_value) * 1e-3d,
-                ElectricCurrentUnit.Nanoampere => (_value) * 1e-9d,
-                ElectricCurrentUnit.Picoampere => (_value) * 1e-12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        ElectricCurrentUnit.Ampere => _value,
+                        ElectricCurrentUnit.Centiampere => (_value) * 1e-2d,
+                        ElectricCurrentUnit.Kiloampere => (_value) * 1e3d,
+                        ElectricCurrentUnit.Megaampere => (_value) * 1e6d,
+                        ElectricCurrentUnit.Microampere => (_value) * 1e-6d,
+                        ElectricCurrentUnit.Milliampere => (_value) * 1e-3d,
+                        ElectricCurrentUnit.Nanoampere => (_value) * 1e-9d,
+                        ElectricCurrentUnit.Picoampere => (_value) * 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(ElectricCurrentUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(ElectricCurrentUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                ElectricCurrentUnit.Ampere => baseUnitValue,
-                ElectricCurrentUnit.Centiampere => (baseUnitValue) / 1e-2d,
-                ElectricCurrentUnit.Kiloampere => (baseUnitValue) / 1e3d,
-                ElectricCurrentUnit.Megaampere => (baseUnitValue) / 1e6d,
-                ElectricCurrentUnit.Microampere => (baseUnitValue) / 1e-6d,
-                ElectricCurrentUnit.Milliampere => (baseUnitValue) / 1e-3d,
-                ElectricCurrentUnit.Nanoampere => (baseUnitValue) / 1e-9d,
-                ElectricCurrentUnit.Picoampere => (baseUnitValue) / 1e-12d,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        ElectricCurrentUnit.Ampere => baseUnitValue,
+                        ElectricCurrentUnit.Centiampere => (baseUnitValue) / 1e-2d,
+                        ElectricCurrentUnit.Kiloampere => (baseUnitValue) / 1e3d,
+                        ElectricCurrentUnit.Megaampere => (baseUnitValue) / 1e6d,
+                        ElectricCurrentUnit.Microampere => (baseUnitValue) / 1e-6d,
+                        ElectricCurrentUnit.Milliampere => (baseUnitValue) / 1e-3d,
+                        ElectricCurrentUnit.Nanoampere => (baseUnitValue) / 1e-9d,
+                        ElectricCurrentUnit.Picoampere => (baseUnitValue) / 1e-12d,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

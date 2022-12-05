@@ -155,19 +155,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new LinearPowerDensity((double)0.0, LinearPowerDensityUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new LinearPowerDensity();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(LinearPowerDensityUnit.WattPerMeter, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -212,14 +205,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(LinearPowerDensity.Zero, quantityInfo.Zero);
             Assert.Equal("LinearPowerDensity", quantityInfo.Name);
-            Assert.Equal(QuantityType.LinearPowerDensity, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().Except(new[] {LinearPowerDensityUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
+            var units = EnumUtils.GetEnumValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -937,7 +925,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -954,12 +942,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(LinearPowerDensityUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = LinearPowerDensity.Units.FirstOrDefault(u => u != LinearPowerDensity.BaseUnit && u != LinearPowerDensityUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == LinearPowerDensityUnit.Undefined)
-                fromUnit = LinearPowerDensity.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = LinearPowerDensity.Units.First(u => u != LinearPowerDensity.BaseUnit);
 
             var quantity = LinearPowerDensity.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -1059,47 +1043,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => wattpermeter.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.WattPerMeter, true)]  // Same value and unit.
+        [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 2, LinearPowerDensityUnit.WattPerMeter, false)] // Different value.
+        [InlineData(2, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.GigawattPerCentimeter, false)] // Different value and unit.
+        [InlineData(1, LinearPowerDensityUnit.WattPerMeter, 1, LinearPowerDensityUnit.GigawattPerCentimeter, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LinearPowerDensityUnit unitA, double valueB, LinearPowerDensityUnit unitB, bool expectEqual)
         {
-            var a = LinearPowerDensity.FromWattsPerMeter(1);
-            var b = LinearPowerDensity.FromWattsPerMeter(2);
+            var a = new LinearPowerDensity(valueA, unitA);
+            var b = new LinearPowerDensity(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = LinearPowerDensity.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = LinearPowerDensity.FromWattsPerMeter(1);
-            var b = LinearPowerDensity.FromWattsPerMeter(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = LinearPowerDensity.FromWattsPerMeter(1);
-            object b = LinearPowerDensity.FromWattsPerMeter(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -1132,20 +1114,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(LinearPowerDensityUnit.Undefined, LinearPowerDensity.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(LinearPowerDensityUnit)).Cast<LinearPowerDensityUnit>();
             foreach(var unit in units)
             {
-                if (unit == LinearPowerDensityUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -1159,8 +1132,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 GW/cm", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerCentimeter).ToString());
                 Assert.Equal("1 GW/ft", new LinearPowerDensity(1, LinearPowerDensityUnit.GigawattPerFoot).ToString());
@@ -1190,7 +1163,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -1230,10 +1203,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s1"));
                 Assert.Equal("0.12 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s2"));
                 Assert.Equal("0.123 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s3"));
@@ -1241,7 +1214,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -1255,28 +1228,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -1395,13 +1367,6 @@ namespace UnitsNet.Tests
         {
             var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(LinearPowerDensityUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = LinearPowerDensity.FromWattsPerMeter(1.0);
-            Assert.Equal(QuantityType.LinearPowerDensity, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

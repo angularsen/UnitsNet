@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum SpecificEntropyUnit
     {
-        Undefined = 0,
         BtuPerPoundFahrenheit = 1,
         CaloriePerGramKelvin = 2,
         JoulePerKilogramDegreeCelsius = 3,

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum FuelEfficiencyUnit
     {
-        Undefined = 0,
         KilometerPerLiter = 1,
         LiterPer100Kilometers = 2,
         MilePerUkGallon = 3,

@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MassConcentrationUnit
     {
-        Undefined = 0,
         CentigramPerDeciliter = 1,
         CentigramPerLiter = 2,
         CentigramPerMicroliter = 3,

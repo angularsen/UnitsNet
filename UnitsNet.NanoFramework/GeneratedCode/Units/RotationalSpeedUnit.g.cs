@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum RotationalSpeedUnit
     {
-        Undefined = 0,
         CentiradianPerSecond = 1,
         DeciradianPerSecond = 2,
         DegreePerMinute = 3,

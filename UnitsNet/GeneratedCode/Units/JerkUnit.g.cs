@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum JerkUnit
     {
-        Undefined = 0,
         CentimeterPerSecondCubed = 1,
         DecimeterPerSecondCubed = 2,
         FootPerSecondCubed = 3,

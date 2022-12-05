@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ApparentPowerUnit
     {
-        Undefined = 0,
         Gigavoltampere = 1,
         Kilovoltampere = 2,
         Megavoltampere = 3,

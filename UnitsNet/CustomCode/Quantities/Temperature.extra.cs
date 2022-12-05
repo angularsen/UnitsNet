@@ -64,7 +64,6 @@ namespace UnitsNet
             return From(resultInUnit, unit);
         }
 
-
         /// <summary>
         ///     Divide temperature by a <paramref name="divisor" /> in a given <paramref name="unit" />.
         /// </summary>

@@ -11,16 +11,16 @@ namespace CodeGen.JsonTypes
         // 0649 Field is never assigned to
 #pragma warning disable 0649
 
-        public BaseDimensions BaseDimensions = new BaseDimensions(); // Default to empty
-        public string BaseType = "double"; // TODO Rename to ValueType
-        public string BaseUnit; // TODO Rename to DefaultUnit or IntermediateConversionUnit to avoid confusion with Unit.BaseUnits
+        public BaseDimensions BaseDimensions = new(); // Default to empty
+        public string ValueType = "double";
+        public string BaseUnit;
         public bool GenerateArithmetic = true;
         public bool Logarithmic = false;
         public int LogarithmicScalingFactor = 1;
         public string Name;
         public Unit[] Units = Array.Empty<Unit>();
         public string XmlDocRemarks;
-        public string XmlDoc; // TODO Rename to XmlDocSummary
+        public string XmlDocSummary;
         public string ObsoleteText;
 
         // 0649 Field is never assigned to

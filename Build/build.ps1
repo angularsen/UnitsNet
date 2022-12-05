@@ -7,12 +7,9 @@
 
     Publishing nugets is handled by nuget-publish.bat and run by the build server
     on the master branch.
-.PARAMETER skipUWP
-    If flag is set, will skip the UWP (Windows Runtime Component) build step as this requires
-    some large, extra Visual Studio features to be installed.
 .EXAMPLE
   powershell ./build.ps1
-  powershell ./build.ps1 -IncludeWindowsRuntimeComponent -IncludeNanoFramework
+  powershell ./build.ps1 -IncludeNanoFramework
 
 .NOTES
     Author: Andreas Gullberg Larsen
@@ -20,7 +17,6 @@
     #>
 [CmdletBinding()]
 Param(
-    [switch] $IncludeWindowsRuntimeComponent,
     [switch] $IncludeNanoFramework
   )
 
@@ -32,7 +28,7 @@ try {
 
   Remove-ArtifactsDir
   Update-GeneratedCode
-  Start-Build -IncludeWindowsRuntimeComponent $IncludeWindowsRuntimeComponent -IncludeNanoFramework $IncludeNanoFramework
+  Start-Build -IncludeNanoFramework $IncludeNanoFramework
   Start-Tests
   Start-PackNugets
   Compress-ArtifactsAsZip

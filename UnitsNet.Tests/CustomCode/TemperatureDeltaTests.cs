@@ -55,7 +55,7 @@ namespace UnitsNet.Tests.CustomCode
         public void EntropyTimesTemperatureDeltaEqualsEnergy()
         {
             Energy energy = Entropy.FromKilojoulesPerKelvin(3) * TemperatureDelta.FromKelvins(7);
-            Assert.Equal(Energy.FromKilojoules(21), energy);
+            Assert.Equal(21, energy.Kilojoules);
         }
 
         [Fact]

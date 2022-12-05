@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Energy density is the amount of energy stored in a substance per unit volume and is measured in J/m³. It is sometimes confused with energy per unit mass which is properly called specific energy.
+    ///     
     /// </summary>
     public struct  EnergyDensity
     {
@@ -228,75 +228,75 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(EnergyDensityUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(EnergyDensityUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public EnergyDensity ToUnit(EnergyDensityUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new EnergyDensity(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public EnergyDensity ToUnit(EnergyDensityUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new EnergyDensity(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                EnergyDensityUnit.GigajoulePerCubicMeter => (_value) * 1e9d,
-                EnergyDensityUnit.GigawattHourPerCubicMeter => (_value * 3.6e+3) * 1e9d,
-                EnergyDensityUnit.JoulePerCubicMeter => _value,
-                EnergyDensityUnit.KilojoulePerCubicMeter => (_value) * 1e3d,
-                EnergyDensityUnit.KilowattHourPerCubicMeter => (_value * 3.6e+3) * 1e3d,
-                EnergyDensityUnit.MegajoulePerCubicMeter => (_value) * 1e6d,
-                EnergyDensityUnit.MegawattHourPerCubicMeter => (_value * 3.6e+3) * 1e6d,
-                EnergyDensityUnit.PetajoulePerCubicMeter => (_value) * 1e15d,
-                EnergyDensityUnit.PetawattHourPerCubicMeter => (_value * 3.6e+3) * 1e15d,
-                EnergyDensityUnit.TerajoulePerCubicMeter => (_value) * 1e12d,
-                EnergyDensityUnit.TerawattHourPerCubicMeter => (_value * 3.6e+3) * 1e12d,
-                EnergyDensityUnit.WattHourPerCubicMeter => _value * 3.6e+3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        EnergyDensityUnit.GigajoulePerCubicMeter => (_value) * 1e9d,
+                        EnergyDensityUnit.GigawattHourPerCubicMeter => (_value * 3.6e+3) * 1e9d,
+                        EnergyDensityUnit.JoulePerCubicMeter => _value,
+                        EnergyDensityUnit.KilojoulePerCubicMeter => (_value) * 1e3d,
+                        EnergyDensityUnit.KilowattHourPerCubicMeter => (_value * 3.6e+3) * 1e3d,
+                        EnergyDensityUnit.MegajoulePerCubicMeter => (_value) * 1e6d,
+                        EnergyDensityUnit.MegawattHourPerCubicMeter => (_value * 3.6e+3) * 1e6d,
+                        EnergyDensityUnit.PetajoulePerCubicMeter => (_value) * 1e15d,
+                        EnergyDensityUnit.PetawattHourPerCubicMeter => (_value * 3.6e+3) * 1e15d,
+                        EnergyDensityUnit.TerajoulePerCubicMeter => (_value) * 1e12d,
+                        EnergyDensityUnit.TerawattHourPerCubicMeter => (_value * 3.6e+3) * 1e12d,
+                        EnergyDensityUnit.WattHourPerCubicMeter => _value * 3.6e+3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(EnergyDensityUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(EnergyDensityUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                EnergyDensityUnit.GigajoulePerCubicMeter => (baseUnitValue) / 1e9d,
-                EnergyDensityUnit.GigawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e9d,
-                EnergyDensityUnit.JoulePerCubicMeter => baseUnitValue,
-                EnergyDensityUnit.KilojoulePerCubicMeter => (baseUnitValue) / 1e3d,
-                EnergyDensityUnit.KilowattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e3d,
-                EnergyDensityUnit.MegajoulePerCubicMeter => (baseUnitValue) / 1e6d,
-                EnergyDensityUnit.MegawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e6d,
-                EnergyDensityUnit.PetajoulePerCubicMeter => (baseUnitValue) / 1e15d,
-                EnergyDensityUnit.PetawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e15d,
-                EnergyDensityUnit.TerajoulePerCubicMeter => (baseUnitValue) / 1e12d,
-                EnergyDensityUnit.TerawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e12d,
-                EnergyDensityUnit.WattHourPerCubicMeter => baseUnitValue / 3.6e+3,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        EnergyDensityUnit.GigajoulePerCubicMeter => (baseUnitValue) / 1e9d,
+                        EnergyDensityUnit.GigawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e9d,
+                        EnergyDensityUnit.JoulePerCubicMeter => baseUnitValue,
+                        EnergyDensityUnit.KilojoulePerCubicMeter => (baseUnitValue) / 1e3d,
+                        EnergyDensityUnit.KilowattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e3d,
+                        EnergyDensityUnit.MegajoulePerCubicMeter => (baseUnitValue) / 1e6d,
+                        EnergyDensityUnit.MegawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e6d,
+                        EnergyDensityUnit.PetajoulePerCubicMeter => (baseUnitValue) / 1e15d,
+                        EnergyDensityUnit.PetawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e15d,
+                        EnergyDensityUnit.TerajoulePerCubicMeter => (baseUnitValue) / 1e12d,
+                        EnergyDensityUnit.TerawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e12d,
+                        EnergyDensityUnit.WattHourPerCubicMeter => baseUnitValue / 3.6e+3,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

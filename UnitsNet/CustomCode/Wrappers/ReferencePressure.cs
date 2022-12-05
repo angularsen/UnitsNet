@@ -2,12 +2,11 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnitsNet.CustomCode.Units;
 using UnitsNet.Units;
 
-namespace UnitsNet.CustomCode.Wrappers
+namespace UnitsNet.Wrappers
 {
     /// <summary>
     ///     Pressure tied to a real-world reference, allowing conversion between references.
@@ -37,7 +36,7 @@ namespace UnitsNet.CustomCode.Wrappers
         ///     <see cref="PressureReference.Absolute" />, and <see cref="PressureReference.Vacuum" />
         /// </summary>
         public static PressureReference[] References { get; } =
-            Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>().Except(new[] {PressureReference.Undefined}).ToArray();
+            Enum.GetValues(typeof(PressureReference)).Cast<PressureReference>().ToArray();
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ReferencePressure" /> struct requiring measured
@@ -165,7 +164,7 @@ namespace UnitsNet.CustomCode.Wrappers
                 {
                     if (Pressure.Value < 0)
                     {
-                        throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                        throw new ArgumentOutOfRangeException(nameof(Pressure), "Absolute pressure cannot be less than zero.");
                     }
 
                     return Pressure.Value;
@@ -174,7 +173,7 @@ namespace UnitsNet.CustomCode.Wrappers
                 {
                     if (Pressure.Value * -1 > AtmosphericPressure.ToUnit(Pressure.Unit).Value)
                     {
-                        throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                        throw new ArgumentOutOfRangeException(nameof(Pressure), "Absolute pressure cannot be less than zero.");
                     }
 
                     return AtmosphericPressure.ToUnit(Pressure.Unit).Value + Pressure.Value;
@@ -183,7 +182,7 @@ namespace UnitsNet.CustomCode.Wrappers
                 {
                     if (Pressure.Value > AtmosphericPressure.ToUnit(Pressure.Unit).Value)
                     {
-                        throw new ArgumentOutOfRangeException("Absolute pressure cannot be less than zero.");
+                        throw new ArgumentOutOfRangeException(nameof(Pressure), "Absolute pressure cannot be less than zero.");
                     }
 
                     return AtmosphericPressure.ToUnit(Pressure.Unit).Value - Pressure.Value;

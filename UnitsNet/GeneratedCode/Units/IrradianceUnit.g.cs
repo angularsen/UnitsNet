@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum IrradianceUnit
     {
-        Undefined = 0,
         KilowattPerSquareCentimeter = 1,
         KilowattPerSquareMeter = 2,
         MegawattPerSquareCentimeter = 3,

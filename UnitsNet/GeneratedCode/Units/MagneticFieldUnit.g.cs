@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum MagneticFieldUnit
     {
-        Undefined = 0,
         Gauss = 1,
         Microtesla = 2,
         Milligauss = 3,

@@ -4,7 +4,6 @@
 using System;
 using System.Threading;
 using System.Globalization;
-using JetBrains.Annotations;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -139,11 +138,11 @@ namespace UnitsNet
         /// <example>Mass.FromStonePounds(3,2).StonePounds.ToString() outputs: "3 st 2 lb"</example>
         /// <param name="cultureInfo">
         ///     Optional culture to format number and localize unit abbreviations.
-        ///     If null, defaults to <see cref="Thread.CurrentUICulture"/>.
+        ///     If null, defaults to <see cref="Thread.CurrentCulture"/>.
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentUICulture;
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
 
             var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone, cultureInfo);
             var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound, cultureInfo);

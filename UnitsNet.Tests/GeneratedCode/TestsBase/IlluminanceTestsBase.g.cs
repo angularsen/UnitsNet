@@ -71,19 +71,12 @@ namespace UnitsNet.Tests
         };
 
         [Fact]
-        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
-        {
-            Assert.Throws<ArgumentException>(() => new Illuminance((double)0.0, IlluminanceUnit.Undefined));
-        }
-
-        [Fact]
         public void DefaultCtor_ReturnsQuantityWithZeroValueAndBaseUnit()
         {
             var quantity = new Illuminance();
             Assert.Equal(0, quantity.Value);
             Assert.Equal(IlluminanceUnit.Lux, quantity.Unit);
         }
-
 
         [Fact]
         public void Ctor_WithInfinityValue_ThrowsArgumentException()
@@ -128,14 +121,9 @@ namespace UnitsNet.Tests
 
             Assert.Equal(Illuminance.Zero, quantityInfo.Zero);
             Assert.Equal("Illuminance", quantityInfo.Name);
-            Assert.Equal(QuantityType.Illuminance, quantityInfo.QuantityType);
 
-            var units = EnumUtils.GetEnumValues<IlluminanceUnit>().Except(new[] {IlluminanceUnit.Undefined}).OrderBy(x => x.ToString()).ToArray();
+            var units = EnumUtils.GetEnumValues<IlluminanceUnit>().OrderBy(x => x.ToString()).ToArray();
             var unitNames = units.Select(x => x.ToString());
-
-            // Obsolete members
-            Assert.Equal(units, quantityInfo.Units);
-            Assert.Equal(unitNames, quantityInfo.UnitNames);
         }
 
         [Fact]
@@ -311,7 +299,7 @@ namespace UnitsNet.Tests
             var converted = inBaseUnits.ToUnit(unit);
 
             var conversionFactor = GetConversionFactor(unit);
-            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, (double)converted.Value, conversionFactor.Tolerence);
+            AssertEx.EqualTolerance(conversionFactor.UnitsInBaseUnit, converted.Value, conversionFactor.Tolerence);
             Assert.Equal(unit, converted.Unit);
         }
 
@@ -328,12 +316,8 @@ namespace UnitsNet.Tests
         [MemberData(nameof(UnitTypes))]
         public void ToUnit_FromNonBaseUnit_ReturnsQuantityWithGivenUnit(IlluminanceUnit unit)
         {
-            // See if there is a unit available that is not the base unit.
-            var fromUnit = Illuminance.Units.FirstOrDefault(u => u != Illuminance.BaseUnit && u != IlluminanceUnit.Undefined);
-
-            // If there is only one unit for the quantity, we must use the base unit.
-            if (fromUnit == IlluminanceUnit.Undefined)
-                fromUnit = Illuminance.BaseUnit;
+            // See if there is a unit available that is not the base unit, fallback to base unit if it has only a single unit.
+            var fromUnit = Illuminance.Units.First(u => u != Illuminance.BaseUnit);
 
             var quantity = Illuminance.From(3.0, fromUnit);
             var converted = quantity.ToUnit(unit);
@@ -412,47 +396,45 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => lux.CompareTo(null));
         }
 
-        [Fact]
-        public void EqualityOperators()
+        [Theory]
+        [InlineData(1, IlluminanceUnit.Lux, 1, IlluminanceUnit.Lux, true)]  // Same value and unit.
+        [InlineData(1, IlluminanceUnit.Lux, 2, IlluminanceUnit.Lux, false)] // Different value.
+        [InlineData(2, IlluminanceUnit.Lux, 1, IlluminanceUnit.Kilolux, false)] // Different value and unit.
+        [InlineData(1, IlluminanceUnit.Lux, 1, IlluminanceUnit.Kilolux, false)] // Different unit.
+        public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, IlluminanceUnit unitA, double valueB, IlluminanceUnit unitB, bool expectEqual)
         {
-            var a = Illuminance.FromLux(1);
-            var b = Illuminance.FromLux(2);
+            var a = new Illuminance(valueA, unitA);
+            var b = new Illuminance(valueB, unitB);
 
-#pragma warning disable CS8073
-// ReSharper disable EqualExpressionComparison
+            // Operator overloads.
+            Assert.Equal(expectEqual, a == b);
+            Assert.Equal(expectEqual, b == a);
+            Assert.Equal(!expectEqual, a != b);
+            Assert.Equal(!expectEqual, b != a);
 
-            Assert.True(a == a);
-            Assert.False(a != a);
+            // IEquatable<T>
+            Assert.Equal(expectEqual, a.Equals(b));
+            Assert.Equal(expectEqual, b.Equals(a));
 
-            Assert.True(a != b);
-            Assert.False(a == b);
+            // IEquatable
+            Assert.Equal(expectEqual, a.Equals((object)b));
+            Assert.Equal(expectEqual, b.Equals((object)a));
+        }
 
+        [Fact]
+        public void Equals_Null_ReturnsFalse()
+        {
+            var a = Illuminance.Zero;
+
+            Assert.False(a.Equals((object)null));
+
+            // "The result of the expression is always 'false'..."
+            #pragma warning disable CS8073
             Assert.False(a == null);
             Assert.False(null == a);
-
-// ReSharper restore EqualExpressionComparison
-#pragma warning restore CS8073
-        }
-
-        [Fact]
-        public void Equals_SameType_IsImplemented()
-        {
-            var a = Illuminance.FromLux(1);
-            var b = Illuminance.FromLux(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-        }
-
-        [Fact]
-        public void Equals_QuantityAsObject_IsImplemented()
-        {
-            object a = Illuminance.FromLux(1);
-            object b = Illuminance.FromLux(2);
-
-            Assert.True(a.Equals(a));
-            Assert.False(a.Equals(b));
-            Assert.False(a.Equals((object)null));
+            Assert.True(a != null);
+            Assert.True(null != a);
+            #pragma warning restore CS8073
         }
 
         [Fact]
@@ -485,20 +467,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void UnitsDoesNotContainUndefined()
-        {
-            Assert.DoesNotContain(IlluminanceUnit.Undefined, Illuminance.Units);
-        }
-
-        [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(IlluminanceUnit)).Cast<IlluminanceUnit>();
             foreach(var unit in units)
             {
-                if (unit == IlluminanceUnit.Undefined)
-                    continue;
-
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
         }
@@ -512,8 +485,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
-            var prevCulture = Thread.CurrentThread.CurrentUICulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            var prevCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
             try {
                 Assert.Equal("1 klx", new Illuminance(1, IlluminanceUnit.Kilolux).ToString());
                 Assert.Equal("1 lx", new Illuminance(1, IlluminanceUnit.Lux).ToString());
@@ -522,7 +495,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                Thread.CurrentThread.CurrentUICulture = prevCulture;
+                Thread.CurrentThread.CurrentCulture = prevCulture;
             }
         }
 
@@ -541,10 +514,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
         {
-            var oldCulture = CultureInfo.CurrentUICulture;
+            var oldCulture = CultureInfo.CurrentCulture;
             try
             {
-                CultureInfo.CurrentUICulture = CultureInfo.InvariantCulture;
+                CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
                 Assert.Equal("0.1 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s1"));
                 Assert.Equal("0.12 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s2"));
                 Assert.Equal("0.123 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s3"));
@@ -552,7 +525,7 @@ namespace UnitsNet.Tests
             }
             finally
             {
-                CultureInfo.CurrentUICulture = oldCulture;
+                CultureInfo.CurrentCulture = oldCulture;
             }
         }
 
@@ -566,28 +539,27 @@ namespace UnitsNet.Tests
             Assert.Equal("0.1235 lx", new Illuminance(0.123456, IlluminanceUnit.Lux).ToString("s4", culture));
         }
 
-
-        [Fact]
-        public void ToString_NullFormat_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("en-US")]
+        public void ToString_NullFormat_DefaultsToGeneralFormat(string cultureName)
         {
             var quantity = Illuminance.FromLux(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, null, null));
+            CultureInfo formatProvider = cultureName == null
+                ? null
+                : CultureInfo.GetCultureInfo(cultureName);
+
+            Assert.Equal(quantity.ToString("g", formatProvider), quantity.ToString(null, formatProvider));
         }
 
-        [Fact]
-        public void ToString_NullArgs_ThrowsArgumentNullException()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("g")]
+        public void ToString_NullProvider_EqualsCurrentCulture(string format)
         {
             var quantity = Illuminance.FromLux(1.0);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToString(null, "g", null));
+            Assert.Equal(quantity.ToString(format, CultureInfo.CurrentCulture), quantity.ToString(format, null));
         }
-
-        [Fact]
-        public void ToString_NullProvider_EqualsCurrentUICulture()
-        {
-            var quantity = Illuminance.FromLux(1.0);
-            Assert.Equal(quantity.ToString(CultureInfo.CurrentUICulture, "g"), quantity.ToString(null, "g"));
-        }
-
 
         [Fact]
         public void Convert_ToBool_ThrowsInvalidCastException()
@@ -706,13 +678,6 @@ namespace UnitsNet.Tests
         {
             var quantity = Illuminance.FromLux(1.0);
             Assert.Equal(quantity.Unit, Convert.ChangeType(quantity, typeof(IlluminanceUnit)));
-        }
-
-        [Fact]
-        public void Convert_ChangeType_QuantityType_EqualsQuantityType()
-        {
-            var quantity = Illuminance.FromLux(1.0);
-            Assert.Equal(QuantityType.Illuminance, Convert.ChangeType(quantity, typeof(QuantityType)));
         }
 
         [Fact]

@@ -49,14 +49,14 @@ namespace UnitsNet.Tests.CustomCode
         public void AreaTimesMassFluxEqualsMassFlow()
         {
             MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
-            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+            Assert.Equal(40, massFlow.KilogramsPerSecond);
         }
 
         [Fact]
         public void AreaTimesDensityEqualsLinearDensity()
         {
             LinearDensity linearDensity = Area.FromSquareCentimeters(2) * Density.FromGramsPerCubicCentimeter(10);
-            Assert.Equal(LinearDensity.FromGramsPerCentimeter(20), linearDensity);
+            Assert.Equal(20, linearDensity.GramsPerCentimeter);
         }
 
         [Theory]

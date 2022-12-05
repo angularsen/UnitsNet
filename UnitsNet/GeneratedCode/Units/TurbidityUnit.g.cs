@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum TurbidityUnit
     {
-        Undefined = 0,
         NTU = 1,
     }
 

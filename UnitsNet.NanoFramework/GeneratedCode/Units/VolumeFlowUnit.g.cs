@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum VolumeFlowUnit
     {
-        Undefined = 0,
         AcreFootPerDay = 1,
         AcreFootPerHour = 2,
         AcreFootPerMinute = 3,
@@ -71,7 +70,7 @@ namespace UnitsNet.Units
         MilliliterPerHour = 43,
         MilliliterPerMinute = 44,
         MilliliterPerSecond = 45,
-        MillionUsGallonsPerDay = 46,
+        MillionUsGallonPerDay = 66,
         NanoliterPerDay = 47,
         NanoliterPerHour = 48,
         NanoliterPerMinute = 49,

@@ -129,57 +129,57 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(HeatTransferCoefficientUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(HeatTransferCoefficientUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public HeatTransferCoefficient ToUnit(HeatTransferCoefficientUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new HeatTransferCoefficient(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public HeatTransferCoefficient ToUnit(HeatTransferCoefficientUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new HeatTransferCoefficient(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit => _value * 5.6782633411134878,
-                HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => _value,
-                HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => _value,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit => _value * 5.6782633411134878,
+                        HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => _value,
+                        HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => _value,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(HeatTransferCoefficientUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(HeatTransferCoefficientUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit => baseUnitValue / 5.6782633411134878,
-                HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => baseUnitValue,
-                HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => baseUnitValue,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit => baseUnitValue / 5.6782633411134878,
+                        HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => baseUnitValue,
+                        HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => baseUnitValue,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 

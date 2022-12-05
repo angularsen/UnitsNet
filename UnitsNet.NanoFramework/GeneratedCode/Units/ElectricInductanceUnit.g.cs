@@ -25,7 +25,6 @@ namespace UnitsNet.Units
 
     public enum ElectricInductanceUnit
     {
-        Undefined = 0,
         Henry = 1,
         Microhenry = 2,
         Millihenry = 3,

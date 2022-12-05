@@ -173,65 +173,65 @@ namespace UnitsNet
 
         #endregion
 
-        #region Conversion Methods
+                #region Conversion Methods
 
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumePerLengthUnit unit) => GetValueAs(unit);
+                /// <summary>
+                ///     Convert to the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>Value converted to the specified unit.</returns>
+                public double As(VolumePerLengthUnit unit) => GetValueAs(unit);
 
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>A Duration with the specified unit.</returns>
-        public VolumePerLength ToUnit(VolumePerLengthUnit unit)
-        {
-            var convertedValue = GetValueAs(unit);
-            return new VolumePerLength(convertedValue, unit);
-        }
+                /// <summary>
+                ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+                /// </summary>
+                /// <returns>A Duration with the specified unit.</returns>
+                public VolumePerLength ToUnit(VolumePerLengthUnit unit)
+                {
+                    var convertedValue = GetValueAs(unit);
+                    return new VolumePerLength(convertedValue, unit);
+                }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
-        {
-            return Unit switch
-            {
-                VolumePerLengthUnit.CubicMeterPerMeter => _value,
-                VolumePerLengthUnit.CubicYardPerFoot => _value * 2.50838208,
-                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => _value * 2.50837706323584,
-                VolumePerLengthUnit.LiterPerKilometer => _value / 1e6,
-                VolumePerLengthUnit.LiterPerMeter => _value / 1000,
-                VolumePerLengthUnit.LiterPerMillimeter => _value,
-                VolumePerLengthUnit.OilBarrelPerFoot => _value / 1.91713408,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
-            };
-        }
+                /// <summary>
+                ///     Converts the current value + unit to the base unit.
+                ///     This is typically the first step in converting from one unit to another.
+                /// </summary>
+                /// <returns>The value in the base unit representation.</returns>
+                private double GetValueInBaseUnit()
+                {
+                    return Unit switch
+                    {
+                        VolumePerLengthUnit.CubicMeterPerMeter => _value,
+                        VolumePerLengthUnit.CubicYardPerFoot => _value * 2.50838208,
+                        VolumePerLengthUnit.CubicYardPerUsSurveyFoot => _value * 2.50837706323584,
+                        VolumePerLengthUnit.LiterPerKilometer => _value / 1e6,
+                        VolumePerLengthUnit.LiterPerMeter => _value / 1000,
+                        VolumePerLengthUnit.LiterPerMillimeter => _value,
+                        VolumePerLengthUnit.OilBarrelPerFoot => _value / 1.91713408,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                    };
+                    }
 
-        private double GetValueAs(VolumePerLengthUnit unit)
-        {
-            if (Unit == unit)
-                return _value;
+                private double GetValueAs(VolumePerLengthUnit unit)
+                {
+                    if (Unit == unit)
+                        return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+                    var baseUnitValue = GetValueInBaseUnit();
 
-            return unit switch
-            {
-                VolumePerLengthUnit.CubicMeterPerMeter => baseUnitValue,
-                VolumePerLengthUnit.CubicYardPerFoot => baseUnitValue / 2.50838208,
-                VolumePerLengthUnit.CubicYardPerUsSurveyFoot => baseUnitValue / 2.50837706323584,
-                VolumePerLengthUnit.LiterPerKilometer => baseUnitValue * 1e6,
-                VolumePerLengthUnit.LiterPerMeter => baseUnitValue * 1000,
-                VolumePerLengthUnit.LiterPerMillimeter => baseUnitValue,
-                VolumePerLengthUnit.OilBarrelPerFoot => baseUnitValue * 1.91713408,
-                _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
-            };
-        }
+                    return unit switch
+                    {
+                        VolumePerLengthUnit.CubicMeterPerMeter => baseUnitValue,
+                        VolumePerLengthUnit.CubicYardPerFoot => baseUnitValue / 2.50838208,
+                        VolumePerLengthUnit.CubicYardPerUsSurveyFoot => baseUnitValue / 2.50837706323584,
+                        VolumePerLengthUnit.LiterPerKilometer => baseUnitValue * 1e6,
+                        VolumePerLengthUnit.LiterPerMeter => baseUnitValue * 1000,
+                        VolumePerLengthUnit.LiterPerMillimeter => baseUnitValue,
+                        VolumePerLengthUnit.OilBarrelPerFoot => baseUnitValue * 1.91713408,
+                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                    };
+                    }
 
-        #endregion
+                #endregion
     }
 }
 
