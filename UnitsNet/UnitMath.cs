@@ -221,9 +221,9 @@ namespace UnitsNet
             var minValue = (TQuantity)min.ToUnit(value.Unit);
             var maxValue = (TQuantity)max.ToUnit(value.Unit);
             
-            if (minValue.CompareTo(maxValue) >= 1)
+            if (minValue.CompareTo(maxValue) > 0)
             {
-                throw new ArgumentException($"min ({min}) cannot be greater than max ({max})");
+                throw new ArgumentException($"min ({min}) cannot be greater than max ({max})", nameof(min));
             }
 
             if (value.CompareTo(minValue) < 0)
