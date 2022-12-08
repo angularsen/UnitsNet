@@ -3,6 +3,7 @@
 
 using System;
 using System.Globalization;
+using System.Numerics;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -112,5 +113,43 @@ namespace UnitsNet
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
         /// <returns>A new quantity with the determined unit.</returns>
         new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
+    }
+
+    /// <summary>
+    ///     An <see cref="IQuantity{TUnitType}"/> that (in .NET 7+) implements generic math interfaces for equality and comparison.
+    /// </summary>
+    /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
+    /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
+    /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
+    public interface IComparableQuantity<TSelf, TUnitType, TValueType> : IQuantity<TUnitType>
+#if NET7_0_OR_GREATER
+        , IEqualityOperators<TSelf, TSelf, bool>
+        , IComparisonOperators<TSelf, TSelf, bool>
+#endif
+        where TSelf : IComparableQuantity<TSelf, TUnitType, TValueType>
+        where TUnitType : Enum
+        where TValueType : struct
+    {
+    }
+
+    /// <summary>
+    ///     An <see cref="IComparableQuantity{TSelf, TUnitType, TValueType}"/> that (in .NET 7+) implements generic math interfaces for arithmetic operations.
+    /// </summary>
+    /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
+    /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
+    /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
+    public interface IArithmeticQuantity<TSelf, TUnitType, TValueType> : IComparableQuantity<TSelf, TUnitType, TValueType>
+#if NET7_0_OR_GREATER
+        , IAdditionOperators<TSelf, TSelf, TSelf>
+        , IAdditiveIdentity<TSelf, TSelf>
+        , ISubtractionOperators<TSelf, TSelf, TSelf>
+        , IMultiplyOperators<TSelf, TValueType, TSelf>
+        , IDivisionOperators<TSelf, TSelf, TValueType>
+        , IUnaryNegationOperators<TSelf, TSelf>
+#endif
+        where TSelf : IArithmeticQuantity<TSelf, TUnitType, TValueType>
+        where TUnitType : Enum
+        where TValueType : struct
+    {
     }
 }
