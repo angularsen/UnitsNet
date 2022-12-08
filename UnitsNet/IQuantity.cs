@@ -116,29 +116,30 @@ namespace UnitsNet
     }
 
     /// <summary>
-    ///     An <see cref="IQuantity{TUnitType}"/> that (in .NET 7+) implements generic math interfaces for equality and comparison.
+    ///     An <see cref="IQuantity{TUnitType}"/> that (in .NET 7+) implements generic math interfaces for equality, comparison and parsing.
     /// </summary>
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
     /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
-    public interface IComparableQuantity<TSelf, TUnitType, TValueType> : IQuantity<TUnitType>
+    public interface IQuantity<TSelf, TUnitType, TValueType> : IQuantity<TUnitType>
 #if NET7_0_OR_GREATER
         , IEqualityOperators<TSelf, TSelf, bool>
         , IComparisonOperators<TSelf, TSelf, bool>
+        , IParsable<TSelf>
 #endif
-        where TSelf : IComparableQuantity<TSelf, TUnitType, TValueType>
+        where TSelf : IQuantity<TSelf, TUnitType, TValueType>
         where TUnitType : Enum
         where TValueType : struct
     {
     }
 
     /// <summary>
-    ///     An <see cref="IComparableQuantity{TSelf, TUnitType, TValueType}"/> that (in .NET 7+) implements generic math interfaces for arithmetic operations.
+    ///     An <see cref="IQuantity{TSelf, TUnitType, TValueType}"/> that (in .NET 7+) implements generic math interfaces for arithmetic operations.
     /// </summary>
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
     /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
-    public interface IArithmeticQuantity<TSelf, TUnitType, TValueType> : IComparableQuantity<TSelf, TUnitType, TValueType>
+    public interface IArithmeticQuantity<TSelf, TUnitType, TValueType> : IQuantity<TSelf, TUnitType, TValueType>
 #if NET7_0_OR_GREATER
         , IAdditionOperators<TSelf, TSelf, TSelf>
         , IAdditiveIdentity<TSelf, TSelf>
