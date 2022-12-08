@@ -3,67 +3,67 @@ on:
   workflow_dispatch:
     inputs:
       benchmark-name:
-        description: 'A name given for this benchmark'
+        description: "A name given for this benchmark"
         required: false
-        default: 'UnitsNet Benchmarks'
+        default: "UnitsNet Benchmarks"
       runtimes:
-        description: 'The runtime version to use (e.g. net472 net48 netcoreapp21 netcoreapp31 netcoreapp50)'
-        default: net472 netcoreapp21 netcoreapp50
+        description: "The runtime version to use (e.g. net472 net48 netcoreapp21 netcoreapp31 net6.0)"
+        default: net472 netcoreapp21 net6.0
         required: true
       exporters:
-        description: 'The exporter(s) used for this run (GitHub/StackOverflow/RPlot/CSV/JSON/HTML/XML)'
+        description: "The exporter(s) used for this run (GitHub/StackOverflow/RPlot/CSV/JSON/HTML/XML)"
         required: false
         default: fulljson rplot
       filter:
-        description: 'An optional class filter to apply'
+        description: "An optional class filter to apply"
         required: false
-        default: '*'
+        default: "*"
       categories:
-        description: 'An optional categories filter to apply'
+        description: "An optional categories filter to apply"
         required: false
-        default: ''
+        default: ""
       execution-options:
-        description: 'Any additional parameters passed to the benchmark'
+        description: "Any additional parameters passed to the benchmark"
         required: false
-        default: --disableLogFile     
+        default: --disableLogFile
       comparison-baseline:
-        description: 'Compare against a previous result (expecting a link to *-report-full.json)'
+        description: "Compare against a previous result (expecting a link to *-report-full.json)"
         required: true
-        default: 'https://angularsen.github.io/UnitsNet/benchmarks/netcoreapp50/results/UnitsNet.Benchmark.UnitsNetBenchmarks-report-full.json'              
+        default: "https://angularsen.github.io/UnitsNet/benchmarks/netcoreapp50/results/UnitsNet.Benchmark.UnitsNetBenchmarks-report-full.json"
       comparison-threshold:
-        description: 'The (comparison) threshold for Statistical Test. Examples: 5%, 10ms, 100ns, 1s'
+        description: "The (comparison) threshold for Statistical Test. Examples: 5%, 10ms, 100ns, 1s"
         required: false
-        default: '1%'      
+        default: "1%"
       comparison-top:
-        description: 'Filter the comparison to the top/bottom N results'
+        description: "Filter the comparison to the top/bottom N results"
         required: false
-        default: 10               
+        default: 10
       framework:
-        description: 'The dotnet-version version to use (e.g. net5.0)'
-        default: 'net5.0'
-        required: true     
+        description: "The dotnet-version version to use (e.g. net6.0)"
+        default: "net6.0"
+        required: true
 jobs:
   benchmark:
     env:
       OUTPUT_FOLDER: Artifacts/Benchmarks/${{ github.event.inputs.benchmark-name }}
     runs-on: windows-latest
-    steps:      
+    steps:
       # checkout the current branch
-      - uses: actions/checkout@v2 
-      
+      - uses: actions/checkout@v2
+
       # we need all frameworks (even if only running one target at a time)
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '2.1.x'
-            
+          dotnet-version: "2.1.x"
+
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x'
-            
+          dotnet-version: "3.1.x"
+
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.0.x'
-            
+          dotnet-version: "5.0.x"
+
       # executing the benchmark for the current framework(s), placing the result in the output-folder
       - uses: ./.github/actions/run-benchmarks
         with:
@@ -73,70 +73,69 @@ jobs:
           filter: ${{ github.event.inputs.filter }}
           categories: ${{ github.event.inputs.categories }}
           execution-options: ${{ github.event.inputs.execution-options }}
-            
-      # saving the current artifact (downloadable until the expiration date of this action)        
+
+      # saving the current artifact (downloadable until the expiration date of this action)
       - name: Store benchmark result
         uses: actions/upload-artifact@v2
         with:
           name: ${{ github.event.inputs.benchmark-name }} (${{ github.event.inputs.runtimes }})
           path: ${{ env.OUTPUT_FOLDER }}/results
-          if-no-files-found: error 
-          
+          if-no-files-found: error
+
   compare-results:
     if: ${{ endsWith(github.event.inputs.comparison-baseline, '-report-full.json') }}
     env:
       OUPUT_NAME: Baseline vs ${{ github.event.inputs.benchmark-name }} (${{ github.event.inputs.runtimes }})
     needs: [benchmark]
     runs-on: ubuntu-latest
-    steps:                    
-      # The baseline results are downloaded into a 'baseline' folder.  
+    steps:
+      # The baseline results are downloaded into a 'baseline' folder.
       - name: Download Baseline
         uses: carlosperate/download-file-action@v1.0.3
         with:
           file-url: ${{ github.event.inputs.comparison-baseline }}
           location: baseline
-      
-      # The benchmark results are downloaded into a 'runtime' folder.  
-      - name: Download Artifacts 
+
+      # The benchmark results are downloaded into a 'runtime' folder.
+      - name: Download Artifacts
         uses: actions/download-artifact@v1
         with:
           name: ${{ github.event.inputs.benchmark-name }} (${{ github.event.inputs.runtimes }})
-          path: results    
-          
+          path: results
+
       # The benchmark comparer is currently taken from dotnet/performance/src/tools/ResultsComparer (hoping that a 'tool' would eventually be made available)
       - name: Download ResultsComparer
         uses: actions/checkout@v2
         with:
           repository: dotnet/performance
           path: comparer
-                  
+
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.x'
-              
+          dotnet-version: "3.1.x"
+
       - run: mkdir -p artifacts
-      
+
       # Executing the comparer, placing the result in a 'comparison' folder (as well as creating a summary from the output)
       - name: Running the ResultsComparer
         env:
-          PERFLAB_TARGET_FRAMEWORKS: netcoreapp3.1
-        run: > 
+          PERFLAB_TARGET_FRAMEWORKS: net6.0
+        run: >
           dotnet run --project 'comparer/src/tools/ResultsComparer' -c Release
-          --framework netcoreapp31
+          --framework net6.0
           --base baseline --diff results 
           --csv "artifacts/${{ env.OUPUT_NAME }}.csv"
           --xml "artifacts/${{ env.OUPUT_NAME }}.xml"
           --threshold ${{ github.event.inputs.comparison-threshold }} 
           --top ${{ github.event.inputs.comparison-top }} 
           > "artifacts/${{ env.OUPUT_NAME }}.md"
-      
+
       - name: Summary
         run: cat "artifacts/${{ env.OUPUT_NAME }}.md"
-      
-      # saving the current artifacts (downloadable until the expiration date of this action)        
+
+      # saving the current artifacts (downloadable until the expiration date of this action)
       - name: Store comparison result
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUPUT_NAME }}
           path: artifacts
-          
