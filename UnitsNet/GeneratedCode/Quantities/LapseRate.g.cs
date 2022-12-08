@@ -36,7 +36,7 @@ namespace UnitsNet
     /// </summary>
     [Obsolete("Use TemperatureGradient instead.")]
     [DataContract]
-    public readonly partial struct LapseRate : IQuantity<LapseRateUnit>, IEquatable<LapseRate>, IComparable, IComparable<LapseRate>, IConvertible, IFormattable
+    public readonly partial struct LapseRate : IArithmeticQuantity<LapseRate, LapseRateUnit, double>, IEquatable<LapseRate>, IComparable, IComparable<LapseRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -128,8 +128,11 @@ namespace UnitsNet
         /// </summary>
         public static LapseRate Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static LapseRate AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

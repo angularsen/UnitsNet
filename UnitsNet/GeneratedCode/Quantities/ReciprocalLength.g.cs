@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Reciprocal_length
     /// </remarks>
     [DataContract]
-    public readonly partial struct ReciprocalLength : IQuantity<ReciprocalLengthUnit>, IEquatable<ReciprocalLength>, IComparable, IComparable<ReciprocalLength>, IConvertible, IFormattable
+    public readonly partial struct ReciprocalLength : IArithmeticQuantity<ReciprocalLength, ReciprocalLengthUnit, double>, IEquatable<ReciprocalLength>, IComparable, IComparable<ReciprocalLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -139,8 +139,11 @@ namespace UnitsNet
         /// </summary>
         public static ReciprocalLength Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static ReciprocalLength AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

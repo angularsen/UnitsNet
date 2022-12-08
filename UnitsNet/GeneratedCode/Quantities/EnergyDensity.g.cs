@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct EnergyDensity : IQuantity<EnergyDensityUnit>, IEquatable<EnergyDensity>, IComparable, IComparable<EnergyDensity>, IConvertible, IFormattable
+    public readonly partial struct EnergyDensity : IArithmeticQuantity<EnergyDensity, EnergyDensityUnit, double>, IEquatable<EnergyDensity>, IComparable, IComparable<EnergyDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -138,8 +138,11 @@ namespace UnitsNet
         /// </summary>
         public static EnergyDensity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static EnergyDensity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

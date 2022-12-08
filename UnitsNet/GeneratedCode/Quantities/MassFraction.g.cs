@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Mass_fraction_(chemistry)
     /// </remarks>
     [DataContract]
-    public readonly partial struct MassFraction : IQuantity<MassFractionUnit>, IEquatable<MassFraction>, IComparable, IComparable<MassFraction>, IConvertible, IFormattable
+    public readonly partial struct MassFraction : IArithmeticQuantity<MassFraction, MassFractionUnit, double>, IEquatable<MassFraction>, IComparable, IComparable<MassFraction>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -153,8 +153,11 @@ namespace UnitsNet
         /// </summary>
         public static MassFraction Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static MassFraction AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

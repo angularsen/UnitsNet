@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct Jerk : IQuantity<JerkUnit>, IEquatable<Jerk>, IComparable, IComparable<Jerk>, IConvertible, IFormattable
+    public readonly partial struct Jerk : IArithmeticQuantity<Jerk, JerkUnit, double>, IEquatable<Jerk>, IComparable, IComparable<Jerk>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -137,8 +137,11 @@ namespace UnitsNet
         /// </summary>
         public static Jerk Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Jerk AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

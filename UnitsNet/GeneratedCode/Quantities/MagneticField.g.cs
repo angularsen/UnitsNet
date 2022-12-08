@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Magnetic_field
     /// </remarks>
     [DataContract]
-    public readonly partial struct MagneticField : IQuantity<MagneticFieldUnit>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
+    public readonly partial struct MagneticField : IArithmeticQuantity<MagneticField, MagneticFieldUnit, double>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -135,8 +135,11 @@ namespace UnitsNet
         /// </summary>
         public static MagneticField Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static MagneticField AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

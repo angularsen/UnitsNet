@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Mass_concentration_(chemistry)
     /// </remarks>
     [DataContract]
-    public readonly partial struct MassConcentration : IQuantity<MassConcentrationUnit>, IEquatable<MassConcentration>, IComparable, IComparable<MassConcentration>, IConvertible, IFormattable
+    public readonly partial struct MassConcentration : IArithmeticQuantity<MassConcentration, MassConcentrationUnit, double>, IEquatable<MassConcentration>, IComparable, IComparable<MassConcentration>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -178,8 +178,11 @@ namespace UnitsNet
         /// </summary>
         public static MassConcentration Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static MassConcentration AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

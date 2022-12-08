@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Solid_angle
     /// </remarks>
     [DataContract]
-    public readonly partial struct SolidAngle : IQuantity<SolidAngleUnit>, IEquatable<SolidAngle>, IComparable, IComparable<SolidAngle>, IConvertible, IFormattable
+    public readonly partial struct SolidAngle : IArithmeticQuantity<SolidAngle, SolidAngleUnit, double>, IEquatable<SolidAngle>, IComparable, IComparable<SolidAngle>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -130,8 +130,11 @@ namespace UnitsNet
         /// </summary>
         public static SolidAngle Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static SolidAngle AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

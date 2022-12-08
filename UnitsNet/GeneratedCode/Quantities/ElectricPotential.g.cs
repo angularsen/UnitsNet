@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricPotential : IQuantity<ElectricPotentialUnit>, IEquatable<ElectricPotential>, IComparable, IComparable<ElectricPotential>, IConvertible, IFormattable
+    public readonly partial struct ElectricPotential : IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit, double>, IEquatable<ElectricPotential>, IComparable, IComparable<ElectricPotential>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -131,8 +131,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricPotential Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static ElectricPotential AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

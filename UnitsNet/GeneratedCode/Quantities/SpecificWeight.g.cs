@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Specificweight
     /// </remarks>
     [DataContract]
-    public readonly partial struct SpecificWeight : IQuantity<SpecificWeightUnit>, IEquatable<SpecificWeight>, IComparable, IComparable<SpecificWeight>, IConvertible, IFormattable
+    public readonly partial struct SpecificWeight : IArithmeticQuantity<SpecificWeight, SpecificWeightUnit, double>, IEquatable<SpecificWeight>, IComparable, IComparable<SpecificWeight>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -146,8 +146,11 @@ namespace UnitsNet
         /// </summary>
         public static SpecificWeight Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static SpecificWeight AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

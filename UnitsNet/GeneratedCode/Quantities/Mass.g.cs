@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     In physics, mass (from Greek μᾶζα "barley cake, lump [of dough]") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).
     /// </summary>
     [DataContract]
-    public readonly partial struct Mass : IQuantity<MassUnit>, IEquatable<Mass>, IComparable, IComparable<Mass>, IConvertible, IFormattable
+    public readonly partial struct Mass : IArithmeticQuantity<Mass, MassUnit, double>, IEquatable<Mass>, IComparable, IComparable<Mass>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -151,8 +151,11 @@ namespace UnitsNet
         /// </summary>
         public static Mass Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Mass AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

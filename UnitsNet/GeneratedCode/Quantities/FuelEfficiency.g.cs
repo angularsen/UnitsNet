@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Fuel_efficiency
     /// </remarks>
     [DataContract]
-    public readonly partial struct FuelEfficiency : IQuantity<FuelEfficiencyUnit>, IEquatable<FuelEfficiency>, IComparable, IComparable<FuelEfficiency>, IConvertible, IFormattable
+    public readonly partial struct FuelEfficiency : IArithmeticQuantity<FuelEfficiency, FuelEfficiencyUnit, double>, IEquatable<FuelEfficiency>, IComparable, IComparable<FuelEfficiency>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -133,8 +133,11 @@ namespace UnitsNet
         /// </summary>
         public static FuelEfficiency Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static FuelEfficiency AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

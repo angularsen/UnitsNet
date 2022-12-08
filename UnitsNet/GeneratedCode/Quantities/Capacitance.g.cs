@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
     [DataContract]
-    public readonly partial struct Capacitance : IQuantity<CapacitanceUnit>, IEquatable<Capacitance>, IComparable, IComparable<Capacitance>, IConvertible, IFormattable
+    public readonly partial struct Capacitance : IArithmeticQuantity<Capacitance, CapacitanceUnit, double>, IEquatable<Capacitance>, IComparable, IComparable<Capacitance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -136,8 +136,11 @@ namespace UnitsNet
         /// </summary>
         public static Capacitance Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Capacitance AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

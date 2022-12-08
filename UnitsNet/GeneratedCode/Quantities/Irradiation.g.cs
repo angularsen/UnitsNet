@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Irradiation
     /// </remarks>
     [DataContract]
-    public readonly partial struct Irradiation : IQuantity<IrradiationUnit>, IEquatable<Irradiation>, IComparable, IComparable<Irradiation>, IConvertible, IFormattable
+    public readonly partial struct Irradiation : IArithmeticQuantity<Irradiation, IrradiationUnit, double>, IEquatable<Irradiation>, IComparable, IComparable<Irradiation>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -136,8 +136,11 @@ namespace UnitsNet
         /// </summary>
         public static Irradiation Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Irradiation AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.
     /// </summary>
     [DataContract]
-    public readonly partial struct SpecificEntropy : IQuantity<SpecificEntropyUnit>, IEquatable<SpecificEntropy>, IComparable, IComparable<SpecificEntropy>, IConvertible, IFormattable
+    public readonly partial struct SpecificEntropy : IArithmeticQuantity<SpecificEntropy, SpecificEntropyUnit, double>, IEquatable<SpecificEntropy>, IComparable, IComparable<SpecificEntropy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -135,8 +135,11 @@ namespace UnitsNet
         /// </summary>
         public static SpecificEntropy Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static SpecificEntropy AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

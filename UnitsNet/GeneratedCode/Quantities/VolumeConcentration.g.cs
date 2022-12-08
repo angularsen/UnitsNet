@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Concentration#Volume_concentration
     /// </remarks>
     [DataContract]
-    public readonly partial struct VolumeConcentration : IQuantity<VolumeConcentrationUnit>, IEquatable<VolumeConcentration>, IComparable, IComparable<VolumeConcentration>, IConvertible, IFormattable
+    public readonly partial struct VolumeConcentration : IArithmeticQuantity<VolumeConcentration, VolumeConcentrationUnit, double>, IEquatable<VolumeConcentration>, IComparable, IComparable<VolumeConcentration>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -149,8 +149,11 @@ namespace UnitsNet
         /// </summary>
         public static VolumeConcentration Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static VolumeConcentration AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

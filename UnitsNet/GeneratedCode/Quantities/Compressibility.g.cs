@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct Compressibility : IQuantity<CompressibilityUnit>, IEquatable<Compressibility>, IComparable, IComparable<Compressibility>, IConvertible, IFormattable
+    public readonly partial struct Compressibility : IArithmeticQuantity<Compressibility, CompressibilityUnit, double>, IEquatable<Compressibility>, IComparable, IComparable<Compressibility>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -133,8 +133,11 @@ namespace UnitsNet
         /// </summary>
         public static Compressibility Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Compressibility AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

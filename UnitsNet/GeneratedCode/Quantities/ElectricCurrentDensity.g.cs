@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Current_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricCurrentDensity : IQuantity<ElectricCurrentDensityUnit>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
+    public readonly partial struct ElectricCurrentDensity : IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit, double>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -132,8 +132,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricCurrentDensity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static ElectricCurrentDensity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Thermal_Conductivity
     /// </remarks>
     [DataContract]
-    public readonly partial struct ThermalConductivity : IQuantity<ThermalConductivityUnit>, IEquatable<ThermalConductivity>, IComparable, IComparable<ThermalConductivity>, IConvertible, IFormattable
+    public readonly partial struct ThermalConductivity : IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit, double>, IEquatable<ThermalConductivity>, IComparable, IComparable<ThermalConductivity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -131,8 +131,11 @@ namespace UnitsNet
         /// </summary>
         public static ThermalConductivity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static ThermalConductivity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

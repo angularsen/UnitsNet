@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Specific_energy
     /// </remarks>
     [DataContract]
-    public readonly partial struct SpecificEnergy : IQuantity<SpecificEnergyUnit>, IEquatable<SpecificEnergy>, IComparable, IComparable<SpecificEnergy>, IConvertible, IFormattable
+    public readonly partial struct SpecificEnergy : IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit, double>, IEquatable<SpecificEnergy>, IComparable, IComparable<SpecificEnergy>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -158,8 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static SpecificEnergy Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static SpecificEnergy AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

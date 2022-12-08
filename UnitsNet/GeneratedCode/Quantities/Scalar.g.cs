@@ -35,7 +35,7 @@ namespace UnitsNet
     ///     A way of representing a number of items.
     /// </summary>
     [DataContract]
-    public readonly partial struct Scalar : IQuantity<ScalarUnit>, IEquatable<Scalar>, IComparable, IComparable<Scalar>, IConvertible, IFormattable
+    public readonly partial struct Scalar : IArithmeticQuantity<Scalar, ScalarUnit, double>, IEquatable<Scalar>, IComparable, IComparable<Scalar>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -127,8 +127,11 @@ namespace UnitsNet
         /// </summary>
         public static Scalar Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Scalar AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

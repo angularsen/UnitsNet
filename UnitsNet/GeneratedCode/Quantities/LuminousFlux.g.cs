@@ -38,7 +38,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminous_flux
     /// </remarks>
     [DataContract]
-    public readonly partial struct LuminousFlux : IQuantity<LuminousFluxUnit>, IEquatable<LuminousFlux>, IComparable, IComparable<LuminousFlux>, IConvertible, IFormattable
+    public readonly partial struct LuminousFlux : IArithmeticQuantity<LuminousFlux, LuminousFluxUnit, double>, IEquatable<LuminousFlux>, IComparable, IComparable<LuminousFlux>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -130,8 +130,11 @@ namespace UnitsNet
         /// </summary>
         public static LuminousFlux Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static LuminousFlux AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>
