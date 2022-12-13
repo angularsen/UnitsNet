@@ -11,7 +11,7 @@
       "PluralName": "Liters",
       "FromUnitToBaseFunc": "{x} / 1e3",
       "FromBaseToUnitFunc": "{x} * 1e3",
-      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

@@ -285,6 +285,11 @@ namespace UnitsNet
         public double Milliliters => As(VolumeUnit.Milliliter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Nanoliter"/>
+        /// </summary>
+        public double Nanoliters => As(VolumeUnit.Nanoliter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
         /// </summary>
         public double OilBarrels => As(VolumeUnit.OilBarrel);
@@ -590,6 +595,12 @@ namespace UnitsNet
         public static Volume FromMilliliters(double milliliters) => new Volume(milliliters, VolumeUnit.Milliliter);
 
         /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Nanoliter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromNanoliters(double nanoliters) => new Volume(nanoliters, VolumeUnit.Nanoliter);
+
+        /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.OilBarrel"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -736,6 +747,7 @@ namespace UnitsNet
                         VolumeUnit.MetricTeaspoon => _value * 0.5e-5,
                         VolumeUnit.Microliter => (_value / 1e3) * 1e-6d,
                         VolumeUnit.Milliliter => (_value / 1e3) * 1e-3d,
+                        VolumeUnit.Nanoliter => (_value / 1e3) * 1e-9d,
                         VolumeUnit.OilBarrel => _value * 0.158987294928,
                         VolumeUnit.UkTablespoon => _value * 1.5e-5,
                         VolumeUnit.UsBeerBarrel => _value * 0.1173477658,
@@ -801,6 +813,7 @@ namespace UnitsNet
                         VolumeUnit.MetricTeaspoon => baseUnitValue / 0.5e-5,
                         VolumeUnit.Microliter => (baseUnitValue * 1e3) / 1e-6d,
                         VolumeUnit.Milliliter => (baseUnitValue * 1e3) / 1e-3d,
+                        VolumeUnit.Nanoliter => (baseUnitValue * 1e3) / 1e-9d,
                         VolumeUnit.OilBarrel => baseUnitValue / 0.158987294928,
                         VolumeUnit.UkTablespoon => baseUnitValue / 1.5e-5,
                         VolumeUnit.UsBeerBarrel => baseUnitValue / 0.1173477658,
