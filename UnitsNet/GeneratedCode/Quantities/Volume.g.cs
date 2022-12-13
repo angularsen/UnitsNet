@@ -99,6 +99,7 @@ namespace UnitsNet
                     new UnitInfo<VolumeUnit>(VolumeUnit.MetricTeaspoon, "MetricTeaspoons", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Microliter, "Microliters", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.Milliliter, "Milliliters", BaseUnits.Undefined),
+                    new UnitInfo<VolumeUnit>(VolumeUnit.Nanoliter, "Nanoliters", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.OilBarrel, "OilBarrels", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UkTablespoon, "UkTablespoons", BaseUnits.Undefined),
                     new UnitInfo<VolumeUnit>(VolumeUnit.UsBeerBarrel, "UsBeerBarrels", BaseUnits.Undefined),
@@ -416,6 +417,11 @@ namespace UnitsNet
         public double Milliliters => As(VolumeUnit.Milliliter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Nanoliter"/>
+        /// </summary>
+        public double Nanoliters => As(VolumeUnit.Nanoliter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
         /// </summary>
         public double OilBarrels => As(VolumeUnit.OilBarrel);
@@ -521,6 +527,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.MetricTeaspoon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.Microliter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.Milliliter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.Nanoliter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.UkTablespoon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.UsBeerBarrel, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
@@ -577,6 +584,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.MetricTeaspoon, quantity => quantity.ToUnit(VolumeUnit.MetricTeaspoon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Microliter, quantity => quantity.ToUnit(VolumeUnit.Microliter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Milliliter, quantity => quantity.ToUnit(VolumeUnit.Milliliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Nanoliter, quantity => quantity.ToUnit(VolumeUnit.Nanoliter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.OilBarrel, quantity => quantity.ToUnit(VolumeUnit.OilBarrel));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UkTablespoon, quantity => quantity.ToUnit(VolumeUnit.UkTablespoon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.UsBeerBarrel, quantity => quantity.ToUnit(VolumeUnit.UsBeerBarrel));
@@ -672,6 +680,8 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Microliter, new CultureInfo("ru-RU"), false, true, new string[]{"мкл"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Milliliter, new CultureInfo("en-US"), false, true, new string[]{"ml"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Milliliter, new CultureInfo("ru-RU"), false, true, new string[]{"мл"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Nanoliter, new CultureInfo("en-US"), false, true, new string[]{"nl"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.Nanoliter, new CultureInfo("ru-RU"), false, true, new string[]{"нл"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.OilBarrel, new CultureInfo("en-US"), false, true, new string[]{"bbl"});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UkTablespoon, new CultureInfo("en-US"), false, true, new string[]{""});
             unitAbbreviationsCache.PerformAbbreviationMapping(VolumeUnit.UkTablespoon, new CultureInfo("ru-RU"), false, true, new string[]{""});
@@ -1126,6 +1136,16 @@ namespace UnitsNet
         {
             double value = (double) milliliters;
             return new Volume(value, VolumeUnit.Milliliter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Nanoliter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromNanoliters(QuantityValue nanoliters)
+        {
+            double value = (double) nanoliters;
+            return new Volume(value, VolumeUnit.Nanoliter);
         }
 
         /// <summary>
@@ -1744,6 +1764,7 @@ namespace UnitsNet
                 (VolumeUnit.MetricTeaspoon, VolumeUnit.CubicMeter) => new Volume(_value * 0.5e-5, VolumeUnit.CubicMeter),
                 (VolumeUnit.Microliter, VolumeUnit.CubicMeter) => new Volume((_value / 1e3) * 1e-6d, VolumeUnit.CubicMeter),
                 (VolumeUnit.Milliliter, VolumeUnit.CubicMeter) => new Volume((_value / 1e3) * 1e-3d, VolumeUnit.CubicMeter),
+                (VolumeUnit.Nanoliter, VolumeUnit.CubicMeter) => new Volume((_value / 1e3) * 1e-9d, VolumeUnit.CubicMeter),
                 (VolumeUnit.OilBarrel, VolumeUnit.CubicMeter) => new Volume(_value * 0.158987294928, VolumeUnit.CubicMeter),
                 (VolumeUnit.UkTablespoon, VolumeUnit.CubicMeter) => new Volume(_value * 1.5e-5, VolumeUnit.CubicMeter),
                 (VolumeUnit.UsBeerBarrel, VolumeUnit.CubicMeter) => new Volume(_value * 0.1173477658, VolumeUnit.CubicMeter),
@@ -1797,6 +1818,7 @@ namespace UnitsNet
                 (VolumeUnit.CubicMeter, VolumeUnit.MetricTeaspoon) => new Volume(_value / 0.5e-5, VolumeUnit.MetricTeaspoon),
                 (VolumeUnit.CubicMeter, VolumeUnit.Microliter) => new Volume((_value * 1e3) / 1e-6d, VolumeUnit.Microliter),
                 (VolumeUnit.CubicMeter, VolumeUnit.Milliliter) => new Volume((_value * 1e3) / 1e-3d, VolumeUnit.Milliliter),
+                (VolumeUnit.CubicMeter, VolumeUnit.Nanoliter) => new Volume((_value * 1e3) / 1e-9d, VolumeUnit.Nanoliter),
                 (VolumeUnit.CubicMeter, VolumeUnit.OilBarrel) => new Volume(_value / 0.158987294928, VolumeUnit.OilBarrel),
                 (VolumeUnit.CubicMeter, VolumeUnit.UkTablespoon) => new Volume(_value / 1.5e-5, VolumeUnit.UkTablespoon),
                 (VolumeUnit.CubicMeter, VolumeUnit.UsBeerBarrel) => new Volume(_value / 0.1173477658, VolumeUnit.UsBeerBarrel),

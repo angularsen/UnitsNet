@@ -66,6 +66,7 @@ namespace UnitsNet.Units
         MetricTeaspoon = 39,
         Microliter = 40,
         Milliliter = 41,
+        Nanoliter = 53,
         OilBarrel = 42,
         UkTablespoon = 43,
         UsBeerBarrel = 44,
