@@ -97,7 +97,7 @@ function Start-Tests {
   write-host -foreground blue "Run tests...END`n"
 }
 
-function Start-PackNugets {
+function Start-PackNugets([boolean] $IncludeNanoFramework = $false) {
   $projectPaths = @(
     "UnitsNet\UnitsNet.csproj",
     "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
