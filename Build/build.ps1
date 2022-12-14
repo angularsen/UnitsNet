@@ -34,7 +34,7 @@ try {
   Update-GeneratedCode
   Start-Build -IncludeWindowsRuntimeComponent $IncludeWindowsRuntimeComponent -IncludeNanoFramework $IncludeNanoFramework
   Start-Tests
-  Start-PackNugets
+  Start-PackNugets -IncludeNanoFramework $IncludeNanoFramework
   Compress-ArtifactsAsZip
 }
 catch {
