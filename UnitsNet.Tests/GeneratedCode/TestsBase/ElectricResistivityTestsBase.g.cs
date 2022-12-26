@@ -798,7 +798,7 @@ namespace UnitsNet.Tests
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }

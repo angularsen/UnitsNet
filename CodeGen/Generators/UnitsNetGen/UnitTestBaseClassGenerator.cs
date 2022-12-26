@@ -143,7 +143,7 @@ namespace UnitsNet.Tests
                 {GetUnitFullName(unit)} => ({unit.PluralName}InOne{_baseUnit.SingularName}, {unit.PluralName}Tolerance),");
             }
 
-            Writer.WL(@"
+            Writer.WL($@"
                 _ => throw new NotSupportedException()
             }};
         }}
@@ -836,7 +836,7 @@ namespace UnitsNet.Tests
         }}");
         }
 
-Writer.WL(@"
+        Writer.WL($@"
     }}
 }}");
             return Writer.ToString();

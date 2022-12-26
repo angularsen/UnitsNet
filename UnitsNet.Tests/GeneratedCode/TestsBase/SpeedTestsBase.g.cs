@@ -2227,7 +2227,7 @@ namespace UnitsNet.Tests
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }

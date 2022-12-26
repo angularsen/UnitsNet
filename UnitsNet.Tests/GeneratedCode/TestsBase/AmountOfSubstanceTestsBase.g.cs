@@ -855,7 +855,7 @@ namespace UnitsNet.Tests
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }

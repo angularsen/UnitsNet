@@ -492,7 +492,7 @@ namespace UnitsNet.Tests
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(FuelEfficiencyUnit)).Cast<FuelEfficiencyUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
