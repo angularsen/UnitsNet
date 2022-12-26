@@ -3,7 +3,9 @@
 
 using System;
 using System.Globalization;
+#if NET7_0_OR_GREATER
 using System.Numerics;
+#endif
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -123,7 +125,6 @@ namespace UnitsNet
     /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
     public interface IQuantity<TSelf, TUnitType, TValueType> : IQuantity<TUnitType>
 #if NET7_0_OR_GREATER
-        , IEqualityOperators<TSelf, TSelf, bool>
         , IComparisonOperators<TSelf, TSelf, bool>
         , IParsable<TSelf>
 #endif
@@ -145,12 +146,21 @@ namespace UnitsNet
         , IAdditiveIdentity<TSelf, TSelf>
         , ISubtractionOperators<TSelf, TSelf, TSelf>
         , IMultiplyOperators<TSelf, TValueType, TSelf>
-        , IDivisionOperators<TSelf, TSelf, TValueType>
+        , IDivisionOperators<TSelf, TValueType, TSelf>
         , IUnaryNegationOperators<TSelf, TSelf>
 #endif
         where TSelf : IArithmeticQuantity<TSelf, TUnitType, TValueType>
         where TUnitType : Enum
         where TValueType : struct
+#if NET7_0_OR_GREATER
+        , INumber<TValueType>
+#endif
     {
+#if NET7_0_OR_GREATER
+        /// <summary>
+        ///     The zero value of this quantity.
+        /// </summary>
+        static abstract TSelf Zero { get; }
+#endif
     }
 }
