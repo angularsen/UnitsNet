@@ -50,7 +50,7 @@ namespace UnitsNet.Tests
             return Writer.ToString();
         }
 
-        private static string? GetObsoleteAttributeOrNull(string obsoleteText) =>
+        private static string? GetObsoleteAttributeOrNull(string? obsoleteText) =>
           string.IsNullOrWhiteSpace(obsoleteText) ?
           null :
           $"[Obsolete(\"{obsoleteText}\")]";

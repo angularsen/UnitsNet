@@ -11,15 +11,15 @@ namespace CodeGen.JsonTypes
 #pragma warning disable 0649
 
         public BaseUnits? BaseUnits;
-        public string FromBaseToUnitFunc;
-        public string FromUnitToBaseFunc;
+        public string FromBaseToUnitFunc = null!;
+        public string FromUnitToBaseFunc = null!;
         public Localization[] Localization = Array.Empty<Localization>();
-        public string PluralName;
+        public string PluralName = null!;
         public Prefix[] Prefixes = Array.Empty<Prefix>();
-        public string SingularName;
-        public string XmlDocRemarks;
-        public string XmlDocSummary;
-        public string ObsoleteText;
+        public string SingularName = null!;
+        public string? XmlDocRemarks;
+        public string XmlDocSummary = null!;
+        public string? ObsoleteText;
         public bool SkipConversionGeneration;
         public bool AllowAbbreviationLookup = true;
 

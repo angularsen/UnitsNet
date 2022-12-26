@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 
@@ -260,7 +258,7 @@ namespace UnitsNet
         /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
         /// It is up to the consumer to wrap any padding/new lines in order to keep to correct indentation formats
         /// </summary>
-        private static string? GetObsoleteAttributeOrNull(string obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
+        private static string? GetObsoleteAttributeOrNull(string? obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
             ? null
             : $"[Obsolete(\"{obsoleteText}\")]";
 

@@ -59,7 +59,7 @@ namespace UnitsNet.Units
             return Writer.ToString();
         }
 
-        private string? GetObsoleteAttributeOrNull(string obsoleteText) =>
+        private string? GetObsoleteAttributeOrNull(string? obsoleteText) =>
           string.IsNullOrWhiteSpace(obsoleteText) ?
           null :
           $"[System.Obsolete(\"{obsoleteText}\")]";

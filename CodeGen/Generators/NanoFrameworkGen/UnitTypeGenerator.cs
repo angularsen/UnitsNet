@@ -29,7 +29,7 @@ namespace UnitsNet.Units
 
     public enum {_unitEnumName}
     {{");
-            foreach (var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
                 if (unit.XmlDocSummary.HasText())
                 {
@@ -59,7 +59,7 @@ namespace UnitsNet.Units
             return Writer.ToString();
         }
 
-        private string? GetObsoleteAttributeOrNull(string obsoleteText) =>
+        private static string? GetObsoleteAttributeOrNull(string? obsoleteText) =>
             string.IsNullOrWhiteSpace(obsoleteText) ?
             null :
             $"[System.Obsolete(\"{obsoleteText}\")]";
