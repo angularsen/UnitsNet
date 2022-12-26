@@ -55,29 +55,21 @@ namespace UnitsNet
         static Molarity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
-            BaseUnit = MolarityUnit.MolesPerCubicMeter;
+            BaseUnit = MolarityUnit.MolePerCubicMeter;
             Units = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>().ToArray();
             Zero = new Molarity(0, BaseUnit);
             Info = new QuantityInfo<MolarityUnit>("Molarity",
                 new UnitInfo<MolarityUnit>[]
                 {
                     new UnitInfo<MolarityUnit>(MolarityUnit.CentimolePerLiter, "CentimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.CentimolesPerLiter, "CentimolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.DecimolePerLiter, "DecimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.DecimolesPerLiter, "DecimolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.FemtomolePerLiter, "FemtomolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MicromolePerLiter, "MicromolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MicromolesPerLiter, "MicromolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MillimolePerLiter, "MillimolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MillimolesPerLiter, "MillimolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MolePerCubicMeter, "MolesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
                     new UnitInfo<MolarityUnit>(MolarityUnit.MolePerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerCubicMeter, "MolesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, amount: AmountOfSubstanceUnit.Mole)),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.MolesPerLiter, "MolesPerLiter", new BaseUnits(length: LengthUnit.Decimeter, amount: AmountOfSubstanceUnit.Mole)),
                     new UnitInfo<MolarityUnit>(MolarityUnit.NanomolePerLiter, "NanomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.NanomolesPerLiter, "NanomolesPerLiter", BaseUnits.Undefined),
                     new UnitInfo<MolarityUnit>(MolarityUnit.PicomolePerLiter, "PicomolesPerLiter", BaseUnits.Undefined),
-                    new UnitInfo<MolarityUnit>(MolarityUnit.PicomolesPerLiter, "PicomolesPerLiter", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -132,7 +124,7 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
+        ///     The base unit of Molarity, which is MolePerCubicMeter. All conversions go via this value.
         /// </summary>
         public static MolarityUnit BaseUnit { get; }
 
@@ -142,7 +134,7 @@ namespace UnitsNet
         public static MolarityUnit[] Units { get; }
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit MolesPerCubicMeter.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit MolePerCubicMeter.
         /// </summary>
         public static Molarity Zero { get; }
 
@@ -234,64 +226,40 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: MolarityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.CentimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.CentimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.FemtomolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MillimolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MillimolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.NanomolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.NanomolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.PicomolePerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.PicomolesPerLiter, MolarityUnit.MolesPerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolesPerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.CentimolePerLiter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.DecimolePerLiter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.FemtomolePerLiter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MicromolePerLiter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MillimolePerLiter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerLiter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.NanomolePerLiter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.PicomolePerLiter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerCubicMeter, quantity => quantity);
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.MolePerCubicMeter, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> MolarityUnit
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.CentimolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.CentimolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.DecimolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.DecimolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.FemtomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.FemtomolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MicromolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.MicromolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MillimolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.MillimolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolePerCubicMeter, quantity => quantity.ToUnit(MolarityUnit.MolePerCubicMeter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.MolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.NanomolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.NanomolesPerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.PicomolePerLiter));
-            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolesPerLiter, quantity => quantity.ToUnit(MolarityUnit.PicomolesPerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.CentimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.CentimolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.DecimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.DecimolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.FemtomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.FemtomolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.MicromolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MicromolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.MillimolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MillimolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.MolePerLiter, quantity => quantity.ToUnit(MolarityUnit.MolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.NanomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.NanomolePerLiter));
+            unitConverter.SetConversionFunction<Molarity>(MolarityUnit.MolePerCubicMeter, MolarityUnit.PicomolePerLiter, quantity => quantity.ToUnit(MolarityUnit.PicomolePerLiter));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"cmol/L", "cM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.CentimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"cmol/L", "cM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"dmol/L", "dM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.DecimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"dmol/L", "dM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.FemtomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"fmol/L", "fM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"µmol/L", "µM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MicromolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"µmol/L", "µM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mmol/L", "mM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MillimolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"mmol/L", "mM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mol/m³"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"mol/L", "M"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolesPerCubicMeter, new CultureInfo("en-US"), false, false, new string[]{"mol/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.MolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"mol/L", "M"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.NanomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"nmol/L", "nM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.NanomolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"nmol/L", "nM"});
             unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PicomolePerLiter, new CultureInfo("en-US"), false, true, new string[]{"pmol/L", "pM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarityUnit.PicomolesPerLiter, new CultureInfo("en-US"), false, false, new string[]{"pmol/L", "pM"});
         }
 
         /// <summary>
@@ -875,40 +843,24 @@ namespace UnitsNet
             converted = (Unit, unit) switch
             {
                 // MolarityUnit -> BaseUnit
-                (MolarityUnit.CentimolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-2d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.CentimolesPerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-2d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.DecimolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-1d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.DecimolesPerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-1d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.FemtomolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-15d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.MicromolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-6d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.MicromolesPerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-6d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.MillimolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-3d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.MillimolesPerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-3d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.MolePerCubicMeter, MolarityUnit.MolesPerCubicMeter) => new Molarity(_value, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.MolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity(_value / 1e-3, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.MolesPerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity(_value / 1e-3, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.NanomolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-9d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.NanomolesPerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-9d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.PicomolePerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-12d, MolarityUnit.MolesPerCubicMeter),
-                (MolarityUnit.PicomolesPerLiter, MolarityUnit.MolesPerCubicMeter) => new Molarity((_value / 1e-3) * 1e-12d, MolarityUnit.MolesPerCubicMeter),
+                (MolarityUnit.CentimolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity((_value / 1e-3) * 1e-2d, MolarityUnit.MolePerCubicMeter),
+                (MolarityUnit.DecimolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity((_value / 1e-3) * 1e-1d, MolarityUnit.MolePerCubicMeter),
+                (MolarityUnit.FemtomolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity((_value / 1e-3) * 1e-15d, MolarityUnit.MolePerCubicMeter),
+                (MolarityUnit.MicromolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity((_value / 1e-3) * 1e-6d, MolarityUnit.MolePerCubicMeter),
+                (MolarityUnit.MillimolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity((_value / 1e-3) * 1e-3d, MolarityUnit.MolePerCubicMeter),
+                (MolarityUnit.MolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity(_value / 1e-3, MolarityUnit.MolePerCubicMeter),
+                (MolarityUnit.NanomolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity((_value / 1e-3) * 1e-9d, MolarityUnit.MolePerCubicMeter),
+                (MolarityUnit.PicomolePerLiter, MolarityUnit.MolePerCubicMeter) => new Molarity((_value / 1e-3) * 1e-12d, MolarityUnit.MolePerCubicMeter),
 
                 // BaseUnit -> MolarityUnit
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolePerLiter) => new Molarity((_value * 1e-3) / 1e-2d, MolarityUnit.CentimolePerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.CentimolesPerLiter) => new Molarity((_value * 1e-3) / 1e-2d, MolarityUnit.CentimolesPerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolePerLiter) => new Molarity((_value * 1e-3) / 1e-1d, MolarityUnit.DecimolePerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.DecimolesPerLiter) => new Molarity((_value * 1e-3) / 1e-1d, MolarityUnit.DecimolesPerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.FemtomolePerLiter) => new Molarity((_value * 1e-3) / 1e-15d, MolarityUnit.FemtomolePerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolePerLiter) => new Molarity((_value * 1e-3) / 1e-6d, MolarityUnit.MicromolePerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MicromolesPerLiter) => new Molarity((_value * 1e-3) / 1e-6d, MolarityUnit.MicromolesPerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolePerLiter) => new Molarity((_value * 1e-3) / 1e-3d, MolarityUnit.MillimolePerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MillimolesPerLiter) => new Molarity((_value * 1e-3) / 1e-3d, MolarityUnit.MillimolesPerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolePerCubicMeter) => new Molarity(_value, MolarityUnit.MolePerCubicMeter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolePerLiter) => new Molarity(_value * 1e-3, MolarityUnit.MolePerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.MolesPerLiter) => new Molarity(_value * 1e-3, MolarityUnit.MolesPerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolePerLiter) => new Molarity((_value * 1e-3) / 1e-9d, MolarityUnit.NanomolePerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.NanomolesPerLiter) => new Molarity((_value * 1e-3) / 1e-9d, MolarityUnit.NanomolesPerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolePerLiter) => new Molarity((_value * 1e-3) / 1e-12d, MolarityUnit.PicomolePerLiter),
-                (MolarityUnit.MolesPerCubicMeter, MolarityUnit.PicomolesPerLiter) => new Molarity((_value * 1e-3) / 1e-12d, MolarityUnit.PicomolesPerLiter),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.CentimolePerLiter) => new Molarity((_value * 1e-3) / 1e-2d, MolarityUnit.CentimolePerLiter),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.DecimolePerLiter) => new Molarity((_value * 1e-3) / 1e-1d, MolarityUnit.DecimolePerLiter),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.FemtomolePerLiter) => new Molarity((_value * 1e-3) / 1e-15d, MolarityUnit.FemtomolePerLiter),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.MicromolePerLiter) => new Molarity((_value * 1e-3) / 1e-6d, MolarityUnit.MicromolePerLiter),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.MillimolePerLiter) => new Molarity((_value * 1e-3) / 1e-3d, MolarityUnit.MillimolePerLiter),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.MolePerLiter) => new Molarity(_value * 1e-3, MolarityUnit.MolePerLiter),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.NanomolePerLiter) => new Molarity((_value * 1e-3) / 1e-9d, MolarityUnit.NanomolePerLiter),
+                (MolarityUnit.MolePerCubicMeter, MolarityUnit.PicomolePerLiter) => new Molarity((_value * 1e-3) / 1e-12d, MolarityUnit.PicomolePerLiter),
 
                 _ => null!
             };

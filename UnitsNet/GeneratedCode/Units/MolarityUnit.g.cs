@@ -26,30 +26,14 @@ namespace UnitsNet.Units
     public enum MolarityUnit
     {
         CentimolePerLiter = 1,
-        [System.Obsolete("Use the singular unit instead.")]
-        CentimolesPerLiter = 2,
         DecimolePerLiter = 3,
-        [System.Obsolete("Use the singular unit instead.")]
-        DecimolesPerLiter = 4,
         FemtomolePerLiter = 5,
         MicromolePerLiter = 6,
-        [System.Obsolete("Use the singular unit instead.")]
-        MicromolesPerLiter = 7,
         MillimolePerLiter = 8,
-        [System.Obsolete("Use the singular unit instead.")]
-        MillimolesPerLiter = 9,
         MolePerCubicMeter = 10,
         MolePerLiter = 11,
-        [System.Obsolete("Use the singular unit instead.")]
-        MolesPerCubicMeter = 12,
-        [System.Obsolete("Use the singular unit instead.")]
-        MolesPerLiter = 13,
         NanomolePerLiter = 14,
-        [System.Obsolete("Use the singular unit instead.")]
-        NanomolesPerLiter = 15,
         PicomolePerLiter = 16,
-        [System.Obsolete("Use the singular unit instead.")]
-        PicomolesPerLiter = 17,
     }
 
     #pragma warning restore 1591
