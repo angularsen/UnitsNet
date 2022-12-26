@@ -1,11 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using Xunit;
 using System;
 using System.Globalization;
+using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class DurationTests : DurationTestsBase
     {
@@ -190,7 +190,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1 сек", 1, "ru-RU")]
         [InlineData("1000 мс", 1, "ru-RU")]
         [InlineData("1000 мсек", 1, "ru-RU")]
-        public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(string textValue, double expectedSeconds, string culture = null)
+        public void DurationFromStringUsingMultipleAbbreviationsParsedCorrectly(string textValue, double expectedSeconds, string? culture = null)
         {
             var cultureInfo = culture == null ? null : new CultureInfo(culture);
 

@@ -1,11 +1,11 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using Xunit;
-using UnitsNet.Units;
 using System;
+using UnitsNet.Units;
+using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     // Avoid accessing static prop DefaultToString in parallel from multiple tests:
     // UnitSystemTests.DefaultToStringFormatting()
@@ -173,7 +173,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void Constructor_UnitSystemNull_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new Length(1.0, (UnitSystem)null));
+            Assert.Throws<ArgumentNullException>(() => new Length(1.0, unitSystem: null!));
         }
 
         [Fact]
@@ -216,7 +216,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(2.0, 0.5)]
         public static void InverseReturnsReciprocalLength(double value, double expected)
         {
-            var length = new Length(value, Units.LengthUnit.Meter);
+            var length = new Length(value, LengthUnit.Meter);
             var inverseLength = length.Inverse();
 
             Assert.Equal(expected, inverseLength.InverseMeters);

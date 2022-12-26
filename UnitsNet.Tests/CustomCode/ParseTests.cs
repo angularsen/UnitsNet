@@ -6,7 +6,7 @@ using System.Globalization;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     /// <remarks>
     ///     These test methods would ideally be generated for each unit class,

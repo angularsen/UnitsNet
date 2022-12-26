@@ -2,11 +2,13 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
 {
+    // ReSharper disable once InconsistentNaming
     public partial class IQuantityTests
     {
         [Fact]
@@ -17,10 +19,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void As_GivenNullUnitSystem_ThrowsArgumentNullException()
         {
             IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
-            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.As((UnitSystem)null));
+            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.As((UnitSystem)null!));
         }
 
         [Fact]
@@ -41,7 +44,7 @@ namespace UnitsNet.Tests
         public void ToUnit_GivenNullUnitSystem_ThrowsArgumentNullException()
         {
             IQuantity imperialLengthQuantity = new Length(2.0, LengthUnit.Inch);
-            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.ToUnit((UnitSystem)null));
+            Assert.Throws<ArgumentNullException>(() => imperialLengthQuantity.ToUnit((UnitSystem)null!));
         }
 
         [Fact]

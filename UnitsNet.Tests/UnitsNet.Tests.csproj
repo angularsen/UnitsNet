@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>net6.0;net48</TargetFrameworks>
-    <RootNamespace>UnitsNet.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
     <NoWarn>CS0618</NoWarn>

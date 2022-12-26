@@ -3,7 +3,7 @@
 
 using System;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class FrequencyTests : FrequencyTestsBase
     {
