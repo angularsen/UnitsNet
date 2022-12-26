@@ -59,9 +59,8 @@ namespace UnitsNet.Units
             return Writer.ToString();
         }
 
-        private string? GetObsoleteAttributeOrNull(string? obsoleteText) =>
-          string.IsNullOrWhiteSpace(obsoleteText) ?
-          null :
-          $"[System.Obsolete(\"{obsoleteText}\")]";
+        private static string? GetObsoleteAttributeOrNull(string? obsoleteText) => string.IsNullOrWhiteSpace(obsoleteText)
+            ? null
+            : $"[System.Obsolete(\"{obsoleteText}\")]";
     }
 }

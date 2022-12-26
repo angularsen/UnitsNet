@@ -35,6 +35,7 @@ namespace UnitsNet
     /// <remarks>
     ///     {_quantity.XmlDocRemarks}
     /// </remarks>");
+            Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
 
             Writer.WL($@"
     public struct  {_quantity.Name}
@@ -123,10 +124,9 @@ namespace UnitsNet
             Writer.WL(@"
         #region Conversion Properties
 ");
-            foreach (var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
-                if (unit.SkipConversionGeneration)
-                    continue;
+                if (unit.SkipConversionGeneration) continue;
 
                 Writer.WL($@"
         /// <summary>
@@ -149,10 +149,9 @@ namespace UnitsNet
             Writer.WL(@"
         #region Static Factory Methods
 ");
-            foreach (var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
-                if (unit.SkipConversionGeneration)
-                    continue;
+                if (unit.SkipConversionGeneration) continue;
 
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
@@ -212,7 +211,7 @@ namespace UnitsNet
                 {{
                     return Unit switch
                     {{");
-            foreach (var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
                 var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
@@ -233,7 +232,7 @@ namespace UnitsNet
 
                     return unit switch
                     {{");
-            foreach (var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "baseUnitValue");
                 Writer.WL($@"
@@ -249,10 +248,10 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
-        internal static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
+        private static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
-        internal static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
+        private static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
 
         /// <summary>
         /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string

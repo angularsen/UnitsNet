@@ -29,15 +29,7 @@ namespace CodeGen.Generators.UnitsNetGen
             _unitEnumName = $"{quantity.Name}Unit";
 
             BaseDimensions baseDimensions = quantity.BaseDimensions;
-            _isDimensionless = baseDimensions == null ||
-                              baseDimensions.L == 0 &&
-                              baseDimensions.M == 0 &&
-                              baseDimensions.T == 0 &&
-                              baseDimensions.I == 0 &&
-                              baseDimensions.Θ == 0 &&
-                              baseDimensions.N == 0 &&
-                              baseDimensions.J == 0;
-
+            _isDimensionless = baseDimensions is { L: 0, M: 0, T: 0, I: 0, Θ: 0, N: 0, J: 0 };
         }
 
         public string Generate()
@@ -114,7 +106,7 @@ namespace UnitsNet
 
         private void GenerateStaticConstructor()
         {
-            var baseDimensions = _quantity.BaseDimensions;
+            BaseDimensions baseDimensions = _quantity.BaseDimensions;
             Writer.WL($@"
         static {_quantity.Name}()
         {{");
@@ -130,9 +122,9 @@ namespace UnitsNet
                 new UnitInfo<{_unitEnumName}>[]
                 {{");
 
-            foreach (var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
-                var baseUnits = unit.BaseUnits;
+                BaseUnits? baseUnits = unit.BaseUnits;
                 if (baseUnits == null)
                 {
                     Writer.WL($@"
@@ -299,10 +291,9 @@ namespace UnitsNet
             Writer.WL(@"
         #region Conversion Properties
 ");
-            foreach (var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
-                if (unit.SkipConversionGeneration)
-                    continue;
+                if (unit.SkipConversionGeneration) continue;
 
                 Writer.WL($@"
         /// <summary>
@@ -334,12 +325,10 @@ namespace UnitsNet
         {{
             // Register in unit converter: {_quantity.Name}Unit -> BaseUnit");
 
-            foreach(var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
-                if (unit.SingularName == _quantity.BaseUnit)
-                    continue;
+                if (unit.SingularName == _quantity.BaseUnit) continue;
 
-                var func = unit.FromUnitToBaseFunc.Replace("{x}", "quantity.Value");
                 Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_quantity.Name}Unit.{unit.SingularName}, {_unitEnumName}.{_quantity.BaseUnit}, quantity => quantity.ToUnit({_unitEnumName}.{_quantity.BaseUnit}));");
             }
@@ -352,12 +341,10 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> {_quantity.Name}Unit");
 
-            foreach(var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
-                if (unit.SingularName == _quantity.BaseUnit)
-                    continue;
+                if (unit.SingularName == _quantity.BaseUnit) continue;
 
-                var func = unit.FromBaseToUnitFunc.Replace("{x}", "quantity.Value");
                 Writer.WL($@"
             unitConverter.SetConversionFunction<{_quantity.Name}>({_unitEnumName}.{_quantity.BaseUnit}, {_quantity.Name}Unit.{unit.SingularName}, quantity => quantity.ToUnit({_quantity.Name}Unit.{unit.SingularName}));");
             }
@@ -367,9 +354,9 @@ namespace UnitsNet
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {{");
-            foreach(var unit in _quantity.Units)
+            foreach(Unit unit in _quantity.Units)
             {
-                foreach(var localization in unit.Localization)
+                foreach(Localization localization in unit.Localization)
                 {
                     // All units must have a unit abbreviation, so fallback to "" for units with no abbreviations defined in JSON
                     var abbreviationParams = localization.Abbreviations.Any() ?
@@ -414,10 +401,9 @@ namespace UnitsNet
             Writer.WL(@"
         #region Static Factory Methods
 ");
-            foreach (var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
-                if (unit.SkipConversionGeneration)
-                    continue;
+                if (unit.SkipConversionGeneration) continue;
 
                 var valueParamName = unit.PluralName.ToLowerInvariant();
                 Writer.WL($@"
@@ -602,8 +588,7 @@ namespace UnitsNet
 
         private void GenerateArithmeticOperators()
         {
-            if (!_quantity.GenerateArithmetic)
-                return;
+            if (!_quantity.GenerateArithmetic) return;
 
             // Logarithmic units required different arithmetic
             if (_quantity.Logarithmic)
@@ -1022,10 +1007,9 @@ namespace UnitsNet
             {{
                 // {_quantity.Name}Unit -> BaseUnit");
 
-            foreach(var unit in _quantity.Units)
+            foreach (Unit unit in _quantity.Units)
             {
-                if (unit.SingularName == _quantity.BaseUnit)
-                    continue;
+                if (unit.SingularName == _quantity.BaseUnit) continue;
 
                 var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
@@ -1036,10 +1020,9 @@ namespace UnitsNet
             Writer.WL($@"
 
                 // BaseUnit -> {_quantity.Name}Unit");
-            foreach(var unit in _quantity.Units)
+            foreach(Unit unit in _quantity.Units)
             {
-                if (unit.SingularName == _quantity.BaseUnit)
-                    continue;
+                if (unit.SingularName == _quantity.BaseUnit) continue;
 
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "_value");
                 Writer.WL($@"
@@ -1248,7 +1231,7 @@ namespace UnitsNet
         private static string? GetObsoleteAttributeOrNull(Quantity quantity) => GetObsoleteAttributeOrNull(quantity.ObsoleteText);
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>
-        internal static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
+        private static string? GetObsoleteAttributeOrNull(Unit unit) => GetObsoleteAttributeOrNull(unit.ObsoleteText);
 
         /// <summary>
         /// Returns the Obsolete attribute if ObsoleteText has been defined on the JSON input - otherwise returns empty string
