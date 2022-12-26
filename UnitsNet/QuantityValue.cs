@@ -270,8 +270,8 @@ namespace UnitsNet
         public override string ToString()
             => Type switch
             {
-                UnderlyingDataType.Decimal => _decimalValue.ToString(),
-                UnderlyingDataType.Double => _doubleValue.ToString(),
+                UnderlyingDataType.Decimal => _decimalValue.ToString(CultureInfo.CurrentCulture),
+                UnderlyingDataType.Double => _doubleValue.ToString(CultureInfo.CurrentCulture),
                 _ => throw new NotImplementedException()
             };
 
