@@ -12,7 +12,7 @@ namespace UnitsNet
     /// </summary>
     public sealed class BaseDimensions
     {
-        /// <inheritdoc />
+        /// <summary>Creates an instance of <see cref="BaseDimensions"/>.</summary>
         public BaseDimensions(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
         {
             Length = length;
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <param name="left">Left.</param>
         /// <param name="right">Right.</param>
         /// <returns>True if not equal.</returns>
-        public static bool operator !=(BaseDimensions left, BaseDimensions right)
+        public static bool operator !=(BaseDimensions? left, BaseDimensions? right)
         {
             return !(left == right);
         }

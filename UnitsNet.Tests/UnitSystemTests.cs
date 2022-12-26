@@ -23,7 +23,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ConstructorThrowsArgumentNullExceptionForNullBaseUnits()
         {
-            Assert.Throws<ArgumentNullException>(() => new UnitSystem(null));
+            Assert.Throws<ArgumentNullException>(() => new UnitSystem(null!));
         }
 
         [Theory]
@@ -56,8 +56,9 @@ namespace UnitsNet.Tests
             Assert.True(unitSystem1.Equals((object)unitSystem2));
             Assert.False(unitSystem1.Equals((object)unitSystem3));
 
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.False(unitSystem1.Equals("Some object."));
-            Assert.False(unitSystem1.Equals((IFormatProvider)null));
+            Assert.False(unitSystem1.Equals((IFormatProvider?)null));
         }
 
         [Fact]
@@ -102,8 +103,8 @@ namespace UnitsNet.Tests
             Assert.False(unitSystem1 == null);
             Assert.False(null == unitSystem1);
 
-            UnitSystem nullUnitSystem1 = null;
-            UnitSystem nullUnitSystem2 = null;
+            UnitSystem? nullUnitSystem1 = null;
+            UnitSystem? nullUnitSystem2 = null;
 
             Assert.True(nullUnitSystem1 == nullUnitSystem2);
         }
@@ -129,8 +130,8 @@ namespace UnitsNet.Tests
             Assert.True(unitSystem1 != null);
             Assert.True(null != unitSystem1);
 
-            UnitSystem nullUnitSystem1 = null;
-            UnitSystem nullUnitSystem2 = null;
+            UnitSystem? nullUnitSystem1 = null;
+            UnitSystem? nullUnitSystem2 = null;
 
             Assert.False(nullUnitSystem1 != nullUnitSystem2);
         }

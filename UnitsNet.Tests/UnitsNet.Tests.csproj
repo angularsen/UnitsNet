@@ -5,6 +5,7 @@
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
     <NoWarn>CS0618</NoWarn>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <!-- Strong name signing -->

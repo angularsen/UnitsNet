@@ -29,7 +29,7 @@ namespace UnitsNet.Tests.Helpers
                 throw new NotImplementedException();
             }
 
-            public override object GetValue(object component)
+            public override object GetValue(object? component)
             {
                 throw new NotImplementedException();
             }
@@ -39,7 +39,7 @@ namespace UnitsNet.Tests.Helpers
                 throw new NotImplementedException();
             }
 
-            public override void SetValue(object component, object value)
+            public override void SetValue(object? component, object? value)
             {
                 throw new NotImplementedException();
             }
@@ -63,7 +63,7 @@ namespace UnitsNet.Tests.Helpers
 
         public object Instance => throw new NotImplementedException();
 
-        public PropertyDescriptor PropertyDescriptor { get; set; }
+        public PropertyDescriptor PropertyDescriptor { get; set; } = null!;
 
         public object GetService(Type serviceType)
         {

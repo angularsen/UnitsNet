@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Newtonsoft.Json;
 using UnitsNet.Serialization.JsonNet.Tests.Infrastructure;
@@ -26,6 +27,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void UnitsNetIComparableJsonConverter_WriteJson_throws_NotImplementedException()
         {
             Assert.Throws<NotImplementedException>(() => _sut.WriteJson(null, null, null));

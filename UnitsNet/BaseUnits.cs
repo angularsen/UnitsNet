@@ -130,7 +130,7 @@ namespace UnitsNet
         /// <param name="right">The right instance.</param>
         /// <returns>True if not equal, otherwise false.</returns>
         /// <seealso cref="Equals(BaseUnits)"/>
-        public static bool operator !=(BaseUnits left, BaseUnits right)
+        public static bool operator !=(BaseUnits? left, BaseUnits? right)
         {
             return !(left == right);
         }

@@ -14,7 +14,7 @@ namespace UnitsNet
     public abstract class UnitAttributeBase : Attribute
     {
         /// <summary>
-        /// The unit enum type, such as <see cref="UnitsNet.Units.LengthUnit" />
+        /// The unit to convert to, such as <see cref="UnitsNet.Units.LengthUnit" />. Defaults to the unit the quantity as constructed with.
         /// </summary>
         public Enum? UnitType { get; set; }
 
@@ -22,7 +22,7 @@ namespace UnitsNet
         /// Initializes a new instance of the <see cref="UnitAttributeBase"/> class.
         /// </summary>
         /// <param name="unitType"></param>
-        public UnitAttributeBase(object unitType)
+        public UnitAttributeBase(object? unitType)
         {
             UnitType = unitType as Enum;
         }
@@ -37,7 +37,7 @@ namespace UnitsNet
         /// Initializes a new instance of the <see cref="DefaultUnitAttribute"/> class.
         /// </summary>
         /// <param name="unitType">The unit the quantity gets when the string parsing dose only consist of digits</param>
-        public DefaultUnitAttribute(object unitType) : base(unitType) { }
+        public DefaultUnitAttribute(object? unitType) : base(unitType) { }
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ namespace UnitsNet
         /// Initializes a new instance of the <see cref="ConvertToUnitAttribute"/> class.
         /// </summary>
         /// <param name="unitType">The unit the quantity is converted to when parsing from string</param>
-        public ConvertToUnitAttribute(object unitType) : base(unitType) { }
+        public ConvertToUnitAttribute(object? unitType) : base(unitType) { }
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitType">The unit the quantity should be displayed in</param>
         /// <param name="format">Formatting string <see cref="IQuantity.ToString(System.IFormatProvider)"/> </param>
-        public DisplayAsUnitAttribute(object unitType, string format = "") : base(unitType)
+        public DisplayAsUnitAttribute(object? unitType, string format = "") : base(unitType)
         {
             Format = format;
         }

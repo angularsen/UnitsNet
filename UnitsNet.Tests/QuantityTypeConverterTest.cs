@@ -13,10 +13,10 @@ namespace UnitsNet.Tests
     public class QuantityTypeConverterTest
     {
         // https://stackoverflow.com/questions/3612909/why-is-this-typeconverter-not-working
-        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        private static Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
         {
-            AppDomain domain = (AppDomain)sender;
-            foreach (Assembly asm in domain.GetAssemblies())
+            var domain = (AppDomain)(sender ?? throw new InvalidOperationException("No sender."));
+            foreach (Assembly? asm in domain.GetAssemblies())
             {
                 if (asm.FullName == args.Name)
                 {
@@ -29,7 +29,7 @@ namespace UnitsNet.Tests
         static QuantityTypeConverterTest()
         {
             // NOTE: After this, you can use your TypeConverter.
-            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace UnitsNet.Tests
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
-            var convertedValue = (Length)converter.ConvertFrom(context, Culture, str);
+            var convertedValue = (Length)converter.ConvertFrom(context, Culture, str)!;
 
             Assert.Equal(expectedValue, convertedValue.Value);
             Assert.Equal(expectedUnit, convertedValue.Unit);
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
                 new DefaultUnitAttribute(Units.LengthUnit.Centimeter)
             });
 
-            var convertedValue = (Length)converter.ConvertFrom(context, Culture, str);
+            var convertedValue = (Length)converter.ConvertFrom(context, Culture, str)!;
 
             Assert.Equal(expectedValue, convertedValue.Value);
             Assert.Equal(expectedUnit, convertedValue.Unit);
@@ -116,7 +116,7 @@ namespace UnitsNet.Tests
                 new ConvertToUnitAttribute(Units.LengthUnit.Meter)
             });
 
-            var convertedValue = (Length)converter.ConvertFrom(context, Culture, str);
+            var convertedValue = (Length)converter.ConvertFrom(context, Culture, str)!;
 
             Assert.Equal(expectedValue, convertedValue.Value);
             Assert.Equal(expectedUnit, convertedValue.Unit);
@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
             var converter = new QuantityTypeConverter<Length>();
             Length length = Length.FromMeters(1);
 
-            string convertedQuantity = (string)converter.ConvertTo(length, typeof(string));
+            var convertedQuantity = (string?)converter.ConvertTo(length, typeof(string));
 
             Assert.Equal("1 m", convertedQuantity);
         }
@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
             Length length = Length.FromMeters(1);
 
-            string convertedQuantity = (string)converter.ConvertTo(context, Culture, length, typeof(string));
+            var convertedQuantity = (string?)converter.ConvertTo(context, Culture, length, typeof(string));
 
             Assert.Equal("1 m", convertedQuantity);
         }
@@ -182,7 +182,7 @@ namespace UnitsNet.Tests
             ITypeDescriptorContext context = new TypeDescriptorContext();
             Length length = Length.FromMeters(1);
 
-            string convertedQuantity = (string)converter.ConvertTo(context, Culture, length, typeof(string));
+            var convertedQuantity = (string?)converter.ConvertTo(context, Culture, length, typeof(string));
 
             Assert.Equal("1 m", convertedQuantity);
         }
@@ -197,7 +197,7 @@ namespace UnitsNet.Tests
             });
             Length length = Length.FromMeters(1);
 
-            string convertedQuantity = (string)converter.ConvertTo(context, Culture, length, typeof(string));
+            var convertedQuantity = (string?)converter.ConvertTo(context, Culture, length, typeof(string));
 
             Assert.Equal("10 dm", convertedQuantity);
         }
@@ -212,7 +212,7 @@ namespace UnitsNet.Tests
             });
             Length length = Length.FromMeters(1);
 
-            string convertedQuantity = (string)converter.ConvertTo(context, Culture, length, typeof(string));
+            var convertedQuantity = (string?)converter.ConvertTo(context, Culture, length, typeof(string));
 
             Assert.Equal("10.00 dm", convertedQuantity);
         }
@@ -227,7 +227,7 @@ namespace UnitsNet.Tests
             });
             Length length = Length.FromMeters(1);
 
-            string convertedQuantity = (string)converter.ConvertTo(context, Culture, length, typeof(string));
+            var convertedQuantity = (string?)converter.ConvertTo(context, Culture, length, typeof(string));
 
             Assert.Equal("1.00 m", convertedQuantity);
         }
@@ -242,8 +242,8 @@ namespace UnitsNet.Tests
             });
             Length length = Length.FromMeters(1);
 
-            string convertedQuantityDefaultCulture = (string)converter.ConvertTo(length, typeof(string));
-            string convertedQuantitySpecificCulture = (string)converter.ConvertTo(context, Culture, length, typeof(string));
+            string convertedQuantityDefaultCulture = (string)converter.ConvertTo(length, typeof(string))!;
+            string convertedQuantitySpecificCulture = (string)converter.ConvertTo(context, Culture, length, typeof(string))!;
 
             Assert.Equal("1 m", convertedQuantityDefaultCulture);
             Assert.Equal("10 dm", convertedQuantitySpecificCulture);
@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
             Length length = Length.FromMeters(1.5);
             string expectedResult = length.ToString(CultureInfo.CurrentCulture);
 
-            string convertedQuantity = (string)converter.ConvertTo(context, CultureInfo.CurrentCulture, length, typeof(string));
+            var convertedQuantity = (string?)converter.ConvertTo(context, CultureInfo.CurrentCulture, length, typeof(string));
 
             Assert.Equal(expectedResult, convertedQuantity);
         }
