@@ -83,6 +83,15 @@ steps:
     retryCount: '3'
     ignoreMakeDirErrors: true
 
+- task: Bash@3
+  displayName: 'Push to nuget.org'
+  env:
+    NUGET_ORG_APIKEY: '$(NUGET_ORG_APIKEY)'
+  inputs:
+    targetType: 'inline'
+    script: 'dotnet nuget push *.nupkg --skip-duplicate --api-key $(NUGET_ORG_APIKEY) --source https://api.nuget.org/v3/index.json'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
 - task: NuGetCommand@2
   displayName: Push to internal NuGet feed
   inputs:
@@ -92,12 +101,14 @@ steps:
     publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
     allowPackageConflicts: true
 
-- task: NuGetCommand@2
-  displayName: Push to nuget.org
-  continueOnError: true # allowPackageConflicts option does not work with external feeds 🤷
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'nuget.org (UnitsNet)'
-    allowPackageConflicts: true
+# - task: NuGetCommand@2
+#   displayName: Push to nuget.org
+#   continueOnError: true # allowPackageConflicts option does not work with external feeds 🤷
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/'
+#     nuGetFeedType: 'external'
+#     publishFeedCredentials: 'nuget.org (UnitsNet)'
+#     allowPackageConflicts: true
+
+
