@@ -96,19 +96,7 @@ steps:
   displayName: Push to internal NuGet feed
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
     allowPackageConflicts: true
-
-# - task: NuGetCommand@2
-#   displayName: Push to nuget.org
-#   continueOnError: true # allowPackageConflicts option does not work with external feeds 🤷
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/'
-#     nuGetFeedType: 'external'
-#     publishFeedCredentials: 'nuget.org (UnitsNet)'
-#     allowPackageConflicts: true
-
-
