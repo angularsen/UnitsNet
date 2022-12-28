@@ -89,7 +89,7 @@ steps:
     NUGET_ORG_APIKEY: '$(NUGET_ORG_APIKEY)'
   inputs:
     targetType: 'inline'
-    script: 'dotnet nuget push "*.nupkg" --skip-duplicate --api-key $(NUGET_ORG_APIKEY) --source https://api.nuget.org/v3/index.json'
+    script: 'dotnet nuget push "*.nupkg" --skip-duplicate --api-key $NUGET_ORG_APIKEY --source https://api.nuget.org/v3/index.json'
     workingDirectory: '$(Build.ArtifactStagingDirectory)'
 
 - task: NuGetCommand@2
