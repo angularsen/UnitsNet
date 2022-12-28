@@ -139,7 +139,7 @@ namespace UnitsNet
         #region Operators and Comparators
 
         /// <inheritdoc />
-        public override bool Equals(object other)
+        public override bool Equals(object? other)
         {
             if (other is QuantityValue qv)
             {
@@ -239,7 +239,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        public int CompareTo(object obj)
+        public int CompareTo(object? obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
             if (!(obj is QuantityValue other)) throw new ArgumentException("Expected type QuantityValue.", nameof(obj));
@@ -314,7 +314,7 @@ namespace UnitsNet
         /// <param name="format">Standard format specifiers. Because the underlying value can be double or decimal, the meaning can vary</param>
         /// <param name="formatProvider">Culture specific settings</param>
         /// <returns>A string representation of the number</returns>
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string? format, IFormatProvider? formatProvider)
         {
             if (IsDecimal)
             {
