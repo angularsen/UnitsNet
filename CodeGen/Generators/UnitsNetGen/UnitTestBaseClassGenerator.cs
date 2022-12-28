@@ -114,33 +114,35 @@ namespace UnitsNet.Tests
     {{");
             foreach (var unit in _quantity.Units)
             {
-                if (unit.SkipConversionGeneration)
-                    continue;
+                if (unit.SkipConversionGeneration) continue;
 
                 Writer.WL($@"
         protected abstract {_quantity.ValueType} {unit.PluralName}InOne{_baseUnit.SingularName} {{ get; }}");
             }
 
-            Writer.WL("");
-            Writer.WL($@"
+            Writer.WL();
+            Writer.WL(@"
 // ReSharper disable VirtualMemberNeverOverriden.Global");
             foreach (var unit in _quantity.Units)
             {
-                if (unit.SkipConversionGeneration)
-                    continue;
+                if (unit.SkipConversionGeneration) continue;
 
                 Writer.WL($@"
         protected virtual {_quantity.ValueType} {unit.PluralName}Tolerance {{ get {{ return { (_quantity.ValueType == "decimal" ? "1e-9m" : "1e-5") }; }} }}");
             }
-        Writer.WL($@"
+            Writer.WL($@"
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected ({_quantity.ValueType} UnitsInBaseUnit, {_quantity.ValueType} Tolerence) GetConversionFactor({_unitEnumName} unit)
         {{
             return unit switch
             {{");
-            foreach(var unit in _quantity.Units) Writer.WL($@"
+            foreach (var unit in _quantity.Units)
+            {
+                Writer.WL($@"
                 {GetUnitFullName(unit)} => ({unit.PluralName}InOne{_baseUnit.SingularName}, {unit.PluralName}Tolerance),");
+            }
+
             Writer.WL($@"
                 _ => throw new NotSupportedException()
             }};
@@ -148,7 +150,7 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {{");
-            foreach(var unit in _quantity.Units)
+            foreach (var unit in _quantity.Units)
             {
                 Writer.WL($@"
             new object[] {{ {GetUnitFullName(unit)} }},");
@@ -161,7 +163,7 @@ namespace UnitsNet.Tests
         {{
             var quantity = new {_quantity.Name}();
             Assert.Equal(0, quantity.Value);");
-            if (_quantity.ValueType == "decimal") Writer.WL($@"
+            if (_quantity.ValueType == "decimal") Writer.WL(@"
             Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
             Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
@@ -222,7 +224,7 @@ namespace UnitsNet.Tests
         {{
             {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
 
-            foreach(var unit in _quantity.Units) Writer.WL($@"
+            foreach (var unit in _quantity.Units) Writer.WL($@"
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.{unit.PluralName}, {unit.PluralName}Tolerance);");
             Writer.WL($@"
         }}
@@ -230,8 +232,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {{");
-            int i = 0;
-            foreach(var unit in _quantity.Units)
+            var i = 0;
+            foreach (var unit in _quantity.Units)
             {
                 var quantityVariable = $"quantity{i++:D2}";
                 Writer.WL($@"
@@ -263,7 +265,7 @@ namespace UnitsNet.Tests
         public void As()
         {{
             var {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
-            foreach(var unit in _quantity.Units) Writer.WL($@"
+            foreach (var unit in _quantity.Units) Writer.WL($@"
             AssertEx.EqualTolerance({unit.PluralName}InOne{_baseUnit.SingularName}, {baseUnitVariableName}.As({GetUnitFullName(unit)}), {unit.PluralName}Tolerance);");
             Writer.WL($@"
         }}
@@ -288,9 +290,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse()
         {{");
-            foreach(var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
-            foreach(var localization in unit.Localization)
-            foreach(var abbreviation in localization.Abbreviations)
+            foreach (var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
+            foreach (var localization in unit.Localization)
+            foreach (var abbreviation in localization.Abbreviations)
             {
                 Writer.WL($@"
             try
@@ -307,9 +309,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryParse()
         {{");
-            foreach(var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
-            foreach(var localization in unit.Localization)
-            foreach(var abbreviation in localization.Abbreviations)
+            foreach (var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
+            foreach (var localization in unit.Localization)
+            foreach (var abbreviation in localization.Abbreviations)
             {
                 // Skip units with ambiguous abbreviations, since there is no exception to describe this is why TryParse failed.
                 if (IsAmbiguousAbbreviation(localization, abbreviation)) continue;
@@ -328,9 +330,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void ParseUnit()
         {{");
-            foreach(var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
-            foreach(var localization in unit.Localization)
-            foreach(var abbreviation in localization.Abbreviations)
+            foreach (var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
+            foreach (var localization in unit.Localization)
+            foreach (var abbreviation in localization.Abbreviations)
             {
                 Writer.WL($@"
             try
@@ -346,9 +348,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryParseUnit()
         {{");
-            foreach(var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
-            foreach(var localization in unit.Localization)
-            foreach(var abbreviation in localization.Abbreviations)
+            foreach (var unit in _quantity.Units.Where(u => string.IsNullOrEmpty(u.ObsoleteText)))
+            foreach (var localization in unit.Localization)
+            foreach (var abbreviation in localization.Abbreviations)
             {
                 // Skip units with ambiguous abbreviations, since there is no exception to describe this is why TryParse failed.
                 if (IsAmbiguousAbbreviation(localization, abbreviation)) continue;
@@ -455,7 +457,7 @@ namespace UnitsNet.Tests
             }
             else
             {
-                Writer.WL("");
+                Writer.WL();
             }
 
             Writer.WL($@"
@@ -578,7 +580,7 @@ namespace UnitsNet.Tests
         public void HasAtLeastOneAbbreviationSpecified()
         {{
             var units = Enum.GetValues(typeof({_unitEnumName})).Cast<{_unitEnumName}>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {{
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }}
@@ -834,7 +836,7 @@ namespace UnitsNet.Tests
         }}");
         }
 
-Writer.WL($@"
+        Writer.WL($@"
     }}
 }}");
             return Writer.ToString();

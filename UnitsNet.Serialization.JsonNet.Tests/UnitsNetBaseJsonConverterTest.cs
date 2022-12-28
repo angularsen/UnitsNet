@@ -242,7 +242,6 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Unit = unit, Value = (double) value, ValueString = value.ToString(CultureInfo.InvariantCulture), ValueType = "decimal"
             });
 
-            public IQuantity Test_ConvertValueUnit() => Test_ConvertValueUnit(null);
             private IQuantity Test_ConvertValueUnit(ValueUnit valueUnit) => ConvertValueUnit(valueUnit);
 
             public JsonSerializer Test_CreateLocalSerializer(JsonSerializer serializer) => CreateLocalSerializer(serializer, this);

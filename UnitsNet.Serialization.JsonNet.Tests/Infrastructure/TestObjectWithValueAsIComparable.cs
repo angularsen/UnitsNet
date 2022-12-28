@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace UnitsNet.Serialization.JsonNet.Tests.Infrastructure
 {
@@ -11,7 +12,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests.Infrastructure
 
         public int CompareTo(object obj)
         {
-            return ((IComparable)Value).CompareTo(obj);
+            return Value.CompareTo(obj);
         }
 
         // Needed for verifying that the deserialized object is the same, should not affect the serialization code
@@ -24,6 +25,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests.Infrastructure
             return Value.Equals(((TestObjectWithValueAsIComparable)obj).Value);
         }
 
+        [SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode")]
         public override int GetHashCode()
         {
             return Value.GetHashCode();

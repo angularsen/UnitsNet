@@ -5,7 +5,7 @@ using System;
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class MassTests : MassTestsBase
     {

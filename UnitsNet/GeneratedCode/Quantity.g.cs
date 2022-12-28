@@ -86,7 +86,6 @@ namespace UnitsNet
             { "Irradiation", Irradiation.Info },
             { "Jerk", Jerk.Info },
             { "KinematicViscosity", KinematicViscosity.Info },
-            { "LapseRate", LapseRate.Info },
             { "Length", Length.Info },
             { "Level", Level.Info },
             { "LinearDensity", LinearDensity.Info },
@@ -215,7 +214,6 @@ namespace UnitsNet
                 "Irradiation" => Irradiation.From(value, Irradiation.BaseUnit),
                 "Jerk" => Jerk.From(value, Jerk.BaseUnit),
                 "KinematicViscosity" => KinematicViscosity.From(value, KinematicViscosity.BaseUnit),
-                "LapseRate" => LapseRate.From(value, LapseRate.BaseUnit),
                 "Length" => Length.From(value, Length.BaseUnit),
                 "Level" => Level.From(value, Level.BaseUnit),
                 "LinearDensity" => LinearDensity.From(value, LinearDensity.BaseUnit),
@@ -446,9 +444,6 @@ namespace UnitsNet
                     return true;
                 case KinematicViscosityUnit kinematicViscosityUnit:
                     quantity = KinematicViscosity.From(value, kinematicViscosityUnit);
-                    return true;
-                case LapseRateUnit lapseRateUnit:
-                    quantity = LapseRate.From(value, lapseRateUnit);
                     return true;
                 case LengthUnit lengthUnit:
                     quantity = Length.From(value, lengthUnit);
@@ -725,7 +720,6 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Irradiation) => parser.TryParse<Irradiation, IrradiationUnit>(quantityString, formatProvider, Irradiation.From, out quantity),
                 Type _ when quantityType == typeof(Jerk) => parser.TryParse<Jerk, JerkUnit>(quantityString, formatProvider, Jerk.From, out quantity),
                 Type _ when quantityType == typeof(KinematicViscosity) => parser.TryParse<KinematicViscosity, KinematicViscosityUnit>(quantityString, formatProvider, KinematicViscosity.From, out quantity),
-                Type _ when quantityType == typeof(LapseRate) => parser.TryParse<LapseRate, LapseRateUnit>(quantityString, formatProvider, LapseRate.From, out quantity),
                 Type _ when quantityType == typeof(Length) => parser.TryParse<Length, LengthUnit>(quantityString, formatProvider, Length.From, out quantity),
                 Type _ when quantityType == typeof(Level) => parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity),
                 Type _ when quantityType == typeof(LinearDensity) => parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity),
@@ -848,7 +842,6 @@ namespace UnitsNet
             yield return typeof(Irradiation);
             yield return typeof(Jerk);
             yield return typeof(KinematicViscosity);
-            yield return typeof(LapseRate);
             yield return typeof(Length);
             yield return typeof(Level);
             yield return typeof(LinearDensity);

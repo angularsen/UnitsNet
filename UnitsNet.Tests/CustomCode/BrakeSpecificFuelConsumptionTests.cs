@@ -4,7 +4,7 @@
 
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class BrakeSpecificFuelConsumptionTests : BrakeSpecificFuelConsumptionTestsBase
     {

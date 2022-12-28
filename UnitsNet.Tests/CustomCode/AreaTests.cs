@@ -4,7 +4,7 @@
 using UnitsNet.Units;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class AreaTests : AreaTestsBase
     {

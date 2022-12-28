@@ -12,7 +12,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests.Infrastructure
 
         public int CompareTo(object obj)
         {
-            return ((IComparable)Value).CompareTo(obj);
+            return Value.CompareTo(obj);
         }
     }
 }

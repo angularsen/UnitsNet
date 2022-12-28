@@ -39,8 +39,9 @@ namespace UnitsNet.Tests
             Assert.True(SIBaseUnits.Equals((object)SIBaseUnitsCopy));
             Assert.False(SIBaseUnits.Equals((object)NonSiBaseUnits));
 
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.False(SIBaseUnits.Equals("Some object."));
-            Assert.False(SIBaseUnits.Equals(((IFormatProvider)null)!));
+            Assert.False(SIBaseUnits.Equals((IFormatProvider?)null));
         }
 
         [Fact]
@@ -67,8 +68,8 @@ namespace UnitsNet.Tests
             Assert.False(SIBaseUnits == null);
             Assert.False(null == SIBaseUnits);
 
-            BaseUnits nullBaseUnits1 = null;
-            BaseUnits nullBaseUnits2 = null;
+            BaseUnits? nullBaseUnits1 = null;
+            BaseUnits? nullBaseUnits2 = null;
 
             Assert.True(nullBaseUnits1 == nullBaseUnits2);
         }
@@ -82,11 +83,11 @@ namespace UnitsNet.Tests
             Assert.True(SIBaseUnits != NonSiBaseUnits);
             Assert.True(NonSiBaseUnits != SIBaseUnits);
 
-            Assert.True(SIBaseUnits != null);
-            Assert.True(null != SIBaseUnits);
+            Assert.True(SIBaseUnits != null!);
+            Assert.True(null! != SIBaseUnits!);
 
-            BaseUnits nullBaseUnits1 = null;
-            BaseUnits nullBaseUnits2 = null;
+            BaseUnits? nullBaseUnits1 = null;
+            BaseUnits? nullBaseUnits2 = null;
 
             Assert.False(nullBaseUnits1 != nullBaseUnits2);
         }

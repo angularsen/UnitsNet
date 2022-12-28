@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFrameworks>net7.0;net48</TargetFrameworks>
-    <RootNamespace>UnitsNet.Tests</RootNamespace>
     <LangVersion>latest</LangVersion>
     <IsTestProject>true</IsTestProject>
     <NoWarn>CS0618</NoWarn>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <!-- Strong name signing -->

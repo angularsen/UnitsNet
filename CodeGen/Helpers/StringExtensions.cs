@@ -8,7 +8,7 @@ namespace CodeGen.Helpers
         /// <summary>
         /// Returns true if string is not null and not whitespace.
         /// </summary>
-        public static bool HasText(this string str) => !string.IsNullOrWhiteSpace(str);
+        public static bool HasText(this string? str) => !string.IsNullOrWhiteSpace(str);
 
         /// <summary>
         /// Example: "Kilo" + ToCamelCase("NewtonPerMeter") => "KilonewtonPerMeter"

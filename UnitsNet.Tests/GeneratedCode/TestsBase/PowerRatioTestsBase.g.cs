@@ -450,7 +450,7 @@ namespace UnitsNet.Tests
         public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>();
-            foreach(var unit in units)
+            foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }

@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using UnitsNet.Serialization.JsonNet;
+using UnitsNet.Tests.CustomQuantities;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomQuantities
+namespace UnitsNet.Serialization.JsonNet.Tests.CustomQuantities
 {
     public class HowMuchTests
     {

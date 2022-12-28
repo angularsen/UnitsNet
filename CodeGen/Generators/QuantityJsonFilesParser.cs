@@ -65,7 +65,7 @@ namespace CodeGen.Generators
 
         private static void FixConversionFunctionsForDecimalValueTypes(Quantity quantity)
         {
-            foreach (var u in quantity.Units)
+            foreach (Unit u in quantity.Units)
                 // Use decimal for internal calculations if base type is not double, such as for long or int.
             {
                 if (string.Equals(quantity.ValueType, "decimal", StringComparison.OrdinalIgnoreCase))
@@ -80,8 +80,8 @@ namespace CodeGen.Generators
         private static void AddPrefixUnits(Quantity quantity)
         {
             var unitsToAdd = new List<Unit>();
-            foreach (var unit in quantity.Units)
-            foreach (var prefix in unit.Prefixes)
+            foreach (Unit unit in quantity.Units)
+            foreach (Prefix prefix in unit.Prefixes)
             {
                 try
                 {
@@ -118,7 +118,7 @@ namespace CodeGen.Generators
         {
             return localizations.Select(loc =>
             {
-                if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out string[] unitAbbreviationsForPrefix))
+                if (loc.TryGetAbbreviationsForPrefix(prefixInfo.Prefix, out string[]? unitAbbreviationsForPrefix))
                 {
                     return new Localization
                     {

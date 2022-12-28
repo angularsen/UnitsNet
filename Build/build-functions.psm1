@@ -37,7 +37,7 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
   $appVeyorLoggerNetCoreDll = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
   $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerNetCoreDll") { "/logger:$appVeyorLoggerNetCoreDll" } else { "" }
 
-  dotnet build --configuration Release "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
+  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
   if (-not $IncludeNanoFramework)
@@ -53,7 +53,7 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
     # msbuild does not auto-restore nugets for this project type
     & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
     # now build
-    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU"  $fileLoggerArg $appVeyorLoggerArg
+    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU" /p:ContinuousIntegrationBuild=true $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -83,6 +83,7 @@ function Start-Tests {
 
     # Create coverage report for this test project
     & dotnet dotcover test `
+      --no-build `
       --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
       --dotCoverOutput="$coverageReportFile" `
       --dcReportType=DetailedXML
@@ -106,7 +107,12 @@ function Start-PackNugets([boolean] $IncludeNanoFramework = $false) {
 
   write-host -foreground blue "Pack nugets...`n---"
   foreach ($projectPath in $projectPaths) {
-    dotnet pack --configuration Release -o $nugetOutDir "$root\$projectPath"
+    dotnet pack --configuration Release `
+      --no-build `
+      --output $nugetOutDir `
+      /p:ContinuousIntegrationBuild=true `
+      "$root\$projectPath"
+
     if ($lastexitcode -ne 0) { exit 1 }
   }
 

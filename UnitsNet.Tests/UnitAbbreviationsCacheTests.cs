@@ -6,14 +6,12 @@ using System.Globalization;
 using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace UnitsNet.Tests
 {
     [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class UnitAbbreviationsCacheTests
     {
-        private readonly ITestOutputHelper _output;
         private const string AmericanCultureName = "en-US";
         private const string RussianCultureName = "ru-RU";
         private const string NorwegianCultureName = "nb-NO";
@@ -21,11 +19,6 @@ namespace UnitsNet.Tests
         private static readonly IFormatProvider AmericanCulture = new CultureInfo(AmericanCultureName);
         private static readonly IFormatProvider NorwegianCulture = new CultureInfo(NorwegianCultureName);
         private static readonly IFormatProvider RussianCulture = new CultureInfo(RussianCultureName);
-
-        public UnitAbbreviationsCacheTests(ITestOutputHelper output)
-        {
-            _output = output;
-        }
 
         // The default, parameterless ToString() method uses 2 sigifnificant digits after the radix point.
         [Theory]

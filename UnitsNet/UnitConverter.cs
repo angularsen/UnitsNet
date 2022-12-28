@@ -6,7 +6,6 @@ using System.Collections.Concurrent;
 using System.Globalization;
 using System.Reflection;
 using System.Linq;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet

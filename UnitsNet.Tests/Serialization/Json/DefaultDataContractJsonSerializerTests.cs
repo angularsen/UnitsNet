@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -36,7 +37,7 @@ namespace UnitsNet.Tests.Serialization.Json
             writer.Write(xml);
             writer.Flush();
             stream.Position = 0;
-            return (T)serializer.ReadObject(stream);
+            return (T)(serializer.ReadObject(stream) ?? throw new InvalidOperationException("Read 'null' from stream."));
         }
 
         #region Serialization tests

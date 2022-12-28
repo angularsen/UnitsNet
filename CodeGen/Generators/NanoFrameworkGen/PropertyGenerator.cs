@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CodeGen.Generators.NanoFrameworkGen
+﻿namespace CodeGen.Generators.NanoFrameworkGen
 {
     class PropertyGenerator : GeneratorBase
     {

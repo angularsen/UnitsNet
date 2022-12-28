@@ -3,6 +3,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using UnitsNet.Tests.CustomQuantities;
 using UnitsNet.Units;
 using Xunit;
@@ -11,6 +12,8 @@ namespace UnitsNet.Tests
 {
     public class QuantityInfoTest
     {
+        private UnitInfo[] _lengthUnitInfos = Length.Info.UnitInfos.Cast<UnitInfo>().ToArray();
+
         [Fact]
         public void Constructor_AssignsProperties()
         {
@@ -75,7 +78,7 @@ namespace UnitsNet.Tests
         public void Constructor_GivenNullAsUnitInfos_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(nameof(Length), typeof(LengthUnit),
-                null, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
+                null!, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
@@ -83,7 +86,7 @@ namespace UnitsNet.Tests
         public void GenericsConstructor_GivenNullAsUnitInfos_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(nameof(Length),
-                null, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
+                null!, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
@@ -91,7 +94,7 @@ namespace UnitsNet.Tests
         public void Constructor_GivenNullAsBaseUnit_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(nameof(Length), typeof(LengthUnit),
-                Length.Info.UnitInfos, null, Length.Zero, Length.BaseDimensions));
+                _lengthUnitInfos, null!, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
@@ -99,7 +102,7 @@ namespace UnitsNet.Tests
         public void Constructor_GivenNullAsZero_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(nameof(Length), typeof(LengthUnit),
-                Length.Info.UnitInfos, Length.BaseUnit, null, Length.BaseDimensions));
+                _lengthUnitInfos, Length.BaseUnit, null!, Length.BaseDimensions));
         }
 
         [Fact]
@@ -107,7 +110,7 @@ namespace UnitsNet.Tests
         public void GenericsConstructor_GivenNullAsZero_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(nameof(Length),
-                Length.Info.UnitInfos, Length.BaseUnit, null, Length.BaseDimensions));
+                Length.Info.UnitInfos, Length.BaseUnit, null!, Length.BaseDimensions));
         }
 
         [Fact]
@@ -115,7 +118,7 @@ namespace UnitsNet.Tests
         public void Constructor_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(nameof(Length), typeof(LengthUnit),
-                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
+                _lengthUnitInfos, Length.BaseUnit, Length.Zero, null!));
         }
 
         [Fact]
@@ -123,14 +126,14 @@ namespace UnitsNet.Tests
         public void GenericsConstructor_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(nameof(Length),
-                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
+                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null!));
         }
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void Constructor2_GivenNullAsUnitInfos_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length.Info.Name, typeof(LengthUnit),
-                null, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
+                null!, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
@@ -138,7 +141,7 @@ namespace UnitsNet.Tests
         public void GenericsConstructor2_GivenNullAsUnitInfos_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(Length.Info.Name,
-                null, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
+                null!, Length.BaseUnit, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
@@ -146,7 +149,7 @@ namespace UnitsNet.Tests
         public void Constructor2_GivenNullAsBaseUnit_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length.Info.Name, typeof(LengthUnit),
-                Length.Info.UnitInfos, null, Length.Zero, Length.BaseDimensions));
+                _lengthUnitInfos, null!, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
@@ -154,7 +157,7 @@ namespace UnitsNet.Tests
         public void Constructor2_GivenNullAsZero_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length.Info.Name, typeof(LengthUnit),
-                Length.Info.UnitInfos, Length.BaseUnit, null, Length.BaseDimensions));
+                _lengthUnitInfos, Length.BaseUnit, null!, Length.BaseDimensions));
         }
 
         [Fact]
@@ -162,7 +165,7 @@ namespace UnitsNet.Tests
         public void GenericsConstructor2_GivenNullAsZero_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(Length.Info.Name,
-                Length.Info.UnitInfos, Length.BaseUnit, null, Length.BaseDimensions));
+                Length.Info.UnitInfos, Length.BaseUnit, null!, Length.BaseDimensions));
         }
 
         [Fact]
@@ -170,7 +173,7 @@ namespace UnitsNet.Tests
         public void Constructor2_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo(Length.Info.Name, typeof(LengthUnit),
-                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
+                _lengthUnitInfos, Length.BaseUnit, Length.Zero, null!));
         }
 
         [Fact]
@@ -178,13 +181,13 @@ namespace UnitsNet.Tests
         public void GenericsConstructor2_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(Length.Info.Name,
-                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null));
+                Length.Info.UnitInfos, Length.BaseUnit, Length.Zero, null!));
         }
 
         [Fact]
         public void GetUnitInfoFor_GivenNullAsBaseUnits_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => Length.Info.GetUnitInfoFor(null));
+            Assert.Throws<ArgumentNullException>(() => Length.Info.GetUnitInfoFor(null!));
         }
 
         [Fact]
@@ -232,6 +235,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        [SuppressMessage("ReSharper", "ParameterOnlyUsedForPreconditionCheck.Local")]
         public void GetUnitInfosFor_GivenBaseUnitsWithMultipleMatches_ReturnsMultipleMatches()
         {
             var baseUnits = new BaseUnits(LengthUnit.Meter);

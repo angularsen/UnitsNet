@@ -21,7 +21,6 @@ namespace UnitsNet.Tests
         [InlineData(double.NegativeInfinity)]
         public void From_GivenNaNOrInfinity_ThrowsArgumentException(double value)
         {
-            Quantity.Infos.Select(qi=>qi.ValueType);
             Assert.Throws<ArgumentException>(() => Quantity.From(value, LengthUnit.Centimeter));
         }
 
@@ -31,7 +30,7 @@ namespace UnitsNet.Tests
         [InlineData(double.NegativeInfinity)]
         public void TryFrom_GivenNaNOrInfinity_ReturnsFalseAndNullQuantity(double value)
         {
-            Assert.False(Quantity.TryFrom(value, LengthUnit.Centimeter, out IQuantity parsedLength));
+            Assert.False(Quantity.TryFrom(value, LengthUnit.Centimeter, out IQuantity? parsedLength));
             Assert.Null(parsedLength);
         }
 
@@ -123,46 +122,46 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryFrom_GivenValueAndUnit_ReturnsQuantity()
         {
-            Assert.True(Quantity.TryFrom(3, LengthUnit.Centimeter, out IQuantity parsedLength));
+            Assert.True(Quantity.TryFrom(3, LengthUnit.Centimeter, out IQuantity? parsedLength));
             Assert.Equal(Length.FromCentimeters(3), parsedLength);
 
-            Assert.True(Quantity.TryFrom(3, MassUnit.Tonne, out IQuantity parsedMass));
+            Assert.True(Quantity.TryFrom(3, MassUnit.Tonne, out IQuantity? parsedMass));
             Assert.Equal(Mass.FromTonnes(3), parsedMass);
 
-            Assert.True(Quantity.TryFrom(3, PressureUnit.Megabar, out IQuantity parsedPressure));
+            Assert.True(Quantity.TryFrom(3, PressureUnit.Megabar, out IQuantity? parsedPressure));
             Assert.Equal(Pressure.FromMegabars(3), parsedPressure);
         }
 
         [Fact]
         public void TryParse_GivenInvalidQuantityType_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(typeof(DummyIQuantity), "3.0 cm", out IQuantity parsedLength));
+            Assert.False(Quantity.TryParse(typeof(DummyIQuantity), "3.0 cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
         }
 
         [Fact]
         public void TryParse_GivenInvalidString_ReturnsFalseAndNullQuantity()
         {
-            Assert.False(Quantity.TryParse(typeof(Length), "x cm", out IQuantity parsedLength));
+            Assert.False(Quantity.TryParse(typeof(Length), "x cm", out IQuantity? parsedLength));
             Assert.Null(parsedLength);
 
-            Assert.False(Quantity.TryParse(typeof(Mass), "xt", out IQuantity parsedMass));
+            Assert.False(Quantity.TryParse(typeof(Mass), "xt", out IQuantity? parsedMass));
             Assert.Null(parsedMass);
 
-            Assert.False(Quantity.TryParse(typeof(Pressure), "foo", out IQuantity parsedPressure));
+            Assert.False(Quantity.TryParse(typeof(Pressure), "foo", out IQuantity? parsedPressure));
             Assert.Null(parsedPressure);
         }
 
         [Fact]
         public void TryParse_GivenValueAndUnit_ReturnsQuantity()
         {
-            Assert.True(Quantity.TryParse(typeof(Length), "3 cm", out IQuantity parsedLength));
+            Assert.True(Quantity.TryParse(typeof(Length), "3 cm", out IQuantity? parsedLength));
             Assert.Equal(Length.FromCentimeters(3), parsedLength);
 
-            Assert.True(Quantity.TryParse(typeof(Mass), "03t", out IQuantity parsedMass));
+            Assert.True(Quantity.TryParse(typeof(Mass), "03t", out IQuantity? parsedMass));
             Assert.Equal(Mass.FromTonnes(3), parsedMass);
 
-            Assert.True(Quantity.TryParse(NumberFormatInfo.InvariantInfo, typeof(Pressure), "3.0 Mbar", out IQuantity parsedPressure));
+            Assert.True(Quantity.TryParse(NumberFormatInfo.InvariantInfo, typeof(Pressure), "3.0 Mbar", out IQuantity? parsedPressure));
             Assert.Equal(Pressure.FromMegabars(3), parsedPressure);
         }
 

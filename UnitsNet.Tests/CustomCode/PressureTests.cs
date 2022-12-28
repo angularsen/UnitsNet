@@ -6,7 +6,7 @@ using UnitsNet.CustomCode.Units;
 using UnitsNet.Wrappers;
 using Xunit;
 
-namespace UnitsNet.Tests.CustomCode
+namespace UnitsNet.Tests
 {
     public class PressureTests : PressureTestsBase
     {
@@ -214,7 +214,7 @@ namespace UnitsNet.Tests.CustomCode
         public void Reference_WithDefaultPressureReference_IsAbsolute()
         {
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3));
-            Equals(PressureReference.Absolute, refPressure.Reference);
+            Assert.Equal(PressureReference.Absolute, refPressure.Reference);
         }
 
         [Fact]

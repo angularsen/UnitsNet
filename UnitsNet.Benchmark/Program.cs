@@ -7,7 +7,7 @@ namespace UnitsNet.Benchmark
     [MemoryDiagnoser]
     public class UnitsNetBenchmarks
     {
-        private Length _length = Length.FromMeters(3.0);
+        private readonly Length _length = Length.FromMeters(3.0);
         private readonly IQuantity _lengthIQuantity = Length.FromMeters(3.0);
 
         [Benchmark]
