@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using UnitsNet.Units;
@@ -161,7 +162,7 @@ namespace UnitsNet
             if (!TryParse(unitAbbreviation, typeof(TUnitType), formatProvider, out var unitObj))
                 return false;
 
-            unit = (TUnitType)unitObj!;
+            unit = (TUnitType)unitObj;
             return true;
         }
 
@@ -172,7 +173,7 @@ namespace UnitsNet
         /// <param name="unitType">Type of unit enum.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
-        public bool TryParse(string unitAbbreviation, Type unitType, out Enum? unit)
+        public bool TryParse(string unitAbbreviation, Type unitType, [NotNullWhen(true)] out Enum? unit)
         {
             return TryParse(unitAbbreviation, unitType, null, out unit);
         }
@@ -185,7 +186,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
-        public bool TryParse(string? unitAbbreviation, Type unitType, IFormatProvider? formatProvider, out Enum? unit)
+        public bool TryParse(string? unitAbbreviation, Type unitType, IFormatProvider? formatProvider, [NotNullWhen(true)] out Enum? unit)
         {
             if (unitAbbreviation == null)
             {

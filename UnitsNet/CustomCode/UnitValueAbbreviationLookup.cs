@@ -48,7 +48,7 @@ namespace UnitsNet
             var key = ignoreCase ? lowerCaseAbbreviation : abbreviation;
             var map = ignoreCase ? _lowerCaseAbbreviationToUnitMap : _abbreviationToUnitMap;
 
-            if (!map.TryGetValue(key, out IReadOnlyList<int> units))
+            if (!map.TryGetValue(key, out IReadOnlyList<int>? units))
                 return new List<int>(0);
 
             return units.ToList();
