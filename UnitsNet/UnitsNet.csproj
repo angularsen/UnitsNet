@@ -22,7 +22,7 @@
   <PropertyGroup>
     <AssemblyVersion>5.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>latest</LangVersion>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
   </PropertyGroup>
@@ -45,22 +45,6 @@
     <DelaySign>false</DelaySign>
     <SignAssembly>true</SignAssembly>
     <AssemblyName>UnitsNet</AssemblyName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <NoWarn>1701;1702</NoWarn>
-    <WarningsNotAsErrors>612,618,CS8769,CS8632,CS8765,CS8767</WarningsNotAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
-    <NoWarn>1701;1702</NoWarn>
-    <WarningsNotAsErrors>612,618,CS8769,CS8632,CS8765,CS8767</WarningsNotAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0|AnyCPU'">
-    <NoWarn>1701;1702</NoWarn>
-    <WarningsNotAsErrors>612,618,CS8769,CS8632,CS8765,CS8767</WarningsNotAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0|AnyCPU'">
-    <NoWarn>1701;1702</NoWarn>
-    <WarningsNotAsErrors>612,618,CS8769,CS8632,CS8765,CS8767</WarningsNotAsErrors>
   </PropertyGroup>
 
   <!-- NuGet references that work for all TargetFrameworks, both signed and unsigned. -->
