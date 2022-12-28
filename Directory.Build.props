@@ -2,9 +2,9 @@
   <!-- This file will be implicitly linked by all projects in folder -folders -->
   <PropertyGroup>
     <!-- Default to output to Artifacts folder -->
-    <OutputPath>$(MSBuildThisFileDirectory)Artifacts/$(MSBuildProjectName)</OutputPath> 
+    <OutputPath>$(MSBuildThisFileDirectory)Artifacts/$(MSBuildProjectName)</OutputPath>
     <!-- Specific output folder for .NET nanoFramework projects -->
-    <OutputPath Condition=" '$(TargetFrameworkIdentifier)' == '.NETnanoFramework'">$(MSBuildThisFileDirectory)Artifacts/UnitsNet.NanoFramework/$(MSBuildProjectName)</OutputPath> 
+    <OutputPath Condition=" '$(TargetFrameworkIdentifier)' == '.NETnanoFramework'">$(MSBuildThisFileDirectory)Artifacts/UnitsNet.NanoFramework/$(MSBuildProjectName)</OutputPath>
 
   </PropertyGroup>
 
@@ -17,6 +17,12 @@
   <PropertyGroup>
     <!-- Warning instead of compile error on obsolete errors.-->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- 612: obsolete, 618: obsolete with message -->
     <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)/NullableAttributes.cs" />
+  </ItemGroup>
+
 </Project>

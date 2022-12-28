@@ -58,7 +58,7 @@ namespace UnitsNet
                 throw ex;
             }
 
-            return ParseWithRegex(valueString!, unitString!, fromDelegate, formatProvider);
+            return ParseWithRegex(valueString, unitString, fromDelegate, formatProvider);
         }
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
@@ -71,8 +71,8 @@ namespace UnitsNet
         {
             result = default;
 
-            if(string.IsNullOrWhiteSpace(str)) return false;
-            str = str!.Trim();
+            if (string.IsNullOrWhiteSpace(str)) return false;
+            str = str!.Trim(); // netstandard2.0 nullable quirk
 
             var regex = CreateRegexForQuantity<TUnitType>(formatProvider);
 
@@ -163,7 +163,7 @@ namespace UnitsNet
             return true;
         }
 
-        private static bool TryExtractValueAndUnit(Regex regex, string str, out string? valueString, out string? unitString)
+        private static bool TryExtractValueAndUnit(Regex regex, string str, [NotNullWhen(true)] out string? valueString, [NotNullWhen(true)] out string? unitString)
         {
             var match = regex.Match(str);
 

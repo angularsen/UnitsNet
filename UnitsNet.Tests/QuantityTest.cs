@@ -80,9 +80,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void TryGetUnitInfo_ReturnsUnitInfoForUnitEnumValue()
         {
-            bool found = Quantity.TryGetUnitInfo(LengthUnit.Meter, out UnitInfo unitInfo);
+            bool found = Quantity.TryGetUnitInfo(LengthUnit.Meter, out UnitInfo? unitInfo);
             Assert.True(found);
-            Assert.Equal("Meter", unitInfo.Name);
+            Assert.Equal("Meter", unitInfo!.Name);
             Assert.Equal("Meters", unitInfo.PluralName);
             Assert.Equal(LengthUnit.Meter, unitInfo.Value);
         }

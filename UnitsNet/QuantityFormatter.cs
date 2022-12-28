@@ -106,14 +106,14 @@ namespace UnitsNet
         /// </list>
         /// </remarks>
         /// <returns>The string representation.</returns>
-        public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
+        public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
             formatProvider ??= CultureInfo.CurrentCulture;
             return FormatUntrimmed(quantity, format, formatProvider).TrimEnd();
         }
 
-        private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string format, IFormatProvider? formatProvider)
+        private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
             formatProvider ??= CultureInfo.CurrentCulture;
@@ -121,7 +121,7 @@ namespace UnitsNet
             if (string.IsNullOrWhiteSpace(format))
                 format = "g";
 
-            char formatSpecifier = format[0];
+            char formatSpecifier = format![0]; // netstandard2.0 nullable quirk
 
             if (UnitsNetFormatSpecifiers.Any(unitsNetFormatSpecifier => unitsNetFormatSpecifier == formatSpecifier))
             {

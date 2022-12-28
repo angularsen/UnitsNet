@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Newtonsoft.Json;
 using UnitsNet.Units;
@@ -288,7 +289,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>True if successful.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        protected bool TryParse(string? unitAbbreviation, QuantityInfo quantityInfo, out Enum? unit)
+        protected bool TryParse(string? unitAbbreviation, QuantityInfo quantityInfo, [NotNullWhen(true)] out Enum? unit)
         {
             return _unitParser.TryParse(unitAbbreviation, quantityInfo.UnitType, CultureInfo.InvariantCulture, out unit);
         }
@@ -304,7 +305,7 @@ namespace UnitsNet.Serialization.JsonNet
         ///     <value>false</value>
         ///     otherwise
         /// </returns>
-        protected bool TryGetQuantity(string quantityName, out QuantityInfo quantityInfo)
+        protected bool TryGetQuantity(string quantityName, [NotNullWhen(true)] out QuantityInfo? quantityInfo)
         {
             return _quantities.TryGetValue(quantityName, out quantityInfo);
         }

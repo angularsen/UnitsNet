@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
@@ -48,7 +49,7 @@ namespace UnitsNet
         /// <summary>
         /// Try to get <see cref="UnitInfo"/> for a given unit enum value.
         /// </summary>
-        public static bool TryGetUnitInfo(Enum unitEnum, out UnitInfo unitInfo) =>
+        public static bool TryGetUnitInfo(Enum unitEnum, [NotNullWhen(true)] out UnitInfo? unitInfo) =>
             UnitTypeAndNameToUnitInfoLazy.Value.TryGetValue((unitEnum.GetType(), unitEnum.ToString()), out unitInfo);
 
         /// <summary>
@@ -61,14 +62,14 @@ namespace UnitsNet
         public static IQuantity From(QuantityValue value, Enum unit)
         {
             if (TryFrom(value, unit, out IQuantity? quantity))
-                return quantity!;
+                return quantity;
 
             throw new ArgumentException(
                 $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
         }
 
         /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
-        public static bool TryFrom(double value, Enum unit, out IQuantity? quantity)
+        public static bool TryFrom(double value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
             // Implicit cast to QuantityValue would prevent TryFrom from being called,
             // so we need to explicitly check this here for double arguments.
@@ -98,13 +99,13 @@ namespace UnitsNet
                 throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
 
             if (TryParse(formatProvider, quantityType, quantityString, out IQuantity? quantity))
-                return quantity!;
+                return quantity;
 
             throw new ArgumentException($"Quantity string could not be parsed to quantity {quantityType}.");
         }
 
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-        public static bool TryParse(Type quantityType, string quantityString, out IQuantity? quantity) =>
+        public static bool TryParse(Type quantityType, string quantityString, [NotNullWhen(true)] out IQuantity? quantity) =>
             TryParse(null, quantityType, quantityString, out quantity);
 
         /// <summary>
