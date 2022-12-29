@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Inductance
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricInductance : IQuantity<ElectricInductanceUnit>, IEquatable<ElectricInductance>, IComparable, IComparable<ElectricInductance>, IConvertible, IFormattable
+    public readonly partial struct ElectricInductance : IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit, double>, IEquatable<ElectricInductance>, IComparable, IComparable<ElectricInductance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -134,8 +134,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricInductance Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static ElectricInductance AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

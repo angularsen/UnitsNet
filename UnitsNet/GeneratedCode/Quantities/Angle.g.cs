@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
     /// </summary>
     [DataContract]
-    public readonly partial struct Angle : IQuantity<AngleUnit>, IEquatable<Angle>, IComparable, IComparable<Angle>, IConvertible, IFormattable
+    public readonly partial struct Angle : IArithmeticQuantity<Angle, AngleUnit, double>, IEquatable<Angle>, IComparable, IComparable<Angle>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -143,8 +143,11 @@ namespace UnitsNet
         /// </summary>
         public static Angle Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Angle AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

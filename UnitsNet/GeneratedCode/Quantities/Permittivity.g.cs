@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Permittivity
     /// </remarks>
     [DataContract]
-    public readonly partial struct Permittivity : IQuantity<PermittivityUnit>, IEquatable<Permittivity>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
+    public readonly partial struct Permittivity : IArithmeticQuantity<Permittivity, PermittivityUnit, double>, IEquatable<Permittivity>, IComparable, IComparable<Permittivity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -131,8 +131,11 @@ namespace UnitsNet
         /// </summary>
         public static Permittivity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Permittivity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

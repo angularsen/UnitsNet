@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
     [DataContract]
-    public readonly partial struct Frequency : IQuantity<FrequencyUnit>, IEquatable<Frequency>, IComparable, IComparable<Frequency>, IConvertible, IFormattable
+    public readonly partial struct Frequency : IArithmeticQuantity<Frequency, FrequencyUnit, double>, IEquatable<Frequency>, IComparable, IComparable<Frequency>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -138,8 +138,11 @@ namespace UnitsNet
         /// </summary>
         public static Frequency Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Frequency AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

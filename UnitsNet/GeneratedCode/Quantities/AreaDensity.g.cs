@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The area density of a two-dimensional object is calculated as the mass per unit area. For paper this is also called grammage.
     /// </summary>
     [DataContract]
-    public readonly partial struct AreaDensity : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>, IConvertible, IFormattable
+    public readonly partial struct AreaDensity : IArithmeticQuantity<AreaDensity, AreaDensityUnit, double>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -130,8 +130,11 @@ namespace UnitsNet
         /// </summary>
         public static AreaDensity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static AreaDensity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     A geometric property of an area that reflects how its points are distributed with regard to an axis.
     /// </summary>
     [DataContract]
-    public readonly partial struct AreaMomentOfInertia : IQuantity<AreaMomentOfInertiaUnit>, IEquatable<AreaMomentOfInertia>, IComparable, IComparable<AreaMomentOfInertia>, IConvertible, IFormattable
+    public readonly partial struct AreaMomentOfInertia : IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit, double>, IEquatable<AreaMomentOfInertia>, IComparable, IComparable<AreaMomentOfInertia>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -133,8 +133,11 @@ namespace UnitsNet
         /// </summary>
         public static AreaMomentOfInertia Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static AreaMomentOfInertia AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

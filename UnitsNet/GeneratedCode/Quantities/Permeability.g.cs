@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Permeability_(electromagnetism)
     /// </remarks>
     [DataContract]
-    public readonly partial struct Permeability : IQuantity<PermeabilityUnit>, IEquatable<Permeability>, IComparable, IComparable<Permeability>, IConvertible, IFormattable
+    public readonly partial struct Permeability : IArithmeticQuantity<Permeability, PermeabilityUnit, double>, IEquatable<Permeability>, IComparable, IComparable<Permeability>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -131,8 +131,11 @@ namespace UnitsNet
         /// </summary>
         public static Permeability Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Permeability AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

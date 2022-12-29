@@ -3,6 +3,9 @@
 
 using System;
 using System.Globalization;
+#if NET7_0_OR_GREATER
+using System.Numerics;
+#endif
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -112,5 +115,22 @@ namespace UnitsNet
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
         /// <returns>A new quantity with the determined unit.</returns>
         new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
+    }
+
+    /// <summary>
+    ///     An <see cref="IQuantity{TUnitType}"/> that (in .NET 7+) implements generic math interfaces for equality, comparison and parsing.
+    /// </summary>
+    /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
+    /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
+    /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
+    public interface IQuantity<TSelf, TUnitType, TValueType> : IQuantity<TUnitType>
+#if NET7_0_OR_GREATER
+        , IComparisonOperators<TSelf, TSelf, bool>
+        , IParsable<TSelf>
+#endif
+        where TSelf : IQuantity<TSelf, TUnitType, TValueType>
+        where TUnitType : Enum
+        where TValueType : struct
+    {
     }
 }

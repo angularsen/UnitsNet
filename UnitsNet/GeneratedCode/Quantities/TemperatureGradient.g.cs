@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct TemperatureGradient : IQuantity<TemperatureGradientUnit>, IEquatable<TemperatureGradient>, IComparable, IComparable<TemperatureGradient>, IConvertible, IFormattable
+    public readonly partial struct TemperatureGradient : IArithmeticQuantity<TemperatureGradient, TemperatureGradientUnit, double>, IEquatable<TemperatureGradient>, IComparable, IComparable<TemperatureGradient>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -131,8 +131,11 @@ namespace UnitsNet
         /// </summary>
         public static TemperatureGradient Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static TemperatureGradient AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

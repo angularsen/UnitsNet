@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Molar_concentration
     /// </remarks>
     [DataContract]
-    public readonly partial struct Molarity : IQuantity<MolarityUnit>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
+    public readonly partial struct Molarity : IArithmeticQuantity<Molarity, MolarityUnit, double>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -139,8 +139,11 @@ namespace UnitsNet
         /// </summary>
         public static Molarity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Molarity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

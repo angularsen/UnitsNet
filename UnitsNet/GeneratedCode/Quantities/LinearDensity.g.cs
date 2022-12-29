@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Linear_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct LinearDensity : IQuantity<LinearDensityUnit>, IEquatable<LinearDensity>, IComparable, IComparable<LinearDensity>, IConvertible, IFormattable
+    public readonly partial struct LinearDensity : IArithmeticQuantity<LinearDensity, LinearDensityUnit, double>, IEquatable<LinearDensity>, IComparable, IComparable<LinearDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -144,8 +144,11 @@ namespace UnitsNet
         /// </summary>
         public static LinearDensity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static LinearDensity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

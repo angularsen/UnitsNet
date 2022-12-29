@@ -64,7 +64,7 @@ namespace UnitsNet
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
             Writer.W(@$"
     [DataContract]
-    public readonly partial struct {_quantity.Name} : IQuantity<{_unitEnumName}>, ");
+    public readonly partial struct {_quantity.Name} : {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>, ");
             if (_quantity.ValueType == "decimal")
             {
                 Writer.W("IDecimalQuantity, ");
@@ -239,9 +239,19 @@ namespace UnitsNet
         ///     Gets an instance of this quantity with a value of 0 in the base unit {_quantity.BaseUnit}.
         /// </summary>
         public static {_quantity.Name} Zero {{ get; }}
-
-        #endregion
 ");
+
+            if (_quantity.GenerateArithmetic)
+            {
+                Writer.WL($@"
+        /// <inheritdoc cref=""Zero""/>
+        public static {_quantity.Name} AdditiveIdentity => Zero;
+");
+            }
+
+            Writer.WL($@"
+        #endregion
+ ");
         }
 
         private void GenerateProperties()

@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     A unit that represents a fractional change in size in response to a change in temperature.
     /// </summary>
     [DataContract]
-    public readonly partial struct CoefficientOfThermalExpansion : IQuantity<CoefficientOfThermalExpansionUnit>, IEquatable<CoefficientOfThermalExpansion>, IComparable, IComparable<CoefficientOfThermalExpansion>, IConvertible, IFormattable
+    public readonly partial struct CoefficientOfThermalExpansion : IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit, double>, IEquatable<CoefficientOfThermalExpansion>, IComparable, IComparable<CoefficientOfThermalExpansion>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -130,8 +130,11 @@ namespace UnitsNet
         /// </summary>
         public static CoefficientOfThermalExpansion Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static CoefficientOfThermalExpansion AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

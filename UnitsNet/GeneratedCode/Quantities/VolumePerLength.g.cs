@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Volume, typically of fluid, that a container can hold within a unit of length.
     /// </summary>
     [DataContract]
-    public readonly partial struct VolumePerLength : IQuantity<VolumePerLengthUnit>, IEquatable<VolumePerLength>, IComparable, IComparable<VolumePerLength>, IConvertible, IFormattable
+    public readonly partial struct VolumePerLength : IArithmeticQuantity<VolumePerLength, VolumePerLengthUnit, double>, IEquatable<VolumePerLength>, IComparable, IComparable<VolumePerLength>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -134,8 +134,11 @@ namespace UnitsNet
         /// </summary>
         public static VolumePerLength Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static VolumePerLength AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

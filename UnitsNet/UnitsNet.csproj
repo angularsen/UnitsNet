@@ -24,7 +24,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
   </PropertyGroup>
 
   <!-- SourceLink: https://github.com/dotnet/sourcelink -->

@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Magnetization
     /// </remarks>
     [DataContract]
-    public readonly partial struct Magnetization : IQuantity<MagnetizationUnit>, IEquatable<Magnetization>, IComparable, IComparable<Magnetization>, IConvertible, IFormattable
+    public readonly partial struct Magnetization : IArithmeticQuantity<Magnetization, MagnetizationUnit, double>, IEquatable<Magnetization>, IComparable, IComparable<Magnetization>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -131,8 +131,11 @@ namespace UnitsNet
         /// </summary>
         public static Magnetization Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Magnetization AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

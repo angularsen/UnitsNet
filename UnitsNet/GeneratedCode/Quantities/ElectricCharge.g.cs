@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electric_charge
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricCharge : IQuantity<ElectricChargeUnit>, IEquatable<ElectricCharge>, IComparable, IComparable<ElectricCharge>, IConvertible, IFormattable
+    public readonly partial struct ElectricCharge : IArithmeticQuantity<ElectricCharge, ElectricChargeUnit, double>, IEquatable<ElectricCharge>, IComparable, IComparable<ElectricCharge>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -135,8 +135,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricCharge Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static ElectricCharge AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

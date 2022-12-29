@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminance
     /// </remarks>
     [DataContract]
-    public readonly partial struct Luminance : IQuantity<LuminanceUnit>, IEquatable<Luminance>, IComparable, IComparable<Luminance>, IConvertible, IFormattable
+    public readonly partial struct Luminance : IArithmeticQuantity<Luminance, LuminanceUnit, double>, IEquatable<Luminance>, IComparable, IComparable<Luminance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -140,8 +140,11 @@ namespace UnitsNet
         /// </summary>
         public static Luminance Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Luminance AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

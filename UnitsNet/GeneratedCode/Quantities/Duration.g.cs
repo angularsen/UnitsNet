@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
     [DataContract]
-    public readonly partial struct Duration : IQuantity<DurationUnit>, IEquatable<Duration>, IComparable, IComparable<Duration>, IConvertible, IFormattable
+    public readonly partial struct Duration : IArithmeticQuantity<Duration, DurationUnit, double>, IEquatable<Duration>, IComparable, IComparable<Duration>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -138,8 +138,11 @@ namespace UnitsNet
         /// </summary>
         public static Duration Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Duration AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

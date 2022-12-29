@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     The amount of power in a volume.
     /// </summary>
     [DataContract]
-    public readonly partial struct PowerDensity : IQuantity<PowerDensityUnit>, IEquatable<PowerDensity>, IComparable, IComparable<PowerDensity>, IConvertible, IFormattable
+    public readonly partial struct PowerDensity : IArithmeticQuantity<PowerDensity, PowerDensityUnit, double>, IEquatable<PowerDensity>, IComparable, IComparable<PowerDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -171,8 +171,11 @@ namespace UnitsNet
         /// </summary>
         public static PowerDensity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static PowerDensity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

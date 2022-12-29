@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electric_field
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricField : IQuantity<ElectricFieldUnit>, IEquatable<ElectricField>, IComparable, IComparable<ElectricField>, IConvertible, IFormattable
+    public readonly partial struct ElectricField : IArithmeticQuantity<ElectricField, ElectricFieldUnit, double>, IEquatable<ElectricField>, IComparable, IComparable<ElectricField>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -131,8 +131,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricField Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static ElectricField AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

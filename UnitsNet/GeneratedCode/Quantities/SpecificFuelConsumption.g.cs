@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Thrust-specific_fuel_consumption
     /// </remarks>
     [DataContract]
-    public readonly partial struct SpecificFuelConsumption : IQuantity<SpecificFuelConsumptionUnit>, IEquatable<SpecificFuelConsumption>, IComparable, IComparable<SpecificFuelConsumption>, IConvertible, IFormattable
+    public readonly partial struct SpecificFuelConsumption : IArithmeticQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit, double>, IEquatable<SpecificFuelConsumption>, IComparable, IComparable<SpecificFuelConsumption>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -134,8 +134,11 @@ namespace UnitsNet
         /// </summary>
         public static SpecificFuelConsumption Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static SpecificFuelConsumption AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Charge_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricSurfaceChargeDensity : IQuantity<ElectricSurfaceChargeDensityUnit>, IEquatable<ElectricSurfaceChargeDensity>, IComparable, IComparable<ElectricSurfaceChargeDensity>, IConvertible, IFormattable
+    public readonly partial struct ElectricSurfaceChargeDensity : IArithmeticQuantity<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit, double>, IEquatable<ElectricSurfaceChargeDensity>, IComparable, IComparable<ElectricSurfaceChargeDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -133,8 +133,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricSurfaceChargeDensity Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static ElectricSurfaceChargeDensity AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

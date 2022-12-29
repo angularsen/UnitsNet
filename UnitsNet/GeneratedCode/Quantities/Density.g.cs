@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Density
     /// </remarks>
     [DataContract]
-    public readonly partial struct Density : IQuantity<DensityUnit>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible, IFormattable
+    public readonly partial struct Density : IArithmeticQuantity<Density, DensityUnit, double>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -181,8 +181,11 @@ namespace UnitsNet
         /// </summary>
         public static Density Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static Density AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

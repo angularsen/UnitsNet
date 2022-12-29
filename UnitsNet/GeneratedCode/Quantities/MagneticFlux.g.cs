@@ -39,7 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Magnetic_flux
     /// </remarks>
     [DataContract]
-    public readonly partial struct MagneticFlux : IQuantity<MagneticFluxUnit>, IEquatable<MagneticFlux>, IComparable, IComparable<MagneticFlux>, IConvertible, IFormattable
+    public readonly partial struct MagneticFlux : IArithmeticQuantity<MagneticFlux, MagneticFluxUnit, double>, IEquatable<MagneticFlux>, IComparable, IComparable<MagneticFlux>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -131,8 +131,11 @@ namespace UnitsNet
         /// </summary>
         public static MagneticFlux Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static MagneticFlux AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>

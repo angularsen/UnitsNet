@@ -36,7 +36,7 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct VolumeFlowPerArea : IQuantity<VolumeFlowPerAreaUnit>, IEquatable<VolumeFlowPerArea>, IComparable, IComparable<VolumeFlowPerArea>, IConvertible, IFormattable
+    public readonly partial struct VolumeFlowPerArea : IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit, double>, IEquatable<VolumeFlowPerArea>, IComparable, IComparable<VolumeFlowPerArea>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -129,8 +129,11 @@ namespace UnitsNet
         /// </summary>
         public static VolumeFlowPerArea Zero { get; }
 
-        #endregion
+        /// <inheritdoc cref="Zero"/>
+        public static VolumeFlowPerArea AdditiveIdentity => Zero;
 
+        #endregion
+ 
         #region Properties
 
         /// <summary>
