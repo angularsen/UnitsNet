@@ -93,9 +93,9 @@ stages:
         publishLocation: 'pipeline'
 
 - stage: Publish
+  dependsOn: Build
   jobs:
   - job: Publish
-    dependsOn: Build
     steps:
     - task: Bash@3
       displayName: 'Push to nuget.org'
