@@ -21,8 +21,10 @@ variables:
 
 stages:
 - stage: Build
+  displayName: Build & test
   jobs:
   - job: Build
+    displayName: Build & test
     steps:
     - checkout: self
       fetchDepth: 1
@@ -86,10 +88,12 @@ stages:
         preserveTimestamp: true
         retryCount: '3'
         ignoreMakeDirErrors: true
+
     - task: PublishPipelineArtifact@1
+      displayName: Upload nugets to pipeline
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)'
-        artifact: 'drop'
+        artifact: 'nugets'
         publishLocation: 'pipeline'
 
 - stage: Publish
@@ -97,11 +101,13 @@ stages:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
   - job: Publish
+    displayName: Publish nugets
     steps:
     - task: DownloadPipelineArtifact@2
+      displayName: Download nugets from pipeline
       inputs:
         buildType: 'current'
-        artifactName: 'drop'
+        artifactName: 'nugets'
         targetPath: '$(Build.ArtifactStagingDirectory)'
 
     - task: Bash@3
