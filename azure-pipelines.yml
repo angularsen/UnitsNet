@@ -123,7 +123,7 @@ stages:
       displayName: Push to internal NuGet feed
       inputs:
         command: 'push'
-        packagesToPush: '/**/*.nupkg'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
         nuGetFeedType: 'internal'
         publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
         allowPackageConflicts: true
