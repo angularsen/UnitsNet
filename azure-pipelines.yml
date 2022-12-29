@@ -94,9 +94,16 @@ stages:
 
 - stage: Publish
   dependsOn: Build
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
   - job: Publish
     steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'drop'
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+
     - task: Bash@3
       displayName: 'Push to nuget.org'
       env:
@@ -110,7 +117,7 @@ stages:
       displayName: Push to internal NuGet feed
       inputs:
         command: 'push'
-        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+        packagesToPush: '/**/*.nupkg'
         nuGetFeedType: 'internal'
         publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
         allowPackageConflicts: true
