@@ -3,7 +3,7 @@
 
 using System.IO;
 using System.Linq;
-using CodeGen.Generators.UnitsNetGen;
+using CodeGen.Generators.UnitsNetModularGen;
 using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 using Serilog;
@@ -71,6 +71,7 @@ namespace CodeGen.Generators
             // TODO modular
             // GenerateIQuantityTests(quantities, $"{testProjectDir}/GeneratedCode/IQuantityTests.g.cs");
             // GenerateStaticQuantity(quantities, $"{outputDir}/Quantity.g.cs");
+            GenerateSolution(quantities, rootDir);
 
             var unitCount = quantities.SelectMany(q => q.Units).Count();
             Log.Information("");
@@ -78,14 +79,23 @@ namespace CodeGen.Generators
             Log.Information("");
         }
 
-        private static void GenerateQuantityTestClassIfNotExists(Quantity quantity, string filePath)
+        private static void GenerateSolution(Quantity[] quantities, string outputDir)
         {
-            if (File.Exists(filePath)) return;
+            var content = new SolutionGenerator(quantities).Generate();
+            var filePath = Path.Combine(outputDir, "UnitsNet.Modular.sln");
 
-            var content = new UnitTestStubGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
-            Log.Information("✅ {Quantity} initial test stub", quantity.Name);
+            Log.Information("✅ UnitsNet.Modular.sln");
         }
+
+        // private static void GenerateQuantityTestClassIfNotExists(Quantity quantity, string filePath)
+        // {
+        //     if (File.Exists(filePath)) return;
+        //
+        //     var content = new UnitTestStubGenerator(quantity).Generate();
+        //     File.WriteAllText(filePath, content);
+        //     Log.Information("✅ {Quantity} initial test stub", quantity.Name);
+        // }
 
         private static void GenerateQuantity(Quantity quantity, string filePath)
         {
@@ -93,17 +103,17 @@ namespace CodeGen.Generators
             File.WriteAllText(filePath, content);
         }
 
-        private static void GenerateNumberToExtensions(Quantity quantity, string filePath)
-        {
-            var content = new NumberExtensionsGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
-        }
+        // private static void GenerateNumberToExtensions(Quantity quantity, string filePath)
+        // {
+        //     var content = new NumberExtensionsGenerator(quantity).Generate();
+        //     File.WriteAllText(filePath, content);
+        // }
 
-        private static void GenerateNumberToExtensionsTestClass(Quantity quantity, string filePath)
-        {
-            var content = new NumberExtensionsTestClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
-        }
+        // private static void GenerateNumberToExtensionsTestClass(Quantity quantity, string filePath)
+        // {
+        //     var content = new NumberExtensionsTestClassGenerator(quantity).Generate();
+        //     File.WriteAllText(filePath, content);
+        // }
 
         private static void GenerateUnitType(Quantity quantity, string filePath, UnitEnumNameToValue unitEnumValues)
         {
@@ -117,18 +127,18 @@ namespace CodeGen.Generators
             File.WriteAllText(filePath, content);
         }
 
-        private static void GenerateQuantityTestBaseClass(Quantity quantity, string filePath)
-        {
-            var content = new UnitTestBaseClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
-        }
-
-        private static void GenerateIQuantityTests(Quantity[] quantities, string filePath)
-        {
-            var content = new IQuantityTestClassGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content);
-            Log.Information("✅ IQuantityTests.g.cs");
-        }
+        // private static void GenerateQuantityTestBaseClass(Quantity quantity, string filePath)
+        // {
+        //     var content = new UnitTestBaseClassGenerator(quantity).Generate();
+        //     File.WriteAllText(filePath, content);
+        // }
+        //
+        // private static void GenerateIQuantityTests(Quantity[] quantities, string filePath)
+        // {
+        //     var content = new IQuantityTestClassGenerator(quantities).Generate();
+        //     File.WriteAllText(filePath, content);
+        //     Log.Information("✅ IQuantityTests.g.cs");
+        // }
 
         // private static void GenerateStaticQuantity(Quantity[] quantities, string filePath)
         // {

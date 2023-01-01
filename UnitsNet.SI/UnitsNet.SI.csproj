@@ -3,7 +3,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.SI</PackageId>
-    <Version>5.0.0-alpha006</Version>
+    <Version>5.0.0-rc008</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET - SI Unit System</Title>
     <Description>Common types and abstractions that are required for the UnitsNet packages that adds quantities and units.</Description>

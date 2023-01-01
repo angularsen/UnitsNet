@@ -30,7 +30,7 @@ MinimumVisualStudioVersion = 10.0.40219.1");
                 var projectGuid = HashGuid.ToHashGuid(quantity.Name);
                 var projectName = $"UnitsNet.{quantity.Name}";
                 Writer.WL($@"
-Project(""{_globalGuid:B}"") = ""{projectName}"", ""{projectName}\{projectName}.csproj"", ""{projectGuid:B}""
+Project(""{_globalGuid:B}"") = ""{projectName}"", ""UnitsNet.Modular\{projectName}\{projectName}.csproj"", ""{projectGuid:B}""
 EndProject");
                 sb.Append($"{{{projectGuid}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU\r\n");
                 sb.Append($"{{{projectGuid}}}.Debug|Any CPU.Build.0 = Debug|Any CPU\r\n");
