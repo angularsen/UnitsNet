@@ -1,6 +1,6 @@
 ## OasysUnits
 
-![Downloads](https://img.shields.io/nuget/dt/oasysunits?style=flat-square) 
+![Downloads](https://img.shields.io/nuget/dt/oasysunits?style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB3SURBVHgB7ZRBDoAgDASr8SH8/1PwE6yHJogEd5UeNMyNpN2hhFTEmQUtzMqpUUH6VnFmCqbASaBfPuaKRk1NhAXu6G1Ca4oOR21gHIyEDyckz8MByfvwjoQLty5Qcht+yUMEDGXe91fFVh5GPpNhEyQZT5JfsAN5UByV3bhHmAAAAABJRU5ErkJggg==) 
 
 Official [Units.Net](https://github.com/angularsen/UnitsNet/blob/master/README.md) extended with additional Oasys units. 
 
