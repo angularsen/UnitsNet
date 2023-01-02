@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CUnitsNet")]
+[assembly: AssemblyTitle("UnitsNet")]
 [assembly: AssemblyDescription("Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Andreas Gullberg Larsen")]

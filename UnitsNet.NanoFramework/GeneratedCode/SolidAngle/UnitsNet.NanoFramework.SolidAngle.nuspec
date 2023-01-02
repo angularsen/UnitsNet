@@ -17,7 +17,7 @@
     <language>en-US</language>
     <tags>nanoframework unit units measurement si metric imperial abbreviation abbreviations convert conversion parse c# .net immutable uwp uap winrt win10 windows runtime component solidangle</tags>
     <dependencies>
-      <dependency id="nanoFramework.CoreLibrary" version="1.12.0" />
+      <dependency id="nanoFramework.CoreLibrary" version="1.14.2" />
     </dependencies>
   </metadata>
   <files>
