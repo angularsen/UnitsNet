@@ -2,7 +2,7 @@
 
 ![Downloads](https://img.shields.io/nuget/dt/oasysunits?style=flat-square) 
 
-Official [Units.Net](https://github.com/angularsen/UnitsNet/blob/master/README.md) with additional Oasys units.
+Official [Units.Net](https://github.com/angularsen/UnitsNet/blob/master/README.md) extended with additional Oasys units. 
 
 | Latest | CI Pipeline | Dependencies |
 | ------ | ----------- | ------------ |
@@ -24,3 +24,9 @@ Official [Units.Net](https://github.com/angularsen/UnitsNet/blob/master/README.m
 
 * Follow the steps described in the official [Units.Net wiki](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit#quick-summary-of-steps)
 * Copy all newly created custom files into `.\CustomOasys\`
+
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?&style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADLSURBVHgB7ZPRDcIwDESvnYAROgIbkA1ghG7CKDACTNBs0m5QNgiO5I/IuLGLhJCgT7JUWXe5OHKBvyIxazytckhIC8gghQDHLYf0PoN1eFe7jZzE45NPdC6+T/Bj+yh5J8adc09oXiawfG0lOYt62FR9ZcBRMQfY+Hw8mmQWGu2Jqr6mNEOhIaRG6y35yieKiu4Gm+jy8S5feeRcF+cWmT43WoBFiw+zBXw/oNGavGY91YFqz+1OyB5UE9edKtK/NcEDBYxpPSN+kidmAJvClBsULQAAAABJRU5ErkJggg==)](/LICENSE)
+
+## Acknowledgement
+We would like to thank [Andreas Gullberg Larsen](https://github.com/angularsen/) and others for the great work of [UnitsNet](https://github.com/angularsen/UnitsNet/).
