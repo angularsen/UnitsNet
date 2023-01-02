@@ -1,6 +1,12 @@
-﻿## OasysUnits
+## OasysUnits
+
+![Downloads](https://img.shields.io/nuget/dt/oasysunits?style=flat-square) 
 
 Official [Units.Net](https://github.com/angularsen/UnitsNet/blob/master/README.md) with additional Oasys units.
+
+| Latest | CI Pipeline | Dependencies |
+| ------ | ----------- | ------------ |
+| [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/arup-group/oasysunits?include_prereleases&logo=github&style=flat-square)](https://github.com/arup-group/GSA-Grasshopper/releases) <br /> ![Nuget](https://img.shields.io/nuget/vpre/oasysunits?logo=nuget&style=flat-square) | [![Build Status](https://dev.azure.com/oasys-software/OASYS%20libraries/_apis/build/status/arup-group.OasysUnits?branchName=main?style=flat-square)](https://dev.azure.com/oasys-software/OASYS%20libraries/_build/latest?definitionId=146&branchName=main) <br /> ![Azure DevOps builds](https://img.shields.io/azure-devops/build/oasys-software/89fd051d-5c77-48bf-9b0e-05bca3e3e596/146?logo=azurepipelines&style=flat-square) <br /> ![GitHub branch checks state](https://img.shields.io/github/checks-status/arup-group/oasysunits/main?logo=github&style=flat-square) | ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/arup-group/gsa-grasshopper?logo=nuget&style=flat-square) |
 
 ### How to get up to date with the main repository
 
