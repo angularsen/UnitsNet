@@ -1672,5 +1672,19 @@
     "TerajoulePerCubicMeter": 10,
     "TerawattHourPerCubicMeter": 12,
     "WattHourPerCubicMeter": 14
+  },
+  "Impulse": {
+    "CentinewtonSecond": 10,
+    "DecanewtonSecond": 9,
+    "DecinewtonSecond": 6,
+    "KilogramMeterPerSecond": 1,
+    "KilonewtonSecond": 7,
+    "MeganewtonSecond": 4,
+    "MicronewtonSecond": 8,
+    "MillinewtonSecond": 3,
+    "NanonewtonSecond": 2,
+    "NewtonSecond": 5,
+    "PoundFootPerSecond": 16,
+    "SlugFootPerSecond": 11
   }
 }

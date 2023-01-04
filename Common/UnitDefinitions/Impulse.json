@@ -1,0 +1,61 @@
+{
+  "Name": "Impulse",
+  "BaseUnit": "NewtonSecond",
+  "XmlDocSummary": "In classical mechanics, impulse is the integral of a force, F, over the time interval, t, for which it acts. Impulse applied to an object produces an equivalent vector change in its linear momentum, also in the resultant direction.",
+  "BaseDimensions": {
+    "L": 1,
+    "M": 1,
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "KilogramMeterPerSecond",
+      "PluralName": "KilogramMetersPerSecond",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg·m/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "NewtonSecond",
+      "PluralName": "NewtonSeconds",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundFootPerSecond",
+      "PluralName": "PoundFeetPerSecond",
+      "FromUnitToBaseFunc": "{x} / 7.230657989877",
+      "FromBaseToUnitFunc": "{x} * 7.230657989877",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb·ft/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugFootPerSecond",
+      "PluralName": "SlugFeetPerSecond",
+      "FromUnitToBaseFunc": "{x} / 0.224735720691",
+      "FromBaseToUnitFunc": "{x} * 0.224735720691",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug·ft/s" ]
+        }
+      ]
+    }
+  ]
+}
