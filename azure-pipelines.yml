@@ -3,7 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger: 
+trigger:
   branches:
     include:
       - master
@@ -27,7 +27,7 @@ steps:
   fetchTags: false
 
 - task: InstallNanoMSBuildComponents@1
-  displayName: Install .NET nanoFramework MSBuild components  
+  displayName: Install .NET nanoFramework MSBuild components
 
 - task: PowerShell@2
   displayName: 'Build, test, pack'
@@ -48,21 +48,21 @@ steps:
     targetType: 'inline'
     script: |
       Write-Host -Foreground Green "Downloading codecov binaries..."
-      
-      Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc 
+
+      Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc
       gpg.exe --import codecov.asc
-      
+
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
       Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
-      
+
       gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
       If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
-      
+
       Write-Host -Foreground Green "Uploading to codecov..."
-      
+
       .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" --build "$(Build.BuildNumber)"
-      
+
       Write-Host -Foreground Green "✅ Uploaded to codecov."
     pwsh: true
 
@@ -76,6 +76,7 @@ steps:
     SourceFolder: '$(Build.SourcesDirectory)/Artifacts'
     Contents: |
       **/*.nupkg
+      **/*.snupkg
       **/*.symbols.nupkg
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     flattenFolders: true
@@ -83,21 +84,20 @@ steps:
     retryCount: '3'
     ignoreMakeDirErrors: true
 
+- task: Bash@3
+  displayName: 'Push to nuget.org'
+  env:
+    NUGET_ORG_APIKEY: '$(NUGET_ORG_APIKEY)'
+  inputs:
+    targetType: 'inline'
+    script: 'dotnet nuget push "*.nupkg" --skip-duplicate --api-key $(NUGET_ORG_APIKEY) --source https://api.nuget.org/v3/index.json'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
 - task: NuGetCommand@2
   displayName: Push to internal NuGet feed
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'fee4c64f-3e49-4618-9ea4-5a3167257c37/989275f4-a952-4abd-ae82-2e7a0cb97b9b'
     allowPackageConflicts: true
-
-- task: NuGetCommand@2
-  displayName: Push to nuget.org
-  continueOnError: true # allowPackageConflicts option does not work with external feeds 🤷
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'nuget.org (UnitsNet)'
-    allowPackageConflicts: true    
