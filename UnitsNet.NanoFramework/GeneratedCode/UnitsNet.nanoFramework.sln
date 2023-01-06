@@ -92,6 +92,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "HeatTransferCoefficient", "
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Illuminance", "Illuminance\Illuminance.nfproj", "{d846582b-8ae3-9779-01ea-7210b5330cfd}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Impulse", "Impulse\Impulse.nfproj", "{d8d4e4e8-1dc8-0170-5e3c-18610853bd87}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Information", "Information\Information.nfproj", "{12bab01c-845f-82c9-b00b-a3639cdfb2ce}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Irradiance", "Irradiance\Irradiance.nfproj", "{5f9c09c7-9e32-8927-7a5d-90001ceffc69}"
@@ -510,6 +512,12 @@ Global
 {d846582b-8ae3-9779-01ea-7210b5330cfd}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {d846582b-8ae3-9779-01ea-7210b5330cfd}.Release|Any CPU.Build.0 = Release|Any CPU
 {d846582b-8ae3-9779-01ea-7210b5330cfd}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{d8d4e4e8-1dc8-0170-5e3c-18610853bd87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{d8d4e4e8-1dc8-0170-5e3c-18610853bd87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{d8d4e4e8-1dc8-0170-5e3c-18610853bd87}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{d8d4e4e8-1dc8-0170-5e3c-18610853bd87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{d8d4e4e8-1dc8-0170-5e3c-18610853bd87}.Release|Any CPU.Build.0 = Release|Any CPU
+{d8d4e4e8-1dc8-0170-5e3c-18610853bd87}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {12bab01c-845f-82c9-b00b-a3639cdfb2ce}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

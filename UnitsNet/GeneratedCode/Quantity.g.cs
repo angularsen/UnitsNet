@@ -82,6 +82,7 @@ namespace UnitsNet
             { "HeatFlux", HeatFlux.Info },
             { "HeatTransferCoefficient", HeatTransferCoefficient.Info },
             { "Illuminance", Illuminance.Info },
+            { "Impulse", Impulse.Info },
             { "Information", Information.Info },
             { "Irradiance", Irradiance.Info },
             { "Irradiation", Irradiation.Info },
@@ -210,6 +211,7 @@ namespace UnitsNet
                 "HeatFlux" => HeatFlux.From(value, HeatFlux.BaseUnit),
                 "HeatTransferCoefficient" => HeatTransferCoefficient.From(value, HeatTransferCoefficient.BaseUnit),
                 "Illuminance" => Illuminance.From(value, Illuminance.BaseUnit),
+                "Impulse" => Impulse.From(value, Impulse.BaseUnit),
                 "Information" => Information.From(value, Information.BaseUnit),
                 "Irradiance" => Irradiance.From(value, Irradiance.BaseUnit),
                 "Irradiation" => Irradiation.From(value, Irradiation.BaseUnit),
@@ -430,6 +432,9 @@ namespace UnitsNet
                     return true;
                 case IlluminanceUnit illuminanceUnit:
                     quantity = Illuminance.From(value, illuminanceUnit);
+                    return true;
+                case ImpulseUnit impulseUnit:
+                    quantity = Impulse.From(value, impulseUnit);
                     return true;
                 case InformationUnit informationUnit:
                     quantity = Information.From(value, informationUnit);
@@ -716,6 +721,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(HeatFlux) => parser.TryParse<HeatFlux, HeatFluxUnit>(quantityString, formatProvider, HeatFlux.From, out quantity),
                 Type _ when quantityType == typeof(HeatTransferCoefficient) => parser.TryParse<HeatTransferCoefficient, HeatTransferCoefficientUnit>(quantityString, formatProvider, HeatTransferCoefficient.From, out quantity),
                 Type _ when quantityType == typeof(Illuminance) => parser.TryParse<Illuminance, IlluminanceUnit>(quantityString, formatProvider, Illuminance.From, out quantity),
+                Type _ when quantityType == typeof(Impulse) => parser.TryParse<Impulse, ImpulseUnit>(quantityString, formatProvider, Impulse.From, out quantity),
                 Type _ when quantityType == typeof(Information) => parser.TryParse<Information, InformationUnit>(quantityString, formatProvider, Information.From, out quantity),
                 Type _ when quantityType == typeof(Irradiance) => parser.TryParse<Irradiance, IrradianceUnit>(quantityString, formatProvider, Irradiance.From, out quantity),
                 Type _ when quantityType == typeof(Irradiation) => parser.TryParse<Irradiation, IrradiationUnit>(quantityString, formatProvider, Irradiation.From, out quantity),
@@ -838,6 +844,7 @@ namespace UnitsNet
             yield return typeof(HeatFlux);
             yield return typeof(HeatTransferCoefficient);
             yield return typeof(Illuminance);
+            yield return typeof(Impulse);
             yield return typeof(Information);
             yield return typeof(Irradiance);
             yield return typeof(Irradiation);

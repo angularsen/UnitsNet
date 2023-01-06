@@ -79,6 +79,7 @@ namespace UnitsNet.Tests
             Assertion(3, HeatFluxUnit.WattPerSquareMeter, Quantity.From(3, HeatFluxUnit.WattPerSquareMeter));
             Assertion(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, Quantity.From(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             Assertion(3, IlluminanceUnit.Millilux, Quantity.From(3, IlluminanceUnit.Millilux));
+            Assertion(3, ImpulseUnit.SlugFootPerSecond, Quantity.From(3, ImpulseUnit.SlugFootPerSecond));
             Assertion(3, InformationUnit.Terabyte, Quantity.From(3, InformationUnit.Terabyte));
             Assertion(3, IrradianceUnit.WattPerSquareMeter, Quantity.From(3, IrradianceUnit.WattPerSquareMeter));
             Assertion(3, IrradiationUnit.WattHourPerSquareMeter, Quantity.From(3, IrradiationUnit.WattHourPerSquareMeter));
@@ -202,6 +203,7 @@ namespace UnitsNet.Tests
             Assertion(HeatFlux.Info, HeatFlux.Zero);
             Assertion(HeatTransferCoefficient.Info, HeatTransferCoefficient.Zero);
             Assertion(Illuminance.Info, Illuminance.Zero);
+            Assertion(Impulse.Info, Impulse.Zero);
             Assertion(Information.Info, Information.Zero);
             Assertion(Irradiance.Info, Irradiance.Zero);
             Assertion(Irradiation.Info, Irradiation.Zero);
@@ -325,6 +327,7 @@ namespace UnitsNet.Tests
             Assertion(HeatFlux.BaseDimensions, HeatFlux.Zero);
             Assertion(HeatTransferCoefficient.BaseDimensions, HeatTransferCoefficient.Zero);
             Assertion(Illuminance.BaseDimensions, Illuminance.Zero);
+            Assertion(Impulse.BaseDimensions, Impulse.Zero);
             Assertion(Information.BaseDimensions, Information.Zero);
             Assertion(Irradiance.BaseDimensions, Irradiance.Zero);
             Assertion(Irradiation.BaseDimensions, Irradiation.Zero);
