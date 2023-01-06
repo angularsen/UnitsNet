@@ -135,6 +135,11 @@ namespace UnitsNet
         public double PoundFeetPerSecond => As(ImpulseUnit.PoundFootPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.PoundForceSecond"/>
+        /// </summary>
+        public double PoundForceSeconds => As(ImpulseUnit.PoundForceSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.SlugFootPerSecond"/>
         /// </summary>
         public double SlugFeetPerSecond => As(ImpulseUnit.SlugFootPerSecond);
@@ -210,6 +215,12 @@ namespace UnitsNet
         public static Impulse FromPoundFeetPerSecond(double poundfeetpersecond) => new Impulse(poundfeetpersecond, ImpulseUnit.PoundFootPerSecond);
 
         /// <summary>
+        ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.PoundForceSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Impulse FromPoundForceSeconds(double poundforceseconds) => new Impulse(poundforceseconds, ImpulseUnit.PoundForceSecond);
+
+        /// <summary>
         ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.SlugFootPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -266,6 +277,7 @@ namespace UnitsNet
                         ImpulseUnit.NanonewtonSecond => (_value) * 1e-9d,
                         ImpulseUnit.NewtonSecond => _value,
                         ImpulseUnit.PoundFootPerSecond => _value / 7.230657989877,
+                        ImpulseUnit.PoundForceSecond => _value / 0.2248089430997,
                         ImpulseUnit.SlugFootPerSecond => _value / 0.224735720691,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -291,6 +303,7 @@ namespace UnitsNet
                         ImpulseUnit.NanonewtonSecond => (baseUnitValue) / 1e-9d,
                         ImpulseUnit.NewtonSecond => baseUnitValue,
                         ImpulseUnit.PoundFootPerSecond => baseUnitValue * 7.230657989877,
+                        ImpulseUnit.PoundForceSecond => baseUnitValue * 0.2248089430997,
                         ImpulseUnit.SlugFootPerSecond => baseUnitValue * 0.224735720691,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

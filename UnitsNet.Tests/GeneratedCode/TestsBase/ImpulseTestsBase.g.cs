@@ -49,6 +49,7 @@ namespace UnitsNet.Tests
         protected abstract double NanonewtonSecondsInOneNewtonSecond { get; }
         protected abstract double NewtonSecondsInOneNewtonSecond { get; }
         protected abstract double PoundFeetPerSecondInOneNewtonSecond { get; }
+        protected abstract double PoundForceSecondsInOneNewtonSecond { get; }
         protected abstract double SlugFeetPerSecondInOneNewtonSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
@@ -63,6 +64,7 @@ namespace UnitsNet.Tests
         protected virtual double NanonewtonSecondsTolerance { get { return 1e-5; } }
         protected virtual double NewtonSecondsTolerance { get { return 1e-5; } }
         protected virtual double PoundFeetPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double PoundForceSecondsTolerance { get { return 1e-5; } }
         protected virtual double SlugFeetPerSecondTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -81,6 +83,7 @@ namespace UnitsNet.Tests
                 ImpulseUnit.NanonewtonSecond => (NanonewtonSecondsInOneNewtonSecond, NanonewtonSecondsTolerance),
                 ImpulseUnit.NewtonSecond => (NewtonSecondsInOneNewtonSecond, NewtonSecondsTolerance),
                 ImpulseUnit.PoundFootPerSecond => (PoundFeetPerSecondInOneNewtonSecond, PoundFeetPerSecondTolerance),
+                ImpulseUnit.PoundForceSecond => (PoundForceSecondsInOneNewtonSecond, PoundForceSecondsTolerance),
                 ImpulseUnit.SlugFootPerSecond => (SlugFeetPerSecondInOneNewtonSecond, SlugFeetPerSecondTolerance),
                 _ => throw new NotSupportedException()
             };
@@ -99,6 +102,7 @@ namespace UnitsNet.Tests
             new object[] { ImpulseUnit.NanonewtonSecond },
             new object[] { ImpulseUnit.NewtonSecond },
             new object[] { ImpulseUnit.PoundFootPerSecond },
+            new object[] { ImpulseUnit.PoundForceSecond },
             new object[] { ImpulseUnit.SlugFootPerSecond },
         };
 
@@ -173,6 +177,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanonewtonSecondsInOneNewtonSecond, newtonsecond.NanonewtonSeconds, NanonewtonSecondsTolerance);
             AssertEx.EqualTolerance(NewtonSecondsInOneNewtonSecond, newtonsecond.NewtonSeconds, NewtonSecondsTolerance);
             AssertEx.EqualTolerance(PoundFeetPerSecondInOneNewtonSecond, newtonsecond.PoundFeetPerSecond, PoundFeetPerSecondTolerance);
+            AssertEx.EqualTolerance(PoundForceSecondsInOneNewtonSecond, newtonsecond.PoundForceSeconds, PoundForceSecondsTolerance);
             AssertEx.EqualTolerance(SlugFeetPerSecondInOneNewtonSecond, newtonsecond.SlugFeetPerSecond, SlugFeetPerSecondTolerance);
         }
 
@@ -223,9 +228,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity10.PoundFeetPerSecond, PoundFeetPerSecondTolerance);
             Assert.Equal(ImpulseUnit.PoundFootPerSecond, quantity10.Unit);
 
-            var quantity11 = Impulse.From(1, ImpulseUnit.SlugFootPerSecond);
-            AssertEx.EqualTolerance(1, quantity11.SlugFeetPerSecond, SlugFeetPerSecondTolerance);
-            Assert.Equal(ImpulseUnit.SlugFootPerSecond, quantity11.Unit);
+            var quantity11 = Impulse.From(1, ImpulseUnit.PoundForceSecond);
+            AssertEx.EqualTolerance(1, quantity11.PoundForceSeconds, PoundForceSecondsTolerance);
+            Assert.Equal(ImpulseUnit.PoundForceSecond, quantity11.Unit);
+
+            var quantity12 = Impulse.From(1, ImpulseUnit.SlugFootPerSecond);
+            AssertEx.EqualTolerance(1, quantity12.SlugFeetPerSecond, SlugFeetPerSecondTolerance);
+            Assert.Equal(ImpulseUnit.SlugFootPerSecond, quantity12.Unit);
 
         }
 
@@ -257,6 +266,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanonewtonSecondsInOneNewtonSecond, newtonsecond.As(ImpulseUnit.NanonewtonSecond), NanonewtonSecondsTolerance);
             AssertEx.EqualTolerance(NewtonSecondsInOneNewtonSecond, newtonsecond.As(ImpulseUnit.NewtonSecond), NewtonSecondsTolerance);
             AssertEx.EqualTolerance(PoundFeetPerSecondInOneNewtonSecond, newtonsecond.As(ImpulseUnit.PoundFootPerSecond), PoundFeetPerSecondTolerance);
+            AssertEx.EqualTolerance(PoundForceSecondsInOneNewtonSecond, newtonsecond.As(ImpulseUnit.PoundForceSecond), PoundForceSecondsTolerance);
             AssertEx.EqualTolerance(SlugFeetPerSecondInOneNewtonSecond, newtonsecond.As(ImpulseUnit.SlugFootPerSecond), SlugFeetPerSecondTolerance);
         }
 
@@ -359,6 +369,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Impulse.Parse("1 lbf·s", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.PoundForceSeconds, PoundForceSecondsTolerance);
+                Assert.Equal(ImpulseUnit.PoundForceSecond, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Impulse.Parse("1 slug·ft/s", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.SlugFeetPerSecond, SlugFeetPerSecondTolerance);
                 Assert.Equal(ImpulseUnit.SlugFootPerSecond, parsed.Unit);
@@ -421,6 +438,12 @@ namespace UnitsNet.Tests
                 Assert.True(Impulse.TryParse("1 lb·ft/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.PoundFeetPerSecond, PoundFeetPerSecondTolerance);
                 Assert.Equal(ImpulseUnit.PoundFootPerSecond, parsed.Unit);
+            }
+
+            {
+                Assert.True(Impulse.TryParse("1 lbf·s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.PoundForceSeconds, PoundForceSecondsTolerance);
+                Assert.Equal(ImpulseUnit.PoundForceSecond, parsed.Unit);
             }
 
             {
@@ -502,6 +525,12 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = Impulse.ParseUnit("lbf·s", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ImpulseUnit.PoundForceSecond, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = Impulse.ParseUnit("slug·ft/s", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ImpulseUnit.SlugFootPerSecond, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -554,6 +583,11 @@ namespace UnitsNet.Tests
             {
                 Assert.True(Impulse.TryParseUnit("lb·ft/s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ImpulseUnit.PoundFootPerSecond, parsedUnit);
+            }
+
+            {
+                Assert.True(Impulse.TryParseUnit("lbf·s", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ImpulseUnit.PoundForceSecond, parsedUnit);
             }
 
             {
@@ -620,6 +654,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Impulse.FromNanonewtonSeconds(newtonsecond.NanonewtonSeconds).NewtonSeconds, NanonewtonSecondsTolerance);
             AssertEx.EqualTolerance(1, Impulse.FromNewtonSeconds(newtonsecond.NewtonSeconds).NewtonSeconds, NewtonSecondsTolerance);
             AssertEx.EqualTolerance(1, Impulse.FromPoundFeetPerSecond(newtonsecond.PoundFeetPerSecond).NewtonSeconds, PoundFeetPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Impulse.FromPoundForceSeconds(newtonsecond.PoundForceSeconds).NewtonSeconds, PoundForceSecondsTolerance);
             AssertEx.EqualTolerance(1, Impulse.FromSlugFeetPerSecond(newtonsecond.SlugFeetPerSecond).NewtonSeconds, SlugFeetPerSecondTolerance);
         }
 
@@ -779,6 +814,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nN·s", new Impulse(1, ImpulseUnit.NanonewtonSecond).ToString());
                 Assert.Equal("1 N·s", new Impulse(1, ImpulseUnit.NewtonSecond).ToString());
                 Assert.Equal("1 lb·ft/s", new Impulse(1, ImpulseUnit.PoundFootPerSecond).ToString());
+                Assert.Equal("1 lbf·s", new Impulse(1, ImpulseUnit.PoundForceSecond).ToString());
                 Assert.Equal("1 slug·ft/s", new Impulse(1, ImpulseUnit.SlugFootPerSecond).ToString());
             }
             finally
@@ -804,6 +840,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 nN·s", new Impulse(1, ImpulseUnit.NanonewtonSecond).ToString(swedishCulture));
             Assert.Equal("1 N·s", new Impulse(1, ImpulseUnit.NewtonSecond).ToString(swedishCulture));
             Assert.Equal("1 lb·ft/s", new Impulse(1, ImpulseUnit.PoundFootPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 lbf·s", new Impulse(1, ImpulseUnit.PoundForceSecond).ToString(swedishCulture));
             Assert.Equal("1 slug·ft/s", new Impulse(1, ImpulseUnit.SlugFootPerSecond).ToString(swedishCulture));
         }
 

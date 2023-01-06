@@ -46,6 +46,18 @@
       ]
     },
     {
+      "SingularName": "PoundForceSecond",
+      "PluralName": "PoundForceSeconds",
+      "FromUnitToBaseFunc": "{x} / 0.2248089430997",
+      "FromBaseToUnitFunc": "{x} * 0.2248089430997",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf·s" ]
+        }
+      ]
+    },
+    {
       "SingularName": "SlugFootPerSecond",
       "PluralName": "SlugFeetPerSecond",
       "FromUnitToBaseFunc": "{x} / 0.224735720691",

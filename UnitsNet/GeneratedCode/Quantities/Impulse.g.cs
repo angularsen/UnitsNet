@@ -70,6 +70,7 @@ namespace UnitsNet
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.NanonewtonSecond, "NanonewtonSeconds", BaseUnits.Undefined),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.NewtonSecond, "NewtonSeconds", BaseUnits.Undefined),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundFootPerSecond, "PoundFeetPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<ImpulseUnit>(ImpulseUnit.PoundForceSecond, "PoundForceSeconds", BaseUnits.Undefined),
                     new UnitInfo<ImpulseUnit>(ImpulseUnit.SlugFootPerSecond, "SlugFeetPerSecond", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -230,6 +231,11 @@ namespace UnitsNet
         public double PoundFeetPerSecond => As(ImpulseUnit.PoundFootPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.PoundForceSecond"/>
+        /// </summary>
+        public double PoundForceSeconds => As(ImpulseUnit.PoundForceSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ImpulseUnit.SlugFootPerSecond"/>
         /// </summary>
         public double SlugFeetPerSecond => As(ImpulseUnit.SlugFootPerSecond);
@@ -255,6 +261,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.MillinewtonSecond, ImpulseUnit.NewtonSecond, quantity => quantity.ToUnit(ImpulseUnit.NewtonSecond));
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NanonewtonSecond, ImpulseUnit.NewtonSecond, quantity => quantity.ToUnit(ImpulseUnit.NewtonSecond));
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.PoundFootPerSecond, ImpulseUnit.NewtonSecond, quantity => quantity.ToUnit(ImpulseUnit.NewtonSecond));
+            unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.PoundForceSecond, ImpulseUnit.NewtonSecond, quantity => quantity.ToUnit(ImpulseUnit.NewtonSecond));
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.SlugFootPerSecond, ImpulseUnit.NewtonSecond, quantity => quantity.ToUnit(ImpulseUnit.NewtonSecond));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
@@ -271,6 +278,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.MillinewtonSecond, quantity => quantity.ToUnit(ImpulseUnit.MillinewtonSecond));
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.NanonewtonSecond, quantity => quantity.ToUnit(ImpulseUnit.NanonewtonSecond));
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond, quantity => quantity.ToUnit(ImpulseUnit.PoundFootPerSecond));
+            unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond, quantity => quantity.ToUnit(ImpulseUnit.PoundForceSecond));
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond, quantity => quantity.ToUnit(ImpulseUnit.SlugFootPerSecond));
         }
 
@@ -287,6 +295,7 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.NanonewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"nN·s"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.NewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"N·s"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.PoundFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"lb·ft/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.PoundForceSecond, new CultureInfo("en-US"), false, true, new string[]{"lbf·s"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.SlugFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"slug·ft/s"});
         }
 
@@ -423,6 +432,16 @@ namespace UnitsNet
         {
             double value = (double) poundfeetpersecond;
             return new Impulse(value, ImpulseUnit.PoundFootPerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Impulse"/> from <see cref="ImpulseUnit.PoundForceSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Impulse FromPoundForceSeconds(QuantityValue poundforceseconds)
+        {
+            double value = (double) poundforceseconds;
+            return new Impulse(value, ImpulseUnit.PoundForceSecond);
         }
 
         /// <summary>
@@ -911,6 +930,7 @@ namespace UnitsNet
                 (ImpulseUnit.MillinewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse((_value) * 1e-3d, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.NanonewtonSecond, ImpulseUnit.NewtonSecond) => new Impulse((_value) * 1e-9d, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.PoundFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 7.230657989877, ImpulseUnit.NewtonSecond),
+                (ImpulseUnit.PoundForceSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 0.2248089430997, ImpulseUnit.NewtonSecond),
                 (ImpulseUnit.SlugFootPerSecond, ImpulseUnit.NewtonSecond) => new Impulse(_value / 0.224735720691, ImpulseUnit.NewtonSecond),
 
                 // BaseUnit -> ImpulseUnit
@@ -924,6 +944,7 @@ namespace UnitsNet
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.MillinewtonSecond) => new Impulse((_value) / 1e-3d, ImpulseUnit.MillinewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.NanonewtonSecond) => new Impulse((_value) / 1e-9d, ImpulseUnit.NanonewtonSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundFootPerSecond) => new Impulse(_value * 7.230657989877, ImpulseUnit.PoundFootPerSecond),
+                (ImpulseUnit.NewtonSecond, ImpulseUnit.PoundForceSecond) => new Impulse(_value * 0.2248089430997, ImpulseUnit.PoundForceSecond),
                 (ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond) => new Impulse(_value * 0.224735720691, ImpulseUnit.SlugFootPerSecond),
 
                 _ => null

@@ -35,6 +35,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanonewtonSecondsInOneNewtonSecond => 1E9;
         protected override double NewtonSecondsInOneNewtonSecond => 1;
         protected override double PoundFeetPerSecondInOneNewtonSecond => 7.230657989877;
+        protected override double PoundForceSecondsInOneNewtonSecond => 0.2248089430997;
         protected override double SlugFeetPerSecondInOneNewtonSecond => 0.224735720691;
     }
 }

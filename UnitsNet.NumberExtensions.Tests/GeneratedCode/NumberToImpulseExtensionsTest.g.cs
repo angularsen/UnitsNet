@@ -69,6 +69,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Impulse.FromPoundFeetPerSecond(2), 2.PoundFeetPerSecond());
 
         [Fact]
+        public void NumberToPoundForceSecondsTest() =>
+            Assert.Equal(Impulse.FromPoundForceSeconds(2), 2.PoundForceSeconds());
+
+        [Fact]
         public void NumberToSlugFeetPerSecondTest() =>
             Assert.Equal(Impulse.FromSlugFeetPerSecond(2), 2.SlugFeetPerSecond());
 

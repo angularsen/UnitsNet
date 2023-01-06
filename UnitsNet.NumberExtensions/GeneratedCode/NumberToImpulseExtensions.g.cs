@@ -72,6 +72,10 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
         public static Impulse PoundFeetPerSecond<T>(this T value) =>
             Impulse.FromPoundFeetPerSecond(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Impulse.FromPoundForceSeconds(UnitsNet.QuantityValue)" />
+        public static Impulse PoundForceSeconds<T>(this T value) =>
+            Impulse.FromPoundForceSeconds(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(UnitsNet.QuantityValue)" />
         public static Impulse SlugFeetPerSecond<T>(this T value) =>
             Impulse.FromSlugFeetPerSecond(Convert.ToDouble(value));

@@ -1685,6 +1685,7 @@
     "NanonewtonSecond": 2,
     "NewtonSecond": 5,
     "PoundFootPerSecond": 16,
-    "SlugFootPerSecond": 11
+    "SlugFootPerSecond": 11,
+    "PoundForceSecond": 18
   }
 }

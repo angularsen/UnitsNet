@@ -36,6 +36,7 @@ namespace UnitsNet.Units
         NanonewtonSecond = 2,
         NewtonSecond = 5,
         PoundFootPerSecond = 16,
+        PoundForceSecond = 18,
         SlugFootPerSecond = 11,
     }
 
