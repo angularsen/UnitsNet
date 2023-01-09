@@ -504,7 +504,9 @@
     "Megahertz": 8,
     "PerSecond": 9,
     "RadianPerSecond": 10,
-    "Terahertz": 11
+    "Terahertz": 11,
+    "Microhertz": 16,
+    "Millihertz": 21
   },
   "FuelEfficiency": {
     "KilometerPerLiter": 1,

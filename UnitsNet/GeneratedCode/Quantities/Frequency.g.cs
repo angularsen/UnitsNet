@@ -67,6 +67,8 @@ namespace UnitsNet
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Hertz, "Hertz", BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Kilohertz, "Kilohertz", BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Megahertz, "Megahertz", BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Microhertz, "Microhertz", BaseUnits.Undefined),
+                    new UnitInfo<FrequencyUnit>(FrequencyUnit.Millihertz, "Millihertz", BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.PerSecond, "PerSecond", BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.RadianPerSecond, "RadiansPerSecond", BaseUnits.Undefined),
                     new UnitInfo<FrequencyUnit>(FrequencyUnit.Terahertz, "Terahertz", BaseUnits.Undefined),
@@ -214,6 +216,16 @@ namespace UnitsNet
         public double Megahertz => As(FrequencyUnit.Megahertz);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Microhertz"/>
+        /// </summary>
+        public double Microhertz => As(FrequencyUnit.Microhertz);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Millihertz"/>
+        /// </summary>
+        public double Millihertz => As(FrequencyUnit.Millihertz);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.PerSecond"/>
         /// </summary>
         public double PerSecond => As(FrequencyUnit.PerSecond);
@@ -246,6 +258,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Gigahertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Kilohertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Megahertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Microhertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Millihertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.PerSecond, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Terahertz, FrequencyUnit.Hertz, quantity => quantity.ToUnit(FrequencyUnit.Hertz));
@@ -261,6 +275,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Gigahertz, quantity => quantity.ToUnit(FrequencyUnit.Gigahertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Kilohertz, quantity => quantity.ToUnit(FrequencyUnit.Kilohertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Megahertz, quantity => quantity.ToUnit(FrequencyUnit.Megahertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Microhertz, quantity => quantity.ToUnit(FrequencyUnit.Microhertz));
+            unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Millihertz, quantity => quantity.ToUnit(FrequencyUnit.Millihertz));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.PerSecond, quantity => quantity.ToUnit(FrequencyUnit.PerSecond));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond, quantity => quantity.ToUnit(FrequencyUnit.RadianPerSecond));
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Terahertz, quantity => quantity.ToUnit(FrequencyUnit.Terahertz));
@@ -280,6 +296,10 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Kilohertz, new CultureInfo("ru-RU"), false, true, new string[]{"кГц"});
             unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Megahertz, new CultureInfo("en-US"), false, true, new string[]{"MHz"});
             unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Megahertz, new CultureInfo("ru-RU"), false, true, new string[]{"МГц"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Microhertz, new CultureInfo("en-US"), false, true, new string[]{"µHz"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Microhertz, new CultureInfo("ru-RU"), false, true, new string[]{"мкГц"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Millihertz, new CultureInfo("en-US"), false, true, new string[]{"mHz"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Millihertz, new CultureInfo("ru-RU"), false, true, new string[]{"мГц"});
             unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.PerSecond, new CultureInfo("en-US"), false, true, new string[]{"s⁻¹"});
             unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.PerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"с⁻¹"});
             unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.RadianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"rad/s"});
@@ -391,6 +411,26 @@ namespace UnitsNet
         {
             double value = (double) megahertz;
             return new Frequency(value, FrequencyUnit.Megahertz);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Microhertz"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromMicrohertz(QuantityValue microhertz)
+        {
+            double value = (double) microhertz;
+            return new Frequency(value, FrequencyUnit.Microhertz);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Millihertz"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromMillihertz(QuantityValue millihertz)
+        {
+            double value = (double) millihertz;
+            return new Frequency(value, FrequencyUnit.Millihertz);
         }
 
         /// <summary>
@@ -896,6 +936,8 @@ namespace UnitsNet
                 (FrequencyUnit.Gigahertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e9d, FrequencyUnit.Hertz),
                 (FrequencyUnit.Kilohertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e3d, FrequencyUnit.Hertz),
                 (FrequencyUnit.Megahertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e6d, FrequencyUnit.Hertz),
+                (FrequencyUnit.Microhertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e-6d, FrequencyUnit.Hertz),
+                (FrequencyUnit.Millihertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e-3d, FrequencyUnit.Hertz),
                 (FrequencyUnit.PerSecond, FrequencyUnit.Hertz) => new Frequency(_value, FrequencyUnit.Hertz),
                 (FrequencyUnit.RadianPerSecond, FrequencyUnit.Hertz) => new Frequency(_value / 6.2831853072, FrequencyUnit.Hertz),
                 (FrequencyUnit.Terahertz, FrequencyUnit.Hertz) => new Frequency((_value) * 1e12d, FrequencyUnit.Hertz),
@@ -908,6 +950,8 @@ namespace UnitsNet
                 (FrequencyUnit.Hertz, FrequencyUnit.Gigahertz) => new Frequency((_value) / 1e9d, FrequencyUnit.Gigahertz),
                 (FrequencyUnit.Hertz, FrequencyUnit.Kilohertz) => new Frequency((_value) / 1e3d, FrequencyUnit.Kilohertz),
                 (FrequencyUnit.Hertz, FrequencyUnit.Megahertz) => new Frequency((_value) / 1e6d, FrequencyUnit.Megahertz),
+                (FrequencyUnit.Hertz, FrequencyUnit.Microhertz) => new Frequency((_value) / 1e-6d, FrequencyUnit.Microhertz),
+                (FrequencyUnit.Hertz, FrequencyUnit.Millihertz) => new Frequency((_value) / 1e-3d, FrequencyUnit.Millihertz),
                 (FrequencyUnit.Hertz, FrequencyUnit.PerSecond) => new Frequency(_value, FrequencyUnit.PerSecond),
                 (FrequencyUnit.Hertz, FrequencyUnit.RadianPerSecond) => new Frequency(_value * 6.2831853072, FrequencyUnit.RadianPerSecond),
                 (FrequencyUnit.Hertz, FrequencyUnit.Terahertz) => new Frequency((_value) / 1e12d, FrequencyUnit.Terahertz),

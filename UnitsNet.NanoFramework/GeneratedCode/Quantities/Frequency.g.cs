@@ -120,6 +120,16 @@ namespace UnitsNet
         public double Megahertz => As(FrequencyUnit.Megahertz);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Microhertz"/>
+        /// </summary>
+        public double Microhertz => As(FrequencyUnit.Microhertz);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.Millihertz"/>
+        /// </summary>
+        public double Millihertz => As(FrequencyUnit.Millihertz);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FrequencyUnit.PerSecond"/>
         /// </summary>
         public double PerSecond => As(FrequencyUnit.PerSecond);
@@ -187,6 +197,18 @@ namespace UnitsNet
         public static Frequency FromMegahertz(double megahertz) => new Frequency(megahertz, FrequencyUnit.Megahertz);
 
         /// <summary>
+        ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Microhertz"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromMicrohertz(double microhertz) => new Frequency(microhertz, FrequencyUnit.Microhertz);
+
+        /// <summary>
+        ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.Millihertz"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Frequency FromMillihertz(double millihertz) => new Frequency(millihertz, FrequencyUnit.Millihertz);
+
+        /// <summary>
         ///     Creates a <see cref="Frequency"/> from <see cref="FrequencyUnit.PerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -252,6 +274,8 @@ namespace UnitsNet
                         FrequencyUnit.Hertz => _value,
                         FrequencyUnit.Kilohertz => (_value) * 1e3d,
                         FrequencyUnit.Megahertz => (_value) * 1e6d,
+                        FrequencyUnit.Microhertz => (_value) * 1e-6d,
+                        FrequencyUnit.Millihertz => (_value) * 1e-3d,
                         FrequencyUnit.PerSecond => _value,
                         FrequencyUnit.RadianPerSecond => _value / 6.2831853072,
                         FrequencyUnit.Terahertz => (_value) * 1e12d,
@@ -276,6 +300,8 @@ namespace UnitsNet
                         FrequencyUnit.Hertz => baseUnitValue,
                         FrequencyUnit.Kilohertz => (baseUnitValue) / 1e3d,
                         FrequencyUnit.Megahertz => (baseUnitValue) / 1e6d,
+                        FrequencyUnit.Microhertz => (baseUnitValue) / 1e-6d,
+                        FrequencyUnit.Millihertz => (baseUnitValue) / 1e-3d,
                         FrequencyUnit.PerSecond => baseUnitValue,
                         FrequencyUnit.RadianPerSecond => baseUnitValue * 6.2831853072,
                         FrequencyUnit.Terahertz => (baseUnitValue) / 1e12d,
