@@ -11,7 +11,7 @@
       "PluralName": "Hertz",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Kilo", "Mega", "Giga", "Tera" ],
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",

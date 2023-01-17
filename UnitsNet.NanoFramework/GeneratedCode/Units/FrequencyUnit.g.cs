@@ -33,6 +33,8 @@ namespace UnitsNet.Units
         Hertz = 6,
         Kilohertz = 7,
         Megahertz = 8,
+        Microhertz = 16,
+        Millihertz = 21,
         PerSecond = 9,
         RadianPerSecond = 10,
         Terahertz = 11,
