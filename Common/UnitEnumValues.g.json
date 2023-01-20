@@ -1277,7 +1277,8 @@
     "WattDayPerShortTon": 26,
     "WattDayPerTonne": 27,
     "WattHourPerKilogram": 28,
-    "WattHourPerPound": 29
+    "WattHourPerPound": 29,
+    "MegaJoulePerTonne": 37
   },
   "SpecificEntropy": {
     "BtuPerPoundFahrenheit": 1,

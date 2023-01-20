@@ -163,6 +163,11 @@ namespace UnitsNet
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegaJoulePerTonne"/>
+        /// </summary>
+        public double MegaJoulesPerTonne => As(SpecificEnergyUnit.MegaJoulePerTonne);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>
         /// </summary>
         public double MegawattDaysPerKilogram => As(SpecificEnergyUnit.MegawattDayPerKilogram);
@@ -328,6 +333,12 @@ namespace UnitsNet
         public static SpecificEnergy FromMegajoulesPerKilogram(double megajoulesperkilogram) => new SpecificEnergy(megajoulesperkilogram, SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegaJoulePerTonne"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificEnergy FromMegaJoulesPerTonne(double megajoulespertonne) => new SpecificEnergy(megajoulespertonne, SpecificEnergyUnit.MegaJoulePerTonne);
+
+        /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -461,6 +472,7 @@ namespace UnitsNet
                         SpecificEnergyUnit.KilowattHourPerKilogram => (_value * 3.6e3) * 1e3d,
                         SpecificEnergyUnit.KilowattHourPerPound => (_value * 7.93664e3) * 1e3d,
                         SpecificEnergyUnit.MegajoulePerKilogram => (_value) * 1e6d,
+                        SpecificEnergyUnit.MegaJoulePerTonne => _value,
                         SpecificEnergyUnit.MegawattDayPerKilogram => (_value * (24 * 3.6e3)) * 1e6d,
                         SpecificEnergyUnit.MegawattDayPerShortTon => (_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e6d,
                         SpecificEnergyUnit.MegawattDayPerTonne => (_value * ((24 * 3.6e3) / 1e3)) * 1e6d,
@@ -503,6 +515,7 @@ namespace UnitsNet
                         SpecificEnergyUnit.KilowattHourPerKilogram => (baseUnitValue / 3.6e3) / 1e3d,
                         SpecificEnergyUnit.KilowattHourPerPound => (baseUnitValue / 7.93664e3) / 1e3d,
                         SpecificEnergyUnit.MegajoulePerKilogram => (baseUnitValue) / 1e6d,
+                        SpecificEnergyUnit.MegaJoulePerTonne => baseUnitValue,
                         SpecificEnergyUnit.MegawattDayPerKilogram => (baseUnitValue / (24 * 3.6e3)) / 1e6d,
                         SpecificEnergyUnit.MegawattDayPerShortTon => (baseUnitValue / ((24 * 3.6e3) / 9.0718474e2)) / 1e6d,
                         SpecificEnergyUnit.MegawattDayPerTonne => (baseUnitValue / ((24 * 3.6e3) / 1e3)) / 1e6d,
