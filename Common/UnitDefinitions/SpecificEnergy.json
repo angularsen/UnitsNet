@@ -22,6 +22,18 @@
       ]
     },
     {
+      "SingularName": "MegaJoulePerTonne",
+      "PluralName": "MegaJoulesPerTonne",
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "MJ/t" ]
+        }
+      ]
+    },
+    {
       "SingularName": "CaloriePerGram",
       "PluralName": "CaloriesPerGram",
       "FromUnitToBaseFunc": "{x} * 4.184e3",

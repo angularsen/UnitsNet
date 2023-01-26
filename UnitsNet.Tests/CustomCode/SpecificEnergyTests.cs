@@ -11,6 +11,7 @@ namespace UnitsNet.Tests
         protected override double JoulesPerKilogramInOneJoulePerKilogram => 1e0;
         protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1e-3;
         protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1e-6;
+        protected override double MegaJoulesPerTonneInOneJoulePerKilogram => 1e-3;
 
         protected override double BtuPerPoundInOneJoulePerKilogram => 4.299226e-4;
 
