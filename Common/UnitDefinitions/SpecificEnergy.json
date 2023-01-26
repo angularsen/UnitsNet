@@ -24,8 +24,8 @@
     {
       "SingularName": "MegaJoulePerTonne",
       "PluralName": "MegaJoulesPerTonne",
-      "FromUnitToBaseFunc": "{x}",
-      "FromBaseToUnitFunc": "{x}",
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
       "Localization": [
         {
           "Culture": "en-US",
