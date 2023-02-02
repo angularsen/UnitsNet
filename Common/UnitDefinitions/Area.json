@@ -150,8 +150,8 @@
       "BaseUnits": {
         "L": "Mile"
       },
-      "FromUnitToBaseFunc": "{x} * 2.59e6",
-      "FromBaseToUnitFunc": "{x} / 2.59e6",
+      "FromUnitToBaseFunc": "{x} * 1609.344 * 1609.344",
+      "FromBaseToUnitFunc": "{x} / 1609.344 / 1609.344",
       "Localization": [
         {
           "Culture": "en-US",
