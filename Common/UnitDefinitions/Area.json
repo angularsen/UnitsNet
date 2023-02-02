@@ -173,8 +173,8 @@
       "BaseUnits": {
         "L": "Yard"
       },
-      "FromUnitToBaseFunc": "{x} * 0.836127",
-      "FromBaseToUnitFunc": "{x} / 0.836127",
+      "FromUnitToBaseFunc": "{x} * 0.9144 * 0.9144",
+      "FromBaseToUnitFunc": "{x} / 0.9144 / 0.9144",
       "Localization": [
         {
           "Culture": "en-US",
