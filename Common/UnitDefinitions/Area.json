@@ -221,6 +221,8 @@
       },
       "FromUnitToBaseFunc": "{x} * (1200 / 3937) * (1200 / 3937)",
       "FromBaseToUnitFunc": "{x} / (1200 / 3937) / (1200 / 3937)",
+      "XmlDocSummary": "In the United States, the foot was defined as 12 inches, with the inch being defined by the Mendenhall Order of 1893 as 39.37 inches = 1 m. This makes a U.S. survey foot exactly 1200/3937 meters.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Foot_(unit)",
       "Localization": [
         {
           "Culture": "en-US",
