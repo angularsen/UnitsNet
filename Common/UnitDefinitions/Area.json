@@ -258,8 +258,8 @@
     {
       "SingularName": "Acre",
       "PluralName": "Acres",
-      "FromUnitToBaseFunc": "{x} * 4046.85642",
-      "FromBaseToUnitFunc": "{x} / 4046.85642",
+      "FromUnitToBaseFunc": "{x} * 4046.8564224",
+      "FromBaseToUnitFunc": "{x} / 4046.8564224",
       "Localization": [
         {
           "Culture": "en-US",
