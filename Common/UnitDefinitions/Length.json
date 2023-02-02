@@ -38,6 +38,8 @@
       },
       "FromUnitToBaseFunc": "{x} * 1609.344",
       "FromBaseToUnitFunc": "{x} / 1609.344",
+      "XmlDocSummary": "The statute mile was standardised between the British Commonwealth and the United States by an international agreement in 1959, when it was formally redefined with respect to SI units as exactly 1,609.344 metres.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Mile",
       "Localization": [
         {
           "Culture": "en-US",
