@@ -219,8 +219,8 @@
       "BaseUnits": {
         "L": "UsSurveyFoot"
       },
-      "FromUnitToBaseFunc": "{x} * 0.09290341161",
-      "FromBaseToUnitFunc": "{x} / 0.09290341161",
+      "FromUnitToBaseFunc": "{x} * (1200 / 3937) * (1200 / 3937)",
+      "FromBaseToUnitFunc": "{x} / (1200 / 3937) / (1200 / 3937)",
       "Localization": [
         {
           "Culture": "en-US",
