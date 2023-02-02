@@ -281,8 +281,8 @@
         "L": "NauticalMile",
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "{x} * 0.514444",
-      "FromBaseToUnitFunc": "{x} / 0.514444",
+      "FromUnitToBaseFunc": "{x} * (1852 / 3600)",
+      "FromBaseToUnitFunc": "{x} / (1852 / 3600)",
       "Localization": [
         {
           "Culture": "en-US",
