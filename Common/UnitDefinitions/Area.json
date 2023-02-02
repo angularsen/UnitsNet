@@ -266,6 +266,8 @@
       "PluralName": "Acres",
       "FromUnitToBaseFunc": "{x} * 4046.8564224",
       "FromBaseToUnitFunc": "{x} / 4046.8564224",
+      "XmlDocSummary": "Based upon the international yard and pound agreement of 1959, an acre may be declared as exactly 4,046.8564224 square metres.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Acre",
       "Localization": [
         {
           "Culture": "en-US",
