@@ -25,6 +25,18 @@
       ]
     },
     {
+      "SingularName": "KilogramPerKilomole",
+      "PluralName": "KilogramsPerKilomole",
+      "FromUnitToBaseFunc": "{x} / 1e3",
+      "FromBaseToUnitFunc": "{x} * 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/kmol" ]
+        }
+      ]
+    },
+    {
       "SingularName": "PoundPerMole",
       "PluralName": "PoundsPerMole",
       "FromUnitToBaseFunc": "{x} * 0.45359237",

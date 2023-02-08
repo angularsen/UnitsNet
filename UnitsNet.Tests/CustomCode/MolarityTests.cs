@@ -41,6 +41,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicromolesPerLiterInOneMolePerCubicMeter => 1e3;
         protected override double NanomolesPerLiterInOneMolePerCubicMeter => 1e6;
         protected override double PicomolesPerLiterInOneMolePerCubicMeter => 1e9;
+        protected override double KilomolesPerCubicMeterInOneMolePerCubicMeter => 1e-3;
+        protected override double PoundMolesPerCubicFootInOneMolePerCubicMeter => 6.242796e-5;
 
         #endregion
 

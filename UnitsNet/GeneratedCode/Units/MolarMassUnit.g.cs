@@ -30,6 +30,7 @@ namespace UnitsNet.Units
         DecigramPerMole = 3,
         GramPerMole = 4,
         HectogramPerMole = 5,
+        KilogramPerKilomole = 15,
         KilogramPerMole = 6,
         KilopoundPerMole = 7,
         MegapoundPerMole = 8,

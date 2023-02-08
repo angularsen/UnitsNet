@@ -104,7 +104,8 @@ namespace UnitsNet.Tests
             Assertion(3, MassMomentOfInertiaUnit.TonneSquareMilimeter, Quantity.From(3, MassMomentOfInertiaUnit.TonneSquareMilimeter));
             Assertion(3, MolarEnergyUnit.MegajoulePerMole, Quantity.From(3, MolarEnergyUnit.MegajoulePerMole));
             Assertion(3, MolarEntropyUnit.MegajoulePerMoleKelvin, Quantity.From(3, MolarEntropyUnit.MegajoulePerMoleKelvin));
-            Assertion(3, MolarityUnit.PicomolePerLiter, Quantity.From(3, MolarityUnit.PicomolePerLiter));
+            Assertion(3, MolarFlowUnit.PoundMolePerSecond, Quantity.From(3, MolarFlowUnit.PoundMolePerSecond));
+            Assertion(3, MolarityUnit.PoundMolePerCubicFoot, Quantity.From(3, MolarityUnit.PoundMolePerCubicFoot));
             Assertion(3, MolarMassUnit.PoundPerMole, Quantity.From(3, MolarMassUnit.PoundPerMole));
             Assertion(3, PermeabilityUnit.HenryPerMeter, Quantity.From(3, PermeabilityUnit.HenryPerMeter));
             Assertion(3, PermittivityUnit.FaradPerMeter, Quantity.From(3, PermittivityUnit.FaradPerMeter));
@@ -228,6 +229,7 @@ namespace UnitsNet.Tests
             Assertion(MassMomentOfInertia.Info, MassMomentOfInertia.Zero);
             Assertion(MolarEnergy.Info, MolarEnergy.Zero);
             Assertion(MolarEntropy.Info, MolarEntropy.Zero);
+            Assertion(MolarFlow.Info, MolarFlow.Zero);
             Assertion(Molarity.Info, Molarity.Zero);
             Assertion(MolarMass.Info, MolarMass.Zero);
             Assertion(Permeability.Info, Permeability.Zero);
@@ -352,6 +354,7 @@ namespace UnitsNet.Tests
             Assertion(MassMomentOfInertia.BaseDimensions, MassMomentOfInertia.Zero);
             Assertion(MolarEnergy.BaseDimensions, MolarEnergy.Zero);
             Assertion(MolarEntropy.BaseDimensions, MolarEntropy.Zero);
+            Assertion(MolarFlow.BaseDimensions, MolarFlow.Zero);
             Assertion(Molarity.BaseDimensions, Molarity.Zero);
             Assertion(MolarMass.BaseDimensions, MolarMass.Zero);
             Assertion(Permeability.BaseDimensions, Permeability.Zero);
