@@ -9,57 +9,58 @@ namespace UnitsNet.Tests
     public class PowerTests : PowerTestsBase
     {
         protected override bool SupportsSIUnitSystem => false;
-        protected override decimal FemtowattsInOneWatt => 1e15m;
 
-        protected override decimal GigajoulesPerHourInOneWatt => 3600e-9m;
+        protected override double FemtowattsInOneWatt => 1e15;
 
-        protected override decimal PicowattsInOneWatt => 1e12m;
+        protected override double GigajoulesPerHourInOneWatt => 3600e-9;
 
-        protected override decimal NanowattsInOneWatt => 1e9m;
+        protected override double PicowattsInOneWatt => 1e12;
 
-        protected override decimal MicrowattsInOneWatt => 1e6m;
+        protected override double NanowattsInOneWatt => 1e9;
 
-        protected override decimal MillijoulesPerHourInOneWatt => 3600e3m;
+        protected override double MicrowattsInOneWatt => 1e6;
 
-        protected override decimal MilliwattsInOneWatt => 1e3m;
+        protected override double MillijoulesPerHourInOneWatt => 3600e3;
 
-        protected override decimal DeciwattsInOneWatt => 1e1m;
+        protected override double MilliwattsInOneWatt => 1e3;
 
-        protected override decimal WattsInOneWatt => 1;
+        protected override double DeciwattsInOneWatt => 1e1;
 
-        protected override decimal DecawattsInOneWatt => 1e-1m;
+        protected override double WattsInOneWatt => 1;
 
-        protected override decimal KilojoulesPerHourInOneWatt => 3600e-3m;
+        protected override double DecawattsInOneWatt => 1e-1;
 
-        protected override decimal KilowattsInOneWatt => 1e-3m;
+        protected override double KilojoulesPerHourInOneWatt => 3600e-3;
 
-        protected override decimal MegajoulesPerHourInOneWatt => 3600e-6m;
+        protected override double KilowattsInOneWatt => 1e-3;
 
-        protected override decimal MegawattsInOneWatt => 1e-6m;
+        protected override double MegajoulesPerHourInOneWatt => 3600e-6;
 
-        protected override decimal GigawattsInOneWatt => 1e-9m;
+        protected override double MegawattsInOneWatt => 1e-6;
 
-        protected override decimal TerawattsInOneWatt => 1e-12m;
+        protected override double GigawattsInOneWatt => 1e-9;
 
-        protected override decimal PetawattsInOneWatt => 1e-15m;
+        protected override double TerawattsInOneWatt => 1e-12;
 
-        protected override decimal JoulesPerHourInOneWatt => 3600;
+        protected override double PetawattsInOneWatt => 1e-15;
 
-        protected override decimal KilobritishThermalUnitsPerHourInOneWatt => 3.412141633e-3m;
+        protected override double JoulesPerHourInOneWatt => 3600;
 
-        protected override decimal BoilerHorsepowerInOneWatt => 1.0191082802547770700636942675159e-4m;
+        protected override double KilobritishThermalUnitsPerHourInOneWatt => 3.412141633e-3;
 
-        protected override decimal MegabritishThermalUnitsPerHourInOneWatt => 3.412141633e-6m;
+        protected override double BoilerHorsepowerInOneWatt => 1.0191082802547770700636942675159e-4;
 
-        protected override decimal BritishThermalUnitsPerHourInOneWatt => 3.412141633m;
+        protected override double MegabritishThermalUnitsPerHourInOneWatt => 3.412141633e-6;
 
-        protected override decimal ElectricalHorsepowerInOneWatt => 0.00134048257372654155495978552279m;
+        protected override double BritishThermalUnitsPerHourInOneWatt => 3.412141633;
 
-        protected override decimal HydraulicHorsepowerInOneWatt => 0.00134102207184949258114167291719m;
+        protected override double ElectricalHorsepowerInOneWatt => 0.00134048257372654155495978552279;
 
-        protected override decimal MechanicalHorsepowerInOneWatt => 0.00134103984229371454625916935992m;
+        protected override double HydraulicHorsepowerInOneWatt => 0.00134102207184949258114167291719;
 
-        protected override decimal MetricHorsepowerInOneWatt => 0.00135962161730390432342679032425m;
+        protected override double MechanicalHorsepowerInOneWatt => 0.00134103984229371454625916935992;
+
+        protected override double MetricHorsepowerInOneWatt => 0.00135962161730390432342679032425;
 
         [Fact]
         public void DurationTimesPowerEqualsEnergy()

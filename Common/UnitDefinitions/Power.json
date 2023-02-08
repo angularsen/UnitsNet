@@ -1,7 +1,6 @@
 {
   "Name": "Power",
   "BaseUnit": "Watt",
-  "ValueType": "decimal",
   "XmlDocSummary": "In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.",
   "BaseDimensions": {
     "L": 2,
@@ -25,8 +24,8 @@
     {
       "SingularName": "MechanicalHorsepower",
       "PluralName": "MechanicalHorsepower",
-      "FromUnitToBaseFunc": "{x} * 745.69m",
-      "FromBaseToUnitFunc": "{x} / 745.69m",
+      "FromUnitToBaseFunc": "{x} * 745.69",
+      "FromBaseToUnitFunc": "{x} / 745.69",
       "Localization": [
         {
           "Culture": "en-US",
@@ -37,8 +36,8 @@
     {
       "SingularName": "MetricHorsepower",
       "PluralName": "MetricHorsepower",
-      "FromUnitToBaseFunc": "{x} * 735.49875m",
-      "FromBaseToUnitFunc": "{x} / 735.49875m",
+      "FromUnitToBaseFunc": "{x} * 735.49875",
+      "FromBaseToUnitFunc": "{x} / 735.49875",
       "Localization": [
         {
           "Culture": "en-US",
@@ -49,8 +48,8 @@
     {
       "SingularName": "ElectricalHorsepower",
       "PluralName": "ElectricalHorsepower",
-      "FromUnitToBaseFunc": "{x} * 746m",
-      "FromBaseToUnitFunc": "{x} / 746m",
+      "FromUnitToBaseFunc": "{x} * 746",
+      "FromBaseToUnitFunc": "{x} / 746",
       "Localization": [
         {
           "Culture": "en-US",
@@ -61,8 +60,8 @@
     {
       "SingularName": "BoilerHorsepower",
       "PluralName": "BoilerHorsepower",
-      "FromUnitToBaseFunc": "{x} * 9812.5m",
-      "FromBaseToUnitFunc": "{x} / 9812.5m",
+      "FromUnitToBaseFunc": "{x} * 9812.5",
+      "FromBaseToUnitFunc": "{x} / 9812.5",
       "Localization": [
         {
           "Culture": "en-US",
@@ -73,8 +72,8 @@
     {
       "SingularName": "HydraulicHorsepower",
       "PluralName": "HydraulicHorsepower",
-      "FromUnitToBaseFunc": "{x} * 745.69988145m",
-      "FromBaseToUnitFunc": "{x} / 745.69988145m",
+      "FromUnitToBaseFunc": "{x} * 745.69988145",
+      "FromBaseToUnitFunc": "{x} / 745.69988145",
       "Localization": [
         {
           "Culture": "en-US",
@@ -85,8 +84,8 @@
     {
       "SingularName": "BritishThermalUnitPerHour",
       "PluralName": "BritishThermalUnitsPerHour",
-      "FromUnitToBaseFunc": "{x} * 0.29307107017m",
-      "FromBaseToUnitFunc": "{x} / 0.29307107017m",
+      "FromUnitToBaseFunc": "{x} * 0.29307107017",
+      "FromBaseToUnitFunc": "{x} / 0.29307107017",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -98,8 +97,8 @@
     {
       "SingularName": "JoulePerHour",
       "PluralName": "JoulesPerHour",
-      "FromUnitToBaseFunc": "{x} / 3600m",
-      "FromBaseToUnitFunc": "{x} * 3600m",
+      "FromUnitToBaseFunc": "{x} / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600",
       "Prefixes": [ "Milli", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {

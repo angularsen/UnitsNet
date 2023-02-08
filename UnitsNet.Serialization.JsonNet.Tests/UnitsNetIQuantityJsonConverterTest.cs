@@ -135,7 +135,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.NotNull(result);
             Assert.IsType<Power>(result);
-            Assert.Equal(10.3654M, ((Power)result).Watts);
+            Assert.Equal(10.3654, ((Power)result).Watts);
         }
     }
 }

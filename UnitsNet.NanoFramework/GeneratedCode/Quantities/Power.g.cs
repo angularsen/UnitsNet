@@ -66,12 +66,12 @@ namespace UnitsNet
         /// <summary>
         /// Represents the largest possible value of Duration
         /// </summary>
-        public static Power MaxValue { get; } = new Power(79228162514264337593543950335d, BaseUnit);
+        public static Power MaxValue { get; } = new Power(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Duration
         /// </summary>
-        public static Power MinValue { get; } = new Power(-79228162514264337593543950335d, BaseUnit);
+        public static Power MinValue { get; } = new Power(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Second.
@@ -409,26 +409,26 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        PowerUnit.BoilerHorsepower => _value * 9812.5d,
-                        PowerUnit.BritishThermalUnitPerHour => _value * 0.29307107017d,
+                        PowerUnit.BoilerHorsepower => _value * 9812.5,
+                        PowerUnit.BritishThermalUnitPerHour => _value * 0.29307107017,
                         PowerUnit.Decawatt => (_value) * 1e1d,
                         PowerUnit.Deciwatt => (_value) * 1e-1d,
-                        PowerUnit.ElectricalHorsepower => _value * 746d,
+                        PowerUnit.ElectricalHorsepower => _value * 746,
                         PowerUnit.Femtowatt => (_value) * 1e-15d,
-                        PowerUnit.GigajoulePerHour => (_value / 3600d) * 1e9d,
+                        PowerUnit.GigajoulePerHour => (_value / 3600) * 1e9d,
                         PowerUnit.Gigawatt => (_value) * 1e9d,
-                        PowerUnit.HydraulicHorsepower => _value * 745.69988145d,
-                        PowerUnit.JoulePerHour => _value / 3600d,
-                        PowerUnit.KilobritishThermalUnitPerHour => (_value * 0.29307107017d) * 1e3d,
-                        PowerUnit.KilojoulePerHour => (_value / 3600d) * 1e3d,
+                        PowerUnit.HydraulicHorsepower => _value * 745.69988145,
+                        PowerUnit.JoulePerHour => _value / 3600,
+                        PowerUnit.KilobritishThermalUnitPerHour => (_value * 0.29307107017) * 1e3d,
+                        PowerUnit.KilojoulePerHour => (_value / 3600) * 1e3d,
                         PowerUnit.Kilowatt => (_value) * 1e3d,
-                        PowerUnit.MechanicalHorsepower => _value * 745.69d,
-                        PowerUnit.MegabritishThermalUnitPerHour => (_value * 0.29307107017d) * 1e6d,
-                        PowerUnit.MegajoulePerHour => (_value / 3600d) * 1e6d,
+                        PowerUnit.MechanicalHorsepower => _value * 745.69,
+                        PowerUnit.MegabritishThermalUnitPerHour => (_value * 0.29307107017) * 1e6d,
+                        PowerUnit.MegajoulePerHour => (_value / 3600) * 1e6d,
                         PowerUnit.Megawatt => (_value) * 1e6d,
-                        PowerUnit.MetricHorsepower => _value * 735.49875d,
+                        PowerUnit.MetricHorsepower => _value * 735.49875,
                         PowerUnit.Microwatt => (_value) * 1e-6d,
-                        PowerUnit.MillijoulePerHour => (_value / 3600d) * 1e-3d,
+                        PowerUnit.MillijoulePerHour => (_value / 3600) * 1e-3d,
                         PowerUnit.Milliwatt => (_value) * 1e-3d,
                         PowerUnit.Nanowatt => (_value) * 1e-9d,
                         PowerUnit.Petawatt => (_value) * 1e15d,
@@ -448,26 +448,26 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        PowerUnit.BoilerHorsepower => baseUnitValue / 9812.5d,
-                        PowerUnit.BritishThermalUnitPerHour => baseUnitValue / 0.29307107017d,
+                        PowerUnit.BoilerHorsepower => baseUnitValue / 9812.5,
+                        PowerUnit.BritishThermalUnitPerHour => baseUnitValue / 0.29307107017,
                         PowerUnit.Decawatt => (baseUnitValue) / 1e1d,
                         PowerUnit.Deciwatt => (baseUnitValue) / 1e-1d,
-                        PowerUnit.ElectricalHorsepower => baseUnitValue / 746d,
+                        PowerUnit.ElectricalHorsepower => baseUnitValue / 746,
                         PowerUnit.Femtowatt => (baseUnitValue) / 1e-15d,
-                        PowerUnit.GigajoulePerHour => (baseUnitValue * 3600d) / 1e9d,
+                        PowerUnit.GigajoulePerHour => (baseUnitValue * 3600) / 1e9d,
                         PowerUnit.Gigawatt => (baseUnitValue) / 1e9d,
-                        PowerUnit.HydraulicHorsepower => baseUnitValue / 745.69988145d,
-                        PowerUnit.JoulePerHour => baseUnitValue * 3600d,
-                        PowerUnit.KilobritishThermalUnitPerHour => (baseUnitValue / 0.29307107017d) / 1e3d,
-                        PowerUnit.KilojoulePerHour => (baseUnitValue * 3600d) / 1e3d,
+                        PowerUnit.HydraulicHorsepower => baseUnitValue / 745.69988145,
+                        PowerUnit.JoulePerHour => baseUnitValue * 3600,
+                        PowerUnit.KilobritishThermalUnitPerHour => (baseUnitValue / 0.29307107017) / 1e3d,
+                        PowerUnit.KilojoulePerHour => (baseUnitValue * 3600) / 1e3d,
                         PowerUnit.Kilowatt => (baseUnitValue) / 1e3d,
-                        PowerUnit.MechanicalHorsepower => baseUnitValue / 745.69d,
-                        PowerUnit.MegabritishThermalUnitPerHour => (baseUnitValue / 0.29307107017d) / 1e6d,
-                        PowerUnit.MegajoulePerHour => (baseUnitValue * 3600d) / 1e6d,
+                        PowerUnit.MechanicalHorsepower => baseUnitValue / 745.69,
+                        PowerUnit.MegabritishThermalUnitPerHour => (baseUnitValue / 0.29307107017) / 1e6d,
+                        PowerUnit.MegajoulePerHour => (baseUnitValue * 3600) / 1e6d,
                         PowerUnit.Megawatt => (baseUnitValue) / 1e6d,
-                        PowerUnit.MetricHorsepower => baseUnitValue / 735.49875d,
+                        PowerUnit.MetricHorsepower => baseUnitValue / 735.49875,
                         PowerUnit.Microwatt => (baseUnitValue) / 1e-6d,
-                        PowerUnit.MillijoulePerHour => (baseUnitValue * 3600d) / 1e-3d,
+                        PowerUnit.MillijoulePerHour => (baseUnitValue * 3600) / 1e-3d,
                         PowerUnit.Milliwatt => (baseUnitValue) / 1e-3d,
                         PowerUnit.Nanowatt => (baseUnitValue) / 1e-9d,
                         PowerUnit.Petawatt => (baseUnitValue) / 1e15d,

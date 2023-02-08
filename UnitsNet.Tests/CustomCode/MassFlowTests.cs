@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
         public void MassFlowDividedByBrakeSpecificFuelConsumptionEqualsPower()
         {
             Power power = MassFlow.FromTonnesPerDay(20) / BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(180.0);
-            AssertEx.EqualTolerance(20.0m / 24.0m * 1e6m / 180.0m, power.Kilowatts, 1E-11m);
+            AssertEx.EqualTolerance(20.0 / 24.0 * 1e6 / 180.0, power.Kilowatts, 1e-11);
         }
 
         [Fact]
