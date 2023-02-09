@@ -22,5 +22,11 @@ namespace UnitsNet
             return MassFlow.FromKilogramsPerSecond(molarFlow.KilomolesPerSecond * molecularWeight.KilogramsPerKilomole);
         }
 
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="MolarFlow"/> divided by <see cref="Molarity"/>.</summary>
+        public static VolumeFlow operator /(MolarFlow molarFlow, Molarity molarity)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(molarFlow.KilomolesPerSecond / molarity.KilomolesPerCubicMeter);
+        }
+
     }
 }

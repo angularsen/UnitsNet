@@ -61,5 +61,12 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(MassFlow.FromKilogramsPerSecond(6), massFlow);
         }
 
+        [Fact]
+        public void MolarFlowOverMolarityEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = MolarFlow.FromKilomolesPerSecond(6) / Molarity.FromKilomolesPerCubicMeter(3);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(2), volumeFlow);
+        }
+
     }
 }
