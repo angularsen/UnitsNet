@@ -78,10 +78,10 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             using (var stringWriter = new StringWriter(result))
                 using(var writer = new JsonTextWriter(stringWriter))
             {
-                _sut.WriteJson(writer, Power.FromWatts(value), JsonSerializer.CreateDefault());
+                _sut.WriteJson(writer, Information.FromBits(value), JsonSerializer.CreateDefault());
             }
 
-            Assert.Equal($"{{\"Unit\":\"PowerUnit.Watt\",\"Value\":{expectedValue},\"ValueString\":\"{expectedValueString}\",\"ValueType\":\"decimal\"}}",
+            Assert.Equal($"{{\"Unit\":\"InformationUnit.Bit\",\"Value\":{expectedValue},\"ValueString\":\"{expectedValueString}\",\"ValueType\":\"decimal\"}}",
                 result.ToString());
         }
 
