@@ -49,8 +49,8 @@
         "L": "Foot",
         "N": "PoundMole"
       },
-      "FromUnitToBaseFunc": "{x} * 6.2427960576144611956325455827221e-5",
-      "FromBaseToUnitFunc": "{x} / 6.2427960576144611956325455827221e-5",
+      "FromUnitToBaseFunc": "{x} / 6.2427960576144611956325455827221e-5",
+      "FromBaseToUnitFunc": "{x} * 6.2427960576144611956325455827221e-5",
       "Localization": [
         {
           "Culture": "en-US",
