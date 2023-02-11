@@ -537,7 +537,9 @@
   "HeatTransferCoefficient": {
     "BtuPerSquareFootDegreeFahrenheit": 1,
     "WattPerSquareMeterCelsius": 2,
-    "WattPerSquareMeterKelvin": 3
+    "WattPerSquareMeterKelvin": 3,
+    "BtuPerHourSquareFootDegreeFahrenheit": 11,
+    "KilocaloriePerHourSquareMeterDegreeCelsius": 8
   },
   "Illuminance": {
     "Kilolux": 1,
@@ -1705,6 +1707,9 @@
     "PoundMolePerSecond": 4,
     "KilomolePerHour": 2,
     "KilomolePerMinute": 15,
-    "KilomolePerSecond": 12
+    "KilomolePerSecond": 12,
+    "MolePerHour": 8,
+    "MolePerMinute": 18,
+    "MolePerSecond": 3
   }
 }

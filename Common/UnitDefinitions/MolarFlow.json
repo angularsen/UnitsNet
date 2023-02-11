@@ -1,6 +1,6 @@
 {
   "Name": "MolarFlow",
-  "BaseUnit": "KilomolePerSecond",
+  "BaseUnit": "MolePerSecond",
   "XmlDocSummary": "Molar flow is the ratio of the amount of substance change to the time during which the change occurred (value of amount of substance changes per unit time).",
   "BaseDimensions": {
     "N": 1,
@@ -8,46 +8,49 @@
   },
   "Units": [
     {
-      "SingularName": "KilomolePerSecond",
-      "PluralName": "KilomolesPerSecond",
+      "SingularName": "MolePerSecond",
+      "PluralName": "MolesPerSecond",
       "BaseUnits": {
-        "N": "Kilomole",
+        "N": "Mole",
         "T": "Second"
       },
+      "Prefixes": [ "Kilo" ],
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kmol/s" ]
+          "Abbreviations": [ "mol/s" ]
         }
       ]
     },
     {
-      "SingularName": "KilomolePerMinute",
-      "PluralName": "KilomolesPerMinute",
+      "SingularName": "MolePerMinute",
+      "PluralName": "MolesPerMinute",
       "BaseUnits": {
-        "N": "Kilomole",
+        "N": "Mole",
         "T": "Minute"
       },
-      "FromUnitToBaseFunc": "{x} / 5.999988e1",
-      "FromBaseToUnitFunc": "{x} * 5.999988e1",
+      "Prefixes": [ "Kilo" ],
+      "FromUnitToBaseFunc": "{x} / 60",
+      "FromBaseToUnitFunc": "{x} * 60",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kmol/min" ]
+          "Abbreviations": [ "mol/min" ]
         }
       ]
     },
     {
-      "SingularName": "KilomolePerHour",
-      "PluralName": "KilomolesPerHour",
+      "SingularName": "MolePerHour",
+      "PluralName": "MolesPerHour",
       "BaseUnits": {
-        "N": "Kilomole",
+        "N": "Mole",
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "{x} / 3.599997e3",
-      "FromBaseToUnitFunc": "{x} * 3.599997e3",
+      "Prefixes": [ "Kilo" ],
+      "FromUnitToBaseFunc": "{x} / 3600",
+      "FromBaseToUnitFunc": "{x} * 3600",
       "Localization": [
         {
           "Culture": "en-US",
@@ -57,13 +60,13 @@
     },
     {
       "SingularName": "PoundMolePerSecond",
-      "PluralName": "PoundsMolePerSecond",
+      "PluralName": "PoundMolesPerSecond",
       "BaseUnits": {
         "N": "PoundMole",
         "T": "Second"
       },
-      "FromUnitToBaseFunc": "{x} / 2.2046244201838",
-      "FromBaseToUnitFunc": "{x} * 2.2046244201838",
+      "FromUnitToBaseFunc": "{x} * 453.59237",
+      "FromBaseToUnitFunc": "{x} / 453.59237",
       "Localization": [
         {
           "Culture": "en-US",
@@ -73,13 +76,13 @@
     },
     {
       "SingularName": "PoundMolePerMinute",
-      "PluralName": "PoundsMolePerMinute",
+      "PluralName": "PoundMolesPerMinute",
       "BaseUnits": {
         "N": "PoundMole",
         "T": "Minute"
       },
-      "FromUnitToBaseFunc": "{x} / 1.32277406886626e2",
-      "FromBaseToUnitFunc": "{x} * 1.32277406886626e2",
+      "FromUnitToBaseFunc": "({x} * 453.59237) / 60",
+      "FromBaseToUnitFunc": "({x} / 453.59237) * 60",
       "Localization": [
         {
           "Culture": "en-US",
@@ -89,13 +92,13 @@
     },
     {
       "SingularName": "PoundMolePerHour",
-      "PluralName": "PoundsMolePerHour",
+      "PluralName": "PoundMolesPerHour",
       "BaseUnits": {
         "N": "PoundMole",
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "{x} / 7.93663391482404e3",
-      "FromBaseToUnitFunc": "{x} * 7.93663391482404e3",
+      "FromUnitToBaseFunc": "({x} * 453.59237) / 3600",
+      "FromBaseToUnitFunc": "({x} / 453.59237) * 3600",
       "Localization": [
         {
           "Culture": "en-US",

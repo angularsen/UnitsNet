@@ -37,16 +37,28 @@ namespace UnitsNet.Tests
             Assert.Equal(MolarFlow.FromKilomolesPerSecond(2), 2.KilomolesPerSecond());
 
         [Fact]
-        public void NumberToPoundsMolePerHourTest() =>
-            Assert.Equal(MolarFlow.FromPoundsMolePerHour(2), 2.PoundsMolePerHour());
+        public void NumberToMolesPerHourTest() =>
+            Assert.Equal(MolarFlow.FromMolesPerHour(2), 2.MolesPerHour());
 
         [Fact]
-        public void NumberToPoundsMolePerMinuteTest() =>
-            Assert.Equal(MolarFlow.FromPoundsMolePerMinute(2), 2.PoundsMolePerMinute());
+        public void NumberToMolesPerMinuteTest() =>
+            Assert.Equal(MolarFlow.FromMolesPerMinute(2), 2.MolesPerMinute());
 
         [Fact]
-        public void NumberToPoundsMolePerSecondTest() =>
-            Assert.Equal(MolarFlow.FromPoundsMolePerSecond(2), 2.PoundsMolePerSecond());
+        public void NumberToMolesPerSecondTest() =>
+            Assert.Equal(MolarFlow.FromMolesPerSecond(2), 2.MolesPerSecond());
+
+        [Fact]
+        public void NumberToPoundMolesPerHourTest() =>
+            Assert.Equal(MolarFlow.FromPoundMolesPerHour(2), 2.PoundMolesPerHour());
+
+        [Fact]
+        public void NumberToPoundMolesPerMinuteTest() =>
+            Assert.Equal(MolarFlow.FromPoundMolesPerMinute(2), 2.PoundMolesPerMinute());
+
+        [Fact]
+        public void NumberToPoundMolesPerSecondTest() =>
+            Assert.Equal(MolarFlow.FromPoundMolesPerSecond(2), 2.PoundMolesPerSecond());
 
     }
 }

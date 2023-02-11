@@ -40,17 +40,29 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
         public static MolarFlow KilomolesPerSecond<T>(this T value) =>
             MolarFlow.FromKilomolesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarFlow.FromPoundsMolePerHour(UnitsNet.QuantityValue)" />
-        public static MolarFlow PoundsMolePerHour<T>(this T value) =>
-            MolarFlow.FromPoundsMolePerHour(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarFlow.FromMolesPerHour(UnitsNet.QuantityValue)" />
+        public static MolarFlow MolesPerHour<T>(this T value) =>
+            MolarFlow.FromMolesPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarFlow.FromPoundsMolePerMinute(UnitsNet.QuantityValue)" />
-        public static MolarFlow PoundsMolePerMinute<T>(this T value) =>
-            MolarFlow.FromPoundsMolePerMinute(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarFlow.FromMolesPerMinute(UnitsNet.QuantityValue)" />
+        public static MolarFlow MolesPerMinute<T>(this T value) =>
+            MolarFlow.FromMolesPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarFlow.FromPoundsMolePerSecond(UnitsNet.QuantityValue)" />
-        public static MolarFlow PoundsMolePerSecond<T>(this T value) =>
-            MolarFlow.FromPoundsMolePerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="MolarFlow.FromMolesPerSecond(UnitsNet.QuantityValue)" />
+        public static MolarFlow MolesPerSecond<T>(this T value) =>
+            MolarFlow.FromMolesPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerHour(UnitsNet.QuantityValue)" />
+        public static MolarFlow PoundMolesPerHour<T>(this T value) =>
+            MolarFlow.FromPoundMolesPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerMinute(UnitsNet.QuantityValue)" />
+        public static MolarFlow PoundMolesPerMinute<T>(this T value) =>
+            MolarFlow.FromPoundMolesPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerSecond(UnitsNet.QuantityValue)" />
+        public static MolarFlow PoundMolesPerSecond<T>(this T value) =>
+            MolarFlow.FromPoundMolesPerSecond(Convert.ToDouble(value));
 
     }
 }

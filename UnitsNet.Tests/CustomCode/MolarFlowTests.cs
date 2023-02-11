@@ -26,19 +26,25 @@ namespace UnitsNet.Tests.CustomCode
     public class MolarFlowTests : MolarFlowTestsBase
     {
         // Override properties in base class here
-        protected override bool SupportsSIUnitSystem => false;
+        protected override bool SupportsSIUnitSystem => true;
 
-        protected override double KilomolesPerHourInOneKilomolePerSecond => 3.599997e3;
+        protected override double KilomolesPerHourInOneMolePerSecond => 3.6;
 
-        protected override double KilomolesPerMinuteInOneKilomolePerSecond => 5.999988e1;
+        protected override double KilomolesPerMinuteInOneMolePerSecond => 0.06;
 
-        protected override double KilomolesPerSecondInOneKilomolePerSecond => 1.0;
+        protected override double KilomolesPerSecondInOneMolePerSecond => 0.001;
 
-        protected override double PoundsMolePerHourInOneKilomolePerSecond => 7.93663391482404e3;
+        protected override double PoundMolesPerHourInOneMolePerSecond => 7.93664143866;
 
-        protected override double PoundsMolePerMinuteInOneKilomolePerSecond => 1.32277406886626e2;
+        protected override double PoundMolesPerMinuteInOneMolePerSecond => 0.132277357311;
 
-        protected override double PoundsMolePerSecondInOneKilomolePerSecond => 2.2046244201838;
+        protected override double PoundMolesPerSecondInOneMolePerSecond => 2.204622621848e-3;
+
+        protected override double MolesPerHourInOneMolePerSecond => 3600;
+
+        protected override double MolesPerMinuteInOneMolePerSecond => 60;
+
+        protected override double MolesPerSecondInOneMolePerSecond => 1.0;
 
         [Fact]
         public void MolarFlowTimesTimeSpanEqualsAmountOfSubstance()

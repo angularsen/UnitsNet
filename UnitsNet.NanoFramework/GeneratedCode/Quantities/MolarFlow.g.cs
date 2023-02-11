@@ -61,7 +61,7 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static MolarFlowUnit BaseUnit { get; } = MolarFlowUnit.KilomolePerSecond;
+        public static MolarFlowUnit BaseUnit { get; } = MolarFlowUnit.MolePerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
@@ -95,19 +95,34 @@ namespace UnitsNet
         public double KilomolesPerSecond => As(MolarFlowUnit.KilomolePerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarFlowUnit.MolePerHour"/>
+        /// </summary>
+        public double MolesPerHour => As(MolarFlowUnit.MolePerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarFlowUnit.MolePerMinute"/>
+        /// </summary>
+        public double MolesPerMinute => As(MolarFlowUnit.MolePerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarFlowUnit.MolePerSecond"/>
+        /// </summary>
+        public double MolesPerSecond => As(MolarFlowUnit.MolePerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarFlowUnit.PoundMolePerHour"/>
         /// </summary>
-        public double PoundsMolePerHour => As(MolarFlowUnit.PoundMolePerHour);
+        public double PoundMolesPerHour => As(MolarFlowUnit.PoundMolePerHour);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarFlowUnit.PoundMolePerMinute"/>
         /// </summary>
-        public double PoundsMolePerMinute => As(MolarFlowUnit.PoundMolePerMinute);
+        public double PoundMolesPerMinute => As(MolarFlowUnit.PoundMolePerMinute);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarFlowUnit.PoundMolePerSecond"/>
         /// </summary>
-        public double PoundsMolePerSecond => As(MolarFlowUnit.PoundMolePerSecond);
+        public double PoundMolesPerSecond => As(MolarFlowUnit.PoundMolePerSecond);
 
         #endregion
 
@@ -132,22 +147,40 @@ namespace UnitsNet
         public static MolarFlow FromKilomolesPerSecond(double kilomolespersecond) => new MolarFlow(kilomolespersecond, MolarFlowUnit.KilomolePerSecond);
 
         /// <summary>
+        ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerHour"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MolarFlow FromMolesPerHour(double molesperhour) => new MolarFlow(molesperhour, MolarFlowUnit.MolePerHour);
+
+        /// <summary>
+        ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerMinute"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MolarFlow FromMolesPerMinute(double molesperminute) => new MolarFlow(molesperminute, MolarFlowUnit.MolePerMinute);
+
+        /// <summary>
+        ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.MolePerSecond"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static MolarFlow FromMolesPerSecond(double molespersecond) => new MolarFlow(molespersecond, MolarFlowUnit.MolePerSecond);
+
+        /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundsMolePerHour(double poundsmoleperhour) => new MolarFlow(poundsmoleperhour, MolarFlowUnit.PoundMolePerHour);
+        public static MolarFlow FromPoundMolesPerHour(double poundmolesperhour) => new MolarFlow(poundmolesperhour, MolarFlowUnit.PoundMolePerHour);
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerMinute"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundsMolePerMinute(double poundsmoleperminute) => new MolarFlow(poundsmoleperminute, MolarFlowUnit.PoundMolePerMinute);
+        public static MolarFlow FromPoundMolesPerMinute(double poundmolesperminute) => new MolarFlow(poundmolesperminute, MolarFlowUnit.PoundMolePerMinute);
 
         /// <summary>
         ///     Creates a <see cref="MolarFlow"/> from <see cref="MolarFlowUnit.PoundMolePerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static MolarFlow FromPoundsMolePerSecond(double poundsmolepersecond) => new MolarFlow(poundsmolepersecond, MolarFlowUnit.PoundMolePerSecond);
+        public static MolarFlow FromPoundMolesPerSecond(double poundmolespersecond) => new MolarFlow(poundmolespersecond, MolarFlowUnit.PoundMolePerSecond);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarFlowUnit" /> to <see cref="MolarFlow" />.
@@ -189,12 +222,15 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        MolarFlowUnit.KilomolePerHour => _value / 3.599997e3,
-                        MolarFlowUnit.KilomolePerMinute => _value / 5.999988e1,
-                        MolarFlowUnit.KilomolePerSecond => _value,
-                        MolarFlowUnit.PoundMolePerHour => _value / 7.93663391482404e3,
-                        MolarFlowUnit.PoundMolePerMinute => _value / 1.32277406886626e2,
-                        MolarFlowUnit.PoundMolePerSecond => _value / 2.2046244201838,
+                        MolarFlowUnit.KilomolePerHour => (_value / 3600) * 1e3d,
+                        MolarFlowUnit.KilomolePerMinute => (_value / 60) * 1e3d,
+                        MolarFlowUnit.KilomolePerSecond => (_value) * 1e3d,
+                        MolarFlowUnit.MolePerHour => _value / 3600,
+                        MolarFlowUnit.MolePerMinute => _value / 60,
+                        MolarFlowUnit.MolePerSecond => _value,
+                        MolarFlowUnit.PoundMolePerHour => (_value * 453.59237) / 3600,
+                        MolarFlowUnit.PoundMolePerMinute => (_value * 453.59237) / 60,
+                        MolarFlowUnit.PoundMolePerSecond => _value * 453.59237,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -208,12 +244,15 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        MolarFlowUnit.KilomolePerHour => baseUnitValue * 3.599997e3,
-                        MolarFlowUnit.KilomolePerMinute => baseUnitValue * 5.999988e1,
-                        MolarFlowUnit.KilomolePerSecond => baseUnitValue,
-                        MolarFlowUnit.PoundMolePerHour => baseUnitValue * 7.93663391482404e3,
-                        MolarFlowUnit.PoundMolePerMinute => baseUnitValue * 1.32277406886626e2,
-                        MolarFlowUnit.PoundMolePerSecond => baseUnitValue * 2.2046244201838,
+                        MolarFlowUnit.KilomolePerHour => (baseUnitValue * 3600) / 1e3d,
+                        MolarFlowUnit.KilomolePerMinute => (baseUnitValue * 60) / 1e3d,
+                        MolarFlowUnit.KilomolePerSecond => (baseUnitValue) / 1e3d,
+                        MolarFlowUnit.MolePerHour => baseUnitValue * 3600,
+                        MolarFlowUnit.MolePerMinute => baseUnitValue * 60,
+                        MolarFlowUnit.MolePerSecond => baseUnitValue,
+                        MolarFlowUnit.PoundMolePerHour => (baseUnitValue / 453.59237) * 3600,
+                        MolarFlowUnit.PoundMolePerMinute => (baseUnitValue / 453.59237) * 60,
+                        MolarFlowUnit.PoundMolePerSecond => baseUnitValue / 453.59237,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

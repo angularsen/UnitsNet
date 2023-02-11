@@ -33,14 +33,26 @@
       ]
     },
     {
-      "SingularName": "BtuPerSquareFootDegreeFahrenheit",
-      "PluralName": "BtusPerSquareFootDegreeFahrenheit",
+      "SingularName": "BtuPerHourSquareFootDegreeFahrenheit",
+      "PluralName": "BtusPerHourSquareFootDegreeFahrenheit",
       "FromUnitToBaseFunc": "{x} * 5.6782633411134878",
       "FromBaseToUnitFunc": "{x} / 5.6782633411134878",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Btu/ft²·hr·°F" ]
+          "Abbreviations": [ "Btu/h·ft²·°F", "Btu/ft²·h·°F", "Btu/hr·ft²·°F", "Btu/ft²·hr·°F" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KilocaloriePerHourSquareMeterDegreeCelsius",
+      "PluralName": "KilocaloriesPerHourSquareMeterDegreeCelsius",
+      "FromUnitToBaseFunc": "({x} * 4184) / 3600",
+      "FromBaseToUnitFunc": "({x} / 4184) * 3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kcal/h·m²·°C", "kcal/m²·h·°C", "kcal/hr·m²·°C", "kcal/m²·hr·°C" ]
         }
       ]
     }
