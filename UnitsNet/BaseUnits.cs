@@ -48,7 +48,7 @@ namespace UnitsNet
             LuminousIntensity = luminousIntensity;
 
             IsFullyDefined = Length is not null &&
-                             Mass is not null &
+                             Mass is not null &&
                              Time is not null &&
                              Current is not null &&
                              Temperature is not null &&
