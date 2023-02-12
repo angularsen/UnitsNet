@@ -38,7 +38,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundMolesPerMinuteInOneMolePerSecond => 0.132277357311;
 
-        protected override double PoundMolesPerSecondInOneMolePerSecond => 2.204622621848e-3;
+        protected override double PoundMolesPerSecondInOneMolePerSecond => 2.2046226218488e-3;
 
         protected override double MolesPerHourInOneMolePerSecond => 3600;
 
