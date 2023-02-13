@@ -85,6 +85,17 @@ namespace UnitsNet
         public double BtusPerHourSquareFootDegreeFahrenheit => As(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>
+        /// </summary>
+        [Obsolete("The name of this definition incorrectly omitted the hours as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
+        public double BtusPerSquareFootDegreeFahrenheit => As(HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius"/>
+        /// </summary>
+        public double CaloriesPerHourSquareMeterDegreeCelsius => As(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius"/>
         /// </summary>
         public double KilocaloriesPerHourSquareMeterDegreeCelsius => As(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius);
@@ -108,6 +119,19 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static HeatTransferCoefficient FromBtusPerHourSquareFootDegreeFahrenheit(double btusperhoursquarefootdegreefahrenheit) => new HeatTransferCoefficient(btusperhoursquarefootdegreefahrenheit, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
+
+        /// <summary>
+        ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Obsolete("The name of this definition incorrectly omitted the hours as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
+        public static HeatTransferCoefficient FromBtusPerSquareFootDegreeFahrenheit(double btuspersquarefootdegreefahrenheit) => new HeatTransferCoefficient(btuspersquarefootdegreefahrenheit, HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit);
+
+        /// <summary>
+        ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static HeatTransferCoefficient FromCaloriesPerHourSquareMeterDegreeCelsius(double caloriesperhoursquaremeterdegreecelsius) => new HeatTransferCoefficient(caloriesperhoursquaremeterdegreecelsius, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius);
 
         /// <summary>
         ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius"/>.
@@ -168,7 +192,9 @@ namespace UnitsNet
                     return Unit switch
                     {
                         HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit => _value * 5.6782633411134878,
-                        HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => (_value * 4184) / 3600,
+                        HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit => _value * 5.6782633411134878,
+                        HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius => (_value * 4.1868) / 3600,
+                        HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => ((_value * 4.1868) / 3600) * 1e3d,
                         HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => _value,
                         HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
@@ -185,7 +211,9 @@ namespace UnitsNet
                     return unit switch
                     {
                         HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit => baseUnitValue / 5.6782633411134878,
-                        HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => (baseUnitValue / 4184) * 3600,
+                        HeatTransferCoefficientUnit.BtuPerSquareFootDegreeFahrenheit => baseUnitValue / 5.6782633411134878,
+                        HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius => (baseUnitValue / 4.1868) * 3600,
+                        HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => ((baseUnitValue / 4.1868) * 3600) / 1e3d,
                         HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => baseUnitValue,
                         HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")

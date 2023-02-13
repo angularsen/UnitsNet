@@ -32,6 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
         public static HeatTransferCoefficient BtusPerHourSquareFootDegreeFahrenheit<T>(this T value) =>
             HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="HeatTransferCoefficient.FromBtusPerSquareFootDegreeFahrenheit(UnitsNet.QuantityValue)" />
+        [Obsolete("The name of this definition incorrectly omitted the hours as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
+        public static HeatTransferCoefficient BtusPerSquareFootDegreeFahrenheit<T>(this T value) =>
+            HeatTransferCoefficient.FromBtusPerSquareFootDegreeFahrenheit(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(UnitsNet.QuantityValue)" />
+        public static HeatTransferCoefficient CaloriesPerHourSquareMeterDegreeCelsius<T>(this T value) =>
+            HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(Convert.ToDouble(value));
+
         /// <inheritdoc cref="HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient KilocaloriesPerHourSquareMeterDegreeCelsius<T>(this T value) =>
             HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(Convert.ToDouble(value));

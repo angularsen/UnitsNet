@@ -33,6 +33,19 @@
       ]
     },
     {
+      "SingularName": "BtuPerSquareFootDegreeFahrenheit",
+      "PluralName": "BtusPerSquareFootDegreeFahrenheit",
+      "ObsoleteText": "The name of this definition incorrectly omitted time as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead",
+      "FromUnitToBaseFunc": "{x} * 5.6782633411134878",
+      "FromBaseToUnitFunc": "{x} / 5.6782633411134878",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Btu/ft²·°F" ]
+        }
+      ]
+    },
+    {
       "SingularName": "BtuPerHourSquareFootDegreeFahrenheit",
       "PluralName": "BtusPerHourSquareFootDegreeFahrenheit",
       "FromUnitToBaseFunc": "{x} * 5.6782633411134878",
@@ -45,10 +58,11 @@
       ]
     },
     {
-      "SingularName": "KilocaloriePerHourSquareMeterDegreeCelsius",
-      "PluralName": "KilocaloriesPerHourSquareMeterDegreeCelsius",
-      "FromUnitToBaseFunc": "({x} * 4184) / 3600",
-      "FromBaseToUnitFunc": "({x} / 4184) * 3600",
+      "SingularName": "CaloriePerHourSquareMeterDegreeCelsius",
+      "PluralName": "CaloriesPerHourSquareMeterDegreeCelsius",
+      "Prefixes": [ "Kilo" ],
+      "FromUnitToBaseFunc": "({x} * 4.1868) / 3600",
+      "FromBaseToUnitFunc": "({x} / 4.1868) * 3600",
       "Localization": [
         {
           "Culture": "en-US",
