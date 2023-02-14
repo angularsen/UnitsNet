@@ -17,6 +17,7 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient;
 using Xunit;
 
@@ -29,6 +30,7 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(2), 2.BtusPerHourSquareFootDegreeFahrenheit());
 
         [Fact]
+        [Obsolete("The name of this definition incorrectly omitted the hours as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
         public void NumberToBtusPerSquareFootDegreeFahrenheitTest() =>
             Assert.Equal(HeatTransferCoefficient.FromBtusPerSquareFootDegreeFahrenheit(2), 2.BtusPerSquareFootDegreeFahrenheit());
 
