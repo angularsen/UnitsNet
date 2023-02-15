@@ -61,6 +61,7 @@ namespace UnitsNet
                 {
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Ampere, "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere)),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Centiampere, "Centiamperes", BaseUnits.Undefined),
+                    new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Femtoampere, "Femtoamperes", BaseUnits.Undefined),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Kiloampere, "Kiloamperes", BaseUnits.Undefined),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Megaampere, "Megaamperes", BaseUnits.Undefined),
                     new UnitInfo<ElectricCurrentUnit>(ElectricCurrentUnit.Microampere, "Microamperes", BaseUnits.Undefined),
@@ -181,6 +182,11 @@ namespace UnitsNet
         public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Femtoampere"/>
+        /// </summary>
+        public double Femtoamperes => As(ElectricCurrentUnit.Femtoampere);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Kiloampere"/>
         /// </summary>
         public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
@@ -222,6 +228,7 @@ namespace UnitsNet
         {
             // Register in unit converter: ElectricCurrentUnit -> BaseUnit
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Centiampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Ampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Femtoampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Ampere));
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Kiloampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Ampere));
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Megaampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Ampere));
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Microampere, ElectricCurrentUnit.Ampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Ampere));
@@ -234,6 +241,7 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> ElectricCurrentUnit
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Centiampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Centiampere));
+            unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Femtoampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Femtoampere));
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Kiloampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Kiloampere));
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Megaampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Megaampere));
             unitConverter.SetConversionFunction<ElectricCurrent>(ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Microampere, quantity => quantity.ToUnit(ElectricCurrentUnit.Microampere));
@@ -246,6 +254,7 @@ namespace UnitsNet
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Ampere, new CultureInfo("en-US"), false, true, new string[]{"A"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Centiampere, new CultureInfo("en-US"), false, true, new string[]{"cA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Femtoampere, new CultureInfo("en-US"), false, true, new string[]{"fA"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Kiloampere, new CultureInfo("en-US"), false, true, new string[]{"kA"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Megaampere, new CultureInfo("en-US"), false, true, new string[]{"MA"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentUnit.Microampere, new CultureInfo("en-US"), false, true, new string[]{"µA"});
@@ -297,6 +306,16 @@ namespace UnitsNet
         {
             double value = (double) centiamperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Femtoampere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCurrent FromFemtoamperes(QuantityValue femtoamperes)
+        {
+            double value = (double) femtoamperes;
+            return new ElectricCurrent(value, ElectricCurrentUnit.Femtoampere);
         }
 
         /// <summary>
@@ -826,6 +845,7 @@ namespace UnitsNet
             {
                 // ElectricCurrentUnit -> BaseUnit
                 (ElectricCurrentUnit.Centiampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e-2d, ElectricCurrentUnit.Ampere),
+                (ElectricCurrentUnit.Femtoampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e-15d, ElectricCurrentUnit.Ampere),
                 (ElectricCurrentUnit.Kiloampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e3d, ElectricCurrentUnit.Ampere),
                 (ElectricCurrentUnit.Megaampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e6d, ElectricCurrentUnit.Ampere),
                 (ElectricCurrentUnit.Microampere, ElectricCurrentUnit.Ampere) => new ElectricCurrent((_value) * 1e-6d, ElectricCurrentUnit.Ampere),
@@ -835,6 +855,7 @@ namespace UnitsNet
 
                 // BaseUnit -> ElectricCurrentUnit
                 (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Centiampere) => new ElectricCurrent((_value) / 1e-2d, ElectricCurrentUnit.Centiampere),
+                (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Femtoampere) => new ElectricCurrent((_value) / 1e-15d, ElectricCurrentUnit.Femtoampere),
                 (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Kiloampere) => new ElectricCurrent((_value) / 1e3d, ElectricCurrentUnit.Kiloampere),
                 (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Megaampere) => new ElectricCurrent((_value) / 1e6d, ElectricCurrentUnit.Megaampere),
                 (ElectricCurrentUnit.Ampere, ElectricCurrentUnit.Microampere) => new ElectricCurrent((_value) / 1e-6d, ElectricCurrentUnit.Microampere),

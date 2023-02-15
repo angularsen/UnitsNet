@@ -36,6 +36,10 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
         public static ElectricCurrent Centiamperes<T>(this T value) =>
             ElectricCurrent.FromCentiamperes(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="ElectricCurrent.FromFemtoamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent Femtoamperes<T>(this T value) =>
+            ElectricCurrent.FromFemtoamperes(Convert.ToDouble(value));
+
         /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Kiloamperes<T>(this T value) =>
             ElectricCurrent.FromKiloamperes(Convert.ToDouble(value));

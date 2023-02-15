@@ -276,7 +276,8 @@
     "Microampere": 5,
     "Milliampere": 6,
     "Nanoampere": 7,
-    "Picoampere": 8
+    "Picoampere": 8,
+    "Femtoampere": 9
   },
   "ElectricCurrentDensity": {
     "AmperePerSquareFoot": 1,
