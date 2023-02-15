@@ -538,7 +538,10 @@
   "HeatTransferCoefficient": {
     "BtuPerSquareFootDegreeFahrenheit": 1,
     "WattPerSquareMeterCelsius": 2,
-    "WattPerSquareMeterKelvin": 3
+    "WattPerSquareMeterKelvin": 3,
+    "BtuPerHourSquareFootDegreeFahrenheit": 11,
+    "KilocaloriePerHourSquareMeterDegreeCelsius": 8,
+    "CaloriePerHourSquareMeterDegreeCelsius": 5
   },
   "Illuminance": {
     "Kilolux": 1,
@@ -957,7 +960,10 @@
     "NanomolePerLiter": 14,
     "NanomolesPerLiter": 15,
     "PicomolePerLiter": 16,
-    "PicomolesPerLiter": 17
+    "PicomolesPerLiter": 17,
+    "KilomolePerCubicMeter": 25,
+    "KilopoundMolePerCubicFoot": 23,
+    "PoundMolePerCubicFoot": 18
   },
   "MolarMass": {
     "CentigramPerMole": 1,
@@ -971,7 +977,9 @@
     "MicrogramPerMole": 9,
     "MilligramPerMole": 10,
     "NanogramPerMole": 11,
-    "PoundPerMole": 12
+    "PoundPerMole": 12,
+    "KiloGramPerKiloMole": 20,
+    "KilogramPerKilomole": 15
   },
   "Permeability": {
     "HenryPerMeter": 1
@@ -1691,5 +1699,19 @@
     "PoundFootPerSecond": 16,
     "SlugFootPerSecond": 11,
     "PoundForceSecond": 18
+  },
+  "MolarFlow": {
+    "KiloMolePerHour": 10,
+    "KiloMolePerMinute": 1,
+    "KiloMolePerSecond": 5,
+    "PoundMolePerHour": 6,
+    "PoundMolePerMinute": 7,
+    "PoundMolePerSecond": 4,
+    "KilomolePerHour": 2,
+    "KilomolePerMinute": 15,
+    "KilomolePerSecond": 12,
+    "MolePerHour": 8,
+    "MolePerMinute": 18,
+    "MolePerSecond": 3
   }
 }

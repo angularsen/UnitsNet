@@ -98,6 +98,11 @@ namespace UnitsNet
         public double FemtomolesPerLiter => As(MolarityUnit.FemtomolePerLiter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.KilomolePerCubicMeter"/>
+        /// </summary>
+        public double KilomolesPerCubicMeter => As(MolarityUnit.KilomolePerCubicMeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.MicromolePerLiter"/>
         /// </summary>
         public double MicromolesPerLiter => As(MolarityUnit.MicromolePerLiter);
@@ -127,6 +132,11 @@ namespace UnitsNet
         /// </summary>
         public double PicomolesPerLiter => As(MolarityUnit.PicomolePerLiter);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarityUnit.PoundMolePerCubicFoot"/>
+        /// </summary>
+        public double PoundMolesPerCubicFoot => As(MolarityUnit.PoundMolePerCubicFoot);
+
         #endregion
 
         #region Static Factory Methods
@@ -148,6 +158,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromFemtomolesPerLiter(double femtomolesperliter) => new Molarity(femtomolesperliter, MolarityUnit.FemtomolePerLiter);
+
+        /// <summary>
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.KilomolePerCubicMeter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Molarity FromKilomolesPerCubicMeter(double kilomolespercubicmeter) => new Molarity(kilomolespercubicmeter, MolarityUnit.KilomolePerCubicMeter);
 
         /// <summary>
         ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.MicromolePerLiter"/>.
@@ -184,6 +200,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static Molarity FromPicomolesPerLiter(double picomolesperliter) => new Molarity(picomolesperliter, MolarityUnit.PicomolePerLiter);
+
+        /// <summary>
+        ///     Creates a <see cref="Molarity"/> from <see cref="MolarityUnit.PoundMolePerCubicFoot"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Molarity FromPoundMolesPerCubicFoot(double poundmolespercubicfoot) => new Molarity(poundmolespercubicfoot, MolarityUnit.PoundMolePerCubicFoot);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
@@ -228,12 +250,14 @@ namespace UnitsNet
                         MolarityUnit.CentimolePerLiter => (_value / 1e-3) * 1e-2d,
                         MolarityUnit.DecimolePerLiter => (_value / 1e-3) * 1e-1d,
                         MolarityUnit.FemtomolePerLiter => (_value / 1e-3) * 1e-15d,
+                        MolarityUnit.KilomolePerCubicMeter => (_value) * 1e3d,
                         MolarityUnit.MicromolePerLiter => (_value / 1e-3) * 1e-6d,
                         MolarityUnit.MillimolePerLiter => (_value / 1e-3) * 1e-3d,
                         MolarityUnit.MolePerCubicMeter => _value,
                         MolarityUnit.MolePerLiter => _value / 1e-3,
                         MolarityUnit.NanomolePerLiter => (_value / 1e-3) * 1e-9d,
                         MolarityUnit.PicomolePerLiter => (_value / 1e-3) * 1e-12d,
+                        MolarityUnit.PoundMolePerCubicFoot => _value / 6.2427960576144611956325455827221e-5,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -250,12 +274,14 @@ namespace UnitsNet
                         MolarityUnit.CentimolePerLiter => (baseUnitValue * 1e-3) / 1e-2d,
                         MolarityUnit.DecimolePerLiter => (baseUnitValue * 1e-3) / 1e-1d,
                         MolarityUnit.FemtomolePerLiter => (baseUnitValue * 1e-3) / 1e-15d,
+                        MolarityUnit.KilomolePerCubicMeter => (baseUnitValue) / 1e3d,
                         MolarityUnit.MicromolePerLiter => (baseUnitValue * 1e-3) / 1e-6d,
                         MolarityUnit.MillimolePerLiter => (baseUnitValue * 1e-3) / 1e-3d,
                         MolarityUnit.MolePerCubicMeter => baseUnitValue,
                         MolarityUnit.MolePerLiter => baseUnitValue * 1e-3,
                         MolarityUnit.NanomolePerLiter => (baseUnitValue * 1e-3) / 1e-9d,
                         MolarityUnit.PicomolePerLiter => (baseUnitValue * 1e-3) / 1e-12d,
+                        MolarityUnit.PoundMolePerCubicFoot => baseUnitValue * 6.2427960576144611956325455827221e-5,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

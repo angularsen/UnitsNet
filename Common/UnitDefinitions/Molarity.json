@@ -17,7 +17,7 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [],
+      "Prefixes": [ "Kilo" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -39,6 +39,22 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "mol/L", "M" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundMolePerCubicFoot",
+      "PluralName": "PoundMolesPerCubicFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "N": "PoundMole"
+      },
+      "FromUnitToBaseFunc": "{x} / 6.2427960576144611956325455827221e-5",
+      "FromBaseToUnitFunc": "{x} * 6.2427960576144611956325455827221e-5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbmol/ft³" ]
         }
       ]
     }

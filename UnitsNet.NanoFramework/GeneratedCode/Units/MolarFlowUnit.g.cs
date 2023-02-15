@@ -23,21 +23,17 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum MolarMassUnit
+    public enum MolarFlowUnit
     {
-        CentigramPerMole = 1,
-        DecagramPerMole = 2,
-        DecigramPerMole = 3,
-        GramPerMole = 4,
-        HectogramPerMole = 5,
-        KilogramPerKilomole = 15,
-        KilogramPerMole = 6,
-        KilopoundPerMole = 7,
-        MegapoundPerMole = 8,
-        MicrogramPerMole = 9,
-        MilligramPerMole = 10,
-        NanogramPerMole = 11,
-        PoundPerMole = 12,
+        KilomolePerHour = 2,
+        KilomolePerMinute = 15,
+        KilomolePerSecond = 12,
+        MolePerHour = 8,
+        MolePerMinute = 18,
+        MolePerSecond = 3,
+        PoundMolePerHour = 6,
+        PoundMolePerMinute = 7,
+        PoundMolePerSecond = 4,
     }
 
     #pragma warning restore 1591

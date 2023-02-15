@@ -142,6 +142,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarEnergy", "MolarEnergy\
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarEntropy", "MolarEntropy\MolarEntropy.nfproj", "{2053731b-90f5-5141-d15e-8d7be8c2662f}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarFlow", "MolarFlow\MolarFlow.nfproj", "{49cc942b-d836-a48b-0429-25bf95247759}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Molarity", "Molarity\Molarity.nfproj", "{0d21f127-8c25-9b3a-9612-ce2eea6e7ac1}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarMass", "MolarMass\MolarMass.nfproj", "{fe51bbda-2039-23fd-f29a-39c14adcb1f6}"
@@ -662,6 +664,12 @@ Global
 {2053731b-90f5-5141-d15e-8d7be8c2662f}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {2053731b-90f5-5141-d15e-8d7be8c2662f}.Release|Any CPU.Build.0 = Release|Any CPU
 {2053731b-90f5-5141-d15e-8d7be8c2662f}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{49cc942b-d836-a48b-0429-25bf95247759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{49cc942b-d836-a48b-0429-25bf95247759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{49cc942b-d836-a48b-0429-25bf95247759}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{49cc942b-d836-a48b-0429-25bf95247759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{49cc942b-d836-a48b-0429-25bf95247759}.Release|Any CPU.Build.0 = Release|Any CPU
+{49cc942b-d836-a48b-0429-25bf95247759}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {0d21f127-8c25-9b3a-9612-ce2eea6e7ac1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {0d21f127-8c25-9b3a-9612-ce2eea6e7ac1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {0d21f127-8c25-9b3a-9612-ce2eea6e7ac1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

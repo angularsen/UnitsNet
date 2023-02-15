@@ -28,12 +28,14 @@ namespace UnitsNet.Units
         CentimolePerLiter = 1,
         DecimolePerLiter = 3,
         FemtomolePerLiter = 5,
+        KilomolePerCubicMeter = 25,
         MicromolePerLiter = 6,
         MillimolePerLiter = 8,
         MolePerCubicMeter = 10,
         MolePerLiter = 11,
         NanomolePerLiter = 14,
         PicomolePerLiter = 16,
+        PoundMolePerCubicFoot = 18,
     }
 
     #pragma warning restore 1591
