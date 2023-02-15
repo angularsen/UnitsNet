@@ -38,8 +38,6 @@ namespace UnitsNet.Tests
                 Writer.WL(2, $@"
 [Fact]");
 
-                Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit.ObsoleteText));
-
                 Writer.WL(2, $@"public void NumberTo{unit.PluralName}Test() =>
             Assert.Equal({_quantityName}.From{unit.PluralName}(2), 2.{unit.PluralName}());
 ");
@@ -49,10 +47,5 @@ namespace UnitsNet.Tests
 }");
             return Writer.ToString();
         }
-
-        private static string? GetObsoleteAttributeOrNull(string? obsoleteText) =>
-          string.IsNullOrWhiteSpace(obsoleteText) ?
-          null :
-          $"[Obsolete(\"{obsoleteText}\")]";
     }
 }

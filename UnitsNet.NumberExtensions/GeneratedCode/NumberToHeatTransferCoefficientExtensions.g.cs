@@ -33,7 +33,7 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
             HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatTransferCoefficient.FromBtusPerSquareFootDegreeFahrenheit(UnitsNet.QuantityValue)" />
-        [Obsolete("The name of this definition incorrectly omitted the hours as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
+        [Obsolete("The name of this definition incorrectly omitted time as divisor, please use BtuPerHourSquareFootDegreeFahrenheit instead")]
         public static HeatTransferCoefficient BtusPerSquareFootDegreeFahrenheit<T>(this T value) =>
             HeatTransferCoefficient.FromBtusPerSquareFootDegreeFahrenheit(Convert.ToDouble(value));
 
