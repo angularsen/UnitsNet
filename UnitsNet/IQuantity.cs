@@ -86,7 +86,9 @@ namespace UnitsNet
     ///     IQuantity{LengthUnit} length;
     ///     double centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
     /// </example>
-    public interface IQuantity<TUnitType> : IQuantity where TUnitType : Enum
+    /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
+    public interface IQuantity<TUnitType> : IQuantity
+        where TUnitType : Enum
     {
         /// <summary>
         ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
