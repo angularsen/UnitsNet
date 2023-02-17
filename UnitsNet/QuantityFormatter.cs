@@ -16,7 +16,7 @@ namespace UnitsNet
         /// <summary>
         /// The available UnitsNet custom format specifiers.
         /// </summary>
-        private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'G', 'g', 'Q', 'q', 'S', 's', 'U', 'u', 'V', 'v' };
+        private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'Q', 'q', 'S', 's', 'U', 'u', 'V', 'v' };
 
         /// <summary>
         /// Formats a quantity using the given format string and format provider.
@@ -142,9 +142,6 @@ namespace UnitsNet
 
                 switch(formatSpecifier)
                 {
-                    case 'G':
-                    case 'g':
-                        return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 2);
                     case 'A':
                     case 'a':
                         var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
