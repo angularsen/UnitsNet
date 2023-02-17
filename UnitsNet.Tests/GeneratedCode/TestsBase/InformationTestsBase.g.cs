@@ -163,7 +163,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Information();
             Assert.Equal(0, quantity.Value);
-            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);
+            Assert.Equal(0m, ((IValueQuantity<decimal>)quantity).Value);
             Assert.Equal(InformationUnit.Bit, quantity.Unit);
         }
 
