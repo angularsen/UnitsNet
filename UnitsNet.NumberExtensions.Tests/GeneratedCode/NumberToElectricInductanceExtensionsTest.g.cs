@@ -40,5 +40,9 @@ namespace UnitsNet.Tests
         public void NumberToNanohenriesTest() =>
             Assert.Equal(ElectricInductance.FromNanohenries(2), 2.Nanohenries());
 
+        [Fact]
+        public void NumberToPicohenriesTest() =>
+            Assert.Equal(ElectricInductance.FromPicohenries(2), 2.Picohenries());
+
     }
 }

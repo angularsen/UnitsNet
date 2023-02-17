@@ -14,7 +14,7 @@
       "PluralName": "Ohms",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga"],
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",
