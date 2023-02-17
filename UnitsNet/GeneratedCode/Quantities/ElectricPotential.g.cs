@@ -63,6 +63,7 @@ namespace UnitsNet
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Megavolt, "Megavolts", BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Microvolt, "Microvolts", BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Millivolt, "Millivolts", BaseUnits.Undefined),
+                    new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Nanovolt, "Nanovolts", BaseUnits.Undefined),
                     new UnitInfo<ElectricPotentialUnit>(ElectricPotentialUnit.Volt, "Volts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere)),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -188,6 +189,11 @@ namespace UnitsNet
         public double Millivolts => As(ElectricPotentialUnit.Millivolt);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Nanovolt"/>
+        /// </summary>
+        public double Nanovolts => As(ElectricPotentialUnit.Nanovolt);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricPotentialUnit.Volt"/>
         /// </summary>
         public double Volts => As(ElectricPotentialUnit.Volt);
@@ -207,6 +213,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Megavolt, ElectricPotentialUnit.Volt, quantity => quantity.ToUnit(ElectricPotentialUnit.Volt));
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Microvolt, ElectricPotentialUnit.Volt, quantity => quantity.ToUnit(ElectricPotentialUnit.Volt));
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt, quantity => quantity.ToUnit(ElectricPotentialUnit.Volt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Nanovolt, ElectricPotentialUnit.Volt, quantity => quantity.ToUnit(ElectricPotentialUnit.Volt));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Volt, quantity => quantity);
@@ -216,6 +223,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Megavolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Megavolt));
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Microvolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Microvolt));
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Millivolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Millivolt));
+            unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Nanovolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Nanovolt));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -228,6 +236,8 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Microvolt, new CultureInfo("ru-RU"), false, true, new string[]{"мкВ"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Millivolt, new CultureInfo("en-US"), false, true, new string[]{"mV"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Millivolt, new CultureInfo("ru-RU"), false, true, new string[]{"мВ"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Nanovolt, new CultureInfo("en-US"), false, true, new string[]{"nV"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Nanovolt, new CultureInfo("ru-RU"), false, true, new string[]{"нВ"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Volt, new CultureInfo("en-US"), false, true, new string[]{"V"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Volt, new CultureInfo("ru-RU"), false, true, new string[]{"В"});
         }
@@ -295,6 +305,16 @@ namespace UnitsNet
         {
             double value = (double) millivolts;
             return new ElectricPotential(value, ElectricPotentialUnit.Millivolt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricPotential"/> from <see cref="ElectricPotentialUnit.Nanovolt"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricPotential FromNanovolts(QuantityValue nanovolts)
+        {
+            double value = (double) nanovolts;
+            return new ElectricPotential(value, ElectricPotentialUnit.Nanovolt);
         }
 
         /// <summary>
@@ -777,12 +797,14 @@ namespace UnitsNet
                 (ElectricPotentialUnit.Megavolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e6d, ElectricPotentialUnit.Volt),
                 (ElectricPotentialUnit.Microvolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e-6d, ElectricPotentialUnit.Volt),
                 (ElectricPotentialUnit.Millivolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e-3d, ElectricPotentialUnit.Volt),
+                (ElectricPotentialUnit.Nanovolt, ElectricPotentialUnit.Volt) => new ElectricPotential((_value) * 1e-9d, ElectricPotentialUnit.Volt),
 
                 // BaseUnit -> ElectricPotentialUnit
                 (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Kilovolt) => new ElectricPotential((_value) / 1e3d, ElectricPotentialUnit.Kilovolt),
                 (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Megavolt) => new ElectricPotential((_value) / 1e6d, ElectricPotentialUnit.Megavolt),
                 (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Microvolt) => new ElectricPotential((_value) / 1e-6d, ElectricPotentialUnit.Microvolt),
                 (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Millivolt) => new ElectricPotential((_value) / 1e-3d, ElectricPotentialUnit.Millivolt),
+                (ElectricPotentialUnit.Volt, ElectricPotentialUnit.Nanovolt) => new ElectricPotential((_value) / 1e-9d, ElectricPotentialUnit.Nanovolt),
 
                 _ => null
             };

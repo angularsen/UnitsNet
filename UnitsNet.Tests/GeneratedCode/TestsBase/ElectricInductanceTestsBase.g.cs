@@ -42,12 +42,14 @@ namespace UnitsNet.Tests
         protected abstract double MicrohenriesInOneHenry { get; }
         protected abstract double MillihenriesInOneHenry { get; }
         protected abstract double NanohenriesInOneHenry { get; }
+        protected abstract double PicohenriesInOneHenry { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double HenriesTolerance { get { return 1e-5; } }
         protected virtual double MicrohenriesTolerance { get { return 1e-5; } }
         protected virtual double MillihenriesTolerance { get { return 1e-5; } }
         protected virtual double NanohenriesTolerance { get { return 1e-5; } }
+        protected virtual double PicohenriesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricInductanceUnit unit)
@@ -58,6 +60,7 @@ namespace UnitsNet.Tests
                 ElectricInductanceUnit.Microhenry => (MicrohenriesInOneHenry, MicrohenriesTolerance),
                 ElectricInductanceUnit.Millihenry => (MillihenriesInOneHenry, MillihenriesTolerance),
                 ElectricInductanceUnit.Nanohenry => (NanohenriesInOneHenry, NanohenriesTolerance),
+                ElectricInductanceUnit.Picohenry => (PicohenriesInOneHenry, PicohenriesTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -68,6 +71,7 @@ namespace UnitsNet.Tests
             new object[] { ElectricInductanceUnit.Microhenry },
             new object[] { ElectricInductanceUnit.Millihenry },
             new object[] { ElectricInductanceUnit.Nanohenry },
+            new object[] { ElectricInductanceUnit.Picohenry },
         };
 
         [Fact]
@@ -134,6 +138,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicrohenriesInOneHenry, henry.Microhenries, MicrohenriesTolerance);
             AssertEx.EqualTolerance(MillihenriesInOneHenry, henry.Millihenries, MillihenriesTolerance);
             AssertEx.EqualTolerance(NanohenriesInOneHenry, henry.Nanohenries, NanohenriesTolerance);
+            AssertEx.EqualTolerance(PicohenriesInOneHenry, henry.Picohenries, PicohenriesTolerance);
         }
 
         [Fact]
@@ -154,6 +159,10 @@ namespace UnitsNet.Tests
             var quantity03 = ElectricInductance.From(1, ElectricInductanceUnit.Nanohenry);
             AssertEx.EqualTolerance(1, quantity03.Nanohenries, NanohenriesTolerance);
             Assert.Equal(ElectricInductanceUnit.Nanohenry, quantity03.Unit);
+
+            var quantity04 = ElectricInductance.From(1, ElectricInductanceUnit.Picohenry);
+            AssertEx.EqualTolerance(1, quantity04.Picohenries, PicohenriesTolerance);
+            Assert.Equal(ElectricInductanceUnit.Picohenry, quantity04.Unit);
 
         }
 
@@ -178,6 +187,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicrohenriesInOneHenry, henry.As(ElectricInductanceUnit.Microhenry), MicrohenriesTolerance);
             AssertEx.EqualTolerance(MillihenriesInOneHenry, henry.As(ElectricInductanceUnit.Millihenry), MillihenriesTolerance);
             AssertEx.EqualTolerance(NanohenriesInOneHenry, henry.As(ElectricInductanceUnit.Nanohenry), NanohenriesTolerance);
+            AssertEx.EqualTolerance(PicohenriesInOneHenry, henry.As(ElectricInductanceUnit.Picohenry), PicohenriesTolerance);
         }
 
         [Fact]
@@ -228,6 +238,13 @@ namespace UnitsNet.Tests
                 Assert.Equal(ElectricInductanceUnit.Nanohenry, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
+            try
+            {
+                var parsed = ElectricInductance.Parse("1 pH", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picohenries, PicohenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Picohenry, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
         }
 
         [Fact]
@@ -255,6 +272,12 @@ namespace UnitsNet.Tests
                 Assert.True(ElectricInductance.TryParse("1 nH", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Nanohenries, NanohenriesTolerance);
                 Assert.Equal(ElectricInductanceUnit.Nanohenry, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricInductance.TryParse("1 pH", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picohenries, PicohenriesTolerance);
+                Assert.Equal(ElectricInductanceUnit.Picohenry, parsed.Unit);
             }
 
         }
@@ -286,6 +309,12 @@ namespace UnitsNet.Tests
                 Assert.Equal(ElectricInductanceUnit.Nanohenry, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
+            try
+            {
+                var parsedUnit = ElectricInductance.ParseUnit("pH", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricInductanceUnit.Picohenry, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
         }
 
         [Fact]
@@ -309,6 +338,11 @@ namespace UnitsNet.Tests
             {
                 Assert.True(ElectricInductance.TryParseUnit("nH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricInductanceUnit.Nanohenry, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricInductance.TryParseUnit("pH", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricInductanceUnit.Picohenry, parsedUnit);
             }
 
         }
@@ -363,6 +397,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricInductance.FromMicrohenries(henry.Microhenries).Henries, MicrohenriesTolerance);
             AssertEx.EqualTolerance(1, ElectricInductance.FromMillihenries(henry.Millihenries).Henries, MillihenriesTolerance);
             AssertEx.EqualTolerance(1, ElectricInductance.FromNanohenries(henry.Nanohenries).Henries, NanohenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance.FromPicohenries(henry.Picohenries).Henries, PicohenriesTolerance);
         }
 
         [Fact]
@@ -514,6 +549,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 µH", new ElectricInductance(1, ElectricInductanceUnit.Microhenry).ToString());
                 Assert.Equal("1 mH", new ElectricInductance(1, ElectricInductanceUnit.Millihenry).ToString());
                 Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString());
+                Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString());
             }
             finally
             {
@@ -531,6 +567,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 µH", new ElectricInductance(1, ElectricInductanceUnit.Microhenry).ToString(swedishCulture));
             Assert.Equal("1 mH", new ElectricInductance(1, ElectricInductanceUnit.Millihenry).ToString(swedishCulture));
             Assert.Equal("1 nH", new ElectricInductance(1, ElectricInductanceUnit.Nanohenry).ToString(swedishCulture));
+            Assert.Equal("1 pH", new ElectricInductance(1, ElectricInductanceUnit.Picohenry).ToString(swedishCulture));
         }
 
         [Fact]

@@ -25,12 +25,20 @@ namespace UnitsNet.Tests
     public class NumberToElectricConductanceExtensionsTests
     {
         [Fact]
+        public void NumberToKilosiemensTest() =>
+            Assert.Equal(ElectricConductance.FromKilosiemens(2), 2.Kilosiemens());
+
+        [Fact]
         public void NumberToMicrosiemensTest() =>
             Assert.Equal(ElectricConductance.FromMicrosiemens(2), 2.Microsiemens());
 
         [Fact]
         public void NumberToMillisiemensTest() =>
             Assert.Equal(ElectricConductance.FromMillisiemens(2), 2.Millisiemens());
+
+        [Fact]
+        public void NumberToNanosiemensTest() =>
+            Assert.Equal(ElectricConductance.FromNanosiemens(2), 2.Nanosiemens());
 
         [Fact]
         public void NumberToSiemensTest() =>

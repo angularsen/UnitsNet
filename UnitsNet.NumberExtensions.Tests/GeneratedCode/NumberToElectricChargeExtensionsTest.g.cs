@@ -37,12 +37,36 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCharge.FromKiloampereHours(2), 2.KiloampereHours());
 
         [Fact]
+        public void NumberToKilocoulombsTest() =>
+            Assert.Equal(ElectricCharge.FromKilocoulombs(2), 2.Kilocoulombs());
+
+        [Fact]
         public void NumberToMegaampereHoursTest() =>
             Assert.Equal(ElectricCharge.FromMegaampereHours(2), 2.MegaampereHours());
 
         [Fact]
+        public void NumberToMegacoulombsTest() =>
+            Assert.Equal(ElectricCharge.FromMegacoulombs(2), 2.Megacoulombs());
+
+        [Fact]
+        public void NumberToMicrocoulombsTest() =>
+            Assert.Equal(ElectricCharge.FromMicrocoulombs(2), 2.Microcoulombs());
+
+        [Fact]
         public void NumberToMilliampereHoursTest() =>
             Assert.Equal(ElectricCharge.FromMilliampereHours(2), 2.MilliampereHours());
+
+        [Fact]
+        public void NumberToMillicoulombsTest() =>
+            Assert.Equal(ElectricCharge.FromMillicoulombs(2), 2.Millicoulombs());
+
+        [Fact]
+        public void NumberToNanocoulombsTest() =>
+            Assert.Equal(ElectricCharge.FromNanocoulombs(2), 2.Nanocoulombs());
+
+        [Fact]
+        public void NumberToPicocoulombsTest() =>
+            Assert.Equal(ElectricCharge.FromPicocoulombs(2), 2.Picocoulombs());
 
     }
 }

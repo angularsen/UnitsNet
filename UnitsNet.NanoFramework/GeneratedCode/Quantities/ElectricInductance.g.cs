@@ -102,6 +102,11 @@ namespace UnitsNet
         /// </summary>
         public double Nanohenries => As(ElectricInductanceUnit.Nanohenry);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Picohenry"/>
+        /// </summary>
+        public double Picohenries => As(ElectricInductanceUnit.Picohenry);
+
         #endregion
 
         #region Static Factory Methods
@@ -129,6 +134,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricInductance FromNanohenries(double nanohenries) => new ElectricInductance(nanohenries, ElectricInductanceUnit.Nanohenry);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Picohenry"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricInductance FromPicohenries(double picohenries) => new ElectricInductance(picohenries, ElectricInductanceUnit.Picohenry);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricInductanceUnit" /> to <see cref="ElectricInductance" />.
@@ -174,6 +185,7 @@ namespace UnitsNet
                         ElectricInductanceUnit.Microhenry => (_value) * 1e-6d,
                         ElectricInductanceUnit.Millihenry => (_value) * 1e-3d,
                         ElectricInductanceUnit.Nanohenry => (_value) * 1e-9d,
+                        ElectricInductanceUnit.Picohenry => (_value) * 1e-12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -191,6 +203,7 @@ namespace UnitsNet
                         ElectricInductanceUnit.Microhenry => (baseUnitValue) / 1e-6d,
                         ElectricInductanceUnit.Millihenry => (baseUnitValue) / 1e-3d,
                         ElectricInductanceUnit.Nanohenry => (baseUnitValue) / 1e-9d,
+                        ElectricInductanceUnit.Picohenry => (baseUnitValue) / 1e-12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }
