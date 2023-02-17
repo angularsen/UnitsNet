@@ -6,11 +6,7 @@ namespace UnitsNet
     /// <summary>
     ///     Represents a quantity with a decimal value.
     /// </summary>
-    public interface IDecimalQuantity
+    public interface IDecimalQuantity : IValueQuantity<decimal>
     {
-        /// <summary>
-        ///     The decimal value this quantity was constructed with.
-        /// </summary>
-        decimal Value { get; }
     }
 }

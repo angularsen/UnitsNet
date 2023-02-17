@@ -263,20 +263,10 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public {_valueType} Value => _value;
-");
 
-            Writer.WL(@"
         /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
-");
-            // Need to provide explicit interface implementation for decimal quantities like Information
-            if (_quantity.ValueType == "decimal")
-                Writer.WL(@"
-        /// <inheritdoc cref=""IDecimalQuantity.Value""/>
-        decimal IDecimalQuantity.Value => _value;
-");
 
-            Writer.WL($@"
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -957,6 +947,15 @@ namespace UnitsNet
                 throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
 
             return (double)As(typedUnit);
+        }}
+
+        /// <inheritdoc />
+        {_quantity.ValueType} IValueQuantity<{_quantity.ValueType}>.As(Enum unit)
+        {{
+            if (!(unit is {_unitEnumName} typedUnit))
+                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
+
+            return As(typedUnit);
         }}
 
         /// <summary>
