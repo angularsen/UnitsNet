@@ -29,6 +29,7 @@ namespace UnitsNet.Units
         Megavolt = 2,
         Microvolt = 3,
         Millivolt = 4,
+        Nanovolt = 11,
         Volt = 5,
     }
 

@@ -31,6 +31,7 @@ namespace UnitsNet.Units
         Microohm = 4,
         Milliohm = 5,
         Ohm = 6,
+        Teraohm = 12,
     }
 
     #pragma warning restore 1591

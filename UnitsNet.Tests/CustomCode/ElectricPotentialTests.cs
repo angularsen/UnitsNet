@@ -18,6 +18,8 @@ namespace UnitsNet.Tests
 
         protected override double MegavoltsInOneVolt => 1e-6;
 
+        protected override double NanovoltsInOneVolt => 1e9;
+
         [Theory]
         [InlineData(1, 1, 1)]
         [InlineData(0, int.MaxValue, 0)]

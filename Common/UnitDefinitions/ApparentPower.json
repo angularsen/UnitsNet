@@ -13,7 +13,7 @@
       "PluralName": "Voltamperes",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Kilo", "Mega", "Giga" ],
+      "Prefixes": [ "Micro", "Milli", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",

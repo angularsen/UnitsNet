@@ -95,6 +95,16 @@ namespace UnitsNet
         public double Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Microvoltampere"/>
+        /// </summary>
+        public double Microvoltamperes => As(ApparentPowerUnit.Microvoltampere);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Millivoltampere"/>
+        /// </summary>
+        public double Millivoltamperes => As(ApparentPowerUnit.Millivoltampere);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Voltampere"/>
         /// </summary>
         public double Voltamperes => As(ApparentPowerUnit.Voltampere);
@@ -120,6 +130,18 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ApparentPower FromMegavoltamperes(double megavoltamperes) => new ApparentPower(megavoltamperes, ApparentPowerUnit.Megavoltampere);
+
+        /// <summary>
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Microvoltampere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ApparentPower FromMicrovoltamperes(double microvoltamperes) => new ApparentPower(microvoltamperes, ApparentPowerUnit.Microvoltampere);
+
+        /// <summary>
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Millivoltampere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ApparentPower FromMillivoltamperes(double millivoltamperes) => new ApparentPower(millivoltamperes, ApparentPowerUnit.Millivoltampere);
 
         /// <summary>
         ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Voltampere"/>.
@@ -170,6 +192,8 @@ namespace UnitsNet
                         ApparentPowerUnit.Gigavoltampere => (_value) * 1e9d,
                         ApparentPowerUnit.Kilovoltampere => (_value) * 1e3d,
                         ApparentPowerUnit.Megavoltampere => (_value) * 1e6d,
+                        ApparentPowerUnit.Microvoltampere => (_value) * 1e-6d,
+                        ApparentPowerUnit.Millivoltampere => (_value) * 1e-3d,
                         ApparentPowerUnit.Voltampere => _value,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -187,6 +211,8 @@ namespace UnitsNet
                         ApparentPowerUnit.Gigavoltampere => (baseUnitValue) / 1e9d,
                         ApparentPowerUnit.Kilovoltampere => (baseUnitValue) / 1e3d,
                         ApparentPowerUnit.Megavoltampere => (baseUnitValue) / 1e6d,
+                        ApparentPowerUnit.Microvoltampere => (baseUnitValue) / 1e-6d,
+                        ApparentPowerUnit.Millivoltampere => (baseUnitValue) / 1e-3d,
                         ApparentPowerUnit.Voltampere => baseUnitValue,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

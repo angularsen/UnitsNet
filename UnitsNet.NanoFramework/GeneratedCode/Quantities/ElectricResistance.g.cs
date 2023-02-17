@@ -109,6 +109,11 @@ namespace UnitsNet
         /// </summary>
         public double Ohms => As(ElectricResistanceUnit.Ohm);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistanceUnit.Teraohm"/>
+        /// </summary>
+        public double Teraohms => As(ElectricResistanceUnit.Teraohm);
+
         #endregion
 
         #region Static Factory Methods
@@ -148,6 +153,12 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricResistance FromOhms(double ohms) => new ElectricResistance(ohms, ElectricResistanceUnit.Ohm);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricResistance"/> from <see cref="ElectricResistanceUnit.Teraohm"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricResistance FromTeraohms(double teraohms) => new ElectricResistance(teraohms, ElectricResistanceUnit.Teraohm);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
@@ -195,6 +206,7 @@ namespace UnitsNet
                         ElectricResistanceUnit.Microohm => (_value) * 1e-6d,
                         ElectricResistanceUnit.Milliohm => (_value) * 1e-3d,
                         ElectricResistanceUnit.Ohm => _value,
+                        ElectricResistanceUnit.Teraohm => (_value) * 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -214,6 +226,7 @@ namespace UnitsNet
                         ElectricResistanceUnit.Microohm => (baseUnitValue) / 1e-6d,
                         ElectricResistanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
                         ElectricResistanceUnit.Ohm => baseUnitValue,
+                        ElectricResistanceUnit.Teraohm => (baseUnitValue) / 1e12d,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }
