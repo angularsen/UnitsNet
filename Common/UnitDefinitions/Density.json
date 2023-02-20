@@ -171,8 +171,12 @@
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
+          "Culture": "en",
+          "Abbreviations": [ "g/l" ]
+        },
+        {
           "Culture": "en-US",
-          "Abbreviations": [ "g/L" ]
+          "Abbreviations": [ "g/L", "g/l" ]
         }
       ]
     },
@@ -184,8 +188,12 @@
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
-          "Culture": "en-US",
+          "Culture": "en",
           "Abbreviations": [ "g/dl" ]
+        },
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/dL", "g/dl" ]
         }
       ]
     },
@@ -197,8 +205,12 @@
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Centi", "Deci" ],
       "Localization": [
         {
-          "Culture": "en-US",
+          "Culture": "en",
           "Abbreviations": [ "g/ml" ]
+        },
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/mL", "g/ml" ]
         }
       ]
     },
@@ -237,8 +249,12 @@
       "FromBaseToUnitFunc": "{x} / 1e3",
       "Localization": [
         {
-          "Culture": "en-US",
+          "Culture": "en",
           "Abbreviations": [ "kg/l" ]
+        },
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/L", "kg/l" ]
         }
       ]
     },

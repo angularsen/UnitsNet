@@ -14,8 +14,12 @@
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
-          "Culture": "en-US",
+          "Culture": "en",
           "Abbreviations": [ "l" ]
+        },
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "L", "l" ]
         },
         {
           "Culture": "ru-RU",
