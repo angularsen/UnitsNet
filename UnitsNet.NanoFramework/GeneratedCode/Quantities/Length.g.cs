@@ -175,6 +175,11 @@ namespace UnitsNet
         public double MegalightYears => As(LengthUnit.MegalightYear);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megameter"/>
+        /// </summary>
+        public double Megameters => As(LengthUnit.Megameter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megaparsec"/>
         /// </summary>
         public double Megaparsecs => As(LengthUnit.Megaparsec);
@@ -378,6 +383,12 @@ namespace UnitsNet
         public static Length FromMegalightYears(double megalightyears) => new Length(megalightyears, LengthUnit.MegalightYear);
 
         /// <summary>
+        ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megameter"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Length FromMegameters(double megameters) => new Length(megameters, LengthUnit.Megameter);
+
+        /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megaparsec"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -538,6 +549,7 @@ namespace UnitsNet
                         LengthUnit.Kiloparsec => (_value * 3.08567758128e16) * 1e3d,
                         LengthUnit.LightYear => _value * 9.46073047258e15,
                         LengthUnit.MegalightYear => (_value * 9.46073047258e15) * 1e6d,
+                        LengthUnit.Megameter => _value * 1e+6,
                         LengthUnit.Megaparsec => (_value * 3.08567758128e16) * 1e6d,
                         LengthUnit.Meter => _value,
                         LengthUnit.Microinch => _value * 2.54e-8,
@@ -587,6 +599,7 @@ namespace UnitsNet
                         LengthUnit.Kiloparsec => (baseUnitValue / 3.08567758128e16) / 1e3d,
                         LengthUnit.LightYear => baseUnitValue / 9.46073047258e15,
                         LengthUnit.MegalightYear => (baseUnitValue / 9.46073047258e15) / 1e6d,
+                        LengthUnit.Megameter => baseUnitValue / 1e+6,
                         LengthUnit.Megaparsec => (baseUnitValue / 3.08567758128e16) / 1e6d,
                         LengthUnit.Meter => baseUnitValue,
                         LengthUnit.Microinch => baseUnitValue / 2.54e-8,
