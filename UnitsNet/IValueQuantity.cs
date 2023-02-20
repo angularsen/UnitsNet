@@ -31,21 +31,4 @@ namespace UnitsNet
         /// <returns>The converted value.</returns>
         new TValueType As(UnitSystem unitSystem);
     }
-
-    /// <summary>
-    ///     A quantity backed by a particular value type with a stronger typed interface where the unit enum type is known, to avoid passing in the
-    ///     wrong unit enum type and not having to cast from <see cref="Enum"/>.
-    /// </summary>
-    /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
-    /// <typeparam name="TValueType">The value type of the quantity.</typeparam>
-    public interface IValueQuantity<TUnitType, TValueType> : IQuantity<TUnitType>, IValueQuantity<TValueType>
-        where TUnitType : Enum
-        where TValueType : struct
-    {
-        /// <summary>
-        ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        new TValueType As(TUnitType unit);
-    }
 }

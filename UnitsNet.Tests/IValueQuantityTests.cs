@@ -28,26 +28,5 @@ namespace UnitsNet.Tests
             IValueQuantity<double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
             Assert.IsType<double>(doubleQuantity.As(UnitSystem.SI));
         }
-
-        [Fact]
-        public void IValueQuantityDoubleTemperature_Value_ReturnsDouble()
-        {
-            IValueQuantity<TemperatureUnit, double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
-            Assert.IsType<double>(doubleQuantity.Value);
-        }
-
-        [Fact]
-        public void IValueQuantityTDoubleTemperature_AsEnum_ReturnsDouble()
-        {
-            IValueQuantity<double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
-            Assert.IsType<double>(doubleQuantity.As(TemperatureUnit.Kelvin));
-        }
-
-        [Fact]
-        public void IValueQuantityTDoubleTemperature_AsUnitSystem_ReturnsDouble()
-        {
-            IValueQuantity<double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
-            Assert.IsType<double>(doubleQuantity.As(UnitSystem.SI));
-        }
     }
 }
