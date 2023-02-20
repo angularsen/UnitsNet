@@ -125,7 +125,7 @@ namespace UnitsNet
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
     /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
-    public interface IQuantity<TSelf, TUnitType, TValueType> : IQuantity<TUnitType>, IValueQuantity<TValueType>
+    public interface IQuantity<TSelf, TUnitType, TValueType> : IQuantity<TUnitType>, IValueQuantity<TUnitType, TValueType>
 #if NET7_0_OR_GREATER
         , IComparisonOperators<TSelf, TSelf, bool>
         , IParsable<TSelf>
