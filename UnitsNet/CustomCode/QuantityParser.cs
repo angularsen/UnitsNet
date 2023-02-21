@@ -193,19 +193,20 @@ namespace UnitsNet
             return true;
         }
 
-        private string CreateRegexPatternForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : Enum
+        /// <summary>
+        ///     Gets ToString format arguments.
+        /// </summary>
+        /// <typeparam name="TUnitType">The type of units to format.</typeparam>
+        /// <param name="unit">The units</param>
+        /// <param name="value">The unit value to format.</param>
+        /// <param name="culture">The current culture.</param>
+        /// <param name="args">The list of format arguments.</param>
+        /// <returns>An array of ToString format arguments.</returns>
+        public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, IFormatProvider? culture, IEnumerable<object> args)
+            where TUnitType : Enum
         {
-            var unitAbbreviations = _unitAbbreviationsCache.GetAllUnitAbbreviationsForQuantity(typeof(TUnitType), formatProvider);
-            var pattern = GetRegexPatternForUnitAbbreviations(unitAbbreviations);
-
-            // Match entire string exactly
-            return $"^{pattern}$";
-        }
-
-        private Regex CreateRegexForQuantity<TUnitType>(IFormatProvider? formatProvider) where TUnitType : Enum
-        {
-            var pattern = CreateRegexPatternForQuantity<TUnitType>(formatProvider);
-            return new Regex(pattern, RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
+            return new object[] { value, abbreviation }.Concat(args).ToArray();
         }
     }
 }
