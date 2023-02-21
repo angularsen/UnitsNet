@@ -1,5 +1,5 @@
-Henry = H
-Microhenry = µH
-Millihenry = mH
-Nanohenry = nH
-Picohenry = pH
+Henry = ("H")
+Microhenry = ("µH")
+Millihenry = ("mH")
+Nanohenry = ("nH")
+Picohenry = ("pH")

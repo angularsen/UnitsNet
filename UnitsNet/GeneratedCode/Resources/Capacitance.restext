@@ -1,7 +1,7 @@
-Farad = F
-Kilofarad = kF
-Megafarad = MF
-Microfarad = µF
-Millifarad = mF
-Nanofarad = nF
-Picofarad = pF
+Farad = ("F")
+Kilofarad = ("kF")
+Megafarad = ("MF")
+Microfarad = ("µF")
+Millifarad = ("mF")
+Nanofarad = ("nF")
+Picofarad = ("pF")

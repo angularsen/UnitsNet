@@ -1,5 +1,5 @@
-KilonewtonMeterPerRadianPerMeter = kN·m/rad/m
-KilopoundForceFootPerDegreesPerFoot = kipf·ft/°/ft
-MeganewtonMeterPerRadianPerMeter = MN·m/rad/m
-NewtonMeterPerRadianPerMeter = N·m/rad/m
-PoundForceFootPerDegreesPerFoot = lbf·ft/deg/ft
+KilonewtonMeterPerRadianPerMeter = ("kN·m/rad/m", "kNm/rad/m")
+KilopoundForceFootPerDegreesPerFoot = ("kipf·ft/°/ft", "kip·ft/°/ft", "k·ft/°/ft", "kipf·ft/deg/ft", "kip·ft/deg/ft", "k·ft/deg/ft")
+MeganewtonMeterPerRadianPerMeter = ("MN·m/rad/m", "MNm/rad/m")
+NewtonMeterPerRadianPerMeter = ("N·m/rad/m", "Nm/rad/m")
+PoundForceFootPerDegreesPerFoot = ("lbf·ft/deg/ft")

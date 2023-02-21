@@ -165,7 +165,19 @@ namespace CodeGen.Generators
                                 //Unit.{ unit.SingularName}, quantity => quantity.ToUnit({ _quantity.Name}
                                 //Unit.{ unit.SingularName})); ");
                                 if(localization.Abbreviations.Any())
-                                    writer.WriteLine($"{unit.SingularName} = {localization.Abbreviations.First()}");
+                                {
+                                    writer.Write($"{unit.SingularName} = (");
+
+                                    for(int i = 0; i < localization.Abbreviations.Length; i++)
+                                    {
+                                        writer.Write($"\"{localization.Abbreviations[i]}\"");
+
+                                        if(i != localization.Abbreviations.Length - 1)
+                                            writer.Write(", ");
+                                    }
+
+                                    writer.WriteLine(")");
+                                }
                             }
                         }
                     }

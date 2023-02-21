@@ -1,6 +1,6 @@
-KilogramForcePerCentimeter = кгс/см
-KilogramForcePerMeter = кгс/м
-KilogramForcePerMillimeter = кгс/мм
-TonneForcePerCentimeter = тс/см
-TonneForcePerMeter = тс/м
-TonneForcePerMillimeter = тс/мм
+KilogramForcePerCentimeter = ("кгс/см")
+KilogramForcePerMeter = ("кгс/м")
+KilogramForcePerMillimeter = ("кгс/мм")
+TonneForcePerCentimeter = ("тс/см")
+TonneForcePerMeter = ("тс/м")
+TonneForcePerMillimeter = ("тс/мм")

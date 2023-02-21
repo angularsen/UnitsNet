@@ -1,6 +1,6 @@
-HourSquareFeetDegreeFahrenheitPerBtu = Hrft²°F/Btu
-SquareCentimeterHourDegreeCelsiusPerKilocalorie = cm²Hr°C/kcal
-SquareCentimeterKelvinPerWatt = cm²K/W
-SquareMeterDegreeCelsiusPerWatt = m²°C/W
-SquareMeterKelvinPerKilowatt = m²K/kW
-SquareMeterKelvinPerWatt = m²K/W
+HourSquareFeetDegreeFahrenheitPerBtu = ("Hrft²°F/Btu")
+SquareCentimeterHourDegreeCelsiusPerKilocalorie = ("cm²Hr°C/kcal")
+SquareCentimeterKelvinPerWatt = ("cm²K/W")
+SquareMeterDegreeCelsiusPerWatt = ("m²°C/W")
+SquareMeterKelvinPerKilowatt = ("m²K/kW")
+SquareMeterKelvinPerWatt = ("m²K/W")

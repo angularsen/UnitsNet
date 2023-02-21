@@ -1,5 +1,5 @@
-Darcy = D
-Microdarcy = µD
-Millidarcy = mD
-SquareCentimeter = cm²
-SquareMeter = m²
+Darcy = ("D")
+Microdarcy = ("µD")
+Millidarcy = ("mD")
+SquareCentimeter = ("cm²")
+SquareMeter = ("m²")

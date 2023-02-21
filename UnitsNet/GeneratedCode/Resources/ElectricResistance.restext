@@ -1,7 +1,7 @@
-Gigaohm = GΩ
-Kiloohm = kΩ
-Megaohm = MΩ
-Microohm = µΩ
-Milliohm = mΩ
-Ohm = Ω
-Teraohm = TΩ
+Gigaohm = ("GΩ")
+Kiloohm = ("kΩ")
+Megaohm = ("MΩ")
+Microohm = ("µΩ")
+Milliohm = ("mΩ")
+Ohm = ("Ω")
+Teraohm = ("TΩ")
