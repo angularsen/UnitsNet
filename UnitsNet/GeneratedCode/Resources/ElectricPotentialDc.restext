@@ -1,5 +1,5 @@
-KilovoltDc = ("kVdc")
-MegavoltDc = ("MVdc")
-MicrovoltDc = ("µVdc")
-MillivoltDc = ("mVdc")
-VoltDc = ("Vdc")
+KilovoltDc = "kVdc"
+MegavoltDc = "MVdc"
+MicrovoltDc = "µVdc"
+MillivoltDc = "mVdc"
+VoltDc = "Vdc"

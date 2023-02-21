@@ -1,4 +1,4 @@
-AmperePerMicrosecond = ("A/μs")
-AmperePerMillisecond = ("A/ms")
-AmperePerNanosecond = ("A/ns")
-AmperePerSecond = ("A/s")
+AmperePerMicrosecond = "A/μs"
+AmperePerMillisecond = "A/ms"
+AmperePerNanosecond = "A/ns"
+AmperePerSecond = "A/s"

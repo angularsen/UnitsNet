@@ -163,17 +163,17 @@ namespace CodeGen.Generators
                             {
                                 if(localization.Abbreviations.Any())
                                 {
-                                    writer.Write($"{unit.SingularName} = (");
+                                    writer.Write($"{unit.SingularName} = ");
 
                                     for(int i = 0; i < localization.Abbreviations.Length; i++)
                                     {
                                         writer.Write($"\"{localization.Abbreviations[i]}\"");
 
                                         if(i != localization.Abbreviations.Length - 1)
-                                            writer.Write(", ");
+                                            writer.Write(",");
                                     }
 
-                                    writer.WriteLine(")");
+                                    writer.WriteLine();
                                 }
                             }
                         }

@@ -1,2 +1,2 @@
-DecibelMilliwatt = ("dBmW", "dBm")
-DecibelWatt = ("dBW")
+DecibelMilliwatt = "dBmW","dBm"
+DecibelWatt = "dBW"

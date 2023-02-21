@@ -1,3 +1,3 @@
-JoulePerMoleKelvin = ("J/(mol*K)")
-KilojoulePerMoleKelvin = ("kJ/(mol*K)")
-MegajoulePerMoleKelvin = ("MJ/(mol*K)")
+JoulePerMoleKelvin = "J/(mol*K)"
+KilojoulePerMoleKelvin = "kJ/(mol*K)"
+MegajoulePerMoleKelvin = "MJ/(mol*K)"

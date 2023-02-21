@@ -1,4 +1,4 @@
-DegreePerSecondSquared = ("°/s²", "deg/s²")
-RadianPerSecondSquared = ("rad/s²")
-RevolutionPerMinutePerSecond = ("rpm/s")
-RevolutionPerSecondSquared = ("r/s²")
+DegreePerSecondSquared = "°/s²","deg/s²"
+RadianPerSecondSquared = "rad/s²"
+RevolutionPerMinutePerSecond = "rpm/s"
+RevolutionPerSecondSquared = "r/s²"

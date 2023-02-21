@@ -1,6 +1,6 @@
-MicrosiemensPerCentimeter = ("µS/cm")
-MillisiemensPerCentimeter = ("mS/cm")
-SiemensPerCentimeter = ("S/cm")
-SiemensPerFoot = ("S/ft")
-SiemensPerInch = ("S/in")
-SiemensPerMeter = ("S/m")
+MicrosiemensPerCentimeter = "µS/cm"
+MillisiemensPerCentimeter = "mS/cm"
+SiemensPerCentimeter = "S/cm"
+SiemensPerFoot = "S/ft"
+SiemensPerInch = "S/in"
+SiemensPerMeter = "S/m"
