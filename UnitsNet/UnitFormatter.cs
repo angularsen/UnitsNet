@@ -3,12 +3,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Threading;
 
 namespace UnitsNet
 {
@@ -78,21 +73,8 @@ namespace UnitsNet
         public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, IFormatProvider? culture, IEnumerable<object> args)
             where TUnitType : Enum
         {
-            string abbreviation = GetAbbreviations2("Duration", "Microsecond", new CultureInfo("ru-RU")).FirstOrDefault() ?? string.Empty;
+            string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
             return new object[] {value, abbreviation}.Concat(args).ToArray();
-        }
-
-        private static string[] GetAbbreviations2(string quantityName, string unitString, CultureInfo? culture = null)
-        {
-            var resourceName = $"UnitsNet.GeneratedCode.Resources.{quantityName}";
-            var resourceManager = new ResourceManager(resourceName, typeof(Length).Assembly);
-
-            var abbreviation = resourceManager.GetString(unitString, culture ?? Thread.CurrentThread.CurrentCulture);
-            if(abbreviation is null)
-                return Array.Empty<string>();
-
-            var abbreviations = abbreviation.Split(',');
-            return abbreviations;
         }
     }
 }
