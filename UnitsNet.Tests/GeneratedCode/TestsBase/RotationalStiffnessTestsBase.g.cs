@@ -3043,6 +3043,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 lbf·ft/rad", new RotationalStiffness(1, RotationalStiffnessUnit.PoundForceFeetPerRadian).ToString());
                 Assert.Equal("1 lbf·ft/deg", new RotationalStiffness(1, RotationalStiffnessUnit.PoundForceFootPerDegrees).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -3101,6 +3105,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s2"));
                 Assert.Equal("0.123 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s3"));
                 Assert.Equal("0.1235 N·m/rad", new RotationalStiffness(0.123456, RotationalStiffnessUnit.NewtonMeterPerRadian).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

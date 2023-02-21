@@ -1499,6 +1499,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 psi/min", new PressureChangeRate(1, PressureChangeRateUnit.PoundForcePerSquareInchPerMinute).ToString());
                 Assert.Equal("1 psi/s", new PressureChangeRate(1, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1538,6 +1542,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s2"));
                 Assert.Equal("0.123 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 Pa/s", new PressureChangeRate(0.123456, PressureChangeRateUnit.PascalPerSecond).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

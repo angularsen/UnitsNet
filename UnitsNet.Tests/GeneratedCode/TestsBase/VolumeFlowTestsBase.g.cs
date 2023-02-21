@@ -4265,6 +4265,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 gal (U.S.)/min", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerMinute).ToString());
                 Assert.Equal("1 gal (U.S.)/s", new VolumeFlow(1, VolumeFlowUnit.UsGallonPerSecond).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -4352,6 +4356,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s2"));
                 Assert.Equal("0.123 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 m³/s", new VolumeFlow(0.123456, VolumeFlowUnit.CubicMeterPerSecond).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

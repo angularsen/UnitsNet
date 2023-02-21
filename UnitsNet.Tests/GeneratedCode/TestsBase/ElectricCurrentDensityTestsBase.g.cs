@@ -479,6 +479,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 A/in²", new ElectricCurrentDensity(1, ElectricCurrentDensityUnit.AmperePerSquareInch).ToString());
                 Assert.Equal("1 A/m²", new ElectricCurrentDensity(1, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -507,6 +511,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

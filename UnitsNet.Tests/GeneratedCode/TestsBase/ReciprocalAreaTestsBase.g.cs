@@ -767,6 +767,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 yd⁻²", new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareYard).ToString());
                 Assert.Equal("1 ft⁻² (US)", new ReciprocalArea(1, ReciprocalAreaUnit.InverseUsSurveySquareFoot).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -803,6 +807,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 m⁻²", new ReciprocalArea(0.123456, ReciprocalAreaUnit.InverseSquareMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

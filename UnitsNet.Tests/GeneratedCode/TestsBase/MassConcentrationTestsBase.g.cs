@@ -2231,6 +2231,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 t/m³", new MassConcentration(1, MassConcentrationUnit.TonnePerCubicMeter).ToString());
                 Assert.Equal("1 t/mm³", new MassConcentration(1, MassConcentrationUnit.TonnePerCubicMillimeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -2305,6 +2309,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s2"));
                 Assert.Equal("0.123 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s3"));
                 Assert.Equal("0.1235 kg/m³", new MassConcentration(0.123456, MassConcentrationUnit.KilogramPerCubicMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

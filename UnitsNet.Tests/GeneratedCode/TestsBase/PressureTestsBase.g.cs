@@ -2913,6 +2913,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 tf/mm²", new Pressure(1, PressureUnit.TonneForcePerSquareMillimeter).ToString());
                 Assert.Equal("1 torr", new Pressure(1, PressureUnit.Torr).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -2985,6 +2989,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s2"));
                 Assert.Equal("0.123 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s3"));
                 Assert.Equal("0.1235 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

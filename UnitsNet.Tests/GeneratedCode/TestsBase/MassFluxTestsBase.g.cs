@@ -803,6 +803,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 kg·s⁻¹·m⁻²", new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString());
                 Assert.Equal("1 kg·s⁻¹·mm⁻²", new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMillimeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -840,6 +844,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 kg·s⁻¹·m⁻²", new MassFlux(0.123456, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 kg·s⁻¹·m⁻²", new MassFlux(0.123456, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 kg·s⁻¹·m⁻²", new MassFlux(0.123456, MassFluxUnit.KilogramPerSecondPerSquareMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

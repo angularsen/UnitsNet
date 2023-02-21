@@ -2283,6 +2283,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 st", new Mass(1, MassUnit.Stone).ToString());
                 Assert.Equal("1 t", new Mass(1, MassUnit.Tonne).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -2333,6 +2337,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s2"));
                 Assert.Equal("0.123 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s3"));
                 Assert.Equal("0.1235 kg", new Mass(0.123456, MassUnit.Kilogram).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

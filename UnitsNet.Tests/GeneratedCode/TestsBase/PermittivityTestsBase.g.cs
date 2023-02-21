@@ -406,6 +406,10 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 F/m", new Permittivity(1, PermittivityUnit.FaradPerMeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -432,6 +436,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 F/m", new Permittivity(0.123456, PermittivityUnit.FaradPerMeter).ToString("s2"));
                 Assert.Equal("0.123 F/m", new Permittivity(0.123456, PermittivityUnit.FaradPerMeter).ToString("s3"));
                 Assert.Equal("0.1235 F/m", new Permittivity(0.123456, PermittivityUnit.FaradPerMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

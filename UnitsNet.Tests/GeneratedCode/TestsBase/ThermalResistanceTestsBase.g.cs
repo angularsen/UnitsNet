@@ -587,6 +587,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 m²K/kW", new ThermalResistance(1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString());
                 Assert.Equal("1 m²K/W", new ThermalResistance(1, ThermalResistanceUnit.SquareMeterKelvinPerWatt).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -618,6 +622,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s2"));
                 Assert.Equal("0.123 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s3"));
                 Assert.Equal("0.1235 m²K/kW", new ThermalResistance(0.123456, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

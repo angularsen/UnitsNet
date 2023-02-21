@@ -983,6 +983,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 tf/m³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMeter).ToString());
                 Assert.Equal("1 tf/mm³", new SpecificWeight(1, SpecificWeightUnit.TonneForcePerCubicMillimeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1025,6 +1029,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s2"));
                 Assert.Equal("0.123 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s3"));
                 Assert.Equal("0.1235 N/m³", new SpecificWeight(0.123456, SpecificWeightUnit.NewtonPerCubicMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

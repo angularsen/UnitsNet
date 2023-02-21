@@ -1161,6 +1161,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 W/m", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMeter).ToString());
                 Assert.Equal("1 W/mm", new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMillimeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1211,6 +1215,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s2"));
                 Assert.Equal("0.123 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s3"));
                 Assert.Equal("0.1235 W/m", new LinearPowerDensity(0.123456, LinearPowerDensityUnit.WattPerMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

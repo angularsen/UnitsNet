@@ -443,6 +443,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 CFM/ft²", new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot).ToString());
                 Assert.Equal("1 m³/(s·m²)", new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -470,6 +474,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 m³/(s·m²)", new VolumeFlowPerArea(0.123456, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

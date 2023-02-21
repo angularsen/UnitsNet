@@ -551,6 +551,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nS", new ElectricConductance(1, ElectricConductanceUnit.Nanosiemens).ToString());
                 Assert.Equal("1 S", new ElectricConductance(1, ElectricConductanceUnit.Siemens).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -581,6 +585,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s2"));
                 Assert.Equal("0.123 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s3"));
                 Assert.Equal("0.1235 S", new ElectricConductance(0.123456, ElectricConductanceUnit.Siemens).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

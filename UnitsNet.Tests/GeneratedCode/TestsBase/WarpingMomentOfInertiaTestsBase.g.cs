@@ -731,6 +731,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 m⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MeterToTheSixth).ToString());
                 Assert.Equal("1 mm⁶", new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MillimeterToTheSixth).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -762,6 +766,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m⁶", new WarpingMomentOfInertia(0.123456, WarpingMomentOfInertiaUnit.MeterToTheSixth).ToString("s2"));
                 Assert.Equal("0.123 m⁶", new WarpingMomentOfInertia(0.123456, WarpingMomentOfInertiaUnit.MeterToTheSixth).ToString("s3"));
                 Assert.Equal("0.1235 m⁶", new WarpingMomentOfInertia(0.123456, WarpingMomentOfInertiaUnit.MeterToTheSixth).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

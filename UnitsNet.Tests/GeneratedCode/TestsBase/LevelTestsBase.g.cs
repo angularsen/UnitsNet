@@ -447,6 +447,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 dB", new Level(1, LevelUnit.Decibel).ToString());
                 Assert.Equal("1 Np", new Level(1, LevelUnit.Neper).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -474,6 +478,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 dB", new Level(0.123456, LevelUnit.Decibel).ToString("s2"));
                 Assert.Equal("0.123 dB", new Level(0.123456, LevelUnit.Decibel).ToString("s3"));
                 Assert.Equal("0.1235 dB", new Level(0.123456, LevelUnit.Decibel).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

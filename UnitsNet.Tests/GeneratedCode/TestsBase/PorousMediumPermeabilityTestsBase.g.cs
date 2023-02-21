@@ -551,6 +551,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 cm²", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareCentimeter).ToString());
                 Assert.Equal("1 m²", new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareMeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -581,6 +585,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m²", new PorousMediumPermeability(0.123456, PorousMediumPermeabilityUnit.SquareMeter).ToString("s2"));
                 Assert.Equal("0.123 m²", new PorousMediumPermeability(0.123456, PorousMediumPermeabilityUnit.SquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 m²", new PorousMediumPermeability(0.123456, PorousMediumPermeabilityUnit.SquareMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

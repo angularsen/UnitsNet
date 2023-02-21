@@ -479,6 +479,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 MVAh", new ApparentEnergy(1, ApparentEnergyUnit.MegavoltampereHour).ToString());
                 Assert.Equal("1 VAh", new ApparentEnergy(1, ApparentEnergyUnit.VoltampereHour).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -507,6 +511,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s2"));
                 Assert.Equal("0.123 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s3"));
                 Assert.Equal("0.1235 VAh", new ApparentEnergy(0.123456, ApparentEnergyUnit.VoltampereHour).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

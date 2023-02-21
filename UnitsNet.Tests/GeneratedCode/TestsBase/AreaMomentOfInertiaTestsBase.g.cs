@@ -731,6 +731,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 m⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MeterToTheFourth).ToString());
                 Assert.Equal("1 mm⁴", new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MillimeterToTheFourth).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -762,6 +766,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m⁴", new AreaMomentOfInertia(0.123456, AreaMomentOfInertiaUnit.MeterToTheFourth).ToString("s2"));
                 Assert.Equal("0.123 m⁴", new AreaMomentOfInertia(0.123456, AreaMomentOfInertiaUnit.MeterToTheFourth).ToString("s3"));
                 Assert.Equal("0.1235 m⁴", new AreaMomentOfInertia(0.123456, AreaMomentOfInertiaUnit.MeterToTheFourth).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

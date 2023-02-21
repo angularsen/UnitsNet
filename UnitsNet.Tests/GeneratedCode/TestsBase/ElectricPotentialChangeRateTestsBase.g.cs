@@ -1003,6 +1003,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 V/min", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerMinute).ToString());
                 Assert.Equal("1 V/s", new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1048,6 +1052,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s2"));
                 Assert.Equal("0.123 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 V/s", new ElectricPotentialChangeRate(0.123456, ElectricPotentialChangeRateUnit.VoltPerSecond).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

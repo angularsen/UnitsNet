@@ -406,6 +406,10 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 NTU", new Turbidity(1, TurbidityUnit.NTU).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -432,6 +436,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 NTU", new Turbidity(0.123456, TurbidityUnit.NTU).ToString("s2"));
                 Assert.Equal("0.123 NTU", new Turbidity(0.123456, TurbidityUnit.NTU).ToString("s3"));
                 Assert.Equal("0.1235 NTU", new Turbidity(0.123456, TurbidityUnit.NTU).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

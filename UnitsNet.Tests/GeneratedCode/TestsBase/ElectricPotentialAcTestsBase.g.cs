@@ -529,6 +529,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mVac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.MillivoltAc).ToString());
                 Assert.Equal("1 Vac", new ElectricPotentialAc(1, ElectricPotentialAcUnit.VoltAc).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -559,6 +563,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s2"));
                 Assert.Equal("0.123 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s3"));
                 Assert.Equal("0.1235 Vac", new ElectricPotentialAc(0.123456, ElectricPotentialAcUnit.VoltAc).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

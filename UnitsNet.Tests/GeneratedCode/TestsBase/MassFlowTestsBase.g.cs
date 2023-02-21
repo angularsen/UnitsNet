@@ -1801,6 +1801,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 t/d", new MassFlow(1, MassFlowUnit.TonnePerDay).ToString());
                 Assert.Equal("1 t/h", new MassFlow(1, MassFlowUnit.TonnePerHour).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1859,6 +1863,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s2"));
                 Assert.Equal("0.123 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 g/s", new MassFlow(0.123456, MassFlowUnit.GramPerSecond).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

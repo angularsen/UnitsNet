@@ -623,6 +623,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mJ/cm²", new Irradiation(1, IrradiationUnit.MillijoulePerSquareCentimeter).ToString());
                 Assert.Equal("1 Wh/m²", new Irradiation(1, IrradiationUnit.WattHourPerSquareMeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -655,6 +659,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

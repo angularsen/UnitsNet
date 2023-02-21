@@ -817,6 +817,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 lbf·s", new Impulse(1, ImpulseUnit.PoundForceSecond).ToString());
                 Assert.Equal("1 slug·ft/s", new Impulse(1, ImpulseUnit.SlugFootPerSecond).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -855,6 +859,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s2"));
                 Assert.Equal("0.123 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s3"));
                 Assert.Equal("0.1235 N·s", new Impulse(0.123456, ImpulseUnit.NewtonSecond).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

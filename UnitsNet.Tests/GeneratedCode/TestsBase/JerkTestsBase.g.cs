@@ -1031,6 +1031,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nm/s³", new Jerk(1, JerkUnit.NanometerPerSecondCubed).ToString());
                 Assert.Equal("1 g/s", new Jerk(1, JerkUnit.StandardGravitiesPerSecond).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1067,6 +1071,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s2"));
                 Assert.Equal("0.123 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s3"));
                 Assert.Equal("0.1235 m/s³", new Jerk(0.123456, JerkUnit.MeterPerSecondCubed).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

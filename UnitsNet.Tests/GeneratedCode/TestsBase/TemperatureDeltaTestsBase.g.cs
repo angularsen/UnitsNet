@@ -695,6 +695,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ∆K", new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin).ToString());
                 Assert.Equal("1 ∆m°C", new TemperatureDelta(1, TemperatureDeltaUnit.MillidegreeCelsius).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -729,6 +733,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s2"));
                 Assert.Equal("0.123 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s3"));
                 Assert.Equal("0.1235 ∆K", new TemperatureDelta(0.123456, TemperatureDeltaUnit.Kelvin).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

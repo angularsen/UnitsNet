@@ -529,6 +529,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 mVdc", new ElectricPotentialDc(1, ElectricPotentialDcUnit.MillivoltDc).ToString());
                 Assert.Equal("1 Vdc", new ElectricPotentialDc(1, ElectricPotentialDcUnit.VoltDc).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -559,6 +563,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s2"));
                 Assert.Equal("0.123 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s3"));
                 Assert.Equal("0.1235 Vdc", new ElectricPotentialDc(0.123456, ElectricPotentialDcUnit.VoltDc).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

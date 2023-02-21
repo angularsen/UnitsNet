@@ -1867,6 +1867,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 W/m³", new PowerDensity(1, PowerDensityUnit.WattPerCubicMeter).ToString());
                 Assert.Equal("1 W/l", new PowerDensity(1, PowerDensityUnit.WattPerLiter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1936,6 +1940,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s2"));
                 Assert.Equal("0.123 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s3"));
                 Assert.Equal("0.1235 W/m³", new PowerDensity(0.123456, PowerDensityUnit.WattPerCubicMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

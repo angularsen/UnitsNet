@@ -515,6 +515,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 A/ns", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerNanosecond).ToString());
                 Assert.Equal("1 A/s", new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -544,6 +548,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s2"));
                 Assert.Equal("0.123 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s3"));
                 Assert.Equal("0.1235 A/s", new ElectricCurrentGradient(0.123456, ElectricCurrentGradientUnit.AmperePerSecond).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

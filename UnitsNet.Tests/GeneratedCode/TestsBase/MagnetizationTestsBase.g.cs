@@ -406,6 +406,10 @@ namespace UnitsNet.Tests
             try {
                 Assert.Equal("1 A/m", new Magnetization(1, MagnetizationUnit.AmperePerMeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -432,6 +436,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 A/m", new Magnetization(0.123456, MagnetizationUnit.AmperePerMeter).ToString("s2"));
                 Assert.Equal("0.123 A/m", new Magnetization(0.123456, MagnetizationUnit.AmperePerMeter).ToString("s3"));
                 Assert.Equal("0.1235 A/m", new Magnetization(0.123456, MagnetizationUnit.AmperePerMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

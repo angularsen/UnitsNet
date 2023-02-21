@@ -731,6 +731,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 m°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond).ToString());
                 Assert.Equal("1 n°C/s", new TemperatureChangeRate(1, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -766,6 +770,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s2"));
                 Assert.Equal("0.123 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s3"));
                 Assert.Equal("0.1235 °C/s", new TemperatureChangeRate(0.123456, TemperatureChangeRateUnit.DegreeCelsiusPerSecond).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

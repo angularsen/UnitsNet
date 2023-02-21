@@ -1379,6 +1379,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 t·m²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMeter).ToString());
                 Assert.Equal("1 t·mm²", new MassMomentOfInertia(1, MassMomentOfInertiaUnit.TonneSquareMilimeter).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1432,6 +1436,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s2"));
                 Assert.Equal("0.123 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s3"));
                 Assert.Equal("0.1235 kg·m²", new MassMomentOfInertia(0.123456, MassMomentOfInertiaUnit.KilogramSquareMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

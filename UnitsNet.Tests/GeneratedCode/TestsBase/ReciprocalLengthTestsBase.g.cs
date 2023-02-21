@@ -971,6 +971,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ftUS⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseUsSurveyFoot).ToString());
                 Assert.Equal("1 yd⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseYard).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1006,6 +1010,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s2"));
                 Assert.Equal("0.123 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s3"));
                 Assert.Equal("0.1235 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

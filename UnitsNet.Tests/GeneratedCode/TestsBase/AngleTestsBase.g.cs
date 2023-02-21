@@ -1475,6 +1475,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 r", new Angle(1, AngleUnit.Revolution).ToString());
                 Assert.Equal("1 sin(θ)", new Angle(1, AngleUnit.Tilt).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -1516,6 +1520,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 °", new Angle(0.123456, AngleUnit.Degree).ToString("s2"));
                 Assert.Equal("0.123 °", new Angle(0.123456, AngleUnit.Degree).ToString("s3"));
                 Assert.Equal("0.1235 °", new Angle(0.123456, AngleUnit.Degree).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

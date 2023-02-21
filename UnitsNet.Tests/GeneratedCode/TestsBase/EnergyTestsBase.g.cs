@@ -2221,6 +2221,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 Wd", new Energy(1, EnergyUnit.WattDay).ToString());
                 Assert.Equal("1 Wh", new Energy(1, EnergyUnit.WattHour).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -2284,6 +2288,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s2"));
                 Assert.Equal("0.123 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s3"));
                 Assert.Equal("0.1235 J", new Energy(0.123456, EnergyUnit.Joule).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

@@ -2471,6 +2471,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 ftUS", new Length(1, LengthUnit.UsSurveyFoot).ToString());
                 Assert.Equal("1 yd", new Length(1, LengthUnit.Yard).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -2532,6 +2536,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 m", new Length(0.123456, LengthUnit.Meter).ToString("s2"));
                 Assert.Equal("0.123 m", new Length(0.123456, LengthUnit.Meter).ToString("s3"));
                 Assert.Equal("0.1235 m", new Length(0.123456, LengthUnit.Meter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

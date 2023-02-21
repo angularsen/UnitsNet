@@ -959,6 +959,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 pmol/L", new Molarity(1, MolarityUnit.PicomolePerLiter).ToString());
                 Assert.Equal("1 lbmol/ft³", new Molarity(1, MolarityUnit.PoundMolePerCubicFoot).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -995,6 +999,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s2"));
                 Assert.Equal("0.123 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s3"));
                 Assert.Equal("0.1235 mol/m³", new Molarity(0.123456, MolarityUnit.MolePerCubicMeter).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {

@@ -797,6 +797,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 nC", new ElectricCharge(1, ElectricChargeUnit.Nanocoulomb).ToString());
                 Assert.Equal("1 pC", new ElectricCharge(1, ElectricChargeUnit.Picocoulomb).ToString());
             }
+            catch
+            {
+                throw;
+            }
             finally
             {
                 Thread.CurrentThread.CurrentCulture = prevCulture;
@@ -833,6 +837,10 @@ namespace UnitsNet.Tests
                 Assert.Equal("0.12 C", new ElectricCharge(0.123456, ElectricChargeUnit.Coulomb).ToString("s2"));
                 Assert.Equal("0.123 C", new ElectricCharge(0.123456, ElectricChargeUnit.Coulomb).ToString("s3"));
                 Assert.Equal("0.1235 C", new ElectricCharge(0.123456, ElectricChargeUnit.Coulomb).ToString("s4"));
+            }
+            catch
+            {
+                throw;
             }
             finally
             {
