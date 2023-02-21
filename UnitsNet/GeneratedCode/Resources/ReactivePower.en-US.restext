@@ -1,0 +1,4 @@
+GigavoltampereReactive = ("Gvar")
+KilovoltampereReactive = ("kvar")
+MegavoltampereReactive = ("Mvar")
+VoltampereReactive = ("var")

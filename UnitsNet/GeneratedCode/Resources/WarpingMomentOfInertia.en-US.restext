@@ -1,0 +1,6 @@
+CentimeterToTheSixth = ("cm⁶", "cm^6")
+DecimeterToTheSixth = ("dm⁶", "dm^6")
+FootToTheSixth = ("ft⁶", "ft^6")
+InchToTheSixth = ("in⁶", "in^6")
+MeterToTheSixth = ("m⁶", "m^6")
+MillimeterToTheSixth = ("mm⁶", "mm^6")

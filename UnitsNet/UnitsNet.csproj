@@ -66,7 +66,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="GeneratedCode\Resources\*.restext" />
+    <EmbeddedResource Include="GeneratedCode\Resources\*.restext" />
   </ItemGroup>
 
 </Project>

@@ -149,11 +149,7 @@ namespace CodeGen.Generators
 
                 foreach(var culture in cultures)
                 {
-                    var fileName = culture.Equals("en-US", System.StringComparison.InvariantCultureIgnoreCase) ?
-                        $"{resourcesDirectory}/{quantity.Name}.restext" :
-                        $"{resourcesDirectory}/{quantity.Name}.{culture}.restext";
-
-                    using var writer = File.CreateText(fileName);
+                    using var writer = File.CreateText($"{resourcesDirectory}/{quantity.Name}.{culture}.restext");
 
                     foreach(Unit unit in quantity.Units)
                     {
