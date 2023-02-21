@@ -1,6 +1,0 @@
-DecimalFraction = ("")
-PartPerBillion = ("ppb")
-PartPerMillion = ("ppm")
-PartPerThousand = ("‰")
-PartPerTrillion = ("ppt")
-Percent = ("%")

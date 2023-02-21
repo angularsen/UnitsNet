@@ -1,5 +1,0 @@
-KilovoltAc = ("kVac")
-MegavoltAc = ("MVac")
-MicrovoltAc = ("µVac")
-MillivoltAc = ("mVac")
-VoltAc = ("Vac")
