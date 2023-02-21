@@ -41,6 +41,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Resources;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -1095,6 +1096,29 @@ namespace UnitsNet
         private void GenerateToString()
         {
             Writer.WL($@"
+
+        /// <inheritdoc/>
+        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name=""unit""></param>
+        /// <param name=""culture""></param>
+        /// <returns></returns>
+        public static string[] GetAbbreviations({_unitEnumName} unit, CultureInfo? culture = null)
+        {{
+            const string resourceName = $""UnitsNet.GeneratedCode.Resources.{_quantity.Name}"";
+            var resourceManager = new ResourceManager(resourceName, typeof({_quantity.Name}).Assembly);
+
+            var abbreviation = resourceManager.GetString(unit.ToString(), culture ?? CultureInfo.CurrentCulture);
+
+            if(abbreviation is not null)
+                return abbreviation.Split(',');
+            else
+                return Array.Empty<string>();
+        }}
+
         #region ToString Methods
 
         /// <summary>

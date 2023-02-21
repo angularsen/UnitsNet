@@ -78,7 +78,7 @@ namespace UnitsNet
         public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, IFormatProvider? culture, IEnumerable<object> args)
             where TUnitType : Enum
         {
-            string abbreviation = GetAbbreviations2("Length", "Meter").FirstOrDefault() ?? string.Empty;
+            string abbreviation = GetAbbreviations2("Duration", "Microsecond", new CultureInfo("ru-RU")).FirstOrDefault() ?? string.Empty;
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
 
@@ -91,7 +91,6 @@ namespace UnitsNet
             if(abbreviation is null)
                 return Array.Empty<string>();
 
-            abbreviation = abbreviation.Trim('(', ')');
             var abbreviations = abbreviation.Split(',');
             return abbreviations;
         }

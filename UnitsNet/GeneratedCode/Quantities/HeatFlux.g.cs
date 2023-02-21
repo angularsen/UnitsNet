@@ -22,6 +22,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Resources;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -1099,6 +1100,28 @@ namespace UnitsNet
         IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
 
         #endregion
+
+        /// <inheritdoc/>
+        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public static string[] GetAbbreviations(HeatFluxUnit unit, CultureInfo? culture = null)
+        {
+            const string resourceName = $"UnitsNet.GeneratedCode.Resources.HeatFlux";
+            var resourceManager = new ResourceManager(resourceName, typeof(HeatFlux).Assembly);
+
+            var abbreviation = resourceManager.GetString(unit.ToString(), culture ?? CultureInfo.CurrentCulture);
+
+            if(abbreviation is not null)
+                return abbreviation.Split(',');
+            else
+                return Array.Empty<string>();
+        }
 
         #region ToString Methods
 
