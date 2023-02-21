@@ -1,7 +1,7 @@
-CaloriePerKelvin = "cal/K"
-JoulePerDegreeCelsius = "J/C"
-JoulePerKelvin = "J/K"
-KilocaloriePerKelvin = "kcal/K"
-KilojoulePerDegreeCelsius = "kJ/C"
-KilojoulePerKelvin = "kJ/K"
-MegajoulePerKelvin = "MJ/K"
+CaloriePerKelvin=cal/K
+JoulePerDegreeCelsius=J/C
+JoulePerKelvin=J/K
+KilocaloriePerKelvin=kcal/K
+KilojoulePerDegreeCelsius=kJ/C
+KilojoulePerKelvin=kJ/K
+MegajoulePerKelvin=MJ/K

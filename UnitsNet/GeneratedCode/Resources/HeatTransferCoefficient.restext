@@ -1,6 +1,6 @@
-BtuPerHourSquareFootDegreeFahrenheit = "Btu/h·ft²·°F","Btu/ft²·h·°F","Btu/hr·ft²·°F","Btu/ft²·hr·°F"
-BtuPerSquareFootDegreeFahrenheit = "Btu/ft²·°F"
-CaloriePerHourSquareMeterDegreeCelsius = "kcal/h·m²·°C","kcal/m²·h·°C","kcal/hr·m²·°C","kcal/m²·hr·°C"
-KilocaloriePerHourSquareMeterDegreeCelsius = "kkcal/h·m²·°C","kkcal/m²·h·°C","kkcal/hr·m²·°C","kkcal/m²·hr·°C"
-WattPerSquareMeterCelsius = "W/m²·°C"
-WattPerSquareMeterKelvin = "W/m²·K"
+BtuPerHourSquareFootDegreeFahrenheit=Btu/h·ft²·°F,Btu/ft²·h·°F,Btu/hr·ft²·°F,Btu/ft²·hr·°F
+BtuPerSquareFootDegreeFahrenheit=Btu/ft²·°F
+CaloriePerHourSquareMeterDegreeCelsius=kcal/h·m²·°C,kcal/m²·h·°C,kcal/hr·m²·°C,kcal/m²·hr·°C
+KilocaloriePerHourSquareMeterDegreeCelsius=kkcal/h·m²·°C,kkcal/m²·h·°C,kkcal/hr·m²·°C,kkcal/m²·hr·°C
+WattPerSquareMeterCelsius=W/m²·°C
+WattPerSquareMeterKelvin=W/m²·K

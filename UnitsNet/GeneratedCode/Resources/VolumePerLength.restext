@@ -1,7 +1,7 @@
-CubicMeterPerMeter = "m³/m"
-CubicYardPerFoot = "yd³/ft"
-CubicYardPerUsSurveyFoot = "yd³/ftUS"
-LiterPerKilometer = "l/km"
-LiterPerMeter = "l/m"
-LiterPerMillimeter = "l/mm"
-OilBarrelPerFoot = "bbl/ft"
+CubicMeterPerMeter=m³/m
+CubicYardPerFoot=yd³/ft
+CubicYardPerUsSurveyFoot=yd³/ftUS
+LiterPerKilometer=l/km
+LiterPerMeter=l/m
+LiterPerMillimeter=l/mm
+OilBarrelPerFoot=bbl/ft

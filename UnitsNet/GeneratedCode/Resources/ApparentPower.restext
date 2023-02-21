@@ -1,6 +1,6 @@
-Gigavoltampere = "GVA"
-Kilovoltampere = "kVA"
-Megavoltampere = "MVA"
-Microvoltampere = "µVA"
-Millivoltampere = "mVA"
-Voltampere = "VA"
+Gigavoltampere=GVA
+Kilovoltampere=kVA
+Megavoltampere=MVA
+Microvoltampere=µVA
+Millivoltampere=mVA
+Voltampere=VA

@@ -1,6 +1,6 @@
-CentimeterToTheFourth = "cm⁴","cm^4"
-DecimeterToTheFourth = "dm⁴","dm^4"
-FootToTheFourth = "ft⁴","ft^4"
-InchToTheFourth = "in⁴","in^4"
-MeterToTheFourth = "m⁴","m^4"
-MillimeterToTheFourth = "mm⁴","mm^4"
+CentimeterToTheFourth=cm⁴,cm^4
+DecimeterToTheFourth=dm⁴,dm^4
+FootToTheFourth=ft⁴,ft^4
+InchToTheFourth=in⁴,in^4
+MeterToTheFourth=m⁴,m^4
+MillimeterToTheFourth=mm⁴,mm^4

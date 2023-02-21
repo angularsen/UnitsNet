@@ -1,6 +1,6 @@
-DecimalFraction = ""
-PartPerBillion = "ppb"
-PartPerMillion = "ppm"
-PartPerThousand = "‰"
-PartPerTrillion = "ppt"
-Percent = "%"
+DecimalFraction=
+PartPerBillion=ppb
+PartPerMillion=ppm
+PartPerThousand=‰
+PartPerTrillion=ppt
+Percent=%

@@ -1,4 +1,4 @@
-GigavoltampereReactive = "Gvar"
-KilovoltampereReactive = "kvar"
-MegavoltampereReactive = "Mvar"
-VoltampereReactive = "var"
+GigavoltampereReactive=Gvar
+KilovoltampereReactive=kvar
+MegavoltampereReactive=Mvar
+VoltampereReactive=var

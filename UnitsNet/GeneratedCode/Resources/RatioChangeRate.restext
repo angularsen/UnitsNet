@@ -1,2 +1,2 @@
-DecimalFractionPerSecond = "/s"
-PercentPerSecond = "%/s"
+DecimalFractionPerSecond=/s
+PercentPerSecond=%/s

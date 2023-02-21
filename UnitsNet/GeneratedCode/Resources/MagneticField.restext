@@ -1,6 +1,6 @@
-Gauss = "G"
-Microtesla = "µT"
-Milligauss = "mG"
-Millitesla = "mT"
-Nanotesla = "nT"
-Tesla = "T"
+Gauss=G
+Microtesla=µT
+Milligauss=mG
+Millitesla=mT
+Nanotesla=nT
+Tesla=T

@@ -1,7 +1,7 @@
-JoulePerSquareCentimeter = "J/cm²"
-JoulePerSquareMeter = "J/m²"
-JoulePerSquareMillimeter = "J/mm²"
-KilojoulePerSquareMeter = "kJ/m²"
-KilowattHourPerSquareMeter = "kWh/m²"
-MillijoulePerSquareCentimeter = "mJ/cm²"
-WattHourPerSquareMeter = "Wh/m²"
+JoulePerSquareCentimeter=J/cm²
+JoulePerSquareMeter=J/m²
+JoulePerSquareMillimeter=J/mm²
+KilojoulePerSquareMeter=kJ/m²
+KilowattHourPerSquareMeter=kWh/m²
+MillijoulePerSquareCentimeter=mJ/cm²
+WattHourPerSquareMeter=Wh/m²
