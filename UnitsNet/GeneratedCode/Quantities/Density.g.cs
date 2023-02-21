@@ -654,10 +654,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
         /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(DensityUnit unit)
-        {
-            return GetAbbreviation(unit, null);
-        }
+        public static string GetAbbreviation(DensityUnit unit) => GetAbbreviation(unit, null);
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -667,7 +664,26 @@ namespace UnitsNet
         /// <param name="provider">Format to use for localization. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static string GetAbbreviation(DensityUnit unit, IFormatProvider? provider)
         {
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
+            return GetAbbreviations(unit, provider as CultureInfo).FirstOrDefault() ?? string.Empty;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public static string[] GetAbbreviations(DensityUnit unit, CultureInfo? culture = null)
+        {
+            const string resourceName = $"UnitsNet.GeneratedCode.Resources.Density";
+            var resourceManager = new ResourceManager(resourceName, typeof(Density).Assembly);
+
+            var abbreviation = resourceManager.GetString(unit.ToString(), culture ?? CultureInfo.CurrentCulture);
+
+            if(abbreviation is not null)
+                return abbreviation.Split(',');
+            else
+                return Array.Empty<string>();
         }
 
         #endregion
@@ -1803,25 +1819,6 @@ namespace UnitsNet
 
         /// <inheritdoc/>
         public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        public static string[] GetAbbreviations(DensityUnit unit, CultureInfo? culture = null)
-        {
-            const string resourceName = $"UnitsNet.GeneratedCode.Resources.Density";
-            var resourceManager = new ResourceManager(resourceName, typeof(Density).Assembly);
-
-            var abbreviation = resourceManager.GetString(unit.ToString(), culture ?? CultureInfo.CurrentCulture);
-
-            if(abbreviation is not null)
-                return abbreviation.Split(',');
-            else
-                return Array.Empty<string>();
-        }
 
         #region ToString Methods
 
