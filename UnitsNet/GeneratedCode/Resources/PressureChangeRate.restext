@@ -1,0 +1,14 @@
+AtmospherePerSecond = atm/s
+KilopascalPerMinute = kPa/min
+KilopascalPerSecond = kPa/s
+KilopoundForcePerSquareInchPerMinute = ksi/min
+KilopoundForcePerSquareInchPerSecond = ksi/s
+MegapascalPerMinute = MPa/min
+MegapascalPerSecond = MPa/s
+MegapoundForcePerSquareInchPerMinute = Mpsi/min
+MegapoundForcePerSquareInchPerSecond = Mpsi/s
+MillimeterOfMercuryPerSecond = mmHg/s
+PascalPerMinute = Pa/min
+PascalPerSecond = Pa/s
+PoundForcePerSquareInchPerMinute = psi/min
+PoundForcePerSquareInchPerSecond = psi/s

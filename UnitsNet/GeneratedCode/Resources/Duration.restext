@@ -1,0 +1,11 @@
+Day = d
+Hour = h
+JulianYear = jyr
+Microsecond = µs
+Millisecond = ms
+Minute = m
+Month30 = mo
+Nanosecond = ns
+Second = s
+Week = wk
+Year365 = yr

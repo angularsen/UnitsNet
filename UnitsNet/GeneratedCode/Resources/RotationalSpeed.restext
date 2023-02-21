@@ -1,0 +1,13 @@
+CentiradianPerSecond = crad/s
+DeciradianPerSecond = drad/s
+DegreePerMinute = °/min
+DegreePerSecond = °/s
+MicrodegreePerSecond = µ°/s
+MicroradianPerSecond = µrad/s
+MillidegreePerSecond = m°/s
+MilliradianPerSecond = mrad/s
+NanodegreePerSecond = n°/s
+NanoradianPerSecond = nrad/s
+RadianPerSecond = rad/s
+RevolutionPerMinute = rpm
+RevolutionPerSecond = r/s

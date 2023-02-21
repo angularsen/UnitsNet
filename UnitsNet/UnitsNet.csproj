@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet</PackageId>
@@ -63,6 +63,10 @@
   <ItemGroup>
     <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
     <None Include="../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="GeneratedCode\Resources\*.restext" />
   </ItemGroup>
 
 </Project>

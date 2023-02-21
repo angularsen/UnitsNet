@@ -1,0 +1,16 @@
+Arcminute = '
+Arcsecond = ″
+Centiradian = crad
+Deciradian = drad
+Degree = °
+Gradian = g
+Microdegree = µ°
+Microradian = µrad
+Millidegree = m°
+Milliradian = mrad
+Nanodegree = n°
+Nanoradian = nrad
+NatoMil = mil
+Radian = rad
+Revolution = r
+Tilt = sin(θ)

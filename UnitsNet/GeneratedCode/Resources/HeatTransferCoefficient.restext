@@ -1,0 +1,6 @@
+BtuPerHourSquareFootDegreeFahrenheit = Btu/h·ft²·°F
+BtuPerSquareFootDegreeFahrenheit = Btu/ft²·°F
+CaloriePerHourSquareMeterDegreeCelsius = kcal/h·m²·°C
+KilocaloriePerHourSquareMeterDegreeCelsius = kkcal/h·m²·°C
+WattPerSquareMeterCelsius = W/m²·°C
+WattPerSquareMeterKelvin = W/m²·K
