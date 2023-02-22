@@ -82,6 +82,8 @@ namespace UnitsNet.Tests
 
         protected override double DataMilesInOneMeter => 0.000546807;
 
+        protected override double MegametersInOneMeter => 1e-6;
+
         [ Fact]
         public void AreaTimesLengthEqualsVolume()
         {

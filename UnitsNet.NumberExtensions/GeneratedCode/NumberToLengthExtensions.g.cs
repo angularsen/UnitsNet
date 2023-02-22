@@ -104,6 +104,10 @@ namespace UnitsNet.NumberExtensions.NumberToLength
         public static Length MegalightYears<T>(this T value) =>
             Length.FromMegalightYears(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Length.FromMegameters(UnitsNet.QuantityValue)" />
+        public static Length Megameters<T>(this T value) =>
+            Length.FromMegameters(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Length.FromMegaparsecs(UnitsNet.QuantityValue)" />
         public static Length Megaparsecs<T>(this T value) =>
             Length.FromMegaparsecs(Convert.ToDouble(value));

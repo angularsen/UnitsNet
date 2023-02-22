@@ -64,6 +64,7 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Light-year</remarks>
         LightYear = 18,
         MegalightYear = 19,
+        Megameter = 41,
         Megaparsec = 20,
         Meter = 21,
         Microinch = 22,
