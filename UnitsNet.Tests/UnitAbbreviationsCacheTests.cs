@@ -105,14 +105,18 @@ namespace UnitsNet.Tests
 
         // Any value in the interval (-inf ≤ x < 1e-03] is formatted in scientific notation
         [Theory]
-        [InlineData(double.MinValue, "-1.7976931348623157e+308 m")]
-        [InlineData(1.23e-120, "1.23e-120 m")]
-        [InlineData(0.0000111, "1.11e-05 m")]
-        [InlineData(1.99e-4, "0.000199 m")]
-        public void ScientificNotationLowerInterval(double value, string expected)
+        [InlineData(double.MinValue)]
+        [InlineData(1.23e-120)]
+        [InlineData(0.0000111)]
+        [InlineData(1.99e-4)]
+        public void ScientificNotationLowerInterval(double value)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
-            Assert.Equal(expected, actual);
+            var quantity = Length.FromMeters(value).ToUnit(LengthUnit.Meter);
+
+            string unitsNetFormatted = quantity.ToString(AmericanCulture);
+            string runtimeFormatted = value.ToString(AmericanCulture);
+
+            Assert.StartsWith(runtimeFormatted, unitsNetFormatted);
         }
 
         // Any value in the interval [1e-03 ≤ x < 1e+03] is formatted in fixed point notation.
@@ -140,13 +144,17 @@ namespace UnitsNet.Tests
 
         // Any value in the interval [1e+06 ≤ x ≤ +inf) is formatted in scientific notation.
         [Theory]
-        [InlineData(1e6, "1000000 m")]
-        [InlineData(11100000, "11100000 m")]
-        [InlineData(double.MaxValue, "1.7976931348623157e+308 m")]
-        public void ScientificNotationUpperIntervalFormatting(double value, string expected)
+        [InlineData(1e6)]
+        [InlineData(11100000)]
+        [InlineData(double.MaxValue)]
+        public void ScientificNotationUpperIntervalFormatting(double value)
         {
-            string actual = Length.FromMeters(value).ToUnit(LengthUnit.Meter).ToString(AmericanCulture);
-            Assert.Equal(expected, actual);
+            var quantity = Length.FromMeters(value).ToUnit(LengthUnit.Meter);
+
+            string unitsNetFormatted = quantity.ToString(AmericanCulture);
+            string runtimeFormatted = value.ToString(AmericanCulture);
+
+            Assert.StartsWith(runtimeFormatted, unitsNetFormatted);
         }
 
         [Fact]

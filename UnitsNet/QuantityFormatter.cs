@@ -119,7 +119,7 @@ namespace UnitsNet
             formatProvider ??= CultureInfo.CurrentCulture;
 
             if (string.IsNullOrWhiteSpace(format))
-                format = "g";
+                format = "G";
 
             char formatSpecifier = format![0]; // netstandard2.0 nullable quirk
 

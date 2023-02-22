@@ -791,20 +791,14 @@ namespace UnitsNet
         ///     Gets the default string representation of value and unit.
         /// </summary>
         /// <returns>String representation.</returns>
-        public override string ToString()
-        {
-            return ToString("g");
-        }
+        public override string ToString() => ToString(null, null);
 
         /// <summary>
         ///     Gets the default string representation of value and unit using the given format provider.
         /// </summary>
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public string ToString(IFormatProvider? provider)
-        {
-            return ToString("g", provider);
-        }
+        public string ToString(IFormatProvider? provider) => ToString(null, provider);
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
@@ -812,10 +806,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="format">The format string.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string? format)
-        {
-            return ToString(format, CultureInfo.CurrentCulture);
-        }
+        public string ToString(string? format) => ToString(format, null);
 
         /// <inheritdoc cref="QuantityFormatter.Format{TUnitType}(IQuantity{TUnitType}, string, IFormatProvider)"/>
         /// <summary>
@@ -824,10 +815,7 @@ namespace UnitsNet
         /// <param name="format">The format string.</param>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>The string representation.</returns>
-        public string ToString(string? format, IFormatProvider? provider)
-        {
-            return QuantityFormatter.Format<ApparentEnergyUnit>(this, format, provider);
-        }
+        public string ToString(string? format, IFormatProvider? provider) => QuantityFormatter.Format<ApparentEnergyUnit>(this, format, provider);
 
         #endregion
 
@@ -895,7 +883,7 @@ namespace UnitsNet
 
         string IConvertible.ToString(IFormatProvider? provider)
         {
-            return ToString("g", provider);
+            return ToString(provider);
         }
 
         object IConvertible.ToType(Type conversionType, IFormatProvider? provider)
