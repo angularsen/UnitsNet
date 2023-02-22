@@ -14,7 +14,7 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo" ],
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -424,20 +424,6 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "DM" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "Megameter",
-      "PluralName": "Megameters",
-      "FromUnitToBaseFunc": "{x} * 1e+6",
-      "FromBaseToUnitFunc": "{x} / 1e+6",
-      "XmlDocSummary": "Megameter is a metric unit of length equal to 1e+6 meter.",
-      "XmlDocRemarks": "https://www.wolframalpha.com/input?i2d=true&amp;i=megameter",
-      "Localization" : [
-        {
-          "Culture": "en-US",
-          "Abbreviations": ["Mm"]
         }
       ]
     }

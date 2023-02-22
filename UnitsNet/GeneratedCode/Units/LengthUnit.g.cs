@@ -64,11 +64,6 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Light-year</remarks>
         LightYear = 18,
         MegalightYear = 19,
-
-        /// <summary>
-        ///     Megameter is a metric unit of length equal to 1e+6 meter.
-        /// </summary>
-        /// <remarks>https://www.wolframalpha.com/input?i2d=true&amp;i=megameter</remarks>
         Megameter = 41,
         Megaparsec = 20,
         Meter = 21,

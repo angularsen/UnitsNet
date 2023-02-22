@@ -510,6 +510,8 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.LightYear, new CultureInfo("en-US"), false, true, new string[]{"ly"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.MegalightYear, new CultureInfo("en-US"), false, true, new string[]{"Mly"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("en-US"), false, true, new string[]{"Mm"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("ru-RU"), false, true, new string[]{"Мм"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("zh-CN"), false, true, new string[]{"兆米"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megaparsec, new CultureInfo("en-US"), false, true, new string[]{"Mpc"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("en-US"), false, true, new string[]{"m"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("ru-RU"), false, true, new string[]{"м"});
@@ -1427,7 +1429,7 @@ namespace UnitsNet
                 (LengthUnit.Kiloparsec, LengthUnit.Meter) => new Length((_value * 3.08567758128e16) * 1e3d, LengthUnit.Meter),
                 (LengthUnit.LightYear, LengthUnit.Meter) => new Length(_value * 9.46073047258e15, LengthUnit.Meter),
                 (LengthUnit.MegalightYear, LengthUnit.Meter) => new Length((_value * 9.46073047258e15) * 1e6d, LengthUnit.Meter),
-                (LengthUnit.Megameter, LengthUnit.Meter) => new Length(_value * 1e+6, LengthUnit.Meter),
+                (LengthUnit.Megameter, LengthUnit.Meter) => new Length((_value) * 1e6d, LengthUnit.Meter),
                 (LengthUnit.Megaparsec, LengthUnit.Meter) => new Length((_value * 3.08567758128e16) * 1e6d, LengthUnit.Meter),
                 (LengthUnit.Microinch, LengthUnit.Meter) => new Length(_value * 2.54e-8, LengthUnit.Meter),
                 (LengthUnit.Micrometer, LengthUnit.Meter) => new Length((_value) * 1e-6d, LengthUnit.Meter),
@@ -1465,7 +1467,7 @@ namespace UnitsNet
                 (LengthUnit.Meter, LengthUnit.Kiloparsec) => new Length((_value / 3.08567758128e16) / 1e3d, LengthUnit.Kiloparsec),
                 (LengthUnit.Meter, LengthUnit.LightYear) => new Length(_value / 9.46073047258e15, LengthUnit.LightYear),
                 (LengthUnit.Meter, LengthUnit.MegalightYear) => new Length((_value / 9.46073047258e15) / 1e6d, LengthUnit.MegalightYear),
-                (LengthUnit.Meter, LengthUnit.Megameter) => new Length(_value / 1e+6, LengthUnit.Megameter),
+                (LengthUnit.Meter, LengthUnit.Megameter) => new Length((_value) / 1e6d, LengthUnit.Megameter),
                 (LengthUnit.Meter, LengthUnit.Megaparsec) => new Length((_value / 3.08567758128e16) / 1e6d, LengthUnit.Megaparsec),
                 (LengthUnit.Meter, LengthUnit.Microinch) => new Length(_value / 2.54e-8, LengthUnit.Microinch),
                 (LengthUnit.Meter, LengthUnit.Micrometer) => new Length((_value) / 1e-6d, LengthUnit.Micrometer),

@@ -819,6 +819,20 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = Length.Parse("1 Мм", CultureInfo.GetCultureInfo("ru-RU"));
+                AssertEx.EqualTolerance(1, parsed.Megameters, MegametersTolerance);
+                Assert.Equal(LengthUnit.Megameter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = Length.Parse("1 兆米", CultureInfo.GetCultureInfo("zh-CN"));
+                AssertEx.EqualTolerance(1, parsed.Megameters, MegametersTolerance);
+                Assert.Equal(LengthUnit.Megameter, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = Length.Parse("1 Mpc", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.Megaparsecs, MegaparsecsTolerance);
                 Assert.Equal(LengthUnit.Megaparsec, parsed.Unit);
@@ -1284,6 +1298,12 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Length.TryParse("1 兆米", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Megameters, MegametersTolerance);
+                Assert.Equal(LengthUnit.Megameter, parsed.Unit);
+            }
+
+            {
                 Assert.True(Length.TryParse("1 Mpc", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Megaparsecs, MegaparsecsTolerance);
                 Assert.Equal(LengthUnit.Megaparsec, parsed.Unit);
@@ -1371,12 +1391,6 @@ namespace UnitsNet.Tests
                 Assert.True(Length.TryParse("1 英里", CultureInfo.GetCultureInfo("zh-CN"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.Miles, MilesTolerance);
                 Assert.Equal(LengthUnit.Mile, parsed.Unit);
-            }
-
-            {
-                Assert.True(Length.TryParse("1 мм", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Millimeters, MillimetersTolerance);
-                Assert.Equal(LengthUnit.Millimeter, parsed.Unit);
             }
 
             {
@@ -1687,6 +1701,18 @@ namespace UnitsNet.Tests
             try
             {
                 var parsedUnit = Length.ParseUnit("Mm", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(LengthUnit.Megameter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("Мм", CultureInfo.GetCultureInfo("ru-RU"));
+                Assert.Equal(LengthUnit.Megameter, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = Length.ParseUnit("兆米", CultureInfo.GetCultureInfo("zh-CN"));
                 Assert.Equal(LengthUnit.Megameter, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -2086,6 +2112,11 @@ namespace UnitsNet.Tests
             }
 
             {
+                Assert.True(Length.TryParseUnit("兆米", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
+                Assert.Equal(LengthUnit.Megameter, parsedUnit);
+            }
+
+            {
                 Assert.True(Length.TryParseUnit("Mpc", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(LengthUnit.Megaparsec, parsedUnit);
             }
@@ -2158,11 +2189,6 @@ namespace UnitsNet.Tests
             {
                 Assert.True(Length.TryParseUnit("英里", CultureInfo.GetCultureInfo("zh-CN"), out var parsedUnit));
                 Assert.Equal(LengthUnit.Mile, parsedUnit);
-            }
-
-            {
-                Assert.True(Length.TryParseUnit("мм", CultureInfo.GetCultureInfo("ru-RU"), out var parsedUnit));
-                Assert.Equal(LengthUnit.Millimeter, parsedUnit);
             }
 
             {
