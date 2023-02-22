@@ -27,7 +27,7 @@ namespace UnitsNet
         /// </summary>
         /// <example>
         ///     User wants to call <see cref="UnitParser.Parse{TUnitType}" /> or <see cref="Length.ToString()" /> with Russian
-        ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
+        ///     culture, but no translation is defined, so we return the US English (en-US) definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>
         internal static readonly CultureInfo FallbackCulture = new("en-US");
