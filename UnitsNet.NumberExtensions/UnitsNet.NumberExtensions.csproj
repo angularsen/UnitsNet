@@ -17,7 +17,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>

@@ -20,7 +20,6 @@
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
