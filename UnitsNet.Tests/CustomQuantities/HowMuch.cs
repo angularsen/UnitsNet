@@ -14,6 +14,8 @@ namespace UnitsNet.Tests.CustomQuantities
             Value = value;
         }
 
+        public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
+
         Enum IQuantity.Unit => Unit;
         public HowMuchUnit Unit { get; }
 
@@ -41,6 +43,11 @@ namespace UnitsNet.Tests.CustomQuantities
         public double As(Enum unit) => Convert.ToDouble(unit);
 
         public double As(UnitSystem unitSystem) => throw new NotImplementedException();
+
+        public bool Equals(IQuantity? other, double tolerance, ComparisonType comparisonType)
+        {
+            return other is HowMuch otherTyped && otherTyped.Unit == Unit && otherTyped.Value.Equals(Value);
+        }
 
         public IQuantity ToUnit(Enum unit)
         {

@@ -42,6 +42,29 @@ namespace UnitsNet
         double As(UnitSystem unitSystem);
 
         /// <summary>
+        ///     <para>
+        ///     Compare equality to <paramref name="other"/> given a <paramref name="tolerance"/> for the maximum allowed +/- difference.
+        ///     </para>
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromMeters(2.1);
+        ///     var tolerance = Length.FromCentimeters(10);
+        ///     a.Equals(b, tolerance); // true, 2m equals 2.1m +/- 0.1m
+        ///     </code>
+        ///     </example>
+        ///     <para>
+        ///     It is generally advised against specifying "zero" tolerance, due to the nature of floating-point operations.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to. Not equal if the quantity types are different.</param>
+        /// <param name="tolerance">The absolute tolerance value. Must be greater than or equal to zero. Must be same quantity type as <paramref name="other"/>.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified tolerance.</returns>
+        /// <exception cref="ArgumentException">Tolerance must be of the same quantity type.</exception>
+        bool Equals(IQuantity? other, IQuantity tolerance);
+
+        /// <summary>
         ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
         /// </summary>
         Enum Unit { get; }
@@ -146,10 +169,14 @@ namespace UnitsNet
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
     /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
-    public interface IQuantity<TSelf, TUnitType, out TValueType> : IQuantity<TUnitType, TValueType>
 #if NET7_0_OR_GREATER
+    public interface IQuantity<TSelf, TUnitType, out TValueType>
+        : IQuantity<TUnitType, TValueType>
         , IComparisonOperators<TSelf, TSelf, bool>
         , IParsable<TSelf>
+#else
+    public interface IQuantity<in TSelf, TUnitType, out TValueType>
+        : IQuantity<TUnitType, TValueType>
 #endif
         where TSelf : IQuantity<TSelf, TUnitType, TValueType>
         where TUnitType : Enum
@@ -159,5 +186,26 @@ namespace UnitsNet
         where TValueType : struct
 #endif
     {
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to <paramref name="other"/> given a <paramref name="tolerance"/> for the maximum allowed +/- difference.
+        ///     </para>
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromMeters(2.1);
+        ///     var tolerance = Length.FromCentimeters(10);
+        ///     a.Equals(b, tolerance); // true, 2m equals 2.1m +/- 0.1m
+        ///     </code>
+        ///     </example>
+        ///     <para>
+        ///     It is generally advised against specifying "zero" tolerance, due to the nature of floating-point operations.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute tolerance value. Must be greater than or equal to zero.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified tolerance.</returns>
+        bool Equals(TSelf? other, TSelf tolerance);
     }
 }
