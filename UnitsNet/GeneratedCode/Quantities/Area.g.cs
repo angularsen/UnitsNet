@@ -975,7 +975,7 @@ namespace UnitsNet
             Area? convertedOrNull = (Unit, unit) switch
             {
                 // AreaUnit -> BaseUnit
-                (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(_value * 4046.85642, AreaUnit.SquareMeter),
+                (AreaUnit.Acre, AreaUnit.SquareMeter) => new Area(_value * 4046.8564224, AreaUnit.SquareMeter),
                 (AreaUnit.Hectare, AreaUnit.SquareMeter) => new Area(_value * 1e4, AreaUnit.SquareMeter),
                 (AreaUnit.SquareCentimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-4, AreaUnit.SquareMeter),
                 (AreaUnit.SquareDecimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-2, AreaUnit.SquareMeter),
@@ -983,14 +983,14 @@ namespace UnitsNet
                 (AreaUnit.SquareInch, AreaUnit.SquareMeter) => new Area(_value * 0.00064516, AreaUnit.SquareMeter),
                 (AreaUnit.SquareKilometer, AreaUnit.SquareMeter) => new Area(_value * 1e6, AreaUnit.SquareMeter),
                 (AreaUnit.SquareMicrometer, AreaUnit.SquareMeter) => new Area(_value * 1e-12, AreaUnit.SquareMeter),
-                (AreaUnit.SquareMile, AreaUnit.SquareMeter) => new Area(_value * 2.59e6, AreaUnit.SquareMeter),
+                (AreaUnit.SquareMile, AreaUnit.SquareMeter) => new Area(_value * 1609.344 * 1609.344, AreaUnit.SquareMeter),
                 (AreaUnit.SquareMillimeter, AreaUnit.SquareMeter) => new Area(_value * 1e-6, AreaUnit.SquareMeter),
                 (AreaUnit.SquareNauticalMile, AreaUnit.SquareMeter) => new Area(_value * 3429904, AreaUnit.SquareMeter),
-                (AreaUnit.SquareYard, AreaUnit.SquareMeter) => new Area(_value * 0.836127, AreaUnit.SquareMeter),
-                (AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter) => new Area(_value * 0.09290341161, AreaUnit.SquareMeter),
+                (AreaUnit.SquareYard, AreaUnit.SquareMeter) => new Area(_value * 0.9144 * 0.9144, AreaUnit.SquareMeter),
+                (AreaUnit.UsSurveySquareFoot, AreaUnit.SquareMeter) => new Area(_value * (1200.0 / 3937.0) * (1200.0 / 3937.0), AreaUnit.SquareMeter),
 
                 // BaseUnit -> AreaUnit
-                (AreaUnit.SquareMeter, AreaUnit.Acre) => new Area(_value / 4046.85642, AreaUnit.Acre),
+                (AreaUnit.SquareMeter, AreaUnit.Acre) => new Area(_value / 4046.8564224, AreaUnit.Acre),
                 (AreaUnit.SquareMeter, AreaUnit.Hectare) => new Area(_value / 1e4, AreaUnit.Hectare),
                 (AreaUnit.SquareMeter, AreaUnit.SquareCentimeter) => new Area(_value / 1e-4, AreaUnit.SquareCentimeter),
                 (AreaUnit.SquareMeter, AreaUnit.SquareDecimeter) => new Area(_value / 1e-2, AreaUnit.SquareDecimeter),
@@ -998,11 +998,11 @@ namespace UnitsNet
                 (AreaUnit.SquareMeter, AreaUnit.SquareInch) => new Area(_value / 0.00064516, AreaUnit.SquareInch),
                 (AreaUnit.SquareMeter, AreaUnit.SquareKilometer) => new Area(_value / 1e6, AreaUnit.SquareKilometer),
                 (AreaUnit.SquareMeter, AreaUnit.SquareMicrometer) => new Area(_value / 1e-12, AreaUnit.SquareMicrometer),
-                (AreaUnit.SquareMeter, AreaUnit.SquareMile) => new Area(_value / 2.59e6, AreaUnit.SquareMile),
+                (AreaUnit.SquareMeter, AreaUnit.SquareMile) => new Area(_value / 1609.344 / 1609.344, AreaUnit.SquareMile),
                 (AreaUnit.SquareMeter, AreaUnit.SquareMillimeter) => new Area(_value / 1e-6, AreaUnit.SquareMillimeter),
                 (AreaUnit.SquareMeter, AreaUnit.SquareNauticalMile) => new Area(_value / 3429904, AreaUnit.SquareNauticalMile),
-                (AreaUnit.SquareMeter, AreaUnit.SquareYard) => new Area(_value / 0.836127, AreaUnit.SquareYard),
-                (AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot) => new Area(_value / 0.09290341161, AreaUnit.UsSurveySquareFoot),
+                (AreaUnit.SquareMeter, AreaUnit.SquareYard) => new Area(_value / 0.9144 / 0.9144, AreaUnit.SquareYard),
+                (AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot) => new Area(_value / (1200.0 / 3937.0) / (1200.0 / 3937.0), AreaUnit.UsSurveySquareFoot),
 
                 _ => null
             };

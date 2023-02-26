@@ -113,6 +113,7 @@
       "FromUnitToBaseFunc": "{x} * 0.45359237",
       "FromBaseToUnitFunc": "{x} / 0.45359237",
       "XmlDocSummary": "The pound or pound-mass (abbreviations: lb, lbm) is a unit of mass used in the imperial, United States customary and other systems of measurement. A number of different definitions have been used, the most common today being the international avoirdupois pound which is legally defined as exactly 0.45359237 kilograms, and which is divided into 16 avoirdupois ounces.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pound_(mass)",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -135,10 +136,10 @@
       "BaseUnits": {
         "M": "Ounce"
       },
-      "FromUnitToBaseFunc": "{x} / 35.2739619",
-      "FromBaseToUnitFunc": "{x} * 35.2739619",
-      "XmlDocSummary": "An ounce (abbreviated oz) is usually the international avoirdupois ounce as used in the United States customary and British imperial systems, which is equal to one-sixteenth of a pound or approximately 28 grams. The abbreviation 'oz' derives from the Italian word onza (now spelled oncia).",
-      "XmlDocRemarks": "http://en.wikipedia.org/wiki/Ounce",
+      "FromUnitToBaseFunc": "{x} * 0.028349523125",
+      "FromBaseToUnitFunc": "{x} / 0.028349523125",
+      "XmlDocSummary": "The international avoirdupois ounce (abbreviated oz) is defined as exactly 28.349523125 g under the international yard and pound agreement of 1959, signed by the United States and countries of the Commonwealth of Nations. 16 oz make up an avoirdupois pound.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Ounce",
       "Localization": [
         {
           "Culture": "en-US",
