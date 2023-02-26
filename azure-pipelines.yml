@@ -36,13 +36,6 @@ stages:
     - task: InstallNanoMSBuildComponents@1
       displayName: Install .NET nanoFramework MSBuild components
 
-    - task: UseDotNet@2
-      displayName: Install net5.0 for release/v4 branch
-      condition: eq(variables['Build.SourceBranch'], 'refs/heads/release/v4')
-      inputs:
-        packageType: 'sdk'
-        version: '5.0.x'
-
     - task: PowerShell@2
       displayName: 'Build, test, pack'
       inputs:
