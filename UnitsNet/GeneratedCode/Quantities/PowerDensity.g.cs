@@ -1451,6 +1451,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }
 
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is PowerDensityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <summary>
         ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
         /// </summary>

@@ -171,9 +171,6 @@ namespace UnitsNet
         /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
 
-        /// <inheritdoc cref="IDecimalQuantity.Value"/>
-        decimal IDecimalQuantity.Value => _value;
-
         Enum IQuantity.Unit => Unit;
 
         /// <inheritdoc />
@@ -1124,6 +1121,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        decimal IValueQuantity<decimal>.As(Enum unit)
+        {
+            if (!(unit is BitRateUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

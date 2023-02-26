@@ -900,6 +900,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }
 
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ForceChangeRateUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForceChangeRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <summary>
         ///     Converts this ForceChangeRate to another ForceChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>

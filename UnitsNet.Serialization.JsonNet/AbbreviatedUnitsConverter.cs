@@ -79,7 +79,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             // write the 'Value' using the actual type
             writer.WritePropertyName(ValueProperty);
-            if (quantity is IDecimalQuantity decimalQuantity)
+            if (quantity is IValueQuantity<decimal> decimalQuantity)
             {
                 // cannot use `writer.WriteValue(decimalQuantity.Value)`: there is a hidden EnsureDecimalPlace(..) method call inside it that converts '123' to '123.0'
                 writer.WriteRawValue(decimalQuantity.Value.ToString(CultureInfo.InvariantCulture));
@@ -177,7 +177,7 @@ namespace UnitsNet.Serialization.JsonNet
             {
                 value = default;
             }
-            else if (quantityInfo.Zero is IDecimalQuantity)
+            else if (quantityInfo.Zero is IValueQuantity<decimal>)
             {
                 value = decimal.Parse(valueToken, CultureInfo.InvariantCulture);
             }
