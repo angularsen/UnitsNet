@@ -36,13 +36,7 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct VolumeFlowPerArea :
-        IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit, double>,
-        IComparable,
-        IComparable<VolumeFlowPerArea>,
-        IConvertible,
-        IEquatable<VolumeFlowPerArea>,
-        IFormattable
+    public readonly partial struct VolumeFlowPerArea : IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit, double>, IEquatable<VolumeFlowPerArea>, IComparable, IComparable<VolumeFlowPerArea>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

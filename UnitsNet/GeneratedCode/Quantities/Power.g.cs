@@ -36,14 +36,7 @@ namespace UnitsNet
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
     [DataContract]
-    public readonly partial struct Power :
-        IArithmeticQuantity<Power, PowerUnit, decimal>,
-        IDecimalQuantity,
-        IComparable,
-        IComparable<Power>,
-        IConvertible,
-        IEquatable<Power>,
-        IFormattable
+    public readonly partial struct Power : IArithmeticQuantity<Power, PowerUnit, decimal>, IDecimalQuantity, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

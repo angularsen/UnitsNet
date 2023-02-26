@@ -36,13 +36,7 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct EnergyDensity :
-        IArithmeticQuantity<EnergyDensity, EnergyDensityUnit, double>,
-        IComparable,
-        IComparable<EnergyDensity>,
-        IConvertible,
-        IEquatable<EnergyDensity>,
-        IFormattable
+    public readonly partial struct EnergyDensity : IArithmeticQuantity<EnergyDensity, EnergyDensityUnit, double>, IEquatable<EnergyDensity>, IComparable, IComparable<EnergyDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

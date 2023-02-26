@@ -39,13 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminous_flux
     /// </remarks>
     [DataContract]
-    public readonly partial struct LuminousFlux :
-        IArithmeticQuantity<LuminousFlux, LuminousFluxUnit, double>,
-        IComparable,
-        IComparable<LuminousFlux>,
-        IConvertible,
-        IEquatable<LuminousFlux>,
-        IFormattable
+    public readonly partial struct LuminousFlux : IArithmeticQuantity<LuminousFlux, LuminousFluxUnit, double>, IEquatable<LuminousFlux>, IComparable, IComparable<LuminousFlux>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

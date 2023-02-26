@@ -36,13 +36,7 @@ namespace UnitsNet
     ///     The change in ratio per unit of time.
     /// </summary>
     [DataContract]
-    public readonly partial struct RatioChangeRate :
-        IArithmeticQuantity<RatioChangeRate, RatioChangeRateUnit, double>,
-        IComparable,
-        IComparable<RatioChangeRate>,
-        IConvertible,
-        IEquatable<RatioChangeRate>,
-        IFormattable
+    public readonly partial struct RatioChangeRate : IArithmeticQuantity<RatioChangeRate, RatioChangeRateUnit, double>, IEquatable<RatioChangeRate>, IComparable, IComparable<RatioChangeRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

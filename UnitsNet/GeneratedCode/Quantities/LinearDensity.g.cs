@@ -39,13 +39,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Linear_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct LinearDensity :
-        IArithmeticQuantity<LinearDensity, LinearDensityUnit, double>,
-        IComparable,
-        IComparable<LinearDensity>,
-        IConvertible,
-        IEquatable<LinearDensity>,
-        IFormattable
+    public readonly partial struct LinearDensity : IArithmeticQuantity<LinearDensity, LinearDensityUnit, double>, IEquatable<LinearDensity>, IComparable, IComparable<LinearDensity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -39,13 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Molar_concentration
     /// </remarks>
     [DataContract]
-    public readonly partial struct Molarity :
-        IArithmeticQuantity<Molarity, MolarityUnit, double>,
-        IComparable,
-        IComparable<Molarity>,
-        IConvertible,
-        IEquatable<Molarity>,
-        IFormattable
+    public readonly partial struct Molarity : IArithmeticQuantity<Molarity, MolarityUnit, double>, IEquatable<Molarity>, IComparable, IComparable<Molarity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

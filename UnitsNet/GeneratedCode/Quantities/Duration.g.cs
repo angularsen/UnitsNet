@@ -36,13 +36,7 @@ namespace UnitsNet
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
     [DataContract]
-    public readonly partial struct Duration :
-        IArithmeticQuantity<Duration, DurationUnit, double>,
-        IComparable,
-        IComparable<Duration>,
-        IConvertible,
-        IEquatable<Duration>,
-        IFormattable
+    public readonly partial struct Duration : IArithmeticQuantity<Duration, DurationUnit, double>, IEquatable<Duration>, IComparable, IComparable<Duration>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

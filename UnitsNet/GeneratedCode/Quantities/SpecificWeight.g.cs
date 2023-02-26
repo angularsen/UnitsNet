@@ -39,13 +39,7 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Specificweight
     /// </remarks>
     [DataContract]
-    public readonly partial struct SpecificWeight :
-        IArithmeticQuantity<SpecificWeight, SpecificWeightUnit, double>,
-        IComparable,
-        IComparable<SpecificWeight>,
-        IConvertible,
-        IEquatable<SpecificWeight>,
-        IFormattable
+    public readonly partial struct SpecificWeight : IArithmeticQuantity<SpecificWeight, SpecificWeightUnit, double>, IEquatable<SpecificWeight>, IComparable, IComparable<SpecificWeight>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

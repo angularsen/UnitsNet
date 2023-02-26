@@ -36,13 +36,7 @@ namespace UnitsNet
     ///     ElectricPotential change rate is the ratio of the electric potential change to the time during which the change occurred (value of electric potential changes per unit time).
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricPotentialChangeRate :
-        IArithmeticQuantity<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit, double>,
-        IComparable,
-        IComparable<ElectricPotentialChangeRate>,
-        IConvertible,
-        IEquatable<ElectricPotentialChangeRate>,
-        IFormattable
+    public readonly partial struct ElectricPotentialChangeRate : IArithmeticQuantity<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit, double>, IEquatable<ElectricPotentialChangeRate>, IComparable, IComparable<ElectricPotentialChangeRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

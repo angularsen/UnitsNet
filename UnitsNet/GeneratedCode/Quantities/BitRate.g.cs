@@ -39,14 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
     [DataContract]
-    public readonly partial struct BitRate :
-        IArithmeticQuantity<BitRate, BitRateUnit, decimal>,
-        IDecimalQuantity,
-        IComparable,
-        IComparable<BitRate>,
-        IConvertible,
-        IEquatable<BitRate>,
-        IFormattable
+    public readonly partial struct BitRate : IArithmeticQuantity<BitRate, BitRateUnit, decimal>, IDecimalQuantity, IEquatable<BitRate>, IComparable, IComparable<BitRate>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

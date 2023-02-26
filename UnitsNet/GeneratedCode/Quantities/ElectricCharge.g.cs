@@ -39,13 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electric_charge
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricCharge :
-        IArithmeticQuantity<ElectricCharge, ElectricChargeUnit, double>,
-        IComparable,
-        IComparable<ElectricCharge>,
-        IConvertible,
-        IEquatable<ElectricCharge>,
-        IFormattable
+    public readonly partial struct ElectricCharge : IArithmeticQuantity<ElectricCharge, ElectricChargeUnit, double>, IEquatable<ElectricCharge>, IComparable, IComparable<ElectricCharge>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

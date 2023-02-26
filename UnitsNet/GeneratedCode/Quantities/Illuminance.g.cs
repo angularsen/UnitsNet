@@ -39,13 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Illuminance
     /// </remarks>
     [DataContract]
-    public readonly partial struct Illuminance :
-        IArithmeticQuantity<Illuminance, IlluminanceUnit, double>,
-        IComparable,
-        IComparable<Illuminance>,
-        IConvertible,
-        IEquatable<Illuminance>,
-        IFormattable
+    public readonly partial struct Illuminance : IArithmeticQuantity<Illuminance, IlluminanceUnit, double>, IEquatable<Illuminance>, IComparable, IComparable<Illuminance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

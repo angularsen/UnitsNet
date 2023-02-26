@@ -36,13 +36,7 @@ namespace UnitsNet
     ///     Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.
     /// </summary>
     [DataContract]
-    public readonly partial struct AmountOfSubstance :
-        IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit, double>,
-        IComparable,
-        IComparable<AmountOfSubstance>,
-        IConvertible,
-        IEquatable<AmountOfSubstance>,
-        IFormattable
+    public readonly partial struct AmountOfSubstance : IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit, double>, IEquatable<AmountOfSubstance>, IComparable, IComparable<AmountOfSubstance>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

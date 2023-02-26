@@ -36,13 +36,7 @@ namespace UnitsNet
     ///     Molar flow is the ratio of the amount of substance change to the time during which the change occurred (value of amount of substance changes per unit time).
     /// </summary>
     [DataContract]
-    public readonly partial struct MolarFlow :
-        IArithmeticQuantity<MolarFlow, MolarFlowUnit, double>,
-        IComparable,
-        IComparable<MolarFlow>,
-        IConvertible,
-        IEquatable<MolarFlow>,
-        IFormattable
+    public readonly partial struct MolarFlow : IArithmeticQuantity<MolarFlow, MolarFlowUnit, double>, IEquatable<MolarFlow>, IComparable, IComparable<MolarFlow>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

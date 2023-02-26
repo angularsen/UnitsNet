@@ -36,13 +36,7 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.
     /// </summary>
     [DataContract]
-    public readonly partial struct AmplitudeRatio :
-        IArithmeticQuantity<AmplitudeRatio, AmplitudeRatioUnit, double>,
-        IComparable,
-        IComparable<AmplitudeRatio>,
-        IConvertible,
-        IEquatable<AmplitudeRatio>,
-        IFormattable
+    public readonly partial struct AmplitudeRatio : IArithmeticQuantity<AmplitudeRatio, AmplitudeRatioUnit, double>, IEquatable<AmplitudeRatio>, IComparable, IComparable<AmplitudeRatio>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

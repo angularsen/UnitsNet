@@ -39,13 +39,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Volumetric_heat_capacity
     /// </remarks>
     [DataContract]
-    public readonly partial struct VolumetricHeatCapacity :
-        IArithmeticQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit, double>,
-        IComparable,
-        IComparable<VolumetricHeatCapacity>,
-        IConvertible,
-        IEquatable<VolumetricHeatCapacity>,
-        IFormattable
+    public readonly partial struct VolumetricHeatCapacity : IArithmeticQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit, double>, IEquatable<VolumetricHeatCapacity>, IComparable, IComparable<VolumetricHeatCapacity>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
