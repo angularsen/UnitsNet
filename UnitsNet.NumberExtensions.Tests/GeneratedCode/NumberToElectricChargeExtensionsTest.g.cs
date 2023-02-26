@@ -41,12 +41,12 @@ namespace UnitsNet.Tests
             Assert.Equal(ElectricCharge.FromKilocoulombs(2), 2.Kilocoulombs());
 
         [Fact]
-        public void NumberToMegacoulombsTest() =>
-            Assert.Equal(ElectricCharge.FromMegacoulombs(2), 2.Megacoulombs());
-
-        [Fact]
         public void NumberToMegaampereHoursTest() =>
             Assert.Equal(ElectricCharge.FromMegaampereHours(2), 2.MegaampereHours());
+
+        [Fact]
+        public void NumberToMegacoulombsTest() =>
+            Assert.Equal(ElectricCharge.FromMegacoulombs(2), 2.Megacoulombs());
 
         [Fact]
         public void NumberToMicrocoulombsTest() =>
