@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct Jerk : IArithmeticQuantity<Jerk, JerkUnit, double>, IEquatable<Jerk>, IComparable, IComparable<Jerk>, IConvertible, IFormattable
+    public readonly partial struct Jerk :
+        IArithmeticQuantity<Jerk, JerkUnit, double>,
+        IComparable,
+        IComparable<Jerk>,
+        IConvertible,
+        IEquatable<Jerk>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

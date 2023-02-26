@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     In electromagnetism, the current gradient describes how the current changes in time.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricCurrentGradient : IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit, double>, IEquatable<ElectricCurrentGradient>, IComparable, IComparable<ElectricCurrentGradient>, IConvertible, IFormattable
+    public readonly partial struct ElectricCurrentGradient :
+        IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit, double>,
+        IComparable,
+        IComparable<ElectricCurrentGradient>,
+        IConvertible,
+        IEquatable<ElectricCurrentGradient>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

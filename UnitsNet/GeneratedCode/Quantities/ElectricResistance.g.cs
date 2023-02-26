@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricResistance : IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit, double>, IEquatable<ElectricResistance>, IComparable, IComparable<ElectricResistance>, IConvertible, IFormattable
+    public readonly partial struct ElectricResistance :
+        IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit, double>,
+        IComparable,
+        IComparable<ElectricResistance>,
+        IConvertible,
+        IEquatable<ElectricResistance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

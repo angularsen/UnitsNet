@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Inverse-square_law
     /// </remarks>
     [DataContract]
-    public readonly partial struct ReciprocalArea : IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit, double>, IEquatable<ReciprocalArea>, IComparable, IComparable<ReciprocalArea>, IConvertible, IFormattable
+    public readonly partial struct ReciprocalArea :
+        IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit, double>,
+        IComparable,
+        IComparable<ReciprocalArea>,
+        IConvertible,
+        IEquatable<ReciprocalArea>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

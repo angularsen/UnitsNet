@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.
     /// </summary>
     [DataContract]
-    public readonly partial struct ThermalResistance : IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit, double>, IEquatable<ThermalResistance>, IComparable, IComparable<ThermalResistance>, IConvertible, IFormattable
+    public readonly partial struct ThermalResistance :
+        IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit, double>,
+        IComparable,
+        IComparable<ThermalResistance>,
+        IConvertible,
+        IEquatable<ThermalResistance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

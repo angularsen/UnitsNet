@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct Compressibility : IArithmeticQuantity<Compressibility, CompressibilityUnit, double>, IEquatable<Compressibility>, IComparable, IComparable<Compressibility>, IConvertible, IFormattable
+    public readonly partial struct Compressibility :
+        IArithmeticQuantity<Compressibility, CompressibilityUnit, double>,
+        IComparable,
+        IComparable<Compressibility>,
+        IConvertible,
+        IEquatable<Compressibility>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Fuel_efficiency
     /// </remarks>
     [DataContract]
-    public readonly partial struct FuelEfficiency : IArithmeticQuantity<FuelEfficiency, FuelEfficiencyUnit, double>, IEquatable<FuelEfficiency>, IComparable, IComparable<FuelEfficiency>, IConvertible, IFormattable
+    public readonly partial struct FuelEfficiency :
+        IArithmeticQuantity<FuelEfficiency, FuelEfficiencyUnit, double>,
+        IComparable,
+        IComparable<FuelEfficiency>,
+        IConvertible,
+        IEquatable<FuelEfficiency>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

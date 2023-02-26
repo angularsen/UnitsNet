@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     In classical mechanics, impulse is the integral of a force, F, over the time interval, t, for which it acts. Impulse applied to an object produces an equivalent vector change in its linear momentum, also in the resultant direction.
     /// </summary>
     [DataContract]
-    public readonly partial struct Impulse : IArithmeticQuantity<Impulse, ImpulseUnit, double>, IEquatable<Impulse>, IComparable, IComparable<Impulse>, IConvertible, IFormattable
+    public readonly partial struct Impulse :
+        IArithmeticQuantity<Impulse, ImpulseUnit, double>,
+        IComparable,
+        IComparable<Impulse>,
+        IConvertible,
+        IEquatable<Impulse>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

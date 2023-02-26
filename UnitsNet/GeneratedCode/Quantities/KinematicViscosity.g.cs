@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Viscosity
     /// </remarks>
     [DataContract]
-    public readonly partial struct KinematicViscosity : IArithmeticQuantity<KinematicViscosity, KinematicViscosityUnit, double>, IEquatable<KinematicViscosity>, IComparable, IComparable<KinematicViscosity>, IConvertible, IFormattable
+    public readonly partial struct KinematicViscosity :
+        IArithmeticQuantity<KinematicViscosity, KinematicViscosityUnit, double>,
+        IComparable,
+        IComparable<KinematicViscosity>,
+        IConvertible,
+        IEquatable<KinematicViscosity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

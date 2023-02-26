@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Viscosity#Dynamic_.28shear.29_viscosity
     /// </remarks>
     [DataContract]
-    public readonly partial struct DynamicViscosity : IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit, double>, IEquatable<DynamicViscosity>, IComparable, IComparable<DynamicViscosity>, IConvertible, IFormattable
+    public readonly partial struct DynamicViscosity :
+        IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit, double>,
+        IComparable,
+        IComparable<DynamicViscosity>,
+        IConvertible,
+        IEquatable<DynamicViscosity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

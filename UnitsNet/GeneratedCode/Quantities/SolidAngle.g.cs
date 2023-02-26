@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Solid_angle
     /// </remarks>
     [DataContract]
-    public readonly partial struct SolidAngle : IArithmeticQuantity<SolidAngle, SolidAngleUnit, double>, IEquatable<SolidAngle>, IComparable, IComparable<SolidAngle>, IConvertible, IFormattable
+    public readonly partial struct SolidAngle :
+        IArithmeticQuantity<SolidAngle, SolidAngleUnit, double>,
+        IComparable,
+        IComparable<SolidAngle>,
+        IConvertible,
+        IEquatable<SolidAngle>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

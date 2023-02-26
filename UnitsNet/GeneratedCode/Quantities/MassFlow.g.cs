@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
     [DataContract]
-    public readonly partial struct MassFlow : IArithmeticQuantity<MassFlow, MassFlowUnit, double>, IEquatable<MassFlow>, IComparable, IComparable<MassFlow>, IConvertible, IFormattable
+    public readonly partial struct MassFlow :
+        IArithmeticQuantity<MassFlow, MassFlowUnit, double>,
+        IComparable,
+        IComparable<MassFlow>,
+        IConvertible,
+        IEquatable<MassFlow>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

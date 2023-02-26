@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).
     /// </summary>
     [DataContract]
-    public readonly partial struct PressureChangeRate : IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit, double>, IEquatable<PressureChangeRate>, IComparable, IComparable<PressureChangeRate>, IConvertible, IFormattable
+    public readonly partial struct PressureChangeRate :
+        IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit, double>,
+        IComparable,
+        IComparable<PressureChangeRate>,
+        IConvertible,
+        IEquatable<PressureChangeRate>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

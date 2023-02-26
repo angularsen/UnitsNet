@@ -62,15 +62,21 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
-            Writer.W(@$"
+            Writer.WL(@$"
     [DataContract]
-    public readonly partial struct {_quantity.Name} : {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>, ");
-            if (_quantity.ValueType == "decimal")
-            {
-                Writer.W("IDecimalQuantity, ");
-            }
+    public readonly partial struct {_quantity.Name} :
+        {(_quantity.GenerateArithmetic ? "IArithmeticQuantity" : "IQuantity")}<{_quantity.Name}, {_unitEnumName}, {_quantity.ValueType}>,");
 
-            Writer.WL($"IEquatable<{_quantity.Name}>, IComparable, IComparable<{_quantity.Name}>, IConvertible, IFormattable");
+            if (_quantity.ValueType == "decimal") Writer.WL(@$"
+        IDecimalQuantity,");
+
+            Writer.WL(@$"
+        IComparable,
+        IComparable<{_quantity.Name}>,
+        IConvertible,
+        IEquatable<{_quantity.Name}>,
+        IFormattable");
+
             Writer.WL($@"
     {{
         /// <summary>
