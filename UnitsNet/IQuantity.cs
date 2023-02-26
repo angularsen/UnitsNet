@@ -125,9 +125,13 @@ namespace UnitsNet
     /// </summary>
     /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
     /// <typeparam name="TValueType">The value type of the quantity.</typeparam>
-    public interface IQuantity<TUnitType, TValueType> : IQuantity<TUnitType>, IValueQuantity<TValueType>
+    public interface IQuantity<TUnitType, out TValueType> : IQuantity<TUnitType>, IValueQuantity<TValueType>
         where TUnitType : Enum
+#if NET7_0_OR_GREATER
+        where TValueType : INumber<TValueType>
+#else
         where TValueType : struct
+#endif
     {
         /// <summary>
         ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
@@ -142,14 +146,18 @@ namespace UnitsNet
     /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
     /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
     /// <typeparam name="TValueType">The underlying value type for internal representation.</typeparam>
-    public interface IQuantity<TSelf, TUnitType, TValueType> : IQuantity<TUnitType>, IQuantity<TUnitType, TValueType>
+    public interface IQuantity<TSelf, TUnitType, out TValueType> : IQuantity<TUnitType, TValueType>
 #if NET7_0_OR_GREATER
         , IComparisonOperators<TSelf, TSelf, bool>
         , IParsable<TSelf>
 #endif
         where TSelf : IQuantity<TSelf, TUnitType, TValueType>
         where TUnitType : Enum
+#if NET7_0_OR_GREATER
+        where TValueType : INumber<TValueType>
+#else
         where TValueType : struct
+#endif
     {
     }
 }
