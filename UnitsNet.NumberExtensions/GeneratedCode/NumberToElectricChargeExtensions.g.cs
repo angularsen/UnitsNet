@@ -44,13 +44,13 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
         public static ElectricCharge Kilocoulombs<T>(this T value) =>
             ElectricCharge.FromKilocoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(UnitsNet.QuantityValue)" />
-        public static ElectricCharge MegaampereHours<T>(this T value) =>
-            ElectricCharge.FromMegaampereHours(Convert.ToDouble(value));
-
         /// <inheritdoc cref="ElectricCharge.FromMegacoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge Megacoulombs<T>(this T value) =>
             ElectricCharge.FromMegacoulombs(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(UnitsNet.QuantityValue)" />
+        public static ElectricCharge MegaampereHours<T>(this T value) =>
+            ElectricCharge.FromMegaampereHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCharge.FromMicrocoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge Microcoulombs<T>(this T value) =>
