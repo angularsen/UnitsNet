@@ -60,24 +60,45 @@ namespace UnitsNet.Tests
 
 
         [Fact]
-        public void IQuantityTV_Value_ReturnsDouble()
+        public void IQuantityTUnitDouble_Value_ReturnsDouble()
         {
             IQuantity<TemperatureUnit, double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
             Assert.IsType<double>(doubleQuantity.Value);
         }
 
         [Fact]
-        public void IQuantityTV_AsEnum_ReturnsDouble()
+        public void IQuantityTUnitDouble_AsEnum_ReturnsDouble()
         {
             IQuantity<TemperatureUnit, double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
             Assert.IsType<double>(doubleQuantity.As(TemperatureUnit.Kelvin));
         }
 
         [Fact]
-        public void IQuantityTV_AsUnitSystem_ReturnsDouble()
+        public void IQuantityTUnitDouble_AsUnitSystem_ReturnsDouble()
         {
             IQuantity<TemperatureUnit, double> doubleQuantity = Temperature.FromDegreesCelsius(1234.5);
             Assert.IsType<double>(doubleQuantity.As(UnitSystem.SI));
+        }
+
+        [Fact]
+        public void IQuantityTUnitDecimal_Value_ReturnsDecimal()
+        {
+            IQuantity<InformationUnit, decimal> decimalQuantity = Information.FromKilobytes(1234.5);
+            Assert.IsType<decimal>(decimalQuantity.Value);
+        }
+
+        [Fact]
+        public void IQuantityTUnitDecimal_AsEnum_ReturnsDecimal()
+        {
+            IQuantity<InformationUnit, decimal> decimalQuantity = Information.FromKilobytes(1234.5);
+            Assert.IsType<decimal>(decimalQuantity.As(InformationUnit.Byte));
+        }
+
+        [Fact]
+        public void IQuantityTUnitDecimal_AsUnitSystem_ReturnsDecimal()
+        {
+            IQuantity<PowerUnit, decimal> decimalQuantity = Power.FromMegawatts(1234.5);
+            Assert.IsType<decimal>(decimalQuantity.As(UnitSystem.SI));
         }
     }
 }
