@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricConductivity : IArithmeticQuantity<ElectricConductivity, ElectricConductivityUnit, double>, IEquatable<ElectricConductivity>, IComparable, IComparable<ElectricConductivity>, IConvertible, IFormattable
+    public readonly partial struct ElectricConductivity :
+        IArithmeticQuantity<ElectricConductivity, ElectricConductivityUnit, double>,
+        IComparable,
+        IComparable<ElectricConductivity>,
+        IConvertible,
+        IEquatable<ElectricConductivity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

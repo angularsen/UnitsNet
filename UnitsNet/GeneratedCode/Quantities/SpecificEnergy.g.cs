@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Specific_energy
     /// </remarks>
     [DataContract]
-    public readonly partial struct SpecificEnergy : IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit, double>, IEquatable<SpecificEnergy>, IComparable, IComparable<SpecificEnergy>, IConvertible, IFormattable
+    public readonly partial struct SpecificEnergy :
+        IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit, double>,
+        IComparable,
+        IComparable<SpecificEnergy>,
+        IConvertible,
+        IEquatable<SpecificEnergy>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

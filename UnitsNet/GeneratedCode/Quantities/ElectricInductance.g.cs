@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Inductance
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricInductance : IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit, double>, IEquatable<ElectricInductance>, IComparable, IComparable<ElectricInductance>, IConvertible, IFormattable
+    public readonly partial struct ElectricInductance :
+        IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit, double>,
+        IComparable,
+        IComparable<ElectricInductance>,
+        IConvertible,
+        IEquatable<ElectricInductance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

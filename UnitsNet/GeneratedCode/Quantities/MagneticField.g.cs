@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Magnetic_field
     /// </remarks>
     [DataContract]
-    public readonly partial struct MagneticField : IArithmeticQuantity<MagneticField, MagneticFieldUnit, double>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
+    public readonly partial struct MagneticField :
+        IArithmeticQuantity<MagneticField, MagneticFieldUnit, double>,
+        IComparable,
+        IComparable<MagneticField>,
+        IConvertible,
+        IEquatable<MagneticField>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

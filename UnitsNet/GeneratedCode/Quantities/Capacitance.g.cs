@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
     [DataContract]
-    public readonly partial struct Capacitance : IArithmeticQuantity<Capacitance, CapacitanceUnit, double>, IEquatable<Capacitance>, IComparable, IComparable<Capacitance>, IConvertible, IFormattable
+    public readonly partial struct Capacitance :
+        IArithmeticQuantity<Capacitance, CapacitanceUnit, double>,
+        IComparable,
+        IComparable<Capacitance>,
+        IConvertible,
+        IEquatable<Capacitance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

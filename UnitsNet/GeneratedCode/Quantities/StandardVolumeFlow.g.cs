@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     The molar flow rate of a gas corrected to standardized conditions of temperature and pressure thus representing a fixed number of moles of gas regardless of composition and actual flow conditions.
     /// </summary>
     [DataContract]
-    public readonly partial struct StandardVolumeFlow : IArithmeticQuantity<StandardVolumeFlow, StandardVolumeFlowUnit, double>, IEquatable<StandardVolumeFlow>, IComparable, IComparable<StandardVolumeFlow>, IConvertible, IFormattable
+    public readonly partial struct StandardVolumeFlow :
+        IArithmeticQuantity<StandardVolumeFlow, StandardVolumeFlowUnit, double>,
+        IComparable,
+        IComparable<StandardVolumeFlow>,
+        IConvertible,
+        IEquatable<StandardVolumeFlow>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

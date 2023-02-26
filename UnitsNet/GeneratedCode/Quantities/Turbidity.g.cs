@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Turbidity
     /// </remarks>
     [DataContract]
-    public readonly partial struct Turbidity : IArithmeticQuantity<Turbidity, TurbidityUnit, double>, IEquatable<Turbidity>, IComparable, IComparable<Turbidity>, IConvertible, IFormattable
+    public readonly partial struct Turbidity :
+        IArithmeticQuantity<Turbidity, TurbidityUnit, double>,
+        IComparable,
+        IComparable<Turbidity>,
+        IConvertible,
+        IEquatable<Turbidity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

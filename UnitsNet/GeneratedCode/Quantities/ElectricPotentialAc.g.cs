@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     The Electric Potential of a system known to use Alternating Current.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricPotentialAc : IArithmeticQuantity<ElectricPotentialAc, ElectricPotentialAcUnit, double>, IEquatable<ElectricPotentialAc>, IComparable, IComparable<ElectricPotentialAc>, IConvertible, IFormattable
+    public readonly partial struct ElectricPotentialAc :
+        IArithmeticQuantity<ElectricPotentialAc, ElectricPotentialAcUnit, double>,
+        IComparable,
+        IComparable<ElectricPotentialAc>,
+        IConvertible,
+        IEquatable<ElectricPotentialAc>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

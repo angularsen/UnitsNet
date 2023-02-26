@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Mass flux is the mass flow rate per unit area.
     /// </summary>
     [DataContract]
-    public readonly partial struct MassFlux : IArithmeticQuantity<MassFlux, MassFluxUnit, double>, IEquatable<MassFlux>, IComparable, IComparable<MassFlux>, IConvertible, IFormattable
+    public readonly partial struct MassFlux :
+        IArithmeticQuantity<MassFlux, MassFluxUnit, double>,
+        IComparable,
+        IComparable<MassFlux>,
+        IConvertible,
+        IEquatable<MassFlux>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

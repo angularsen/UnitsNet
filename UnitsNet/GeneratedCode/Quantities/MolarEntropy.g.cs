@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
     [DataContract]
-    public readonly partial struct MolarEntropy : IArithmeticQuantity<MolarEntropy, MolarEntropyUnit, double>, IEquatable<MolarEntropy>, IComparable, IComparable<MolarEntropy>, IConvertible, IFormattable
+    public readonly partial struct MolarEntropy :
+        IArithmeticQuantity<MolarEntropy, MolarEntropyUnit, double>,
+        IComparable,
+        IComparable<MolarEntropy>,
+        IConvertible,
+        IEquatable<MolarEntropy>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

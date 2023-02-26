@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     A geometric property of an area that is used to determine the warping stress.
     /// </summary>
     [DataContract]
-    public readonly partial struct WarpingMomentOfInertia : IArithmeticQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit, double>, IEquatable<WarpingMomentOfInertia>, IComparable, IComparable<WarpingMomentOfInertia>, IConvertible, IFormattable
+    public readonly partial struct WarpingMomentOfInertia :
+        IArithmeticQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit, double>,
+        IComparable,
+        IComparable<WarpingMomentOfInertia>,
+        IConvertible,
+        IEquatable<WarpingMomentOfInertia>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
