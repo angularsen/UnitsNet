@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Charge_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricChargeDensity : IArithmeticQuantity<ElectricChargeDensity, ElectricChargeDensityUnit, double>, IEquatable<ElectricChargeDensity>, IComparable, IComparable<ElectricChargeDensity>, IConvertible, IFormattable
+    public readonly partial struct ElectricChargeDensity :
+        IArithmeticQuantity<ElectricChargeDensity, ElectricChargeDensityUnit, double>,
+        IComparable,
+        IComparable<ElectricChargeDensity>,
+        IConvertible,
+        IEquatable<ElectricChargeDensity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -635,6 +641,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeDensityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricChargeDensityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

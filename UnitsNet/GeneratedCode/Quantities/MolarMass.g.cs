@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     In chemistry, the molar mass M is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance.
     /// </summary>
     [DataContract]
-    public readonly partial struct MolarMass : IArithmeticQuantity<MolarMass, MolarMassUnit, double>, IEquatable<MolarMass>, IComparable, IComparable<MolarMass>, IConvertible, IFormattable
+    public readonly partial struct MolarMass :
+        IArithmeticQuantity<MolarMass, MolarMassUnit, double>,
+        IComparable,
+        IComparable<MolarMass>,
+        IConvertible,
+        IEquatable<MolarMass>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -872,6 +878,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MolarMassUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarMassUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

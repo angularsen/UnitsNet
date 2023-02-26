@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Viscosity#Dynamic_.28shear.29_viscosity
     /// </remarks>
     [DataContract]
-    public readonly partial struct DynamicViscosity : IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit, double>, IEquatable<DynamicViscosity>, IComparable, IComparable<DynamicViscosity>, IConvertible, IFormattable
+    public readonly partial struct DynamicViscosity :
+        IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit, double>,
+        IComparable,
+        IComparable<DynamicViscosity>,
+        IConvertible,
+        IEquatable<DynamicViscosity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -806,6 +812,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is DynamicViscosityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DynamicViscosityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

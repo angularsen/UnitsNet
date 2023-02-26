@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminous_flux
     /// </remarks>
     [DataContract]
-    public readonly partial struct LuminousFlux : IArithmeticQuantity<LuminousFlux, LuminousFluxUnit, double>, IEquatable<LuminousFlux>, IComparable, IComparable<LuminousFlux>, IConvertible, IFormattable
+    public readonly partial struct LuminousFlux :
+        IArithmeticQuantity<LuminousFlux, LuminousFluxUnit, double>,
+        IComparable,
+        IComparable<LuminousFlux>,
+        IConvertible,
+        IEquatable<LuminousFlux>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -635,6 +641,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is LuminousFluxUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

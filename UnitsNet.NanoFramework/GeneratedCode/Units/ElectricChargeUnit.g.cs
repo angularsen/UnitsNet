@@ -28,8 +28,14 @@ namespace UnitsNet.Units
         AmpereHour = 1,
         Coulomb = 2,
         KiloampereHour = 3,
+        Kilocoulomb = 13,
+        Megacoulomb = 6,
         MegaampereHour = 4,
+        Microcoulomb = 11,
         MilliampereHour = 5,
+        Millicoulomb = 7,
+        Nanocoulomb = 9,
+        Picocoulomb = 8,
     }
 
     #pragma warning restore 1591

@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Irradiation
     /// </remarks>
     [DataContract]
-    public readonly partial struct Irradiation : IArithmeticQuantity<Irradiation, IrradiationUnit, double>, IEquatable<Irradiation>, IComparable, IComparable<Irradiation>, IConvertible, IFormattable
+    public readonly partial struct Irradiation :
+        IArithmeticQuantity<Irradiation, IrradiationUnit, double>,
+        IComparable,
+        IComparable<Irradiation>,
+        IConvertible,
+        IEquatable<Irradiation>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -749,6 +755,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is IrradiationUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

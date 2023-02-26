@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
     [DataContract]
-    public readonly partial struct Frequency : IArithmeticQuantity<Frequency, FrequencyUnit, double>, IEquatable<Frequency>, IComparable, IComparable<Frequency>, IConvertible, IFormattable
+    public readonly partial struct Frequency :
+        IArithmeticQuantity<Frequency, FrequencyUnit, double>,
+        IComparable,
+        IComparable<Frequency>,
+        IConvertible,
+        IEquatable<Frequency>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -869,6 +875,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FrequencyUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is FrequencyUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(FrequencyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

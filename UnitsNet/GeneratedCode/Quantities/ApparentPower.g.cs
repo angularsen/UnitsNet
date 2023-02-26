@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.
     /// </summary>
     [DataContract]
-    public readonly partial struct ApparentPower : IArithmeticQuantity<ApparentPower, ApparentPowerUnit, double>, IEquatable<ApparentPower>, IComparable, IComparable<ApparentPower>, IConvertible, IFormattable
+    public readonly partial struct ApparentPower :
+        IArithmeticQuantity<ApparentPower, ApparentPowerUnit, double>,
+        IComparable,
+        IComparable<ApparentPower>,
+        IConvertible,
+        IEquatable<ApparentPower>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -62,6 +68,8 @@ namespace UnitsNet
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Gigavoltampere, "Gigavoltamperes", BaseUnits.Undefined),
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Kilovoltampere, "Kilovoltamperes", BaseUnits.Undefined),
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Megavoltampere, "Megavoltamperes", BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Microvoltampere, "Microvoltamperes", BaseUnits.Undefined),
+                    new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Millivoltampere, "Millivoltamperes", BaseUnits.Undefined),
                     new UnitInfo<ApparentPowerUnit>(ApparentPowerUnit.Voltampere, "Voltamperes", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -182,6 +190,16 @@ namespace UnitsNet
         public double Megavoltamperes => As(ApparentPowerUnit.Megavoltampere);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Microvoltampere"/>
+        /// </summary>
+        public double Microvoltamperes => As(ApparentPowerUnit.Microvoltampere);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Millivoltampere"/>
+        /// </summary>
+        public double Millivoltamperes => As(ApparentPowerUnit.Millivoltampere);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ApparentPowerUnit.Voltampere"/>
         /// </summary>
         public double Voltamperes => As(ApparentPowerUnit.Voltampere);
@@ -200,6 +218,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Voltampere));
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Voltampere));
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Voltampere));
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Microvoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Voltampere));
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Millivoltampere, ApparentPowerUnit.Voltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Voltampere));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Voltampere, quantity => quantity);
@@ -208,6 +228,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Gigavoltampere));
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Kilovoltampere));
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Megavoltampere));
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Microvoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Microvoltampere));
+            unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Millivoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Millivoltampere));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
@@ -215,6 +237,8 @@ namespace UnitsNet
             unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Gigavoltampere, new CultureInfo("en-US"), false, true, new string[]{"GVA"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Kilovoltampere, new CultureInfo("en-US"), false, true, new string[]{"kVA"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Megavoltampere, new CultureInfo("en-US"), false, true, new string[]{"MVA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Microvoltampere, new CultureInfo("en-US"), false, true, new string[]{"µVA"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Millivoltampere, new CultureInfo("en-US"), false, true, new string[]{"mVA"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Voltampere, new CultureInfo("en-US"), false, true, new string[]{"VA"});
         }
 
@@ -271,6 +295,26 @@ namespace UnitsNet
         {
             double value = (double) megavoltamperes;
             return new ApparentPower(value, ApparentPowerUnit.Megavoltampere);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Microvoltampere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ApparentPower FromMicrovoltamperes(QuantityValue microvoltamperes)
+        {
+            double value = (double) microvoltamperes;
+            return new ApparentPower(value, ApparentPowerUnit.Microvoltampere);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ApparentPower"/> from <see cref="ApparentPowerUnit.Millivoltampere"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ApparentPower FromMillivoltamperes(QuantityValue millivoltamperes)
+        {
+            double value = (double) millivoltamperes;
+            return new ApparentPower(value, ApparentPowerUnit.Millivoltampere);
         }
 
         /// <summary>
@@ -691,6 +735,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }
 
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ApparentPowerUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <summary>
         ///     Converts this ApparentPower to another ApparentPower with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -752,11 +805,15 @@ namespace UnitsNet
                 (ApparentPowerUnit.Gigavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e9d, ApparentPowerUnit.Voltampere),
                 (ApparentPowerUnit.Kilovoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e3d, ApparentPowerUnit.Voltampere),
                 (ApparentPowerUnit.Megavoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e6d, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Microvoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e-6d, ApparentPowerUnit.Voltampere),
+                (ApparentPowerUnit.Millivoltampere, ApparentPowerUnit.Voltampere) => new ApparentPower((_value) * 1e-3d, ApparentPowerUnit.Voltampere),
 
                 // BaseUnit -> ApparentPowerUnit
                 (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Gigavoltampere) => new ApparentPower((_value) / 1e9d, ApparentPowerUnit.Gigavoltampere),
                 (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Kilovoltampere) => new ApparentPower((_value) / 1e3d, ApparentPowerUnit.Kilovoltampere),
                 (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Megavoltampere) => new ApparentPower((_value) / 1e6d, ApparentPowerUnit.Megavoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Microvoltampere) => new ApparentPower((_value) / 1e-6d, ApparentPowerUnit.Microvoltampere),
+                (ApparentPowerUnit.Voltampere, ApparentPowerUnit.Millivoltampere) => new ApparentPower((_value) / 1e-3d, ApparentPowerUnit.Millivoltampere),
 
                 _ => null
             };

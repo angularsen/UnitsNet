@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricAdmittance : IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit, double>, IEquatable<ElectricAdmittance>, IComparable, IComparable<ElectricAdmittance>, IConvertible, IFormattable
+    public readonly partial struct ElectricAdmittance :
+        IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit, double>,
+        IComparable,
+        IComparable<ElectricAdmittance>,
+        IConvertible,
+        IEquatable<ElectricAdmittance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -689,6 +695,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricAdmittanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricAdmittanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

@@ -74,7 +74,9 @@
     "Gigavoltampere": 1,
     "Kilovoltampere": 2,
     "Megavoltampere": 3,
-    "Voltampere": 4
+    "Voltampere": 4,
+    "Microvoltampere": 6,
+    "Millivoltampere": 7
   },
   "Area": {
     "Acre": 1,
@@ -250,7 +252,13 @@
     "Coulomb": 2,
     "KiloampereHour": 3,
     "MegaampereHour": 4,
-    "MilliampereHour": 5
+    "MilliampereHour": 5,
+    "Kilocoulomb": 13,
+    "Megacoulomb": 6,
+    "Microcoulomb": 11,
+    "Millicoulomb": 7,
+    "Nanocoulomb": 9,
+    "Picocoulomb": 8
   },
   "ElectricChargeDensity": {
     "CoulombPerCubicMeter": 1
@@ -258,7 +266,9 @@
   "ElectricConductance": {
     "Microsiemens": 1,
     "Millisiemens": 2,
-    "Siemens": 3
+    "Siemens": 3,
+    "Kilosiemens": 6,
+    "Nanosiemens": 10
   },
   "ElectricConductivity": {
     "SiemensPerFoot": 1,
@@ -297,14 +307,16 @@
     "Henry": 1,
     "Microhenry": 2,
     "Millihenry": 3,
-    "Nanohenry": 4
+    "Nanohenry": 4,
+    "Picohenry": 14
   },
   "ElectricPotential": {
     "Kilovolt": 1,
     "Megavolt": 2,
     "Microvolt": 3,
     "Millivolt": 4,
-    "Volt": 5
+    "Volt": 5,
+    "Nanovolt": 11
   },
   "ElectricPotentialAc": {
     "KilovoltAc": 1,
@@ -348,7 +360,8 @@
     "Megaohm": 3,
     "Microohm": 4,
     "Milliohm": 5,
-    "Ohm": 6
+    "Ohm": 6,
+    "Teraohm": 12
   },
   "ElectricResistivity": {
     "KiloohmCentimeter": 1,
@@ -665,7 +678,8 @@
     "SolarRadius": 33,
     "Twip": 34,
     "UsSurveyFoot": 35,
-    "Yard": 36
+    "Yard": 36,
+    "Megameter": 41
   },
   "Level": {
     "Decibel": 1,

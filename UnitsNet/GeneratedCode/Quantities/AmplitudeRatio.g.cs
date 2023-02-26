@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.
     /// </summary>
     [DataContract]
-    public readonly partial struct AmplitudeRatio : IArithmeticQuantity<AmplitudeRatio, AmplitudeRatioUnit, double>, IEquatable<AmplitudeRatio>, IComparable, IComparable<AmplitudeRatio>, IConvertible, IFormattable
+    public readonly partial struct AmplitudeRatio :
+        IArithmeticQuantity<AmplitudeRatio, AmplitudeRatioUnit, double>,
+        IComparable,
+        IComparable<AmplitudeRatio>,
+        IConvertible,
+        IEquatable<AmplitudeRatio>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -697,6 +703,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is AmplitudeRatioUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electric_field
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricField : IArithmeticQuantity<ElectricField, ElectricFieldUnit, double>, IEquatable<ElectricField>, IComparable, IComparable<ElectricField>, IConvertible, IFormattable
+    public readonly partial struct ElectricField :
+        IArithmeticQuantity<ElectricField, ElectricFieldUnit, double>,
+        IComparable,
+        IComparable<ElectricField>,
+        IConvertible,
+        IEquatable<ElectricField>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -635,6 +641,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricFieldUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricFieldUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

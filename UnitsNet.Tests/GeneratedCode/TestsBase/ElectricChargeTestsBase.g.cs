@@ -41,15 +41,27 @@ namespace UnitsNet.Tests
         protected abstract double AmpereHoursInOneCoulomb { get; }
         protected abstract double CoulombsInOneCoulomb { get; }
         protected abstract double KiloampereHoursInOneCoulomb { get; }
+        protected abstract double KilocoulombsInOneCoulomb { get; }
+        protected abstract double MegacoulombsInOneCoulomb { get; }
         protected abstract double MegaampereHoursInOneCoulomb { get; }
+        protected abstract double MicrocoulombsInOneCoulomb { get; }
         protected abstract double MilliampereHoursInOneCoulomb { get; }
+        protected abstract double MillicoulombsInOneCoulomb { get; }
+        protected abstract double NanocoulombsInOneCoulomb { get; }
+        protected abstract double PicocoulombsInOneCoulomb { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmpereHoursTolerance { get { return 1e-5; } }
         protected virtual double CoulombsTolerance { get { return 1e-5; } }
         protected virtual double KiloampereHoursTolerance { get { return 1e-5; } }
+        protected virtual double KilocoulombsTolerance { get { return 1e-5; } }
+        protected virtual double MegacoulombsTolerance { get { return 1e-5; } }
         protected virtual double MegaampereHoursTolerance { get { return 1e-5; } }
+        protected virtual double MicrocoulombsTolerance { get { return 1e-5; } }
         protected virtual double MilliampereHoursTolerance { get { return 1e-5; } }
+        protected virtual double MillicoulombsTolerance { get { return 1e-5; } }
+        protected virtual double NanocoulombsTolerance { get { return 1e-5; } }
+        protected virtual double PicocoulombsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(ElectricChargeUnit unit)
@@ -59,8 +71,14 @@ namespace UnitsNet.Tests
                 ElectricChargeUnit.AmpereHour => (AmpereHoursInOneCoulomb, AmpereHoursTolerance),
                 ElectricChargeUnit.Coulomb => (CoulombsInOneCoulomb, CoulombsTolerance),
                 ElectricChargeUnit.KiloampereHour => (KiloampereHoursInOneCoulomb, KiloampereHoursTolerance),
+                ElectricChargeUnit.Kilocoulomb => (KilocoulombsInOneCoulomb, KilocoulombsTolerance),
+                ElectricChargeUnit.Megacoulomb => (MegacoulombsInOneCoulomb, MegacoulombsTolerance),
                 ElectricChargeUnit.MegaampereHour => (MegaampereHoursInOneCoulomb, MegaampereHoursTolerance),
+                ElectricChargeUnit.Microcoulomb => (MicrocoulombsInOneCoulomb, MicrocoulombsTolerance),
                 ElectricChargeUnit.MilliampereHour => (MilliampereHoursInOneCoulomb, MilliampereHoursTolerance),
+                ElectricChargeUnit.Millicoulomb => (MillicoulombsInOneCoulomb, MillicoulombsTolerance),
+                ElectricChargeUnit.Nanocoulomb => (NanocoulombsInOneCoulomb, NanocoulombsTolerance),
+                ElectricChargeUnit.Picocoulomb => (PicocoulombsInOneCoulomb, PicocoulombsTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -70,8 +88,14 @@ namespace UnitsNet.Tests
             new object[] { ElectricChargeUnit.AmpereHour },
             new object[] { ElectricChargeUnit.Coulomb },
             new object[] { ElectricChargeUnit.KiloampereHour },
+            new object[] { ElectricChargeUnit.Kilocoulomb },
+            new object[] { ElectricChargeUnit.Megacoulomb },
             new object[] { ElectricChargeUnit.MegaampereHour },
+            new object[] { ElectricChargeUnit.Microcoulomb },
             new object[] { ElectricChargeUnit.MilliampereHour },
+            new object[] { ElectricChargeUnit.Millicoulomb },
+            new object[] { ElectricChargeUnit.Nanocoulomb },
+            new object[] { ElectricChargeUnit.Picocoulomb },
         };
 
         [Fact]
@@ -137,8 +161,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(AmpereHoursInOneCoulomb, coulomb.AmpereHours, AmpereHoursTolerance);
             AssertEx.EqualTolerance(CoulombsInOneCoulomb, coulomb.Coulombs, CoulombsTolerance);
             AssertEx.EqualTolerance(KiloampereHoursInOneCoulomb, coulomb.KiloampereHours, KiloampereHoursTolerance);
+            AssertEx.EqualTolerance(KilocoulombsInOneCoulomb, coulomb.Kilocoulombs, KilocoulombsTolerance);
+            AssertEx.EqualTolerance(MegacoulombsInOneCoulomb, coulomb.Megacoulombs, MegacoulombsTolerance);
             AssertEx.EqualTolerance(MegaampereHoursInOneCoulomb, coulomb.MegaampereHours, MegaampereHoursTolerance);
+            AssertEx.EqualTolerance(MicrocoulombsInOneCoulomb, coulomb.Microcoulombs, MicrocoulombsTolerance);
             AssertEx.EqualTolerance(MilliampereHoursInOneCoulomb, coulomb.MilliampereHours, MilliampereHoursTolerance);
+            AssertEx.EqualTolerance(MillicoulombsInOneCoulomb, coulomb.Millicoulombs, MillicoulombsTolerance);
+            AssertEx.EqualTolerance(NanocoulombsInOneCoulomb, coulomb.Nanocoulombs, NanocoulombsTolerance);
+            AssertEx.EqualTolerance(PicocoulombsInOneCoulomb, coulomb.Picocoulombs, PicocoulombsTolerance);
         }
 
         [Fact]
@@ -156,13 +186,37 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity02.KiloampereHours, KiloampereHoursTolerance);
             Assert.Equal(ElectricChargeUnit.KiloampereHour, quantity02.Unit);
 
-            var quantity03 = ElectricCharge.From(1, ElectricChargeUnit.MegaampereHour);
-            AssertEx.EqualTolerance(1, quantity03.MegaampereHours, MegaampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.MegaampereHour, quantity03.Unit);
+            var quantity03 = ElectricCharge.From(1, ElectricChargeUnit.Kilocoulomb);
+            AssertEx.EqualTolerance(1, quantity03.Kilocoulombs, KilocoulombsTolerance);
+            Assert.Equal(ElectricChargeUnit.Kilocoulomb, quantity03.Unit);
 
-            var quantity04 = ElectricCharge.From(1, ElectricChargeUnit.MilliampereHour);
-            AssertEx.EqualTolerance(1, quantity04.MilliampereHours, MilliampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.MilliampereHour, quantity04.Unit);
+            var quantity04 = ElectricCharge.From(1, ElectricChargeUnit.Megacoulomb);
+            AssertEx.EqualTolerance(1, quantity04.Megacoulombs, MegacoulombsTolerance);
+            Assert.Equal(ElectricChargeUnit.Megacoulomb, quantity04.Unit);
+
+            var quantity05 = ElectricCharge.From(1, ElectricChargeUnit.MegaampereHour);
+            AssertEx.EqualTolerance(1, quantity05.MegaampereHours, MegaampereHoursTolerance);
+            Assert.Equal(ElectricChargeUnit.MegaampereHour, quantity05.Unit);
+
+            var quantity06 = ElectricCharge.From(1, ElectricChargeUnit.Microcoulomb);
+            AssertEx.EqualTolerance(1, quantity06.Microcoulombs, MicrocoulombsTolerance);
+            Assert.Equal(ElectricChargeUnit.Microcoulomb, quantity06.Unit);
+
+            var quantity07 = ElectricCharge.From(1, ElectricChargeUnit.MilliampereHour);
+            AssertEx.EqualTolerance(1, quantity07.MilliampereHours, MilliampereHoursTolerance);
+            Assert.Equal(ElectricChargeUnit.MilliampereHour, quantity07.Unit);
+
+            var quantity08 = ElectricCharge.From(1, ElectricChargeUnit.Millicoulomb);
+            AssertEx.EqualTolerance(1, quantity08.Millicoulombs, MillicoulombsTolerance);
+            Assert.Equal(ElectricChargeUnit.Millicoulomb, quantity08.Unit);
+
+            var quantity09 = ElectricCharge.From(1, ElectricChargeUnit.Nanocoulomb);
+            AssertEx.EqualTolerance(1, quantity09.Nanocoulombs, NanocoulombsTolerance);
+            Assert.Equal(ElectricChargeUnit.Nanocoulomb, quantity09.Unit);
+
+            var quantity10 = ElectricCharge.From(1, ElectricChargeUnit.Picocoulomb);
+            AssertEx.EqualTolerance(1, quantity10.Picocoulombs, PicocoulombsTolerance);
+            Assert.Equal(ElectricChargeUnit.Picocoulomb, quantity10.Unit);
 
         }
 
@@ -186,8 +240,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(AmpereHoursInOneCoulomb, coulomb.As(ElectricChargeUnit.AmpereHour), AmpereHoursTolerance);
             AssertEx.EqualTolerance(CoulombsInOneCoulomb, coulomb.As(ElectricChargeUnit.Coulomb), CoulombsTolerance);
             AssertEx.EqualTolerance(KiloampereHoursInOneCoulomb, coulomb.As(ElectricChargeUnit.KiloampereHour), KiloampereHoursTolerance);
+            AssertEx.EqualTolerance(KilocoulombsInOneCoulomb, coulomb.As(ElectricChargeUnit.Kilocoulomb), KilocoulombsTolerance);
+            AssertEx.EqualTolerance(MegacoulombsInOneCoulomb, coulomb.As(ElectricChargeUnit.Megacoulomb), MegacoulombsTolerance);
             AssertEx.EqualTolerance(MegaampereHoursInOneCoulomb, coulomb.As(ElectricChargeUnit.MegaampereHour), MegaampereHoursTolerance);
+            AssertEx.EqualTolerance(MicrocoulombsInOneCoulomb, coulomb.As(ElectricChargeUnit.Microcoulomb), MicrocoulombsTolerance);
             AssertEx.EqualTolerance(MilliampereHoursInOneCoulomb, coulomb.As(ElectricChargeUnit.MilliampereHour), MilliampereHoursTolerance);
+            AssertEx.EqualTolerance(MillicoulombsInOneCoulomb, coulomb.As(ElectricChargeUnit.Millicoulomb), MillicoulombsTolerance);
+            AssertEx.EqualTolerance(NanocoulombsInOneCoulomb, coulomb.As(ElectricChargeUnit.Nanocoulomb), NanocoulombsTolerance);
+            AssertEx.EqualTolerance(PicocoulombsInOneCoulomb, coulomb.As(ElectricChargeUnit.Picocoulomb), PicocoulombsTolerance);
         }
 
         [Fact]
@@ -198,7 +258,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }
             else
@@ -247,6 +307,20 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = ElectricCharge.Parse("1 kC", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Kilocoulombs, KilocoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Kilocoulomb, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 MC", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Megacoulombs, MegacoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Megacoulomb, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = ElectricCharge.Parse("1 MA-h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MegaampereHours, MegaampereHoursTolerance);
                 Assert.Equal(ElectricChargeUnit.MegaampereHour, parsed.Unit);
@@ -261,6 +335,13 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsed = ElectricCharge.Parse("1 µC", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Microcoulombs, MicrocoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Microcoulomb, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsed = ElectricCharge.Parse("1 mA-h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilliampereHours, MilliampereHoursTolerance);
                 Assert.Equal(ElectricChargeUnit.MilliampereHour, parsed.Unit);
@@ -271,6 +352,27 @@ namespace UnitsNet.Tests
                 var parsed = ElectricCharge.Parse("1 mAh", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MilliampereHours, MilliampereHoursTolerance);
                 Assert.Equal(ElectricChargeUnit.MilliampereHour, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 mC", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Millicoulombs, MillicoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Millicoulomb, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 nC", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Nanocoulombs, NanocoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Nanocoulomb, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsed = ElectricCharge.Parse("1 pC", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.Picocoulombs, PicocoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Picocoulomb, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
@@ -306,6 +408,30 @@ namespace UnitsNet.Tests
                 Assert.True(ElectricCharge.TryParse("1 kAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KiloampereHours, KiloampereHoursTolerance);
                 Assert.Equal(ElectricChargeUnit.KiloampereHour, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParse("1 kC", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Kilocoulombs, KilocoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Kilocoulomb, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParse("1 µC", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Microcoulombs, MicrocoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Microcoulomb, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParse("1 nC", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Nanocoulombs, NanocoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Nanocoulomb, parsed.Unit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParse("1 pC", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.Picocoulombs, PicocoulombsTolerance);
+                Assert.Equal(ElectricChargeUnit.Picocoulomb, parsed.Unit);
             }
 
         }
@@ -345,6 +471,18 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = ElectricCharge.ParseUnit("kC", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.Kilocoulomb, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("MC", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.Megacoulomb, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = ElectricCharge.ParseUnit("MA-h", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricChargeUnit.MegaampereHour, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -357,6 +495,12 @@ namespace UnitsNet.Tests
 
             try
             {
+                var parsedUnit = ElectricCharge.ParseUnit("µC", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.Microcoulomb, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
                 var parsedUnit = ElectricCharge.ParseUnit("mA-h", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricChargeUnit.MilliampereHour, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -365,6 +509,24 @@ namespace UnitsNet.Tests
             {
                 var parsedUnit = ElectricCharge.ParseUnit("mAh", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(ElectricChargeUnit.MilliampereHour, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("mC", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.Millicoulomb, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("nC", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.Nanocoulomb, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
+            try
+            {
+                var parsedUnit = ElectricCharge.ParseUnit("pC", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(ElectricChargeUnit.Picocoulomb, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
         }
@@ -395,6 +557,26 @@ namespace UnitsNet.Tests
             {
                 Assert.True(ElectricCharge.TryParseUnit("kAh", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(ElectricChargeUnit.KiloampereHour, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParseUnit("kC", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.Kilocoulomb, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParseUnit("µC", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.Microcoulomb, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParseUnit("nC", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.Nanocoulomb, parsedUnit);
+            }
+
+            {
+                Assert.True(ElectricCharge.TryParseUnit("pC", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(ElectricChargeUnit.Picocoulomb, parsedUnit);
             }
 
         }
@@ -448,8 +630,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricCharge.FromAmpereHours(coulomb.AmpereHours).Coulombs, AmpereHoursTolerance);
             AssertEx.EqualTolerance(1, ElectricCharge.FromCoulombs(coulomb.Coulombs).Coulombs, CoulombsTolerance);
             AssertEx.EqualTolerance(1, ElectricCharge.FromKiloampereHours(coulomb.KiloampereHours).Coulombs, KiloampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge.FromKilocoulombs(coulomb.Kilocoulombs).Coulombs, KilocoulombsTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge.FromMegacoulombs(coulomb.Megacoulombs).Coulombs, MegacoulombsTolerance);
             AssertEx.EqualTolerance(1, ElectricCharge.FromMegaampereHours(coulomb.MegaampereHours).Coulombs, MegaampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge.FromMicrocoulombs(coulomb.Microcoulombs).Coulombs, MicrocoulombsTolerance);
             AssertEx.EqualTolerance(1, ElectricCharge.FromMilliampereHours(coulomb.MilliampereHours).Coulombs, MilliampereHoursTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge.FromMillicoulombs(coulomb.Millicoulombs).Coulombs, MillicoulombsTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge.FromNanocoulombs(coulomb.Nanocoulombs).Coulombs, NanocoulombsTolerance);
+            AssertEx.EqualTolerance(1, ElectricCharge.FromPicocoulombs(coulomb.Picocoulombs).Coulombs, PicocoulombsTolerance);
         }
 
         [Fact]
@@ -600,8 +788,14 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 A-h", new ElectricCharge(1, ElectricChargeUnit.AmpereHour).ToString());
                 Assert.Equal("1 C", new ElectricCharge(1, ElectricChargeUnit.Coulomb).ToString());
                 Assert.Equal("1 kA-h", new ElectricCharge(1, ElectricChargeUnit.KiloampereHour).ToString());
+                Assert.Equal("1 kC", new ElectricCharge(1, ElectricChargeUnit.Kilocoulomb).ToString());
+                Assert.Equal("1 MC", new ElectricCharge(1, ElectricChargeUnit.Megacoulomb).ToString());
                 Assert.Equal("1 MA-h", new ElectricCharge(1, ElectricChargeUnit.MegaampereHour).ToString());
+                Assert.Equal("1 µC", new ElectricCharge(1, ElectricChargeUnit.Microcoulomb).ToString());
                 Assert.Equal("1 mA-h", new ElectricCharge(1, ElectricChargeUnit.MilliampereHour).ToString());
+                Assert.Equal("1 mC", new ElectricCharge(1, ElectricChargeUnit.Millicoulomb).ToString());
+                Assert.Equal("1 nC", new ElectricCharge(1, ElectricChargeUnit.Nanocoulomb).ToString());
+                Assert.Equal("1 pC", new ElectricCharge(1, ElectricChargeUnit.Picocoulomb).ToString());
             }
             finally
             {
@@ -618,8 +812,14 @@ namespace UnitsNet.Tests
             Assert.Equal("1 A-h", new ElectricCharge(1, ElectricChargeUnit.AmpereHour).ToString(swedishCulture));
             Assert.Equal("1 C", new ElectricCharge(1, ElectricChargeUnit.Coulomb).ToString(swedishCulture));
             Assert.Equal("1 kA-h", new ElectricCharge(1, ElectricChargeUnit.KiloampereHour).ToString(swedishCulture));
+            Assert.Equal("1 kC", new ElectricCharge(1, ElectricChargeUnit.Kilocoulomb).ToString(swedishCulture));
+            Assert.Equal("1 MC", new ElectricCharge(1, ElectricChargeUnit.Megacoulomb).ToString(swedishCulture));
             Assert.Equal("1 MA-h", new ElectricCharge(1, ElectricChargeUnit.MegaampereHour).ToString(swedishCulture));
+            Assert.Equal("1 µC", new ElectricCharge(1, ElectricChargeUnit.Microcoulomb).ToString(swedishCulture));
             Assert.Equal("1 mA-h", new ElectricCharge(1, ElectricChargeUnit.MilliampereHour).ToString(swedishCulture));
+            Assert.Equal("1 mC", new ElectricCharge(1, ElectricChargeUnit.Millicoulomb).ToString(swedishCulture));
+            Assert.Equal("1 nC", new ElectricCharge(1, ElectricChargeUnit.Nanocoulomb).ToString(swedishCulture));
+            Assert.Equal("1 pC", new ElectricCharge(1, ElectricChargeUnit.Picocoulomb).ToString(swedishCulture));
         }
 
         [Fact]

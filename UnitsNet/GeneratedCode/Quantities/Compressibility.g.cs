@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct Compressibility : IArithmeticQuantity<Compressibility, CompressibilityUnit, double>, IEquatable<Compressibility>, IComparable, IComparable<Compressibility>, IConvertible, IFormattable
+    public readonly partial struct Compressibility :
+        IArithmeticQuantity<Compressibility, CompressibilityUnit, double>,
+        IComparable,
+        IComparable<Compressibility>,
+        IConvertible,
+        IEquatable<Compressibility>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -746,6 +752,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is CompressibilityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CompressibilityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

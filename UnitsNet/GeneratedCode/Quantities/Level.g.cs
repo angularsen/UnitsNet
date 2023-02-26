@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
     [DataContract]
-    public readonly partial struct Level : IArithmeticQuantity<Level, LevelUnit, double>, IEquatable<Level>, IComparable, IComparable<Level>, IConvertible, IFormattable
+    public readonly partial struct Level :
+        IArithmeticQuantity<Level, LevelUnit, double>,
+        IComparable,
+        IComparable<Level>,
+        IConvertible,
+        IEquatable<Level>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -659,6 +665,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is LevelUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Current_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricCurrentDensity : IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit, double>, IEquatable<ElectricCurrentDensity>, IComparable, IComparable<ElectricCurrentDensity>, IConvertible, IFormattable
+    public readonly partial struct ElectricCurrentDensity :
+        IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit, double>,
+        IComparable,
+        IComparable<ElectricCurrentDensity>,
+        IConvertible,
+        IEquatable<ElectricCurrentDensity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -673,6 +679,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricCurrentDensityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

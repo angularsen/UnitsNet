@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricResistivity : IArithmeticQuantity<ElectricResistivity, ElectricResistivityUnit, double>, IEquatable<ElectricResistivity>, IComparable, IComparable<ElectricResistivity>, IConvertible, IFormattable
+    public readonly partial struct ElectricResistivity :
+        IArithmeticQuantity<ElectricResistivity, ElectricResistivityUnit, double>,
+        IComparable,
+        IComparable<ElectricResistivity>,
+        IConvertible,
+        IEquatable<ElectricResistivity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -882,6 +888,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistivityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricResistivityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistivityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

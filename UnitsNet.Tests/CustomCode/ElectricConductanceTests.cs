@@ -33,5 +33,9 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MillisiemensInOneSiemens => 1E3;
 
         protected override double MicrosiemensInOneSiemens => 1E6;
+
+        protected override double KilosiemensInOneSiemens => 1E-3;
+
+        protected override double NanosiemensInOneSiemens => 1E9;
     }
 }

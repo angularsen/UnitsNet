@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricConductance : IArithmeticQuantity<ElectricConductance, ElectricConductanceUnit, double>, IEquatable<ElectricConductance>, IComparable, IComparable<ElectricConductance>, IConvertible, IFormattable
+    public readonly partial struct ElectricConductance :
+        IArithmeticQuantity<ElectricConductance, ElectricConductanceUnit, double>,
+        IComparable,
+        IComparable<ElectricConductance>,
+        IConvertible,
+        IEquatable<ElectricConductance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -62,8 +68,10 @@ namespace UnitsNet
             Info = new QuantityInfo<ElectricConductanceUnit>("ElectricConductance",
                 new UnitInfo<ElectricConductanceUnit>[]
                 {
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Kilosiemens, "Kilosiemens", BaseUnits.Undefined),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Microsiemens, "Microsiemens", BaseUnits.Undefined),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Millisiemens, "Millisiemens", BaseUnits.Undefined),
+                    new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Nanosiemens, "Nanosiemens", BaseUnits.Undefined),
                     new UnitInfo<ElectricConductanceUnit>(ElectricConductanceUnit.Siemens, "Siemens", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
@@ -169,6 +177,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Kilosiemens"/>
+        /// </summary>
+        public double Kilosiemens => As(ElectricConductanceUnit.Kilosiemens);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Microsiemens"/>
         /// </summary>
         public double Microsiemens => As(ElectricConductanceUnit.Microsiemens);
@@ -177,6 +190,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millisiemens"/>
         /// </summary>
         public double Millisiemens => As(ElectricConductanceUnit.Millisiemens);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Nanosiemens"/>
+        /// </summary>
+        public double Nanosiemens => As(ElectricConductanceUnit.Nanosiemens);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Siemens"/>
@@ -194,21 +212,27 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: ElectricConductanceUnit -> BaseUnit
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Kilosiemens, ElectricConductanceUnit.Siemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Siemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Siemens));
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Nanosiemens, ElectricConductanceUnit.Siemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Siemens));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Siemens, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> ElectricConductanceUnit
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Kilosiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Kilosiemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Microsiemens));
             unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Millisiemens));
+            unitConverter.SetConversionFunction<ElectricConductance>(ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Nanosiemens, quantity => quantity.ToUnit(ElectricConductanceUnit.Nanosiemens));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Kilosiemens, new CultureInfo("en-US"), false, true, new string[]{"kS"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Microsiemens, new CultureInfo("en-US"), false, true, new string[]{"µS"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Millisiemens, new CultureInfo("en-US"), false, true, new string[]{"mS"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Nanosiemens, new CultureInfo("en-US"), false, true, new string[]{"nS"});
             unitAbbreviationsCache.PerformAbbreviationMapping(ElectricConductanceUnit.Siemens, new CultureInfo("en-US"), false, true, new string[]{"S"});
         }
 
@@ -238,6 +262,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilosiemens"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductance FromKilosiemens(QuantityValue kilosiemens)
+        {
+            double value = (double) kilosiemens;
+            return new ElectricConductance(value, ElectricConductanceUnit.Kilosiemens);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Microsiemens"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -255,6 +289,16 @@ namespace UnitsNet
         {
             double value = (double) millisiemens;
             return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanosiemens"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricConductance FromNanosiemens(QuantityValue nanosiemens)
+        {
+            double value = (double) nanosiemens;
+            return new ElectricConductance(value, ElectricConductanceUnit.Nanosiemens);
         }
 
         /// <summary>
@@ -675,6 +719,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }
 
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricConductanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricConductanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <summary>
         ///     Converts this ElectricConductance to another ElectricConductance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -733,12 +786,16 @@ namespace UnitsNet
             ElectricConductance? convertedOrNull = (Unit, unit) switch
             {
                 // ElectricConductanceUnit -> BaseUnit
+                (ElectricConductanceUnit.Kilosiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((_value) * 1e3d, ElectricConductanceUnit.Siemens),
                 (ElectricConductanceUnit.Microsiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((_value) * 1e-6d, ElectricConductanceUnit.Siemens),
                 (ElectricConductanceUnit.Millisiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((_value) * 1e-3d, ElectricConductanceUnit.Siemens),
+                (ElectricConductanceUnit.Nanosiemens, ElectricConductanceUnit.Siemens) => new ElectricConductance((_value) * 1e-9d, ElectricConductanceUnit.Siemens),
 
                 // BaseUnit -> ElectricConductanceUnit
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Kilosiemens) => new ElectricConductance((_value) / 1e3d, ElectricConductanceUnit.Kilosiemens),
                 (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Microsiemens) => new ElectricConductance((_value) / 1e-6d, ElectricConductanceUnit.Microsiemens),
                 (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Millisiemens) => new ElectricConductance((_value) / 1e-3d, ElectricConductanceUnit.Millisiemens),
+                (ElectricConductanceUnit.Siemens, ElectricConductanceUnit.Nanosiemens) => new ElectricConductance((_value) / 1e-9d, ElectricConductanceUnit.Nanosiemens),
 
                 _ => null
             };

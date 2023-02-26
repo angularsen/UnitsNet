@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Linear_density
     /// </remarks>
     [DataContract]
-    public readonly partial struct LinearDensity : IArithmeticQuantity<LinearDensity, LinearDensityUnit, double>, IEquatable<LinearDensity>, IComparable, IComparable<LinearDensity>, IConvertible, IFormattable
+    public readonly partial struct LinearDensity :
+        IArithmeticQuantity<LinearDensity, LinearDensityUnit, double>,
+        IComparable,
+        IComparable<LinearDensity>,
+        IConvertible,
+        IEquatable<LinearDensity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -882,6 +888,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is LinearDensityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LinearDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminance
     /// </remarks>
     [DataContract]
-    public readonly partial struct Luminance : IArithmeticQuantity<Luminance, LuminanceUnit, double>, IEquatable<Luminance>, IComparable, IComparable<Luminance>, IConvertible, IFormattable
+    public readonly partial struct Luminance :
+        IArithmeticQuantity<Luminance, LuminanceUnit, double>,
+        IComparable,
+        IComparable<Luminance>,
+        IConvertible,
+        IEquatable<Luminance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -806,6 +812,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is LuminanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

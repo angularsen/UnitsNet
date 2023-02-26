@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one watt.
     /// </summary>
     [DataContract]
-    public readonly partial struct PowerRatio : IArithmeticQuantity<PowerRatio, PowerRatioUnit, double>, IEquatable<PowerRatio>, IComparable, IComparable<PowerRatio>, IConvertible, IFormattable
+    public readonly partial struct PowerRatio :
+        IArithmeticQuantity<PowerRatio, PowerRatioUnit, double>,
+        IComparable,
+        IComparable<PowerRatio>,
+        IConvertible,
+        IEquatable<PowerRatio>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -659,6 +665,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is PowerRatioUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerRatioUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
