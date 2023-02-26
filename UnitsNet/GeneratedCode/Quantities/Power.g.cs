@@ -84,7 +84,7 @@ namespace UnitsNet
                     new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
