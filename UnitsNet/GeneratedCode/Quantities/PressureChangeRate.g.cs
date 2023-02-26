@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).
     /// </summary>
     [DataContract]
-    public readonly partial struct PressureChangeRate : IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit, double>, IEquatable<PressureChangeRate>, IComparable, IComparable<PressureChangeRate>, IConvertible, IFormattable
+    public readonly partial struct PressureChangeRate :
+        IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit, double>,
+        IComparable,
+        IComparable<PressureChangeRate>,
+        IConvertible,
+        IEquatable<PressureChangeRate>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -893,6 +899,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is PressureChangeRateUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PressureChangeRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

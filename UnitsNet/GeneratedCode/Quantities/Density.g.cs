@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     http://en.wikipedia.org/wiki/Density
     /// </remarks>
     [DataContract]
-    public readonly partial struct Density : IArithmeticQuantity<Density, DensityUnit, double>, IEquatable<Density>, IComparable, IComparable<Density>, IConvertible, IFormattable
+    public readonly partial struct Density :
+        IArithmeticQuantity<Density, DensityUnit, double>,
+        IComparable,
+        IComparable<Density>,
+        IConvertible,
+        IEquatable<Density>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1589,6 +1595,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is DensityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

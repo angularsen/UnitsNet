@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Thrust-specific_fuel_consumption
     /// </remarks>
     [DataContract]
-    public readonly partial struct SpecificFuelConsumption : IArithmeticQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit, double>, IEquatable<SpecificFuelConsumption>, IComparable, IComparable<SpecificFuelConsumption>, IConvertible, IFormattable
+    public readonly partial struct SpecificFuelConsumption :
+        IArithmeticQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit, double>,
+        IComparable,
+        IComparable<SpecificFuelConsumption>,
+        IConvertible,
+        IEquatable<SpecificFuelConsumption>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -692,6 +698,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is SpecificFuelConsumptionUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificFuelConsumptionUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

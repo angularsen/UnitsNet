@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Solid_angle
     /// </remarks>
     [DataContract]
-    public readonly partial struct SolidAngle : IArithmeticQuantity<SolidAngle, SolidAngleUnit, double>, IEquatable<SolidAngle>, IComparable, IComparable<SolidAngle>, IConvertible, IFormattable
+    public readonly partial struct SolidAngle :
+        IArithmeticQuantity<SolidAngle, SolidAngleUnit, double>,
+        IComparable,
+        IComparable<SolidAngle>,
+        IConvertible,
+        IEquatable<SolidAngle>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -635,6 +641,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is SolidAngleUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

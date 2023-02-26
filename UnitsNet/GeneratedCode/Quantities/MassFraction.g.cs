@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Mass_fraction_(chemistry)
     /// </remarks>
     [DataContract]
-    public readonly partial struct MassFraction : IArithmeticQuantity<MassFraction, MassFractionUnit, double>, IEquatable<MassFraction>, IComparable, IComparable<MassFraction>, IConvertible, IFormattable
+    public readonly partial struct MassFraction :
+        IArithmeticQuantity<MassFraction, MassFractionUnit, double>,
+        IComparable,
+        IComparable<MassFraction>,
+        IConvertible,
+        IEquatable<MassFraction>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1072,6 +1078,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MassFractionUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFractionUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

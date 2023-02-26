@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Inductance
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricInductance : IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit, double>, IEquatable<ElectricInductance>, IComparable, IComparable<ElectricInductance>, IConvertible, IFormattable
+    public readonly partial struct ElectricInductance :
+        IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit, double>,
+        IComparable,
+        IComparable<ElectricInductance>,
+        IConvertible,
+        IEquatable<ElectricInductance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -711,6 +717,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricInductanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricInductanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

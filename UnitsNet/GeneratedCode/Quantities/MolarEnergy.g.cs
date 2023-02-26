@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     Molar energy is the amount of energy stored in 1 mole of a substance.
     /// </summary>
     [DataContract]
-    public readonly partial struct MolarEnergy : IArithmeticQuantity<MolarEnergy, MolarEnergyUnit, double>, IEquatable<MolarEnergy>, IComparable, IComparable<MolarEnergy>, IConvertible, IFormattable
+    public readonly partial struct MolarEnergy :
+        IArithmeticQuantity<MolarEnergy, MolarEnergyUnit, double>,
+        IComparable,
+        IComparable<MolarEnergy>,
+        IConvertible,
+        IEquatable<MolarEnergy>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -670,6 +676,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MolarEnergyUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEnergyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

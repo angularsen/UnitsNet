@@ -281,8 +281,10 @@
         "L": "NauticalMile",
         "T": "Hour"
       },
-      "FromUnitToBaseFunc": "{x} * 0.514444",
-      "FromBaseToUnitFunc": "{x} / 0.514444",
+      "FromUnitToBaseFunc": "{x} * (1852.0 / 3600.0)",
+      "FromBaseToUnitFunc": "{x} / (1852.0 / 3600.0)",
+      "XmlDocSummary": "The knot, by definition, is a unit of speed equals to 1 nautical mile per hour, which is exactly 1852.000 metres per hour. The length of the internationally agreed nautical mile is 1852 m. The US adopted the international definition in 1954, the UK adopted the international nautical mile definition in 1970.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Knot_(unit)",
       "Localization": [
         {
           "Culture": "en-US",

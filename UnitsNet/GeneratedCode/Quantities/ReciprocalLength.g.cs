@@ -39,7 +39,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Reciprocal_length
     /// </remarks>
     [DataContract]
-    public readonly partial struct ReciprocalLength : IArithmeticQuantity<ReciprocalLength, ReciprocalLengthUnit, double>, IEquatable<ReciprocalLength>, IComparable, IComparable<ReciprocalLength>, IConvertible, IFormattable
+    public readonly partial struct ReciprocalLength :
+        IArithmeticQuantity<ReciprocalLength, ReciprocalLengthUnit, double>,
+        IComparable,
+        IComparable<ReciprocalLength>,
+        IConvertible,
+        IEquatable<ReciprocalLength>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -806,6 +812,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalLengthUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ReciprocalLengthUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalLengthUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

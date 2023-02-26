@@ -36,7 +36,13 @@ namespace UnitsNet
     ///     The Electric Potential of a system known to use Direct Current.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricPotentialDc : IArithmeticQuantity<ElectricPotentialDc, ElectricPotentialDcUnit, double>, IEquatable<ElectricPotentialDc>, IComparable, IComparable<ElectricPotentialDc>, IConvertible, IFormattable
+    public readonly partial struct ElectricPotentialDc :
+        IArithmeticQuantity<ElectricPotentialDc, ElectricPotentialDcUnit, double>,
+        IComparable,
+        IComparable<ElectricPotentialDc>,
+        IConvertible,
+        IEquatable<ElectricPotentialDc>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -708,6 +714,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialDcUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricPotentialDcUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricPotentialDcUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
