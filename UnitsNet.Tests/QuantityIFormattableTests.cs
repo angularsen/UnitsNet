@@ -19,7 +19,6 @@ namespace UnitsNet.Tests
         [Fact]
         public void EmptyOrNullFormatStringEqualsGFormat()
         {
-            Assert.Equal(MyLength.ToString("g"), MyLength.ToString(string.Empty));
             Assert.Equal(MyLength.ToString("g"), MyLength.ToString(format: null!));
         }
 

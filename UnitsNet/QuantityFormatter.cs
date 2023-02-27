@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UnitsNet.Units;
@@ -16,7 +17,7 @@ namespace UnitsNet
         /// <summary>
         /// The available UnitsNet custom format specifiers.
         /// </summary>
-        private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'S', 's' };
+        private static readonly HashSet<char> UnitsNetFormatSpecifiers = new HashSet<char> { 'A', 'a', 'S', 's' };
 
         /// <summary>
         /// Formats a quantity using the given format string and format provider.
@@ -106,29 +107,19 @@ namespace UnitsNet
         private static string FormatUntrimmed<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
             where TUnitType : Enum
         {
+            format ??= "G";
             formatProvider ??= CultureInfo.CurrentCulture;
-
-            if (string.IsNullOrWhiteSpace(format))
-                format = "G";
 
             char formatSpecifier = format![0]; // netstandard2.0 nullable quirk
 
-            if (UnitsNetFormatSpecifiers.Any(unitsNetFormatSpecifier => unitsNetFormatSpecifier == formatSpecifier))
+            if (UnitsNetFormatSpecifiers.Contains(formatSpecifier))
             {
                 // UnitsNet custom format string
 
-                int precisionSpecifier = 0;
+                uint precisionSpecifier = 0;
 
-                switch(formatSpecifier)
-                {
-                    case 'A':
-                    case 'a':
-                    case 'S':
-                    case 's':
-                        if (format.Length > 1 && !int.TryParse(format.Substring(1), out precisionSpecifier))
-                            throw new FormatException($"The {format} format string is not supported.");
-                        break;
-                }
+                if (format.Length > 1 && !uint.TryParse(format.Substring(1), out precisionSpecifier))
+                    throw new FormatException($"The \"{format}\" format string is not supported.");
 
                 switch(formatSpecifier)
                 {
@@ -137,14 +128,14 @@ namespace UnitsNet
                         var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(quantity.Unit, formatProvider);
 
                         if (precisionSpecifier >= abbreviations.Length)
-                            throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
+                            throw new FormatException($"The \"{format}\" format string is invalid because the index is out of range.");
 
                         return abbreviations[precisionSpecifier];
                     case 'S':
                     case 's':
                         return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
                     default:
-                        throw new FormatException($"The {format} format string is not supported.");
+                        throw new FormatException($"The \"{format}\" format string is not supported.");
                 }
             }
             else
@@ -156,7 +147,8 @@ namespace UnitsNet
             }
         }
 
-        private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, int number) where TUnitType : Enum
+        private static string ToStringWithSignificantDigitsAfterRadix<TUnitType>(IQuantity<TUnitType> quantity, IFormatProvider formatProvider, uint number)
+            where TUnitType : Enum
         {
             // When a fixed number of digits after the dot is expected, double and decimal behave the same.
             var value = (double)quantity.Value;
