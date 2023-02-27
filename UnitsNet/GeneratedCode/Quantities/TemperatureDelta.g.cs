@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     Difference between two temperatures. The conversions are different than for Temperature.
     /// </summary>
     [DataContract]
-    public readonly partial struct TemperatureDelta : IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit, double>, IEquatable<TemperatureDelta>, IComparable, IComparable<TemperatureDelta>, IConvertible, IFormattable
+    public readonly partial struct TemperatureDelta :
+        IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit, double>,
+        IComparable,
+        IComparable<TemperatureDelta>,
+        IConvertible,
+        IEquatable<TemperatureDelta>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -801,6 +807,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is TemperatureDeltaUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TemperatureDeltaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

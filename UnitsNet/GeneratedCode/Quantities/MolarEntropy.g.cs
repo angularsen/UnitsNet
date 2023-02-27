@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
     [DataContract]
-    public readonly partial struct MolarEntropy : IArithmeticQuantity<MolarEntropy, MolarEntropyUnit, double>, IEquatable<MolarEntropy>, IComparable, IComparable<MolarEntropy>, IConvertible, IFormattable
+    public readonly partial struct MolarEntropy :
+        IArithmeticQuantity<MolarEntropy, MolarEntropyUnit, double>,
+        IComparable,
+        IComparable<MolarEntropy>,
+        IConvertible,
+        IEquatable<MolarEntropy>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -687,6 +693,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MolarEntropyUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

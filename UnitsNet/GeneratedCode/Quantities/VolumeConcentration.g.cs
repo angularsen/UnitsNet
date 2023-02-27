@@ -40,7 +40,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Concentration#Volume_concentration
     /// </remarks>
     [DataContract]
-    public readonly partial struct VolumeConcentration : IArithmeticQuantity<VolumeConcentration, VolumeConcentrationUnit, double>, IEquatable<VolumeConcentration>, IComparable, IComparable<VolumeConcentration>, IConvertible, IFormattable
+    public readonly partial struct VolumeConcentration :
+        IArithmeticQuantity<VolumeConcentration, VolumeConcentrationUnit, double>,
+        IComparable,
+        IComparable<VolumeConcentration>,
+        IConvertible,
+        IEquatable<VolumeConcentration>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1013,6 +1019,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is VolumeConcentrationUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeConcentrationUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

@@ -37,7 +37,14 @@ namespace UnitsNet
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
     [DataContract]
-    public readonly partial struct Power : IArithmeticQuantity<Power, PowerUnit, decimal>, IDecimalQuantity, IEquatable<Power>, IComparable, IComparable<Power>, IConvertible, IFormattable
+    public readonly partial struct Power :
+        IArithmeticQuantity<Power, PowerUnit, decimal>,
+        IDecimalQuantity,
+        IComparable,
+        IComparable<Power>,
+        IConvertible,
+        IEquatable<Power>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -85,7 +92,7 @@ namespace UnitsNet
                     new UnitInfo<PowerUnit>(PowerUnit.Petawatt, "Petawatts", BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.Picowatt, "Picowatts", BaseUnits.Undefined),
                     new UnitInfo<PowerUnit>(PowerUnit.Terawatt, "Terawatts", BaseUnits.Undefined),
-                    new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", BaseUnits.Undefined),
+                    new UnitInfo<PowerUnit>(PowerUnit.Watt, "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second)),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -168,9 +175,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
-
-        /// <inheritdoc cref="IDecimalQuantity.Value"/>
-        decimal IDecimalQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -1138,6 +1142,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        decimal IValueQuantity<decimal>.As(Enum unit)
+        {
+            if (!(unit is PowerUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

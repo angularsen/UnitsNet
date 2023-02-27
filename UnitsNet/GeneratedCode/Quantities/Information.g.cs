@@ -37,7 +37,14 @@ namespace UnitsNet
     ///     In computing and telecommunications, a unit of information is the capacity of some standard data storage system or communication channel, used to measure the capacities of other systems and channels. In information theory, units of information are also used to measure the information contents or entropy of random variables.
     /// </summary>
     [DataContract]
-    public readonly partial struct Information : IArithmeticQuantity<Information, InformationUnit, decimal>, IDecimalQuantity, IEquatable<Information>, IComparable, IComparable<Information>, IConvertible, IFormattable
+    public readonly partial struct Information :
+        IArithmeticQuantity<Information, InformationUnit, decimal>,
+        IDecimalQuantity,
+        IComparable,
+        IComparable<Information>,
+        IConvertible,
+        IEquatable<Information>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -168,9 +175,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
-
-        /// <inheritdoc cref="IDecimalQuantity.Value"/>
-        decimal IDecimalQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -1138,6 +1142,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(InformationUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        decimal IValueQuantity<decimal>.As(Enum unit)
+        {
+            if (!(unit is InformationUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(InformationUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

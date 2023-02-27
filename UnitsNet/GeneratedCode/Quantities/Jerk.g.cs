@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct Jerk : IArithmeticQuantity<Jerk, JerkUnit, double>, IEquatable<Jerk>, IComparable, IComparable<Jerk>, IConvertible, IFormattable
+    public readonly partial struct Jerk :
+        IArithmeticQuantity<Jerk, JerkUnit, double>,
+        IComparable,
+        IComparable<Jerk>,
+        IConvertible,
+        IEquatable<Jerk>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -850,6 +856,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(JerkUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is JerkUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(JerkUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

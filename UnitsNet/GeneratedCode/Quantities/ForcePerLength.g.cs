@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     The magnitude of force per unit length.
     /// </summary>
     [DataContract]
-    public readonly partial struct ForcePerLength : IArithmeticQuantity<ForcePerLength, ForcePerLengthUnit, double>, IEquatable<ForcePerLength>, IComparable, IComparable<ForcePerLength>, IConvertible, IFormattable
+    public readonly partial struct ForcePerLength :
+        IArithmeticQuantity<ForcePerLength, ForcePerLengthUnit, double>,
+        IComparable,
+        IComparable<ForcePerLength>,
+        IConvertible,
+        IEquatable<ForcePerLength>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1358,6 +1364,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ForcePerLengthUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ForcePerLengthUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

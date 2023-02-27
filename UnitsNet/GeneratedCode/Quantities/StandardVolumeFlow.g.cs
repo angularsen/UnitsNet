@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     The molar flow rate of a gas corrected to standardized conditions of temperature and pressure thus representing a fixed number of moles of gas regardless of composition and actual flow conditions.
     /// </summary>
     [DataContract]
-    public readonly partial struct StandardVolumeFlow : IArithmeticQuantity<StandardVolumeFlow, StandardVolumeFlowUnit, double>, IEquatable<StandardVolumeFlow>, IComparable, IComparable<StandardVolumeFlow>, IConvertible, IFormattable
+    public readonly partial struct StandardVolumeFlow :
+        IArithmeticQuantity<StandardVolumeFlow, StandardVolumeFlowUnit, double>,
+        IComparable,
+        IComparable<StandardVolumeFlow>,
+        IConvertible,
+        IEquatable<StandardVolumeFlow>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -801,6 +807,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(StandardVolumeFlowUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is StandardVolumeFlowUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(StandardVolumeFlowUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

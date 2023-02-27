@@ -40,7 +40,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Inverse-square_law
     /// </remarks>
     [DataContract]
-    public readonly partial struct ReciprocalArea : IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit, double>, IEquatable<ReciprocalArea>, IComparable, IComparable<ReciprocalArea>, IConvertible, IFormattable
+    public readonly partial struct ReciprocalArea :
+        IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit, double>,
+        IComparable,
+        IComparable<ReciprocalArea>,
+        IConvertible,
+        IEquatable<ReciprocalArea>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -842,6 +848,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalAreaUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ReciprocalAreaUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ReciprocalAreaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

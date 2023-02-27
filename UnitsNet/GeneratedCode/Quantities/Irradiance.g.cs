@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     Irradiance is the intensity of ultraviolet (UV) or visible light incident on a surface.
     /// </summary>
     [DataContract]
-    public readonly partial struct Irradiance : IArithmeticQuantity<Irradiance, IrradianceUnit, double>, IEquatable<Irradiance>, IComparable, IComparable<Irradiance>, IConvertible, IFormattable
+    public readonly partial struct Irradiance :
+        IArithmeticQuantity<Irradiance, IrradianceUnit, double>,
+        IComparable,
+        IComparable<Irradiance>,
+        IConvertible,
+        IEquatable<Irradiance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -896,6 +902,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradianceUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is IrradianceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradianceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

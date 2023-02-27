@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     The change in ratio per unit of time.
     /// </summary>
     [DataContract]
-    public readonly partial struct RatioChangeRate : IArithmeticQuantity<RatioChangeRate, RatioChangeRateUnit, double>, IEquatable<RatioChangeRate>, IComparable, IComparable<RatioChangeRate>, IConvertible, IFormattable
+    public readonly partial struct RatioChangeRate :
+        IArithmeticQuantity<RatioChangeRate, RatioChangeRateUnit, double>,
+        IComparable,
+        IComparable<RatioChangeRate>,
+        IConvertible,
+        IEquatable<RatioChangeRate>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -668,6 +674,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is RatioChangeRateUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioChangeRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

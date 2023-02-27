@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     Relative humidity is a ratio of the actual water vapor present in the air to the maximum water vapor in the air at the given temperature.
     /// </summary>
     [DataContract]
-    public readonly partial struct RelativeHumidity : IArithmeticQuantity<RelativeHumidity, RelativeHumidityUnit, double>, IEquatable<RelativeHumidity>, IComparable, IComparable<RelativeHumidity>, IConvertible, IFormattable
+    public readonly partial struct RelativeHumidity :
+        IArithmeticQuantity<RelativeHumidity, RelativeHumidityUnit, double>,
+        IComparable,
+        IComparable<RelativeHumidity>,
+        IConvertible,
+        IEquatable<RelativeHumidity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -649,6 +655,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RelativeHumidityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is RelativeHumidityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RelativeHumidityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

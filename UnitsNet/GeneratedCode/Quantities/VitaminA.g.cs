@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.
     /// </summary>
     [DataContract]
-    public readonly partial struct VitaminA : IArithmeticQuantity<VitaminA, VitaminAUnit, double>, IEquatable<VitaminA>, IComparable, IComparable<VitaminA>, IConvertible, IFormattable
+    public readonly partial struct VitaminA :
+        IArithmeticQuantity<VitaminA, VitaminAUnit, double>,
+        IComparable,
+        IComparable<VitaminA>,
+        IConvertible,
+        IEquatable<VitaminA>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -649,6 +655,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is VitaminAUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VitaminAUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

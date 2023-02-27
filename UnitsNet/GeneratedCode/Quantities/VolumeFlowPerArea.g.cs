@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct VolumeFlowPerArea : IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit, double>, IEquatable<VolumeFlowPerArea>, IComparable, IComparable<VolumeFlowPerArea>, IConvertible, IFormattable
+    public readonly partial struct VolumeFlowPerArea :
+        IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit, double>,
+        IComparable,
+        IComparable<VolumeFlowPerArea>,
+        IConvertible,
+        IEquatable<VolumeFlowPerArea>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -668,6 +674,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is VolumeFlowPerAreaUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumeFlowPerAreaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

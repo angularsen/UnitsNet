@@ -40,7 +40,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Thermal_Conductivity
     /// </remarks>
     [DataContract]
-    public readonly partial struct ThermalConductivity : IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit, double>, IEquatable<ThermalConductivity>, IComparable, IComparable<ThermalConductivity>, IConvertible, IFormattable
+    public readonly partial struct ThermalConductivity :
+        IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit, double>,
+        IComparable,
+        IComparable<ThermalConductivity>,
+        IConvertible,
+        IEquatable<ThermalConductivity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -671,6 +677,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ThermalConductivityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ThermalConductivityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

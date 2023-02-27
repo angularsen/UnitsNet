@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
     [DataContract]
-    public readonly partial struct Speed : IArithmeticQuantity<Speed, SpeedUnit, double>, IEquatable<Speed>, IComparable, IComparable<Speed>, IConvertible, IFormattable
+    public readonly partial struct Speed :
+        IArithmeticQuantity<Speed, SpeedUnit, double>,
+        IComparable,
+        IComparable<Speed>,
+        IConvertible,
+        IEquatable<Speed>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1283,6 +1289,15 @@ namespace UnitsNet
             return (double)As(typedUnit);
         }
 
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is SpeedUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpeedUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
+        }
+
         /// <summary>
         ///     Converts this Speed to another Speed with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1355,7 +1370,7 @@ namespace UnitsNet
                 (SpeedUnit.KilometerPerHour, SpeedUnit.MeterPerSecond) => new Speed((_value / 3600) * 1e3d, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.KilometerPerMinute, SpeedUnit.MeterPerSecond) => new Speed((_value / 60) * 1e3d, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.KilometerPerSecond, SpeedUnit.MeterPerSecond) => new Speed((_value) * 1e3d, SpeedUnit.MeterPerSecond),
-                (SpeedUnit.Knot, SpeedUnit.MeterPerSecond) => new Speed(_value * 0.514444, SpeedUnit.MeterPerSecond),
+                (SpeedUnit.Knot, SpeedUnit.MeterPerSecond) => new Speed(_value * (1852.0 / 3600.0), SpeedUnit.MeterPerSecond),
                 (SpeedUnit.Mach, SpeedUnit.MeterPerSecond) => new Speed(_value * 340.29, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MeterPerHour, SpeedUnit.MeterPerSecond) => new Speed(_value / 3600, SpeedUnit.MeterPerSecond),
                 (SpeedUnit.MeterPerMinute, SpeedUnit.MeterPerSecond) => new Speed(_value / 60, SpeedUnit.MeterPerSecond),
@@ -1389,7 +1404,7 @@ namespace UnitsNet
                 (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerHour) => new Speed((_value * 3600) / 1e3d, SpeedUnit.KilometerPerHour),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerMinute) => new Speed((_value * 60) / 1e3d, SpeedUnit.KilometerPerMinute),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.KilometerPerSecond) => new Speed((_value) / 1e3d, SpeedUnit.KilometerPerSecond),
-                (SpeedUnit.MeterPerSecond, SpeedUnit.Knot) => new Speed(_value / 0.514444, SpeedUnit.Knot),
+                (SpeedUnit.MeterPerSecond, SpeedUnit.Knot) => new Speed(_value / (1852.0 / 3600.0), SpeedUnit.Knot),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.Mach) => new Speed(_value / 340.29, SpeedUnit.Mach),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerHour) => new Speed(_value * 3600, SpeedUnit.MeterPerHour),
                 (SpeedUnit.MeterPerSecond, SpeedUnit.MeterPerMinute) => new Speed(_value * 60, SpeedUnit.MeterPerMinute),

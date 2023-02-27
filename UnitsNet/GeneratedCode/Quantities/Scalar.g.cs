@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     A way of representing a number of items.
     /// </summary>
     [DataContract]
-    public readonly partial struct Scalar : IArithmeticQuantity<Scalar, ScalarUnit, double>, IEquatable<Scalar>, IComparable, IComparable<Scalar>, IConvertible, IFormattable
+    public readonly partial struct Scalar :
+        IArithmeticQuantity<Scalar, ScalarUnit, double>,
+        IComparable,
+        IComparable<Scalar>,
+        IConvertible,
+        IEquatable<Scalar>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -649,6 +655,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ScalarUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ScalarUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

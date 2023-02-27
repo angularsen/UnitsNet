@@ -40,7 +40,14 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
     [DataContract]
-    public readonly partial struct BitRate : IArithmeticQuantity<BitRate, BitRateUnit, decimal>, IDecimalQuantity, IEquatable<BitRate>, IComparable, IComparable<BitRate>, IConvertible, IFormattable
+    public readonly partial struct BitRate :
+        IArithmeticQuantity<BitRate, BitRateUnit, decimal>,
+        IDecimalQuantity,
+        IComparable,
+        IComparable<BitRate>,
+        IConvertible,
+        IEquatable<BitRate>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -171,9 +178,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         QuantityValue IQuantity.Value => _value;
-
-        /// <inheritdoc cref="IDecimalQuantity.Value"/>
-        decimal IDecimalQuantity.Value => _value;
 
         Enum IQuantity.Unit => Unit;
 
@@ -1141,6 +1145,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        decimal IValueQuantity<decimal>.As(Enum unit)
+        {
+            if (!(unit is BitRateUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

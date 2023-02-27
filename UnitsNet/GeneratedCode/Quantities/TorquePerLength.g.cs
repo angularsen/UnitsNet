@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     The magnitude of torque per unit length.
     /// </summary>
     [DataContract]
-    public readonly partial struct TorquePerLength : IArithmeticQuantity<TorquePerLength, TorquePerLengthUnit, double>, IEquatable<TorquePerLength>, IComparable, IComparable<TorquePerLength>, IConvertible, IFormattable
+    public readonly partial struct TorquePerLength :
+        IArithmeticQuantity<TorquePerLength, TorquePerLengthUnit, double>,
+        IComparable,
+        IComparable<TorquePerLength>,
+        IConvertible,
+        IEquatable<TorquePerLength>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1032,6 +1038,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TorquePerLengthUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is TorquePerLengthUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TorquePerLengthUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

@@ -164,7 +164,7 @@ namespace UnitsNet.Tests
             var quantity = new {_quantity.Name}();
             Assert.Equal(0, quantity.Value);");
             if (_quantity.ValueType == "decimal") Writer.WL(@"
-            Assert.Equal(0m, ((IDecimalQuantity)quantity).Value);");
+            Assert.Equal(0m, ((IValueQuantity<decimal>)quantity).Value);");
             Writer.WL($@"
             Assert.Equal({_baseUnitFullName}, quantity.Unit);
         }}
@@ -278,7 +278,7 @@ namespace UnitsNet.Tests
 
             if (SupportsSIUnitSystem)
             {{
-                var value = (double) AsWithSIUnitSystem();
+                var value = Convert.ToDouble(AsWithSIUnitSystem());
                 Assert.Equal(1, value);
             }}
             else

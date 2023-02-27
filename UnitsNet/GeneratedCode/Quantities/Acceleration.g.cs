@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.
     /// </summary>
     [DataContract]
-    public readonly partial struct Acceleration : IArithmeticQuantity<Acceleration, AccelerationUnit, double>, IEquatable<Acceleration>, IComparable, IComparable<Acceleration>, IConvertible, IFormattable
+    public readonly partial struct Acceleration :
+        IArithmeticQuantity<Acceleration, AccelerationUnit, double>,
+        IComparable,
+        IComparable<Acceleration>,
+        IConvertible,
+        IEquatable<Acceleration>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -910,6 +916,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AccelerationUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is AccelerationUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AccelerationUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

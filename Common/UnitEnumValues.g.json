@@ -678,7 +678,8 @@
     "SolarRadius": 33,
     "Twip": 34,
     "UsSurveyFoot": 35,
-    "Yard": 36
+    "Yard": 36,
+    "Megameter": 41
   },
   "Level": {
     "Decibel": 1,

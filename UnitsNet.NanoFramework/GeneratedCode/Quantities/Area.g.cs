@@ -277,7 +277,7 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
-                        AreaUnit.Acre => _value * 4046.85642,
+                        AreaUnit.Acre => _value * 4046.8564224,
                         AreaUnit.Hectare => _value * 1e4,
                         AreaUnit.SquareCentimeter => _value * 1e-4,
                         AreaUnit.SquareDecimeter => _value * 1e-2,
@@ -286,11 +286,11 @@ namespace UnitsNet
                         AreaUnit.SquareKilometer => _value * 1e6,
                         AreaUnit.SquareMeter => _value,
                         AreaUnit.SquareMicrometer => _value * 1e-12,
-                        AreaUnit.SquareMile => _value * 2.59e6,
+                        AreaUnit.SquareMile => _value * 1609.344 * 1609.344,
                         AreaUnit.SquareMillimeter => _value * 1e-6,
                         AreaUnit.SquareNauticalMile => _value * 3429904,
-                        AreaUnit.SquareYard => _value * 0.836127,
-                        AreaUnit.UsSurveySquareFoot => _value * 0.09290341161,
+                        AreaUnit.SquareYard => _value * 0.9144 * 0.9144,
+                        AreaUnit.UsSurveySquareFoot => _value * (1200.0 / 3937.0) * (1200.0 / 3937.0),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
                     }
@@ -304,7 +304,7 @@ namespace UnitsNet
 
                     return unit switch
                     {
-                        AreaUnit.Acre => baseUnitValue / 4046.85642,
+                        AreaUnit.Acre => baseUnitValue / 4046.8564224,
                         AreaUnit.Hectare => baseUnitValue / 1e4,
                         AreaUnit.SquareCentimeter => baseUnitValue / 1e-4,
                         AreaUnit.SquareDecimeter => baseUnitValue / 1e-2,
@@ -313,11 +313,11 @@ namespace UnitsNet
                         AreaUnit.SquareKilometer => baseUnitValue / 1e6,
                         AreaUnit.SquareMeter => baseUnitValue,
                         AreaUnit.SquareMicrometer => baseUnitValue / 1e-12,
-                        AreaUnit.SquareMile => baseUnitValue / 2.59e6,
+                        AreaUnit.SquareMile => baseUnitValue / 1609.344 / 1609.344,
                         AreaUnit.SquareMillimeter => baseUnitValue / 1e-6,
                         AreaUnit.SquareNauticalMile => baseUnitValue / 3429904,
-                        AreaUnit.SquareYard => baseUnitValue / 0.836127,
-                        AreaUnit.UsSurveySquareFoot => baseUnitValue / 0.09290341161,
+                        AreaUnit.SquareYard => baseUnitValue / 0.9144 / 0.9144,
+                        AreaUnit.UsSurveySquareFoot => baseUnitValue / (1200.0 / 3937.0) / (1200.0 / 3937.0),
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };
                     }

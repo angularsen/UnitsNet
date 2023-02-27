@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness
     /// </summary>
     [DataContract]
-    public readonly partial struct RotationalStiffness : IArithmeticQuantity<RotationalStiffness, RotationalStiffnessUnit, double>, IEquatable<RotationalStiffness>, IComparable, IComparable<RotationalStiffness>, IConvertible, IFormattable
+    public readonly partial struct RotationalStiffness :
+        IArithmeticQuantity<RotationalStiffness, RotationalStiffnessUnit, double>,
+        IComparable,
+        IComparable<RotationalStiffness>,
+        IConvertible,
+        IEquatable<RotationalStiffness>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1257,6 +1263,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is RotationalStiffnessUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RotationalStiffnessUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

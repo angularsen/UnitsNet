@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     In electromagnetism, the current gradient describes how the current changes in time.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricCurrentGradient : IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit, double>, IEquatable<ElectricCurrentGradient>, IComparable, IComparable<ElectricCurrentGradient>, IConvertible, IFormattable
+    public readonly partial struct ElectricCurrentGradient :
+        IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit, double>,
+        IComparable,
+        IComparable<ElectricCurrentGradient>,
+        IConvertible,
+        IEquatable<ElectricCurrentGradient>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -706,6 +712,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentGradientUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricCurrentGradientUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentGradientUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

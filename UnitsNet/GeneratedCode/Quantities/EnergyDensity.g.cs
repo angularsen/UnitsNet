@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     
     /// </summary>
     [DataContract]
-    public readonly partial struct EnergyDensity : IArithmeticQuantity<EnergyDensity, EnergyDensityUnit, double>, IEquatable<EnergyDensity>, IComparable, IComparable<EnergyDensity>, IConvertible, IFormattable
+    public readonly partial struct EnergyDensity :
+        IArithmeticQuantity<EnergyDensity, EnergyDensityUnit, double>,
+        IComparable,
+        IComparable<EnergyDensity>,
+        IConvertible,
+        IEquatable<EnergyDensity>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -858,6 +864,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EnergyDensityUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is EnergyDensityUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(EnergyDensityUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

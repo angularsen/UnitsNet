@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     In mathematics, a ratio is a relationship between two numbers of the same kind (e.g., objects, persons, students, spoonfuls, units of whatever identical dimension), usually expressed as "a to b" or a:b, sometimes expressed arithmetically as a dimensionless quotient of the two that explicitly indicates how many times the first number contains the second (not necessarily an integer).
     /// </summary>
     [DataContract]
-    public readonly partial struct Ratio : IArithmeticQuantity<Ratio, RatioUnit, double>, IEquatable<Ratio>, IComparable, IComparable<Ratio>, IConvertible, IFormattable
+    public readonly partial struct Ratio :
+        IArithmeticQuantity<Ratio, RatioUnit, double>,
+        IComparable,
+        IComparable<Ratio>,
+        IConvertible,
+        IEquatable<Ratio>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -744,6 +750,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is RatioUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RatioUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

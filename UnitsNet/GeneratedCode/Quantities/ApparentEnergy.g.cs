@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.
     /// </summary>
     [DataContract]
-    public readonly partial struct ApparentEnergy : IArithmeticQuantity<ApparentEnergy, ApparentEnergyUnit, double>, IEquatable<ApparentEnergy>, IComparable, IComparable<ApparentEnergy>, IConvertible, IFormattable
+    public readonly partial struct ApparentEnergy :
+        IArithmeticQuantity<ApparentEnergy, ApparentEnergyUnit, double>,
+        IComparable,
+        IComparable<ApparentEnergy>,
+        IConvertible,
+        IEquatable<ApparentEnergy>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -687,6 +693,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ApparentEnergyUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentEnergyUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

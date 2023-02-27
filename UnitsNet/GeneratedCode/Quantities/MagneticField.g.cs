@@ -40,7 +40,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Magnetic_field
     /// </remarks>
     [DataContract]
-    public readonly partial struct MagneticField : IArithmeticQuantity<MagneticField, MagneticFieldUnit, double>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>, IConvertible, IFormattable
+    public readonly partial struct MagneticField :
+        IArithmeticQuantity<MagneticField, MagneticFieldUnit, double>,
+        IComparable,
+        IComparable<MagneticField>,
+        IConvertible,
+        IEquatable<MagneticField>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -747,6 +753,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MagneticFieldUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MagneticFieldUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

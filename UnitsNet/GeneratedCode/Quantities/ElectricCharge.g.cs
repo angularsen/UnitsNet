@@ -40,7 +40,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Electric_charge
     /// </remarks>
     [DataContract]
-    public readonly partial struct ElectricCharge : IArithmeticQuantity<ElectricCharge, ElectricChargeUnit, double>, IEquatable<ElectricCharge>, IComparable, IComparable<ElectricCharge>, IConvertible, IFormattable
+    public readonly partial struct ElectricCharge :
+        IArithmeticQuantity<ElectricCharge, ElectricChargeUnit, double>,
+        IComparable,
+        IComparable<ElectricCharge>,
+        IConvertible,
+        IEquatable<ElectricCharge>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -842,6 +848,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricChargeUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricChargeUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

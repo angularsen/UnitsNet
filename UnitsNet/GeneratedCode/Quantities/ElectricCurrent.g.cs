@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricCurrent : IArithmeticQuantity<ElectricCurrent, ElectricCurrentUnit, double>, IEquatable<ElectricCurrent>, IComparable, IComparable<ElectricCurrent>, IConvertible, IFormattable
+    public readonly partial struct ElectricCurrent :
+        IArithmeticQuantity<ElectricCurrent, ElectricCurrentUnit, double>,
+        IComparable,
+        IComparable<ElectricCurrent>,
+        IConvertible,
+        IEquatable<ElectricCurrent>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -801,6 +807,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricCurrentUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCurrentUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

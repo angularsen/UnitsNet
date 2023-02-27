@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     A property of body reflects how its mass is distributed with regard to an axis.
     /// </summary>
     [DataContract]
-    public readonly partial struct MassMomentOfInertia : IArithmeticQuantity<MassMomentOfInertia, MassMomentOfInertiaUnit, double>, IEquatable<MassMomentOfInertia>, IComparable, IComparable<MassMomentOfInertia>, IConvertible, IFormattable
+    public readonly partial struct MassMomentOfInertia :
+        IArithmeticQuantity<MassMomentOfInertia, MassMomentOfInertiaUnit, double>,
+        IComparable,
+        IComparable<MassMomentOfInertia>,
+        IConvertible,
+        IEquatable<MassMomentOfInertia>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1162,6 +1168,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassMomentOfInertiaUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is MassMomentOfInertiaUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassMomentOfInertiaUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

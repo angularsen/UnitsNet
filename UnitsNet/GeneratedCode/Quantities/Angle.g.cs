@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
     /// </summary>
     [DataContract]
-    public readonly partial struct Angle : IArithmeticQuantity<Angle, AngleUnit, double>, IEquatable<Angle>, IComparable, IComparable<Angle>, IConvertible, IFormattable
+    public readonly partial struct Angle :
+        IArithmeticQuantity<Angle, AngleUnit, double>,
+        IComparable,
+        IComparable<Angle>,
+        IConvertible,
+        IEquatable<Angle>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -946,6 +952,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is AngleUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AngleUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

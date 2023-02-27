@@ -40,7 +40,13 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
     [DataContract]
-    public readonly partial struct Capacitance : IArithmeticQuantity<Capacitance, CapacitanceUnit, double>, IEquatable<Capacitance>, IComparable, IComparable<Capacitance>, IConvertible, IFormattable
+    public readonly partial struct Capacitance :
+        IArithmeticQuantity<Capacitance, CapacitanceUnit, double>,
+        IComparable,
+        IComparable<Capacitance>,
+        IConvertible,
+        IEquatable<Capacitance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -766,6 +772,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is CapacitanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(CapacitanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

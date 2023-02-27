@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     The electrical resistance of an electrical conductor is the opposition to the passage of an electric current through that conductor.
     /// </summary>
     [DataContract]
-    public readonly partial struct ElectricResistance : IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit, double>, IEquatable<ElectricResistance>, IComparable, IComparable<ElectricResistance>, IConvertible, IFormattable
+    public readonly partial struct ElectricResistance :
+        IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit, double>,
+        IComparable,
+        IComparable<ElectricResistance>,
+        IConvertible,
+        IEquatable<ElectricResistance>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -763,6 +769,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ElectricResistanceUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricResistanceUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>

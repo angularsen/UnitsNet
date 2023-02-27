@@ -37,7 +37,13 @@ namespace UnitsNet
     ///     Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.
     /// </summary>
     [DataContract]
-    public readonly partial struct ApparentPower : IArithmeticQuantity<ApparentPower, ApparentPowerUnit, double>, IEquatable<ApparentPower>, IComparable, IComparable<ApparentPower>, IConvertible, IFormattable
+    public readonly partial struct ApparentPower :
+        IArithmeticQuantity<ApparentPower, ApparentPowerUnit, double>,
+        IComparable,
+        IComparable<ApparentPower>,
+        IConvertible,
+        IEquatable<ApparentPower>,
+        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -744,6 +750,15 @@ namespace UnitsNet
                 throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
 
             return (double)As(typedUnit);
+        }
+
+        /// <inheritdoc />
+        double IValueQuantity<double>.As(Enum unit)
+        {
+            if (!(unit is ApparentPowerUnit typedUnit))
+                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ApparentPowerUnit)} is supported.", nameof(unit));
+
+            return As(typedUnit);
         }
 
         /// <summary>
