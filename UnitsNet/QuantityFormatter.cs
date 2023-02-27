@@ -16,7 +16,7 @@ namespace UnitsNet
         /// <summary>
         /// The available UnitsNet custom format specifiers.
         /// </summary>
-        private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'Q', 'q', 'S', 's', 'U', 'u', 'V', 'v' };
+        private static readonly char[] UnitsNetFormatSpecifiers = { 'A', 'a', 'S', 's' };
 
         /// <summary>
         /// Formats a quantity using the given format string and format provider.
@@ -43,24 +43,12 @@ namespace UnitsNet
         ///         A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.</description>
         ///     </item>
         ///     <item>
-        ///         <term>"Q" or "q".</term>
-        ///         <description>The quantity name, such as "Length".</description>
-        ///     </item>
-        ///     <item>
         ///         <term>"S" or "s".</term>
         ///         <description>The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".</description>
         ///     </item>
         ///     <item>
         ///         <term>"S0", "S1", ..., "Sn" or "s0", "s1", ..., "sn".</term>
         ///         <description>The value with n significant digits after the radix followed by the unit abbreviation. "S2" and "s2" is the same as "s".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"U" or "u".</term>
-        ///         <description>The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"V" or "v".</term>
-        ///         <description>The quantity's value as a string in the default (G) format.</description>
         ///     </item>
         /// </list>
         /// </remarks>
@@ -98,24 +86,12 @@ namespace UnitsNet
         ///         A <see cref="FormatException"/> will be thrown if the requested abbreviation index does not exist.</description>
         ///     </item>
         ///     <item>
-        ///         <term>"Q" or "q".</term>
-        ///         <description>The quantity name, such as "Length".</description>
-        ///     </item>
-        ///     <item>
         ///         <term>"S" or "s".</term>
         ///         <description>The value with 2 significant digits after the radix followed by the unit abbreviation, such as "1.23 m".</description>
         ///     </item>
         ///     <item>
         ///         <term>"S0", "S1", ..., "Sn" or "s0", "s1", ..., "sn".</term>
         ///         <description>The value with n significant digits after the radix followed by the unit abbreviation. "S2" and "s2" is the same as "s".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"U" or "u".</term>
-        ///         <description>The enum name of <see cref="IQuantity{TUnitType}.Unit" />, such as "Meter".</description>
-        ///     </item>
-        ///     <item>
-        ///         <term>"V" or "v".</term>
-        ///         <description>The quantity's value as a string in the default (G) format.</description>
         ///     </item>
         /// </list>
         /// </remarks>
@@ -164,15 +140,6 @@ namespace UnitsNet
                             throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
 
                         return abbreviations[precisionSpecifier];
-                    case 'V':
-                    case 'v':
-                        return quantity.Value.ToString(formatProvider);
-                    case 'U':
-                    case 'u':
-                        return quantity.Unit.ToString();
-                    case 'Q':
-                    case 'q':
-                        return quantity.QuantityInfo.Name;
                     case 'S':
                     case 's':
                         return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);

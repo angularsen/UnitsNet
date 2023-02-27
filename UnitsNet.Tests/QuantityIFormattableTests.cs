@@ -40,18 +40,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void QFormatEqualsQuantityName()
-        {
-            Assert.Equal(Length.Info.Name, MyLength.ToString("q"));
-        }
-
-        [Fact]
-        public void UFormatEqualsUnitToString()
-        {
-            Assert.Equal(MyLength.Unit.ToString(), MyLength.ToString("u"));
-        }
-
-        [Fact]
         public void UnsupportedFormatStringThrowsException()
         {
             Assert.Throws<FormatException>(() => MyLength.ToString("z"));
