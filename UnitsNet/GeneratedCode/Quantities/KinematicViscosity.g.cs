@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -260,27 +261,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<KinematicViscosity>(KinematicViscosityUnit.SquareMeterPerSecond, KinematicViscosityUnit.Stokes, quantity => quantity.ToUnit(KinematicViscosityUnit.Stokes));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Centistokes, new CultureInfo("en-US"), false, true, new string[]{"cSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Centistokes, new CultureInfo("ru-RU"), false, true, new string[]{"сСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Decistokes, new CultureInfo("en-US"), false, true, new string[]{"dSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Decistokes, new CultureInfo("ru-RU"), false, true, new string[]{"дСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Kilostokes, new CultureInfo("en-US"), false, true, new string[]{"kSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Kilostokes, new CultureInfo("ru-RU"), false, true, new string[]{"кСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Microstokes, new CultureInfo("en-US"), false, true, new string[]{"µSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Microstokes, new CultureInfo("ru-RU"), false, true, new string[]{"мкСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Millistokes, new CultureInfo("en-US"), false, true, new string[]{"mSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Millistokes, new CultureInfo("ru-RU"), false, true, new string[]{"мСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Nanostokes, new CultureInfo("en-US"), false, true, new string[]{"nSt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Nanostokes, new CultureInfo("ru-RU"), false, true, new string[]{"нСт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ft²/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"m²/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.SquareMeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"м²/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Stokes, new CultureInfo("en-US"), false, true, new string[]{"St"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(KinematicViscosityUnit.Stokes, new CultureInfo("ru-RU"), false, true, new string[]{"Ст"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -305,7 +285,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(KinematicViscosityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(KinematicViscosityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.KinematicViscosity";
             var resourceManager = new ResourceManager(resourceName, typeof(KinematicViscosity).Assembly);
@@ -955,7 +935,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

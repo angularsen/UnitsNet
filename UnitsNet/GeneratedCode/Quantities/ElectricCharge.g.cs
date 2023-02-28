@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -276,21 +277,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCharge>(ElectricChargeUnit.Coulomb, ElectricChargeUnit.Picocoulomb, quantity => quantity.ToUnit(ElectricChargeUnit.Picocoulomb));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.AmpereHour, new CultureInfo("en-US"), false, true, new string[]{"A-h", "Ah"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Coulomb, new CultureInfo("en-US"), false, true, new string[]{"C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.KiloampereHour, new CultureInfo("en-US"), false, true, new string[]{"kA-h", "kAh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Kilocoulomb, new CultureInfo("en-US"), false, true, new string[]{"kC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.MegaampereHour, new CultureInfo("en-US"), false, true, new string[]{"MA-h", "MAh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Megacoulomb, new CultureInfo("en-US"), false, true, new string[]{"MC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Microcoulomb, new CultureInfo("en-US"), false, true, new string[]{"µC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.MilliampereHour, new CultureInfo("en-US"), false, true, new string[]{"mA-h", "mAh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Millicoulomb, new CultureInfo("en-US"), false, true, new string[]{"mC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Nanocoulomb, new CultureInfo("en-US"), false, true, new string[]{"nC"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricChargeUnit.Picocoulomb, new CultureInfo("en-US"), false, true, new string[]{"pC"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -315,7 +301,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ElectricChargeUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ElectricChargeUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ElectricCharge";
             var resourceManager = new ResourceManager(resourceName, typeof(ElectricCharge).Assembly);
@@ -989,7 +975,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

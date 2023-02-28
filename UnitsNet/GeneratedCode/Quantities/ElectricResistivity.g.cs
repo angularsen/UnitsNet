@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -300,24 +301,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricResistivity>(ElectricResistivityUnit.OhmMeter, ElectricResistivityUnit.PicoohmMeter, quantity => quantity.ToUnit(ElectricResistivityUnit.PicoohmMeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.KiloohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.KiloohmMeter, new CultureInfo("en-US"), false, true, new string[]{"kΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MegaohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MegaohmMeter, new CultureInfo("en-US"), false, true, new string[]{"MΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MicroohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MicroohmMeter, new CultureInfo("en-US"), false, true, new string[]{"µΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MilliohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.MilliohmMeter, new CultureInfo("en-US"), false, true, new string[]{"mΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.NanoohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"nΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.NanoohmMeter, new CultureInfo("en-US"), false, true, new string[]{"nΩ·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.OhmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"Ω·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.OhmMeter, new CultureInfo("en-US"), false, true, new string[]{"Ω·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.PicoohmCentimeter, new CultureInfo("en-US"), false, true, new string[]{"pΩ·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricResistivityUnit.PicoohmMeter, new CultureInfo("en-US"), false, true, new string[]{"pΩ·m"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -342,7 +325,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ElectricResistivityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ElectricResistivityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ElectricResistivity";
             var resourceManager = new ResourceManager(resourceName, typeof(ElectricResistivity).Assembly);
@@ -1052,7 +1035,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

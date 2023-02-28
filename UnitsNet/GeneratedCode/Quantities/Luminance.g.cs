@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -268,20 +269,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.Nit, quantity => quantity.ToUnit(LuminanceUnit.Nit));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"Cd/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"Cd/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"Cd/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.CenticandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"cCd/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.DecicandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"dCd/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.KilocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kCd/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MicrocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"µCd/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.MillicandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mCd/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.NanocandelaPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"nCd/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminanceUnit.Nit, new CultureInfo("en-US"), false, true, new string[]{"nt"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -306,7 +293,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(LuminanceUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(LuminanceUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Luminance";
             var resourceManager = new ResourceManager(resourceName, typeof(Luminance).Assembly);
@@ -968,7 +955,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

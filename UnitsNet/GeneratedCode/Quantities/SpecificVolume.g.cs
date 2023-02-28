@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -209,13 +210,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicFootPerPound, new CultureInfo("en-US"), false, true, new string[]{"ft³/lb"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.CubicMeterPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"m³/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificVolumeUnit.MillicubicMeterPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"mm³/kg"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -240,7 +234,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(SpecificVolumeUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(SpecificVolumeUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.SpecificVolume";
             var resourceManager = new ResourceManager(resourceName, typeof(SpecificVolume).Assembly);
@@ -818,7 +812,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

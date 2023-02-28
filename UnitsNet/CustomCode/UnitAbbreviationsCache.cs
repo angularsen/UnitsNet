@@ -43,22 +43,11 @@ namespace UnitsNet
         public UnitAbbreviationsCache()
         {
             _lookupsForCulture = new Dictionary<IFormatProvider, UnitTypeToLookup>();
-
-            LoadGeneratedAbbreviations();
         }
 
         static UnitAbbreviationsCache()
         {
             Default = new UnitAbbreviationsCache();
-        }
-
-        private void LoadGeneratedAbbreviations()
-        {
-            foreach (Type quantity in Quantity.GetQuantityTypes())
-            {
-                var mapGeneratedLocalizationsMethod = quantity.GetMethod(nameof(Length.MapGeneratedLocalizations), BindingFlags.NonPublic | BindingFlags.Static);
-                mapGeneratedLocalizationsMethod?.Invoke(null, new object[]{this});
-            }
         }
 
         /// <summary>

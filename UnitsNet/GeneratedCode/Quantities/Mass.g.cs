@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -385,70 +386,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Mass>(MassUnit.Kilogram, MassUnit.Tonne, quantity => quantity.ToUnit(MassUnit.Tonne));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Centigram, new CultureInfo("en-US"), false, true, new string[]{"cg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Centigram, new CultureInfo("ru-RU"), false, true, new string[]{"сг"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Centigram, new CultureInfo("zh-CN"), false, true, new string[]{"厘克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Decagram, new CultureInfo("en-US"), false, true, new string[]{"dag"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Decagram, new CultureInfo("ru-RU"), false, true, new string[]{"даг"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Decagram, new CultureInfo("zh-CN"), false, true, new string[]{"十克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Decigram, new CultureInfo("en-US"), false, true, new string[]{"dg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Decigram, new CultureInfo("ru-RU"), false, true, new string[]{"дг"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Decigram, new CultureInfo("zh-CN"), false, true, new string[]{"分克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.EarthMass, new CultureInfo("en-US"), false, true, new string[]{"em"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Grain, new CultureInfo("en-US"), false, true, new string[]{"gr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Gram, new CultureInfo("en-US"), false, true, new string[]{"g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Gram, new CultureInfo("ru-RU"), false, true, new string[]{"г"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Gram, new CultureInfo("zh-CN"), false, true, new string[]{"克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Hectogram, new CultureInfo("en-US"), false, true, new string[]{"hg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Hectogram, new CultureInfo("ru-RU"), false, true, new string[]{"гг"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Hectogram, new CultureInfo("zh-CN"), false, true, new string[]{"百克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilogram, new CultureInfo("en-US"), false, true, new string[]{"kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilogram, new CultureInfo("ru-RU"), false, true, new string[]{"кг"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilogram, new CultureInfo("zh-CN"), false, true, new string[]{"千克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilopound, new CultureInfo("en-US"), false, true, new string[]{"klb", "klbs", "klbm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilopound, new CultureInfo("ru-RU"), false, true, new string[]{"кфунт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilopound, new CultureInfo("zh-CN"), false, true, new string[]{"千磅"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilotonne, new CultureInfo("en-US"), false, true, new string[]{"kt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilotonne, new CultureInfo("ru-RU"), false, true, new string[]{"кт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Kilotonne, new CultureInfo("zh-CN"), false, true, new string[]{"千吨"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.LongHundredweight, new CultureInfo("en-US"), false, true, new string[]{"cwt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.LongTon, new CultureInfo("en-US"), false, true, new string[]{"long tn"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.LongTon, new CultureInfo("ru-RU"), false, true, new string[]{"тонна большая"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.LongTon, new CultureInfo("zh-CN"), false, true, new string[]{"长吨"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Megapound, new CultureInfo("en-US"), false, true, new string[]{"Mlb", "Mlbs", "Mlbm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Megapound, new CultureInfo("ru-RU"), false, true, new string[]{"Мфунт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Megapound, new CultureInfo("zh-CN"), false, true, new string[]{"兆磅"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Megatonne, new CultureInfo("en-US"), false, true, new string[]{"Mt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Megatonne, new CultureInfo("ru-RU"), false, true, new string[]{"Мт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Megatonne, new CultureInfo("zh-CN"), false, true, new string[]{"兆吨"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Microgram, new CultureInfo("en-US"), false, true, new string[]{"µg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Microgram, new CultureInfo("ru-RU"), false, true, new string[]{"мкг"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Microgram, new CultureInfo("zh-CN"), false, true, new string[]{"微克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Milligram, new CultureInfo("en-US"), false, true, new string[]{"mg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Milligram, new CultureInfo("ru-RU"), false, true, new string[]{"мг"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Milligram, new CultureInfo("zh-CN"), false, true, new string[]{"毫克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Nanogram, new CultureInfo("en-US"), false, true, new string[]{"ng"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Nanogram, new CultureInfo("ru-RU"), false, true, new string[]{"нг"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Nanogram, new CultureInfo("zh-CN"), false, true, new string[]{"纳克"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Ounce, new CultureInfo("en-US"), false, true, new string[]{"oz"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Ounce, new CultureInfo("zh-CN"), false, true, new string[]{"盎司"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("en-US"), false, true, new string[]{"lb", "lbs", "lbm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("ru-RU"), false, true, new string[]{"фунт"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Pound, new CultureInfo("zh-CN"), false, true, new string[]{"磅"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.ShortHundredweight, new CultureInfo("en-US"), false, true, new string[]{"cwt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.ShortTon, new CultureInfo("en-US"), false, true, new string[]{"t (short)", "short tn", "ST"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.ShortTon, new CultureInfo("ru-RU"), false, true, new string[]{"тонна малая"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.ShortTon, new CultureInfo("zh-CN"), false, true, new string[]{"短吨"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Slug, new CultureInfo("en-US"), false, true, new string[]{"slug"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.SolarMass, new CultureInfo("en-US"), false, true, new string[]{"M☉", "M⊙"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Stone, new CultureInfo("en-US"), false, true, new string[]{"st"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Tonne, new CultureInfo("en-US"), false, true, new string[]{"t"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Tonne, new CultureInfo("ru-RU"), false, true, new string[]{"т"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassUnit.Tonne, new CultureInfo("zh-CN"), false, true, new string[]{"吨"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -473,7 +410,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(MassUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(MassUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Mass";
             var resourceManager = new ResourceManager(resourceName, typeof(Mass).Assembly);
@@ -1315,7 +1252,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

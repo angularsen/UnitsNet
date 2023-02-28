@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -244,17 +245,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.WattHourPerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.WattHourPerSquareMeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.JoulePerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"J/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.JoulePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"J/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.JoulePerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"J/mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.KilojoulePerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kJ/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.KilowattHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kWh/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.MillijoulePerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mJ/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradiationUnit.WattHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"Wh/m²"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -279,7 +269,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(IrradiationUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(IrradiationUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Irradiation";
             var resourceManager = new ResourceManager(resourceName, typeof(Irradiation).Assembly);
@@ -905,7 +895,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

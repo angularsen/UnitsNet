@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -281,22 +282,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassFlux>(MassFluxUnit.KilogramPerSecondPerSquareMeter, MassFluxUnit.KilogramPerSecondPerSquareMillimeter, quantity => quantity.ToUnit(MassFluxUnit.KilogramPerSecondPerSquareMillimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·cm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·m⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerHourPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g·h⁻¹·mm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·cm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·m⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.GramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g·s⁻¹·mm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·cm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·m⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerHourPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·h⁻¹·mm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·cm⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·m⁻²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassFluxUnit.KilogramPerSecondPerSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·s⁻¹·mm⁻²"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -321,7 +306,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(MassFluxUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(MassFluxUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.MassFlux";
             var resourceManager = new ResourceManager(resourceName, typeof(MassFlux).Assembly);
@@ -1007,7 +992,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -300,24 +301,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Luminosity>(LuminosityUnit.Watt, LuminosityUnit.Terawatt, quantity => quantity.ToUnit(LuminosityUnit.Terawatt));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Decawatt, new CultureInfo("en-US"), false, true, new string[]{"daW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Deciwatt, new CultureInfo("en-US"), false, true, new string[]{"dW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Femtowatt, new CultureInfo("en-US"), false, true, new string[]{"fW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Gigawatt, new CultureInfo("en-US"), false, true, new string[]{"GW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Kilowatt, new CultureInfo("en-US"), false, true, new string[]{"kW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Megawatt, new CultureInfo("en-US"), false, true, new string[]{"MW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Microwatt, new CultureInfo("en-US"), false, true, new string[]{"µW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Milliwatt, new CultureInfo("en-US"), false, true, new string[]{"mW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Nanowatt, new CultureInfo("en-US"), false, true, new string[]{"nW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Petawatt, new CultureInfo("en-US"), false, true, new string[]{"PW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Picowatt, new CultureInfo("en-US"), false, true, new string[]{"pW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.SolarLuminosity, new CultureInfo("en-US"), false, true, new string[]{"L⊙"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Terawatt, new CultureInfo("en-US"), false, true, new string[]{"TW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LuminosityUnit.Watt, new CultureInfo("en-US"), false, true, new string[]{"W"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -342,7 +325,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(LuminosityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(LuminosityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Luminosity";
             var resourceManager = new ResourceManager(resourceName, typeof(Luminosity).Assembly);
@@ -1052,7 +1035,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

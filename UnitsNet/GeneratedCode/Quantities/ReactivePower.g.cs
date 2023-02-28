@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -217,14 +218,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReactivePower>(ReactivePowerUnit.VoltampereReactive, ReactivePowerUnit.MegavoltampereReactive, quantity => quantity.ToUnit(ReactivePowerUnit.MegavoltampereReactive));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.GigavoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"Gvar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.KilovoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"kvar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.MegavoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"Mvar"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReactivePowerUnit.VoltampereReactive, new CultureInfo("en-US"), false, true, new string[]{"var"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -249,7 +242,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ReactivePowerUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ReactivePowerUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ReactivePower";
             var resourceManager = new ResourceManager(resourceName, typeof(ReactivePower).Assembly);
@@ -839,7 +832,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

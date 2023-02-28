@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -233,22 +234,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotential>(ElectricPotentialUnit.Volt, ElectricPotentialUnit.Nanovolt, quantity => quantity.ToUnit(ElectricPotentialUnit.Nanovolt));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Kilovolt, new CultureInfo("en-US"), false, true, new string[]{"kV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Kilovolt, new CultureInfo("ru-RU"), false, true, new string[]{"кВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Megavolt, new CultureInfo("en-US"), false, true, new string[]{"MV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Megavolt, new CultureInfo("ru-RU"), false, true, new string[]{"МВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Microvolt, new CultureInfo("en-US"), false, true, new string[]{"µV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Microvolt, new CultureInfo("ru-RU"), false, true, new string[]{"мкВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Millivolt, new CultureInfo("en-US"), false, true, new string[]{"mV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Millivolt, new CultureInfo("ru-RU"), false, true, new string[]{"мВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Nanovolt, new CultureInfo("en-US"), false, true, new string[]{"nV"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Nanovolt, new CultureInfo("ru-RU"), false, true, new string[]{"нВ"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Volt, new CultureInfo("en-US"), false, true, new string[]{"V"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialUnit.Volt, new CultureInfo("ru-RU"), false, true, new string[]{"В"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -273,7 +258,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ElectricPotentialUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ElectricPotentialUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ElectricPotential";
             var resourceManager = new ResourceManager(resourceName, typeof(ElectricPotential).Assembly);
@@ -887,7 +872,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

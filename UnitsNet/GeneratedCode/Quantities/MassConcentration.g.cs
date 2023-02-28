@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -580,63 +581,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassConcentration>(MassConcentrationUnit.KilogramPerCubicMeter, MassConcentrationUnit.TonnePerCubicMillimeter, quantity => quantity.ToUnit(MassConcentrationUnit.TonnePerCubicMillimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.CentigramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"cg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.CentigramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"cg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.CentigramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"cg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.CentigramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"cg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.DecigramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"dg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.DecigramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"dg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.DecigramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"dg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.DecigramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"dg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"г/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"g/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"g/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"g/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.GramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"g/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"kg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilopoundPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kip/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.KilopoundPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"kip/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"µg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"мкг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"µg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"µg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"µg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MicrogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"µg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"мг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"mg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"mg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"mg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.MilligramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"mg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.NanogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"ng/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.NanogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"ng/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.NanogramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"ng/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.NanogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"ng/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.OuncePerImperialGallon, new CultureInfo("en-US"), false, true, new string[]{"oz/gal (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.OuncePerUSGallon, new CultureInfo("en-US"), false, true, new string[]{"oz/gal (U.S.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PicogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"pg/dL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PicogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"pg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PicogramPerMicroliter, new CultureInfo("en-US"), false, true, new string[]{"pg/μL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PicogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"pg/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PoundPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"lb/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PoundPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"lb/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PoundPerImperialGallon, new CultureInfo("en-US"), false, true, new string[]{"ppg (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.PoundPerUSGallon, new CultureInfo("en-US"), false, true, new string[]{"ppg (U.S.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.SlugPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"slug/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.TonnePerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"t/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.TonnePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"t/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassConcentrationUnit.TonnePerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"t/mm³"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -661,7 +605,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(MassConcentrationUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(MassConcentrationUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.MassConcentration";
             var resourceManager = new ResourceManager(resourceName, typeof(MassConcentration).Assembly);
@@ -1791,7 +1735,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -353,34 +354,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TorquePerLength>(TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.TonneForceMillimeterPerMeter, quantity => quantity.ToUnit(TorquePerLengthUnit.TonneForceMillimeterPerMeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilogramForceCentimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·cm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilogramForceMeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·m/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilogramForceMillimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·mm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilonewtonCentimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kN·cm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilonewtonMeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kN·m/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilonewtonMeterPerMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кН·м/м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilonewtonMillimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kN·mm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilopoundForceFootPerFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf·ft/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.KilopoundForceInchPerFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf·in/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.MeganewtonCentimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"MN·cm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.MeganewtonMeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"MN·m/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.MeganewtonMeterPerMeter, new CultureInfo("ru-RU"), false, true, new string[]{"МН·м/м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.MeganewtonMillimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"MN·mm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.MegapoundForceFootPerFoot, new CultureInfo("en-US"), false, true, new string[]{"Mlbf·ft/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.MegapoundForceInchPerFoot, new CultureInfo("en-US"), false, true, new string[]{"Mlbf·in/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.NewtonCentimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"N·cm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.NewtonMeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"N·m/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.NewtonMeterPerMeter, new CultureInfo("ru-RU"), false, true, new string[]{"Н·м/м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.NewtonMillimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"N·mm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.PoundForceFootPerFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf·ft/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.PoundForceInchPerFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf·in/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.TonneForceCentimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"tf·cm/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.TonneForceMeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"tf·m/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorquePerLengthUnit.TonneForceMillimeterPerMeter, new CultureInfo("en-US"), false, true, new string[]{"tf·mm/m"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -405,7 +378,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(TorquePerLengthUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(TorquePerLengthUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.TorquePerLength";
             var resourceManager = new ResourceManager(resourceName, typeof(TorquePerLength).Assembly);
@@ -1199,7 +1172,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

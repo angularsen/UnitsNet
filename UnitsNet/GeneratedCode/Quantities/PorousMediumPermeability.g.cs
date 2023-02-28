@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -228,15 +229,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareCentimeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareCentimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.Darcy, new CultureInfo("en-US"), false, true, new string[]{"D"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.Microdarcy, new CultureInfo("en-US"), false, true, new string[]{"µD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.Millidarcy, new CultureInfo("en-US"), false, true, new string[]{"mD"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.SquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PorousMediumPermeabilityUnit.SquareMeter, new CultureInfo("en-US"), false, true, new string[]{"m²"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -261,7 +253,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(PorousMediumPermeabilityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(PorousMediumPermeabilityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.PorousMediumPermeability";
             var resourceManager = new ResourceManager(resourceName, typeof(PorousMediumPermeability).Assembly);
@@ -863,7 +855,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

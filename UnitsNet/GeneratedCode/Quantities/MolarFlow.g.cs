@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -257,19 +258,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarFlow>(MolarFlowUnit.MolePerSecond, MolarFlowUnit.PoundMolePerSecond, quantity => quantity.ToUnit(MolarFlowUnit.PoundMolePerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.KilomolePerHour, new CultureInfo("en-US"), false, true, new string[]{"kkmol/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.KilomolePerMinute, new CultureInfo("en-US"), false, true, new string[]{"kmol/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.KilomolePerSecond, new CultureInfo("en-US"), false, true, new string[]{"kmol/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.MolePerHour, new CultureInfo("en-US"), false, true, new string[]{"kmol/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.MolePerMinute, new CultureInfo("en-US"), false, true, new string[]{"mol/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.MolePerSecond, new CultureInfo("en-US"), false, true, new string[]{"mol/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.PoundMolePerHour, new CultureInfo("en-US"), false, true, new string[]{"lbmol/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.PoundMolePerMinute, new CultureInfo("en-US"), false, true, new string[]{"lbmol/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarFlowUnit.PoundMolePerSecond, new CultureInfo("en-US"), false, true, new string[]{"lbmol/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -294,7 +282,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(MolarFlowUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(MolarFlowUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.MolarFlow";
             var resourceManager = new ResourceManager(resourceName, typeof(MolarFlow).Assembly);
@@ -944,7 +932,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

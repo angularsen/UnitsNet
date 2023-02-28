@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -217,14 +218,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.RevolutionPerSecondSquared));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.DegreePerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"°/s²", "deg/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RadianPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"rad/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new CultureInfo("en-US"), false, true, new string[]{"rpm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(RotationalAccelerationUnit.RevolutionPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"r/s²"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -249,7 +242,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(RotationalAccelerationUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(RotationalAccelerationUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.RotationalAcceleration";
             var resourceManager = new ResourceManager(resourceName, typeof(RotationalAcceleration).Assembly);
@@ -839,7 +832,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

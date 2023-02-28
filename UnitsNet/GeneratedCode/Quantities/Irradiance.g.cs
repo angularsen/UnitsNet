@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -297,24 +298,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Irradiance>(IrradianceUnit.WattPerSquareMeter, IrradianceUnit.WattPerSquareCentimeter, quantity => quantity.ToUnit(IrradianceUnit.WattPerSquareCentimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.KilowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.KilowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MegawattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MegawattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"MW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MicrowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MicrowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"µW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MilliwattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.MilliwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.NanowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"nW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.NanowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"nW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.PicowattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"pW/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.PicowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"pW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.WattPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"W/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(IrradianceUnit.WattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"W/m²"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -339,7 +322,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(IrradianceUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(IrradianceUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Irradiance";
             var resourceManager = new ResourceManager(resourceName, typeof(Irradiance).Assembly);
@@ -1049,7 +1032,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

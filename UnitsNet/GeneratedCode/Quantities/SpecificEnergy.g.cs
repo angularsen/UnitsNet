@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -428,40 +429,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.WattHourPerPound, quantity => quantity.ToUnit(SpecificEnergyUnit.WattHourPerPound));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.BtuPerPound, new CultureInfo("en-US"), false, true, new string[]{"btu/lb"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.CaloriePerGram, new CultureInfo("en-US"), false, true, new string[]{"cal/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"GWd/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"GWd/ST"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"GWd/t"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"GWh/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.GigawattHourPerPound, new CultureInfo("en-US"), false, true, new string[]{"GWh/lbs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.JoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"J/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilocaloriePerGram, new CultureInfo("en-US"), false, true, new string[]{"kcal/g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilojoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kWd/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"kWd/ST"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"kWd/t"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"kWh/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.KilowattHourPerPound, new CultureInfo("en-US"), false, true, new string[]{"kWh/lbs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegajoulePerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegaJoulePerTonne, new CultureInfo("en-US"), false, true, new string[]{"MJ/t"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MWd/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"MWd/ST"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"MWd/t"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"MWh/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.MegawattHourPerPound, new CultureInfo("en-US"), false, true, new string[]{"MWh/lbs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"TWd/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"TWd/ST"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.TerawattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"TWd/t"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattDayPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"Wd/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattDayPerShortTon, new CultureInfo("en-US"), false, true, new string[]{"Wd/ST"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattDayPerTonne, new CultureInfo("en-US"), false, true, new string[]{"Wd/t"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattHourPerKilogram, new CultureInfo("en-US"), false, true, new string[]{"Wh/kg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEnergyUnit.WattHourPerPound, new CultureInfo("en-US"), false, true, new string[]{"Wh/lbs"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -486,7 +453,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(SpecificEnergyUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(SpecificEnergyUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.SpecificEnergy";
             var resourceManager = new ResourceManager(resourceName, typeof(SpecificEnergy).Assembly);
@@ -1388,7 +1355,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

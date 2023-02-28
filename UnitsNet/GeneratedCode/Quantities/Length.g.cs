@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -481,81 +482,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Yard, quantity => quantity.ToUnit(LengthUnit.Yard));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Angstrom, new CultureInfo("en-US"), false, true, new string[]{"Å", "A"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.AstronomicalUnit, new CultureInfo("en-US"), false, true, new string[]{"au", "ua"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("en-US"), false, true, new string[]{"cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Centimeter, new CultureInfo("zh-CN"), false, true, new string[]{"厘米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Chain, new CultureInfo("en-US"), false, true, new string[]{"ch"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DataMile, new CultureInfo("en-US"), false, true, new string[]{"DM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("en-US"), false, true, new string[]{"dam"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("ru-RU"), false, true, new string[]{"дам"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decameter, new CultureInfo("zh-CN"), false, true, new string[]{"十米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("en-US"), false, true, new string[]{"dm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("ru-RU"), false, true, new string[]{"дм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Decimeter, new CultureInfo("zh-CN"), false, true, new string[]{"分米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DtpPica, new CultureInfo("en-US"), false, true, new string[]{"pica"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.DtpPoint, new CultureInfo("en-US"), false, true, new string[]{"pt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Fathom, new CultureInfo("en-US"), false, true, new string[]{"fathom"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("en-US"), false, true, new string[]{"ft", "'", "′"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("ru-RU"), false, true, new string[]{"фут"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Foot, new CultureInfo("zh-CN"), false, true, new string[]{"英尺"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hand, new CultureInfo("en-US"), false, true, new string[]{"h", "hh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("en-US"), false, true, new string[]{"hm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("ru-RU"), false, true, new string[]{"гм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Hectometer, new CultureInfo("zh-CN"), false, true, new string[]{"百米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("en-US"), false, true, new string[]{"in", "\"", "″"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Inch, new CultureInfo("zh-CN"), false, true, new string[]{"英寸"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.KilolightYear, new CultureInfo("en-US"), false, true, new string[]{"kly"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("en-US"), false, true, new string[]{"km"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("ru-RU"), false, true, new string[]{"км"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kilometer, new CultureInfo("zh-CN"), false, true, new string[]{"千米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Kiloparsec, new CultureInfo("en-US"), false, true, new string[]{"kpc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.LightYear, new CultureInfo("en-US"), false, true, new string[]{"ly"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.MegalightYear, new CultureInfo("en-US"), false, true, new string[]{"Mly"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("en-US"), false, true, new string[]{"Mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("ru-RU"), false, true, new string[]{"Мм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megameter, new CultureInfo("zh-CN"), false, true, new string[]{"兆米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Megaparsec, new CultureInfo("en-US"), false, true, new string[]{"Mpc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("en-US"), false, true, new string[]{"m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("ru-RU"), false, true, new string[]{"м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Meter, new CultureInfo("zh-CN"), false, true, new string[]{"米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("en-US"), false, true, new string[]{"µin"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("ru-RU"), false, true, new string[]{"микродюйм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Microinch, new CultureInfo("zh-CN"), false, true, new string[]{"微英寸"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("en-US"), false, true, new string[]{"µm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("ru-RU"), false, true, new string[]{"мкм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Micrometer, new CultureInfo("zh-CN"), false, true, new string[]{"微米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("en-US"), false, true, new string[]{"mil"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("ru-RU"), false, true, new string[]{"мил"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mil, new CultureInfo("zh-CN"), false, true, new string[]{"密耳"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("en-US"), false, true, new string[]{"mi"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("ru-RU"), false, true, new string[]{"миля"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Mile, new CultureInfo("zh-CN"), false, true, new string[]{"英里"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("en-US"), false, true, new string[]{"mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("ru-RU"), false, true, new string[]{"мм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Millimeter, new CultureInfo("zh-CN"), false, true, new string[]{"毫米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("en-US"), false, true, new string[]{"nm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("ru-RU"), false, true, new string[]{"нм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Nanometer, new CultureInfo("zh-CN"), false, true, new string[]{"纳米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("en-US"), false, true, new string[]{"NM"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("ru-RU"), false, true, new string[]{"мил"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.NauticalMile, new CultureInfo("zh-CN"), false, true, new string[]{"纳米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Parsec, new CultureInfo("en-US"), false, true, new string[]{"pc"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.PrinterPica, new CultureInfo("en-US"), false, true, new string[]{"pica"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.PrinterPoint, new CultureInfo("en-US"), false, true, new string[]{"pt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Shackle, new CultureInfo("en-US"), false, true, new string[]{"shackle"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.SolarRadius, new CultureInfo("en-US"), false, true, new string[]{"R⊙"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Twip, new CultureInfo("en-US"), false, true, new string[]{"twip"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.UsSurveyFoot, new CultureInfo("en-US"), false, true, new string[]{"ftUS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("en-US"), false, true, new string[]{"yd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("ru-RU"), false, true, new string[]{"ярд"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LengthUnit.Yard, new CultureInfo("zh-CN"), false, true, new string[]{"码"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -580,7 +506,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(LengthUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(LengthUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Length";
             var resourceManager = new ResourceManager(resourceName, typeof(Length).Assembly);
@@ -1566,7 +1492,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -233,16 +234,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ThermalResistance>(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, ThermalResistanceUnit.SquareMeterKelvinPerWatt, quantity => quantity.ToUnit(ThermalResistanceUnit.SquareMeterKelvinPerWatt));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, new CultureInfo("en-US"), false, true, new string[]{"Hrft²°F/Btu"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, new CultureInfo("en-US"), false, true, new string[]{"cm²Hr°C/kcal"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, new CultureInfo("en-US"), false, true, new string[]{"cm²K/W"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, new CultureInfo("en-US"), false, true, new string[]{"m²°C/W"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, new CultureInfo("en-US"), false, true, new string[]{"m²K/kW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ThermalResistanceUnit.SquareMeterKelvinPerWatt, new CultureInfo("en-US"), false, true, new string[]{"m²K/W"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -267,7 +258,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ThermalResistanceUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ThermalResistanceUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ThermalResistance";
             var resourceManager = new ResourceManager(resourceName, typeof(ThermalResistance).Assembly);
@@ -881,7 +872,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

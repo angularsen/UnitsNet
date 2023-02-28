@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -265,20 +266,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureChangeRate>(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, quantity => quantity.ToUnit(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"c°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"da°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"d°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.DegreeCelsiusPerMinute, new CultureInfo("en-US"), false, true, new string[]{"°C/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"h°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"k°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µ°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"m°C/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, new CultureInfo("en-US"), false, true, new string[]{"n°C/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -303,7 +290,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(TemperatureChangeRateUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(TemperatureChangeRateUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.TemperatureChangeRate";
             var resourceManager = new ResourceManager(resourceName, typeof(TemperatureChangeRate).Assembly);
@@ -965,7 +952,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

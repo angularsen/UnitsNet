@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -394,36 +395,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Terawatt, quantity => quantity.ToUnit(PowerUnit.Terawatt));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.BoilerHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(S)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.BritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"Btu/h", "Btu/hr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Decawatt, new CultureInfo("en-US"), false, true, new string[]{"daW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Deciwatt, new CultureInfo("en-US"), false, true, new string[]{"dW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.ElectricalHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(E)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Femtowatt, new CultureInfo("en-US"), false, true, new string[]{"fW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.GigajoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"GJ/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Gigawatt, new CultureInfo("en-US"), false, true, new string[]{"GW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.HydraulicHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(H)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.JoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"J/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.KilobritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"kBtu/h", "kBtu/hr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.KilojoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"kJ/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Kilowatt, new CultureInfo("en-US"), false, true, new string[]{"kW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MechanicalHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(I)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MegabritishThermalUnitPerHour, new CultureInfo("en-US"), false, true, new string[]{"MBtu/h", "MBtu/hr"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MegajoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"MJ/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Megawatt, new CultureInfo("en-US"), false, true, new string[]{"MW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MetricHorsepower, new CultureInfo("en-US"), false, true, new string[]{"hp(M)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Microwatt, new CultureInfo("en-US"), false, true, new string[]{"µW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.MillijoulePerHour, new CultureInfo("en-US"), false, true, new string[]{"mJ/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Milliwatt, new CultureInfo("en-US"), false, true, new string[]{"mW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Nanowatt, new CultureInfo("en-US"), false, true, new string[]{"nW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Petawatt, new CultureInfo("en-US"), false, true, new string[]{"PW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Picowatt, new CultureInfo("en-US"), false, true, new string[]{"pW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Terawatt, new CultureInfo("en-US"), false, true, new string[]{"TW"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerUnit.Watt, new CultureInfo("en-US"), false, true, new string[]{"W"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -448,7 +419,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(PowerUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(PowerUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Power";
             var resourceManager = new ResourceManager(resourceName, typeof(Power).Assembly);
@@ -1313,7 +1284,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -596,65 +597,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Density>(DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMillimeter, quantity => quantity.ToUnit(DensityUnit.TonnePerCubicMillimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.CentigramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"cg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.CentigramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"cg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.CentigramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"cg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.DecigramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"dg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.DecigramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"dg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.DecigramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"dg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"g/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"g/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"г/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"g/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"g/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.GramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"g/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"kg/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilopoundPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kip/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.KilopoundPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"kip/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"µg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"мкг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"µg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"µg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MicrogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"µg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerCubicMeter, new CultureInfo("ru-RU"), false, true, new string[]{"мг/м³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"mg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"mg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.MilligramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"mg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.NanogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"ng/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.NanogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"ng/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.NanogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"ng/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PicogramPerDeciliter, new CultureInfo("en-US"), false, true, new string[]{"pg/dl"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PicogramPerLiter, new CultureInfo("en-US"), false, true, new string[]{"pg/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PicogramPerMilliliter, new CultureInfo("en-US"), false, true, new string[]{"pg/ml"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"lb/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"lb/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"lb/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"lb/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"lb/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerImperialGallon, new CultureInfo("en-US"), false, true, new string[]{"ppg (imp.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.PoundPerUSGallon, new CultureInfo("en-US"), false, true, new string[]{"ppg (U.S.)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"slug/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"slug/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"slug/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"slug/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.SlugPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"slug/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"t/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"t/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"t/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"t/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(DensityUnit.TonnePerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"t/mm³"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -679,7 +621,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(DensityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(DensityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Density";
             var resourceManager = new ResourceManager(resourceName, typeof(Density).Assembly);
@@ -1833,7 +1775,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

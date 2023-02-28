@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 #if NET7_0_OR_GREATER
 using System.Numerics;
@@ -122,7 +123,7 @@ namespace UnitsNet
         /// 
         /// </summary>
         /// <returns></returns>
-        string[] GetAbbreviations(CultureInfo? culture = null);
+        IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null);
     }
 
     /// <summary>

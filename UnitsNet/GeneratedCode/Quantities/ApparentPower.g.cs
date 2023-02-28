@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -233,16 +234,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ApparentPower>(ApparentPowerUnit.Voltampere, ApparentPowerUnit.Millivoltampere, quantity => quantity.ToUnit(ApparentPowerUnit.Millivoltampere));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Gigavoltampere, new CultureInfo("en-US"), false, true, new string[]{"GVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Kilovoltampere, new CultureInfo("en-US"), false, true, new string[]{"kVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Megavoltampere, new CultureInfo("en-US"), false, true, new string[]{"MVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Microvoltampere, new CultureInfo("en-US"), false, true, new string[]{"µVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Millivoltampere, new CultureInfo("en-US"), false, true, new string[]{"mVA"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ApparentPowerUnit.Voltampere, new CultureInfo("en-US"), false, true, new string[]{"VA"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -267,7 +258,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ApparentPowerUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ApparentPowerUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ApparentPower";
             var resourceManager = new ResourceManager(resourceName, typeof(ApparentPower).Assembly);
@@ -881,7 +872,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

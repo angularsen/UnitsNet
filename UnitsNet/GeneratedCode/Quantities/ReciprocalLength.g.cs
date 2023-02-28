@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -268,20 +269,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ReciprocalLength>(ReciprocalLengthUnit.InverseMeter, ReciprocalLengthUnit.InverseYard, quantity => quantity.ToUnit(ReciprocalLengthUnit.InverseYard));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm⁻¹", "1/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseFoot, new CultureInfo("en-US"), false, true, new string[]{"ft⁻¹", "1/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseInch, new CultureInfo("en-US"), false, true, new string[]{"in⁻¹", "1/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMeter, new CultureInfo("en-US"), false, true, new string[]{"m⁻¹", "1/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMicroinch, new CultureInfo("en-US"), false, true, new string[]{"µin⁻¹", "1/µin"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMil, new CultureInfo("en-US"), false, true, new string[]{"mil⁻¹", "1/mil"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMile, new CultureInfo("en-US"), false, true, new string[]{"mi⁻¹", "1/mi"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mm⁻¹", "1/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseUsSurveyFoot, new CultureInfo("en-US"), false, true, new string[]{"ftUS⁻¹", "1/ftUS"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ReciprocalLengthUnit.InverseYard, new CultureInfo("en-US"), false, true, new string[]{"yd⁻¹", "1/yd"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -306,7 +293,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ReciprocalLengthUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ReciprocalLengthUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ReciprocalLength";
             var resourceManager = new ResourceManager(resourceName, typeof(ReciprocalLength).Assembly);
@@ -968,7 +955,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

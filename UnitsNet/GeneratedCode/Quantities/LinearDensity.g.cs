@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -300,24 +301,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<LinearDensity>(LinearDensityUnit.KilogramPerMeter, LinearDensityUnit.PoundPerInch, quantity => quantity.ToUnit(LinearDensityUnit.PoundPerInch));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.GramPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.GramPerMeter, new CultureInfo("en-US"), false, true, new string[]{"g/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.GramPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.KilogramPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.KilogramPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kg/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.KilogramPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.MicrogramPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µg/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.MicrogramPerMeter, new CultureInfo("en-US"), false, true, new string[]{"µg/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.MicrogramPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"µg/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.MilligramPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mg/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.MilligramPerMeter, new CultureInfo("en-US"), false, true, new string[]{"mg/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.MilligramPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mg/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.PoundPerFoot, new CultureInfo("en-US"), false, true, new string[]{"lb/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LinearDensityUnit.PoundPerInch, new CultureInfo("en-US"), false, true, new string[]{"lb/in"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -342,7 +325,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(LinearDensityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(LinearDensityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.LinearDensity";
             var resourceManager = new ResourceManager(resourceName, typeof(LinearDensity).Assembly);
@@ -1052,7 +1035,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -217,14 +218,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricCurrentGradient>(ElectricCurrentGradientUnit.AmperePerSecond, ElectricCurrentGradientUnit.AmperePerNanosecond, quantity => quantity.ToUnit(ElectricCurrentGradientUnit.AmperePerNanosecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"A/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerMillisecond, new CultureInfo("en-US"), false, true, new string[]{"A/ms"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerNanosecond, new CultureInfo("en-US"), false, true, new string[]{"A/ns"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricCurrentGradientUnit.AmperePerSecond, new CultureInfo("en-US"), false, true, new string[]{"A/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -249,7 +242,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ElectricCurrentGradientUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ElectricCurrentGradientUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ElectricCurrentGradient";
             var resourceManager = new ResourceManager(resourceName, typeof(ElectricCurrentGradient).Assembly);
@@ -839,7 +832,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

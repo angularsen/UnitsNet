@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -244,17 +245,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Capacitance>(CapacitanceUnit.Farad, CapacitanceUnit.Picofarad, quantity => quantity.ToUnit(CapacitanceUnit.Picofarad));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Farad, new CultureInfo("en-US"), false, true, new string[]{"F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Kilofarad, new CultureInfo("en-US"), false, true, new string[]{"kF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Megafarad, new CultureInfo("en-US"), false, true, new string[]{"MF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Microfarad, new CultureInfo("en-US"), false, true, new string[]{"µF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Millifarad, new CultureInfo("en-US"), false, true, new string[]{"mF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Nanofarad, new CultureInfo("en-US"), false, true, new string[]{"nF"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(CapacitanceUnit.Picofarad, new CultureInfo("en-US"), false, true, new string[]{"pF"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -279,7 +269,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(CapacitanceUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(CapacitanceUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Capacitance";
             var resourceManager = new ResourceManager(resourceName, typeof(Capacitance).Assembly);
@@ -905,7 +895,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

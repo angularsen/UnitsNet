@@ -37,11 +37,12 @@ namespace CodeGen.Generators.UnitsNetGen
             Writer.WL(GeneratedFileHeader);
             Writer.WL(@"
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -360,25 +361,6 @@ namespace UnitsNet
             Writer.WL($@"
         }}
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {{");
-            foreach(Unit unit in _quantity.Units)
-            {
-                foreach(Localization localization in unit.Localization)
-                {
-                    // All units must have a unit abbreviation, so fallback to "" for units with no abbreviations defined in JSON
-                    var abbreviationParams = localization.Abbreviations.Any() ?
-                        string.Join(", ", localization.Abbreviations.Select(abbr => $@"""{abbr}""")) :
-                        $@"""""";
-
-                    Writer.WL($@"
-            unitAbbreviationsCache.PerformAbbreviationMapping({_unitEnumName}.{unit.SingularName}, new CultureInfo(""{localization.Culture}""), false, {unit.AllowAbbreviationLookup.ToString().ToLower()}, new string[]{{{abbreviationParams}}});");
-                }
-            }
-
-            Writer.WL($@"
-        }}
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -403,7 +385,7 @@ namespace UnitsNet
         /// <param name=""unit""></param>
         /// <param name=""culture""></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations({_unitEnumName} unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations({_unitEnumName} unit, CultureInfo? culture = null)
         {{
             const string resourceName = $""UnitsNet.GeneratedCode.Resources.{_quantity.Name}"";
             var resourceManager = new ResourceManager(resourceName, typeof({_quantity.Name}).Assembly);
@@ -1119,7 +1101,7 @@ namespace UnitsNet
             Writer.WL($@"
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -537,54 +538,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerLiter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DecawattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"daW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DecawattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"daW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DecawattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"daW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DecawattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"daW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DeciwattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"dW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DeciwattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"dW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DeciwattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"dW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.DeciwattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"dW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.GigawattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"GW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.GigawattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"GW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.GigawattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"GW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.GigawattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"GW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.KilowattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.KilowattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"kW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.KilowattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.KilowattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"kW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MegawattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"MW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MegawattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"MW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MegawattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"MW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MegawattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"MW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MicrowattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"µW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MicrowattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"µW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MicrowattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"µW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MicrowattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"µW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MilliwattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"mW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MilliwattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"mW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MilliwattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"mW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.MilliwattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"mW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.NanowattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"nW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.NanowattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"nW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.NanowattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"nW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.NanowattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"nW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.PicowattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"pW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.PicowattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"pW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.PicowattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"pW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.PicowattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"pW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.TerawattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"TW/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.TerawattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"TW/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.TerawattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"TW/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.TerawattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"TW/l"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.WattPerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"W/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.WattPerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"W/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.WattPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"W/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PowerDensityUnit.WattPerLiter, new CultureInfo("en-US"), false, true, new string[]{"W/l"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -609,7 +562,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(PowerDensityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(PowerDensityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.PowerDensity";
             var resourceManager = new ResourceManager(resourceName, typeof(PowerDensity).Assembly);
@@ -1679,7 +1632,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

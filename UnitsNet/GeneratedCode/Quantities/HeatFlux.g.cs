@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -329,28 +330,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareInch, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareInch));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerHourSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"BTU/h·ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerMinuteSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"BTU/min·ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerSecondSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"BTU/s·ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.BtuPerSecondSquareInch, new CultureInfo("en-US"), false, true, new string[]{"BTU/s·in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.CaloriePerSecondSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cal/s·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.CentiwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"cW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.DeciwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"dW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.KilocaloriePerHourSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kcal/h·m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kcal/s·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.KilowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.MicrowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"µW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.MilliwattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.NanowattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"nW/m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.PoundForcePerFootSecond, new CultureInfo("en-US"), false, true, new string[]{"lbf/(ft·s)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.PoundPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"lb/s³", "lbm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.WattPerSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"W/ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.WattPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"W/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(HeatFluxUnit.WattPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"W/m²"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -375,7 +354,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(HeatFluxUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(HeatFluxUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.HeatFlux";
             var resourceManager = new ResourceManager(resourceName, typeof(HeatFlux).Assembly);
@@ -1133,7 +1112,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

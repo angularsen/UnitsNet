@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -324,27 +325,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificWeight>(SpecificWeightUnit.NewtonPerCubicMeter, SpecificWeightUnit.TonneForcePerCubicMillimeter, quantity => quantity.ToUnit(SpecificWeightUnit.TonneForcePerCubicMillimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilogramForcePerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilogramForcePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilogramForcePerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilonewtonPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kN/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilonewtonPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kN/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilonewtonPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kN/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilopoundForcePerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.KilopoundForcePerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"kipf/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.MeganewtonPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"MN/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.NewtonPerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"N/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.NewtonPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"N/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.NewtonPerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"N/mm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.PoundForcePerCubicFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf/ft³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.PoundForcePerCubicInch, new CultureInfo("en-US"), false, true, new string[]{"lbf/in³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.TonneForcePerCubicCentimeter, new CultureInfo("en-US"), false, true, new string[]{"tf/cm³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.TonneForcePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"tf/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificWeightUnit.TonneForcePerCubicMillimeter, new CultureInfo("en-US"), false, true, new string[]{"tf/mm³"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -369,7 +349,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(SpecificWeightUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(SpecificWeightUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.SpecificWeight";
             var resourceManager = new ResourceManager(resourceName, typeof(SpecificWeight).Assembly);
@@ -1115,7 +1095,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

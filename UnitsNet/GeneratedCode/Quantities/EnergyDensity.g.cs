@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -281,22 +282,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<EnergyDensity>(EnergyDensityUnit.JoulePerCubicMeter, EnergyDensityUnit.WattHourPerCubicMeter, quantity => quantity.ToUnit(EnergyDensityUnit.WattHourPerCubicMeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.GigajoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"GJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.GigawattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"GWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.JoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"J/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.KilojoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.KilowattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"kWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.MegajoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"MJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.MegawattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"MWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.PetajoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"PJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.PetawattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"PWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.TerajoulePerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"TJ/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.TerawattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"TWh/m³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(EnergyDensityUnit.WattHourPerCubicMeter, new CultureInfo("en-US"), false, true, new string[]{"Wh/m³"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -321,7 +306,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(EnergyDensityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(EnergyDensityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.EnergyDensity";
             var resourceManager = new ResourceManager(resourceName, typeof(EnergyDensity).Assembly);
@@ -1007,7 +992,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -297,38 +298,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PressureChangeRate>(PressureChangeRateUnit.PascalPerSecond, PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, quantity => quantity.ToUnit(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.AtmospherePerSecond, new CultureInfo("en-US"), false, true, new string[]{"atm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.AtmospherePerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"атм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.KilopascalPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kPa/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.KilopascalPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"кПа/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.KilopascalPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kPa/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.KilopascalPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"кПа/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, new CultureInfo("en-US"), false, true, new string[]{"ksi/min", "kipf/in²/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.KilopoundForcePerSquareInchPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"ksi/мин", "kipf/in²/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ksi/s", "kipf/in²/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.KilopoundForcePerSquareInchPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"ksi/с", "kipf/in²/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MegapascalPerMinute, new CultureInfo("en-US"), false, true, new string[]{"MPa/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MegapascalPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"МПа/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MegapascalPerSecond, new CultureInfo("en-US"), false, true, new string[]{"MPa/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MegapascalPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"МПа/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, new CultureInfo("en-US"), false, true, new string[]{"Mpsi/min", "Mlb/in²/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MegapoundForcePerSquareInchPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"Мpsi/мин", "Мlb/in²/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mpsi/s", "Mlb/in²/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MegapoundForcePerSquareInchPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"Мpsi/с", "Мlb/in²/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mmHg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.MillimeterOfMercuryPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"mmHg/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.PascalPerMinute, new CultureInfo("en-US"), false, true, new string[]{"Pa/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.PascalPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"Па/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.PascalPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Pa/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.PascalPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"Па/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, new CultureInfo("en-US"), false, true, new string[]{"psi/min", "lb/in²/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"psi/мин", "lb/in²/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, new CultureInfo("en-US"), false, true, new string[]{"psi/s", "lb/in²/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"psi/с", "lb/in²/с"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -353,7 +322,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(PressureChangeRateUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(PressureChangeRateUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.PressureChangeRate";
             var resourceManager = new ResourceManager(resourceName, typeof(PressureChangeRate).Assembly);
@@ -1063,7 +1032,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

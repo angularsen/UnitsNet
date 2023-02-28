@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -262,20 +263,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Temperature>(TemperatureUnit.Kelvin, TemperatureUnit.SolarTemperature, quantity => quantity.ToUnit(TemperatureUnit.SolarTemperature));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeDelisle, new CultureInfo("en-US"), false, true, new string[]{"°De"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeNewton, new CultureInfo("en-US"), false, true, new string[]{"°N"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeRankine, new CultureInfo("en-US"), false, true, new string[]{"°R"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeReaumur, new CultureInfo("en-US"), false, true, new string[]{"°Ré"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.DegreeRoemer, new CultureInfo("en-US"), false, true, new string[]{"°Rø"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.Kelvin, new CultureInfo("en-US"), false, true, new string[]{"K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.MillidegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"m°C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureUnit.SolarTemperature, new CultureInfo("en-US"), false, true, new string[]{"T⊙"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -300,7 +287,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(TemperatureUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(TemperatureUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Temperature";
             var resourceManager = new ResourceManager(resourceName, typeof(Temperature).Assembly);
@@ -916,7 +903,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

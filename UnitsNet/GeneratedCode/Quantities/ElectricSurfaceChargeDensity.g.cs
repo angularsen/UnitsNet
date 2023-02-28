@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -212,13 +213,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricSurfaceChargeDensity>(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, quantity => quantity.ToUnit(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"C/cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, new CultureInfo("en-US"), false, true, new string[]{"C/in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"C/m²"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -243,7 +237,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ElectricSurfaceChargeDensityUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ElectricSurfaceChargeDensityUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ElectricSurfaceChargeDensity";
             var resourceManager = new ResourceManager(resourceName, typeof(ElectricSurfaceChargeDensity).Assembly);
@@ -821,7 +815,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

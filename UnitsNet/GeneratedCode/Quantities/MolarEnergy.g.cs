@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -209,13 +210,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarEnergy>(MolarEnergyUnit.JoulePerMole, MolarEnergyUnit.MegajoulePerMole, quantity => quantity.ToUnit(MolarEnergyUnit.MegajoulePerMole));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.JoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"J/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.KilojoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"kJ/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarEnergyUnit.MegajoulePerMole, new CultureInfo("en-US"), false, true, new string[]{"MJ/mol"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -240,7 +234,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(MolarEnergyUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(MolarEnergyUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.MolarEnergy";
             var resourceManager = new ResourceManager(resourceName, typeof(MolarEnergy).Assembly);
@@ -818,7 +812,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

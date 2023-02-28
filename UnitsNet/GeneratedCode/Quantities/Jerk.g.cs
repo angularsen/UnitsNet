@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -273,32 +274,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Jerk>(JerkUnit.MeterPerSecondCubed, JerkUnit.StandardGravitiesPerSecond, quantity => quantity.ToUnit(JerkUnit.StandardGravitiesPerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.CentimeterPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"cm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.CentimeterPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"см/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.DecimeterPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"dm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.DecimeterPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"дм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.FootPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"ft/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.FootPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"фут/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.InchPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"in/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.InchPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.KilometerPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"km/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.KilometerPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"км/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MeterPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"m/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MeterPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"м/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MicrometerPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"µm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MicrometerPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"мкм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MillimeterPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"mm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MillimeterPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"мм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MillistandardGravitiesPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.MillistandardGravitiesPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мg/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.NanometerPerSecondCubed, new CultureInfo("en-US"), false, true, new string[]{"nm/s³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.NanometerPerSecondCubed, new CultureInfo("ru-RU"), false, true, new string[]{"нм/с³"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.StandardGravitiesPerSecond, new CultureInfo("en-US"), false, true, new string[]{"g/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(JerkUnit.StandardGravitiesPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"g/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -323,7 +298,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(JerkUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(JerkUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Jerk";
             var resourceManager = new ResourceManager(resourceName, typeof(Jerk).Assembly);
@@ -997,7 +972,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

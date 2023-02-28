@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -449,67 +450,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Speed>(SpeedUnit.MeterPerSecond, SpeedUnit.YardPerSecond, quantity => quantity.ToUnit(SpeedUnit.YardPerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"cm/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"см/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"cm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"см/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"cm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.CentimeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"см/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.DecimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"dm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.DecimeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"дм/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.DecimeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.DecimeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"дм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerHour, new CultureInfo("en-US"), false, true, new string[]{"ft/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"фут/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerMinute, new CultureInfo("en-US"), false, true, new string[]{"ft/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"фут/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ft/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.FootPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"фут/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.InchPerHour, new CultureInfo("en-US"), false, true, new string[]{"in/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.InchPerMinute, new CultureInfo("en-US"), false, true, new string[]{"in/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.InchPerSecond, new CultureInfo("en-US"), false, true, new string[]{"in/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerHour, new CultureInfo("en-US"), false, true, new string[]{"km/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"км/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerMinute, new CultureInfo("en-US"), false, true, new string[]{"km/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"км/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerSecond, new CultureInfo("en-US"), false, true, new string[]{"km/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.KilometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"км/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("en-US"), false, true, new string[]{"kn", "kt", "knot", "knots"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Knot, new CultureInfo("ru-RU"), false, true, new string[]{"уз."});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("en-US"), false, true, new string[]{"M", "Ma", "MN", "MACH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.Mach, new CultureInfo("ru-RU"), false, true, new string[]{"мах"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"m/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"м/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"m/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"м/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"m/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"м/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MicrometerPerMinute, new CultureInfo("en-US"), false, true, new string[]{"µm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MicrometerPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"мкм/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MicrometerPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MicrometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мкм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MilePerHour, new CultureInfo("en-US"), false, true, new string[]{"mph"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MilePerHour, new CultureInfo("ru-RU"), false, true, new string[]{"миль/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"mm/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"мм/ч"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"mm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"мм/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.MillimeterPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"мм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.NanometerPerMinute, new CultureInfo("en-US"), false, true, new string[]{"nm/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.NanometerPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"нм/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.NanometerPerSecond, new CultureInfo("en-US"), false, true, new string[]{"nm/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.NanometerPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"нм/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.UsSurveyFootPerHour, new CultureInfo("en-US"), false, true, new string[]{"ftUS/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.UsSurveyFootPerMinute, new CultureInfo("en-US"), false, true, new string[]{"ftUS/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.UsSurveyFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"ftUS/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.YardPerHour, new CultureInfo("en-US"), false, true, new string[]{"yd/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.YardPerMinute, new CultureInfo("en-US"), false, true, new string[]{"yd/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpeedUnit.YardPerSecond, new CultureInfo("en-US"), false, true, new string[]{"yd/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -534,7 +474,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(SpeedUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(SpeedUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Speed";
             var resourceManager = new ResourceManager(resourceName, typeof(Speed).Assembly);
@@ -1472,7 +1412,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

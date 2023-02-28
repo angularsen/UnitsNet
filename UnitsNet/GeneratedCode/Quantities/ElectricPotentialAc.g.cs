@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -225,15 +226,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialAc>(ElectricPotentialAcUnit.VoltAc, ElectricPotentialAcUnit.MillivoltAc, quantity => quantity.ToUnit(ElectricPotentialAcUnit.MillivoltAc));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.KilovoltAc, new CultureInfo("en-US"), false, true, new string[]{"kVac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MegavoltAc, new CultureInfo("en-US"), false, true, new string[]{"MVac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MicrovoltAc, new CultureInfo("en-US"), false, true, new string[]{"µVac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.MillivoltAc, new CultureInfo("en-US"), false, true, new string[]{"mVac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialAcUnit.VoltAc, new CultureInfo("en-US"), false, true, new string[]{"Vac"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -258,7 +250,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ElectricPotentialAcUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ElectricPotentialAcUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ElectricPotentialAc";
             var resourceManager = new ResourceManager(resourceName, typeof(ElectricPotentialAc).Assembly);
@@ -860,7 +852,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

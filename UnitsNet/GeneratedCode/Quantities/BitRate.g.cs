@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -397,36 +398,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.TerabytePerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.BitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"bit/s", "bps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.BytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"B/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.ExabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Ebit/s", "Ebps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.ExabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"EB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.ExbibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Eibit/s", "Eibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.ExbibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"EiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.GibibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Gibit/s", "Gibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.GibibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"GiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.GigabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Gbit/s", "Gbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.GigabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"GB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.KibibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Kibit/s", "Kibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.KibibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"KiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.KilobitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kbit/s", "kbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.KilobytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"kB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.MebibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mibit/s", "Mibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.MebibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"MiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.MegabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Mbit/s", "Mbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.MegabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"MB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.PebibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Pibit/s", "Pibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.PebibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"PiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.PetabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Pbit/s", "Pbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.PetabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"PB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.TebibitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Tibit/s", "Tibps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.TebibytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"TiB/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.TerabitPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Tbit/s", "Tbps"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(BitRateUnit.TerabytePerSecond, new CultureInfo("en-US"), false, true, new string[]{"TB/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -451,7 +422,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(BitRateUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(BitRateUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.BitRate";
             var resourceManager = new ResourceManager(resourceName, typeof(BitRate).Assembly);
@@ -1316,7 +1287,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

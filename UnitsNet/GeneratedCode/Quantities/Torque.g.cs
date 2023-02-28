@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -385,38 +386,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Torque>(TorqueUnit.NewtonMeter, TorqueUnit.TonneForceMillimeter, quantity => quantity.ToUnit(TorqueUnit.TonneForceMillimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.GramForceCentimeter, new CultureInfo("en-US"), false, true, new string[]{"gf·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.GramForceMeter, new CultureInfo("en-US"), false, true, new string[]{"gf·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.GramForceMillimeter, new CultureInfo("en-US"), false, true, new string[]{"gf·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilogramForceCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilogramForceMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilogramForceMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilonewtonCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kN·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilonewtonMeter, new CultureInfo("en-US"), false, true, new string[]{"kN·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilonewtonMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кН·м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilonewtonMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kN·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilopoundForceFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf·ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.KilopoundForceInch, new CultureInfo("en-US"), false, true, new string[]{"kipf·in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MeganewtonCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MN·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MeganewtonMeter, new CultureInfo("en-US"), false, true, new string[]{"MN·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MeganewtonMeter, new CultureInfo("ru-RU"), false, true, new string[]{"МН·м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MeganewtonMillimeter, new CultureInfo("en-US"), false, true, new string[]{"MN·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MegapoundForceFoot, new CultureInfo("en-US"), false, true, new string[]{"Mlbf·ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.MegapoundForceInch, new CultureInfo("en-US"), false, true, new string[]{"Mlbf·in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.NewtonCentimeter, new CultureInfo("en-US"), false, true, new string[]{"N·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.NewtonMeter, new CultureInfo("en-US"), false, true, new string[]{"N·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.NewtonMeter, new CultureInfo("ru-RU"), false, true, new string[]{"Н·м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.NewtonMillimeter, new CultureInfo("en-US"), false, true, new string[]{"N·mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.PoundalFoot, new CultureInfo("en-US"), false, true, new string[]{"pdl·ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.PoundForceFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf·ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.PoundForceInch, new CultureInfo("en-US"), false, true, new string[]{"lbf·in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.TonneForceCentimeter, new CultureInfo("en-US"), false, true, new string[]{"tf·cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.TonneForceMeter, new CultureInfo("en-US"), false, true, new string[]{"tf·m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TorqueUnit.TonneForceMillimeter, new CultureInfo("en-US"), false, true, new string[]{"tf·mm"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -441,7 +410,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(TorqueUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(TorqueUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Torque";
             var resourceManager = new ResourceManager(resourceName, typeof(Torque).Assembly);
@@ -1283,7 +1252,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

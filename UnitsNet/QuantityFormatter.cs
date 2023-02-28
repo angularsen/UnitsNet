@@ -149,7 +149,7 @@ namespace UnitsNet
                     case 'a':
                         var abbreviations = quantity.GetAbbreviations((CultureInfo)formatProvider);
 
-                        if (precisionSpecifier >= abbreviations.Length)
+                        if (precisionSpecifier >= abbreviations.Count)
                             throw new FormatException($"The {format} format string is invalid because the abbreviation index does not exist.");
 
                         return abbreviations[precisionSpecifier];

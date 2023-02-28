@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -409,38 +410,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MassMomentOfInertia>(MassMomentOfInertiaUnit.KilogramSquareMeter, MassMomentOfInertiaUnit.TonneSquareMilimeter, quantity => quantity.ToUnit(MassMomentOfInertiaUnit.TonneSquareMilimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.GramSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"g·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.GramSquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"g·dm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.GramSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"g·m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.GramSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"g·mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.KilogramSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.KilogramSquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·dm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.KilogramSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kg·m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.KilogramSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kg·mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kt·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"kt·dm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.KilotonneSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"kt·m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.KilotonneSquareMilimeter, new CultureInfo("en-US"), false, true, new string[]{"kt·mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"Mt·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"Mt·dm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.MegatonneSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"Mt·m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.MegatonneSquareMilimeter, new CultureInfo("en-US"), false, true, new string[]{"Mt·mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.MilligramSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mg·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.MilligramSquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"mg·dm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.MilligramSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"mg·m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.MilligramSquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mg·mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.PoundSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"lb·ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.PoundSquareInch, new CultureInfo("en-US"), false, true, new string[]{"lb·in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.SlugSquareFoot, new CultureInfo("en-US"), false, true, new string[]{"slug·ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.SlugSquareInch, new CultureInfo("en-US"), false, true, new string[]{"slug·in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.TonneSquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"t·cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.TonneSquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"t·dm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.TonneSquareMeter, new CultureInfo("en-US"), false, true, new string[]{"t·m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MassMomentOfInertiaUnit.TonneSquareMilimeter, new CultureInfo("en-US"), false, true, new string[]{"t·mm²"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -465,7 +434,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(MassMomentOfInertiaUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(MassMomentOfInertiaUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.MassMomentOfInertia";
             var resourceManager = new ResourceManager(resourceName, typeof(MassMomentOfInertia).Assembly);
@@ -1343,7 +1312,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

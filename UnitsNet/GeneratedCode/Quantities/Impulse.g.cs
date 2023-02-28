@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -289,23 +290,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Impulse>(ImpulseUnit.NewtonSecond, ImpulseUnit.SlugFootPerSecond, quantity => quantity.ToUnit(ImpulseUnit.SlugFootPerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.CentinewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"cN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.DecanewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"daN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.DecinewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"dN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.KilogramMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kg·m/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.KilonewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"kN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.MeganewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"MN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.MicronewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"µN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.MillinewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"mN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.NanonewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"nN·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.NewtonSecond, new CultureInfo("en-US"), false, true, new string[]{"N·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.PoundFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"lb·ft/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.PoundForceSecond, new CultureInfo("en-US"), false, true, new string[]{"lbf·s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ImpulseUnit.SlugFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"slug·ft/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -330,7 +314,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ImpulseUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ImpulseUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Impulse";
             var resourceManager = new ResourceManager(resourceName, typeof(Impulse).Assembly);
@@ -1028,7 +1012,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

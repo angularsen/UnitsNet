@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -345,30 +346,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricPotentialChangeRate>(ElectricPotentialChangeRateUnit.VoltPerSecond, ElectricPotentialChangeRateUnit.VoltPerMinute, quantity => quantity.ToUnit(ElectricPotentialChangeRateUnit.VoltPerMinute));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.KilovoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"kV/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.KilovoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"kV/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.KilovoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kV/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.KilovoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kV/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MegavoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"MV/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MegavoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"MV/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MegavoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"MV/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MegavoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"MV/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MicrovoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"µV/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MicrovoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"µV/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MicrovoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"µV/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MicrovoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µV/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MillivoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"mV/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MillivoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"mV/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MillivoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"mV/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.MillivoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mV/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.VoltPerHour, new CultureInfo("en-US"), false, true, new string[]{"V/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.VoltPerMicrosecond, new CultureInfo("en-US"), false, true, new string[]{"V/μs"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.VoltPerMinute, new CultureInfo("en-US"), false, true, new string[]{"V/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricPotentialChangeRateUnit.VoltPerSecond, new CultureInfo("en-US"), false, true, new string[]{"V/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -393,7 +370,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ElectricPotentialChangeRateUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ElectricPotentialChangeRateUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ElectricPotentialChangeRate";
             var resourceManager = new ResourceManager(resourceName, typeof(ElectricPotentialChangeRate).Assembly);
@@ -1175,7 +1152,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

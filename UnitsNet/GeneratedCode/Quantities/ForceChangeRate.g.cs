@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -305,25 +306,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForceChangeRate>(ForceChangeRateUnit.NewtonPerSecond, ForceChangeRateUnit.PoundForcePerSecond, quantity => quantity.ToUnit(ForceChangeRateUnit.PoundForcePerSecond));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.CentinewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"cN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.DecanewtonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"daN/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.DecanewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"daN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.DecinewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"dN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.KilonewtonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kN/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.KilonewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.KilopoundForcePerMinute, new CultureInfo("en-US"), false, true, new string[]{"kipf/min", "kip/min", "k/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.KilopoundForcePerSecond, new CultureInfo("en-US"), false, true, new string[]{"kipf/s", "kip/s", "k/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.MicronewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"µN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.MillinewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.NanonewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"nN/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.NewtonPerMinute, new CultureInfo("en-US"), false, true, new string[]{"N/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.NewtonPerSecond, new CultureInfo("en-US"), false, true, new string[]{"N/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.PoundForcePerMinute, new CultureInfo("en-US"), false, true, new string[]{"lbf/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForceChangeRateUnit.PoundForcePerSecond, new CultureInfo("en-US"), false, true, new string[]{"lbf/s"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -348,7 +330,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ForceChangeRateUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ForceChangeRateUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ForceChangeRate";
             var resourceManager = new ResourceManager(resourceName, typeof(ForceChangeRate).Assembly);
@@ -1070,7 +1052,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

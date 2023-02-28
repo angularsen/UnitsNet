@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -348,30 +349,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<VolumeConcentration>(VolumeConcentrationUnit.DecimalFraction, VolumeConcentrationUnit.PicolitersPerMililiter, quantity => quantity.ToUnit(VolumeConcentrationUnit.PicolitersPerMililiter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.CentilitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"cL/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.CentilitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"cL/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.DecilitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"dL/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.DecilitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"dL/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.DecimalFraction, new CultureInfo("en-US"), false, true, new string[]{""});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.LitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"L/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.LitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"L/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.MicrolitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"µL/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.MicrolitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"µL/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.MillilitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"mL/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.MillilitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"mL/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.NanolitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"nL/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.NanolitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"nL/mL"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PartPerBillion, new CultureInfo("en-US"), false, true, new string[]{"ppb"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PartPerMillion, new CultureInfo("en-US"), false, true, new string[]{"ppm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PartPerThousand, new CultureInfo("en-US"), false, true, new string[]{"‰"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PartPerTrillion, new CultureInfo("en-US"), false, true, new string[]{"ppt"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.Percent, new CultureInfo("en-US"), false, true, new string[]{"%", "% (v/v)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PicolitersPerLiter, new CultureInfo("en-US"), false, true, new string[]{"pL/L"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(VolumeConcentrationUnit.PicolitersPerMililiter, new CultureInfo("en-US"), false, true, new string[]{"pL/mL"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -396,7 +373,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(VolumeConcentrationUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(VolumeConcentrationUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.VolumeConcentration";
             var resourceManager = new ResourceManager(resourceName, typeof(VolumeConcentration).Assembly);
@@ -1178,7 +1155,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

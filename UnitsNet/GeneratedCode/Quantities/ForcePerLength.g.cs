@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -489,54 +490,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ForcePerLength>(ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.TonneForcePerMillimeter, quantity => quantity.ToUnit(ForcePerLengthUnit.TonneForcePerMillimeter));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.CentinewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cN/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.CentinewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"cN/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.CentinewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"cN/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.DecanewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"daN/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.DecanewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"daN/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.DecanewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"daN/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.DecinewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"dN/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.DecinewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"dN/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.DecinewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"dN/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilogramForcePerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilogramForcePerCentimeter, new CultureInfo("ru-RU"), false, true, new string[]{"кгс/см"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilogramForcePerMeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilogramForcePerMeter, new CultureInfo("ru-RU"), false, true, new string[]{"кгс/м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilogramForcePerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kgf/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilogramForcePerMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"кгс/мм"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilonewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"kN/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilonewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"kN/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilonewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"kN/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilopoundForcePerFoot, new CultureInfo("en-US"), false, true, new string[]{"kipf/ft", "kip/ft", "k/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.KilopoundForcePerInch, new CultureInfo("en-US"), false, true, new string[]{"kipf/in", "kip/in", "k/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MeganewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"MN/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MeganewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"MN/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MeganewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"MN/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MicronewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"µN/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MicronewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"µN/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MicronewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"µN/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MillinewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"mN/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MillinewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"mN/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.MillinewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mN/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.NanonewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"nN/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.NanonewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"nN/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.NanonewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"nN/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.NewtonPerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"N/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.NewtonPerMeter, new CultureInfo("en-US"), false, true, new string[]{"N/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.NewtonPerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"N/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.PoundForcePerFoot, new CultureInfo("en-US"), false, true, new string[]{"lbf/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.PoundForcePerInch, new CultureInfo("en-US"), false, true, new string[]{"lbf/in"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.PoundForcePerYard, new CultureInfo("en-US"), false, true, new string[]{"lbf/yd"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.TonneForcePerCentimeter, new CultureInfo("en-US"), false, true, new string[]{"tf/cm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.TonneForcePerCentimeter, new CultureInfo("ru-RU"), false, true, new string[]{"тс/см"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.TonneForcePerMeter, new CultureInfo("en-US"), false, true, new string[]{"tf/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.TonneForcePerMeter, new CultureInfo("ru-RU"), false, true, new string[]{"тс/м"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.TonneForcePerMillimeter, new CultureInfo("en-US"), false, true, new string[]{"tf/mm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ForcePerLengthUnit.TonneForcePerMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"тс/мм"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -561,7 +514,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ForcePerLengthUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ForcePerLengthUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ForcePerLength";
             var resourceManager = new ResourceManager(resourceName, typeof(ForcePerLength).Assembly);
@@ -1559,7 +1512,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

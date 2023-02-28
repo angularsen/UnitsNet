@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -297,51 +298,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Area>(AreaUnit.SquareMeter, AreaUnit.UsSurveySquareFoot, quantity => quantity.ToUnit(AreaUnit.UsSurveySquareFoot));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Acre, new CultureInfo("en-US"), false, true, new string[]{"ac"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Acre, new CultureInfo("ru-RU"), false, true, new string[]{"акр"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Acre, new CultureInfo("zh-CN"), false, true, new string[]{"英亩"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Hectare, new CultureInfo("en-US"), false, true, new string[]{"ha"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Hectare, new CultureInfo("ru-RU"), false, true, new string[]{"га"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.Hectare, new CultureInfo("zh-CN"), false, true, new string[]{"英亩"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareCentimeter, new CultureInfo("en-US"), false, true, new string[]{"cm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareCentimeter, new CultureInfo("ru-RU"), false, true, new string[]{"см²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareCentimeter, new CultureInfo("zh-CN"), false, true, new string[]{"平方厘米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareDecimeter, new CultureInfo("en-US"), false, true, new string[]{"dm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareDecimeter, new CultureInfo("ru-RU"), false, true, new string[]{"дм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareDecimeter, new CultureInfo("zh-CN"), false, true, new string[]{"平方分米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareFoot, new CultureInfo("en-US"), false, true, new string[]{"ft²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareFoot, new CultureInfo("ru-RU"), false, true, new string[]{"фут²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareFoot, new CultureInfo("zh-CN"), false, true, new string[]{"平方英尺"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareInch, new CultureInfo("en-US"), false, true, new string[]{"in²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareInch, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareInch, new CultureInfo("zh-CN"), false, true, new string[]{"平方英寸"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareKilometer, new CultureInfo("en-US"), false, true, new string[]{"km²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareKilometer, new CultureInfo("ru-RU"), false, true, new string[]{"км²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareKilometer, new CultureInfo("zh-CN"), false, true, new string[]{"平方公里"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMeter, new CultureInfo("en-US"), false, true, new string[]{"m²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMeter, new CultureInfo("ru-RU"), false, true, new string[]{"м²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMeter, new CultureInfo("zh-CN"), false, true, new string[]{"平方米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMicrometer, new CultureInfo("en-US"), false, true, new string[]{"µm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMicrometer, new CultureInfo("ru-RU"), false, true, new string[]{"мкм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMicrometer, new CultureInfo("zh-CN"), false, true, new string[]{"平方微米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMile, new CultureInfo("en-US"), false, true, new string[]{"mi²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMile, new CultureInfo("ru-RU"), false, true, new string[]{"миля²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMile, new CultureInfo("zh-CN"), false, true, new string[]{"平方英里"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMillimeter, new CultureInfo("en-US"), false, true, new string[]{"mm²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMillimeter, new CultureInfo("ru-RU"), false, true, new string[]{"мм²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareMillimeter, new CultureInfo("zh-CN"), false, true, new string[]{"平方毫米"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareNauticalMile, new CultureInfo("en-US"), false, true, new string[]{"nmi²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareNauticalMile, new CultureInfo("ru-RU"), false, true, new string[]{"морск.миля²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareNauticalMile, new CultureInfo("zh-CN"), false, true, new string[]{"平方海里"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareYard, new CultureInfo("en-US"), false, true, new string[]{"yd²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareYard, new CultureInfo("ru-RU"), false, true, new string[]{"ярд²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.SquareYard, new CultureInfo("zh-CN"), false, true, new string[]{"平方码"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.UsSurveySquareFoot, new CultureInfo("en-US"), false, true, new string[]{"ft² (US)"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AreaUnit.UsSurveySquareFoot, new CultureInfo("ru-RU"), false, true, new string[]{"фут² (US)"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -366,7 +322,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(AreaUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(AreaUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Area";
             var resourceManager = new ResourceManager(resourceName, typeof(Area).Assembly);
@@ -1076,7 +1032,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

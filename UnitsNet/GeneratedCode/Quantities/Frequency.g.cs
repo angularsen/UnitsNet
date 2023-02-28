@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -289,32 +290,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Frequency>(FrequencyUnit.Hertz, FrequencyUnit.Terahertz, quantity => quantity.ToUnit(FrequencyUnit.Terahertz));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.BeatPerMinute, new CultureInfo("en-US"), false, true, new string[]{"bpm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.BUnit, new CultureInfo("en-US"), false, true, new string[]{"B Units"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.CyclePerHour, new CultureInfo("en-US"), false, true, new string[]{"cph"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.CyclePerMinute, new CultureInfo("en-US"), false, true, new string[]{"cpm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Gigahertz, new CultureInfo("en-US"), false, true, new string[]{"GHz"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Gigahertz, new CultureInfo("ru-RU"), false, true, new string[]{"ГГц"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Hertz, new CultureInfo("en-US"), false, true, new string[]{"Hz"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Hertz, new CultureInfo("ru-RU"), false, true, new string[]{"Гц"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Kilohertz, new CultureInfo("en-US"), false, true, new string[]{"kHz"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Kilohertz, new CultureInfo("ru-RU"), false, true, new string[]{"кГц"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Megahertz, new CultureInfo("en-US"), false, true, new string[]{"MHz"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Megahertz, new CultureInfo("ru-RU"), false, true, new string[]{"МГц"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Microhertz, new CultureInfo("en-US"), false, true, new string[]{"µHz"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Microhertz, new CultureInfo("ru-RU"), false, true, new string[]{"мкГц"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Millihertz, new CultureInfo("en-US"), false, true, new string[]{"mHz"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Millihertz, new CultureInfo("ru-RU"), false, true, new string[]{"мГц"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.PerSecond, new CultureInfo("en-US"), false, true, new string[]{"s⁻¹"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.PerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"с⁻¹"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.RadianPerSecond, new CultureInfo("en-US"), false, true, new string[]{"rad/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.RadianPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"рад/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Terahertz, new CultureInfo("en-US"), false, true, new string[]{"THz"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(FrequencyUnit.Terahertz, new CultureInfo("ru-RU"), false, true, new string[]{"ТГц"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -339,7 +314,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(FrequencyUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(FrequencyUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Frequency";
             var resourceManager = new ResourceManager(resourceName, typeof(Frequency).Assembly);
@@ -1037,7 +1012,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

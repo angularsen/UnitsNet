@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -297,38 +298,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Acceleration>(AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.StandardGravity, quantity => quantity.ToUnit(AccelerationUnit.StandardGravity));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.CentimeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"cm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.CentimeterPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"см/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.DecimeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"dm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.DecimeterPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"дм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.FootPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"ft/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.FootPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"фут/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.InchPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"in/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.InchPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"дюйм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KilometerPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"km/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KilometerPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"км/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerHour, new CultureInfo("en-US"), false, true, new string[]{"kn/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerHour, new CultureInfo("ru-RU"), false, true, new string[]{"узел/час"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerMinute, new CultureInfo("en-US"), false, true, new string[]{"kn/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerMinute, new CultureInfo("ru-RU"), false, true, new string[]{"узел/мин"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerSecond, new CultureInfo("en-US"), false, true, new string[]{"kn/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.KnotPerSecond, new CultureInfo("ru-RU"), false, true, new string[]{"узел/с"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"m/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MeterPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"м/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MicrometerPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"µm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MicrometerPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"мкм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MillimeterPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"mm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MillimeterPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"мм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MillistandardGravity, new CultureInfo("en-US"), false, true, new string[]{"mg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.MillistandardGravity, new CultureInfo("ru-RU"), false, true, new string[]{"мg"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.NanometerPerSecondSquared, new CultureInfo("en-US"), false, true, new string[]{"nm/s²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.NanometerPerSecondSquared, new CultureInfo("ru-RU"), false, true, new string[]{"нм/с²"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.StandardGravity, new CultureInfo("en-US"), false, true, new string[]{"g"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AccelerationUnit.StandardGravity, new CultureInfo("ru-RU"), false, true, new string[]{"g"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -353,7 +322,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(AccelerationUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(AccelerationUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.Acceleration";
             var resourceManager = new ResourceManager(resourceName, typeof(Acceleration).Assembly);
@@ -1063,7 +1032,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

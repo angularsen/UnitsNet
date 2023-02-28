@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -289,35 +290,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerMole, quantity => quantity.ToUnit(MolarMassUnit.PoundPerMole));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.CentigramPerMole, new CultureInfo("en-US"), false, true, new string[]{"cg/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.CentigramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"сг/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.DecagramPerMole, new CultureInfo("en-US"), false, true, new string[]{"dag/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.DecagramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"даг/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.DecigramPerMole, new CultureInfo("en-US"), false, true, new string[]{"dg/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.DecigramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"дг/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.GramPerMole, new CultureInfo("en-US"), false, true, new string[]{"g/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.GramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"г/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.HectogramPerMole, new CultureInfo("en-US"), false, true, new string[]{"hg/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.HectogramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"гг/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.KilogramPerKilomole, new CultureInfo("en-US"), false, true, new string[]{"kg/kmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.KilogramPerMole, new CultureInfo("en-US"), false, true, new string[]{"kg/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.KilogramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"кг/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.KilopoundPerMole, new CultureInfo("en-US"), false, true, new string[]{"klb/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.KilopoundPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"кфунт/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.MegapoundPerMole, new CultureInfo("en-US"), false, true, new string[]{"Mlb/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.MegapoundPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"Мфунт/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.MicrogramPerMole, new CultureInfo("en-US"), false, true, new string[]{"µg/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.MicrogramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"мкг/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.MilligramPerMole, new CultureInfo("en-US"), false, true, new string[]{"mg/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.MilligramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"мг/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.NanogramPerMole, new CultureInfo("en-US"), false, true, new string[]{"ng/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.NanogramPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"нг/моль"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.PoundPerMole, new CultureInfo("en-US"), false, true, new string[]{"lb/mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(MolarMassUnit.PoundPerMole, new CultureInfo("ru-RU"), false, true, new string[]{"фунт/моль"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -342,7 +314,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(MolarMassUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(MolarMassUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.MolarMass";
             var resourceManager = new ResourceManager(resourceName, typeof(MolarMass).Assembly);
@@ -1040,7 +1012,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

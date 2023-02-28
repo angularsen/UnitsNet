@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -257,19 +258,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<StandardVolumeFlow>(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, StandardVolumeFlowUnit.StandardLiterPerMinute, quantity => quantity.ToUnit(StandardVolumeFlowUnit.StandardLiterPerMinute));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"sccm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardCubicFootPerHour, new CultureInfo("en-US"), false, true, new string[]{"scfh"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardCubicFootPerMinute, new CultureInfo("en-US"), false, true, new string[]{"scfm"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardCubicFootPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Sft³/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardCubicMeterPerDay, new CultureInfo("en-US"), false, true, new string[]{"Sm³/d"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardCubicMeterPerHour, new CultureInfo("en-US"), false, true, new string[]{"Sm³/h"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"Sm³/min"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Sm³/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(StandardVolumeFlowUnit.StandardLiterPerMinute, new CultureInfo("en-US"), false, true, new string[]{"slm"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -294,7 +282,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(StandardVolumeFlowUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(StandardVolumeFlowUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.StandardVolumeFlow";
             var resourceManager = new ResourceManager(resourceName, typeof(StandardVolumeFlow).Assembly);
@@ -944,7 +932,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

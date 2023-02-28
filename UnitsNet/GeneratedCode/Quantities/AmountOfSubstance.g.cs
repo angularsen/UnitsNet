@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -305,25 +306,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<AmountOfSubstance>(AmountOfSubstanceUnit.Mole, AmountOfSubstanceUnit.PoundMole, quantity => quantity.ToUnit(AmountOfSubstanceUnit.PoundMole));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Centimole, new CultureInfo("en-US"), false, true, new string[]{"cmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.CentipoundMole, new CultureInfo("en-US"), false, true, new string[]{"clbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Decimole, new CultureInfo("en-US"), false, true, new string[]{"dmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.DecipoundMole, new CultureInfo("en-US"), false, true, new string[]{"dlbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Kilomole, new CultureInfo("en-US"), false, true, new string[]{"kmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.KilopoundMole, new CultureInfo("en-US"), false, true, new string[]{"klbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Megamole, new CultureInfo("en-US"), false, true, new string[]{"Mmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Micromole, new CultureInfo("en-US"), false, true, new string[]{"µmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.MicropoundMole, new CultureInfo("en-US"), false, true, new string[]{"µlbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Millimole, new CultureInfo("en-US"), false, true, new string[]{"mmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.MillipoundMole, new CultureInfo("en-US"), false, true, new string[]{"mlbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Mole, new CultureInfo("en-US"), false, true, new string[]{"mol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.Nanomole, new CultureInfo("en-US"), false, true, new string[]{"nmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.NanopoundMole, new CultureInfo("en-US"), false, true, new string[]{"nlbmol"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(AmountOfSubstanceUnit.PoundMole, new CultureInfo("en-US"), false, true, new string[]{"lbmol"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -348,7 +330,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(AmountOfSubstanceUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(AmountOfSubstanceUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.AmountOfSubstance";
             var resourceManager = new ResourceManager(resourceName, typeof(AmountOfSubstance).Assembly);
@@ -1070,7 +1052,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

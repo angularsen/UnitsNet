@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -228,15 +229,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<ElectricInductance>(ElectricInductanceUnit.Henry, ElectricInductanceUnit.Picohenry, quantity => quantity.ToUnit(ElectricInductanceUnit.Picohenry));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Henry, new CultureInfo("en-US"), false, true, new string[]{"H"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Microhenry, new CultureInfo("en-US"), false, true, new string[]{"µH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Millihenry, new CultureInfo("en-US"), false, true, new string[]{"mH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Nanohenry, new CultureInfo("en-US"), false, true, new string[]{"nH"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(ElectricInductanceUnit.Picohenry, new CultureInfo("en-US"), false, true, new string[]{"pH"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -261,7 +253,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(ElectricInductanceUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(ElectricInductanceUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.ElectricInductance";
             var resourceManager = new ResourceManager(resourceName, typeof(ElectricInductance).Assembly);
@@ -863,7 +855,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

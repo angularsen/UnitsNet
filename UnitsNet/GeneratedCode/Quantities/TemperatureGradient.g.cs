@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -217,14 +218,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<TemperatureGradient>(TemperatureGradientUnit.KelvinPerMeter, TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity => quantity.ToUnit(TemperatureGradientUnit.DegreeFahrenheitPerFoot));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeCelsiusPerKilometer, new CultureInfo("en-US"), false, true, new string[]{"∆°C/km"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeCelsiusPerMeter, new CultureInfo("en-US"), false, true, new string[]{"∆°C/m"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.DegreeFahrenheitPerFoot, new CultureInfo("en-US"), false, true, new string[]{"∆°F/ft"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(TemperatureGradientUnit.KelvinPerMeter, new CultureInfo("en-US"), false, true, new string[]{"∆°K/m"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -249,7 +242,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(TemperatureGradientUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(TemperatureGradientUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.TemperatureGradient";
             var resourceManager = new ResourceManager(resourceName, typeof(TemperatureGradient).Assembly);
@@ -839,7 +832,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 

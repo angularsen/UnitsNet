@@ -18,11 +18,12 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Resources;
+using System.Runtime.Serialization;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
@@ -257,19 +258,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEntropy>(SpecificEntropyUnit.JoulePerKilogramKelvin, SpecificEntropyUnit.MegajoulePerKilogramKelvin, quantity => quantity.ToUnit(SpecificEntropyUnit.MegajoulePerKilogramKelvin));
         }
 
-        internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
-        {
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.BtuPerPoundFahrenheit, new CultureInfo("en-US"), false, true, new string[]{"BTU/lb·°F", "BTU/lbm·°F"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.CaloriePerGramKelvin, new CultureInfo("en-US"), false, true, new string[]{"cal/g.K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"J/kg.C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.JoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"J/kg.K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilocaloriePerGramKelvin, new CultureInfo("en-US"), false, true, new string[]{"kcal/g.K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg.C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.KilojoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"kJ/kg.K"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg.C"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(SpecificEntropyUnit.MegajoulePerKilogramKelvin, new CultureInfo("en-US"), false, true, new string[]{"MJ/kg.K"});
-        }
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -294,7 +282,7 @@ namespace UnitsNet
         /// <param name="unit"></param>
         /// <param name="culture"></param>
         /// <returns></returns>
-        public static string[] GetAbbreviations(SpecificEntropyUnit unit, CultureInfo? culture = null)
+        public static IReadOnlyList<string> GetAbbreviations(SpecificEntropyUnit unit, CultureInfo? culture = null)
         {
             const string resourceName = $"UnitsNet.GeneratedCode.Resources.SpecificEntropy";
             var resourceManager = new ResourceManager(resourceName, typeof(SpecificEntropy).Assembly);
@@ -944,7 +932,7 @@ namespace UnitsNet
         #endregion
 
         /// <inheritdoc/>
-        public string[] GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
+        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => GetAbbreviations(Unit, culture);
 
         #region ToString Methods
 
