@@ -159,7 +159,7 @@ namespace UnitsNet
         public string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider? formatProvider = null)
         {
             var abbreviations = GetUnitAbbreviations(unitType, unitValue, formatProvider);
-            return abbreviations[0];
+            return abbreviations.Length > 0 ? abbreviations[0] : string.Empty;
         }
 
         /// <summary>
