@@ -185,7 +185,10 @@ namespace UnitsNet
         {
             var name = Enum.GetName(unitType, unitValue);
             var enumInstance = (Enum)Enum.Parse(unitType, name!);
-            var quantity = Quantity.From(0.0, enumInstance);
+
+            if(!Quantity.TryFrom(0.0, enumInstance, out var quantity))
+                throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+
             return quantity.GetAbbreviations(formatProvider as CultureInfo).ToArray();
         }
 
