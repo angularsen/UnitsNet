@@ -77,6 +77,12 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         string ToString(IFormatProvider? provider);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null);
     }
 
     /// <summary>
@@ -118,12 +124,6 @@ namespace UnitsNet
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
         /// <returns>A new quantity with the determined unit.</returns>
         new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null);
     }
 
     /// <summary>
