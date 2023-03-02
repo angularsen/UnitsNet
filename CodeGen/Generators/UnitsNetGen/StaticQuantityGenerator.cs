@@ -73,7 +73,7 @@ namespace UnitsNet
         /// <returns><c>True</c> if successful with <paramref name=""quantity""/> assigned the value, otherwise <c>false</c>.</returns>
         public static bool TryFrom(QuantityValue value, Enum unit, [NotNullWhen(true)] out IQuantity? quantity)
         {
-            switch (unit)
+            quantity = unit switch
             {");
             foreach (var quantity in _quantities)
             {
@@ -81,18 +81,14 @@ namespace UnitsNet
                 var unitTypeName = $"{quantityName}Unit";
                 var unitValue = unitTypeName.ToCamelCase();
                 Writer.WL($@"
-                case {unitTypeName} {unitValue}:
-                    quantity = {quantityName}.From(value, {unitValue});
-                    return true;");
+                {unitTypeName} {unitValue} => {quantityName}.From(value, {unitValue}),");
             }
 
             Writer.WL(@"
-                default:
-                {
-                    quantity = default(IQuantity);
-                    return false;
-                }
-            }
+                _ => null
+            };
+
+            return quantity is not null;
         }
 
         /// <summary>
