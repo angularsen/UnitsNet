@@ -18,6 +18,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -79,7 +80,7 @@ namespace UnitsNet
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
 
-            Abbreviations = new Dictionary<(CultureInfo Culture, RatioUnit Unit), List<string>>();
+            Abbreviations = new ConcurrentDictionary<(CultureInfo Culture, RatioUnit Unit), List<string>>();
         }
 
         /// <summary>
@@ -149,7 +150,7 @@ namespace UnitsNet
         /// <summary>
         /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
         /// </summary>
-        public static Dictionary<(CultureInfo Culture, RatioUnit Unit), List<string>> Abbreviations { get; }
+        public static IDictionary<(CultureInfo Culture, RatioUnit Unit), List<string>> Abbreviations { get; }
 
         #endregion
  
@@ -272,6 +273,7 @@ namespace UnitsNet
             if(!Abbreviations.TryGetValue((culture, unit), out var abbreviations))
             {
                 abbreviations = new List<string>();
+
                 const string resourceName = $"UnitsNet.GeneratedCode.Resources.Ratio";
                 var resourceManager = new ResourceManager(resourceName, typeof(Ratio).Assembly);
 
