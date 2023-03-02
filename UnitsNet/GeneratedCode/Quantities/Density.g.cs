@@ -126,6 +126,8 @@ namespace UnitsNet
 
             DefaultConversionFunctions = new UnitConverter();
             RegisterDefaultConversions(DefaultConversionFunctions);
+
+            Abbreviations = new Dictionary<(CultureInfo Culture, DensityUnit Unit), List<string>>();
         }
 
         /// <summary>
@@ -191,6 +193,11 @@ namespace UnitsNet
 
         /// <inheritdoc cref="Zero"/>
         public static Density AdditiveIdentity => Zero;
+
+        /// <summary>
+        /// The per-culture abbreviations. To add a custom default abbreviation, add to the beginning of the list.
+        /// </summary>
+        public static Dictionary<(CultureInfo Culture, DensityUnit Unit), List<string>> Abbreviations { get; }
 
         #endregion
  
@@ -623,15 +630,22 @@ namespace UnitsNet
         /// <returns></returns>
         public static IReadOnlyList<string> GetAbbreviations(DensityUnit unit, CultureInfo? culture = null)
         {
-            const string resourceName = $"UnitsNet.GeneratedCode.Resources.Density";
-            var resourceManager = new ResourceManager(resourceName, typeof(Density).Assembly);
+            culture ??= CultureInfo.CurrentCulture;
 
-            var abbreviation = resourceManager.GetString(unit.ToString(), culture ?? CultureInfo.CurrentCulture);
+            if(!Abbreviations.TryGetValue((culture, unit), out var abbreviations))
+            {
+                abbreviations = new List<string>();
+                const string resourceName = $"UnitsNet.GeneratedCode.Resources.Density";
+                var resourceManager = new ResourceManager(resourceName, typeof(Density).Assembly);
 
-            if(abbreviation is not null)
-                return abbreviation.Split(',');
-            else
-                return Array.Empty<string>();
+                var abbreviationsString = resourceManager.GetString(unit.ToString(), culture);
+                if(abbreviationsString is not null)
+                    abbreviations.AddRange(abbreviationsString.Split(','));
+
+                Abbreviations.Add((culture, unit), abbreviations);
+            }
+
+            return abbreviations;
         }
 
         #endregion
