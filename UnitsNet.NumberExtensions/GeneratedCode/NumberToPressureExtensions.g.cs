@@ -40,6 +40,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
         public static Pressure Centibars<T>(this T value) =>
             Pressure.FromCentibars(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Pressure.FromCentimeterOfWaterColumn(UnitsNet.QuantityValue)" />
+        public static Pressure CentimeterOfWaterColumn<T>(this T value) =>
+            Pressure.FromCentimeterOfWaterColumn(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
         public static Pressure Decapascals<T>(this T value) =>
             Pressure.FromDecapascals(Convert.ToDouble(value));
@@ -139,6 +143,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
         /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
         public static Pressure MetersOfHead<T>(this T value) =>
             Pressure.FromMetersOfHead(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMeterOfWaterColumn(UnitsNet.QuantityValue)" />
+        public static Pressure MeterOfWaterColumn<T>(this T value) =>
+            Pressure.FromMeterOfWaterColumn(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMicrobars(UnitsNet.QuantityValue)" />
         public static Pressure Microbars<T>(this T value) =>
