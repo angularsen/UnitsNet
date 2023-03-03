@@ -1,10 +1,16 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/master/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "5.3.0",
+  "version": "5.5.0",
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/v\\d+(?:\\.\\d+)?$"
   ],
+  "release": {
+    "branchName" : "release/v{version}",
+    "versionIncrement" : "minor",
+    "firstUnstableTag" : "alpha",
+    "tagName" : "UnitsNet/{version}"
+  },
   "cloudBuild": {
     "buildNumber": {
       "enabled": true
