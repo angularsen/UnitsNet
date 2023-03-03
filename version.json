@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/master/src/NerdBank.GitVersioning/version.schema.json",
   "version": "5.5",
   "publicReleaseRefSpec": [
-    "^refs/heads/master$",
-    "^refs/heads/v\\d+(?:\\.\\d+)?$"
+    "^refs/heads/master$",                    // main releases
+    "^refs/heads/release/v\\d+(?:\\.\\d+)?$"  // servicing releases, from for example release/v4 or release/v6.1 branch
   ],
   "release": {
     "branchName" : "release/v{version}",
