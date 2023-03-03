@@ -137,6 +137,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromMetersOfHead(2), 2.MetersOfHead());
 
         [Fact]
+        public void NumberToMeterOfWaterColumnTest() =>
+            Assert.Equal(Pressure.FromMeterOfWaterColumn(2), 2.MeterOfWaterColumn());
+
+        [Fact]
         public void NumberToMicrobarsTest() =>
             Assert.Equal(Pressure.FromMicrobars(2), 2.Microbars());
 

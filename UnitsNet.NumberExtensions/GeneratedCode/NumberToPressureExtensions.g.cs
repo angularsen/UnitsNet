@@ -140,6 +140,10 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
         public static Pressure MetersOfHead<T>(this T value) =>
             Pressure.FromMetersOfHead(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="Pressure.FromMeterOfWaterColumn(UnitsNet.QuantityValue)" />
+        public static Pressure MeterOfWaterColumn<T>(this T value) =>
+            Pressure.FromMeterOfWaterColumn(Convert.ToDouble(value));
+
         /// <inheritdoc cref="Pressure.FromMicrobars(UnitsNet.QuantityValue)" />
         public static Pressure Microbars<T>(this T value) =>
             Pressure.FromMicrobars(Convert.ToDouble(value));

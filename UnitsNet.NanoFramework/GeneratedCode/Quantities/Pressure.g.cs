@@ -220,6 +220,11 @@ namespace UnitsNet
         public double MetersOfHead => As(PressureUnit.MeterOfHead);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfWaterColumn"/>
+        /// </summary>
+        public double MeterOfWaterColumn => As(PressureUnit.MeterOfWaterColumn);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Microbar"/>
         /// </summary>
         public double Microbars => As(PressureUnit.Microbar);
@@ -487,6 +492,12 @@ namespace UnitsNet
         public static Pressure FromMetersOfHead(double metersofhead) => new Pressure(metersofhead, PressureUnit.MeterOfHead);
 
         /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfWaterColumn"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromMeterOfWaterColumn(double meterofwatercolumn) => new Pressure(meterofwatercolumn, PressureUnit.MeterOfWaterColumn);
+
+        /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Microbar"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -668,6 +679,7 @@ namespace UnitsNet
                         PressureUnit.Megapascal => (_value) * 1e6d,
                         PressureUnit.MeterOfElevation => Math.Pow(1.0 - (_value / 44307.69396), 5.2553026003237266401799415610351) * 101325.0,
                         PressureUnit.MeterOfHead => _value * 9804.139432,
+                        PressureUnit.MeterOfWaterColumn => _value * 9.806650000000272e3,
                         PressureUnit.Microbar => (_value * 1e5) * 1e-6d,
                         PressureUnit.Micropascal => (_value) * 1e-6d,
                         PressureUnit.Millibar => (_value * 1e5) * 1e-3d,
@@ -728,6 +740,7 @@ namespace UnitsNet
                         PressureUnit.Megapascal => (baseUnitValue) / 1e6d,
                         PressureUnit.MeterOfElevation => (1.0 - Math.Pow(baseUnitValue / 101325.0, 0.190284)) * 44307.69396,
                         PressureUnit.MeterOfHead => baseUnitValue * 0.0001019977334,
+                        PressureUnit.MeterOfWaterColumn => baseUnitValue / 9.806650000000272e3,
                         PressureUnit.Microbar => (baseUnitValue / 1e5) / 1e-6d,
                         PressureUnit.Micropascal => (baseUnitValue) / 1e-6d,
                         PressureUnit.Millibar => (baseUnitValue / 1e5) / 1e-3d,

@@ -366,6 +366,18 @@
       ]
     },
     {
+      "SingularName": "MeterOfWaterColumn",
+      "PluralName": "MeterOfWaterColumn",
+      "FromUnitToBaseFunc": "{x} * 9.806650000000272e3",
+      "FromBaseToUnitFunc": "{x} / 9.806650000000272e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mH2O", "m wc" ]
+        }
+      ]
+    },
+    {
       "SingularName": "InchOfWaterColumn",
       "PluralName": "InchesOfWaterColumn",
       "FromUnitToBaseFunc": "{x} * 249.08890833333",

@@ -53,6 +53,7 @@ namespace UnitsNet.Units
         Megapascal = 26,
         MeterOfElevation = 27,
         MeterOfHead = 28,
+        MeterOfWaterColumn = 57,
         Microbar = 29,
         Micropascal = 30,
         Millibar = 31,
