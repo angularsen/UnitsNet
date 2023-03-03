@@ -27,7 +27,7 @@ stages:
     displayName: Build & test
     steps:
     - checkout: self
-      fetchDepth: 1
+      fetchDepth: 0
       clean: false
       lfs: true
       submodules: false
