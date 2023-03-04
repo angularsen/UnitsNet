@@ -97,7 +97,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.CentimeterOfWaterColumn"/>
         /// </summary>
-        public double CentimeterOfWaterColumn => As(PressureUnit.CentimeterOfWaterColumn);
+        public double CentimetersOfWaterColumn => As(PressureUnit.CentimeterOfWaterColumn);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Decapascal"/>
@@ -227,7 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfWaterColumn"/>
         /// </summary>
-        public double MeterOfWaterColumn => As(PressureUnit.MeterOfWaterColumn);
+        public double MetersOfWaterColumn => As(PressureUnit.MeterOfWaterColumn);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Microbar"/>
@@ -252,7 +252,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfWaterColumn"/>
         /// </summary>
-        public double MillimeterOfWaterColumn => As(PressureUnit.MillimeterOfWaterColumn);
+        public double MillimetersOfWaterColumn => As(PressureUnit.MillimeterOfWaterColumn);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millipascal"/>
@@ -350,7 +350,7 @@ namespace UnitsNet
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.CentimeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromCentimeterOfWaterColumn(double centimeterofwatercolumn) => new Pressure(centimeterofwatercolumn, PressureUnit.CentimeterOfWaterColumn);
+        public static Pressure FromCentimetersOfWaterColumn(double centimetersofwatercolumn) => new Pressure(centimetersofwatercolumn, PressureUnit.CentimeterOfWaterColumn);
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decapascal"/>.
@@ -506,7 +506,7 @@ namespace UnitsNet
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMeterOfWaterColumn(double meterofwatercolumn) => new Pressure(meterofwatercolumn, PressureUnit.MeterOfWaterColumn);
+        public static Pressure FromMetersOfWaterColumn(double metersofwatercolumn) => new Pressure(metersofwatercolumn, PressureUnit.MeterOfWaterColumn);
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Microbar"/>.
@@ -536,7 +536,7 @@ namespace UnitsNet
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMillimeterOfWaterColumn(double millimeterofwatercolumn) => new Pressure(millimeterofwatercolumn, PressureUnit.MillimeterOfWaterColumn);
+        public static Pressure FromMillimetersOfWaterColumn(double millimetersofwatercolumn) => new Pressure(millimetersofwatercolumn, PressureUnit.MillimeterOfWaterColumn);
 
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millipascal"/>.

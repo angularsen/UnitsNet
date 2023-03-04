@@ -68,7 +68,7 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.Atmosphere, "Atmospheres", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Bar, "Bars", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Centibar, "Centibars", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.CentimeterOfWaterColumn, "CentimeterOfWaterColumn", BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.CentimeterOfWaterColumn, "CentimetersOfWaterColumn", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Decapascal, "Decapascals", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Decibar, "Decibars", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.DynePerSquareCentimeter, "DynesPerSquareCentimeter", BaseUnits.Undefined),
@@ -94,12 +94,12 @@ namespace UnitsNet
                     new UnitInfo<PressureUnit>(PressureUnit.Megapascal, "Megapascals", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.MeterOfElevation, "MetersOfElevation", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.MeterOfHead, "MetersOfHead", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfWaterColumn, "MeterOfWaterColumn", BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.MeterOfWaterColumn, "MetersOfWaterColumn", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Microbar, "Microbars", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Micropascal, "Micropascals", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Millibar, "Millibars", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfMercury, "MillimetersOfMercury", BaseUnits.Undefined),
-                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", BaseUnits.Undefined),
+                    new UnitInfo<PressureUnit>(PressureUnit.MillimeterOfWaterColumn, "MillimetersOfWaterColumn", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.Millipascal, "Millipascals", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareCentimeter, "NewtonsPerSquareCentimeter", BaseUnits.Undefined),
                     new UnitInfo<PressureUnit>(PressureUnit.NewtonPerSquareMeter, "NewtonsPerSquareMeter", BaseUnits.Undefined),
@@ -235,7 +235,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.CentimeterOfWaterColumn"/>
         /// </summary>
-        public double CentimeterOfWaterColumn => As(PressureUnit.CentimeterOfWaterColumn);
+        public double CentimetersOfWaterColumn => As(PressureUnit.CentimeterOfWaterColumn);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Decapascal"/>
@@ -365,7 +365,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfWaterColumn"/>
         /// </summary>
-        public double MeterOfWaterColumn => As(PressureUnit.MeterOfWaterColumn);
+        public double MetersOfWaterColumn => As(PressureUnit.MeterOfWaterColumn);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Microbar"/>
@@ -390,7 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfWaterColumn"/>
         /// </summary>
-        public double MillimeterOfWaterColumn => As(PressureUnit.MillimeterOfWaterColumn);
+        public double MillimetersOfWaterColumn => As(PressureUnit.MillimeterOfWaterColumn);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millipascal"/>
@@ -719,9 +719,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.CentimeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromCentimeterOfWaterColumn(QuantityValue centimeterofwatercolumn)
+        public static Pressure FromCentimetersOfWaterColumn(QuantityValue centimetersofwatercolumn)
         {
-            double value = (double) centimeterofwatercolumn;
+            double value = (double) centimetersofwatercolumn;
             return new Pressure(value, PressureUnit.CentimeterOfWaterColumn);
         }
 
@@ -979,9 +979,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMeterOfWaterColumn(QuantityValue meterofwatercolumn)
+        public static Pressure FromMetersOfWaterColumn(QuantityValue metersofwatercolumn)
         {
-            double value = (double) meterofwatercolumn;
+            double value = (double) metersofwatercolumn;
             return new Pressure(value, PressureUnit.MeterOfWaterColumn);
         }
 
@@ -1029,9 +1029,9 @@ namespace UnitsNet
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfWaterColumn"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromMillimeterOfWaterColumn(QuantityValue millimeterofwatercolumn)
+        public static Pressure FromMillimetersOfWaterColumn(QuantityValue millimetersofwatercolumn)
         {
-            double value = (double) millimeterofwatercolumn;
+            double value = (double) millimetersofwatercolumn;
             return new Pressure(value, PressureUnit.MillimeterOfWaterColumn);
         }
 
