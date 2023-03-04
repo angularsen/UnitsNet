@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using CodeGen.Generators.NanoFrameworkGen;
 using CodeGen.Helpers;
@@ -62,10 +63,9 @@ namespace CodeGen.Generators
             Directory.CreateDirectory(outputUnits);
             Directory.CreateDirectory(outputProperties);
 
-            var lengthNuspecFile = Path.Combine(outputDir, "Length", "UnitsNet.NanoFramework.Length.nuspec");
-            var projectVersion = ParseVersion(File.ReadAllText(lengthNuspecFile),
-                new Regex(@"<version>(?<version>[\d.]+)(?<suffix>-[a-z\d]+)?<\/version>", RegexOptions.IgnoreCase),
-                "projectVersion");
+            var assembly = typeof(NanoFrameworkGenerator).Assembly;
+            var fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            var projectVersion = fvi.FileVersion;
 
             foreach (Quantity quantity in quantities)
             {

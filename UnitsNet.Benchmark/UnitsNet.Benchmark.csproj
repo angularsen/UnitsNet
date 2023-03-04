@@ -2,8 +2,6 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net6.0;net48</TargetFrameworks>
-    <Version>4.0.0.0</Version>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <AssemblyTitle>UnitsNet.Benchmark</AssemblyTitle>
     <Product>UnitsNet.Benchmark</Product>
     <RootNamespace>UnitsNet.Benchmark</RootNamespace>
