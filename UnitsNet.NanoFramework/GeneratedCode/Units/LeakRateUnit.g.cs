@@ -23,19 +23,14 @@ namespace UnitsNet.Units
     // Disable missing XML comment warnings for the generated unit enums.
     #pragma warning disable 1591
 
-    public enum ElectricChargeUnit
+    public enum LeakRateUnit
     {
-        AmpereHour = 1,
-        Coulomb = 2,
-        KiloampereHour = 3,
-        Kilocoulomb = 13,
-        MegaampereHour = 4,
-        Megacoulomb = 6,
-        Microcoulomb = 11,
-        MilliampereHour = 5,
-        Millicoulomb = 7,
-        Nanocoulomb = 9,
-        Picocoulomb = 8,
+        /// <remarks>https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit</remarks>
+        MillibarLiterPerSecond = 7,
+        /// <remarks>https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit</remarks>
+        PascalQubicMeterPerSecond = 1,
+        /// <remarks>https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit</remarks>
+        TorrLiterPerSecond = 4,
     }
 
     #pragma warning restore 1591

@@ -17,26 +17,28 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+using System;
+
+#nullable enable
+
+namespace UnitsNet.NumberExtensions.NumberToLeakRate
 {
-    // Disable missing XML comment warnings for the generated unit enums.
-    #pragma warning disable 1591
-
-    public enum ElectricChargeUnit
+    /// <summary>
+    /// A number to LeakRate Extensions
+    /// </summary>
+    public static class NumberToLeakRateExtensions
     {
-        AmpereHour = 1,
-        Coulomb = 2,
-        KiloampereHour = 3,
-        Kilocoulomb = 13,
-        MegaampereHour = 4,
-        Megacoulomb = 6,
-        Microcoulomb = 11,
-        MilliampereHour = 5,
-        Millicoulomb = 7,
-        Nanocoulomb = 9,
-        Picocoulomb = 8,
-    }
+        /// <inheritdoc cref="LeakRate.FromMillibarLiterPerSecond(UnitsNet.QuantityValue)" />
+        public static LeakRate MillibarLiterPerSecond<T>(this T value) =>
+            LeakRate.FromMillibarLiterPerSecond(Convert.ToDouble(value));
 
-    #pragma warning restore 1591
+        /// <inheritdoc cref="LeakRate.FromPascalQubicMeterPerSecond(UnitsNet.QuantityValue)" />
+        public static LeakRate PascalQubicMeterPerSecond<T>(this T value) =>
+            LeakRate.FromPascalQubicMeterPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="LeakRate.FromTorrLiterPerSecond(UnitsNet.QuantityValue)" />
+        public static LeakRate TorrLiterPerSecond<T>(this T value) =>
+            LeakRate.FromTorrLiterPerSecond(Convert.ToDouble(value));
+
+    }
 }

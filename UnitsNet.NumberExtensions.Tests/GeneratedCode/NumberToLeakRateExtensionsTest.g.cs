@@ -17,26 +17,24 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-// ReSharper disable once CheckNamespace
-namespace UnitsNet.Units
+using UnitsNet.NumberExtensions.NumberToLeakRate;
+using Xunit;
+
+namespace UnitsNet.Tests
 {
-    // Disable missing XML comment warnings for the generated unit enums.
-    #pragma warning disable 1591
-
-    public enum ElectricChargeUnit
+    public class NumberToLeakRateExtensionsTests
     {
-        AmpereHour = 1,
-        Coulomb = 2,
-        KiloampereHour = 3,
-        Kilocoulomb = 13,
-        MegaampereHour = 4,
-        Megacoulomb = 6,
-        Microcoulomb = 11,
-        MilliampereHour = 5,
-        Millicoulomb = 7,
-        Nanocoulomb = 9,
-        Picocoulomb = 8,
-    }
+        [Fact]
+        public void NumberToMillibarLiterPerSecondTest() =>
+            Assert.Equal(LeakRate.FromMillibarLiterPerSecond(2), 2.MillibarLiterPerSecond());
 
-    #pragma warning restore 1591
+        [Fact]
+        public void NumberToPascalQubicMeterPerSecondTest() =>
+            Assert.Equal(LeakRate.FromPascalQubicMeterPerSecond(2), 2.PascalQubicMeterPerSecond());
+
+        [Fact]
+        public void NumberToTorrLiterPerSecondTest() =>
+            Assert.Equal(LeakRate.FromTorrLiterPerSecond(2), 2.TorrLiterPerSecond());
+
+    }
 }

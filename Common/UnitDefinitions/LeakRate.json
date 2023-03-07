@@ -1,0 +1,52 @@
+{
+    "Name": "LeakRate",
+    "BaseUnit": "PascalQubicMeterPerSecond",
+    "XmlDocSummary": "The leakrate is a measure of the units of volume or mass leaking from a body.",
+    "BaseDimensions": {
+      "M": 1,
+      "L": 2,
+      "T": -3
+    },
+    "Units": [
+        {
+            "SingularName": "PascalQubicMeterPerSecond",
+            "PluralName": "PascalQubicMeterPerSecond",
+            "FromUnitToBaseFunc": "{x}",
+            "FromBaseToUnitFunc": "{x}",
+            "XmlDocRemarks": "https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit",
+            "Localization": [
+            {
+                "Culture": "en-US",
+                "Abbreviations": [ "Pa·m³/s" ]
+            }
+            ]
+        },
+        {
+            "SingularName": "MillibarLiterPerSecond",
+            "PluralName": "MillibarLiterPerSecond",
+            "FromUnitToBaseFunc": "{x} / 10",
+            "FromBaseToUnitFunc": "{x} * 10",
+            "XmlDocRemarks": "https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit",
+            "Localization": [
+              {
+                "Culture": "en-US",
+                "Abbreviations": [ "mbar·l/s" ]
+              }
+            ]
+          },
+        {
+            "SingularName": "TorrLiterPerSecond",
+            "PluralName": "TorrLiterPerSecond",
+            "FromUnitToBaseFunc": "{x} / 7.5",
+            "FromBaseToUnitFunc": "{x} * 7.5",
+            "XmlDocRemarks": "https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit",
+            "Localization": [
+            {
+                "Culture": "en-US",
+                "Abbreviations": [ "Torr·l/s" ]
+            }
+            ]
+        }
+    ]
+  }
+  
