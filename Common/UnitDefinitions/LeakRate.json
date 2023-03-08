@@ -1,7 +1,7 @@
 {
     "Name": "LeakRate",
-    "BaseUnit": "PascalQubicMeterPerSecond",
-    "XmlDocSummary": "The leakrate is a measure of the units of volume or mass leaking from a body.",
+    "BaseUnit": "PascalCubicMeterPerSecond",
+    "XmlDocSummary": "A leakage rate of QL = 1 Pa-m³/s is given when the pressure in a closed, evacuated container with a volume of 1 m³ rises by 1 Pa per second or when the pressure in the container drops by 1 Pa in the event of overpressure.",
     "BaseDimensions": {
       "M": 1,
       "L": 2,
@@ -9,11 +9,11 @@
     },
     "Units": [
         {
-            "SingularName": "PascalQubicMeterPerSecond",
-            "PluralName": "PascalQubicMeterPerSecond",
+            "SingularName": "PascalCubicMeterPerSecond",
+            "PluralName": "PascalCubicMetersPerSecond",
             "FromUnitToBaseFunc": "{x}",
             "FromBaseToUnitFunc": "{x}",
-            "XmlDocRemarks": "https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit",
+            "XmlDocRemarks": "https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks",
             "Localization": [
             {
                 "Culture": "en-US",
@@ -23,10 +23,10 @@
         },
         {
             "SingularName": "MillibarLiterPerSecond",
-            "PluralName": "MillibarLiterPerSecond",
+            "PluralName": "MillibarLitersPerSecond",
             "FromUnitToBaseFunc": "{x} / 10",
             "FromBaseToUnitFunc": "{x} * 10",
-            "XmlDocRemarks": "https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit",
+            "XmlDocRemarks": "https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks",
             "Localization": [
               {
                 "Culture": "en-US",
@@ -36,10 +36,10 @@
           },
         {
             "SingularName": "TorrLiterPerSecond",
-            "PluralName": "TorrLiterPerSecond",
+            "PluralName": "TorrLitersPerSecond",
             "FromUnitToBaseFunc": "{x} / 7.5",
             "FromBaseToUnitFunc": "{x} * 7.5",
-            "XmlDocRemarks": "https://de.wikipedia.org/wiki/Leckrate#Formelzeichen_und_Ma%C3%9Feinheit",
+            "XmlDocRemarks": "https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks",
             "Localization": [
             {
                 "Culture": "en-US",

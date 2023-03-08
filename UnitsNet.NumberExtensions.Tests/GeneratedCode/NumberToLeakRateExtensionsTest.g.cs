@@ -25,16 +25,16 @@ namespace UnitsNet.Tests
     public class NumberToLeakRateExtensionsTests
     {
         [Fact]
-        public void NumberToMillibarLiterPerSecondTest() =>
-            Assert.Equal(LeakRate.FromMillibarLiterPerSecond(2), 2.MillibarLiterPerSecond());
+        public void NumberToMillibarLitersPerSecondTest() =>
+            Assert.Equal(LeakRate.FromMillibarLitersPerSecond(2), 2.MillibarLitersPerSecond());
 
         [Fact]
-        public void NumberToPascalQubicMeterPerSecondTest() =>
-            Assert.Equal(LeakRate.FromPascalQubicMeterPerSecond(2), 2.PascalQubicMeterPerSecond());
+        public void NumberToPascalCubicMetersPerSecondTest() =>
+            Assert.Equal(LeakRate.FromPascalCubicMetersPerSecond(2), 2.PascalCubicMetersPerSecond());
 
         [Fact]
-        public void NumberToTorrLiterPerSecondTest() =>
-            Assert.Equal(LeakRate.FromTorrLiterPerSecond(2), 2.TorrLiterPerSecond());
+        public void NumberToTorrLitersPerSecondTest() =>
+            Assert.Equal(LeakRate.FromTorrLitersPerSecond(2), 2.TorrLitersPerSecond());
 
     }
 }

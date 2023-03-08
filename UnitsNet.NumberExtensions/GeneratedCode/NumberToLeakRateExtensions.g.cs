@@ -28,17 +28,17 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
     /// </summary>
     public static class NumberToLeakRateExtensions
     {
-        /// <inheritdoc cref="LeakRate.FromMillibarLiterPerSecond(UnitsNet.QuantityValue)" />
-        public static LeakRate MillibarLiterPerSecond<T>(this T value) =>
-            LeakRate.FromMillibarLiterPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(UnitsNet.QuantityValue)" />
+        public static LeakRate MillibarLitersPerSecond<T>(this T value) =>
+            LeakRate.FromMillibarLitersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LeakRate.FromPascalQubicMeterPerSecond(UnitsNet.QuantityValue)" />
-        public static LeakRate PascalQubicMeterPerSecond<T>(this T value) =>
-            LeakRate.FromPascalQubicMeterPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(UnitsNet.QuantityValue)" />
+        public static LeakRate PascalCubicMetersPerSecond<T>(this T value) =>
+            LeakRate.FromPascalCubicMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LeakRate.FromTorrLiterPerSecond(UnitsNet.QuantityValue)" />
-        public static LeakRate TorrLiterPerSecond<T>(this T value) =>
-            LeakRate.FromTorrLiterPerSecond(Convert.ToDouble(value));
+        /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(UnitsNet.QuantityValue)" />
+        public static LeakRate TorrLitersPerSecond<T>(this T value) =>
+            LeakRate.FromTorrLitersPerSecond(Convert.ToDouble(value));
 
     }
 }

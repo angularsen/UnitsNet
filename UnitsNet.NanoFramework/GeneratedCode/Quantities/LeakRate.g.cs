@@ -24,7 +24,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The leakrate is a measure of the units of volume or mass leaking from a body.
+    ///     A leakage rate of QL = 1 Pa-m³/s is given when the pressure in a closed, evacuated container with a volume of 1 m³ rises by 1 Pa per second or when the pressure in the container drops by 1 Pa in the event of overpressure.
     /// </summary>
     public struct  LeakRate
     {
@@ -61,7 +61,7 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
-        public static LeakRateUnit BaseUnit { get; } = LeakRateUnit.PascalQubicMeterPerSecond;
+        public static LeakRateUnit BaseUnit { get; } = LeakRateUnit.PascalCubicMeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Duration
@@ -82,17 +82,17 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
         /// </summary>
-        public double MillibarLiterPerSecond => As(LeakRateUnit.MillibarLiterPerSecond);
+        public double MillibarLitersPerSecond => As(LeakRateUnit.MillibarLiterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.PascalQubicMeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>
         /// </summary>
-        public double PascalQubicMeterPerSecond => As(LeakRateUnit.PascalQubicMeterPerSecond);
+        public double PascalCubicMetersPerSecond => As(LeakRateUnit.PascalCubicMeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.TorrLiterPerSecond"/>
         /// </summary>
-        public double TorrLiterPerSecond => As(LeakRateUnit.TorrLiterPerSecond);
+        public double TorrLitersPerSecond => As(LeakRateUnit.TorrLiterPerSecond);
 
         #endregion
 
@@ -102,19 +102,19 @@ namespace UnitsNet
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromMillibarLiterPerSecond(double millibarliterpersecond) => new LeakRate(millibarliterpersecond, LeakRateUnit.MillibarLiterPerSecond);
+        public static LeakRate FromMillibarLitersPerSecond(double millibarliterspersecond) => new LeakRate(millibarliterspersecond, LeakRateUnit.MillibarLiterPerSecond);
 
         /// <summary>
-        ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalQubicMeterPerSecond"/>.
+        ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromPascalQubicMeterPerSecond(double pascalqubicmeterpersecond) => new LeakRate(pascalqubicmeterpersecond, LeakRateUnit.PascalQubicMeterPerSecond);
+        public static LeakRate FromPascalCubicMetersPerSecond(double pascalcubicmeterspersecond) => new LeakRate(pascalcubicmeterspersecond, LeakRateUnit.PascalCubicMeterPerSecond);
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.TorrLiterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromTorrLiterPerSecond(double torrliterpersecond) => new LeakRate(torrliterpersecond, LeakRateUnit.TorrLiterPerSecond);
+        public static LeakRate FromTorrLitersPerSecond(double torrliterspersecond) => new LeakRate(torrliterspersecond, LeakRateUnit.TorrLiterPerSecond);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LeakRateUnit" /> to <see cref="LeakRate" />.
@@ -157,7 +157,7 @@ namespace UnitsNet
                     return Unit switch
                     {
                         LeakRateUnit.MillibarLiterPerSecond => _value / 10,
-                        LeakRateUnit.PascalQubicMeterPerSecond => _value,
+                        LeakRateUnit.PascalCubicMeterPerSecond => _value,
                         LeakRateUnit.TorrLiterPerSecond => _value / 7.5,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
                     };
@@ -173,7 +173,7 @@ namespace UnitsNet
                     return unit switch
                     {
                         LeakRateUnit.MillibarLiterPerSecond => baseUnitValue * 10,
-                        LeakRateUnit.PascalQubicMeterPerSecond => baseUnitValue,
+                        LeakRateUnit.PascalCubicMeterPerSecond => baseUnitValue,
                         LeakRateUnit.TorrLiterPerSecond => baseUnitValue * 7.5,
                         _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
                     };

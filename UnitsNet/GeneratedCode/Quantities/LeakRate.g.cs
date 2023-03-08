@@ -33,7 +33,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     The leakrate is a measure of the units of volume or mass leaking from a body.
+    ///     A leakage rate of QL = 1 Pa-m³/s is given when the pressure in a closed, evacuated container with a volume of 1 m³ rises by 1 Pa per second or when the pressure in the container drops by 1 Pa in the event of overpressure.
     /// </summary>
     [DataContract]
     public readonly partial struct LeakRate :
@@ -59,15 +59,15 @@ namespace UnitsNet
         static LeakRate()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            BaseUnit = LeakRateUnit.PascalQubicMeterPerSecond;
+            BaseUnit = LeakRateUnit.PascalCubicMeterPerSecond;
             Units = Enum.GetValues(typeof(LeakRateUnit)).Cast<LeakRateUnit>().ToArray();
             Zero = new LeakRate(0, BaseUnit);
             Info = new QuantityInfo<LeakRateUnit>("LeakRate",
                 new UnitInfo<LeakRateUnit>[]
                 {
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.PascalQubicMeterPerSecond, "PascalQubicMeterPerSecond", BaseUnits.Undefined),
-                    new UnitInfo<LeakRateUnit>(LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<LeakRateUnit>(LeakRateUnit.MillibarLiterPerSecond, "MillibarLitersPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<LeakRateUnit>(LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMetersPerSecond", BaseUnits.Undefined),
+                    new UnitInfo<LeakRateUnit>(LeakRateUnit.TorrLiterPerSecond, "TorrLitersPerSecond", BaseUnits.Undefined),
                 },
                 BaseUnit, Zero, BaseDimensions);
 
@@ -122,7 +122,7 @@ namespace UnitsNet
         public static BaseDimensions BaseDimensions { get; }
 
         /// <summary>
-        ///     The base unit of LeakRate, which is PascalQubicMeterPerSecond. All conversions go via this value.
+        ///     The base unit of LeakRate, which is PascalCubicMeterPerSecond. All conversions go via this value.
         /// </summary>
         public static LeakRateUnit BaseUnit { get; }
 
@@ -132,7 +132,7 @@ namespace UnitsNet
         public static LeakRateUnit[] Units { get; }
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit PascalQubicMeterPerSecond.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit PascalCubicMeterPerSecond.
         /// </summary>
         public static LeakRate Zero { get; }
 
@@ -174,17 +174,17 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
         /// </summary>
-        public double MillibarLiterPerSecond => As(LeakRateUnit.MillibarLiterPerSecond);
+        public double MillibarLitersPerSecond => As(LeakRateUnit.MillibarLiterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.PascalQubicMeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>
         /// </summary>
-        public double PascalQubicMeterPerSecond => As(LeakRateUnit.PascalQubicMeterPerSecond);
+        public double PascalCubicMetersPerSecond => As(LeakRateUnit.PascalCubicMeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.TorrLiterPerSecond"/>
         /// </summary>
-        public double TorrLiterPerSecond => As(LeakRateUnit.TorrLiterPerSecond);
+        public double TorrLitersPerSecond => As(LeakRateUnit.TorrLiterPerSecond);
 
         #endregion
 
@@ -197,21 +197,21 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: LeakRateUnit -> BaseUnit
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.MillibarLiterPerSecond, LeakRateUnit.PascalQubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalQubicMeterPerSecond));
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.TorrLiterPerSecond, LeakRateUnit.PascalQubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalQubicMeterPerSecond));
+            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.MillibarLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalCubicMeterPerSecond));
+            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.TorrLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalCubicMeterPerSecond));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalQubicMeterPerSecond, LeakRateUnit.PascalQubicMeterPerSecond, quantity => quantity);
+            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> LeakRateUnit
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalQubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.MillibarLiterPerSecond));
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalQubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.TorrLiterPerSecond));
+            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.MillibarLiterPerSecond));
+            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.TorrLiterPerSecond));
         }
 
         internal static void MapGeneratedLocalizations(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             unitAbbreviationsCache.PerformAbbreviationMapping(LeakRateUnit.MillibarLiterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"mbar·l/s"});
-            unitAbbreviationsCache.PerformAbbreviationMapping(LeakRateUnit.PascalQubicMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Pa·m³/s"});
+            unitAbbreviationsCache.PerformAbbreviationMapping(LeakRateUnit.PascalCubicMeterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Pa·m³/s"});
             unitAbbreviationsCache.PerformAbbreviationMapping(LeakRateUnit.TorrLiterPerSecond, new CultureInfo("en-US"), false, true, new string[]{"Torr·l/s"});
         }
 
@@ -244,29 +244,29 @@ namespace UnitsNet
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromMillibarLiterPerSecond(QuantityValue millibarliterpersecond)
+        public static LeakRate FromMillibarLitersPerSecond(QuantityValue millibarliterspersecond)
         {
-            double value = (double) millibarliterpersecond;
+            double value = (double) millibarliterspersecond;
             return new LeakRate(value, LeakRateUnit.MillibarLiterPerSecond);
         }
 
         /// <summary>
-        ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalQubicMeterPerSecond"/>.
+        ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromPascalQubicMeterPerSecond(QuantityValue pascalqubicmeterpersecond)
+        public static LeakRate FromPascalCubicMetersPerSecond(QuantityValue pascalcubicmeterspersecond)
         {
-            double value = (double) pascalqubicmeterpersecond;
-            return new LeakRate(value, LeakRateUnit.PascalQubicMeterPerSecond);
+            double value = (double) pascalcubicmeterspersecond;
+            return new LeakRate(value, LeakRateUnit.PascalCubicMeterPerSecond);
         }
 
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.TorrLiterPerSecond"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static LeakRate FromTorrLiterPerSecond(QuantityValue torrliterpersecond)
+        public static LeakRate FromTorrLitersPerSecond(QuantityValue torrliterspersecond)
         {
-            double value = (double) torrliterpersecond;
+            double value = (double) torrliterspersecond;
             return new LeakRate(value, LeakRateUnit.TorrLiterPerSecond);
         }
 
@@ -468,7 +468,7 @@ namespace UnitsNet
         /// <summary>Get ratio value from dividing <see cref="LeakRate"/> by <see cref="LeakRate"/>.</summary>
         public static double operator /(LeakRate left, LeakRate right)
         {
-            return left.PascalQubicMeterPerSecond / right.PascalQubicMeterPerSecond;
+            return left.PascalCubicMetersPerSecond / right.PascalCubicMetersPerSecond;
         }
 
         #endregion
@@ -505,7 +505,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(LeakRate, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(LeakRate, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(LeakRate left, LeakRate right)
         {
             return left.Equals(right);
@@ -513,7 +513,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict inequality of two <see cref="LeakRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(LeakRate, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(LeakRate, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(LeakRate left, LeakRate right)
         {
             return !(left == right);
@@ -522,7 +522,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(LeakRate, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(LeakRate, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is LeakRate otherQuantity))
@@ -534,7 +534,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(LeakRate, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(LeakRate, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public bool Equals(LeakRate other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
@@ -745,12 +745,12 @@ namespace UnitsNet
             LeakRate? convertedOrNull = (Unit, unit) switch
             {
                 // LeakRateUnit -> BaseUnit
-                (LeakRateUnit.MillibarLiterPerSecond, LeakRateUnit.PascalQubicMeterPerSecond) => new LeakRate(_value / 10, LeakRateUnit.PascalQubicMeterPerSecond),
-                (LeakRateUnit.TorrLiterPerSecond, LeakRateUnit.PascalQubicMeterPerSecond) => new LeakRate(_value / 7.5, LeakRateUnit.PascalQubicMeterPerSecond),
+                (LeakRateUnit.MillibarLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond) => new LeakRate(_value / 10, LeakRateUnit.PascalCubicMeterPerSecond),
+                (LeakRateUnit.TorrLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond) => new LeakRate(_value / 7.5, LeakRateUnit.PascalCubicMeterPerSecond),
 
                 // BaseUnit -> LeakRateUnit
-                (LeakRateUnit.PascalQubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond) => new LeakRate(_value * 10, LeakRateUnit.MillibarLiterPerSecond),
-                (LeakRateUnit.PascalQubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond) => new LeakRate(_value * 7.5, LeakRateUnit.TorrLiterPerSecond),
+                (LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond) => new LeakRate(_value * 10, LeakRateUnit.MillibarLiterPerSecond),
+                (LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond) => new LeakRate(_value * 7.5, LeakRateUnit.TorrLiterPerSecond),
 
                 _ => null
             };

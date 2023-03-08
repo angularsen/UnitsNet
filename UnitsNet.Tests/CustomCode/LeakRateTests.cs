@@ -23,13 +23,13 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class LeakRateTests : LeakRateTestsBase
     {
-        protected override double PascalQubicMeterPerSecondInOnePascalQubicMeterPerSecond => 1;
+        protected override double PascalCubicMetersPerSecondInOnePascalCubicMeterPerSecond => 1;
 
-        protected override double MillibarLiterPerSecondInOnePascalQubicMeterPerSecond => 10;
+        protected override double MillibarLitersPerSecondInOnePascalCubicMeterPerSecond => 10;
 
         protected override bool SupportsSIUnitSystem => false;
 
-        protected override double TorrLiterPerSecondInOnePascalQubicMeterPerSecond => 7.5;
+        protected override double TorrLitersPerSecondInOnePascalCubicMeterPerSecond => 7.5;
 
     }
 }
