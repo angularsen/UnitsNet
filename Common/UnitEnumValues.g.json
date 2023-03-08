@@ -1732,5 +1732,11 @@
     "MolePerHour": 8,
     "MolePerMinute": 18,
     "MolePerSecond": 3
+  },
+  "LeakRate": {
+    "MillibarLiterPerSecond": 7,
+    "PascalQubicMeterPerSecond": 1,
+    "TorrLiterPerSecond": 4,
+    "PascalCubicMeterPerSecond": 2
   }
 }
