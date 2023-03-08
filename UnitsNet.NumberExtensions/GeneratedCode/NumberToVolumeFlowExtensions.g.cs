@@ -172,6 +172,18 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
         public static VolumeFlow MegalitersPerDay<T>(this T value) =>
             VolumeFlow.FromMegalitersPerDay(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow MegalitersPerHour<T>(this T value) =>
+            VolumeFlow.FromMegalitersPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow MegalitersPerMinute<T>(this T value) =>
+            VolumeFlow.FromMegalitersPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromMegalitersPerSecond(UnitsNet.QuantityValue)" />
+        public static VolumeFlow MegalitersPerSecond<T>(this T value) =>
+            VolumeFlow.FromMegalitersPerSecond(Convert.ToDouble(value));
+
         /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(UnitsNet.QuantityValue)" />
         public static VolumeFlow MegaukGallonsPerSecond<T>(this T value) =>
             VolumeFlow.FromMegaukGallonsPerSecond(Convert.ToDouble(value));

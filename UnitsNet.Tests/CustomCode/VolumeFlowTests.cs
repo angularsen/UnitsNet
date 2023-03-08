@@ -145,6 +145,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NanolitersPerHourInOneCubicMeterPerSecond => 3.6e15;
 
+        protected override double MegalitersPerHourInOneCubicMeterPerSecond => 3.6e0;
+
+        protected override double MegalitersPerMinuteInOneCubicMeterPerSecond => 6e-2;
+
+        protected override double MegalitersPerSecondInOneCubicMeterPerSecond => 1e-3;
+
         [Theory]
         [InlineData(20, 2, 40)]
         [InlineData(20, 62, 1240)]

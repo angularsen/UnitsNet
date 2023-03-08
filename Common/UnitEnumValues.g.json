@@ -1639,7 +1639,10 @@
     "UsGallonPerHour": 60,
     "UsGallonPerMinute": 61,
     "UsGallonPerSecond": 62,
-    "MillionUsGallonPerDay": 66
+    "MillionUsGallonPerDay": 66,
+    "MegaliterPerHour": 68,
+    "MegaliterPerMinute": 64,
+    "MegaliterPerSecond": 65
   },
   "VolumeFlowPerArea": {
     "CubicFootPerMinutePerSquareFoot": 1,
