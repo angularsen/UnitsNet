@@ -589,7 +589,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Temperature, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(Temperature left, Temperature right)
         {
             return left.Equals(right);
@@ -597,7 +597,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict inequality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Temperature, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(Temperature left, Temperature right)
         {
             return !(left == right);
@@ -606,7 +606,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(Temperature, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Temperature otherQuantity))
@@ -618,7 +618,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Temperature"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Temperature, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(Temperature, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public bool Equals(Temperature other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });
