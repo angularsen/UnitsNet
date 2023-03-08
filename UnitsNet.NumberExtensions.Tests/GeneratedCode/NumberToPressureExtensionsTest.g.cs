@@ -37,6 +37,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromCentibars(2), 2.Centibars());
 
         [Fact]
+        public void NumberToCentimetersOfWaterColumnTest() =>
+            Assert.Equal(Pressure.FromCentimetersOfWaterColumn(2), 2.CentimetersOfWaterColumn());
+
+        [Fact]
         public void NumberToDecapascalsTest() =>
             Assert.Equal(Pressure.FromDecapascals(2), 2.Decapascals());
 
@@ -137,6 +141,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromMetersOfHead(2), 2.MetersOfHead());
 
         [Fact]
+        public void NumberToMetersOfWaterColumnTest() =>
+            Assert.Equal(Pressure.FromMetersOfWaterColumn(2), 2.MetersOfWaterColumn());
+
+        [Fact]
         public void NumberToMicrobarsTest() =>
             Assert.Equal(Pressure.FromMicrobars(2), 2.Microbars());
 
@@ -153,8 +161,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromMillimetersOfMercury(2), 2.MillimetersOfMercury());
 
         [Fact]
-        public void NumberToMillimeterOfWaterColumnTest() =>
-            Assert.Equal(Pressure.FromMillimeterOfWaterColumn(2), 2.MillimeterOfWaterColumn());
+        public void NumberToMillimetersOfWaterColumnTest() =>
+            Assert.Equal(Pressure.FromMillimetersOfWaterColumn(2), 2.MillimetersOfWaterColumn());
 
         [Fact]
         public void NumberToMillipascalsTest() =>
