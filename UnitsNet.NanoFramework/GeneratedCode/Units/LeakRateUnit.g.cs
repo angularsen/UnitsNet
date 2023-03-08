@@ -25,11 +25,8 @@ namespace UnitsNet.Units
 
     public enum LeakRateUnit
     {
-        /// <remarks>https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks</remarks>
         MillibarLiterPerSecond = 7,
-        /// <remarks>https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks</remarks>
         PascalCubicMeterPerSecond = 2,
-        /// <remarks>https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks</remarks>
         TorrLiterPerSecond = 4,
     }
 
