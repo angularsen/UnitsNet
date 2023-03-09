@@ -85,6 +85,7 @@ namespace UnitsNet.Tests
             Assertion(3, IrradiationUnit.WattHourPerSquareMeter, Quantity.From(3, IrradiationUnit.WattHourPerSquareMeter));
             Assertion(3, JerkUnit.StandardGravitiesPerSecond, Quantity.From(3, JerkUnit.StandardGravitiesPerSecond));
             Assertion(3, KinematicViscosityUnit.Stokes, Quantity.From(3, KinematicViscosityUnit.Stokes));
+            Assertion(3, LeakRateUnit.TorrLiterPerSecond, Quantity.From(3, LeakRateUnit.TorrLiterPerSecond));
             Assertion(3, LengthUnit.Yard, Quantity.From(3, LengthUnit.Yard));
             Assertion(3, LevelUnit.Neper, Quantity.From(3, LevelUnit.Neper));
             Assertion(3, LinearDensityUnit.PoundPerInch, Quantity.From(3, LinearDensityUnit.PoundPerInch));
@@ -210,6 +211,7 @@ namespace UnitsNet.Tests
             Assertion(Irradiation.Info, Irradiation.Zero);
             Assertion(Jerk.Info, Jerk.Zero);
             Assertion(KinematicViscosity.Info, KinematicViscosity.Zero);
+            Assertion(LeakRate.Info, LeakRate.Zero);
             Assertion(Length.Info, Length.Zero);
             Assertion(Level.Info, Level.Zero);
             Assertion(LinearDensity.Info, LinearDensity.Zero);
@@ -335,6 +337,7 @@ namespace UnitsNet.Tests
             Assertion(Irradiation.BaseDimensions, Irradiation.Zero);
             Assertion(Jerk.BaseDimensions, Jerk.Zero);
             Assertion(KinematicViscosity.BaseDimensions, KinematicViscosity.Zero);
+            Assertion(LeakRate.BaseDimensions, LeakRate.Zero);
             Assertion(Length.BaseDimensions, Length.Zero);
             Assertion(Level.BaseDimensions, Level.Zero);
             Assertion(LinearDensity.BaseDimensions, LinearDensity.Zero);
