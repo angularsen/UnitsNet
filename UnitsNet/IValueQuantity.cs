@@ -48,5 +48,24 @@ namespace UnitsNet
         /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
         /// <returns>The converted value.</returns>
         new TValueType As(UnitSystem unitSystem);
+
+        /// <summary>
+        ///     Converts this <see cref="IValueQuantity{TValueType}"/> to an <see cref="IValueQuantity{TValueType}"/> in the given <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="unit">
+        ///     The unit <see cref="Enum"/> value. The <see cref="Enum"/> must be compatible with the units of the <see cref="IValueQuantity{TValueType}"/>.
+        ///     For example, if the <see cref="IValueQuantity{TValueType}"/> is a <see cref="Length"/>, you should provide a <see cref="LengthUnit"/> value.
+        /// </param>
+        /// <exception cref="NotImplementedException">Conversion was not possible from this <see cref="IValueQuantity{TValueType}"/> to <paramref name="unit"/>.</exception>
+        /// <returns>A new <see cref="IValueQuantity{TValueType}"/> in the given <paramref name="unit"/>.</returns>
+        new IValueQuantity<TValueType> ToUnit(Enum unit);
+
+        /// <summary>
+        ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        ///     If multiple units were found for the given <see cref="UnitSystem"/>, the first match will be used.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new <see cref="IValueQuantity{TValueType}"/> with the determined unit.</returns>
+        new IValueQuantity<TValueType> ToUnit(UnitSystem unitSystem);
     }
 }
