@@ -168,6 +168,7 @@
       "PluralName": "UsGallonsPerDay",
       "FromUnitToBaseFunc": "{x} / 22824465.227",
       "FromBaseToUnitFunc": "{x} * 22824465.227",
+      "Prefixes": [ "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -268,6 +269,7 @@
       "PluralName": "UkGallonsPerDay",
       "FromUnitToBaseFunc": "{x} / 19005304",
       "FromBaseToUnitFunc": "{x} * 19005304",
+      "Prefixes": [ "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

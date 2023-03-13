@@ -109,6 +109,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegaukGallonsPerSecondInOneCubicMeterPerSecond => 2.19969e-4;
 
+        protected override double MegaukGallonsPerDayInOneCubicMeterPerSecond => 19.005304;
+
+        protected override double MegausGallonsPerDayInOneCubicMeterPerSecond => 22.824465227;
+
         protected override double MicrolitersPerDayInOneCubicMeterPerSecond => 8.64e+13;
 
         protected override double MicrolitersPerHourInOneCubicMeterPerSecond => 3.6e12;
@@ -158,7 +162,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double UsGallonsPerMinuteInOneCubicMeterPerSecond => 1.5850323141489e4;
 
         protected override double UsGallonsPerSecondInOneCubicMeterPerSecond => 2.64172052358148E2;
-
 
         [Theory]
         [InlineData(20, 2, 40)]

@@ -104,12 +104,24 @@
     {
       "SingularName": "UsGallonPerMile",
       "PluralName": "UsGallonsPerMile",
-      "FromUnitToBaseFunc": "{x} / 4.251439077933434e5",
-      "FromBaseToUnitFunc": "{x} * 4.251439077933434e5",
+      "FromUnitToBaseFunc": "{x} / (1000 * 1609.344 / 3.785411784)",
+      "FromBaseToUnitFunc": "{x} * (1000 * 1609.344 / 3.785411784)",
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "gal (U.S.)/mi" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ImperialGallonPerMile",
+      "PluralName": "ImperialGallonsPerMile",
+      "FromUnitToBaseFunc": "{x} / (1000 * 1609.344 / 4.54609)",
+      "FromBaseToUnitFunc": "{x} * (1000 * 1609.344 / 4.54609)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gal (imp.)/mi" ]
         }
       ]
     }

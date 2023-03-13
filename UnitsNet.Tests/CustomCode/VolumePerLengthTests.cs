@@ -42,5 +42,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double LitersPerMillimeterInOneCubicMeterPerMeter => 1;
 
         protected override double UsGallonsPerMileInOneCubicMeterPerMeter => 4.251439077933434e5;
+
+        protected override double ImperialGallonsPerMileInOneCubicMeterPerMeter => 3.54006189934647e5;
     }
 }

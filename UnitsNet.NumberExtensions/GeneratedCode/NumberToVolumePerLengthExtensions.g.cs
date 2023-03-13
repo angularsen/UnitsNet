@@ -40,6 +40,10 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
         public static VolumePerLength CubicYardsPerUsSurveyFoot<T>(this T value) =>
             VolumePerLength.FromCubicYardsPerUsSurveyFoot(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(UnitsNet.QuantityValue)" />
+        public static VolumePerLength ImperialGallonsPerMile<T>(this T value) =>
+            VolumePerLength.FromImperialGallonsPerMile(Convert.ToDouble(value));
+
         /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(UnitsNet.QuantityValue)" />
         public static VolumePerLength LitersPerKilometer<T>(this T value) =>
             VolumePerLength.FromLitersPerKilometer(Convert.ToDouble(value));

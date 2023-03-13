@@ -1644,7 +1644,9 @@
     "MillionUsGallonPerDay": 66,
     "MegaliterPerHour": 68,
     "MegaliterPerMinute": 64,
-    "MegaliterPerSecond": 65
+    "MegaliterPerSecond": 65,
+    "MegaukGallonPerDay": 73,
+    "MegausGallonPerDay": 77
   },
   "VolumeFlowPerArea": {
     "CubicFootPerMinutePerSquareFoot": 1,
@@ -1658,7 +1660,8 @@
     "LiterPerMeter": 5,
     "LiterPerMillimeter": 6,
     "OilBarrelPerFoot": 7,
-    "UsGallonPerMile": 8
+    "UsGallonPerMile": 8,
+    "ImperialGallonPerMile": 11
   },
   "VolumetricHeatCapacity": {
     "BtuPerCubicFootDegreeFahrenheit": 1,
