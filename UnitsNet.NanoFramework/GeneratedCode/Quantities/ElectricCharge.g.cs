@@ -103,14 +103,14 @@ namespace UnitsNet
         public double Kilocoulombs => As(ElectricChargeUnit.Kilocoulomb);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Megacoulomb"/>
-        /// </summary>
-        public double Megacoulombs => As(ElectricChargeUnit.Megacoulomb);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.MegaampereHour"/>
         /// </summary>
         public double MegaampereHours => As(ElectricChargeUnit.MegaampereHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Megacoulomb"/>
+        /// </summary>
+        public double Megacoulombs => As(ElectricChargeUnit.Megacoulomb);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Microcoulomb"/>
@@ -166,16 +166,16 @@ namespace UnitsNet
         public static ElectricCharge FromKilocoulombs(double kilocoulombs) => new ElectricCharge(kilocoulombs, ElectricChargeUnit.Kilocoulomb);
 
         /// <summary>
-        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Megacoulomb"/>.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static ElectricCharge FromMegacoulombs(double megacoulombs) => new ElectricCharge(megacoulombs, ElectricChargeUnit.Megacoulomb);
-
-        /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MegaampereHour"/>.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public static ElectricCharge FromMegaampereHours(double megaamperehours) => new ElectricCharge(megaamperehours, ElectricChargeUnit.MegaampereHour);
+
+        /// <summary>
+        ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Megacoulomb"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static ElectricCharge FromMegacoulombs(double megacoulombs) => new ElectricCharge(megacoulombs, ElectricChargeUnit.Megacoulomb);
 
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Microcoulomb"/>.
@@ -251,8 +251,8 @@ namespace UnitsNet
                         ElectricChargeUnit.Coulomb => _value,
                         ElectricChargeUnit.KiloampereHour => (_value / 2.77777777777e-4) * 1e3d,
                         ElectricChargeUnit.Kilocoulomb => (_value) * 1e3d,
-                        ElectricChargeUnit.Megacoulomb => (_value) * 1e6d,
                         ElectricChargeUnit.MegaampereHour => (_value / 2.77777777777e-4) * 1e6d,
+                        ElectricChargeUnit.Megacoulomb => (_value) * 1e6d,
                         ElectricChargeUnit.Microcoulomb => (_value) * 1e-6d,
                         ElectricChargeUnit.MilliampereHour => (_value / 2.77777777777e-4) * 1e-3d,
                         ElectricChargeUnit.Millicoulomb => (_value) * 1e-3d,
@@ -275,8 +275,8 @@ namespace UnitsNet
                         ElectricChargeUnit.Coulomb => baseUnitValue,
                         ElectricChargeUnit.KiloampereHour => (baseUnitValue * 2.77777777777e-4) / 1e3d,
                         ElectricChargeUnit.Kilocoulomb => (baseUnitValue) / 1e3d,
-                        ElectricChargeUnit.Megacoulomb => (baseUnitValue) / 1e6d,
                         ElectricChargeUnit.MegaampereHour => (baseUnitValue * 2.77777777777e-4) / 1e6d,
+                        ElectricChargeUnit.Megacoulomb => (baseUnitValue) / 1e6d,
                         ElectricChargeUnit.Microcoulomb => (baseUnitValue) / 1e-6d,
                         ElectricChargeUnit.MilliampereHour => (baseUnitValue * 2.77777777777e-4) / 1e-3d,
                         ElectricChargeUnit.Millicoulomb => (baseUnitValue) / 1e-3d,
