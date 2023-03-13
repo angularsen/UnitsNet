@@ -52,5 +52,9 @@ namespace UnitsNet.Tests
         public void NumberToOilBarrelsPerFootTest() =>
             Assert.Equal(VolumePerLength.FromOilBarrelsPerFoot(2), 2.OilBarrelsPerFoot());
 
+        [Fact]
+        public void NumberToUsGallonsPerMileTest() =>
+            Assert.Equal(VolumePerLength.FromUsGallonsPerMile(2), 2.UsGallonsPerMile());
+
     }
 }

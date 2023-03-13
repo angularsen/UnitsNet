@@ -40,5 +40,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double LitersPerKilometerInOneCubicMeterPerMeter => 1E6;
 
         protected override double LitersPerMillimeterInOneCubicMeterPerMeter => 1;
+
+        protected override double UsGallonsPerMileInOneCubicMeterPerMeter => 4.251439077933434e5;
     }
 }

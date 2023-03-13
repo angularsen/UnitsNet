@@ -45,6 +45,7 @@ namespace UnitsNet.Tests
         protected abstract double LitersPerMeterInOneCubicMeterPerMeter { get; }
         protected abstract double LitersPerMillimeterInOneCubicMeterPerMeter { get; }
         protected abstract double OilBarrelsPerFootInOneCubicMeterPerMeter { get; }
+        protected abstract double UsGallonsPerMileInOneCubicMeterPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CubicMetersPerMeterTolerance { get { return 1e-5; } }
@@ -54,6 +55,7 @@ namespace UnitsNet.Tests
         protected virtual double LitersPerMeterTolerance { get { return 1e-5; } }
         protected virtual double LitersPerMillimeterTolerance { get { return 1e-5; } }
         protected virtual double OilBarrelsPerFootTolerance { get { return 1e-5; } }
+        protected virtual double UsGallonsPerMileTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(VolumePerLengthUnit unit)
@@ -67,6 +69,7 @@ namespace UnitsNet.Tests
                 VolumePerLengthUnit.LiterPerMeter => (LitersPerMeterInOneCubicMeterPerMeter, LitersPerMeterTolerance),
                 VolumePerLengthUnit.LiterPerMillimeter => (LitersPerMillimeterInOneCubicMeterPerMeter, LitersPerMillimeterTolerance),
                 VolumePerLengthUnit.OilBarrelPerFoot => (OilBarrelsPerFootInOneCubicMeterPerMeter, OilBarrelsPerFootTolerance),
+                VolumePerLengthUnit.UsGallonPerMile => (UsGallonsPerMileInOneCubicMeterPerMeter, UsGallonsPerMileTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -80,6 +83,7 @@ namespace UnitsNet.Tests
             new object[] { VolumePerLengthUnit.LiterPerMeter },
             new object[] { VolumePerLengthUnit.LiterPerMillimeter },
             new object[] { VolumePerLengthUnit.OilBarrelPerFoot },
+            new object[] { VolumePerLengthUnit.UsGallonPerMile },
         };
 
         [Fact]
@@ -149,6 +153,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(LitersPerMeterInOneCubicMeterPerMeter, cubicmeterpermeter.LitersPerMeter, LitersPerMeterTolerance);
             AssertEx.EqualTolerance(LitersPerMillimeterInOneCubicMeterPerMeter, cubicmeterpermeter.LitersPerMillimeter, LitersPerMillimeterTolerance);
             AssertEx.EqualTolerance(OilBarrelsPerFootInOneCubicMeterPerMeter, cubicmeterpermeter.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
+            AssertEx.EqualTolerance(UsGallonsPerMileInOneCubicMeterPerMeter, cubicmeterpermeter.UsGallonsPerMile, UsGallonsPerMileTolerance);
         }
 
         [Fact]
@@ -182,6 +187,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, quantity06.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
             Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, quantity06.Unit);
 
+            var quantity07 = VolumePerLength.From(1, VolumePerLengthUnit.UsGallonPerMile);
+            AssertEx.EqualTolerance(1, quantity07.UsGallonsPerMile, UsGallonsPerMileTolerance);
+            Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, quantity07.Unit);
+
         }
 
         [Fact]
@@ -208,6 +217,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(LitersPerMeterInOneCubicMeterPerMeter, cubicmeterpermeter.As(VolumePerLengthUnit.LiterPerMeter), LitersPerMeterTolerance);
             AssertEx.EqualTolerance(LitersPerMillimeterInOneCubicMeterPerMeter, cubicmeterpermeter.As(VolumePerLengthUnit.LiterPerMillimeter), LitersPerMillimeterTolerance);
             AssertEx.EqualTolerance(OilBarrelsPerFootInOneCubicMeterPerMeter, cubicmeterpermeter.As(VolumePerLengthUnit.OilBarrelPerFoot), OilBarrelsPerFootTolerance);
+            AssertEx.EqualTolerance(UsGallonsPerMileInOneCubicMeterPerMeter, cubicmeterpermeter.As(VolumePerLengthUnit.UsGallonPerMile), UsGallonsPerMileTolerance);
         }
 
         [Fact]
@@ -279,6 +289,13 @@ namespace UnitsNet.Tests
                 Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
+            try
+            {
+                var parsed = VolumePerLength.Parse("1 gal (U.S.)/mi", CultureInfo.GetCultureInfo("en-US"));
+                AssertEx.EqualTolerance(1, parsed.UsGallonsPerMile, UsGallonsPerMileTolerance);
+                Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, parsed.Unit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
         }
 
         [Fact]
@@ -324,6 +341,12 @@ namespace UnitsNet.Tests
                 Assert.True(VolumePerLength.TryParse("1 bbl/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
                 Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsed.Unit);
+            }
+
+            {
+                Assert.True(VolumePerLength.TryParse("1 gal (U.S.)/mi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                AssertEx.EqualTolerance(1, parsed.UsGallonsPerMile, UsGallonsPerMileTolerance);
+                Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, parsed.Unit);
             }
 
         }
@@ -373,6 +396,12 @@ namespace UnitsNet.Tests
                 Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
+            try
+            {
+                var parsedUnit = VolumePerLength.ParseUnit("gal (U.S.)/mi", CultureInfo.GetCultureInfo("en-US"));
+                Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, parsedUnit);
+            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
+
         }
 
         [Fact]
@@ -411,6 +440,11 @@ namespace UnitsNet.Tests
             {
                 Assert.True(VolumePerLength.TryParseUnit("bbl/ft", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsedUnit);
+            }
+
+            {
+                Assert.True(VolumePerLength.TryParseUnit("gal (U.S.)/mi", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, parsedUnit);
             }
 
         }
@@ -468,6 +502,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, VolumePerLength.FromLitersPerMeter(cubicmeterpermeter.LitersPerMeter).CubicMetersPerMeter, LitersPerMeterTolerance);
             AssertEx.EqualTolerance(1, VolumePerLength.FromLitersPerMillimeter(cubicmeterpermeter.LitersPerMillimeter).CubicMetersPerMeter, LitersPerMillimeterTolerance);
             AssertEx.EqualTolerance(1, VolumePerLength.FromOilBarrelsPerFoot(cubicmeterpermeter.OilBarrelsPerFoot).CubicMetersPerMeter, OilBarrelsPerFootTolerance);
+            AssertEx.EqualTolerance(1, VolumePerLength.FromUsGallonsPerMile(cubicmeterpermeter.UsGallonsPerMile).CubicMetersPerMeter, UsGallonsPerMileTolerance);
         }
 
         [Fact]
@@ -622,6 +657,7 @@ namespace UnitsNet.Tests
                 Assert.Equal("1 l/m", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMeter).ToString());
                 Assert.Equal("1 l/mm", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMillimeter).ToString());
                 Assert.Equal("1 bbl/ft", new VolumePerLength(1, VolumePerLengthUnit.OilBarrelPerFoot).ToString());
+                Assert.Equal("1 gal (U.S.)/mi", new VolumePerLength(1, VolumePerLengthUnit.UsGallonPerMile).ToString());
             }
             finally
             {
@@ -642,6 +678,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 l/m", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMeter).ToString(swedishCulture));
             Assert.Equal("1 l/mm", new VolumePerLength(1, VolumePerLengthUnit.LiterPerMillimeter).ToString(swedishCulture));
             Assert.Equal("1 bbl/ft", new VolumePerLength(1, VolumePerLengthUnit.OilBarrelPerFoot).ToString(swedishCulture));
+            Assert.Equal("1 gal (U.S.)/mi", new VolumePerLength(1, VolumePerLengthUnit.UsGallonPerMile).ToString(swedishCulture));
         }
 
         [Fact]

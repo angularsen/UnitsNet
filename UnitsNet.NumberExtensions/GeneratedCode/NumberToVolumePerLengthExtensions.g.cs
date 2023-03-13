@@ -56,5 +56,9 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
         public static VolumePerLength OilBarrelsPerFoot<T>(this T value) =>
             VolumePerLength.FromOilBarrelsPerFoot(Convert.ToDouble(value));
 
+        /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(UnitsNet.QuantityValue)" />
+        public static VolumePerLength UsGallonsPerMile<T>(this T value) =>
+            VolumePerLength.FromUsGallonsPerMile(Convert.ToDouble(value));
+
     }
 }

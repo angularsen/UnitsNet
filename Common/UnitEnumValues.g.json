@@ -1657,7 +1657,8 @@
     "LiterPerKilometer": 4,
     "LiterPerMeter": 5,
     "LiterPerMillimeter": 6,
-    "OilBarrelPerFoot": 7
+    "OilBarrelPerFoot": 7,
+    "UsGallonPerMile": 8
   },
   "VolumetricHeatCapacity": {
     "BtuPerCubicFootDegreeFahrenheit": 1,

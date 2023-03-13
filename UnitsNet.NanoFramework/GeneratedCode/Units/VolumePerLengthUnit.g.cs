@@ -32,6 +32,7 @@ namespace UnitsNet.Units
         LiterPerMeter = 5,
         LiterPerMillimeter = 6,
         OilBarrelPerFoot = 7,
+        UsGallonPerMile = 8,
     }
 
     #pragma warning restore 1591
