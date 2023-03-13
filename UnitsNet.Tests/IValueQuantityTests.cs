@@ -68,8 +68,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void IValueQuantityTDecimal_ToUnitEnum_ReturnsIValueQuantityTDecimal()
         {
-            IValueQuantity<decimal> decimalQuantity = Power.FromWatts(1234.5);
-            Assert.IsAssignableFrom<IValueQuantity<decimal>>(decimalQuantity.ToUnit(PowerUnit.ElectricalHorsepower));
+            IValueQuantity<decimal> decimalQuantity = Information.FromKilobytes(1234.5);
+            Assert.IsAssignableFrom<IValueQuantity<decimal>>(decimalQuantity.ToUnit(InformationUnit.Bit));
         }
 
         [Fact]
