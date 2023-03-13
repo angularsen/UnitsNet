@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 
 namespace UnitsNet.Tests.CustomQuantities
 {
@@ -55,8 +53,6 @@ namespace UnitsNet.Tests.CustomQuantities
         public override string ToString() => $"{Value} {Unit}";
         public string ToString(string? format, IFormatProvider? formatProvider) => $"HowMuch ({format}, {formatProvider})";
         public string ToString(IFormatProvider? provider) => $"HowMuch ({provider})";
-
-        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => Array.Empty<string>();
 
         #endregion
     }

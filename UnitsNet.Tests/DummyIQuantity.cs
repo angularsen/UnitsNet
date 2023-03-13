@@ -1,7 +1,5 @@
 ﻿#nullable enable
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 
 namespace UnitsNet.Tests
 {
@@ -28,7 +26,5 @@ namespace UnitsNet.Tests
         public IQuantity ToUnit(Enum unit ) => throw new NotImplementedException();
 
         public IQuantity ToUnit(UnitSystem unitSystem ) => throw new NotImplementedException();
-
-        public IReadOnlyList<string> GetAbbreviations(CultureInfo? culture = null) => throw new NotImplementedException();
     }
 }
