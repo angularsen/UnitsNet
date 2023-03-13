@@ -80,12 +80,15 @@ namespace UnitsNet
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="culture"></param>
+        /// <param name="formatProvider"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public IList<string> GetAbbreviations(CultureInfo culture)
+        public IList<string> GetAbbreviations(IFormatProvider? formatProvider = null)
         {
-            culture ??= CultureInfo.CurrentCulture;
+            if(formatProvider is null || formatProvider is not CultureInfo)
+                formatProvider = CultureInfo.CurrentCulture;
+
+            var culture = (CultureInfo)formatProvider;
 
             if(!AbbreviationsMap.TryGetValue(culture, out var abbreviations))
                 AbbreviationsMap[culture] = abbreviations = new Lazy<List<string>>(() => ReadAbbreviationsFromResourceFile(culture));

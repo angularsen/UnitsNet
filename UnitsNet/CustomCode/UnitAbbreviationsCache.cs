@@ -189,8 +189,8 @@ namespace UnitsNet
             if(!Quantity.TryFrom(0.0, enumInstance, out var quantity))
                 throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
 
-            var unitInfo = quantity.QuantityInfo.UnitInfos[unitValue];
-            return unitInfo.GetAbbreviations((CultureInfo)formatProvider!).ToArray();
+            var unitInfo = Quantity.GetUnitInfo(enumInstance);
+            return unitInfo.GetAbbreviations(formatProvider!).ToArray();
         }
 
         /// <summary>
