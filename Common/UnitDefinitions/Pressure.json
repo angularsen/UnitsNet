@@ -354,14 +354,15 @@
       ]
     },
     {
-      "SingularName": "MillimeterOfWaterColumn",
-      "PluralName": "MillimeterOfWaterColumn",
-      "FromUnitToBaseFunc": "{x} * 9.806650000000272e0",
-      "FromBaseToUnitFunc": "{x} / 9.806650000000272e0",
+      "SingularName": "MeterOfWaterColumn",
+      "PluralName": "MetersOfWaterColumn",
+      "FromUnitToBaseFunc": "{x} * 9.806650000000272e3",
+      "FromBaseToUnitFunc": "{x} / 9.806650000000272e3",
+      "Prefixes": [ "Milli", "Centi" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mmH2O", "mm wc" ]
+          "Abbreviations": [ "mH₂O", "mH2O", "m wc", "m wg" ]
         }
       ]
     },

@@ -1021,7 +1021,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict equality of two <see cref="SpecificEnergy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(SpecificEnergy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(SpecificEnergy, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(SpecificEnergy left, SpecificEnergy right)
         {
             return left.Equals(right);
@@ -1029,7 +1029,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict inequality of two <see cref="SpecificEnergy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(SpecificEnergy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(SpecificEnergy, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(SpecificEnergy left, SpecificEnergy right)
         {
             return !(left == right);
@@ -1038,7 +1038,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="SpecificEnergy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(SpecificEnergy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(SpecificEnergy, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is SpecificEnergy otherQuantity))
@@ -1050,7 +1050,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="SpecificEnergy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(SpecificEnergy, double, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(SpecificEnergy, double, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public bool Equals(SpecificEnergy other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });

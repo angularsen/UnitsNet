@@ -1,0 +1,55 @@
+{
+  "Name": "LeakRate",
+  "BaseUnit": "PascalCubicMeterPerSecond",
+  "XmlDocSummary": "A leakage rate of QL = 1 Pa-m³/s is given when the pressure in a closed, evacuated container with a volume of 1 m³ rises by 1 Pa per second or when the pressure in the container drops by 1 Pa in the event of overpressure.",
+  "XmlDocRemarks": "https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks",
+  "BaseDimensions": {
+    "M": 1,
+    "L": 2,
+    "T": -3
+  },
+  "Units": [
+    {
+      "SingularName": "PascalCubicMeterPerSecond",
+      "PluralName": "PascalCubicMetersPerSecond",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Pa·m³/s"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillibarLiterPerSecond",
+      "PluralName": "MillibarLitersPerSecond",
+      "FromUnitToBaseFunc": "{x} / 10",
+      "FromBaseToUnitFunc": "{x} * 10",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "mbar·l/s"
+          ]
+        }
+      ]
+    },
+    {
+      "SingularName": "TorrLiterPerSecond",
+      "PluralName": "TorrLitersPerSecond",
+      "FromUnitToBaseFunc": "{x} / 7.5",
+      "FromBaseToUnitFunc": "{x} * 7.5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [
+            "Torr·l/s"
+          ]
+        }
+      ]
+    }
+  ]
+}

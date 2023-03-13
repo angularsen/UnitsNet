@@ -947,7 +947,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict equality of two <see cref="Power"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Power, decimal, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For quantity comparisons, use Equals(Power, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator ==(Power left, Power right)
         {
             return left.Equals(right);
@@ -955,7 +955,7 @@ namespace UnitsNet
 
         /// <summary>Indicates strict inequality of two <see cref="Power"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Power, decimal, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Angle, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("For null checks, use `x is not null` syntax to not invoke overloads. For quantity comparisons, use Equals(Power, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public static bool operator !=(Power left, Power right)
         {
             return !(left == right);
@@ -964,7 +964,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Power"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Power, decimal, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(Power, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public override bool Equals(object? obj)
         {
             if (obj is null || !(obj is Power otherQuantity))
@@ -976,7 +976,7 @@ namespace UnitsNet
         /// <inheritdoc />
         /// <summary>Indicates strict equality of two <see cref="Power"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
         /// <remarks>Consider using <see cref="Equals(Power, decimal, ComparisonType)"/> to check equality across different units and to specify a floating-point number error tolerance.</remarks>
-        [Obsolete("Consider using Equals(Angle, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
+        [Obsolete("Consider using Equals(Power, decimal, ComparisonType) to check equality across different units and to specify a floating-point number error tolerance.")]
         public bool Equals(Power other)
         {
             return new { Value, Unit }.Equals(new { other.Value, other.Unit });

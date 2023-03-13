@@ -88,6 +88,7 @@ namespace UnitsNet
             { "Irradiation", Irradiation.Info },
             { "Jerk", Jerk.Info },
             { "KinematicViscosity", KinematicViscosity.Info },
+            { "LeakRate", LeakRate.Info },
             { "Length", Length.Info },
             { "Level", Level.Info },
             { "LinearDensity", LinearDensity.Info },
@@ -218,6 +219,7 @@ namespace UnitsNet
                 "Irradiation" => Irradiation.From(value, Irradiation.BaseUnit),
                 "Jerk" => Jerk.From(value, Jerk.BaseUnit),
                 "KinematicViscosity" => KinematicViscosity.From(value, KinematicViscosity.BaseUnit),
+                "LeakRate" => LeakRate.From(value, LeakRate.BaseUnit),
                 "Length" => Length.From(value, Length.BaseUnit),
                 "Level" => Level.From(value, Level.BaseUnit),
                 "LinearDensity" => LinearDensity.From(value, LinearDensity.BaseUnit),
@@ -351,6 +353,7 @@ namespace UnitsNet
                 IrradiationUnit irradiationUnit => Irradiation.From(value, irradiationUnit),
                 JerkUnit jerkUnit => Jerk.From(value, jerkUnit),
                 KinematicViscosityUnit kinematicViscosityUnit => KinematicViscosity.From(value, kinematicViscosityUnit),
+                LeakRateUnit leakRateUnit => LeakRate.From(value, leakRateUnit),
                 LengthUnit lengthUnit => Length.From(value, lengthUnit),
                 LevelUnit levelUnit => Level.From(value, levelUnit),
                 LinearDensityUnit linearDensityUnit => LinearDensity.From(value, linearDensityUnit),
@@ -494,6 +497,7 @@ namespace UnitsNet
                 Type _ when quantityType == typeof(Irradiation) => parser.TryParse<Irradiation, IrradiationUnit>(quantityString, formatProvider, Irradiation.From, out quantity),
                 Type _ when quantityType == typeof(Jerk) => parser.TryParse<Jerk, JerkUnit>(quantityString, formatProvider, Jerk.From, out quantity),
                 Type _ when quantityType == typeof(KinematicViscosity) => parser.TryParse<KinematicViscosity, KinematicViscosityUnit>(quantityString, formatProvider, KinematicViscosity.From, out quantity),
+                Type _ when quantityType == typeof(LeakRate) => parser.TryParse<LeakRate, LeakRateUnit>(quantityString, formatProvider, LeakRate.From, out quantity),
                 Type _ when quantityType == typeof(Length) => parser.TryParse<Length, LengthUnit>(quantityString, formatProvider, Length.From, out quantity),
                 Type _ when quantityType == typeof(Level) => parser.TryParse<Level, LevelUnit>(quantityString, formatProvider, Level.From, out quantity),
                 Type _ when quantityType == typeof(LinearDensity) => parser.TryParse<LinearDensity, LinearDensityUnit>(quantityString, formatProvider, LinearDensity.From, out quantity),
@@ -618,6 +622,7 @@ namespace UnitsNet
             yield return typeof(Irradiation);
             yield return typeof(Jerk);
             yield return typeof(KinematicViscosity);
+            yield return typeof(LeakRate);
             yield return typeof(Length);
             yield return typeof(Level);
             yield return typeof(LinearDensity);

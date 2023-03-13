@@ -104,6 +104,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Jerk", "Jerk\Jerk.nfproj", 
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "KinematicViscosity", "KinematicViscosity\KinematicViscosity.nfproj", "{733e533d-9ff2-4c72-3da9-200f758dc6e3}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "LeakRate", "LeakRate\LeakRate.nfproj", "{ff162d83-3229-2000-71ed-08999160dca3}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Length", "Length\Length.nfproj", "{0556c9ad-b3a1-730c-959f-baf21e60f972}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Level", "Level\Level.nfproj", "{5c300917-a99f-d166-4f56-f0da3c3614bb}"
@@ -550,6 +552,12 @@ Global
 {733e533d-9ff2-4c72-3da9-200f758dc6e3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {733e533d-9ff2-4c72-3da9-200f758dc6e3}.Release|Any CPU.Build.0 = Release|Any CPU
 {733e533d-9ff2-4c72-3da9-200f758dc6e3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Release|Any CPU.Build.0 = Release|Any CPU
+{ff162d83-3229-2000-71ed-08999160dca3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {0556c9ad-b3a1-730c-959f-baf21e60f972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {0556c9ad-b3a1-730c-959f-baf21e60f972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {0556c9ad-b3a1-730c-959f-baf21e60f972}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
